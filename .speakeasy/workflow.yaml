@@ -4,8 +4,6 @@ sources:
     SolarWinds Observability:
         inputs:
             - location: https://api.na-01.cloud.solarwinds.com/v1/openapi.json
-        overlays:
-            - location: overlay-codesamples.yaml
         output: openapi.yaml
         registry:
             location: registry.speakeasyapi.dev/swo/swo/solar-winds-observability
