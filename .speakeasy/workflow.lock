@@ -2,7 +2,7 @@ speakeasyVersion: 1.449.0
 sources:
     SolarWinds Observability:
         sourceNamespace: solar-winds-observability
-        sourceRevisionDigest: sha256:6cc39405ebac5be8a9365014ce6ef05c8b7cbd6fc0cb78d38b0f010586246399
+        sourceRevisionDigest: sha256:4ad486b6771bf56d6361d23110e7a580268cd64f55ad7a50f8d1419722433532
         sourceBlobDigest: sha256:4f224a1ac7b2c318fa55d892065fbe53ef43d052bb637af414ea46fa6f57a69d
         tags:
             - latest
@@ -11,10 +11,10 @@ targets:
     solar-winds:
         source: SolarWinds Observability
         sourceNamespace: solar-winds-observability
-        sourceRevisionDigest: sha256:6cc39405ebac5be8a9365014ce6ef05c8b7cbd6fc0cb78d38b0f010586246399
+        sourceRevisionDigest: sha256:4ad486b6771bf56d6361d23110e7a580268cd64f55ad7a50f8d1419722433532
         sourceBlobDigest: sha256:4f224a1ac7b2c318fa55d892065fbe53ef43d052bb637af414ea46fa6f57a69d
         codeSamplesNamespace: solar-winds-observability-go-code-samples
-        codeSamplesRevisionDigest: sha256:2674de7d057c3a1fae76571426d925cdbfe2054a9c6209b8904fe584885e9400
+        codeSamplesRevisionDigest: sha256:b6a3f7940904639d919fe30fbeec3d2cd4f18e075308643eb6e7edd5ce322b04
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
