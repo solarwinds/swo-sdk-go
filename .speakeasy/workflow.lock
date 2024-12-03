@@ -1,9 +1,9 @@
-speakeasyVersion: 1.448.2
+speakeasyVersion: 1.449.0
 sources:
     SolarWinds Observability:
         sourceNamespace: solar-winds-observability
-        sourceRevisionDigest: sha256:280e23fc7295a3ceae14d75468f84786ec9fef241d0703dc99d061c401baa78c
-        sourceBlobDigest: sha256:2c17034a64e9758775effca637fd1eb6c850fd3bcb688ef8d4cd4fe6c1b22429
+        sourceRevisionDigest: sha256:6cc39405ebac5be8a9365014ce6ef05c8b7cbd6fc0cb78d38b0f010586246399
+        sourceBlobDigest: sha256:4f224a1ac7b2c318fa55d892065fbe53ef43d052bb637af414ea46fa6f57a69d
         tags:
             - latest
             - 1.0.0
@@ -11,10 +11,10 @@ targets:
     solar-winds:
         source: SolarWinds Observability
         sourceNamespace: solar-winds-observability
-        sourceRevisionDigest: sha256:280e23fc7295a3ceae14d75468f84786ec9fef241d0703dc99d061c401baa78c
-        sourceBlobDigest: sha256:2c17034a64e9758775effca637fd1eb6c850fd3bcb688ef8d4cd4fe6c1b22429
+        sourceRevisionDigest: sha256:6cc39405ebac5be8a9365014ce6ef05c8b7cbd6fc0cb78d38b0f010586246399
+        sourceBlobDigest: sha256:4f224a1ac7b2c318fa55d892065fbe53ef43d052bb637af414ea46fa6f57a69d
         codeSamplesNamespace: solar-winds-observability-go-code-samples
-        codeSamplesRevisionDigest: sha256:1e1bee0feba0d8bde821cb15a56d89dea9ddfe56870270ab0f2053a76fe0848c
+        codeSamplesRevisionDigest: sha256:2674de7d057c3a1fae76571426d925cdbfe2054a9c6209b8904fe584885e9400
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -22,8 +22,6 @@ workflow:
         SolarWinds Observability:
             inputs:
                 - location: https://api.na-01.cloud.solarwinds.com/v1/openapi.json
-            overlays:
-                - location: overlay-codesamples.yaml
             output: openapi.yaml
             registry:
                 location: registry.speakeasyapi.dev/swo/swo/solar-winds-observability
@@ -31,6 +29,7 @@ workflow:
         solar-winds:
             target: go
             source: SolarWinds Observability
+            output: solarwinds
             codeSamples:
                 registry:
                     location: registry.speakeasyapi.dev/swo/swo/solar-winds-observability-go-code-samples
