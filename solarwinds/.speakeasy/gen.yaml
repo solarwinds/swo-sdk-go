@@ -1,0 +1,39 @@
+configVersion: 2.0.0
+generation:
+  devContainers:
+    enabled: true
+    schemaPath: https://api.na-01.cloud.solarwinds.com/v1/openapi.json
+  sdkClassName: SolarWinds
+  maintainOpenAPIOrder: true
+  usageSnippets:
+    optionalPropertyRendering: withExample
+  useClassNamesForArrayFields: true
+  fixes:
+    nameResolutionDec2023: true
+    parameterOrderingFeb2024: true
+    requestResponseComponentNamesFeb2024: true
+  auth:
+    oAuth2ClientCredentialsEnabled: true
+    oAuth2PasswordEnabled: true
+go:
+  version: 0.2.1
+  additionalDependencies: {}
+  allowUnknownFieldsInWeakUnions: false
+  clientServerStatusCodesAsErrors: true
+  defaultErrorName: APIError
+  envVarPrefix: SWO
+  flattenGlobalSecurity: true
+  imports:
+    option: openapi
+    paths:
+      callbacks: models/callbacks
+      errors: models/apierrors
+      operations: models/operations
+      shared: models/components
+      webhooks: models/webhooks
+  inputModelSuffix: input
+  maxMethodParams: 0
+  methodArguments: require-security-and-request
+  outputModelSuffix: output
+  packageName: github.com/solarwinds/swo-sdk-go/solarwinds
+  responseFormat: envelope-http
