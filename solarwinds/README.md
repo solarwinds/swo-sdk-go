@@ -66,7 +66,7 @@ import (
 
 func main() {
 	s := solarwinds.New(
-		solarwinds.WithSecurity(os.Getenv("SWO_BEARER_AUTH")),
+		solarwinds.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
 	ctx := context.Background()
@@ -105,9 +105,9 @@ func main() {
 
 This SDK supports the following security scheme globally:
 
-| Name         | Type | Scheme      | Environment Variable |
-| ------------ | ---- | ----------- | -------------------- |
-| `BearerAuth` | http | HTTP Bearer | `SWO_BEARER_AUTH`    |
+| Name       | Type | Scheme      | Environment Variable |
+| ---------- | ---- | ----------- | -------------------- |
+| `APIToken` | http | HTTP Bearer | `SWO_API_TOKEN`      |
 
 You can configure it using the `WithSecurity` option when initializing the SDK client instance. For example:
 ```go
@@ -123,7 +123,7 @@ import (
 
 func main() {
 	s := solarwinds.New(
-		solarwinds.WithSecurity(os.Getenv("SWO_BEARER_AUTH")),
+		solarwinds.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
 	ctx := context.Background()
@@ -227,7 +227,7 @@ import (
 
 func main() {
 	s := solarwinds.New(
-		solarwinds.WithSecurity(os.Getenv("SWO_BEARER_AUTH")),
+		solarwinds.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
 	ctx := context.Background()
@@ -279,7 +279,7 @@ import (
 
 func main() {
 	s := solarwinds.New(
-		solarwinds.WithSecurity(os.Getenv("SWO_BEARER_AUTH")),
+		solarwinds.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
 	ctx := context.Background()
@@ -346,7 +346,7 @@ func main() {
 				},
 				RetryConnectionErrors: false,
 			}),
-		solarwinds.WithSecurity(os.Getenv("SWO_BEARER_AUTH")),
+		solarwinds.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
 	ctx := context.Background()
@@ -409,7 +409,7 @@ import (
 
 func main() {
 	s := solarwinds.New(
-		solarwinds.WithSecurity(os.Getenv("SWO_BEARER_AUTH")),
+		solarwinds.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
 	ctx := context.Background()
@@ -507,7 +507,7 @@ import (
 func main() {
 	s := solarwinds.New(
 		solarwinds.WithServerURL("https://api.na-01.cloud.solarwinds.com"),
-		solarwinds.WithSecurity(os.Getenv("SWO_BEARER_AUTH")),
+		solarwinds.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
 	ctx := context.Background()
