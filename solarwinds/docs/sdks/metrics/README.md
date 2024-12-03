@@ -31,7 +31,7 @@ import(
 
 func main() {
     s := solarwinds.New(
-        solarwinds.WithSecurity(os.Getenv("SWO_BEARER_AUTH")),
+        solarwinds.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
     ctx := context.Background()
@@ -95,7 +95,7 @@ import(
 
 func main() {
     s := solarwinds.New(
-        solarwinds.WithSecurity(os.Getenv("SWO_BEARER_AUTH")),
+        solarwinds.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
     ctx := context.Background()
@@ -154,7 +154,7 @@ import(
 
 func main() {
     s := solarwinds.New(
-        solarwinds.WithSecurity(os.Getenv("SWO_BEARER_AUTH")),
+        solarwinds.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
     ctx := context.Background()
@@ -220,7 +220,7 @@ import(
 
 func main() {
     s := solarwinds.New(
-        solarwinds.WithSecurity(os.Getenv("SWO_BEARER_AUTH")),
+        solarwinds.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
     ctx := context.Background()
@@ -286,7 +286,7 @@ import(
 
 func main() {
     s := solarwinds.New(
-        solarwinds.WithSecurity(os.Getenv("SWO_BEARER_AUTH")),
+        solarwinds.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
     ctx := context.Background()
@@ -353,7 +353,7 @@ import(
 
 func main() {
     s := solarwinds.New(
-        solarwinds.WithSecurity(os.Getenv("SWO_BEARER_AUTH")),
+        solarwinds.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
     ctx := context.Background()
