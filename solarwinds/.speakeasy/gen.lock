@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
-id: 9a946301-cef9-48a6-8176-f1b8466afecd
+id: 7c0a042e-dbb0-4257-be8d-ee25910be667
 management:
-  docChecksum: 98c925ea36859652a215803a85628472
+  docChecksum: 4154966b181c5fa32011f3046a6393a4
   docVersion: 1.0.0
-  speakeasyVersion: 1.448.2
+  speakeasyVersion: 1.449.0
   generationVersion: 2.467.4
   releaseVersion: 0.2.1
-  configChecksum: 82b83a1e51195abff94e2ca93fccc526
+  configChecksum: e07fbf7a8f0050250bdb95fbd40bbf11
 features:
   go:
     additionalDependencies: 0.1.0
@@ -240,6 +240,67 @@ examples:
       responses:
         "200":
           application/json: {"id": 119883}
+  createWebsiteMonitor:
+    speakeasy-default-create-website-monitor:
+      requestBody:
+        application/json: {"name": "solarwinds.com", "url": "https://www.solarwinds.com", "availabilityCheckSettings": {"checkForString": {"operator": "CONTAINS", "value": "string"}, "testIntervalInSeconds": 14400, "protocols": ["HTTP", "HTTPS"], "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}"}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "spa": true}}
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720"}
+        "400":
+          application/json: {"code": "<value>", "message": "<value>", "": {}}
+  getWebsiteMonitor:
+    speakeasy-default-get-website-monitor:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720", "type": "Website", "name": "solarwinds.com", "url": "https://www.solarwinds.com", "availabilityCheckSettings": {"checkForString": {"operator": "CONTAINS", "value": "string"}, "testIntervalInSeconds": 14400, "protocols": ["HTTP", "HTTPS"], "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}"}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "snippet": "string", "spa": true}, "nextOnDemandAvailabilityTime": 0}
+        "400":
+          application/json: {"code": "<value>", "message": "<value>", "": {}}
+  updateWebsiteMonitor:
+    speakeasy-default-update-website-monitor:
+      parameters:
+        path:
+          entityId: "<id>"
+      requestBody:
+        application/json: {"name": "solarwinds.com", "url": "https://www.solarwinds.com", "availabilityCheckSettings": {"checkForString": {"operator": "CONTAINS", "value": "string"}, "testIntervalInSeconds": 14400, "protocols": ["HTTP", "HTTPS"], "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}"}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "spa": true}}
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720"}
+        "400":
+          application/json: {"code": "<value>", "message": "<value>", "": {}}
+  deleteWebsiteMonitor:
+    speakeasy-default-delete-website-monitor:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720"}
+        "400":
+          application/json: {"code": "<value>", "message": "<value>", "": {}}
+  pauseWebsiteMonitor:
+    speakeasy-default-pause-website-monitor:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720"}
+        "400":
+          application/json: {"code": "<value>", "message": "<value>", "": {}}
+  unpauseWebsiteMonitor:
+    speakeasy-default-unpause-website-monitor:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720"}
+        "400":
+          application/json: {"code": "<value>", "message": "<value>", "": {}}
   listEntities:
     speakeasy-default-list-entities:
       parameters:
@@ -343,65 +404,4 @@ examples:
       responses:
         "200":
           application/json: {"token": "<value>"}
-  createWebsiteMonitor:
-    speakeasy-default-create-website-monitor:
-      requestBody:
-        application/json: {"name": "solarwinds.com", "url": "https://www.solarwinds.com", "availabilityCheckSettings": {"checkForString": {"operator": "CONTAINS", "value": "string"}, "testIntervalInSeconds": 14400, "protocols": ["HTTP", "HTTPS"], "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}"}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "spa": true}}
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": "<value>", "message": "<value>", "": {}}
-  getWebsiteMonitor:
-    speakeasy-default-get-website-monitor:
-      parameters:
-        path:
-          entityId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720", "type": "Website", "name": "solarwinds.com", "url": "https://www.solarwinds.com", "availabilityCheckSettings": {"checkForString": {"operator": "CONTAINS", "value": "string"}, "testIntervalInSeconds": 14400, "protocols": ["HTTP", "HTTPS"], "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}"}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "snippet": "string", "spa": true}, "nextOnDemandAvailabilityTime": 0}
-        "400":
-          application/json: {"code": "<value>", "message": "<value>", "": {}}
-  updateWebsiteMonitor:
-    speakeasy-default-update-website-monitor:
-      parameters:
-        path:
-          entityId: "<id>"
-      requestBody:
-        application/json: {"name": "solarwinds.com", "url": "https://www.solarwinds.com", "availabilityCheckSettings": {"checkForString": {"operator": "CONTAINS", "value": "string"}, "testIntervalInSeconds": 14400, "protocols": ["HTTP", "HTTPS"], "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}"}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "spa": true}}
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": "<value>", "message": "<value>", "": {}}
-  deleteWebsiteMonitor:
-    speakeasy-default-delete-website-monitor:
-      parameters:
-        path:
-          entityId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": "<value>", "message": "<value>", "": {}}
-  pauseWebsiteMonitor:
-    speakeasy-default-pause-website-monitor:
-      parameters:
-        path:
-          entityId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": "<value>", "message": "<value>", "": {}}
-  unpauseWebsiteMonitor:
-    speakeasy-default-unpause-website-monitor:
-      parameters:
-        path:
-          entityId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": "<value>", "message": "<value>", "": {}}
 generatedTests: {}
