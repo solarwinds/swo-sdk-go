@@ -14,3 +14,7 @@ targets:
         target: go
         source: SolarWinds Observability
         output: solarwinds
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/swo/swo/solar-winds-observability-go-code-samples
+            blocking: false
