@@ -1,0 +1,16 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    SolarWinds Observability:
+        inputs:
+            - location: https://api.na-01.cloud.solarwinds.com/v1/openapi.json
+        registry:
+            location: registry.speakeasyapi.dev/swo/swo/solar-winds-observability
+targets:
+    solar-winds:
+        target: go
+        source: SolarWinds Observability
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/swo/swo/solar-winds-observability-go-code-samples
+            blocking: false
