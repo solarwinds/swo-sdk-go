@@ -1,9 +1,0 @@
-# CreateChangeEventResponse
-
-
-## Fields
-
-| Field                                                                                                 | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `HTTPMeta`                                                                                            | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                    | :heavy_check_mark:                                                                                    | N/A                                                                                                   |
-| `Object`                                                                                              | [*operations.CreateChangeEventResponseBody](../../models/operations/createchangeeventresponsebody.md) | :heavy_minus_sign:                                                                                    | The ID of the created event                                                                           |

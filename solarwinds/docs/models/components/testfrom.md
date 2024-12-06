@@ -1,9 +1,0 @@
-# TestFrom
-
-
-## Fields
-
-| Field                                                                                                                 | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
-| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `Type`                                                                                                                | [components.ProbeLocationType](../../models/components/probelocationtype.md)                                          | :heavy_check_mark:                                                                                                    | Specificity for location of synthetic probes to be used for availability tests.                                       |
-| `Values`                                                                                                              | []*string*                                                                                                            | :heavy_check_mark:                                                                                                    | A list of probe location values of the selected type. At least one value matching an existing probe must be provided. |
