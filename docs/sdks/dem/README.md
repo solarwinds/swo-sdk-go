@@ -31,7 +31,7 @@ import(
 
 func main() {
     s := swosdkgo.New(
-        swosdkgo.WithSecurity(os.Getenv("SOLARWINDS_BEARER_AUTH")),
+        swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
     ctx := context.Background()
@@ -132,7 +132,7 @@ import(
 
 func main() {
     s := swosdkgo.New(
-        swosdkgo.WithSecurity(os.Getenv("SOLARWINDS_BEARER_AUTH")),
+        swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
     ctx := context.Background()
@@ -187,7 +187,7 @@ import(
 
 func main() {
     s := swosdkgo.New(
-        swosdkgo.WithSecurity(os.Getenv("SOLARWINDS_BEARER_AUTH")),
+        swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
     ctx := context.Background()
@@ -291,7 +291,7 @@ import(
 
 func main() {
     s := swosdkgo.New(
-        swosdkgo.WithSecurity(os.Getenv("SOLARWINDS_BEARER_AUTH")),
+        swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
     ctx := context.Background()
@@ -345,7 +345,7 @@ import(
 
 func main() {
     s := swosdkgo.New(
-        swosdkgo.WithSecurity(os.Getenv("SOLARWINDS_BEARER_AUTH")),
+        swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
     ctx := context.Background()
@@ -399,7 +399,7 @@ import(
 
 func main() {
     s := swosdkgo.New(
-        swosdkgo.WithSecurity(os.Getenv("SOLARWINDS_BEARER_AUTH")),
+        swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
     ctx := context.Background()
