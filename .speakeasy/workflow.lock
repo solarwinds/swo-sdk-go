@@ -1,0 +1,34 @@
+speakeasyVersion: 1.453.0
+sources:
+    SolarWinds Observability:
+        sourceNamespace: solar-winds-observability
+        sourceRevisionDigest: sha256:ad7853831318652a3ba460c0e94533fa37f404533c42574a32691c771deebb96
+        sourceBlobDigest: sha256:ff9ff9740f57ce0773b1a2c1e1cdf46141117ed6627ca263fef51823941f5d65
+        tags:
+            - latest
+            - 1.0.0
+targets:
+    solar-winds:
+        source: SolarWinds Observability
+        sourceNamespace: solar-winds-observability
+        sourceRevisionDigest: sha256:ad7853831318652a3ba460c0e94533fa37f404533c42574a32691c771deebb96
+        sourceBlobDigest: sha256:ff9ff9740f57ce0773b1a2c1e1cdf46141117ed6627ca263fef51823941f5d65
+        codeSamplesNamespace: solar-winds-observability-go-code-samples
+        codeSamplesRevisionDigest: sha256:331c110846e0a0c89438ded0dfb469c4ab57eaa69e222ada821599d853fe0deb
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        SolarWinds Observability:
+            inputs:
+                - location: https://api.na-01.cloud.solarwinds.com/v1/openapi.json
+            registry:
+                location: registry.speakeasyapi.dev/swo/swo/solar-winds-observability
+    targets:
+        solar-winds:
+            target: go
+            source: SolarWinds Observability
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/swo/swo/solar-winds-observability-go-code-samples
+                blocking: false
