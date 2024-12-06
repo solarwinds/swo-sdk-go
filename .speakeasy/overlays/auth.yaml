@@ -1,0 +1,15 @@
+overlay: 1.0.0
+info:
+  title: Overlay ./openapi.yaml.orig => ./openapi.yaml
+  version: 0.0.0
+actions:
+  - target: $["security"][0]
+    update:
+      "ApiToken": []
+  - target: $["security"][0]["BearerAuth"]
+    remove: true
+  - target: $["components"]["securitySchemes"]
+    update:
+      "ApiToken": {"type": "http", "scheme": "bearer"}
+  - target: $["components"]["securitySchemes"]["BearerAuth"]
+    remove: true
