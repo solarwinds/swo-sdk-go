@@ -134,9 +134,9 @@ func WithClient(client HTTPClient) SDKOption {
 }
 
 // WithSecurity configures the SDK to use the provided security details
-func WithSecurity(bearerAuth string) SDKOption {
+func WithSecurity(apiToken string) SDKOption {
 	return func(sdk *SolarWinds) {
-		security := components.Security{BearerAuth: &bearerAuth}
+		security := components.Security{APIToken: &apiToken}
 		sdk.sdkConfiguration.Security = utils.AsSecuritySource(&security)
 	}
 }
@@ -169,9 +169,9 @@ func New(opts ...SDKOption) *SolarWinds {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.1.0",
+			SDKVersion:        "0.1.2",
 			GenVersion:        "2.472.1",
-			UserAgent:         "speakeasy-sdk/go 0.1.0 2.472.1 1.0.0 github.com/solarwinds/swo-sdk-go",
+			UserAgent:         "speakeasy-sdk/go 0.1.2 2.472.1 1.0.0 github.com/solarwinds/swo-sdk-go",
 			ServerDefaults: []map[string]string{
 				{
 					"region": "na-01",
