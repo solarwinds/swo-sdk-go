@@ -18,18 +18,19 @@ List all available entity types.
 package main
 
 import(
+	"context"
 	"os"
 	swosdkgo "github.com/solarwinds/swo-sdk-go"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := swosdkgo.New(
         swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    ctx := context.Background()
     res, err := s.Metadata.ListEntityTypes(ctx)
     if err != nil {
         log.Fatal(err)
@@ -67,19 +68,20 @@ List metrics metadata for an entity type between a start and end time. If start 
 package main
 
 import(
+	"context"
 	"os"
 	swosdkgo "github.com/solarwinds/swo-sdk-go"
 	"github.com/solarwinds/swo-sdk-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := swosdkgo.New(
         swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    ctx := context.Background()
     res, err := s.Metadata.ListMetricsForEntityType(ctx, operations.ListMetricsForEntityTypeRequest{
         Type: "<value>",
     })

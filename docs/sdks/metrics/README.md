@@ -22,38 +22,38 @@ List metrics seen within a time period
 package main
 
 import(
+	"context"
 	"os"
 	swosdkgo "github.com/solarwinds/swo-sdk-go"
 	"github.com/solarwinds/swo-sdk-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := swosdkgo.New(
         swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    ctx := context.Background()
     res, err := s.Metrics.ListMetrics(ctx, operations.ListMetricsRequest{})
     if err != nil {
         log.Fatal(err)
     }
     if res.Object != nil {
-                for {
+        for {
             // handle items
-        
+
             res, err = res.Next()
-        
+
             if err != nil {
                 // handle error
             }
-        
+
             if res == nil {
                 break
             }
         }
-        
     }
 }
 ```
@@ -86,19 +86,20 @@ Create a composite metric given a PromQL query
 package main
 
 import(
+	"context"
 	"os"
 	swosdkgo "github.com/solarwinds/swo-sdk-go"
 	"github.com/solarwinds/swo-sdk-go/models/components"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := swosdkgo.New(
         swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    ctx := context.Background()
     res, err := s.Metrics.CreateCompositeMetric(ctx, components.CompositeMetric{
         Name: "composite.custom.system.disk.io.rate",
         DisplayName: "Disk IO rate",
@@ -145,19 +146,20 @@ Get info about a metric
 package main
 
 import(
+	"context"
 	"os"
 	swosdkgo "github.com/solarwinds/swo-sdk-go"
 	"github.com/solarwinds/swo-sdk-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := swosdkgo.New(
         swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    ctx := context.Background()
     res, err := s.Metrics.GetMetricByName(ctx, operations.GetMetricByNameRequest{
         Name: "<value>",
     })
@@ -165,20 +167,19 @@ func main() {
         log.Fatal(err)
     }
     if res.CommonMetricInfo != nil {
-                for {
+        for {
             // handle items
-        
+
             res, err = res.Next()
-        
+
             if err != nil {
                 // handle error
             }
-        
+
             if res == nil {
                 break
             }
         }
-        
     }
 }
 ```
@@ -211,19 +212,20 @@ List all attribute names defined for the given metric
 package main
 
 import(
+	"context"
 	"os"
 	swosdkgo "github.com/solarwinds/swo-sdk-go"
 	"github.com/solarwinds/swo-sdk-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := swosdkgo.New(
         swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    ctx := context.Background()
     res, err := s.Metrics.ListMetricAttributes(ctx, operations.ListMetricAttributesRequest{
         Name: "<value>",
     })
@@ -231,20 +233,19 @@ func main() {
         log.Fatal(err)
     }
     if res.Object != nil {
-                for {
+        for {
             // handle items
-        
+
             res, err = res.Next()
-        
+
             if err != nil {
                 // handle error
             }
-        
+
             if res == nil {
                 break
             }
         }
-        
     }
 }
 ```
@@ -277,19 +278,20 @@ List values of a metric's attribute
 package main
 
 import(
+	"context"
 	"os"
 	swosdkgo "github.com/solarwinds/swo-sdk-go"
 	"github.com/solarwinds/swo-sdk-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := swosdkgo.New(
         swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    ctx := context.Background()
     res, err := s.Metrics.ListMetricAttributeValues(ctx, operations.ListMetricAttributeValuesRequest{
         Name: "<value>",
         AttributeName: "<value>",
@@ -298,20 +300,19 @@ func main() {
         log.Fatal(err)
     }
     if res.Object != nil {
-                for {
+        for {
             // handle items
-        
+
             res, err = res.Next()
-        
+
             if err != nil {
                 // handle error
             }
-        
+
             if res == nil {
                 break
             }
         }
-        
     }
 }
 ```
@@ -344,19 +345,20 @@ List metric measurement values, grouped by attributes, filtered by the filter
 package main
 
 import(
+	"context"
 	"os"
 	swosdkgo "github.com/solarwinds/swo-sdk-go"
 	"github.com/solarwinds/swo-sdk-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := swosdkgo.New(
         swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    ctx := context.Background()
     res, err := s.Metrics.ListMetricMeasurements(ctx, operations.ListMetricMeasurementsRequest{
         Name: "<value>",
     })
@@ -364,20 +366,19 @@ func main() {
         log.Fatal(err)
     }
     if res.Object != nil {
-                for {
+        for {
             // handle items
-        
+
             res, err = res.Next()
-        
+
             if err != nil {
                 // handle error
             }
-        
+
             if res == nil {
                 break
             }
         }
-        
     }
 }
 ```

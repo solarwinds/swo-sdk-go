@@ -2,6 +2,62 @@
 
 package components
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// Category - Health Score category label
+type Category string
+
+const (
+	CategoryGood     Category = "good"
+	CategoryBad      Category = "bad"
+	CategoryModerate Category = "moderate"
+)
+
+func (e Category) ToPointer() *Category {
+	return &e
+}
+func (e *Category) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "good":
+		fallthrough
+	case "bad":
+		fallthrough
+	case "moderate":
+		*e = Category(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Category: %v", v)
+	}
+}
+
+type Healthscore struct {
+	// Health score value from 0 to 100
+	Score int `json:"score"`
+	// Health Score category label
+	Category Category `json:"category"`
+}
+
+func (o *Healthscore) GetScore() int {
+	if o == nil {
+		return 0
+	}
+	return o.Score
+}
+
+func (o *Healthscore) GetCategory() Category {
+	if o == nil {
+		return Category("")
+	}
+	return o.Category
+}
+
 type Entity struct {
 	// The ID of the entity
 	ID string `json:"id"`
@@ -9,6 +65,21 @@ type Entity struct {
 	Type string `json:"type"`
 	// The name of the entity
 	Name *string `json:"name,omitempty"`
+	// Entity display name / alias. This value is equal to name unless it's explicitly overridden.
+	DisplayName *string `json:"displayName,omitempty"`
+	// Date and time of entity creation in UTC.
+	CreatedTime *string `json:"createdTime,omitempty"`
+	// Date and time of last entity update in UTC.
+	UpdatedTime *string `json:"updatedTime,omitempty"`
+	// Date and time when the entity has last received telemetry in UTC.
+	LastSeenTime string `json:"lastSeenTime"`
+	// Flag telling if given entity is in maintenance mode.
+	InMaintenance bool         `json:"inMaintenance"`
+	Healthscore   *Healthscore `json:"healthscore,omitempty"`
+	// Entity tags. Tag is a key-value pair, where there may be only single tag value for the same key.
+	Tags map[string]string `json:"tags"`
+	// Map of available attributes.
+	Attributes map[string]any `json:"attributes,omitempty"`
 }
 
 func (o *Entity) GetID() string {
@@ -30,4 +101,60 @@ func (o *Entity) GetName() *string {
 		return nil
 	}
 	return o.Name
+}
+
+func (o *Entity) GetDisplayName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayName
+}
+
+func (o *Entity) GetCreatedTime() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedTime
+}
+
+func (o *Entity) GetUpdatedTime() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedTime
+}
+
+func (o *Entity) GetLastSeenTime() string {
+	if o == nil {
+		return ""
+	}
+	return o.LastSeenTime
+}
+
+func (o *Entity) GetInMaintenance() bool {
+	if o == nil {
+		return false
+	}
+	return o.InMaintenance
+}
+
+func (o *Entity) GetHealthscore() *Healthscore {
+	if o == nil {
+		return nil
+	}
+	return o.Healthscore
+}
+
+func (o *Entity) GetTags() map[string]string {
+	if o == nil {
+		return map[string]string{}
+	}
+	return o.Tags
+}
+
+func (o *Entity) GetAttributes() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.Attributes
 }

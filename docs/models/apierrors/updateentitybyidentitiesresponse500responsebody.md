@@ -1,0 +1,12 @@
+# UpdateEntityByIDEntitiesResponse500ResponseBody
+
+Server error
+
+
+## Fields
+
+| Field                                                                                                                  | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `Code`                                                                                                                 | [apierrors.UpdateEntityByIDEntitiesResponse500Code](../../models/apierrors/updateentitybyidentitiesresponse500code.md) | :heavy_check_mark:                                                                                                     | N/A                                                                                                                    |
+| `Message`                                                                                                              | *string*                                                                                                               | :heavy_check_mark:                                                                                                     | N/A                                                                                                                    |
+| `HTTPMeta`                                                                                                             | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                                     | :heavy_check_mark:                                                                                                     | N/A                                                                                                                    |

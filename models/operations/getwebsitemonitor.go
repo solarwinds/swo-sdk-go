@@ -114,9 +114,8 @@ func (o *AvailabilityCheckSettings) GetPostData() *string {
 	return o.PostData
 }
 
-// Rum -   Use this field to configure real user monitoring (RUM) for the website.
-//
-//	You are required to configure at least availability monitoring or real user monitoring to be able to create website.
+// Rum - Use this field to configure real user monitoring (RUM) for the website.
+// You are required to configure at least availability monitoring or real user monitoring to be able to create website.
 type Rum struct {
 	ApdexTimeInSeconds *int    `json:"apdexTimeInSeconds,omitempty"`
 	Snippet            *string `json:"snippet,omitempty"`
@@ -158,8 +157,8 @@ type GetWebsiteMonitorResponseBody struct {
 	AvailabilityCheckSettings *AvailabilityCheckSettings `json:"availabilityCheckSettings,omitempty"`
 	// Entity tags. Tag is a key-value pair, where there may be only single tag value for the same key.
 	Tags []components.Tag `json:"tags,omitempty"`
-	//   Use this field to configure real user monitoring (RUM) for the website.
-	//   You are required to configure at least availability monitoring or real user monitoring to be able to create website.
+	// Use this field to configure real user monitoring (RUM) for the website.
+	// You are required to configure at least availability monitoring or real user monitoring to be able to create website.
 	Rum *Rum `json:"rum,omitempty"`
 	// Timestamp for when the next on-demand check could be executed. If at '0', it means you can execute it anytime.
 	NextOnDemandAvailabilityTime *int `json:"nextOnDemandAvailabilityTime,omitempty"`

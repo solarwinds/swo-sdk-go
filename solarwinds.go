@@ -69,7 +69,8 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], c.ServerDefaults[c.ServerIndex]
 }
 
-// SolarWinds Observability: [Rest API Documentation](https://documentation.solarwinds.com/en/success_center/observability/content/api/api-swagger.htm)
+// SolarWinds Observability: SolarWinds Observability REST API
+// [Rest API Documentation](https://documentation.solarwinds.com/en/success_center/observability/content/api/api-swagger.htm)
 type SolarWinds struct {
 	Changeevents *Changeevents
 	Dem          *Dem
@@ -168,10 +169,10 @@ func New(opts ...SDKOption) *SolarWinds {
 	sdk := &SolarWinds{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.1.2",
-			GenVersion:        "2.472.1",
-			UserAgent:         "speakeasy-sdk/go 0.1.2 2.472.1 1.0.0 github.com/solarwinds/swo-sdk-go",
+			OpenAPIDocVersion: "1.0.2",
+			SDKVersion:        "0.2.0",
+			GenVersion:        "2.495.1",
+			UserAgent:         "speakeasy-sdk/go 0.2.0 2.495.1 1.0.2 github.com/solarwinds/swo-sdk-go",
 			ServerDefaults: []map[string]string{
 				{
 					"region": "na-01",
