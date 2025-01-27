@@ -18,38 +18,40 @@ Search logs within a time period
 package main
 
 import(
+	"context"
 	"os"
 	swosdkgo "github.com/solarwinds/swo-sdk-go"
 	"github.com/solarwinds/swo-sdk-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := swosdkgo.New(
         swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    ctx := context.Background()
-    res, err := s.Logs.SearchLogs(ctx, operations.SearchLogsRequest{})
+    res, err := s.Logs.SearchLogs(ctx, operations.SearchLogsRequest{
+        Direction: swosdkgo.String("backward"),
+    })
     if err != nil {
         log.Fatal(err)
     }
     if res.Object != nil {
-                for {
+        for {
             // handle items
-        
+
             res, err = res.Next()
-        
+
             if err != nil {
                 // handle error
             }
-        
+
             if res == nil {
                 break
             }
         }
-        
     }
 }
 ```
@@ -82,19 +84,20 @@ Retrieves a list of log archives within a time period.
 package main
 
 import(
+	"context"
 	"os"
 	swosdkgo "github.com/solarwinds/swo-sdk-go"
 	"github.com/solarwinds/swo-sdk-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := swosdkgo.New(
         swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    ctx := context.Background()
     res, err := s.Logs.ListLogArchives(ctx, operations.ListLogArchivesRequest{
         StartTime: "<value>",
         EndTime: "<value>",
@@ -103,20 +106,19 @@ func main() {
         log.Fatal(err)
     }
     if res.Object != nil {
-                for {
+        for {
             // handle items
-        
+
             res, err = res.Next()
-        
+
             if err != nil {
                 // handle error
             }
-        
+
             if res == nil {
                 break
             }
         }
-        
     }
 }
 ```

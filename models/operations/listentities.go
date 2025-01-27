@@ -45,7 +45,7 @@ func (o *ListEntitiesRequest) GetSkipToken() *string {
 	return o.SkipToken
 }
 
-// ListEntitiesResponseBody - An array of entities
+// ListEntitiesResponseBody - The request has succeeded.
 type ListEntitiesResponseBody struct {
 	Entities []components.Entity       `json:"entities"`
 	PageInfo components.CommonPageInfo `json:"pageInfo"`
@@ -67,7 +67,7 @@ func (o *ListEntitiesResponseBody) GetPageInfo() components.CommonPageInfo {
 
 type ListEntitiesResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// An array of entities
+	// The request has succeeded.
 	Object *ListEntitiesResponseBody
 
 	Next func() (*ListEntitiesResponse, error)

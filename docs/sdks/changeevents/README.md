@@ -17,19 +17,20 @@ Create an event
 package main
 
 import(
+	"context"
 	"os"
 	swosdkgo "github.com/solarwinds/swo-sdk-go"
 	"github.com/solarwinds/swo-sdk-go/models/components"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := swosdkgo.New(
         swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    ctx := context.Background()
     res, err := s.Changeevents.CreateChangeEvent(ctx, components.ChangeEvent{
         ID: swosdkgo.Int64(1731676626),
         Name: "app-deploys",

@@ -1,6 +1,6 @@
 # ListEntitiesResponseBody
 
-An array of entities
+The request has succeeded.
 
 
 ## Fields

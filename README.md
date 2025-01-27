@@ -13,7 +13,8 @@ Developer-friendly & type-safe Go SDK specifically catered to leverage *github.c
 <!-- Start Summary [summary] -->
 ## Summary
 
-SolarWinds Observability: [Rest API Documentation](https://documentation.solarwinds.com/en/success_center/observability/content/api/api-swagger.htm)
+SolarWinds Observability: SolarWinds Observability REST API
+[Rest API Documentation](https://documentation.solarwinds.com/en/success_center/observability/content/api/api-swagger.htm)
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
@@ -61,11 +62,12 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := swosdkgo.New(
 		swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
-	ctx := context.Background()
 	res, err := s.Changeevents.CreateChangeEvent(ctx, components.ChangeEvent{
 		ID:        swosdkgo.Int64(1731676626),
 		Name:      "app-deploys",
@@ -118,11 +120,12 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := swosdkgo.New(
 		swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
-	ctx := context.Background()
 	res, err := s.Changeevents.CreateChangeEvent(ctx, components.ChangeEvent{
 		ID:        swosdkgo.Int64(1731676626),
 		Name:      "app-deploys",
@@ -172,8 +175,9 @@ func main() {
 
 ### [Entities](docs/sdks/entities/README.md)
 
-* [ListEntities](docs/sdks/entities/README.md#listentities) - Get a list of entities
+* [ListEntities](docs/sdks/entities/README.md#listentities) - Get a list of entities by type
 * [GetEntityByID](docs/sdks/entities/README.md#getentitybyid) - Get an entity by ID
+* [UpdateEntityByID](docs/sdks/entities/README.md#updateentitybyid) - Update an entity by ID
 
 ### [Logs](docs/sdks/logs/README.md)
 
@@ -222,11 +226,12 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := swosdkgo.New(
 		swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
-	ctx := context.Background()
 	res, err := s.Entities.ListEntities(ctx, operations.ListEntitiesRequest{
 		Type: "<value>",
 	})
@@ -247,7 +252,6 @@ func main() {
 				break
 			}
 		}
-
 	}
 }
 
@@ -274,11 +278,12 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := swosdkgo.New(
 		swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
-	ctx := context.Background()
 	res, err := s.Changeevents.CreateChangeEvent(ctx, components.ChangeEvent{
 		ID:        swosdkgo.Int64(1731676626),
 		Name:      "app-deploys",
@@ -330,6 +335,8 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := swosdkgo.New(
 		swosdkgo.WithRetryConfig(
 			retry.Config{
@@ -345,7 +352,6 @@ func main() {
 		swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
-	ctx := context.Background()
 	res, err := s.Changeevents.CreateChangeEvent(ctx, components.ChangeEvent{
 		ID:        swosdkgo.Int64(1731676626),
 		Name:      "app-deploys",
@@ -404,11 +410,12 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := swosdkgo.New(
 		swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
-	ctx := context.Background()
 	res, err := s.Dem.CreateWebsiteMonitor(ctx, components.Website{
 		Name: "solarwinds.com",
 		URL:  "https://www.solarwinds.com",
@@ -501,12 +508,13 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := swosdkgo.New(
 		swosdkgo.WithServerURL("https://api.na-01.cloud.solarwinds.com"),
 		swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
-	ctx := context.Background()
 	res, err := s.Changeevents.CreateChangeEvent(ctx, components.ChangeEvent{
 		ID:        swosdkgo.Int64(1731676626),
 		Name:      "app-deploys",
