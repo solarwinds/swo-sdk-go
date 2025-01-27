@@ -7,7 +7,7 @@ import (
 )
 
 type GetEntityByIDRequest struct {
-	// The entities ID
+	// The entity's ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
@@ -20,7 +20,7 @@ func (o *GetEntityByIDRequest) GetID() string {
 
 type GetEntityByIDResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The entity, if found
+	// The request has succeeded.
 	Entity *components.Entity
 }
 

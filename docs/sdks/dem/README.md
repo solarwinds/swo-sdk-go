@@ -22,19 +22,20 @@ Create website monitoring configuration
 package main
 
 import(
+	"context"
 	"os"
 	swosdkgo "github.com/solarwinds/swo-sdk-go"
 	"github.com/solarwinds/swo-sdk-go/models/components"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := swosdkgo.New(
         swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    ctx := context.Background()
     res, err := s.Dem.CreateWebsiteMonitor(ctx, components.Website{
         Name: "solarwinds.com",
         URL: "https://www.solarwinds.com",
@@ -123,19 +124,20 @@ Get website monitoring configuration
 package main
 
 import(
+	"context"
 	"os"
 	swosdkgo "github.com/solarwinds/swo-sdk-go"
 	"github.com/solarwinds/swo-sdk-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := swosdkgo.New(
         swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    ctx := context.Background()
     res, err := s.Dem.GetWebsiteMonitor(ctx, operations.GetWebsiteMonitorRequest{
         EntityID: "<id>",
     })
@@ -177,20 +179,21 @@ Update website monitoring configuration
 package main
 
 import(
+	"context"
 	"os"
 	swosdkgo "github.com/solarwinds/swo-sdk-go"
 	"github.com/solarwinds/swo-sdk-go/models/components"
 	"github.com/solarwinds/swo-sdk-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := swosdkgo.New(
         swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    ctx := context.Background()
     res, err := s.Dem.UpdateWebsiteMonitor(ctx, operations.UpdateWebsiteMonitorRequest{
         EntityID: "<id>",
         Website: components.Website{
@@ -282,19 +285,20 @@ Delete website
 package main
 
 import(
+	"context"
 	"os"
 	swosdkgo "github.com/solarwinds/swo-sdk-go"
 	"github.com/solarwinds/swo-sdk-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := swosdkgo.New(
         swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    ctx := context.Background()
     res, err := s.Dem.DeleteWebsiteMonitor(ctx, operations.DeleteWebsiteMonitorRequest{
         EntityID: "<id>",
     })
@@ -336,19 +340,20 @@ Pause monitoring of a website
 package main
 
 import(
+	"context"
 	"os"
 	swosdkgo "github.com/solarwinds/swo-sdk-go"
 	"github.com/solarwinds/swo-sdk-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := swosdkgo.New(
         swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    ctx := context.Background()
     res, err := s.Dem.PauseWebsiteMonitor(ctx, operations.PauseWebsiteMonitorRequest{
         EntityID: "<id>",
     })
@@ -390,19 +395,20 @@ Unpause monitoring of a website
 package main
 
 import(
+	"context"
 	"os"
 	swosdkgo "github.com/solarwinds/swo-sdk-go"
 	"github.com/solarwinds/swo-sdk-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := swosdkgo.New(
         swosdkgo.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    ctx := context.Background()
     res, err := s.Dem.UnpauseWebsiteMonitor(ctx, operations.UnpauseWebsiteMonitorRequest{
         EntityID: "<id>",
     })
