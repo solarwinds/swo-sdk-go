@@ -10,13 +10,14 @@ permissions:
     branches:
       - main
     paths:
-      - .speakeasy/gen.lock
+      - v1/.speakeasy/gen.lock
   workflow_dispatch: {}
 jobs:
-  publish:
+  publishv1:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v15
     with:
-      target: solar-winds
+      target: swo
+      working_directory: v1
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
