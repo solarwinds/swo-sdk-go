@@ -1,0 +1,22 @@
+name: Publish
+permissions:
+  checks: write
+  contents: write
+  pull-requests: write
+  statuses: write
+  id-token: write
+"on":
+  push:
+    branches:
+      - main
+    paths:
+      - swov1/.speakeasy/gen.lock
+  workflow_dispatch: {}
+jobs:
+  publishv1:
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v15
+    with:
+      target: swov1
+    secrets:
+      github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
