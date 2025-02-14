@@ -5,6 +5,7 @@ package operations
 import (
 	"github.com/solarwinds/swo-sdk-go/swov1/internal/utils"
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
+	"time"
 )
 
 type SearchLogsRequest struct {
@@ -15,9 +16,9 @@ type SearchLogsRequest struct {
 	// Filter logs by a specific entity id
 	EntityID *string `queryParam:"style=form,explode=false,name=entityId"`
 	// Timestamp in ISO 8601 format in UTC timezone: yyyy-MM-ddTHH:mm:ssZ
-	StartTime *string `queryParam:"style=form,explode=false,name=startTime"`
+	StartTime *time.Time `queryParam:"style=form,explode=false,name=startTime"`
 	// Timestamp in ISO 8601 format in UTC timezone: yyyy-MM-ddTHH:mm:ssZ
-	EndTime *string `queryParam:"style=form,explode=false,name=endTime"`
+	EndTime *time.Time `queryParam:"style=form,explode=false,name=endTime"`
 	// Search direction: backward, forward, or tail. Backward sorts logs from oldest to newest, forward sorts logs from newest to oldest, and tail sorts from oldest to newest.
 	Direction *string `default:"backward" queryParam:"style=form,explode=false,name=direction"`
 	// Number of items in a response page. Default varies by API.
@@ -58,14 +59,14 @@ func (o *SearchLogsRequest) GetEntityID() *string {
 	return o.EntityID
 }
 
-func (o *SearchLogsRequest) GetStartTime() *string {
+func (o *SearchLogsRequest) GetStartTime() *time.Time {
 	if o == nil {
 		return nil
 	}
 	return o.StartTime
 }
 
-func (o *SearchLogsRequest) GetEndTime() *string {
+func (o *SearchLogsRequest) GetEndTime() *time.Time {
 	if o == nil {
 		return nil
 	}

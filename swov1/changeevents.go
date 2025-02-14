@@ -16,25 +16,18 @@ import (
 	"net/url"
 )
 
-type Changeevents struct {
+type ChangeEvents struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newChangeevents(sdkConfig sdkConfiguration) *Changeevents {
-	return &Changeevents{
+func newChangeEvents(sdkConfig sdkConfiguration) *ChangeEvents {
+	return &ChangeEvents{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // CreateChangeEvent - Create an event
-func (s *Changeevents) CreateChangeEvent(ctx context.Context, request components.ChangeEvent, opts ...operations.Option) (*operations.CreateChangeEventResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "createChangeEvent",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
+func (s *ChangeEvents) CreateChangeEvent(ctx context.Context, request components.ChangeEvent, opts ...operations.Option) (*operations.CreateChangeEventResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -58,6 +51,13 @@ func (s *Changeevents) CreateChangeEvent(ctx context.Context, request components
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "createChangeEvent",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err

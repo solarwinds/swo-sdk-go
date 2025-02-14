@@ -5,9 +5,11 @@ package components
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/solarwinds/swo-sdk-go/swov1/internal/utils"
+	"time"
 )
 
-// Category - Health Score category label
+// Category - Health Score category label.
 type Category string
 
 const (
@@ -38,9 +40,9 @@ func (e *Category) UnmarshalJSON(data []byte) error {
 }
 
 type Healthscore struct {
-	// Health score value from 0 to 100
+	// Health score value from 0 to 100.
 	Score int `json:"score"`
-	// Health Score category label
+	// Health Score category label.
 	Category Category `json:"category"`
 }
 
@@ -59,27 +61,38 @@ func (o *Healthscore) GetCategory() Category {
 }
 
 type Entity struct {
-	// The ID of the entity
+	// The ID of the entity.
 	ID string `json:"id"`
-	// The type of the entity
+	// The type of the entity.
 	Type string `json:"type"`
-	// The name of the entity
+	// The name of the entity.
 	Name *string `json:"name,omitempty"`
-	// Entity display name / alias. This value is equal to name unless it's explicitly overridden.
+	// Entity display name / alias. This value is equal to name unless it is explicitly overridden.
 	DisplayName *string `json:"displayName,omitempty"`
 	// Date and time of entity creation in UTC.
-	CreatedTime *string `json:"createdTime,omitempty"`
+	CreatedTime *time.Time `json:"createdTime,omitempty"`
 	// Date and time of last entity update in UTC.
-	UpdatedTime *string `json:"updatedTime,omitempty"`
+	UpdatedTime *time.Time `json:"updatedTime,omitempty"`
 	// Date and time when the entity has last received telemetry in UTC.
-	LastSeenTime string `json:"lastSeenTime"`
+	LastSeenTime time.Time `json:"lastSeenTime"`
 	// Flag telling if given entity is in maintenance mode.
 	InMaintenance bool         `json:"inMaintenance"`
 	Healthscore   *Healthscore `json:"healthscore,omitempty"`
-	// Entity tags. Tag is a key-value pair, where there may be only single tag value for the same key.
+	// Entity tags. Tag is a key-value pair, where there may be only a single tag value for the same key.
 	Tags map[string]string `json:"tags"`
 	// Map of available attributes.
 	Attributes map[string]any `json:"attributes,omitempty"`
+}
+
+func (e Entity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *Entity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Entity) GetID() string {
@@ -110,23 +123,23 @@ func (o *Entity) GetDisplayName() *string {
 	return o.DisplayName
 }
 
-func (o *Entity) GetCreatedTime() *string {
+func (o *Entity) GetCreatedTime() *time.Time {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedTime
 }
 
-func (o *Entity) GetUpdatedTime() *string {
+func (o *Entity) GetUpdatedTime() *time.Time {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedTime
 }
 
-func (o *Entity) GetLastSeenTime() string {
+func (o *Entity) GetLastSeenTime() time.Time {
 	if o == nil {
-		return ""
+		return time.Time{}
 	}
 	return o.LastSeenTime
 }

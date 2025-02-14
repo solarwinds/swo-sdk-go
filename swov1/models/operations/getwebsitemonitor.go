@@ -3,7 +3,11 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
+	"github.com/solarwinds/swo-sdk-go/swov1/internal/utils"
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
+	"time"
 )
 
 type GetWebsiteMonitorRequest struct {
@@ -15,6 +19,41 @@ func (o *GetWebsiteMonitorRequest) GetEntityID() string {
 		return ""
 	}
 	return o.EntityID
+}
+
+type Status string
+
+const (
+	StatusUp          Status = "up"
+	StatusDown        Status = "down"
+	StatusPaused      Status = "paused"
+	StatusMaintenance Status = "maintenance"
+	StatusUnknown     Status = "unknown"
+)
+
+func (e Status) ToPointer() *Status {
+	return &e
+}
+func (e *Status) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "up":
+		fallthrough
+	case "down":
+		fallthrough
+	case "paused":
+		fallthrough
+	case "maintenance":
+		fallthrough
+	case "unknown":
+		*e = Status(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Status: %v", v)
+	}
 }
 
 // AvailabilityCheckSettings -   Use this field to configure availability tests for the website.
@@ -145,8 +184,9 @@ func (o *Rum) GetSpa() bool {
 
 // GetWebsiteMonitorResponseBody - The request has succeeded.
 type GetWebsiteMonitorResponseBody struct {
-	ID   string `json:"id"`
-	Type string `json:"type"`
+	ID     string `json:"id"`
+	Type   string `json:"type"`
+	Status Status `json:"status"`
 	//   Name of the website, which must be unique within the organization.
 	//   The website must also not contain any control characters, any white space other than space (U+0020), or any consecutive, leading or trailing spaces.
 	Name string `json:"name"`
@@ -160,8 +200,29 @@ type GetWebsiteMonitorResponseBody struct {
 	// Use this field to configure real user monitoring (RUM) for the website.
 	// You are required to configure at least availability monitoring or real user monitoring to be able to create website.
 	Rum *Rum `json:"rum,omitempty"`
+	// Time when the last outage started.
+	LastOutageStartTime *time.Time `json:"lastOutageStartTime,omitempty"`
+	// Time when the last outage ended.
+	LastOutageEndTime *time.Time `json:"lastOutageEndTime,omitempty"`
+	// Time when the last test was performed.
+	LastTestTime *time.Time `json:"lastTestTime,omitempty"`
+	// Last time when a synthetic test failed.
+	LastErrorTime *time.Time `json:"lastErrorTime,omitempty"`
+	// Response time from the last synthetic check in milliseconds.
+	LastResponseTime *int `json:"lastResponseTime,omitempty"`
 	// Timestamp for when the next on-demand check could be executed. If at '0', it means you can execute it anytime.
 	NextOnDemandAvailabilityTime *int `json:"nextOnDemandAvailabilityTime,omitempty"`
+}
+
+func (g GetWebsiteMonitorResponseBody) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetWebsiteMonitorResponseBody) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *GetWebsiteMonitorResponseBody) GetID() string {
@@ -176,6 +237,13 @@ func (o *GetWebsiteMonitorResponseBody) GetType() string {
 		return ""
 	}
 	return o.Type
+}
+
+func (o *GetWebsiteMonitorResponseBody) GetStatus() Status {
+	if o == nil {
+		return Status("")
+	}
+	return o.Status
 }
 
 func (o *GetWebsiteMonitorResponseBody) GetName() string {
@@ -211,6 +279,41 @@ func (o *GetWebsiteMonitorResponseBody) GetRum() *Rum {
 		return nil
 	}
 	return o.Rum
+}
+
+func (o *GetWebsiteMonitorResponseBody) GetLastOutageStartTime() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.LastOutageStartTime
+}
+
+func (o *GetWebsiteMonitorResponseBody) GetLastOutageEndTime() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.LastOutageEndTime
+}
+
+func (o *GetWebsiteMonitorResponseBody) GetLastTestTime() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.LastTestTime
+}
+
+func (o *GetWebsiteMonitorResponseBody) GetLastErrorTime() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.LastErrorTime
+}
+
+func (o *GetWebsiteMonitorResponseBody) GetLastResponseTime() *int {
+	if o == nil {
+		return nil
+	}
+	return o.LastResponseTime
 }
 
 func (o *GetWebsiteMonitorResponseBody) GetNextOnDemandAvailabilityTime() *int {

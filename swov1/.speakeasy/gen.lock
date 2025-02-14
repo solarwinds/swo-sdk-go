@@ -1,26 +1,32 @@
 lockVersion: 2.0.0
 id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
-  docChecksum: ac81c31243b35bc067e3bcfda35c1811
-  docVersion: 1.0.2
-  speakeasyVersion: 1.478.1
-  generationVersion: 2.498.4
-  releaseVersion: 0.0.3
-  configChecksum: 13de45431bf8d1360fd1e23bddcecdcb
+  docChecksum: 9b9656e7c13237d53332cee5d1349d4c
+  docVersion: 1.0.4
+  speakeasyVersion: 1.492.0
+  generationVersion: 2.512.4
+  releaseVersion: 0.1.0
+  configChecksum: 979b1255e607b8dbc55f7639bb16e1df
+  repoURL: https://github.com/solarwinds/swo-sdk-go.git
+  repoSubDirectory: swov1
+  installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
 features:
   go:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.6
-    core: 3.6.11
+    constsAndDefaults: 0.1.9
+    core: 3.7.0
     defaultEnabledRetries: 0.2.0
+    deprecations: 2.81.3
     devContainers: 2.90.0
     envVarSecurityUsage: 0.3.2
-    globalSecurity: 2.82.10
+    globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.2
     ignores: 2.81.1
+    inputOutputModels: 2.83.0
     intellisenseMarkdownSupport: 0.1.0
+    nullables: 0.1.0
     pagination: 2.82.2
     responseFormat: 0.1.2
     retries: 2.83.2
@@ -32,13 +38,20 @@ generatedFiles:
   - .gitattributes
   - /models/apierrors/createcompositemetric.go
   - /models/apierrors/createwebsitemonitor.go
+  - /models/apierrors/deletecompositemetric.go
   - /models/apierrors/deletewebsitemonitor.go
   - /models/apierrors/getentitybyid.go
+  - /models/apierrors/getmetricbyname.go
   - /models/apierrors/getwebsitemonitor.go
   - /models/apierrors/listentities.go
+  - /models/apierrors/listmetricattributes.go
+  - /models/apierrors/listmetricattributevalues.go
+  - /models/apierrors/listmetricmeasurements.go
+  - /models/apierrors/listmetricsforentitytype.go
   - /models/apierrors/pausewebsitemonitor.go
   - /models/apierrors/unpausewebsitemonitor.go
   - /models/apierrors/updateentitybyid.go
+  - /models/apierrors/updateusermetric.go
   - /models/apierrors/updatewebsitemonitor.go
   - /models/components/availabilitychecksettings.go
   - /models/components/changeevent.go
@@ -51,11 +64,12 @@ generatedFiles:
   - /models/components/createtokenrequest.go
   - /models/components/customheaders.go
   - /models/components/entity.go
-  - /models/components/entityupdate.go
+  - /models/components/entityinput.go
   - /models/components/httpmetadata.go
   - /models/components/logsarchive.go
   - /models/components/logsevent.go
   - /models/components/metricsaggregationmethods.go
+  - /models/components/metricseriestype.go
   - /models/components/metricsgrouping.go
   - /models/components/metricsmeasurement.go
   - /models/components/operator.go
@@ -66,12 +80,14 @@ generatedFiles:
   - /models/components/sslmonitoring.go
   - /models/components/tag.go
   - /models/components/testfrom.go
+  - /models/components/updatecompositemetric.go
   - /models/components/website.go
   - /models/components/websiteprotocol.go
   - /models/operations/createchangeevent.go
   - /models/operations/createcompositemetric.go
   - /models/operations/createtoken.go
   - /models/operations/createwebsitemonitor.go
+  - /models/operations/deletecompositemetric.go
   - /models/operations/deletewebsitemonitor.go
   - /models/operations/getentitybyid.go
   - /models/operations/getmetricbyname.go
@@ -88,22 +104,20 @@ generatedFiles:
   - /models/operations/searchlogs.go
   - /models/operations/unpausewebsitemonitor.go
   - /models/operations/updateentitybyid.go
+  - /models/operations/updateusermetric.go
   - /models/operations/updatewebsitemonitor.go
   - USAGE.md
   - changeevents.go
   - dem.go
   - docs/models/apierrors/code.md
-  - docs/models/apierrors/createcompositemetricdetails.md
-  - docs/models/apierrors/createcompositemetricinnererror.md
-  - docs/models/apierrors/createcompositemetricmetricsdetails.md
-  - docs/models/apierrors/createcompositemetricmetricsinnererror.md
+  - docs/models/apierrors/createcompositemetriccode.md
   - docs/models/apierrors/createcompositemetricmetricsresponsebody.md
+  - docs/models/apierrors/createcompositemetricmetricsresponseresponsebody.md
   - docs/models/apierrors/createcompositemetricresponsebody.md
   - docs/models/apierrors/createwebsitemonitorresponsebody.md
-  - docs/models/apierrors/deletewebsitemonitordetails.md
-  - docs/models/apierrors/deletewebsitemonitorinnererror.md
+  - docs/models/apierrors/deletecompositemetricmetricsresponsebody.md
+  - docs/models/apierrors/deletecompositemetricresponsebody.md
   - docs/models/apierrors/deletewebsitemonitorresponsebody.md
-  - docs/models/apierrors/details.md
   - docs/models/apierrors/getentitybyidcode.md
   - docs/models/apierrors/getentitybyidentitiescode.md
   - docs/models/apierrors/getentitybyidentitiesresponse500code.md
@@ -112,20 +126,23 @@ generatedFiles:
   - docs/models/apierrors/getentitybyidentitiesresponsecode.md
   - docs/models/apierrors/getentitybyidentitiesresponseresponsebody.md
   - docs/models/apierrors/getentitybyidresponsebody.md
-  - docs/models/apierrors/getwebsitemonitordetails.md
-  - docs/models/apierrors/getwebsitemonitorinnererror.md
+  - docs/models/apierrors/getmetricbynamecode.md
+  - docs/models/apierrors/getmetricbynameresponsebody.md
   - docs/models/apierrors/getwebsitemonitorresponsebody.md
-  - docs/models/apierrors/innererror.md
   - docs/models/apierrors/listentitiescode.md
   - docs/models/apierrors/listentitiesentitiescode.md
   - docs/models/apierrors/listentitiesentitiesresponsebody.md
   - docs/models/apierrors/listentitiesentitiesresponseresponsebody.md
   - docs/models/apierrors/listentitiesresponsebody.md
-  - docs/models/apierrors/pausewebsitemonitordetails.md
-  - docs/models/apierrors/pausewebsitemonitorinnererror.md
+  - docs/models/apierrors/listmetricattributescode.md
+  - docs/models/apierrors/listmetricattributesresponsebody.md
+  - docs/models/apierrors/listmetricattributevaluescode.md
+  - docs/models/apierrors/listmetricattributevaluesresponsebody.md
+  - docs/models/apierrors/listmetricmeasurementscode.md
+  - docs/models/apierrors/listmetricmeasurementsresponsebody.md
+  - docs/models/apierrors/listmetricsforentitytypecode.md
+  - docs/models/apierrors/listmetricsforentitytyperesponsebody.md
   - docs/models/apierrors/pausewebsitemonitorresponsebody.md
-  - docs/models/apierrors/unpausewebsitemonitordetails.md
-  - docs/models/apierrors/unpausewebsitemonitorinnererror.md
   - docs/models/apierrors/unpausewebsitemonitorresponsebody.md
   - docs/models/apierrors/updateentitybyidcode.md
   - docs/models/apierrors/updateentitybyidentitiescode.md
@@ -135,8 +152,13 @@ generatedFiles:
   - docs/models/apierrors/updateentitybyidentitiesresponsecode.md
   - docs/models/apierrors/updateentitybyidentitiesresponseresponsebody.md
   - docs/models/apierrors/updateentitybyidresponsebody.md
-  - docs/models/apierrors/updatewebsitemonitordetails.md
-  - docs/models/apierrors/updatewebsitemonitorinnererror.md
+  - docs/models/apierrors/updateusermetriccode.md
+  - docs/models/apierrors/updateusermetricmetricscode.md
+  - docs/models/apierrors/updateusermetricmetricsresponse500responsebody.md
+  - docs/models/apierrors/updateusermetricmetricsresponsebody.md
+  - docs/models/apierrors/updateusermetricmetricsresponsecode.md
+  - docs/models/apierrors/updateusermetricmetricsresponseresponsebody.md
+  - docs/models/apierrors/updateusermetricresponsebody.md
   - docs/models/apierrors/updatewebsitemonitorresponsebody.md
   - docs/models/components/availabilitychecksettings.md
   - docs/models/components/category.md
@@ -150,12 +172,13 @@ generatedFiles:
   - docs/models/components/createtokenrequest.md
   - docs/models/components/customheaders.md
   - docs/models/components/entity.md
-  - docs/models/components/entityupdate.md
+  - docs/models/components/entityinput.md
   - docs/models/components/healthscore.md
   - docs/models/components/httpmetadata.md
   - docs/models/components/logsarchive.md
   - docs/models/components/logsevent.md
   - docs/models/components/metricsaggregationmethods.md
+  - docs/models/components/metricseriestype.md
   - docs/models/components/metricsgrouping.md
   - docs/models/components/metricsmeasurement.md
   - docs/models/components/operator.md
@@ -169,6 +192,7 @@ generatedFiles:
   - docs/models/components/tags.md
   - docs/models/components/testfrom.md
   - docs/models/components/type.md
+  - docs/models/components/updatecompositemetric.md
   - docs/models/components/website.md
   - docs/models/components/websiteprotocol.md
   - docs/models/operations/availabilitychecksettings.md
@@ -179,6 +203,8 @@ generatedFiles:
   - docs/models/operations/createtokenresponsebody.md
   - docs/models/operations/createwebsitemonitorresponse.md
   - docs/models/operations/createwebsitemonitorresponsebody.md
+  - docs/models/operations/deletecompositemetricrequest.md
+  - docs/models/operations/deletecompositemetricresponse.md
   - docs/models/operations/deletewebsitemonitorrequest.md
   - docs/models/operations/deletewebsitemonitorresponse.md
   - docs/models/operations/deletewebsitemonitorresponsebody.md
@@ -220,11 +246,14 @@ generatedFiles:
   - docs/models/operations/searchlogsrequest.md
   - docs/models/operations/searchlogsresponse.md
   - docs/models/operations/searchlogsresponsebody.md
+  - docs/models/operations/status.md
   - docs/models/operations/unpausewebsitemonitorrequest.md
   - docs/models/operations/unpausewebsitemonitorresponse.md
   - docs/models/operations/unpausewebsitemonitorresponsebody.md
   - docs/models/operations/updateentitybyidrequest.md
   - docs/models/operations/updateentitybyidresponse.md
+  - docs/models/operations/updateusermetricrequest.md
+  - docs/models/operations/updateusermetricresponse.md
   - docs/models/operations/updatewebsitemonitorrequest.md
   - docs/models/operations/updatewebsitemonitorresponse.md
   - docs/models/operations/updatewebsitemonitorresponsebody.md
@@ -279,7 +308,7 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "400":
-          application/json: {"code": "<value>", "message": "<value>", "": {}}
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   getWebsiteMonitor:
     speakeasy-default-get-website-monitor:
       parameters:
@@ -287,9 +316,9 @@ examples:
           entityId: "<id>"
       responses:
         "200":
-          application/json: {"id": "e-1448474379026206720", "type": "Website", "name": "solarwinds.com", "url": "https://www.solarwinds.com", "availabilityCheckSettings": {"checkForString": {"operator": "CONTAINS", "value": "string"}, "testIntervalInSeconds": 14400, "protocols": ["HTTP", "HTTPS"], "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}"}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "snippet": "string", "spa": true}, "nextOnDemandAvailabilityTime": 0}
+          application/json: {"id": "e-1448474379026206720", "type": "Website", "status": "up", "name": "solarwinds.com", "url": "https://www.solarwinds.com", "availabilityCheckSettings": {"checkForString": {"operator": "CONTAINS", "value": "string"}, "testIntervalInSeconds": 14400, "protocols": ["HTTP", "HTTPS"], "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}"}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "snippet": "string", "spa": true}, "lastOutageStartTime": "2025-01-15T14:31:19.735Z", "lastOutageEndTime": "2025-01-15T14:31:19.735Z", "lastTestTime": "2025-01-15T14:31:19.735Z", "lastErrorTime": "2025-01-15T14:31:19.735Z", "lastResponseTime": 376, "nextOnDemandAvailabilityTime": 0}
         "400":
-          application/json: {"code": "<value>", "message": "<value>", "": {}}
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   updateWebsiteMonitor:
     speakeasy-default-update-website-monitor:
       parameters:
@@ -301,7 +330,7 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "400":
-          application/json: {"code": "<value>", "message": "<value>", "": {}}
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   deleteWebsiteMonitor:
     speakeasy-default-delete-website-monitor:
       parameters:
@@ -311,7 +340,7 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "400":
-          application/json: {"code": "<value>", "message": "<value>", "": {}}
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   pauseWebsiteMonitor:
     speakeasy-default-pause-website-monitor:
       parameters:
@@ -321,7 +350,7 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "400":
-          application/json: {"code": "<value>", "message": "<value>", "": {}}
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   unpauseWebsiteMonitor:
     speakeasy-default-unpause-website-monitor:
       parameters:
@@ -331,7 +360,7 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "400":
-          application/json: {"code": "<value>", "message": "<value>", "": {}}
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   listEntities:
     speakeasy-default-list-entities:
       parameters:
@@ -408,7 +437,8 @@ examples:
         query: {}
       responses:
         "200":
-          application/json: {"type": "KubernetesCluster", "metrics": [{"name": "composite.k8s.pod.container.status.restarts.increase", "units": "count", "lastReportedTime": "2021-01-01T00:00:00Z"}]}
+          application/json: {"type": "KubernetesCluster", "metrics": [{"name": "composite.k8s.pod.container.status.restarts.increase", "units": "count", "formula": "increase(k8s.kube_pod_container_status_restarts_total[5m])", "lastReportedTime": "2021-01-01T00:00:00Z"}]}
+        "404": {}
   listMetrics:
     speakeasy-default-list-metrics:
       responses:
@@ -422,9 +452,10 @@ examples:
         "201":
           application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
         "400":
-          application/json: {"code": "<value>", "message": "<value>", "": {}}
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
         "403":
-          application/json: {"code": "<value>", "message": "<value>", "": {}}
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "500": {}
   getMetricByName:
     speakeasy-default-get-metric-by-name:
       parameters:
@@ -433,6 +464,7 @@ examples:
       responses:
         "200":
           application/json: {"name": "composite.k8s.pod.container.status.restarts.increase", "units": "count", "formula": "increase(k8s.kube_pod_container_status_restarts_total[5m])", "lastReportedTime": "2021-01-01T00:00:00Z"}
+        "404": {}
   listMetricAttributes:
     speakeasy-default-list-metric-attributes:
       parameters:
@@ -442,6 +474,7 @@ examples:
       responses:
         "200":
           application/json: {"names": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+        "404": {}
   listMetricAttributeValues:
     speakeasy-default-list-metric-attribute-values:
       parameters:
@@ -452,15 +485,18 @@ examples:
       responses:
         "200":
           application/json: {"name": "<value>", "values": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+        "404": {}
   listMetricMeasurements:
     speakeasy-default-list-metric-measurements:
       parameters:
         path:
           name: "<value>"
-        query: {}
+        query:
+          seriesType: "SCALAR"
       responses:
         "200":
           application/json: {"groupings": [{"attributes": [{"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}], "measurements": []}, {"attributes": [{"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}], "measurements": [{"time": "<value>", "value": 730756}, {"time": "<value>", "value": 115821}, {"time": "<value>", "value": 25026}]}, {"attributes": [], "measurements": [{"time": "<value>", "value": 201967}]}], "bucketSizeInSeconds": 45557, "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+        "404": {}
   createToken:
     speakeasy-default-create-token:
       requestBody:
@@ -468,5 +504,27 @@ examples:
       responses:
         "200":
           application/json: {"token": "<value>"}
+  updateUserMetric:
+    speakeasy-default-update-user-metric:
+      parameters:
+        path:
+          name: "<value>"
+      requestBody:
+        application/json: {"displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
+      responses:
+        "403":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "404": {}
+        "500": {}
+  deleteCompositeMetric:
+    speakeasy-default-delete-composite-metric:
+      parameters:
+        path:
+          name: "<value>"
+      responses:
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "403":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
 examplesVersion: 1.0.0
 generatedTests: {}

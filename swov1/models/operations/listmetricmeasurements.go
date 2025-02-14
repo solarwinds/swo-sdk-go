@@ -3,32 +3,49 @@
 package operations
 
 import (
+	"github.com/solarwinds/swo-sdk-go/swov1/internal/utils"
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
+	"time"
 )
 
 type ListMetricMeasurementsRequest struct {
 	// metric name
 	Name string `pathParam:"style=simple,explode=false,name=name"`
+	// Indicates what type of data to return.
+	SeriesType components.MetricSeriesType `queryParam:"style=form,explode=false,name=seriesType"`
 	// Query to filter the measurement values. e.g id: [id1,id2] category: moderate
 	Filter *string `queryParam:"style=form,explode=false,name=filter"`
 	// Comma-delimited list of attribute names to group measurements by. e.g id, category
 	GroupBy *string `queryParam:"style=form,explode=false,name=groupBy"`
 	// Aggregation method used to group measurements
 	AggregateBy *components.MetricsAggregationMethods `queryParam:"style=form,explode=false,name=aggregateBy"`
-	// Resolution size of an aggregation bucket in seconds
+	// This parameter is deprecated. Bucket size is determined by the API layer.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	BucketSizeInSeconds *int `queryParam:"style=form,explode=false,name=bucketSizeInSeconds"`
 	// Secondary grouping to allow aggregating data points inside individual buckets. Has to be set together with `preGroupByMethod`
 	PreGroupBy *string `queryParam:"style=form,explode=false,name=preGroupBy"`
 	// Secondary aggregation to allow aggregating data points inside individual buckets. Has to be set together with `preGroupBy`
 	PreGroupByMethod *string `queryParam:"style=form,explode=false,name=preGroupByMethod"`
 	// Timestamp in ISO 8601 format in UTC timezone: yyyy-MM-ddTHH:mm:ssZ
-	StartTime *string `queryParam:"style=form,explode=false,name=startTime"`
+	StartTime *time.Time `queryParam:"style=form,explode=false,name=startTime"`
 	// Timestamp in ISO 8601 format in UTC timezone: yyyy-MM-ddTHH:mm:ssZ
-	EndTime *string `queryParam:"style=form,explode=false,name=endTime"`
+	EndTime *time.Time `queryParam:"style=form,explode=false,name=endTime"`
 	// Number of items in a response page. Default varies by API.
 	PageSize *int `queryParam:"style=form,explode=false,name=pageSize"`
 	// Token for the requested page
 	SkipToken *string `queryParam:"style=form,explode=false,name=skipToken"`
+}
+
+func (l ListMetricMeasurementsRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListMetricMeasurementsRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ListMetricMeasurementsRequest) GetName() string {
@@ -36,6 +53,13 @@ func (o *ListMetricMeasurementsRequest) GetName() string {
 		return ""
 	}
 	return o.Name
+}
+
+func (o *ListMetricMeasurementsRequest) GetSeriesType() components.MetricSeriesType {
+	if o == nil {
+		return components.MetricSeriesType("")
+	}
+	return o.SeriesType
 }
 
 func (o *ListMetricMeasurementsRequest) GetFilter() *string {
@@ -80,14 +104,14 @@ func (o *ListMetricMeasurementsRequest) GetPreGroupByMethod() *string {
 	return o.PreGroupByMethod
 }
 
-func (o *ListMetricMeasurementsRequest) GetStartTime() *string {
+func (o *ListMetricMeasurementsRequest) GetStartTime() *time.Time {
 	if o == nil {
 		return nil
 	}
 	return o.StartTime
 }
 
-func (o *ListMetricMeasurementsRequest) GetEndTime() *string {
+func (o *ListMetricMeasurementsRequest) GetEndTime() *time.Time {
 	if o == nil {
 		return nil
 	}

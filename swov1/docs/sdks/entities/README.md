@@ -5,13 +5,13 @@
 
 ### Available Operations
 
-* [ListEntities](#listentities) - Get a list of entities by type
+* [ListEntities](#listentities) - Get a list of entities by type. A returned empty list indicates no entities matched the given parameters.
 * [GetEntityByID](#getentitybyid) - Get an entity by ID
 * [UpdateEntityByID](#updateentitybyid) - Update an entity by ID
 
 ## ListEntities
 
-Get a list of entities by type
+Get a list of entities by type. A returned empty list indicates no entities matched the given parameters.
 
 ### Example Usage
 
@@ -163,7 +163,7 @@ func main() {
 
     res, err := s.Entities.UpdateEntityByID(ctx, operations.UpdateEntityByIDRequest{
         ID: "<id>",
-        EntityUpdate: components.EntityUpdate{
+        Entity: components.EntityInput{
             DisplayName: swov1.String("SyslogTest"),
             Tags: map[string]string{
                 "gg.tk.token": "test",

@@ -7,7 +7,7 @@ type CommonMetricInfo struct {
 	Name string `json:"name"`
 	// Units of the metric
 	Units string `json:"units"`
-	// Formula for the metric
+	// Formula of the metric
 	Formula *string `json:"formula,omitempty"`
 	// Last reported time of the metric
 	LastReportedTime string `json:"lastReportedTime"`

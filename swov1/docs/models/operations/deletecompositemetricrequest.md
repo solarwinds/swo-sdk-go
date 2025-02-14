@@ -1,8 +1,8 @@
-# Details
+# DeleteCompositeMetricRequest
 
 
 ## Fields
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `Error`            | *string*           | :heavy_check_mark: | N/A                |
+| `Name`             | *string*           | :heavy_check_mark: | The metric name    |

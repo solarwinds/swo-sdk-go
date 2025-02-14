@@ -72,7 +72,7 @@ func main() {
 		swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
-	res, err := s.Changeevents.CreateChangeEvent(ctx, components.ChangeEvent{
+	res, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEvent{
 		ID:        swov1.Int64(1731676626),
 		Name:      "app-deploys",
 		Title:     "deployed v45",
@@ -130,7 +130,7 @@ func main() {
 		swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
-	res, err := s.Changeevents.CreateChangeEvent(ctx, components.ChangeEvent{
+	res, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEvent{
 		ID:        swov1.Int64(1731676626),
 		Name:      "app-deploys",
 		Title:     "deployed v45",
@@ -164,7 +164,7 @@ func main() {
 <details open>
 <summary>Available methods</summary>
 
-### [Changeevents](docs/sdks/changeevents/README.md)
+### [ChangeEvents](docs/sdks/changeevents/README.md)
 
 * [CreateChangeEvent](docs/sdks/changeevents/README.md#createchangeevent) - Create an event
 
@@ -179,7 +179,7 @@ func main() {
 
 ### [Entities](docs/sdks/entities/README.md)
 
-* [ListEntities](docs/sdks/entities/README.md#listentities) - Get a list of entities by type
+* [ListEntities](docs/sdks/entities/README.md#listentities) - Get a list of entities by type. A returned empty list indicates no entities matched the given parameters.
 * [GetEntityByID](docs/sdks/entities/README.md#getentitybyid) - Get an entity by ID
 * [UpdateEntityByID](docs/sdks/entities/README.md#updateentitybyid) - Update an entity by ID
 
@@ -197,10 +197,12 @@ func main() {
 
 * [ListMetrics](docs/sdks/metrics/README.md#listmetrics) - List metrics
 * [CreateCompositeMetric](docs/sdks/metrics/README.md#createcompositemetric) - Create composite metric
+* [UpdateUserMetric](docs/sdks/metrics/README.md#updateusermetric) - Update composite metric
+* [DeleteCompositeMetric](docs/sdks/metrics/README.md#deletecompositemetric) - Delete composite metric
 * [GetMetricByName](docs/sdks/metrics/README.md#getmetricbyname) - Get metric info by name
 * [ListMetricAttributes](docs/sdks/metrics/README.md#listmetricattributes) - List metric attribute names
 * [ListMetricAttributeValues](docs/sdks/metrics/README.md#listmetricattributevalues) - List metric attribute values
-* [ListMetricMeasurements](docs/sdks/metrics/README.md#listmetricmeasurements) - List metric measurement values, grouped by attributes, filtered by the filter
+* [ListMetricMeasurements](docs/sdks/metrics/README.md#listmetricmeasurements) - List metric measurement values, grouped by attributes, filtered by the filter. An empty list indicates no data points are available for the given parameters.
 
 
 ### [Tokens](docs/sdks/tokens/README.md)
@@ -288,7 +290,7 @@ func main() {
 		swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
-	res, err := s.Changeevents.CreateChangeEvent(ctx, components.ChangeEvent{
+	res, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEvent{
 		ID:        swov1.Int64(1731676626),
 		Name:      "app-deploys",
 		Title:     "deployed v45",
@@ -356,7 +358,7 @@ func main() {
 		swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
-	res, err := s.Changeevents.CreateChangeEvent(ctx, components.ChangeEvent{
+	res, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEvent{
 		ID:        swov1.Int64(1731676626),
 		Name:      "app-deploys",
 		Title:     "deployed v45",
@@ -519,7 +521,7 @@ func main() {
 		swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
-	res, err := s.Changeevents.CreateChangeEvent(ctx, components.ChangeEvent{
+	res, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEvent{
 		ID:        swov1.Int64(1731676626),
 		Name:      "app-deploys",
 		Title:     "deployed v45",

@@ -3,7 +3,9 @@
 package operations
 
 import (
+	"github.com/solarwinds/swo-sdk-go/swov1/internal/utils"
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
+	"time"
 )
 
 type ListMetricAttributeValuesRequest struct {
@@ -12,13 +14,24 @@ type ListMetricAttributeValuesRequest struct {
 	// attribute name
 	AttributeName string `pathParam:"style=simple,explode=false,name=attributeName"`
 	// Timestamp in ISO 8601 format in UTC timezone: yyyy-MM-ddTHH:mm:ssZ
-	StartTime *string `queryParam:"style=form,explode=false,name=startTime"`
+	StartTime *time.Time `queryParam:"style=form,explode=false,name=startTime"`
 	// Timestamp in ISO 8601 format in UTC timezone: yyyy-MM-ddTHH:mm:ssZ
-	EndTime *string `queryParam:"style=form,explode=false,name=endTime"`
+	EndTime *time.Time `queryParam:"style=form,explode=false,name=endTime"`
 	// Number of items in a response page. Default varies by API.
 	PageSize *int `queryParam:"style=form,explode=false,name=pageSize"`
 	// Token for the requested page
 	SkipToken *string `queryParam:"style=form,explode=false,name=skipToken"`
+}
+
+func (l ListMetricAttributeValuesRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListMetricAttributeValuesRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ListMetricAttributeValuesRequest) GetName() string {
@@ -35,14 +48,14 @@ func (o *ListMetricAttributeValuesRequest) GetAttributeName() string {
 	return o.AttributeName
 }
 
-func (o *ListMetricAttributeValuesRequest) GetStartTime() *string {
+func (o *ListMetricAttributeValuesRequest) GetStartTime() *time.Time {
 	if o == nil {
 		return nil
 	}
 	return o.StartTime
 }
 
-func (o *ListMetricAttributeValuesRequest) GetEndTime() *string {
+func (o *ListMetricAttributeValuesRequest) GetEndTime() *time.Time {
 	if o == nil {
 		return nil
 	}

@@ -60,7 +60,7 @@ func main() {
 
 ## ListMetricsForEntityType
 
-List metrics metadata for an entity type between a start and end time. If start time and end time unspecified, default will be applied.
+List metrics metadata for an entity type between a start and end time. If start time and end time unspecified, a default time range is be applied. An empty list indicates no metrics matched the given parameters.
 
 ### Example Usage
 
@@ -108,6 +108,7 @@ func main() {
 
 ### Errors
 
-| Error Type         | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| apierrors.APIError | 4XX, 5XX           | \*/\*              |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| apierrors.ListMetricsForEntityTypeResponseBody | 404                                            | application/json                               |
+| apierrors.APIError                             | 4XX, 5XX                                       | \*/\*                                          |
