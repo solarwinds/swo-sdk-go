@@ -7,44 +7,14 @@ import (
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 )
 
-type UnpauseWebsiteMonitorDetails struct {
-	Error string `json:"error"`
-}
-
-func (o *UnpauseWebsiteMonitorDetails) GetError() string {
-	if o == nil {
-		return ""
-	}
-	return o.Error
-}
-
-type UnpauseWebsiteMonitorInnerError struct {
-	Code       string `json:"code"`
-	InnerError string `json:"innerError"`
-}
-
-func (o *UnpauseWebsiteMonitorInnerError) GetCode() string {
-	if o == nil {
-		return ""
-	}
-	return o.Code
-}
-
-func (o *UnpauseWebsiteMonitorInnerError) GetInnerError() string {
-	if o == nil {
-		return ""
-	}
-	return o.InnerError
-}
-
 // UnpauseWebsiteMonitorResponseBody - The server could not understand the request due to invalid syntax.
 type UnpauseWebsiteMonitorResponseBody struct {
-	Code       string                           `json:"code"`
-	Message    string                           `json:"message"`
-	Target     *string                          `json:"target,omitempty"`
-	Details    []UnpauseWebsiteMonitorDetails   `json:"details,omitempty"`
-	InnerError *UnpauseWebsiteMonitorInnerError `json:"innerError,omitempty"`
-	HTTPMeta   components.HTTPMetadata          `json:"-"`
+	// HTTP status code as defined in RFC 2817
+	Code int64 `json:"code"`
+	// Supporting description of the error
+	Message  string                  `json:"message"`
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
 var _ error = &UnpauseWebsiteMonitorResponseBody{}

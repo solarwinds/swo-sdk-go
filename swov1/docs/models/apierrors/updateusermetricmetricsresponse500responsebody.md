@@ -1,0 +1,12 @@
+# UpdateUserMetricMetricsResponse500ResponseBody
+
+Server error
+
+
+## Fields
+
+| Field                                                                                                          | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `Code`                                                                                                         | [apierrors.UpdateUserMetricMetricsResponseCode](../../models/apierrors/updateusermetricmetricsresponsecode.md) | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
+| `Message`                                                                                                      | *string*                                                                                                       | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
+| `HTTPMeta`                                                                                                     | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                             | :heavy_check_mark:                                                                                             | N/A                                                                                                            |

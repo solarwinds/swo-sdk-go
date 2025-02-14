@@ -27,15 +27,8 @@ func newEntities(sdkConfig sdkConfiguration) *Entities {
 	}
 }
 
-// ListEntities - Get a list of entities by type
+// ListEntities - Get a list of entities by type. A returned empty list indicates no entities matched the given parameters.
 func (s *Entities) ListEntities(ctx context.Context, request operations.ListEntitiesRequest, opts ...operations.Option) (*operations.ListEntitiesResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "listEntities",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -62,6 +55,14 @@ func (s *Entities) ListEntities(ctx context.Context, request operations.ListEnti
 
 	if o.URLOverride != nil {
 		opURL = *o.URLOverride
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "listEntities",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -360,13 +361,6 @@ func (s *Entities) ListEntities(ctx context.Context, request operations.ListEnti
 
 // GetEntityByID - Get an entity by ID
 func (s *Entities) GetEntityByID(ctx context.Context, request operations.GetEntityByIDRequest, opts ...operations.Option) (*operations.GetEntityByIDResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getEntityById",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -388,6 +382,14 @@ func (s *Entities) GetEntityByID(ctx context.Context, request operations.GetEnti
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/entities/{id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getEntityById",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -666,13 +668,6 @@ func (s *Entities) GetEntityByID(ctx context.Context, request operations.GetEnti
 
 // UpdateEntityByID - Update an entity by ID
 func (s *Entities) UpdateEntityByID(ctx context.Context, request operations.UpdateEntityByIDRequest, opts ...operations.Option) (*operations.UpdateEntityByIDResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updateEntityById",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -696,7 +691,14 @@ func (s *Entities) UpdateEntityByID(ctx context.Context, request operations.Upda
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "EntityUpdate", "json", `request:"mediaType=application/json"`)
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updateEntityById",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Entity", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -712,7 +714,7 @@ func (s *Entities) UpdateEntityByID(ctx context.Context, request operations.Upda
 		defer cancel()
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PATCH", opURL, bodyReader)
+	req, err := http.NewRequestWithContext(ctx, "PUT", opURL, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}

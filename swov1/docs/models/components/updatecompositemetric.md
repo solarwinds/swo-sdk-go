@@ -1,0 +1,11 @@
+# UpdateCompositeMetric
+
+
+## Fields
+
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                | Example                                                                    |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `DisplayName`                                                              | *string*                                                                   | :heavy_check_mark:                                                         | Display name of the composite metric. A short description of the metric.   | Disk IO rate                                                               |
+| `Description`                                                              | *string*                                                                   | :heavy_check_mark:                                                         | Description of the composite metric. A detailed description of the metric. | Disk bytes transferred per second                                          |
+| `Formula`                                                                  | *string*                                                                   | :heavy_check_mark:                                                         | PromQL query to calculate the composite metric                             | rate(system.disk.io[5m])                                                   |
+| `Units`                                                                    | *string*                                                                   | :heavy_check_mark:                                                         | Unit of the composite metric                                               | bytes/s                                                                    |

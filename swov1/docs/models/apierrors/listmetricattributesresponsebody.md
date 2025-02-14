@@ -1,0 +1,12 @@
+# ListMetricAttributesResponseBody
+
+The server cannot find the requested resource.
+
+
+## Fields
+
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `Code`                                                                                   | [apierrors.ListMetricAttributesCode](../../models/apierrors/listmetricattributescode.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| `Message`                                                                                | *string*                                                                                 | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| `HTTPMeta`                                                                               | [components.HTTPMetadata](../../models/components/httpmetadata.md)                       | :heavy_check_mark:                                                                       | N/A                                                                                      |

@@ -1,6 +1,6 @@
 # Category
 
-Health Score category label
+Health Score category label.
 
 
 ## Values

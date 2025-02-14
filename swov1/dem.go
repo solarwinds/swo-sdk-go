@@ -28,13 +28,6 @@ func newDem(sdkConfig sdkConfiguration) *Dem {
 
 // CreateWebsiteMonitor - Create website monitoring configuration
 func (s *Dem) CreateWebsiteMonitor(ctx context.Context, request components.Website, opts ...operations.Option) (*operations.CreateWebsiteMonitorResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "createWebsiteMonitor",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -58,6 +51,13 @@ func (s *Dem) CreateWebsiteMonitor(ctx context.Context, request components.Websi
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "createWebsiteMonitor",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -267,13 +267,6 @@ func (s *Dem) CreateWebsiteMonitor(ctx context.Context, request components.Websi
 
 // GetWebsiteMonitor - Get website monitoring configuration
 func (s *Dem) GetWebsiteMonitor(ctx context.Context, request operations.GetWebsiteMonitorRequest, opts ...operations.Option) (*operations.GetWebsiteMonitorResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getWebsiteMonitor",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -295,6 +288,14 @@ func (s *Dem) GetWebsiteMonitor(ctx context.Context, request operations.GetWebsi
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/dem/websites/{entityId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getWebsiteMonitor",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -498,13 +499,6 @@ func (s *Dem) GetWebsiteMonitor(ctx context.Context, request operations.GetWebsi
 
 // UpdateWebsiteMonitor - Update website monitoring configuration
 func (s *Dem) UpdateWebsiteMonitor(ctx context.Context, request operations.UpdateWebsiteMonitorRequest, opts ...operations.Option) (*operations.UpdateWebsiteMonitorResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updateWebsiteMonitor",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -528,6 +522,13 @@ func (s *Dem) UpdateWebsiteMonitor(ctx context.Context, request operations.Updat
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updateWebsiteMonitor",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Website", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -737,13 +738,6 @@ func (s *Dem) UpdateWebsiteMonitor(ctx context.Context, request operations.Updat
 
 // DeleteWebsiteMonitor - Delete website
 func (s *Dem) DeleteWebsiteMonitor(ctx context.Context, request operations.DeleteWebsiteMonitorRequest, opts ...operations.Option) (*operations.DeleteWebsiteMonitorResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "deleteWebsiteMonitor",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -765,6 +759,14 @@ func (s *Dem) DeleteWebsiteMonitor(ctx context.Context, request operations.Delet
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/dem/websites/{entityId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "deleteWebsiteMonitor",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -968,13 +970,6 @@ func (s *Dem) DeleteWebsiteMonitor(ctx context.Context, request operations.Delet
 
 // PauseWebsiteMonitor - Pause monitoring of a website
 func (s *Dem) PauseWebsiteMonitor(ctx context.Context, request operations.PauseWebsiteMonitorRequest, opts ...operations.Option) (*operations.PauseWebsiteMonitorResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "pauseWebsiteMonitor",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -996,6 +991,14 @@ func (s *Dem) PauseWebsiteMonitor(ctx context.Context, request operations.PauseW
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/dem/websites/{entityId}/pauseMonitoring", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "pauseWebsiteMonitor",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1199,13 +1202,6 @@ func (s *Dem) PauseWebsiteMonitor(ctx context.Context, request operations.PauseW
 
 // UnpauseWebsiteMonitor - Unpause monitoring of a website
 func (s *Dem) UnpauseWebsiteMonitor(ctx context.Context, request operations.UnpauseWebsiteMonitorRequest, opts ...operations.Option) (*operations.UnpauseWebsiteMonitorResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "unpauseWebsiteMonitor",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1227,6 +1223,14 @@ func (s *Dem) UnpauseWebsiteMonitor(ctx context.Context, request operations.Unpa
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/dem/websites/{entityId}/unpauseMonitoring", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "unpauseWebsiteMonitor",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

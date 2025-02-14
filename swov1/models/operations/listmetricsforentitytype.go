@@ -3,15 +3,28 @@
 package operations
 
 import (
+	"github.com/solarwinds/swo-sdk-go/swov1/internal/utils"
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
+	"time"
 )
 
 type ListMetricsForEntityTypeRequest struct {
 	Type string `pathParam:"style=simple,explode=false,name=type"`
 	// Timestamp in ISO 8601 format in UTC timezone: yyyy-MM-ddTHH:mm:ssZ
-	StartTime *string `queryParam:"style=form,explode=false,name=startTime"`
+	StartTime *time.Time `queryParam:"style=form,explode=false,name=startTime"`
 	// Timestamp in ISO 8601 format in UTC timezone: yyyy-MM-ddTHH:mm:ssZ
-	EndTime *string `queryParam:"style=form,explode=false,name=endTime"`
+	EndTime *time.Time `queryParam:"style=form,explode=false,name=endTime"`
+}
+
+func (l ListMetricsForEntityTypeRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListMetricsForEntityTypeRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ListMetricsForEntityTypeRequest) GetType() string {
@@ -21,14 +34,14 @@ func (o *ListMetricsForEntityTypeRequest) GetType() string {
 	return o.Type
 }
 
-func (o *ListMetricsForEntityTypeRequest) GetStartTime() *string {
+func (o *ListMetricsForEntityTypeRequest) GetStartTime() *time.Time {
 	if o == nil {
 		return nil
 	}
 	return o.StartTime
 }
 
-func (o *ListMetricsForEntityTypeRequest) GetEndTime() *string {
+func (o *ListMetricsForEntityTypeRequest) GetEndTime() *time.Time {
 	if o == nil {
 		return nil
 	}
@@ -37,7 +50,8 @@ func (o *ListMetricsForEntityTypeRequest) GetEndTime() *string {
 
 // ListMetricsForEntityTypeResponseBody - The request has succeeded.
 type ListMetricsForEntityTypeResponseBody struct {
-	Type    string                        `json:"type"`
+	Type string `json:"type"`
+	// A list of metrics and their metadata. An empty list indicates no metrics matched the given parameters.
 	Metrics []components.CommonMetricInfo `json:"metrics"`
 }
 
