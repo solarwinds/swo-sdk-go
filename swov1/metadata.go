@@ -29,13 +29,6 @@ func newMetadata(sdkConfig sdkConfiguration) *Metadata {
 // ListEntityTypes - List all entity types
 // List all available entity types.
 func (s *Metadata) ListEntityTypes(ctx context.Context, opts ...operations.Option) (*operations.ListEntityTypesResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "listEntityTypes",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -57,6 +50,14 @@ func (s *Metadata) ListEntityTypes(ctx context.Context, opts ...operations.Optio
 	opURL, err := url.JoinPath(baseURL, "/v1/metadata/entities/types")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "listEntityTypes",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -234,15 +235,8 @@ func (s *Metadata) ListEntityTypes(ctx context.Context, opts ...operations.Optio
 }
 
 // ListMetricsForEntityType - List metrics metadata for an entity type
-// List metrics metadata for an entity type between a start and end time. If start time and end time unspecified, default will be applied.
+// List metrics metadata for an entity type between a start and end time. If start time and end time unspecified, a default time range is be applied. An empty list indicates no metrics matched the given parameters.
 func (s *Metadata) ListMetricsForEntityType(ctx context.Context, request operations.ListMetricsForEntityTypeRequest, opts ...operations.Option) (*operations.ListMetricsForEntityTypeResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "listMetricsForEntityType",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -264,6 +258,14 @@ func (s *Metadata) ListMetricsForEntityType(ctx context.Context, request operati
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/metadata/entities/types/{type}/metrics", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "listMetricsForEntityType",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -376,7 +378,7 @@ func (s *Metadata) ListMetricsForEntityType(ctx context.Context, request operati
 
 			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
-		} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
+		} else if utils.MatchStatusCodes([]string{"404", "4XX", "5XX"}, httpRes.StatusCode) {
 			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
@@ -413,6 +415,31 @@ func (s *Metadata) ListMetricsForEntityType(ctx context.Context, request operati
 			}
 
 			res.Object = &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ListMetricsForEntityTypeResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

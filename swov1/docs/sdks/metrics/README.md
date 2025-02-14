@@ -7,14 +7,16 @@
 
 * [ListMetrics](#listmetrics) - List metrics
 * [CreateCompositeMetric](#createcompositemetric) - Create composite metric
+* [UpdateUserMetric](#updateusermetric) - Update composite metric
+* [DeleteCompositeMetric](#deletecompositemetric) - Delete composite metric
 * [GetMetricByName](#getmetricbyname) - Get metric info by name
 * [ListMetricAttributes](#listmetricattributes) - List metric attribute names
 * [ListMetricAttributeValues](#listmetricattributevalues) - List metric attribute values
-* [ListMetricMeasurements](#listmetricmeasurements) - List metric measurement values, grouped by attributes, filtered by the filter
+* [ListMetricMeasurements](#listmetricmeasurements) - List metric measurement values, grouped by attributes, filtered by the filter. An empty list indicates no data points are available for the given parameters.
 
 ## ListMetrics
 
-List metrics seen within a time period
+List metrics available within a time period. 
 
 ### Example Usage
 
@@ -130,10 +132,132 @@ func main() {
 
 ### Errors
 
+| Error Type                                                 | Status Code                                                | Content Type                                               |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| apierrors.CreateCompositeMetricResponseBody                | 400                                                        | application/json                                           |
+| apierrors.CreateCompositeMetricMetricsResponseBody         | 403                                                        | application/json                                           |
+| apierrors.CreateCompositeMetricMetricsResponseResponseBody | 500                                                        | application/json                                           |
+| apierrors.APIError                                         | 4XX, 5XX                                                   | \*/\*                                                      |
+
+## UpdateUserMetric
+
+Update a composite metric given a metric name
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+    
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Metrics.UpdateUserMetric(ctx, operations.UpdateUserMetricRequest{
+        Name: "<value>",
+        UpdateCompositeMetric: components.UpdateCompositeMetric{
+            DisplayName: "Disk IO rate",
+            Description: "Disk bytes transferred per second",
+            Formula: "rate(system.disk.io[5m])",
+            Units: "bytes/s",
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.UpdateUserMetricRequest](../../models/operations/updateusermetricrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+
+### Response
+
+**[*operations.UpdateUserMetricResponse](../../models/operations/updateusermetricresponse.md), error**
+
+### Errors
+
+| Error Type                                               | Status Code                                              | Content Type                                             |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| apierrors.UpdateUserMetricResponseBody                   | 401                                                      | application/json                                         |
+| apierrors.UpdateUserMetricMetricsResponseBody            | 403                                                      | application/json                                         |
+| apierrors.UpdateUserMetricMetricsResponseResponseBody    | 404                                                      | application/json                                         |
+| apierrors.UpdateUserMetricMetricsResponse500ResponseBody | 500                                                      | application/json                                         |
+| apierrors.APIError                                       | 4XX, 5XX                                                 | \*/\*                                                    |
+
+## DeleteCompositeMetric
+
+Delete a composite metric given a metric name
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+    
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Metrics.DeleteCompositeMetric(ctx, operations.DeleteCompositeMetricRequest{
+        Name: "<value>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `request`                                                                                          | [operations.DeleteCompositeMetricRequest](../../models/operations/deletecompositemetricrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `opts`                                                                                             | [][operations.Option](../../models/operations/option.md)                                           | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
+
+### Response
+
+**[*operations.DeleteCompositeMetricResponse](../../models/operations/deletecompositemetricresponse.md), error**
+
+### Errors
+
 | Error Type                                         | Status Code                                        | Content Type                                       |
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| apierrors.CreateCompositeMetricResponseBody        | 400                                                | application/json                                   |
-| apierrors.CreateCompositeMetricMetricsResponseBody | 403                                                | application/json                                   |
+| apierrors.DeleteCompositeMetricResponseBody        | 400                                                | application/json                                   |
+| apierrors.DeleteCompositeMetricMetricsResponseBody | 403                                                | application/json                                   |
 | apierrors.APIError                                 | 4XX, 5XX                                           | \*/\*                                              |
 
 ## GetMetricByName
@@ -198,13 +322,14 @@ func main() {
 
 ### Errors
 
-| Error Type         | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| apierrors.APIError | 4XX, 5XX           | \*/\*              |
+| Error Type                            | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| apierrors.GetMetricByNameResponseBody | 404                                   | application/json                      |
+| apierrors.APIError                    | 4XX, 5XX                              | \*/\*                                 |
 
 ## ListMetricAttributes
 
-List all attribute names defined for the given metric
+List attribute names for a given metric.
 
 ### Example Usage
 
@@ -264,13 +389,14 @@ func main() {
 
 ### Errors
 
-| Error Type         | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| apierrors.APIError | 4XX, 5XX           | \*/\*              |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| apierrors.ListMetricAttributesResponseBody | 404                                        | application/json                           |
+| apierrors.APIError                         | 4XX, 5XX                                   | \*/\*                                      |
 
 ## ListMetricAttributeValues
 
-List values of a metric's attribute
+List the values of a given metric's attribute.
 
 ### Example Usage
 
@@ -331,13 +457,14 @@ func main() {
 
 ### Errors
 
-| Error Type         | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| apierrors.APIError | 4XX, 5XX           | \*/\*              |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| apierrors.ListMetricAttributeValuesResponseBody | 404                                             | application/json                                |
+| apierrors.APIError                              | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ListMetricMeasurements
 
-List metric measurement values, grouped by attributes, filtered by the filter
+List metric measurement values, grouped by attributes, filtered by the filter. An empty list indicates no data points are available for the given parameters.
 
 ### Example Usage
 
@@ -348,6 +475,7 @@ import(
 	"context"
 	"os"
 	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
 	"log"
 )
@@ -361,6 +489,7 @@ func main() {
 
     res, err := s.Metrics.ListMetricMeasurements(ctx, operations.ListMetricMeasurementsRequest{
         Name: "<value>",
+        SeriesType: components.MetricSeriesTypeScalar,
     })
     if err != nil {
         log.Fatal(err)
@@ -397,6 +526,7 @@ func main() {
 
 ### Errors
 
-| Error Type         | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| apierrors.APIError | 4XX, 5XX           | \*/\*              |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| apierrors.ListMetricMeasurementsResponseBody | 404                                          | application/json                             |
+| apierrors.APIError                           | 4XX, 5XX                                     | \*/\*                                        |

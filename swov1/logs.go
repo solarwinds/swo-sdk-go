@@ -30,13 +30,6 @@ func newLogs(sdkConfig sdkConfiguration) *Logs {
 // SearchLogs - Search logs
 // Search logs within a time period
 func (s *Logs) SearchLogs(ctx context.Context, request operations.SearchLogsRequest, opts ...operations.Option) (*operations.SearchLogsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "searchLogs",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -63,6 +56,14 @@ func (s *Logs) SearchLogs(ctx context.Context, request operations.SearchLogsRequ
 
 	if o.URLOverride != nil {
 		opURL = *o.URLOverride
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "searchLogs",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -291,13 +292,6 @@ func (s *Logs) SearchLogs(ctx context.Context, request operations.SearchLogsRequ
 // ListLogArchives - Retrieve location and metadata of log archives
 // Retrieves a list of log archives within a time period.
 func (s *Logs) ListLogArchives(ctx context.Context, request operations.ListLogArchivesRequest, opts ...operations.Option) (*operations.ListLogArchivesResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "listLogArchives",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -324,6 +318,14 @@ func (s *Logs) ListLogArchives(ctx context.Context, request operations.ListLogAr
 
 	if o.URLOverride != nil {
 		opURL = *o.URLOverride
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "listLogArchives",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

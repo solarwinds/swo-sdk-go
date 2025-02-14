@@ -4,47 +4,55 @@ package apierrors
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 )
 
-type CreateCompositeMetricMetricsDetails struct {
-	Error string `json:"error"`
-}
+type CreateCompositeMetricCode string
 
-func (o *CreateCompositeMetricMetricsDetails) GetError() string {
-	if o == nil {
-		return ""
+const (
+	CreateCompositeMetricCodeInternalServerError CreateCompositeMetricCode = "InternalServerError"
+)
+
+func (e CreateCompositeMetricCode) ToPointer() *CreateCompositeMetricCode {
+	return &e
+}
+func (e *CreateCompositeMetricCode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
 	}
-	return o.Error
-}
-
-type CreateCompositeMetricMetricsInnerError struct {
-	Code       string `json:"code"`
-	InnerError string `json:"innerError"`
-}
-
-func (o *CreateCompositeMetricMetricsInnerError) GetCode() string {
-	if o == nil {
-		return ""
+	switch v {
+	case "InternalServerError":
+		*e = CreateCompositeMetricCode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCompositeMetricCode: %v", v)
 	}
-	return o.Code
 }
 
-func (o *CreateCompositeMetricMetricsInnerError) GetInnerError() string {
-	if o == nil {
-		return ""
-	}
-	return o.InnerError
+// CreateCompositeMetricMetricsResponseResponseBody - Server error
+type CreateCompositeMetricMetricsResponseResponseBody struct {
+	Code     CreateCompositeMetricCode `json:"code"`
+	Message  string                    `json:"message"`
+	HTTPMeta components.HTTPMetadata   `json:"-"`
+}
+
+var _ error = &CreateCompositeMetricMetricsResponseResponseBody{}
+
+func (e *CreateCompositeMetricMetricsResponseResponseBody) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
 }
 
 // CreateCompositeMetricMetricsResponseBody - Access is forbidden.
 type CreateCompositeMetricMetricsResponseBody struct {
-	Code       string                                  `json:"code"`
-	Message    string                                  `json:"message"`
-	Target     *string                                 `json:"target,omitempty"`
-	Details    []CreateCompositeMetricMetricsDetails   `json:"details,omitempty"`
-	InnerError *CreateCompositeMetricMetricsInnerError `json:"innerError,omitempty"`
-	HTTPMeta   components.HTTPMetadata                 `json:"-"`
+	// HTTP status code as defined in RFC 2817
+	Code int64 `json:"code"`
+	// Supporting description of the error
+	Message  string                  `json:"message"`
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
 var _ error = &CreateCompositeMetricMetricsResponseBody{}
@@ -54,44 +62,14 @@ func (e *CreateCompositeMetricMetricsResponseBody) Error() string {
 	return string(data)
 }
 
-type CreateCompositeMetricDetails struct {
-	Error string `json:"error"`
-}
-
-func (o *CreateCompositeMetricDetails) GetError() string {
-	if o == nil {
-		return ""
-	}
-	return o.Error
-}
-
-type CreateCompositeMetricInnerError struct {
-	Code       string `json:"code"`
-	InnerError string `json:"innerError"`
-}
-
-func (o *CreateCompositeMetricInnerError) GetCode() string {
-	if o == nil {
-		return ""
-	}
-	return o.Code
-}
-
-func (o *CreateCompositeMetricInnerError) GetInnerError() string {
-	if o == nil {
-		return ""
-	}
-	return o.InnerError
-}
-
 // CreateCompositeMetricResponseBody - The server could not understand the request due to invalid syntax.
 type CreateCompositeMetricResponseBody struct {
-	Code       string                           `json:"code"`
-	Message    string                           `json:"message"`
-	Target     *string                          `json:"target,omitempty"`
-	Details    []CreateCompositeMetricDetails   `json:"details,omitempty"`
-	InnerError *CreateCompositeMetricInnerError `json:"innerError,omitempty"`
-	HTTPMeta   components.HTTPMetadata          `json:"-"`
+	// HTTP status code as defined in RFC 2817
+	Code int64 `json:"code"`
+	// Supporting description of the error
+	Message  string                  `json:"message"`
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
 var _ error = &CreateCompositeMetricResponseBody{}

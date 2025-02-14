@@ -32,9 +32,7 @@ func main() {
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    res, err := s.Logs.SearchLogs(ctx, operations.SearchLogsRequest{
-        Direction: swov1.String("backward"),
-    })
+    res, err := s.Logs.SearchLogs(ctx, operations.SearchLogsRequest{})
     if err != nil {
         log.Fatal(err)
     }
