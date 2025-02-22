@@ -165,9 +165,9 @@ func main() {
         ID: "<id>",
         Entity: components.EntityInput{
             DisplayName: swov1.String("SyslogTest"),
-            Tags: map[string]string{
-                "gg.tk.token": "test",
-                "kfi.tk.token": "qa-test",
+            Tags: map[string]*string{
+                "gg.tk.token": swov1.String("test"),
+                "kfi.tk.token": swov1.String("qa-test"),
             },
         },
     })

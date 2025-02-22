@@ -170,12 +170,14 @@ func main() {
 
 ### [Dem](docs/sdks/dem/README.md)
 
-* [CreateWebsiteMonitor](docs/sdks/dem/README.md#createwebsitemonitor) - Create website monitoring configuration
-* [GetWebsiteMonitor](docs/sdks/dem/README.md#getwebsitemonitor) - Get website monitoring configuration
-* [UpdateWebsiteMonitor](docs/sdks/dem/README.md#updatewebsitemonitor) - Update website monitoring configuration
-* [DeleteWebsiteMonitor](docs/sdks/dem/README.md#deletewebsitemonitor) - Delete website
-* [PauseWebsiteMonitor](docs/sdks/dem/README.md#pausewebsitemonitor) - Pause monitoring of a website
-* [UnpauseWebsiteMonitor](docs/sdks/dem/README.md#unpausewebsitemonitor) - Unpause monitoring of a website
+* [GetDemSettings](docs/sdks/dem/README.md#getdemsettings) - Get DEM settings
+* [SetDemSettings](docs/sdks/dem/README.md#setdemsettings) - Set DEM settings
+* [CreateWebsite](docs/sdks/dem/README.md#createwebsite) - Create website monitoring configuration
+* [GetWebsite](docs/sdks/dem/README.md#getwebsite) - Get website monitoring configuration
+* [UpdateWebsite](docs/sdks/dem/README.md#updatewebsite) - Update website monitoring configuration
+* [DeleteWebsite](docs/sdks/dem/README.md#deletewebsite) - Delete website
+* [PauseWebsiteMonitoring](docs/sdks/dem/README.md#pausewebsitemonitoring) - Pause monitoring of a website
+* [UnpauseWebsiteMonitoring](docs/sdks/dem/README.md#unpausewebsitemonitoring) - Unpause monitoring of a website
 
 ### [Entities](docs/sdks/entities/README.md)
 
@@ -197,7 +199,7 @@ func main() {
 
 * [ListMetrics](docs/sdks/metrics/README.md#listmetrics) - List metrics
 * [CreateCompositeMetric](docs/sdks/metrics/README.md#createcompositemetric) - Create composite metric
-* [UpdateUserMetric](docs/sdks/metrics/README.md#updateusermetric) - Update composite metric
+* [UpdateCompositeMetric](docs/sdks/metrics/README.md#updatecompositemetric) - Update composite metric
 * [DeleteCompositeMetric](docs/sdks/metrics/README.md#deletecompositemetric) - Delete composite metric
 * [GetMetricByName](docs/sdks/metrics/README.md#getmetricbyname) - Get metric info by name
 * [ListMetricAttributes](docs/sdks/metrics/README.md#listmetricattributes) - List metric attribute names
@@ -393,12 +395,12 @@ Handling errors in this SDK should largely match your expectations. All operatio
 
 By Default, an API error will return `apierrors.APIError`. When custom error responses are specified for an operation, the SDK may also return their associated error. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation.
 
-For example, the `CreateWebsiteMonitor` function may return the following errors:
+For example, the `CreateWebsite` function may return the following errors:
 
-| Error Type                                 | Status Code | Content Type     |
-| ------------------------------------------ | ----------- | ---------------- |
-| apierrors.CreateWebsiteMonitorResponseBody | 400         | application/json |
-| apierrors.APIError                         | 4XX, 5XX    | \*/\*            |
+| Error Type                          | Status Code | Content Type     |
+| ----------------------------------- | ----------- | ---------------- |
+| apierrors.CreateWebsiteResponseBody | 400         | application/json |
+| apierrors.APIError                  | 4XX, 5XX    | \*/\*            |
 
 ### Example
 
@@ -422,12 +424,12 @@ func main() {
 		swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
-	res, err := s.Dem.CreateWebsiteMonitor(ctx, components.Website{
+	res, err := s.Dem.CreateWebsite(ctx, components.Website{
 		Name: "solarwinds.com",
 		URL:  "https://www.solarwinds.com",
 		AvailabilityCheckSettings: &components.AvailabilityCheckSettings{
 			CheckForString: &components.CheckForString{
-				Operator: components.OperatorContains,
+				Operator: components.CheckForStringOperatorContains,
 				Value:    "string",
 			},
 			TestIntervalInSeconds: 14400,
@@ -447,7 +449,7 @@ func main() {
 					"NA",
 				},
 			},
-			Ssl: &components.SslMonitoring{
+			Ssl: &components.Ssl{
 				Enabled:                        swov1.Bool(true),
 				DaysPriorToExpiration:          swov1.Int(7),
 				IgnoreIntermediateCertificates: swov1.Bool(true),
@@ -460,6 +462,10 @@ func main() {
 			},
 			AllowInsecureRenegotiation: swov1.Bool(true),
 			PostData:                   swov1.String("{\"example\": \"value\"}"),
+			OutageConfiguration: &components.WebsiteOutageConfiguration{
+				FailingTestLocations: components.WebsiteFailingTestLocationsAll,
+				ConsecutiveForDown:   2,
+			},
 		},
 		Tags: []components.Tag{
 			components.Tag{
@@ -474,7 +480,7 @@ func main() {
 	})
 	if err != nil {
 
-		var e *apierrors.CreateWebsiteMonitorResponseBody
+		var e *apierrors.CreateWebsiteResponseBody
 		if errors.As(err, &e) {
 			// handle error
 			log.Fatal(e.Error())
@@ -497,11 +503,62 @@ func main() {
 ### Server Variables
 
 The default server `https://api.na-01.cloud.solarwinds.com` contains variables and is set to `https://api.na-01.cloud.solarwinds.com` by default. To override default values, the following options are available when initializing the SDK client instance:
- * `WithRegion(region string)`
+
+| Variable | Option                      | Default   | Description |
+| -------- | --------------------------- | --------- | ----------- |
+| `region` | `WithRegion(region string)` | `"na-01"` | Region name |
+
+#### Example
+
+```go
+package main
+
+import (
+	"context"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
+	"log"
+	"os"
+)
+
+func main() {
+	ctx := context.Background()
+
+	s := swov1.New(
+		swov1.WithRegion("<value>"),
+		swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+	)
+
+	res, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEvent{
+		ID:        swov1.Int64(1731676626),
+		Name:      "app-deploys",
+		Title:     "deployed v45",
+		Timestamp: swov1.Int64(1731676626),
+		Source:    swov1.String("foo3.example.com"),
+		Tags: map[string]string{
+			"app":         "foo",
+			"environment": "production",
+		},
+		Links: []components.CommonLink{
+			components.CommonLink{
+				Rel:  "self",
+				Href: "https://example.com",
+			},
+		},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.Object != nil {
+		// handle response
+	}
+}
+
+```
 
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally using the `WithServerURL(serverURL string)` option when initializing the SDK client instance. For example:
+The default server can be overridden globally using the `WithServerURL(serverURL string)` option when initializing the SDK client instance. For example:
 ```go
 package main
 

@@ -7,7 +7,7 @@
 
 * [ListMetrics](#listmetrics) - List metrics
 * [CreateCompositeMetric](#createcompositemetric) - Create composite metric
-* [UpdateUserMetric](#updateusermetric) - Update composite metric
+* [UpdateCompositeMetric](#updatecompositemetric) - Update composite metric
 * [DeleteCompositeMetric](#deletecompositemetric) - Delete composite metric
 * [GetMetricByName](#getmetricbyname) - Get metric info by name
 * [ListMetricAttributes](#listmetricattributes) - List metric attribute names
@@ -139,7 +139,7 @@ func main() {
 | apierrors.CreateCompositeMetricMetricsResponseResponseBody | 500                                                        | application/json                                           |
 | apierrors.APIError                                         | 4XX, 5XX                                                   | \*/\*                                                      |
 
-## UpdateUserMetric
+## UpdateCompositeMetric
 
 Update a composite metric given a metric name
 
@@ -164,7 +164,7 @@ func main() {
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    res, err := s.Metrics.UpdateUserMetric(ctx, operations.UpdateUserMetricRequest{
+    res, err := s.Metrics.UpdateCompositeMetric(ctx, operations.UpdateCompositeMetricRequest{
         Name: "<value>",
         UpdateCompositeMetric: components.UpdateCompositeMetric{
             DisplayName: "Disk IO rate",
@@ -184,25 +184,25 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.UpdateUserMetricRequest](../../models/operations/updateusermetricrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `request`                                                                                          | [operations.UpdateCompositeMetricRequest](../../models/operations/updatecompositemetricrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `opts`                                                                                             | [][operations.Option](../../models/operations/option.md)                                           | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
 ### Response
 
-**[*operations.UpdateUserMetricResponse](../../models/operations/updateusermetricresponse.md), error**
+**[*operations.UpdateCompositeMetricResponse](../../models/operations/updatecompositemetricresponse.md), error**
 
 ### Errors
 
-| Error Type                                               | Status Code                                              | Content Type                                             |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| apierrors.UpdateUserMetricResponseBody                   | 401                                                      | application/json                                         |
-| apierrors.UpdateUserMetricMetricsResponseBody            | 403                                                      | application/json                                         |
-| apierrors.UpdateUserMetricMetricsResponseResponseBody    | 404                                                      | application/json                                         |
-| apierrors.UpdateUserMetricMetricsResponse500ResponseBody | 500                                                      | application/json                                         |
-| apierrors.APIError                                       | 4XX, 5XX                                                 | \*/\*                                                    |
+| Error Type                                                    | Status Code                                                   | Content Type                                                  |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| apierrors.UpdateCompositeMetricResponseBody                   | 401                                                           | application/json                                              |
+| apierrors.UpdateCompositeMetricMetricsResponseBody            | 403                                                           | application/json                                              |
+| apierrors.UpdateCompositeMetricMetricsResponseResponseBody    | 404                                                           | application/json                                              |
+| apierrors.UpdateCompositeMetricMetricsResponse500ResponseBody | 500                                                           | application/json                                              |
+| apierrors.APIError                                            | 4XX, 5XX                                                      | \*/\*                                                         |
 
 ## DeleteCompositeMetric
 

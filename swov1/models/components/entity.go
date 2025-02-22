@@ -79,7 +79,7 @@ type Entity struct {
 	InMaintenance bool         `json:"inMaintenance"`
 	Healthscore   *Healthscore `json:"healthscore,omitempty"`
 	// Entity tags. Tag is a key-value pair, where there may be only a single tag value for the same key.
-	Tags map[string]string `json:"tags"`
+	Tags map[string]*string `json:"tags"`
 	// Map of available attributes.
 	Attributes map[string]any `json:"attributes,omitempty"`
 }
@@ -158,9 +158,9 @@ func (o *Entity) GetHealthscore() *Healthscore {
 	return o.Healthscore
 }
 
-func (o *Entity) GetTags() map[string]string {
+func (o *Entity) GetTags() map[string]*string {
 	if o == nil {
-		return map[string]string{}
+		return map[string]*string{}
 	}
 	return o.Tags
 }
