@@ -6,7 +6,7 @@ type EntityInput struct {
 	// Entity display name / alias. This value is equal to name unless it is explicitly overridden.
 	DisplayName *string `json:"displayName,omitempty"`
 	// Entity tags. Tag is a key-value pair, where there may be only a single tag value for the same key.
-	Tags map[string]string `json:"tags"`
+	Tags map[string]*string `json:"tags"`
 }
 
 func (o *EntityInput) GetDisplayName() *string {
@@ -16,9 +16,9 @@ func (o *EntityInput) GetDisplayName() *string {
 	return o.DisplayName
 }
 
-func (o *EntityInput) GetTags() map[string]string {
+func (o *EntityInput) GetTags() map[string]*string {
 	if o == nil {
-		return map[string]string{}
+		return map[string]*string{}
 	}
 	return o.Tags
 }

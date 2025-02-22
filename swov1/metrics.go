@@ -576,9 +576,9 @@ func (s *Metrics) CreateCompositeMetric(ctx context.Context, request components.
 
 }
 
-// UpdateUserMetric - Update composite metric
+// UpdateCompositeMetric - Update composite metric
 // Update a composite metric given a metric name
-func (s *Metrics) UpdateUserMetric(ctx context.Context, request operations.UpdateUserMetricRequest, opts ...operations.Option) (*operations.UpdateUserMetricResponse, error) {
+func (s *Metrics) UpdateCompositeMetric(ctx context.Context, request operations.UpdateCompositeMetricRequest, opts ...operations.Option) (*operations.UpdateCompositeMetricResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -605,7 +605,7 @@ func (s *Metrics) UpdateUserMetric(ctx context.Context, request operations.Updat
 	hookCtx := hooks.HookContext{
 		BaseURL:        baseURL,
 		Context:        ctx,
-		OperationID:    "updateUserMetric",
+		OperationID:    "updateCompositeMetric",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
@@ -738,7 +738,7 @@ func (s *Metrics) UpdateUserMetric(ctx context.Context, request operations.Updat
 		}
 	}
 
-	res := &operations.UpdateUserMetricResponse{
+	res := &operations.UpdateCompositeMetricResponse{
 		HTTPMeta: components.HTTPMetadata{
 			Request:  req,
 			Response: httpRes,
@@ -755,7 +755,7 @@ func (s *Metrics) UpdateUserMetric(ctx context.Context, request operations.Updat
 				return nil, err
 			}
 
-			var out apierrors.UpdateUserMetricResponseBody
+			var out apierrors.UpdateCompositeMetricResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -780,7 +780,7 @@ func (s *Metrics) UpdateUserMetric(ctx context.Context, request operations.Updat
 				return nil, err
 			}
 
-			var out apierrors.UpdateUserMetricMetricsResponseBody
+			var out apierrors.UpdateCompositeMetricMetricsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -805,7 +805,7 @@ func (s *Metrics) UpdateUserMetric(ctx context.Context, request operations.Updat
 				return nil, err
 			}
 
-			var out apierrors.UpdateUserMetricMetricsResponseResponseBody
+			var out apierrors.UpdateCompositeMetricMetricsResponseResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -830,7 +830,7 @@ func (s *Metrics) UpdateUserMetric(ctx context.Context, request operations.Updat
 				return nil, err
 			}
 
-			var out apierrors.UpdateUserMetricMetricsResponse500ResponseBody
+			var out apierrors.UpdateCompositeMetricMetricsResponse500ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
