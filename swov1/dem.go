@@ -26,8 +26,409 @@ func newDem(sdkConfig sdkConfiguration) *Dem {
 	}
 }
 
-// CreateWebsiteMonitor - Create website monitoring configuration
-func (s *Dem) CreateWebsiteMonitor(ctx context.Context, request components.Website, opts ...operations.Option) (*operations.CreateWebsiteMonitorResponse, error) {
+// GetDemSettings - Get DEM settings
+func (s *Dem) GetDemSettings(ctx context.Context, opts ...operations.Option) (*operations.GetDemSettingsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+		operations.SupportedOptionTimeout,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
+	opURL, err := url.JoinPath(baseURL, "/v1/dem/settings")
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getDemSettings",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
+
+	timeout := o.Timeout
+	if timeout == nil {
+		timeout = s.sdkConfiguration.Timeout
+	}
+
+	if timeout != nil {
+		var cancel context.CancelFunc
+		ctx, cancel = context.WithTimeout(ctx, *timeout)
+		defer cancel()
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "GET", opURL, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
+	}
+
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		if globalRetryConfig != nil {
+			retryConfig = globalRetryConfig
+		} else {
+			retryConfig = &retry.Config{
+				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		}
+	}
+
+	var httpRes *http.Response
+	if retryConfig != nil {
+		httpRes, err = utils.Retry(ctx, utils.Retries{
+			Config: retryConfig,
+			StatusCodes: []string{
+				"5XX",
+			},
+		}, func() (*http.Response, error) {
+			if req.Body != nil {
+				copyBody, err := req.GetBody()
+				if err != nil {
+					return nil, err
+				}
+				req.Body = copyBody
+			}
+
+			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+			if err != nil {
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
+			}
+
+			httpRes, err := s.sdkConfiguration.Client.Do(req)
+			if err != nil || httpRes == nil {
+				if err != nil {
+					err = fmt.Errorf("error sending request: %w", err)
+				} else {
+					err = fmt.Errorf("error sending request: no response")
+				}
+
+				_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			}
+			return httpRes, err
+		})
+
+		if err != nil {
+			return nil, err
+		} else {
+			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	} else {
+		req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+		if err != nil {
+			return nil, err
+		}
+
+		httpRes, err = s.sdkConfiguration.Client.Do(req)
+		if err != nil || httpRes == nil {
+			if err != nil {
+				err = fmt.Errorf("error sending request: %w", err)
+			} else {
+				err = fmt.Errorf("error sending request: no response")
+			}
+
+			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			return nil, err
+		} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
+			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+			if err != nil {
+				return nil, err
+			} else if _httpRes != nil {
+				httpRes = _httpRes
+			}
+		} else {
+			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	}
+
+	res := &operations.GetDemSettingsResponse{
+		HTTPMeta: components.HTTPMetadata{
+			Request:  req,
+			Response: httpRes,
+		},
+	}
+
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out components.OutageConfiguration
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.OutageConfiguration = &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, apierrors.NewAPIError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, apierrors.NewAPIError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
+	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, apierrors.NewAPIError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
+	}
+
+	return res, nil
+
+}
+
+// SetDemSettings - Set DEM settings
+func (s *Dem) SetDemSettings(ctx context.Context, request components.OutageConfiguration, opts ...operations.Option) (*operations.SetDemSettingsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+		operations.SupportedOptionTimeout,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
+	opURL, err := url.JoinPath(baseURL, "/v1/dem/settings")
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "setDemSettings",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
+	if err != nil {
+		return nil, err
+	}
+
+	timeout := o.Timeout
+	if timeout == nil {
+		timeout = s.sdkConfiguration.Timeout
+	}
+
+	if timeout != nil {
+		var cancel context.CancelFunc
+		ctx, cancel = context.WithTimeout(ctx, *timeout)
+		defer cancel()
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "PUT", opURL, bodyReader)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+	req.Header.Set("Accept", "*/*")
+	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
+	}
+
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		if globalRetryConfig != nil {
+			retryConfig = globalRetryConfig
+		} else {
+			retryConfig = &retry.Config{
+				Strategy: "backoff", Backoff: &retry.BackoffStrategy{
+					InitialInterval: 500,
+					MaxInterval:     60000,
+					Exponent:        1.5,
+					MaxElapsedTime:  3600000,
+				},
+				RetryConnectionErrors: true,
+			}
+		}
+	}
+
+	var httpRes *http.Response
+	if retryConfig != nil {
+		httpRes, err = utils.Retry(ctx, utils.Retries{
+			Config: retryConfig,
+			StatusCodes: []string{
+				"5XX",
+			},
+		}, func() (*http.Response, error) {
+			if req.Body != nil {
+				copyBody, err := req.GetBody()
+				if err != nil {
+					return nil, err
+				}
+				req.Body = copyBody
+			}
+
+			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+			if err != nil {
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
+			}
+
+			httpRes, err := s.sdkConfiguration.Client.Do(req)
+			if err != nil || httpRes == nil {
+				if err != nil {
+					err = fmt.Errorf("error sending request: %w", err)
+				} else {
+					err = fmt.Errorf("error sending request: no response")
+				}
+
+				_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			}
+			return httpRes, err
+		})
+
+		if err != nil {
+			return nil, err
+		} else {
+			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	} else {
+		req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+		if err != nil {
+			return nil, err
+		}
+
+		httpRes, err = s.sdkConfiguration.Client.Do(req)
+		if err != nil || httpRes == nil {
+			if err != nil {
+				err = fmt.Errorf("error sending request: %w", err)
+			} else {
+				err = fmt.Errorf("error sending request: no response")
+			}
+
+			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			return nil, err
+		} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
+			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+			if err != nil {
+				return nil, err
+			} else if _httpRes != nil {
+				httpRes = _httpRes
+			}
+		} else {
+			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	}
+
+	res := &operations.SetDemSettingsResponse{
+		HTTPMeta: components.HTTPMetadata{
+			Request:  req,
+			Response: httpRes,
+		},
+	}
+
+	switch {
+	case httpRes.StatusCode == 200:
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, apierrors.NewAPIError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, apierrors.NewAPIError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
+	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, apierrors.NewAPIError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
+	}
+
+	return res, nil
+
+}
+
+// CreateWebsite - Create website monitoring configuration
+func (s *Dem) CreateWebsite(ctx context.Context, request components.Website, opts ...operations.Option) (*operations.CreateWebsiteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -54,7 +455,7 @@ func (s *Dem) CreateWebsiteMonitor(ctx context.Context, request components.Websi
 	hookCtx := hooks.HookContext{
 		BaseURL:        baseURL,
 		Context:        ctx,
-		OperationID:    "createWebsiteMonitor",
+		OperationID:    "createWebsite",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
@@ -187,7 +588,7 @@ func (s *Dem) CreateWebsiteMonitor(ctx context.Context, request components.Websi
 		}
 	}
 
-	res := &operations.CreateWebsiteMonitorResponse{
+	res := &operations.CreateWebsiteResponse{
 		HTTPMeta: components.HTTPMetadata{
 			Request:  req,
 			Response: httpRes,
@@ -203,12 +604,12 @@ func (s *Dem) CreateWebsiteMonitor(ctx context.Context, request components.Websi
 				return nil, err
 			}
 
-			var out operations.CreateWebsiteMonitorResponseBody
+			var out components.EntityID
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.EntityID = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -224,7 +625,7 @@ func (s *Dem) CreateWebsiteMonitor(ctx context.Context, request components.Websi
 				return nil, err
 			}
 
-			var out apierrors.CreateWebsiteMonitorResponseBody
+			var out apierrors.CreateWebsiteResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -265,8 +666,8 @@ func (s *Dem) CreateWebsiteMonitor(ctx context.Context, request components.Websi
 
 }
 
-// GetWebsiteMonitor - Get website monitoring configuration
-func (s *Dem) GetWebsiteMonitor(ctx context.Context, request operations.GetWebsiteMonitorRequest, opts ...operations.Option) (*operations.GetWebsiteMonitorResponse, error) {
+// GetWebsite - Get website monitoring configuration
+func (s *Dem) GetWebsite(ctx context.Context, request operations.GetWebsiteRequest, opts ...operations.Option) (*operations.GetWebsiteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -293,7 +694,7 @@ func (s *Dem) GetWebsiteMonitor(ctx context.Context, request operations.GetWebsi
 	hookCtx := hooks.HookContext{
 		BaseURL:        baseURL,
 		Context:        ctx,
-		OperationID:    "getWebsiteMonitor",
+		OperationID:    "getWebsite",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
@@ -419,7 +820,7 @@ func (s *Dem) GetWebsiteMonitor(ctx context.Context, request operations.GetWebsi
 		}
 	}
 
-	res := &operations.GetWebsiteMonitorResponse{
+	res := &operations.GetWebsiteResponse{
 		HTTPMeta: components.HTTPMetadata{
 			Request:  req,
 			Response: httpRes,
@@ -435,7 +836,7 @@ func (s *Dem) GetWebsiteMonitor(ctx context.Context, request operations.GetWebsi
 				return nil, err
 			}
 
-			var out operations.GetWebsiteMonitorResponseBody
+			var out operations.GetWebsiteResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -456,7 +857,7 @@ func (s *Dem) GetWebsiteMonitor(ctx context.Context, request operations.GetWebsi
 				return nil, err
 			}
 
-			var out apierrors.GetWebsiteMonitorResponseBody
+			var out apierrors.GetWebsiteResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -497,8 +898,8 @@ func (s *Dem) GetWebsiteMonitor(ctx context.Context, request operations.GetWebsi
 
 }
 
-// UpdateWebsiteMonitor - Update website monitoring configuration
-func (s *Dem) UpdateWebsiteMonitor(ctx context.Context, request operations.UpdateWebsiteMonitorRequest, opts ...operations.Option) (*operations.UpdateWebsiteMonitorResponse, error) {
+// UpdateWebsite - Update website monitoring configuration
+func (s *Dem) UpdateWebsite(ctx context.Context, request operations.UpdateWebsiteRequest, opts ...operations.Option) (*operations.UpdateWebsiteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -525,7 +926,7 @@ func (s *Dem) UpdateWebsiteMonitor(ctx context.Context, request operations.Updat
 	hookCtx := hooks.HookContext{
 		BaseURL:        baseURL,
 		Context:        ctx,
-		OperationID:    "updateWebsiteMonitor",
+		OperationID:    "updateWebsite",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
@@ -658,7 +1059,7 @@ func (s *Dem) UpdateWebsiteMonitor(ctx context.Context, request operations.Updat
 		}
 	}
 
-	res := &operations.UpdateWebsiteMonitorResponse{
+	res := &operations.UpdateWebsiteResponse{
 		HTTPMeta: components.HTTPMetadata{
 			Request:  req,
 			Response: httpRes,
@@ -674,12 +1075,12 @@ func (s *Dem) UpdateWebsiteMonitor(ctx context.Context, request operations.Updat
 				return nil, err
 			}
 
-			var out operations.UpdateWebsiteMonitorResponseBody
+			var out components.EntityID
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.EntityID = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -695,7 +1096,7 @@ func (s *Dem) UpdateWebsiteMonitor(ctx context.Context, request operations.Updat
 				return nil, err
 			}
 
-			var out apierrors.UpdateWebsiteMonitorResponseBody
+			var out apierrors.UpdateWebsiteResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -736,8 +1137,8 @@ func (s *Dem) UpdateWebsiteMonitor(ctx context.Context, request operations.Updat
 
 }
 
-// DeleteWebsiteMonitor - Delete website
-func (s *Dem) DeleteWebsiteMonitor(ctx context.Context, request operations.DeleteWebsiteMonitorRequest, opts ...operations.Option) (*operations.DeleteWebsiteMonitorResponse, error) {
+// DeleteWebsite - Delete website
+func (s *Dem) DeleteWebsite(ctx context.Context, request operations.DeleteWebsiteRequest, opts ...operations.Option) (*operations.DeleteWebsiteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -764,7 +1165,7 @@ func (s *Dem) DeleteWebsiteMonitor(ctx context.Context, request operations.Delet
 	hookCtx := hooks.HookContext{
 		BaseURL:        baseURL,
 		Context:        ctx,
-		OperationID:    "deleteWebsiteMonitor",
+		OperationID:    "deleteWebsite",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
@@ -890,7 +1291,7 @@ func (s *Dem) DeleteWebsiteMonitor(ctx context.Context, request operations.Delet
 		}
 	}
 
-	res := &operations.DeleteWebsiteMonitorResponse{
+	res := &operations.DeleteWebsiteResponse{
 		HTTPMeta: components.HTTPMetadata{
 			Request:  req,
 			Response: httpRes,
@@ -906,12 +1307,12 @@ func (s *Dem) DeleteWebsiteMonitor(ctx context.Context, request operations.Delet
 				return nil, err
 			}
 
-			var out operations.DeleteWebsiteMonitorResponseBody
+			var out components.EntityID
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.EntityID = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -927,7 +1328,7 @@ func (s *Dem) DeleteWebsiteMonitor(ctx context.Context, request operations.Delet
 				return nil, err
 			}
 
-			var out apierrors.DeleteWebsiteMonitorResponseBody
+			var out apierrors.DeleteWebsiteResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -968,8 +1369,8 @@ func (s *Dem) DeleteWebsiteMonitor(ctx context.Context, request operations.Delet
 
 }
 
-// PauseWebsiteMonitor - Pause monitoring of a website
-func (s *Dem) PauseWebsiteMonitor(ctx context.Context, request operations.PauseWebsiteMonitorRequest, opts ...operations.Option) (*operations.PauseWebsiteMonitorResponse, error) {
+// PauseWebsiteMonitoring - Pause monitoring of a website
+func (s *Dem) PauseWebsiteMonitoring(ctx context.Context, request operations.PauseWebsiteMonitoringRequest, opts ...operations.Option) (*operations.PauseWebsiteMonitoringResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -996,7 +1397,7 @@ func (s *Dem) PauseWebsiteMonitor(ctx context.Context, request operations.PauseW
 	hookCtx := hooks.HookContext{
 		BaseURL:        baseURL,
 		Context:        ctx,
-		OperationID:    "pauseWebsiteMonitor",
+		OperationID:    "pauseWebsiteMonitoring",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
@@ -1122,7 +1523,7 @@ func (s *Dem) PauseWebsiteMonitor(ctx context.Context, request operations.PauseW
 		}
 	}
 
-	res := &operations.PauseWebsiteMonitorResponse{
+	res := &operations.PauseWebsiteMonitoringResponse{
 		HTTPMeta: components.HTTPMetadata{
 			Request:  req,
 			Response: httpRes,
@@ -1138,12 +1539,12 @@ func (s *Dem) PauseWebsiteMonitor(ctx context.Context, request operations.PauseW
 				return nil, err
 			}
 
-			var out operations.PauseWebsiteMonitorResponseBody
+			var out components.EntityID
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.EntityID = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1159,7 +1560,7 @@ func (s *Dem) PauseWebsiteMonitor(ctx context.Context, request operations.PauseW
 				return nil, err
 			}
 
-			var out apierrors.PauseWebsiteMonitorResponseBody
+			var out apierrors.PauseWebsiteMonitoringResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1200,8 +1601,8 @@ func (s *Dem) PauseWebsiteMonitor(ctx context.Context, request operations.PauseW
 
 }
 
-// UnpauseWebsiteMonitor - Unpause monitoring of a website
-func (s *Dem) UnpauseWebsiteMonitor(ctx context.Context, request operations.UnpauseWebsiteMonitorRequest, opts ...operations.Option) (*operations.UnpauseWebsiteMonitorResponse, error) {
+// UnpauseWebsiteMonitoring - Unpause monitoring of a website
+func (s *Dem) UnpauseWebsiteMonitoring(ctx context.Context, request operations.UnpauseWebsiteMonitoringRequest, opts ...operations.Option) (*operations.UnpauseWebsiteMonitoringResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1228,7 +1629,7 @@ func (s *Dem) UnpauseWebsiteMonitor(ctx context.Context, request operations.Unpa
 	hookCtx := hooks.HookContext{
 		BaseURL:        baseURL,
 		Context:        ctx,
-		OperationID:    "unpauseWebsiteMonitor",
+		OperationID:    "unpauseWebsiteMonitoring",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
@@ -1354,7 +1755,7 @@ func (s *Dem) UnpauseWebsiteMonitor(ctx context.Context, request operations.Unpa
 		}
 	}
 
-	res := &operations.UnpauseWebsiteMonitorResponse{
+	res := &operations.UnpauseWebsiteMonitoringResponse{
 		HTTPMeta: components.HTTPMetadata{
 			Request:  req,
 			Response: httpRes,
@@ -1370,12 +1771,12 @@ func (s *Dem) UnpauseWebsiteMonitor(ctx context.Context, request operations.Unpa
 				return nil, err
 			}
 
-			var out operations.UnpauseWebsiteMonitorResponseBody
+			var out components.EntityID
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.EntityID = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1391,7 +1792,7 @@ func (s *Dem) UnpauseWebsiteMonitor(ctx context.Context, request operations.Unpa
 				return nil, err
 			}
 
-			var out apierrors.UnpauseWebsiteMonitorResponseBody
+			var out apierrors.UnpauseWebsiteMonitoringResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
