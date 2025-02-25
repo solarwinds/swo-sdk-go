@@ -136,7 +136,7 @@ func main() {
 | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
 | apierrors.CreateCompositeMetricResponseBody                | 400                                                        | application/json                                           |
 | apierrors.CreateCompositeMetricMetricsResponseBody         | 403                                                        | application/json                                           |
-| apierrors.CreateCompositeMetricMetricsResponseResponseBody | 500                                                        | application/json                                           |
+| apierrors.CreateCompositeMetricMetricsResponseResponseBody | 501                                                        | application/json                                           |
 | apierrors.APIError                                         | 4XX, 5XX                                                   | \*/\*                                                      |
 
 ## UpdateCompositeMetric
@@ -176,7 +176,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res != nil {
+    if res.CompositeMetric != nil {
         // handle response
     }
 }
@@ -198,10 +198,10 @@ func main() {
 
 | Error Type                                                    | Status Code                                                   | Content Type                                                  |
 | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| apierrors.UpdateCompositeMetricResponseBody                   | 401                                                           | application/json                                              |
-| apierrors.UpdateCompositeMetricMetricsResponseBody            | 403                                                           | application/json                                              |
+| apierrors.UpdateCompositeMetricResponseBody                   | 400                                                           | application/json                                              |
+| apierrors.UpdateCompositeMetricMetricsResponseBody            | 401                                                           | application/json                                              |
 | apierrors.UpdateCompositeMetricMetricsResponseResponseBody    | 404                                                           | application/json                                              |
-| apierrors.UpdateCompositeMetricMetricsResponse500ResponseBody | 500                                                           | application/json                                              |
+| apierrors.UpdateCompositeMetricMetricsResponse501ResponseBody | 501                                                           | application/json                                              |
 | apierrors.APIError                                            | 4XX, 5XX                                                      | \*/\*                                                         |
 
 ## DeleteCompositeMetric

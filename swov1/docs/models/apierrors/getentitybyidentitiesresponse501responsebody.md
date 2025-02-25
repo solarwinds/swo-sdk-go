@@ -1,6 +1,6 @@
-# UpdateCompositeMetricResponseBody
+# GetEntityByIDEntitiesResponse501ResponseBody
 
-The server could not understand the request due to invalid syntax.
+Server error
 
 
 ## Fields

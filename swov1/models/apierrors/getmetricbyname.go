@@ -4,37 +4,16 @@ package apierrors
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 )
 
-type GetMetricByNameCode string
-
-const (
-	GetMetricByNameCodeNotFound GetMetricByNameCode = "NotFound"
-)
-
-func (e GetMetricByNameCode) ToPointer() *GetMetricByNameCode {
-	return &e
-}
-func (e *GetMetricByNameCode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "NotFound":
-		*e = GetMetricByNameCode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetMetricByNameCode: %v", v)
-	}
-}
-
 // GetMetricByNameResponseBody - The server cannot find the requested resource.
 type GetMetricByNameResponseBody struct {
-	Code     GetMetricByNameCode     `json:"code"`
+	// HTTP status code as defined in RFC 2817
+	Code int64 `json:"code"`
+	// Supporting description of the error
 	Message  string                  `json:"message"`
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
