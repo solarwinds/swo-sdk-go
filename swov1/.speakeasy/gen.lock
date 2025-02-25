@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
-  docChecksum: 3d2ec0d1208021b2466e133600244195
+  docChecksum: ccb615f8ae4bcd8ddf18937aa09ab499
   docVersion: 1.0.5
-  speakeasyVersion: 1.501.0
-  generationVersion: 2.522.1
-  releaseVersion: 0.1.1
-  configChecksum: e16ecc2688a4a0003fdaa03cb863ee11
+  speakeasyVersion: 1.503.0
+  generationVersion: 2.526.1
+  releaseVersion: 0.1.2
+  configChecksum: 31566bc9b9b07d3589091f4248833592
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
@@ -27,7 +27,7 @@ features:
     inputOutputModels: 2.83.0
     intellisenseMarkdownSupport: 0.1.0
     nullables: 0.1.1
-    pagination: 2.82.2
+    pagination: 2.82.3
     responseFormat: 0.1.2
     retries: 2.83.2
     sdkHooks: 0.1.0
@@ -110,8 +110,6 @@ generatedFiles:
   - USAGE.md
   - changeevents.go
   - dem.go
-  - docs/models/apierrors/code.md
-  - docs/models/apierrors/createcompositemetriccode.md
   - docs/models/apierrors/createcompositemetricmetricsresponsebody.md
   - docs/models/apierrors/createcompositemetricmetricsresponseresponsebody.md
   - docs/models/apierrors/createcompositemetricresponsebody.md
@@ -119,45 +117,27 @@ generatedFiles:
   - docs/models/apierrors/deletecompositemetricmetricsresponsebody.md
   - docs/models/apierrors/deletecompositemetricresponsebody.md
   - docs/models/apierrors/deletewebsiteresponsebody.md
-  - docs/models/apierrors/getentitybyidcode.md
-  - docs/models/apierrors/getentitybyidentitiescode.md
-  - docs/models/apierrors/getentitybyidentitiesresponse500code.md
-  - docs/models/apierrors/getentitybyidentitiesresponse500responsebody.md
+  - docs/models/apierrors/getentitybyidentitiesresponse501responsebody.md
   - docs/models/apierrors/getentitybyidentitiesresponsebody.md
-  - docs/models/apierrors/getentitybyidentitiesresponsecode.md
   - docs/models/apierrors/getentitybyidentitiesresponseresponsebody.md
   - docs/models/apierrors/getentitybyidresponsebody.md
-  - docs/models/apierrors/getmetricbynamecode.md
   - docs/models/apierrors/getmetricbynameresponsebody.md
   - docs/models/apierrors/getwebsiteresponsebody.md
-  - docs/models/apierrors/listentitiescode.md
-  - docs/models/apierrors/listentitiesentitiescode.md
   - docs/models/apierrors/listentitiesentitiesresponsebody.md
   - docs/models/apierrors/listentitiesentitiesresponseresponsebody.md
   - docs/models/apierrors/listentitiesresponsebody.md
-  - docs/models/apierrors/listmetricattributescode.md
   - docs/models/apierrors/listmetricattributesresponsebody.md
-  - docs/models/apierrors/listmetricattributevaluescode.md
   - docs/models/apierrors/listmetricattributevaluesresponsebody.md
-  - docs/models/apierrors/listmetricmeasurementscode.md
   - docs/models/apierrors/listmetricmeasurementsresponsebody.md
-  - docs/models/apierrors/listmetricsforentitytypecode.md
   - docs/models/apierrors/listmetricsforentitytyperesponsebody.md
   - docs/models/apierrors/pausewebsitemonitoringresponsebody.md
   - docs/models/apierrors/unpausewebsitemonitoringresponsebody.md
-  - docs/models/apierrors/updatecompositemetriccode.md
-  - docs/models/apierrors/updatecompositemetricmetricscode.md
-  - docs/models/apierrors/updatecompositemetricmetricsresponse500responsebody.md
+  - docs/models/apierrors/updatecompositemetricmetricsresponse501responsebody.md
   - docs/models/apierrors/updatecompositemetricmetricsresponsebody.md
-  - docs/models/apierrors/updatecompositemetricmetricsresponsecode.md
   - docs/models/apierrors/updatecompositemetricmetricsresponseresponsebody.md
   - docs/models/apierrors/updatecompositemetricresponsebody.md
-  - docs/models/apierrors/updateentitybyidcode.md
-  - docs/models/apierrors/updateentitybyidentitiescode.md
-  - docs/models/apierrors/updateentitybyidentitiesresponse500code.md
-  - docs/models/apierrors/updateentitybyidentitiesresponse500responsebody.md
+  - docs/models/apierrors/updateentitybyidentitiesresponse501responsebody.md
   - docs/models/apierrors/updateentitybyidentitiesresponsebody.md
-  - docs/models/apierrors/updateentitybyidentitiesresponsecode.md
   - docs/models/apierrors/updateentitybyidentitiesresponseresponsebody.md
   - docs/models/apierrors/updateentitybyidresponsebody.md
   - docs/models/apierrors/updatewebsiteresponsebody.md
@@ -377,11 +357,13 @@ examples:
         "200":
           application/json: {"entities": [{"id": "e-1234567890", "type": "SyslogHost", "name": "syslog-host-1", "displayName": "SyslogTest", "createdTime": "2024-11-25T16:38:24Z", "updatedTime": "2024-12-01T16:38:24Z", "lastSeenTime": "2024-11-25T16:38:24Z", "inMaintenance": false, "healthscore": {"score": 100, "category": "good"}, "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}, "attributes": {"protocols": ["HTTP"], "features": ["rum"], "isAvailabilityCheckPaused": false, "extensions": {"has_extension": true}}}], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "400":
-          application/json: {"code": "BadRequest", "message": "<value>", "": {}}
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
         "401":
-          application/json: {"code": "Unauthorized", "message": "<value>", "": {}}
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
         "500":
           application/json: {"code": "InternalServerError", "message": "<value>", "": {}}
+        "501":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   getEntityById:
     speakeasy-default-get-entity-by-id:
       parameters:
@@ -391,13 +373,15 @@ examples:
         "200":
           application/json: {"id": "e-1234567890", "type": "SyslogHost", "name": "syslog-host-1", "displayName": "SyslogTest", "createdTime": "2024-11-25T16:38:24Z", "updatedTime": "2024-12-01T16:38:24Z", "lastSeenTime": "2024-11-25T16:38:24Z", "inMaintenance": false, "healthscore": {"score": 100, "category": "good"}, "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}, "attributes": {"protocols": ["HTTP"], "features": ["rum"], "isAvailabilityCheckPaused": false, "extensions": {"has_extension": true}}}
         "400":
-          application/json: {"code": "BadRequest", "message": "<value>", "": {}}
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
         "401":
-          application/json: {"code": "Unauthorized", "message": "<value>", "": {}}
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
         "404":
-          application/json: {"code": "NotFound", "message": "<value>", "": {}}
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
         "500":
           application/json: {"code": "InternalServerError", "message": "<value>", "": {}}
+        "501":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   updateEntityById:
     speakeasy-default-update-entity-by-id:
       parameters:
@@ -407,13 +391,15 @@ examples:
         application/json: {"displayName": "SyslogTest", "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}}
       responses:
         "400":
-          application/json: {"code": "BadRequest", "message": "<value>", "": {}}
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
         "401":
-          application/json: {"code": "Unauthorized", "message": "<value>", "": {}}
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
         "404":
-          application/json: {"code": "NotFound", "message": "<value>", "": {}}
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
         "500":
           application/json: {"code": "InternalServerError", "message": "<value>", "": {}}
+        "501":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   searchLogs:
     speakeasy-default-search-logs:
       parameters:
@@ -445,7 +431,8 @@ examples:
       responses:
         "200":
           application/json: {"type": "KubernetesCluster", "metrics": [{"name": "composite.k8s.pod.container.status.restarts.increase", "units": "count", "formula": "increase(k8s.kube_pod_container_status_restarts_total[5m])", "lastReportedTime": "2021-01-01T00:00:00Z"}]}
-        "404": {}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   listMetrics:
     speakeasy-default-list-metrics:
       responses:
@@ -463,6 +450,8 @@ examples:
         "403":
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
         "500": {}
+        "501":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   getMetricByName:
     speakeasy-default-get-metric-by-name:
       parameters:
@@ -471,7 +460,8 @@ examples:
       responses:
         "200":
           application/json: {"name": "composite.k8s.pod.container.status.restarts.increase", "units": "count", "formula": "increase(k8s.kube_pod_container_status_restarts_total[5m])", "lastReportedTime": "2021-01-01T00:00:00Z"}
-        "404": {}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   listMetricAttributes:
     speakeasy-default-list-metric-attributes:
       parameters:
@@ -481,7 +471,8 @@ examples:
       responses:
         "200":
           application/json: {"names": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
-        "404": {}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   listMetricAttributeValues:
     speakeasy-default-list-metric-attribute-values:
       parameters:
@@ -492,7 +483,8 @@ examples:
       responses:
         "200":
           application/json: {"name": "<value>", "values": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
-        "404": {}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   listMetricMeasurements:
     speakeasy-default-list-metric-measurements:
       parameters:
@@ -503,7 +495,8 @@ examples:
       responses:
         "200":
           application/json: {"groupings": [{"attributes": [{"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}], "measurements": []}, {"attributes": [{"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}], "measurements": [{"time": "<value>", "value": 730756}, {"time": "<value>", "value": 115821}, {"time": "<value>", "value": 25026}]}, {"attributes": [], "measurements": [{"time": "<value>", "value": 201967}]}], "bucketSizeInSeconds": 45557, "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
-        "404": {}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   createToken:
     speakeasy-default-create-token:
       requestBody:
@@ -613,7 +606,16 @@ examples:
       responses:
         "403":
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "404": {}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
         "500": {}
+        "200":
+          application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "401":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "501":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
 examplesVersion: 1.0.0
 generatedTests: {}

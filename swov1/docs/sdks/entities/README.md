@@ -75,7 +75,7 @@ func main() {
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
 | apierrors.ListEntitiesResponseBody                 | 400                                                | application/json                                   |
 | apierrors.ListEntitiesEntitiesResponseBody         | 401                                                | application/json                                   |
-| apierrors.ListEntitiesEntitiesResponseResponseBody | 500                                                | application/json                                   |
+| apierrors.ListEntitiesEntitiesResponseResponseBody | 501                                                | application/json                                   |
 | apierrors.APIError                                 | 4XX, 5XX                                           | \*/\*                                              |
 
 ## GetEntityByID
@@ -133,7 +133,7 @@ func main() {
 | apierrors.GetEntityByIDResponseBody                    | 400                                                    | application/json                                       |
 | apierrors.GetEntityByIDEntitiesResponseBody            | 401                                                    | application/json                                       |
 | apierrors.GetEntityByIDEntitiesResponseResponseBody    | 404                                                    | application/json                                       |
-| apierrors.GetEntityByIDEntitiesResponse500ResponseBody | 500                                                    | application/json                                       |
+| apierrors.GetEntityByIDEntitiesResponse501ResponseBody | 501                                                    | application/json                                       |
 | apierrors.APIError                                     | 4XX, 5XX                                               | \*/\*                                                  |
 
 ## UpdateEntityByID
@@ -199,5 +199,5 @@ func main() {
 | apierrors.UpdateEntityByIDResponseBody                    | 400                                                       | application/json                                          |
 | apierrors.UpdateEntityByIDEntitiesResponseBody            | 401                                                       | application/json                                          |
 | apierrors.UpdateEntityByIDEntitiesResponseResponseBody    | 404                                                       | application/json                                          |
-| apierrors.UpdateEntityByIDEntitiesResponse500ResponseBody | 500                                                       | application/json                                          |
+| apierrors.UpdateEntityByIDEntitiesResponse501ResponseBody | 501                                                       | application/json                                          |
 | apierrors.APIError                                        | 4XX, 5XX                                                  | \*/\*                                                     |

@@ -4,75 +4,34 @@ package apierrors
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 )
 
-type GetEntityByIDEntitiesResponse500Code string
-
-const (
-	GetEntityByIDEntitiesResponse500CodeInternalServerError GetEntityByIDEntitiesResponse500Code = "InternalServerError"
-)
-
-func (e GetEntityByIDEntitiesResponse500Code) ToPointer() *GetEntityByIDEntitiesResponse500Code {
-	return &e
-}
-func (e *GetEntityByIDEntitiesResponse500Code) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "InternalServerError":
-		*e = GetEntityByIDEntitiesResponse500Code(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetEntityByIDEntitiesResponse500Code: %v", v)
-	}
+// GetEntityByIDEntitiesResponse501ResponseBody - Server error
+type GetEntityByIDEntitiesResponse501ResponseBody struct {
+	// HTTP status code as defined in RFC 2817
+	Code int64 `json:"code"`
+	// Supporting description of the error
+	Message  string                  `json:"message"`
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-// GetEntityByIDEntitiesResponse500ResponseBody - Server error
-type GetEntityByIDEntitiesResponse500ResponseBody struct {
-	Code     GetEntityByIDEntitiesResponse500Code `json:"code"`
-	Message  string                               `json:"message"`
-	HTTPMeta components.HTTPMetadata              `json:"-"`
-}
+var _ error = &GetEntityByIDEntitiesResponse501ResponseBody{}
 
-var _ error = &GetEntityByIDEntitiesResponse500ResponseBody{}
-
-func (e *GetEntityByIDEntitiesResponse500ResponseBody) Error() string {
+func (e *GetEntityByIDEntitiesResponse501ResponseBody) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
 
-type GetEntityByIDEntitiesResponseCode string
-
-const (
-	GetEntityByIDEntitiesResponseCodeNotFound GetEntityByIDEntitiesResponseCode = "NotFound"
-)
-
-func (e GetEntityByIDEntitiesResponseCode) ToPointer() *GetEntityByIDEntitiesResponseCode {
-	return &e
-}
-func (e *GetEntityByIDEntitiesResponseCode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "NotFound":
-		*e = GetEntityByIDEntitiesResponseCode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetEntityByIDEntitiesResponseCode: %v", v)
-	}
-}
-
 // GetEntityByIDEntitiesResponseResponseBody - The server cannot find the requested resource.
 type GetEntityByIDEntitiesResponseResponseBody struct {
-	Code     GetEntityByIDEntitiesResponseCode `json:"code"`
-	Message  string                            `json:"message"`
-	HTTPMeta components.HTTPMetadata           `json:"-"`
+	// HTTP status code as defined in RFC 2817
+	Code int64 `json:"code"`
+	// Supporting description of the error
+	Message  string                  `json:"message"`
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
 var _ error = &GetEntityByIDEntitiesResponseResponseBody{}
@@ -82,34 +41,14 @@ func (e *GetEntityByIDEntitiesResponseResponseBody) Error() string {
 	return string(data)
 }
 
-type GetEntityByIDEntitiesCode string
-
-const (
-	GetEntityByIDEntitiesCodeUnauthorized GetEntityByIDEntitiesCode = "Unauthorized"
-)
-
-func (e GetEntityByIDEntitiesCode) ToPointer() *GetEntityByIDEntitiesCode {
-	return &e
-}
-func (e *GetEntityByIDEntitiesCode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Unauthorized":
-		*e = GetEntityByIDEntitiesCode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetEntityByIDEntitiesCode: %v", v)
-	}
-}
-
 // GetEntityByIDEntitiesResponseBody - Access is unauthorized.
 type GetEntityByIDEntitiesResponseBody struct {
-	Code     GetEntityByIDEntitiesCode `json:"code"`
-	Message  string                    `json:"message"`
-	HTTPMeta components.HTTPMetadata   `json:"-"`
+	// HTTP status code as defined in RFC 2817
+	Code int64 `json:"code"`
+	// Supporting description of the error
+	Message  string                  `json:"message"`
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
 var _ error = &GetEntityByIDEntitiesResponseBody{}
@@ -119,33 +58,13 @@ func (e *GetEntityByIDEntitiesResponseBody) Error() string {
 	return string(data)
 }
 
-type GetEntityByIDCode string
-
-const (
-	GetEntityByIDCodeBadRequest GetEntityByIDCode = "BadRequest"
-)
-
-func (e GetEntityByIDCode) ToPointer() *GetEntityByIDCode {
-	return &e
-}
-func (e *GetEntityByIDCode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "BadRequest":
-		*e = GetEntityByIDCode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetEntityByIDCode: %v", v)
-	}
-}
-
 // GetEntityByIDResponseBody - The server could not understand the request due to invalid syntax.
 type GetEntityByIDResponseBody struct {
-	Code     GetEntityByIDCode       `json:"code"`
+	// HTTP status code as defined in RFC 2817
+	Code int64 `json:"code"`
+	// Supporting description of the error
 	Message  string                  `json:"message"`
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 

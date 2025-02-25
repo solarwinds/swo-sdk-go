@@ -4,38 +4,17 @@ package apierrors
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 )
 
-type ListMetricAttributesCode string
-
-const (
-	ListMetricAttributesCodeNotFound ListMetricAttributesCode = "NotFound"
-)
-
-func (e ListMetricAttributesCode) ToPointer() *ListMetricAttributesCode {
-	return &e
-}
-func (e *ListMetricAttributesCode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "NotFound":
-		*e = ListMetricAttributesCode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListMetricAttributesCode: %v", v)
-	}
-}
-
 // ListMetricAttributesResponseBody - The server cannot find the requested resource.
 type ListMetricAttributesResponseBody struct {
-	Code     ListMetricAttributesCode `json:"code"`
-	Message  string                   `json:"message"`
-	HTTPMeta components.HTTPMetadata  `json:"-"`
+	// HTTP status code as defined in RFC 2817
+	Code int64 `json:"code"`
+	// Supporting description of the error
+	Message  string                  `json:"message"`
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
 var _ error = &ListMetricAttributesResponseBody{}
