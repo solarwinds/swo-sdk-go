@@ -4,75 +4,34 @@ package apierrors
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 )
 
-type UpdateEntityByIDEntitiesResponse500Code string
-
-const (
-	UpdateEntityByIDEntitiesResponse500CodeInternalServerError UpdateEntityByIDEntitiesResponse500Code = "InternalServerError"
-)
-
-func (e UpdateEntityByIDEntitiesResponse500Code) ToPointer() *UpdateEntityByIDEntitiesResponse500Code {
-	return &e
-}
-func (e *UpdateEntityByIDEntitiesResponse500Code) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "InternalServerError":
-		*e = UpdateEntityByIDEntitiesResponse500Code(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UpdateEntityByIDEntitiesResponse500Code: %v", v)
-	}
+// UpdateEntityByIDEntitiesResponse501ResponseBody - Server error
+type UpdateEntityByIDEntitiesResponse501ResponseBody struct {
+	// HTTP status code as defined in RFC 2817
+	Code int64 `json:"code"`
+	// Supporting description of the error
+	Message  string                  `json:"message"`
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-// UpdateEntityByIDEntitiesResponse500ResponseBody - Server error
-type UpdateEntityByIDEntitiesResponse500ResponseBody struct {
-	Code     UpdateEntityByIDEntitiesResponse500Code `json:"code"`
-	Message  string                                  `json:"message"`
-	HTTPMeta components.HTTPMetadata                 `json:"-"`
-}
+var _ error = &UpdateEntityByIDEntitiesResponse501ResponseBody{}
 
-var _ error = &UpdateEntityByIDEntitiesResponse500ResponseBody{}
-
-func (e *UpdateEntityByIDEntitiesResponse500ResponseBody) Error() string {
+func (e *UpdateEntityByIDEntitiesResponse501ResponseBody) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
 
-type UpdateEntityByIDEntitiesResponseCode string
-
-const (
-	UpdateEntityByIDEntitiesResponseCodeNotFound UpdateEntityByIDEntitiesResponseCode = "NotFound"
-)
-
-func (e UpdateEntityByIDEntitiesResponseCode) ToPointer() *UpdateEntityByIDEntitiesResponseCode {
-	return &e
-}
-func (e *UpdateEntityByIDEntitiesResponseCode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "NotFound":
-		*e = UpdateEntityByIDEntitiesResponseCode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UpdateEntityByIDEntitiesResponseCode: %v", v)
-	}
-}
-
 // UpdateEntityByIDEntitiesResponseResponseBody - The server cannot find the requested resource.
 type UpdateEntityByIDEntitiesResponseResponseBody struct {
-	Code     UpdateEntityByIDEntitiesResponseCode `json:"code"`
-	Message  string                               `json:"message"`
-	HTTPMeta components.HTTPMetadata              `json:"-"`
+	// HTTP status code as defined in RFC 2817
+	Code int64 `json:"code"`
+	// Supporting description of the error
+	Message  string                  `json:"message"`
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
 var _ error = &UpdateEntityByIDEntitiesResponseResponseBody{}
@@ -82,34 +41,14 @@ func (e *UpdateEntityByIDEntitiesResponseResponseBody) Error() string {
 	return string(data)
 }
 
-type UpdateEntityByIDEntitiesCode string
-
-const (
-	UpdateEntityByIDEntitiesCodeUnauthorized UpdateEntityByIDEntitiesCode = "Unauthorized"
-)
-
-func (e UpdateEntityByIDEntitiesCode) ToPointer() *UpdateEntityByIDEntitiesCode {
-	return &e
-}
-func (e *UpdateEntityByIDEntitiesCode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Unauthorized":
-		*e = UpdateEntityByIDEntitiesCode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UpdateEntityByIDEntitiesCode: %v", v)
-	}
-}
-
 // UpdateEntityByIDEntitiesResponseBody - Access is unauthorized.
 type UpdateEntityByIDEntitiesResponseBody struct {
-	Code     UpdateEntityByIDEntitiesCode `json:"code"`
-	Message  string                       `json:"message"`
-	HTTPMeta components.HTTPMetadata      `json:"-"`
+	// HTTP status code as defined in RFC 2817
+	Code int64 `json:"code"`
+	// Supporting description of the error
+	Message  string                  `json:"message"`
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
 var _ error = &UpdateEntityByIDEntitiesResponseBody{}
@@ -119,33 +58,13 @@ func (e *UpdateEntityByIDEntitiesResponseBody) Error() string {
 	return string(data)
 }
 
-type UpdateEntityByIDCode string
-
-const (
-	UpdateEntityByIDCodeBadRequest UpdateEntityByIDCode = "BadRequest"
-)
-
-func (e UpdateEntityByIDCode) ToPointer() *UpdateEntityByIDCode {
-	return &e
-}
-func (e *UpdateEntityByIDCode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "BadRequest":
-		*e = UpdateEntityByIDCode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UpdateEntityByIDCode: %v", v)
-	}
-}
-
 // UpdateEntityByIDResponseBody - The server could not understand the request due to invalid syntax.
 type UpdateEntityByIDResponseBody struct {
-	Code     UpdateEntityByIDCode    `json:"code"`
+	// HTTP status code as defined in RFC 2817
+	Code int64 `json:"code"`
+	// Supporting description of the error
 	Message  string                  `json:"message"`
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 

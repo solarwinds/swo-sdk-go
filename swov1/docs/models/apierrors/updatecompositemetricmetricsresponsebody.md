@@ -1,6 +1,6 @@
 # UpdateCompositeMetricMetricsResponseBody
 
-Access is forbidden.
+Access is unauthorized.
 
 
 ## Fields

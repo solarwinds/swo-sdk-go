@@ -4,38 +4,17 @@ package apierrors
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 )
 
-type CreateCompositeMetricCode string
-
-const (
-	CreateCompositeMetricCodeInternalServerError CreateCompositeMetricCode = "InternalServerError"
-)
-
-func (e CreateCompositeMetricCode) ToPointer() *CreateCompositeMetricCode {
-	return &e
-}
-func (e *CreateCompositeMetricCode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "InternalServerError":
-		*e = CreateCompositeMetricCode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CreateCompositeMetricCode: %v", v)
-	}
-}
-
 // CreateCompositeMetricMetricsResponseResponseBody - Server error
 type CreateCompositeMetricMetricsResponseResponseBody struct {
-	Code     CreateCompositeMetricCode `json:"code"`
-	Message  string                    `json:"message"`
-	HTTPMeta components.HTTPMetadata   `json:"-"`
+	// HTTP status code as defined in RFC 2817
+	Code int64 `json:"code"`
+	// Supporting description of the error
+	Message  string                  `json:"message"`
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
 var _ error = &CreateCompositeMetricMetricsResponseResponseBody{}

@@ -29,6 +29,8 @@ func (o *UpdateCompositeMetricRequest) GetUpdateCompositeMetric() components.Upd
 
 type UpdateCompositeMetricResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
+	// The request has succeeded.
+	CompositeMetric *components.CompositeMetric
 }
 
 func (o *UpdateCompositeMetricResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -36,4 +38,11 @@ func (o *UpdateCompositeMetricResponse) GetHTTPMeta() components.HTTPMetadata {
 		return components.HTTPMetadata{}
 	}
 	return o.HTTPMeta
+}
+
+func (o *UpdateCompositeMetricResponse) GetCompositeMetric() *components.CompositeMetric {
+	if o == nil {
+		return nil
+	}
+	return o.CompositeMetric
 }

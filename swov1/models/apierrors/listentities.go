@@ -4,38 +4,17 @@ package apierrors
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 )
 
-type ListEntitiesEntitiesCode string
-
-const (
-	ListEntitiesEntitiesCodeInternalServerError ListEntitiesEntitiesCode = "InternalServerError"
-)
-
-func (e ListEntitiesEntitiesCode) ToPointer() *ListEntitiesEntitiesCode {
-	return &e
-}
-func (e *ListEntitiesEntitiesCode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "InternalServerError":
-		*e = ListEntitiesEntitiesCode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListEntitiesEntitiesCode: %v", v)
-	}
-}
-
 // ListEntitiesEntitiesResponseResponseBody - Server error
 type ListEntitiesEntitiesResponseResponseBody struct {
-	Code     ListEntitiesEntitiesCode `json:"code"`
-	Message  string                   `json:"message"`
-	HTTPMeta components.HTTPMetadata  `json:"-"`
+	// HTTP status code as defined in RFC 2817
+	Code int64 `json:"code"`
+	// Supporting description of the error
+	Message  string                  `json:"message"`
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
 var _ error = &ListEntitiesEntitiesResponseResponseBody{}
@@ -45,33 +24,13 @@ func (e *ListEntitiesEntitiesResponseResponseBody) Error() string {
 	return string(data)
 }
 
-type ListEntitiesCode string
-
-const (
-	ListEntitiesCodeUnauthorized ListEntitiesCode = "Unauthorized"
-)
-
-func (e ListEntitiesCode) ToPointer() *ListEntitiesCode {
-	return &e
-}
-func (e *ListEntitiesCode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Unauthorized":
-		*e = ListEntitiesCode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListEntitiesCode: %v", v)
-	}
-}
-
 // ListEntitiesEntitiesResponseBody - Access is unauthorized.
 type ListEntitiesEntitiesResponseBody struct {
-	Code     ListEntitiesCode        `json:"code"`
+	// HTTP status code as defined in RFC 2817
+	Code int64 `json:"code"`
+	// Supporting description of the error
 	Message  string                  `json:"message"`
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -82,33 +41,13 @@ func (e *ListEntitiesEntitiesResponseBody) Error() string {
 	return string(data)
 }
 
-type Code string
-
-const (
-	CodeBadRequest Code = "BadRequest"
-)
-
-func (e Code) ToPointer() *Code {
-	return &e
-}
-func (e *Code) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "BadRequest":
-		*e = Code(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Code: %v", v)
-	}
-}
-
 // ListEntitiesResponseBody - The server could not understand the request due to invalid syntax.
 type ListEntitiesResponseBody struct {
-	Code     Code                    `json:"code"`
+	// HTTP status code as defined in RFC 2817
+	Code int64 `json:"code"`
+	// Supporting description of the error
 	Message  string                  `json:"message"`
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
