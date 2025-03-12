@@ -13,7 +13,7 @@ type ListEntitiesRequest struct {
 	Name *string `queryParam:"style=form,explode=false,name=name"`
 	// Number of items in a response page. Default varies by API.
 	PageSize *int `queryParam:"style=form,explode=false,name=pageSize"`
-	// Token for the requested page
+	// Token for the requested page.
 	SkipToken *string `queryParam:"style=form,explode=false,name=skipToken"`
 }
 

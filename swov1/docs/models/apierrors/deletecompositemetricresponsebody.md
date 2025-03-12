@@ -1,6 +1,6 @@
 # DeleteCompositeMetricResponseBody
 
-The server could not understand the request due to invalid syntax.
+Access is forbidden.
 
 
 ## Fields

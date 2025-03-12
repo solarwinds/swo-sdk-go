@@ -7,23 +7,6 @@ import (
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 )
 
-// UpdateEntityByIDEntitiesResponse501ResponseBody - Server error
-type UpdateEntityByIDEntitiesResponse501ResponseBody struct {
-	// HTTP status code as defined in RFC 2817
-	Code int64 `json:"code"`
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	Target   *string                 `json:"target,omitempty"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &UpdateEntityByIDEntitiesResponse501ResponseBody{}
-
-func (e *UpdateEntityByIDEntitiesResponse501ResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
 // UpdateEntityByIDEntitiesResponseResponseBody - The server cannot find the requested resource.
 type UpdateEntityByIDEntitiesResponseResponseBody struct {
 	// HTTP status code as defined in RFC 2817

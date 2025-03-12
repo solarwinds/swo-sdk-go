@@ -28,7 +28,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := swov1.New(
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
@@ -71,12 +71,11 @@ func main() {
 
 ### Errors
 
-| Error Type                                         | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| apierrors.ListEntitiesResponseBody                 | 400                                                | application/json                                   |
-| apierrors.ListEntitiesEntitiesResponseBody         | 401                                                | application/json                                   |
-| apierrors.ListEntitiesEntitiesResponseResponseBody | 501                                                | application/json                                   |
-| apierrors.APIError                                 | 4XX, 5XX                                           | \*/\*                                              |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| apierrors.ListEntitiesResponseBody         | 400                                        | application/json                           |
+| apierrors.ListEntitiesEntitiesResponseBody | 401                                        | application/json                           |
+| apierrors.APIError                         | 4XX, 5XX                                   | \*/\*                                      |
 
 ## GetEntityByID
 
@@ -97,7 +96,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := swov1.New(
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
@@ -128,13 +127,12 @@ func main() {
 
 ### Errors
 
-| Error Type                                             | Status Code                                            | Content Type                                           |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| apierrors.GetEntityByIDResponseBody                    | 400                                                    | application/json                                       |
-| apierrors.GetEntityByIDEntitiesResponseBody            | 401                                                    | application/json                                       |
-| apierrors.GetEntityByIDEntitiesResponseResponseBody    | 404                                                    | application/json                                       |
-| apierrors.GetEntityByIDEntitiesResponse501ResponseBody | 501                                                    | application/json                                       |
-| apierrors.APIError                                     | 4XX, 5XX                                               | \*/\*                                                  |
+| Error Type                                          | Status Code                                         | Content Type                                        |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| apierrors.GetEntityByIDResponseBody                 | 400                                                 | application/json                                    |
+| apierrors.GetEntityByIDEntitiesResponseBody         | 401                                                 | application/json                                    |
+| apierrors.GetEntityByIDEntitiesResponseResponseBody | 404                                                 | application/json                                    |
+| apierrors.APIError                                  | 4XX, 5XX                                            | \*/\*                                               |
 
 ## UpdateEntityByID
 
@@ -156,7 +154,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := swov1.New(
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
@@ -194,10 +192,9 @@ func main() {
 
 ### Errors
 
-| Error Type                                                | Status Code                                               | Content Type                                              |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| apierrors.UpdateEntityByIDResponseBody                    | 400                                                       | application/json                                          |
-| apierrors.UpdateEntityByIDEntitiesResponseBody            | 401                                                       | application/json                                          |
-| apierrors.UpdateEntityByIDEntitiesResponseResponseBody    | 404                                                       | application/json                                          |
-| apierrors.UpdateEntityByIDEntitiesResponse501ResponseBody | 501                                                       | application/json                                          |
-| apierrors.APIError                                        | 4XX, 5XX                                                  | \*/\*                                                     |
+| Error Type                                             | Status Code                                            | Content Type                                           |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| apierrors.UpdateEntityByIDResponseBody                 | 400                                                    | application/json                                       |
+| apierrors.UpdateEntityByIDEntitiesResponseBody         | 401                                                    | application/json                                       |
+| apierrors.UpdateEntityByIDEntitiesResponseResponseBody | 404                                                    | application/json                                       |
+| apierrors.APIError                                     | 4XX, 5XX                                               | \*/\*                                                  |

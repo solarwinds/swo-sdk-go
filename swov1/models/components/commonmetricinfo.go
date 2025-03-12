@@ -2,15 +2,35 @@
 
 package components
 
+import (
+	"github.com/solarwinds/swo-sdk-go/swov1/internal/utils"
+	"time"
+)
+
 type CommonMetricInfo struct {
-	// Name of the metric
+	// Name of the metric.
 	Name string `json:"name"`
-	// Units of the metric
-	Units string `json:"units"`
-	// Formula of the metric
+	// Display name of the metric. A short description of the metric.
+	DisplayName *string `json:"displayName,omitempty"`
+	// Description of the metric. A detailed description of the metric.
+	Description *string `json:"description,omitempty"`
+	// Unit of the metric.
+	Units *string `json:"units,omitempty"`
+	// Formula of the metric.
 	Formula *string `json:"formula,omitempty"`
-	// Last reported time of the metric
-	LastReportedTime string `json:"lastReportedTime"`
+	// Last reported time of the metric.
+	LastReportedTime *time.Time `json:"lastReportedTime,omitempty"`
+}
+
+func (c CommonMetricInfo) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CommonMetricInfo) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CommonMetricInfo) GetName() string {
@@ -20,9 +40,23 @@ func (o *CommonMetricInfo) GetName() string {
 	return o.Name
 }
 
-func (o *CommonMetricInfo) GetUnits() string {
+func (o *CommonMetricInfo) GetDisplayName() *string {
 	if o == nil {
-		return ""
+		return nil
+	}
+	return o.DisplayName
+}
+
+func (o *CommonMetricInfo) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *CommonMetricInfo) GetUnits() *string {
+	if o == nil {
+		return nil
 	}
 	return o.Units
 }
@@ -34,9 +68,9 @@ func (o *CommonMetricInfo) GetFormula() *string {
 	return o.Formula
 }
 
-func (o *CommonMetricInfo) GetLastReportedTime() string {
+func (o *CommonMetricInfo) GetLastReportedTime() *time.Time {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.LastReportedTime
 }
