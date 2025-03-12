@@ -8,9 +8,9 @@ import (
 )
 
 type MetricsMeasurement struct {
-	// Time of the measurement
+	// Time of the measurement.
 	Time time.Time `json:"time"`
-	// Value of the measurement
+	// Value of the measurement.
 	Value float64 `json:"value"`
 }
 

@@ -7,23 +7,6 @@ import (
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 )
 
-// ListEntitiesEntitiesResponseResponseBody - Server error
-type ListEntitiesEntitiesResponseResponseBody struct {
-	// HTTP status code as defined in RFC 2817
-	Code int64 `json:"code"`
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	Target   *string                 `json:"target,omitempty"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &ListEntitiesEntitiesResponseResponseBody{}
-
-func (e *ListEntitiesEntitiesResponseResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
 // ListEntitiesEntitiesResponseBody - Access is unauthorized.
 type ListEntitiesEntitiesResponseBody struct {
 	// HTTP status code as defined in RFC 2817

@@ -4,25 +4,25 @@ package components
 
 type UpdateCompositeMetric struct {
 	// Display name of the composite metric. A short description of the metric.
-	DisplayName string `json:"displayName"`
+	DisplayName *string `json:"displayName,omitempty"`
 	// Description of the composite metric. A detailed description of the metric.
-	Description string `json:"description"`
-	// PromQL query to calculate the composite metric
+	Description *string `json:"description,omitempty"`
+	// PromQL query to calculate the composite metric.
 	Formula string `json:"formula"`
-	// Unit of the composite metric
-	Units string `json:"units"`
+	// Unit of the composite metric.
+	Units *string `json:"units,omitempty"`
 }
 
-func (o *UpdateCompositeMetric) GetDisplayName() string {
+func (o *UpdateCompositeMetric) GetDisplayName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.DisplayName
 }
 
-func (o *UpdateCompositeMetric) GetDescription() string {
+func (o *UpdateCompositeMetric) GetDescription() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Description
 }
@@ -34,9 +34,9 @@ func (o *UpdateCompositeMetric) GetFormula() string {
 	return o.Formula
 }
 
-func (o *UpdateCompositeMetric) GetUnits() string {
+func (o *UpdateCompositeMetric) GetUnits() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Units
 }

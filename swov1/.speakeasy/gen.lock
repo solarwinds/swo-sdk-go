@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
-  docChecksum: ccb615f8ae4bcd8ddf18937aa09ab499
+  docChecksum: f2cc43e084a416f5a4cf47a74b3f3e6c
   docVersion: 1.0.5
-  speakeasyVersion: 1.503.0
-  generationVersion: 2.526.1
-  releaseVersion: 0.1.2
-  configChecksum: 31566bc9b9b07d3589091f4248833592
+  speakeasyVersion: 1.517.0
+  generationVersion: 2.548.1
+  releaseVersion: 0.1.3
+  configChecksum: 769c350bec08eff99174cc6818fb5565
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
@@ -27,7 +27,7 @@ features:
     inputOutputModels: 2.83.0
     intellisenseMarkdownSupport: 0.1.0
     nullables: 0.1.1
-    pagination: 2.82.3
+    pagination: 2.82.4
     responseFormat: 0.1.2
     retries: 2.83.2
     sdkHooks: 0.1.0
@@ -111,20 +111,17 @@ generatedFiles:
   - changeevents.go
   - dem.go
   - docs/models/apierrors/createcompositemetricmetricsresponsebody.md
-  - docs/models/apierrors/createcompositemetricmetricsresponseresponsebody.md
   - docs/models/apierrors/createcompositemetricresponsebody.md
   - docs/models/apierrors/createwebsiteresponsebody.md
   - docs/models/apierrors/deletecompositemetricmetricsresponsebody.md
   - docs/models/apierrors/deletecompositemetricresponsebody.md
   - docs/models/apierrors/deletewebsiteresponsebody.md
-  - docs/models/apierrors/getentitybyidentitiesresponse501responsebody.md
   - docs/models/apierrors/getentitybyidentitiesresponsebody.md
   - docs/models/apierrors/getentitybyidentitiesresponseresponsebody.md
   - docs/models/apierrors/getentitybyidresponsebody.md
   - docs/models/apierrors/getmetricbynameresponsebody.md
   - docs/models/apierrors/getwebsiteresponsebody.md
   - docs/models/apierrors/listentitiesentitiesresponsebody.md
-  - docs/models/apierrors/listentitiesentitiesresponseresponsebody.md
   - docs/models/apierrors/listentitiesresponsebody.md
   - docs/models/apierrors/listmetricattributesresponsebody.md
   - docs/models/apierrors/listmetricattributevaluesresponsebody.md
@@ -132,11 +129,9 @@ generatedFiles:
   - docs/models/apierrors/listmetricsforentitytyperesponsebody.md
   - docs/models/apierrors/pausewebsitemonitoringresponsebody.md
   - docs/models/apierrors/unpausewebsitemonitoringresponsebody.md
-  - docs/models/apierrors/updatecompositemetricmetricsresponse501responsebody.md
   - docs/models/apierrors/updatecompositemetricmetricsresponsebody.md
   - docs/models/apierrors/updatecompositemetricmetricsresponseresponsebody.md
   - docs/models/apierrors/updatecompositemetricresponsebody.md
-  - docs/models/apierrors/updateentitybyidentitiesresponse501responsebody.md
   - docs/models/apierrors/updateentitybyidentitiesresponsebody.md
   - docs/models/apierrors/updateentitybyidentitiesresponseresponsebody.md
   - docs/models/apierrors/updateentitybyidresponsebody.md
@@ -430,7 +425,7 @@ examples:
         query: {}
       responses:
         "200":
-          application/json: {"type": "KubernetesCluster", "metrics": [{"name": "composite.k8s.pod.container.status.restarts.increase", "units": "count", "formula": "increase(k8s.kube_pod_container_status_restarts_total[5m])", "lastReportedTime": "2021-01-01T00:00:00Z"}]}
+          application/json: {"type": "KubernetesCluster", "metrics": [{"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "units": "bytes/s", "formula": "rate(system.disk.io[5m]", "lastReportedTime": "2024-11-25T16:38:24Z"}]}
         "404":
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   listMetrics:
@@ -459,7 +454,7 @@ examples:
           name: "<value>"
       responses:
         "200":
-          application/json: {"name": "composite.k8s.pod.container.status.restarts.increase", "units": "count", "formula": "increase(k8s.kube_pod_container_status_restarts_total[5m])", "lastReportedTime": "2021-01-01T00:00:00Z"}
+          application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "units": "bytes/s", "formula": "rate(system.disk.io[5m]", "lastReportedTime": "2024-11-25T16:38:24Z"}
         "404":
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   listMetricAttributes:
@@ -525,6 +520,8 @@ examples:
         "400":
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
         "403":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "404":
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   getDemSettings:
     speakeasy-default-get-dem-settings:
