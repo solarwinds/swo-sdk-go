@@ -26,7 +26,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := swov1.New(
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
@@ -77,7 +77,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := swov1.New(
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )

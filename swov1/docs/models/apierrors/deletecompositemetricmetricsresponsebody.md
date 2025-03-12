@@ -1,6 +1,6 @@
 # DeleteCompositeMetricMetricsResponseBody
 
-Access is forbidden.
+The server cannot find the requested resource.
 
 
 ## Fields

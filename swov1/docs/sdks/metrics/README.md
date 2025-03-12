@@ -16,7 +16,7 @@
 
 ## ListMetrics
 
-List metrics available within a time period. 
+List metrics available within a time period.
 
 ### Example Usage
 
@@ -33,7 +33,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := swov1.New(
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
@@ -80,7 +80,7 @@ func main() {
 
 ## CreateCompositeMetric
 
-Create a composite metric given a PromQL query
+Create a composite metric given a PromQL query.
 
 ### Example Usage
 
@@ -97,17 +97,17 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := swov1.New(
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
     res, err := s.Metrics.CreateCompositeMetric(ctx, components.CompositeMetric{
         Name: "composite.custom.system.disk.io.rate",
-        DisplayName: "Disk IO rate",
-        Description: "Disk bytes transferred per second",
+        DisplayName: swov1.String("Disk IO rate"),
+        Description: swov1.String("Disk bytes transferred per second"),
         Formula: "rate(system.disk.io[5m])",
-        Units: "bytes/s",
+        Units: swov1.String("bytes/s"),
     })
     if err != nil {
         log.Fatal(err)
@@ -132,16 +132,15 @@ func main() {
 
 ### Errors
 
-| Error Type                                                 | Status Code                                                | Content Type                                               |
-| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| apierrors.CreateCompositeMetricResponseBody                | 400                                                        | application/json                                           |
-| apierrors.CreateCompositeMetricMetricsResponseBody         | 403                                                        | application/json                                           |
-| apierrors.CreateCompositeMetricMetricsResponseResponseBody | 501                                                        | application/json                                           |
-| apierrors.APIError                                         | 4XX, 5XX                                                   | \*/\*                                                      |
+| Error Type                                         | Status Code                                        | Content Type                                       |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| apierrors.CreateCompositeMetricResponseBody        | 400                                                | application/json                                   |
+| apierrors.CreateCompositeMetricMetricsResponseBody | 403                                                | application/json                                   |
+| apierrors.APIError                                 | 4XX, 5XX                                           | \*/\*                                              |
 
 ## UpdateCompositeMetric
 
-Update a composite metric given a metric name
+Update a composite metric given a metric name.
 
 ### Example Usage
 
@@ -159,7 +158,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := swov1.New(
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
@@ -167,10 +166,10 @@ func main() {
     res, err := s.Metrics.UpdateCompositeMetric(ctx, operations.UpdateCompositeMetricRequest{
         Name: "<value>",
         UpdateCompositeMetric: components.UpdateCompositeMetric{
-            DisplayName: "Disk IO rate",
-            Description: "Disk bytes transferred per second",
+            DisplayName: swov1.String("Disk IO rate"),
+            Description: swov1.String("Disk bytes transferred per second"),
             Formula: "rate(system.disk.io[5m])",
-            Units: "bytes/s",
+            Units: swov1.String("bytes/s"),
         },
     })
     if err != nil {
@@ -196,17 +195,16 @@ func main() {
 
 ### Errors
 
-| Error Type                                                    | Status Code                                                   | Content Type                                                  |
-| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| apierrors.UpdateCompositeMetricResponseBody                   | 400                                                           | application/json                                              |
-| apierrors.UpdateCompositeMetricMetricsResponseBody            | 401                                                           | application/json                                              |
-| apierrors.UpdateCompositeMetricMetricsResponseResponseBody    | 404                                                           | application/json                                              |
-| apierrors.UpdateCompositeMetricMetricsResponse501ResponseBody | 501                                                           | application/json                                              |
-| apierrors.APIError                                            | 4XX, 5XX                                                      | \*/\*                                                         |
+| Error Type                                                 | Status Code                                                | Content Type                                               |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| apierrors.UpdateCompositeMetricResponseBody                | 400                                                        | application/json                                           |
+| apierrors.UpdateCompositeMetricMetricsResponseBody         | 403                                                        | application/json                                           |
+| apierrors.UpdateCompositeMetricMetricsResponseResponseBody | 404                                                        | application/json                                           |
+| apierrors.APIError                                         | 4XX, 5XX                                                   | \*/\*                                                      |
 
 ## DeleteCompositeMetric
 
-Delete a composite metric given a metric name
+Delete a composite metric given a metric name.
 
 ### Example Usage
 
@@ -223,7 +221,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := swov1.New(
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
@@ -256,13 +254,13 @@ func main() {
 
 | Error Type                                         | Status Code                                        | Content Type                                       |
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| apierrors.DeleteCompositeMetricResponseBody        | 400                                                | application/json                                   |
-| apierrors.DeleteCompositeMetricMetricsResponseBody | 403                                                | application/json                                   |
+| apierrors.DeleteCompositeMetricResponseBody        | 403                                                | application/json                                   |
+| apierrors.DeleteCompositeMetricMetricsResponseBody | 404                                                | application/json                                   |
 | apierrors.APIError                                 | 4XX, 5XX                                           | \*/\*                                              |
 
 ## GetMetricByName
 
-Get info about a metric
+Get information about a given metric.
 
 ### Example Usage
 
@@ -279,7 +277,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := swov1.New(
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
@@ -346,7 +344,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := swov1.New(
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
@@ -413,7 +411,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := swov1.New(
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
@@ -482,7 +480,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := swov1.New(
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )

@@ -287,7 +287,7 @@ func (s *Metrics) ListMetrics(ctx context.Context, request operations.ListMetric
 }
 
 // CreateCompositeMetric - Create composite metric
-// Create a composite metric given a PromQL query
+// Create a composite metric given a PromQL query.
 func (s *Metrics) CreateCompositeMetric(ctx context.Context, request components.CompositeMetric, opts ...operations.Option) (*operations.CreateCompositeMetricResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -433,7 +433,7 @@ func (s *Metrics) CreateCompositeMetric(ctx context.Context, request components.
 
 			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
-		} else if utils.MatchStatusCodes([]string{"400", "403", "4XX", "501", "5XX"}, httpRes.StatusCode) {
+		} else if utils.MatchStatusCodes([]string{"400", "403", "4XX", "5XX"}, httpRes.StatusCode) {
 			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
@@ -527,31 +527,6 @@ func (s *Metrics) CreateCompositeMetric(ctx context.Context, request components.
 			}
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 501:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.CreateCompositeMetricMetricsResponseResponseBody
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -577,7 +552,7 @@ func (s *Metrics) CreateCompositeMetric(ctx context.Context, request components.
 }
 
 // UpdateCompositeMetric - Update composite metric
-// Update a composite metric given a metric name
+// Update a composite metric given a metric name.
 func (s *Metrics) UpdateCompositeMetric(ctx context.Context, request operations.UpdateCompositeMetricRequest, opts ...operations.Option) (*operations.UpdateCompositeMetricResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -723,7 +698,7 @@ func (s *Metrics) UpdateCompositeMetric(ctx context.Context, request operations.
 
 			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
-		} else if utils.MatchStatusCodes([]string{"400", "401", "404", "4XX", "501", "5XX"}, httpRes.StatusCode) {
+		} else if utils.MatchStatusCodes([]string{"400", "403", "404", "4XX", "5XX"}, httpRes.StatusCode) {
 			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
@@ -793,7 +768,7 @@ func (s *Metrics) UpdateCompositeMetric(ctx context.Context, request operations.
 			}
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 401:
+	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -843,31 +818,6 @@ func (s *Metrics) UpdateCompositeMetric(ctx context.Context, request operations.
 			}
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 501:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.UpdateCompositeMetricMetricsResponse501ResponseBody
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -893,7 +843,7 @@ func (s *Metrics) UpdateCompositeMetric(ctx context.Context, request operations.
 }
 
 // DeleteCompositeMetric - Delete composite metric
-// Delete a composite metric given a metric name
+// Delete a composite metric given a metric name.
 func (s *Metrics) DeleteCompositeMetric(ctx context.Context, request operations.DeleteCompositeMetricRequest, opts ...operations.Option) (*operations.DeleteCompositeMetricResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -1032,7 +982,7 @@ func (s *Metrics) DeleteCompositeMetric(ctx context.Context, request operations.
 
 			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
-		} else if utils.MatchStatusCodes([]string{"400", "403", "4XX", "5XX"}, httpRes.StatusCode) {
+		} else if utils.MatchStatusCodes([]string{"403", "404", "4XX", "5XX"}, httpRes.StatusCode) {
 			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
@@ -1055,10 +1005,8 @@ func (s *Metrics) DeleteCompositeMetric(ctx context.Context, request operations.
 	}
 
 	switch {
-	case httpRes.StatusCode == 200:
-		fallthrough
 	case httpRes.StatusCode == 204:
-	case httpRes.StatusCode == 400:
+	case httpRes.StatusCode == 403:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -1083,7 +1031,7 @@ func (s *Metrics) DeleteCompositeMetric(ctx context.Context, request operations.
 			}
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 403:
+	case httpRes.StatusCode == 404:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -1133,7 +1081,7 @@ func (s *Metrics) DeleteCompositeMetric(ctx context.Context, request operations.
 }
 
 // GetMetricByName - Get metric info by name
-// Get info about a metric
+// Get information about a given metric.
 func (s *Metrics) GetMetricByName(ctx context.Context, request operations.GetMetricByNameRequest, opts ...operations.Option) (*operations.GetMetricByNameResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

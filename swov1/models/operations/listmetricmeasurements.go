@@ -17,15 +17,15 @@ type ListMetricMeasurementsRequest struct {
 	Filter *string `queryParam:"style=form,explode=false,name=filter"`
 	// Comma-delimited list of attribute names to group measurements by. e.g id, category
 	GroupBy *string `queryParam:"style=form,explode=false,name=groupBy"`
-	// Aggregation method used to group measurements
+	// Aggregation method used to group measurements.
 	AggregateBy *components.MetricsAggregationMethods `queryParam:"style=form,explode=false,name=aggregateBy"`
 	// This parameter is deprecated. Bucket size is determined by the API layer.
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	BucketSizeInSeconds *int `queryParam:"style=form,explode=false,name=bucketSizeInSeconds"`
-	// Secondary grouping to allow aggregating data points inside individual buckets. Has to be set together with `preGroupByMethod`
+	// Secondary grouping to allow aggregating data points inside individual buckets. Has to be set together with `preGroupByMethod`.
 	PreGroupBy *string `queryParam:"style=form,explode=false,name=preGroupBy"`
-	// Secondary aggregation to allow aggregating data points inside individual buckets. Has to be set together with `preGroupBy`
+	// Secondary aggregation to allow aggregating data points inside individual buckets. Has to be set together with `preGroupBy`.
 	PreGroupByMethod *string `queryParam:"style=form,explode=false,name=preGroupByMethod"`
 	// Timestamp in ISO 8601 format in UTC timezone: yyyy-MM-ddTHH:mm:ssZ
 	StartTime *time.Time `queryParam:"style=form,explode=false,name=startTime"`
@@ -33,7 +33,7 @@ type ListMetricMeasurementsRequest struct {
 	EndTime *time.Time `queryParam:"style=form,explode=false,name=endTime"`
 	// Number of items in a response page. Default varies by API.
 	PageSize *int `queryParam:"style=form,explode=false,name=pageSize"`
-	// Token for the requested page
+	// Token for the requested page.
 	SkipToken *string `queryParam:"style=form,explode=false,name=skipToken"`
 }
 

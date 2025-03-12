@@ -7,7 +7,7 @@ import (
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 )
 
-// DeleteCompositeMetricMetricsResponseBody - Access is forbidden.
+// DeleteCompositeMetricMetricsResponseBody - The server cannot find the requested resource.
 type DeleteCompositeMetricMetricsResponseBody struct {
 	// HTTP status code as defined in RFC 2817
 	Code int64 `json:"code"`
@@ -24,7 +24,7 @@ func (e *DeleteCompositeMetricMetricsResponseBody) Error() string {
 	return string(data)
 }
 
-// DeleteCompositeMetricResponseBody - The server could not understand the request due to invalid syntax.
+// DeleteCompositeMetricResponseBody - Access is forbidden.
 type DeleteCompositeMetricResponseBody struct {
 	// HTTP status code as defined in RFC 2817
 	Code int64 `json:"code"`

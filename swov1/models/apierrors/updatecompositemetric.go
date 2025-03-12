@@ -7,23 +7,6 @@ import (
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 )
 
-// UpdateCompositeMetricMetricsResponse501ResponseBody - Server error
-type UpdateCompositeMetricMetricsResponse501ResponseBody struct {
-	// HTTP status code as defined in RFC 2817
-	Code int64 `json:"code"`
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	Target   *string                 `json:"target,omitempty"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &UpdateCompositeMetricMetricsResponse501ResponseBody{}
-
-func (e *UpdateCompositeMetricMetricsResponse501ResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
 // UpdateCompositeMetricMetricsResponseResponseBody - The server cannot find the requested resource.
 type UpdateCompositeMetricMetricsResponseResponseBody struct {
 	// HTTP status code as defined in RFC 2817
@@ -41,7 +24,7 @@ func (e *UpdateCompositeMetricMetricsResponseResponseBody) Error() string {
 	return string(data)
 }
 
-// UpdateCompositeMetricMetricsResponseBody - Access is unauthorized.
+// UpdateCompositeMetricMetricsResponseBody - Access is forbidden.
 type UpdateCompositeMetricMetricsResponseBody struct {
 	// HTTP status code as defined in RFC 2817
 	Code int64 `json:"code"`
