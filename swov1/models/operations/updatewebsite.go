@@ -28,7 +28,7 @@ func (o *UpdateWebsiteRequest) GetWebsite() components.Website {
 
 type UpdateWebsiteResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The request has succeeded.
+	// The request has succeeded and a new resource has been created as a result.
 	EntityID *components.EntityID
 }
 
