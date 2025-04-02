@@ -72,13 +72,14 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 // Swo - SolarWinds Observability: SolarWinds Observability REST API
 // [Rest API Documentation](https://documentation.solarwinds.com/en/success_center/observability/content/api/api-swagger.htm)
 type Swo struct {
-	ChangeEvents *ChangeEvents
-	Dem          *Dem
-	Entities     *Entities
-	Logs         *Logs
-	Metadata     *Metadata
-	Metrics      *Metrics
-	Tokens       *Tokens
+	ChangeEvents  *ChangeEvents
+	CloudAccounts *CloudAccounts
+	Dem           *Dem
+	Entities      *Entities
+	Logs          *Logs
+	Metadata      *Metadata
+	Metrics       *Metrics
+	Tokens        *Tokens
 
 	sdkConfiguration sdkConfiguration
 }
@@ -170,9 +171,9 @@ func New(opts ...SDKOption) *Swo {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.5",
-			SDKVersion:        "0.1.3",
-			GenVersion:        "2.548.1",
-			UserAgent:         "speakeasy-sdk/go 0.1.3 2.548.1 1.0.5 github.com/solarwinds/swo-sdk-go/swov1",
+			SDKVersion:        "0.1.4",
+			GenVersion:        "2.564.8",
+			UserAgent:         "speakeasy-sdk/go 0.1.4 2.564.8 1.0.5 github.com/solarwinds/swo-sdk-go/swov1",
 			ServerDefaults: []map[string]string{
 				{
 					"region": "na-01",
@@ -205,6 +206,8 @@ func New(opts ...SDKOption) *Swo {
 	}
 
 	sdk.ChangeEvents = newChangeEvents(sdk.sdkConfiguration)
+
+	sdk.CloudAccounts = newCloudAccounts(sdk.sdkConfiguration)
 
 	sdk.Dem = newDem(sdk.sdkConfiguration)
 

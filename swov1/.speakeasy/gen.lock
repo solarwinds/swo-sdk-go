@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
-  docChecksum: f2cc43e084a416f5a4cf47a74b3f3e6c
+  docChecksum: 1f0b367c9aad2e9fbc02665358953689
   docVersion: 1.0.5
-  speakeasyVersion: 1.517.0
-  generationVersion: 2.548.1
-  releaseVersion: 0.1.3
-  configChecksum: 769c350bec08eff99174cc6818fb5565
+  speakeasyVersion: 1.527.2
+  generationVersion: 2.564.8
+  releaseVersion: 0.1.4
+  configChecksum: 04ee0d17fb33a1da4c2d75fa813e7346
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
 features:
   go:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.10
+    constsAndDefaults: 0.1.11
     core: 3.7.2
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
@@ -36,7 +36,9 @@ generatedFiles:
   - .devcontainer/devcontainer.json
   - .devcontainer/setup.sh
   - .gitattributes
+  - /models/apierrors/activateawsintegration.go
   - /models/apierrors/createcompositemetric.go
+  - /models/apierrors/createorgstructure.go
   - /models/apierrors/createwebsite.go
   - /models/apierrors/deletecompositemetric.go
   - /models/apierrors/deletewebsite.go
@@ -50,9 +52,13 @@ generatedFiles:
   - /models/apierrors/listmetricsforentitytype.go
   - /models/apierrors/pausewebsitemonitoring.go
   - /models/apierrors/unpausewebsitemonitoring.go
+  - /models/apierrors/updateawsintegration.go
   - /models/apierrors/updatecompositemetric.go
   - /models/apierrors/updateentitybyid.go
   - /models/apierrors/updatewebsite.go
+  - /models/apierrors/validatemgmtaccountonboarding.go
+  - /models/components/activateawsintegrationrequest.go
+  - /models/components/awsorganisationalunitrequest.go
   - /models/components/changeevent.go
   - /models/components/checkforstringoperator.go
   - /models/components/commonkeyvaluepair.go
@@ -72,6 +78,9 @@ generatedFiles:
   - /models/components/metricseriestype.go
   - /models/components/metricsgrouping.go
   - /models/components/metricsmeasurement.go
+  - /models/components/mgmtaccountonboardingrequest.go
+  - /models/components/mgmtaccountonboardingresponse.go
+  - /models/components/organisationalunit.go
   - /models/components/outageconfiguration.go
   - /models/components/probelocationtype.go
   - /models/components/probeplatform.go
@@ -79,11 +88,15 @@ generatedFiles:
   - /models/components/security.go
   - /models/components/tag.go
   - /models/components/testfrom.go
+  - /models/components/updateawsintegrationrequest.go
+  - /models/components/updateawsintegrationresponse.go
   - /models/components/updatecompositemetric.go
   - /models/components/website.go
   - /models/components/websiteprotocol.go
+  - /models/operations/activateawsintegration.go
   - /models/operations/createchangeevent.go
   - /models/operations/createcompositemetric.go
+  - /models/operations/createorgstructure.go
   - /models/operations/createtoken.go
   - /models/operations/createwebsite.go
   - /models/operations/deletecompositemetric.go
@@ -104,14 +117,25 @@ generatedFiles:
   - /models/operations/searchlogs.go
   - /models/operations/setdemsettings.go
   - /models/operations/unpausewebsitemonitoring.go
+  - /models/operations/updateawsintegration.go
   - /models/operations/updatecompositemetric.go
   - /models/operations/updateentitybyid.go
   - /models/operations/updatewebsite.go
+  - /models/operations/validatemgmtaccountonboarding.go
   - USAGE.md
   - changeevents.go
+  - cloudaccounts.go
   - dem.go
+  - docs/models/apierrors/activateawsintegrationcloudaccountsresponse500responsebody.md
+  - docs/models/apierrors/activateawsintegrationcloudaccountsresponsebody.md
+  - docs/models/apierrors/activateawsintegrationcloudaccountsresponseresponsebody.md
+  - docs/models/apierrors/activateawsintegrationresponsebody.md
   - docs/models/apierrors/createcompositemetricmetricsresponsebody.md
   - docs/models/apierrors/createcompositemetricresponsebody.md
+  - docs/models/apierrors/createorgstructurecloudaccountsresponse500responsebody.md
+  - docs/models/apierrors/createorgstructurecloudaccountsresponsebody.md
+  - docs/models/apierrors/createorgstructurecloudaccountsresponseresponsebody.md
+  - docs/models/apierrors/createorgstructureresponsebody.md
   - docs/models/apierrors/createwebsiteresponsebody.md
   - docs/models/apierrors/deletecompositemetricmetricsresponsebody.md
   - docs/models/apierrors/deletecompositemetricresponsebody.md
@@ -129,6 +153,9 @@ generatedFiles:
   - docs/models/apierrors/listmetricsforentitytyperesponsebody.md
   - docs/models/apierrors/pausewebsitemonitoringresponsebody.md
   - docs/models/apierrors/unpausewebsitemonitoringresponsebody.md
+  - docs/models/apierrors/updateawsintegrationcloudaccountsresponsebody.md
+  - docs/models/apierrors/updateawsintegrationcloudaccountsresponseresponsebody.md
+  - docs/models/apierrors/updateawsintegrationresponsebody.md
   - docs/models/apierrors/updatecompositemetricmetricsresponsebody.md
   - docs/models/apierrors/updatecompositemetricmetricsresponseresponsebody.md
   - docs/models/apierrors/updatecompositemetricresponsebody.md
@@ -136,7 +163,12 @@ generatedFiles:
   - docs/models/apierrors/updateentitybyidentitiesresponseresponsebody.md
   - docs/models/apierrors/updateentitybyidresponsebody.md
   - docs/models/apierrors/updatewebsiteresponsebody.md
+  - docs/models/apierrors/validatemgmtaccountonboardingcloudaccountsresponsebody.md
+  - docs/models/apierrors/validatemgmtaccountonboardingcloudaccountsresponseresponsebody.md
+  - docs/models/apierrors/validatemgmtaccountonboardingresponsebody.md
+  - docs/models/components/activateawsintegrationrequest.md
   - docs/models/components/availabilitychecksettings.md
+  - docs/models/components/awsorganisationalunitrequest.md
   - docs/models/components/category.md
   - docs/models/components/changeevent.md
   - docs/models/components/checkforstring.md
@@ -154,12 +186,16 @@ generatedFiles:
   - docs/models/components/failingtestlocations.md
   - docs/models/components/healthscore.md
   - docs/models/components/httpmetadata.md
+  - docs/models/components/integrationtype.md
   - docs/models/components/logsarchive.md
   - docs/models/components/logsevent.md
   - docs/models/components/metricsaggregationmethods.md
   - docs/models/components/metricseriestype.md
   - docs/models/components/metricsgrouping.md
   - docs/models/components/metricsmeasurement.md
+  - docs/models/components/mgmtaccountonboardingrequest.md
+  - docs/models/components/mgmtaccountonboardingresponse.md
+  - docs/models/components/organisationalunit.md
   - docs/models/components/outageconfiguration.md
   - docs/models/components/probelocationtype.md
   - docs/models/components/probeplatform.md
@@ -171,16 +207,20 @@ generatedFiles:
   - docs/models/components/tags.md
   - docs/models/components/testfrom.md
   - docs/models/components/type.md
+  - docs/models/components/updateawsintegrationrequest.md
+  - docs/models/components/updateawsintegrationresponse.md
   - docs/models/components/updatecompositemetric.md
   - docs/models/components/website.md
   - docs/models/components/websitefailingtestlocations.md
   - docs/models/components/websiteoutageconfiguration.md
   - docs/models/components/websiteprotocol.md
+  - docs/models/operations/activateawsintegrationresponse.md
   - docs/models/operations/availabilitychecksettings.md
   - docs/models/operations/checkforstring.md
   - docs/models/operations/createchangeeventresponse.md
   - docs/models/operations/createchangeeventresponsebody.md
   - docs/models/operations/createcompositemetricresponse.md
+  - docs/models/operations/createorgstructureresponse.md
   - docs/models/operations/createtokenresponse.md
   - docs/models/operations/createtokenresponsebody.md
   - docs/models/operations/createwebsiteresponse.md
@@ -233,13 +273,17 @@ generatedFiles:
   - docs/models/operations/status.md
   - docs/models/operations/unpausewebsitemonitoringrequest.md
   - docs/models/operations/unpausewebsitemonitoringresponse.md
+  - docs/models/operations/updateawsintegrationresponse.md
   - docs/models/operations/updatecompositemetricrequest.md
   - docs/models/operations/updatecompositemetricresponse.md
   - docs/models/operations/updateentitybyidrequest.md
   - docs/models/operations/updateentitybyidresponse.md
   - docs/models/operations/updatewebsiterequest.md
   - docs/models/operations/updatewebsiteresponse.md
+  - docs/models/operations/validatemgmtaccountonboardingrequest.md
+  - docs/models/operations/validatemgmtaccountonboardingresponse.md
   - docs/sdks/changeevents/README.md
+  - docs/sdks/cloudaccounts/README.md
   - docs/sdks/dem/README.md
   - docs/sdks/entities/README.md
   - docs/sdks/logs/README.md
@@ -541,6 +585,8 @@ examples:
           application/json: {"id": "e-1448474379026206720"}
         "400":
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "201":
+          application/json: {"id": "e-1448474379026206720"}
   getWebsite:
     speakeasy-default-get-website:
       parameters:
@@ -563,6 +609,8 @@ examples:
           application/json: {"id": "e-1448474379026206720"}
         "400":
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "201":
+          application/json: {"id": "e-1448474379026206720"}
   deleteWebsite:
     speakeasy-default-delete-website:
       parameters:
@@ -573,6 +621,8 @@ examples:
           application/json: {"id": "e-1448474379026206720"}
         "400":
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "201":
+          application/json: {"id": "e-1448474379026206720"}
   pauseWebsiteMonitoring:
     speakeasy-default-pause-website-monitoring:
       parameters:
@@ -583,6 +633,8 @@ examples:
           application/json: {"id": "e-1448474379026206720"}
         "400":
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "201":
+          application/json: {"id": "e-1448474379026206720"}
   unpauseWebsiteMonitoring:
     speakeasy-default-unpause-website-monitoring:
       parameters:
@@ -593,6 +645,8 @@ examples:
           application/json: {"id": "e-1448474379026206720"}
         "400":
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "201":
+          application/json: {"id": "e-1448474379026206720"}
   updateCompositeMetric:
     speakeasy-default-update-composite-metric:
       parameters:
@@ -613,6 +667,59 @@ examples:
         "401":
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
         "501":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  activateAwsIntegration:
+    speakeasy-default-activate-aws-integration:
+      requestBody:
+        application/json: {"managementAccountId": "<id>", "accountId": "<id>", "enable": false}
+      responses:
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "401":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "500":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  createOrgStructure:
+    speakeasy-default-create-org-structure:
+      requestBody:
+        application/json: {"mgmtAccountId": "<id>", "structure": [{"child_id": "<id>", "child_name": "<value>"}, {"child_id": "<id>", "child_name": "<value>"}, {"child_id": "<id>", "child_name": "<value>"}]}
+      responses:
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "401":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "500":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  updateAwsIntegration:
+    speakeasy-default-update-aws-integration:
+      requestBody:
+        application/json: {"managementAccountId": "<id>", "accountId": "<id>", "accountName": "<value>", "roleArn": "<value>"}
+      responses:
+        "200":
+          application/json: {"selectedRegions": ["<value>", "<value>", "<value>"], "externalId": "<id>", "integrationId": "<id>", "integrationType": "POLLING", "isNewAccount": true}
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "401":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "500":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  validateMgmtAccountOnboarding:
+    speakeasy-default-validate-mgmt-account-onboarding:
+      parameters:
+        query:
+          request: {"managementAccountId": "<id>"}
+      responses:
+        "200":
+          application/json: {"isOnboarded": false}
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "401":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "500":
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
 examplesVersion: 1.0.0
 generatedTests: {}

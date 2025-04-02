@@ -180,8 +180,8 @@ type AvailabilityCheckSettings struct {
 	//   Likewise, if the operator is CONTAINS and the value is not found on the page, the availability test will fail.
 	//   If omitted or set to null, the string checking functionality will be disabled.
 	CheckForString *CheckForString `json:"checkForString,omitempty"`
-	// Configure how often availability tests should be performed. Provide a number of seconds that is divisible by 60 and no greater than 14400 (4 hours).
-	TestIntervalInSeconds int `json:"testIntervalInSeconds"`
+	// Configure how often availability tests should be performed. Provide a number of seconds that is one of 60, 300, 600, 900, 1800, 3600, 7200, 14400.
+	TestIntervalInSeconds float64 `json:"testIntervalInSeconds"`
 	// Configure which protocols need availability tests to be performed. At least one protocol must be provided.
 	Protocols []components.WebsiteProtocol `json:"protocols"`
 	// Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, no particular cloud platform will be enforced.
@@ -215,9 +215,9 @@ func (o *AvailabilityCheckSettings) GetCheckForString() *CheckForString {
 	return o.CheckForString
 }
 
-func (o *AvailabilityCheckSettings) GetTestIntervalInSeconds() int {
+func (o *AvailabilityCheckSettings) GetTestIntervalInSeconds() float64 {
 	if o == nil {
-		return 0
+		return 0.0
 	}
 	return o.TestIntervalInSeconds
 }
