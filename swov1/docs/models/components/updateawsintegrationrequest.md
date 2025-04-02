@@ -1,0 +1,14 @@
+# UpdateAwsIntegrationRequest
+
+
+## Fields
+
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ManagementAccountID`                                                      | *string*                                                                   | :heavy_check_mark:                                                         | AWS Control Tower Management Account ID.                                   |
+| `AccountID`                                                                | *string*                                                                   | :heavy_check_mark:                                                         | AWS Accounts ID to be integrated.                                          |
+| `AccountName`                                                              | *string*                                                                   | :heavy_check_mark:                                                         | Name of the AWS Account.                                                   |
+| `RoleArn`                                                                  | *string*                                                                   | :heavy_check_mark:                                                         | Role ARN to be assumed by the AWS Account.                                 |
+| `OrgUnitID`                                                                | **string*                                                                  | :heavy_minus_sign:                                                         | AWS Account ID.                                                            |
+| `OrgUnitName`                                                              | **string*                                                                  | :heavy_minus_sign:                                                         | AWS Organizational Unit Name.                                              |
+| `ParentOrgUnitID`                                                          | **string*                                                                  | :heavy_minus_sign:                                                         | Immediate Parent Organization Unit ID of the AWS Account to be integrated. |

@@ -168,6 +168,13 @@ func main() {
 
 * [CreateChangeEvent](docs/sdks/changeevents/README.md#createchangeevent) - Create an event
 
+### [CloudAccounts](docs/sdks/cloudaccounts/README.md)
+
+* [ActivateAwsIntegration](docs/sdks/cloudaccounts/README.md#activateawsintegration) - Activate AWS Integration
+* [CreateOrgStructure](docs/sdks/cloudaccounts/README.md#createorgstructure) - Create Organizational Structure
+* [UpdateAwsIntegration](docs/sdks/cloudaccounts/README.md#updateawsintegration) - Update AWS Integration
+* [ValidateMgmtAccountOnboarding](docs/sdks/cloudaccounts/README.md#validatemgmtaccountonboarding) - Validate Management Account Onboarding
+
 ### [Dem](docs/sdks/dem/README.md)
 
 * [GetDemSettings](docs/sdks/dem/README.md#getdemsettings) - Get DEM settings
@@ -395,12 +402,15 @@ Handling errors in this SDK should largely match your expectations. All operatio
 
 By Default, an API error will return `apierrors.APIError`. When custom error responses are specified for an operation, the SDK may also return their associated error. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation.
 
-For example, the `CreateWebsite` function may return the following errors:
+For example, the `ActivateAwsIntegration` function may return the following errors:
 
-| Error Type                          | Status Code | Content Type     |
-| ----------------------------------- | ----------- | ---------------- |
-| apierrors.CreateWebsiteResponseBody | 400         | application/json |
-| apierrors.APIError                  | 4XX, 5XX    | \*/\*            |
+| Error Type                                                           | Status Code | Content Type     |
+| -------------------------------------------------------------------- | ----------- | ---------------- |
+| apierrors.ActivateAwsIntegrationResponseBody                         | 400         | application/json |
+| apierrors.ActivateAwsIntegrationCloudAccountsResponseBody            | 401         | application/json |
+| apierrors.ActivateAwsIntegrationCloudAccountsResponseResponseBody    | 404         | application/json |
+| apierrors.ActivateAwsIntegrationCloudAccountsResponse500ResponseBody | 500         | application/json |
+| apierrors.APIError                                                   | 4XX, 5XX    | \*/\*            |
 
 ### Example
 
@@ -424,63 +434,32 @@ func main() {
 		swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
-	res, err := s.Dem.CreateWebsite(ctx, components.Website{
-		Name: "solarwinds.com",
-		URL:  "https://www.solarwinds.com",
-		AvailabilityCheckSettings: &components.AvailabilityCheckSettings{
-			CheckForString: &components.CheckForString{
-				Operator: components.CheckForStringOperatorContains,
-				Value:    "string",
-			},
-			TestIntervalInSeconds: 14400,
-			Protocols: []components.WebsiteProtocol{
-				components.WebsiteProtocolHTTP,
-				components.WebsiteProtocolHTTPS,
-			},
-			PlatformOptions: &components.ProbePlatformOptions{
-				ProbePlatforms: []components.ProbePlatform{
-					components.ProbePlatformAws,
-				},
-				TestFromAll: swov1.Bool(true),
-			},
-			TestFrom: components.TestFrom{
-				Type: components.ProbeLocationTypeRegion,
-				Values: []string{
-					"NA",
-				},
-			},
-			Ssl: &components.Ssl{
-				Enabled:                        swov1.Bool(true),
-				DaysPriorToExpiration:          swov1.Int(7),
-				IgnoreIntermediateCertificates: swov1.Bool(true),
-			},
-			CustomHeaders: []components.CustomHeaders{
-				components.CustomHeaders{
-					Name:  "string",
-					Value: "string",
-				},
-			},
-			AllowInsecureRenegotiation: swov1.Bool(true),
-			PostData:                   swov1.String("{\"example\": \"value\"}"),
-			OutageConfiguration: &components.WebsiteOutageConfiguration{
-				FailingTestLocations: components.WebsiteFailingTestLocationsAll,
-				ConsecutiveForDown:   2,
-			},
-		},
-		Tags: []components.Tag{
-			components.Tag{
-				Key:   "environment",
-				Value: "production",
-			},
-		},
-		Rum: &components.Rum{
-			ApdexTimeInSeconds: swov1.Int(4),
-			Spa:                true,
-		},
+	res, err := s.CloudAccounts.ActivateAwsIntegration(ctx, components.ActivateAwsIntegrationRequest{
+		ManagementAccountID: "<id>",
+		AccountID:           "<id>",
+		Enable:              false,
 	})
 	if err != nil {
 
-		var e *apierrors.CreateWebsiteResponseBody
+		var e *apierrors.ActivateAwsIntegrationResponseBody
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+		var e *apierrors.ActivateAwsIntegrationCloudAccountsResponseBody
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+		var e *apierrors.ActivateAwsIntegrationCloudAccountsResponseResponseBody
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+		var e *apierrors.ActivateAwsIntegrationCloudAccountsResponse500ResponseBody
 		if errors.As(err, &e) {
 			// handle error
 			log.Fatal(e.Error())
