@@ -19,7 +19,7 @@ func (o *PauseWebsiteMonitoringRequest) GetEntityID() string {
 
 type PauseWebsiteMonitoringResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The request has succeeded and a new resource has been created as a result.
+	// The request has succeeded.
 	EntityID *components.EntityID
 }
 

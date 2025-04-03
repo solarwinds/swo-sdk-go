@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
-  docChecksum: 1f0b367c9aad2e9fbc02665358953689
+  docChecksum: a7eee144ab2d68c565aadfaed5520234
   docVersion: 1.0.5
-  speakeasyVersion: 1.527.2
-  generationVersion: 2.564.8
-  releaseVersion: 0.1.4
-  configChecksum: 04ee0d17fb33a1da4c2d75fa813e7346
+  speakeasyVersion: 1.528.1
+  generationVersion: 2.565.1
+  releaseVersion: 0.1.5
+  configChecksum: 7278cda455bfcd9c6c7568b8adce7b5b
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
