@@ -175,6 +175,16 @@ func main() {
 * [UpdateAwsIntegration](docs/sdks/cloudaccounts/README.md#updateawsintegration) - Update AWS Integration
 * [ValidateMgmtAccountOnboarding](docs/sdks/cloudaccounts/README.md#validatemgmtaccountonboarding) - Validate Management Account Onboarding
 
+### [Dbo](docs/sdks/dbo/README.md)
+
+* [ObserveDatabase](docs/sdks/dbo/README.md#observedatabase) - Add database observability to a database
+* [GetPublicKey](docs/sdks/dbo/README.md#getpublickey) - Get public key for encrypting database credentials locally
+* [UpdateDatabase](docs/sdks/dbo/README.md#updatedatabase) - Update an observed database
+* [DeleteDatabase](docs/sdks/dbo/README.md#deletedatabase) - Delete an observed database
+* [GetPluginConfig](docs/sdks/dbo/README.md#getpluginconfig) - Get configuration of plugins observing a database
+* [GetPlugins](docs/sdks/dbo/README.md#getplugins) - Get status of plugins observing a database
+* [PluginOperation](docs/sdks/dbo/README.md#pluginoperation) - Apply an operation on a database observability plugin
+
 ### [Dem](docs/sdks/dem/README.md)
 
 * [GetDemSettings](docs/sdks/dem/README.md#getdemsettings) - Get DEM settings
