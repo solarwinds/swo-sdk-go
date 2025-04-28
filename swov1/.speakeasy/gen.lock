@@ -1,20 +1,20 @@
 lockVersion: 2.0.0
 id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
-  docChecksum: a7eee144ab2d68c565aadfaed5520234
-  docVersion: 1.0.5
-  speakeasyVersion: 1.528.1
-  generationVersion: 2.565.1
-  releaseVersion: 0.1.5
-  configChecksum: 7278cda455bfcd9c6c7568b8adce7b5b
+  docChecksum: 461bb631c027e551ee770e129f0a2fba
+  docVersion: 1.0.6
+  speakeasyVersion: 1.540.0
+  generationVersion: 2.593.3
+  releaseVersion: 0.1.6
+  configChecksum: 663aa3add1007c9b25e3d90dc8ff5f65
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
 features:
   go:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.11
-    core: 3.7.2
+    constsAndDefaults: 0.1.12
+    core: 3.7.4
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -41,19 +41,26 @@ generatedFiles:
   - /models/apierrors/createorgstructure.go
   - /models/apierrors/createwebsite.go
   - /models/apierrors/deletecompositemetric.go
+  - /models/apierrors/deletedatabase.go
   - /models/apierrors/deletewebsite.go
   - /models/apierrors/getentitybyid.go
   - /models/apierrors/getmetricbyname.go
+  - /models/apierrors/getpluginconfig.go
+  - /models/apierrors/getplugins.go
+  - /models/apierrors/getpublickey.go
   - /models/apierrors/getwebsite.go
   - /models/apierrors/listentities.go
   - /models/apierrors/listmetricattributes.go
   - /models/apierrors/listmetricattributevalues.go
   - /models/apierrors/listmetricmeasurements.go
   - /models/apierrors/listmetricsforentitytype.go
+  - /models/apierrors/observedatabase.go
   - /models/apierrors/pausewebsitemonitoring.go
+  - /models/apierrors/pluginoperation.go
   - /models/apierrors/unpausewebsitemonitoring.go
   - /models/apierrors/updateawsintegration.go
   - /models/apierrors/updatecompositemetric.go
+  - /models/apierrors/updatedatabase.go
   - /models/apierrors/updateentitybyid.go
   - /models/apierrors/updatewebsite.go
   - /models/apierrors/validatemgmtaccountonboarding.go
@@ -68,6 +75,14 @@ generatedFiles:
   - /models/components/compositemetric.go
   - /models/components/createtokenrequest.go
   - /models/components/customheaders.go
+  - /models/components/databaseauthmethod.go
+  - /models/components/databaseconnectionoptions.go
+  - /models/components/databasecredentialspublickeyresponse.go
+  - /models/components/databasepluginconfig.go
+  - /models/components/databasepluginconfigresponse.go
+  - /models/components/databasepluginstatus.go
+  - /models/components/databasepluginstatusresponse.go
+  - /models/components/databasetype.go
   - /models/components/entity.go
   - /models/components/entityid.go
   - /models/components/entityinput.go
@@ -80,6 +95,7 @@ generatedFiles:
   - /models/components/metricsmeasurement.go
   - /models/components/mgmtaccountonboardingrequest.go
   - /models/components/mgmtaccountonboardingresponse.go
+  - /models/components/observedatabaserequest.go
   - /models/components/organisationalunit.go
   - /models/components/outageconfiguration.go
   - /models/components/probelocationtype.go
@@ -91,6 +107,7 @@ generatedFiles:
   - /models/components/updateawsintegrationrequest.go
   - /models/components/updateawsintegrationresponse.go
   - /models/components/updatecompositemetric.go
+  - /models/components/updatedatabaserequest.go
   - /models/components/website.go
   - /models/components/websiteprotocol.go
   - /models/operations/activateawsintegration.go
@@ -100,10 +117,14 @@ generatedFiles:
   - /models/operations/createtoken.go
   - /models/operations/createwebsite.go
   - /models/operations/deletecompositemetric.go
+  - /models/operations/deletedatabase.go
   - /models/operations/deletewebsite.go
   - /models/operations/getdemsettings.go
   - /models/operations/getentitybyid.go
   - /models/operations/getmetricbyname.go
+  - /models/operations/getpluginconfig.go
+  - /models/operations/getplugins.go
+  - /models/operations/getpublickey.go
   - /models/operations/getwebsite.go
   - /models/operations/listentities.go
   - /models/operations/listentitytypes.go
@@ -113,18 +134,22 @@ generatedFiles:
   - /models/operations/listmetricmeasurements.go
   - /models/operations/listmetrics.go
   - /models/operations/listmetricsforentitytype.go
+  - /models/operations/observedatabase.go
   - /models/operations/pausewebsitemonitoring.go
+  - /models/operations/pluginoperation.go
   - /models/operations/searchlogs.go
   - /models/operations/setdemsettings.go
   - /models/operations/unpausewebsitemonitoring.go
   - /models/operations/updateawsintegration.go
   - /models/operations/updatecompositemetric.go
+  - /models/operations/updatedatabase.go
   - /models/operations/updateentitybyid.go
   - /models/operations/updatewebsite.go
   - /models/operations/validatemgmtaccountonboarding.go
   - USAGE.md
   - changeevents.go
   - cloudaccounts.go
+  - dbo.go
   - dem.go
   - docs/models/apierrors/activateawsintegrationcloudaccountsresponse500responsebody.md
   - docs/models/apierrors/activateawsintegrationcloudaccountsresponsebody.md
@@ -139,11 +164,19 @@ generatedFiles:
   - docs/models/apierrors/createwebsiteresponsebody.md
   - docs/models/apierrors/deletecompositemetricmetricsresponsebody.md
   - docs/models/apierrors/deletecompositemetricresponsebody.md
+  - docs/models/apierrors/deletedatabasedboresponsebody.md
+  - docs/models/apierrors/deletedatabaseresponsebody.md
   - docs/models/apierrors/deletewebsiteresponsebody.md
   - docs/models/apierrors/getentitybyidentitiesresponsebody.md
   - docs/models/apierrors/getentitybyidentitiesresponseresponsebody.md
   - docs/models/apierrors/getentitybyidresponsebody.md
   - docs/models/apierrors/getmetricbynameresponsebody.md
+  - docs/models/apierrors/getpluginconfigdboresponsebody.md
+  - docs/models/apierrors/getpluginconfigresponsebody.md
+  - docs/models/apierrors/getpluginsdboresponsebody.md
+  - docs/models/apierrors/getpluginsresponsebody.md
+  - docs/models/apierrors/getpublickeydboresponsebody.md
+  - docs/models/apierrors/getpublickeyresponsebody.md
   - docs/models/apierrors/getwebsiteresponsebody.md
   - docs/models/apierrors/listentitiesentitiesresponsebody.md
   - docs/models/apierrors/listentitiesresponsebody.md
@@ -151,7 +184,10 @@ generatedFiles:
   - docs/models/apierrors/listmetricattributevaluesresponsebody.md
   - docs/models/apierrors/listmetricmeasurementsresponsebody.md
   - docs/models/apierrors/listmetricsforentitytyperesponsebody.md
+  - docs/models/apierrors/observedatabaseresponsebody.md
   - docs/models/apierrors/pausewebsitemonitoringresponsebody.md
+  - docs/models/apierrors/pluginoperationdboresponsebody.md
+  - docs/models/apierrors/pluginoperationresponsebody.md
   - docs/models/apierrors/unpausewebsitemonitoringresponsebody.md
   - docs/models/apierrors/updateawsintegrationcloudaccountsresponsebody.md
   - docs/models/apierrors/updateawsintegrationcloudaccountsresponseresponsebody.md
@@ -159,6 +195,8 @@ generatedFiles:
   - docs/models/apierrors/updatecompositemetricmetricsresponsebody.md
   - docs/models/apierrors/updatecompositemetricmetricsresponseresponsebody.md
   - docs/models/apierrors/updatecompositemetricresponsebody.md
+  - docs/models/apierrors/updatedatabasedboresponsebody.md
+  - docs/models/apierrors/updatedatabaseresponsebody.md
   - docs/models/apierrors/updateentitybyidentitiesresponsebody.md
   - docs/models/apierrors/updateentitybyidentitiesresponseresponsebody.md
   - docs/models/apierrors/updateentitybyidresponsebody.md
@@ -169,6 +207,7 @@ generatedFiles:
   - docs/models/components/activateawsintegrationrequest.md
   - docs/models/components/availabilitychecksettings.md
   - docs/models/components/awsorganisationalunitrequest.md
+  - docs/models/components/capturemethod.md
   - docs/models/components/category.md
   - docs/models/components/changeevent.md
   - docs/models/components/checkforstring.md
@@ -180,6 +219,15 @@ generatedFiles:
   - docs/models/components/compositemetric.md
   - docs/models/components/createtokenrequest.md
   - docs/models/components/customheaders.md
+  - docs/models/components/databaseauthmethod.md
+  - docs/models/components/databaseconnectionoptions.md
+  - docs/models/components/databasecredentialspublickeyresponse.md
+  - docs/models/components/databasepluginconfig.md
+  - docs/models/components/databasepluginconfigresponse.md
+  - docs/models/components/databasepluginstatus.md
+  - docs/models/components/databasepluginstatusresponse.md
+  - docs/models/components/databasetype.md
+  - docs/models/components/dbconnoptions.md
   - docs/models/components/entity.md
   - docs/models/components/entityid.md
   - docs/models/components/entityinput.md
@@ -195,6 +243,7 @@ generatedFiles:
   - docs/models/components/metricsmeasurement.md
   - docs/models/components/mgmtaccountonboardingrequest.md
   - docs/models/components/mgmtaccountonboardingresponse.md
+  - docs/models/components/observedatabaserequest.md
   - docs/models/components/organisationalunit.md
   - docs/models/components/outageconfiguration.md
   - docs/models/components/probelocationtype.md
@@ -203,6 +252,8 @@ generatedFiles:
   - docs/models/components/rum.md
   - docs/models/components/security.md
   - docs/models/components/ssl.md
+  - docs/models/components/sslmode.md
+  - docs/models/components/ssloptions.md
   - docs/models/components/tag.md
   - docs/models/components/tags.md
   - docs/models/components/testfrom.md
@@ -210,6 +261,9 @@ generatedFiles:
   - docs/models/components/updateawsintegrationrequest.md
   - docs/models/components/updateawsintegrationresponse.md
   - docs/models/components/updatecompositemetric.md
+  - docs/models/components/updatedatabaserequest.md
+  - docs/models/components/updatedatabaserequestsslmode.md
+  - docs/models/components/updatedatabaserequestssloptions.md
   - docs/models/components/website.md
   - docs/models/components/websitefailingtestlocations.md
   - docs/models/components/websiteoutageconfiguration.md
@@ -226,6 +280,8 @@ generatedFiles:
   - docs/models/operations/createwebsiteresponse.md
   - docs/models/operations/deletecompositemetricrequest.md
   - docs/models/operations/deletecompositemetricresponse.md
+  - docs/models/operations/deletedatabaserequest.md
+  - docs/models/operations/deletedatabaseresponse.md
   - docs/models/operations/deletewebsiterequest.md
   - docs/models/operations/deletewebsiteresponse.md
   - docs/models/operations/failingtestlocations.md
@@ -234,6 +290,11 @@ generatedFiles:
   - docs/models/operations/getentitybyidresponse.md
   - docs/models/operations/getmetricbynamerequest.md
   - docs/models/operations/getmetricbynameresponse.md
+  - docs/models/operations/getpluginconfigrequest.md
+  - docs/models/operations/getpluginconfigresponse.md
+  - docs/models/operations/getpluginsrequest.md
+  - docs/models/operations/getpluginsresponse.md
+  - docs/models/operations/getpublickeyresponse.md
   - docs/models/operations/getwebsiterequest.md
   - docs/models/operations/getwebsiteresponse.md
   - docs/models/operations/getwebsiteresponsebody.md
@@ -260,10 +321,14 @@ generatedFiles:
   - docs/models/operations/listmetricsrequest.md
   - docs/models/operations/listmetricsresponse.md
   - docs/models/operations/listmetricsresponsebody.md
+  - docs/models/operations/observedatabaseresponse.md
+  - docs/models/operations/observedatabaseresponsebody.md
   - docs/models/operations/option.md
   - docs/models/operations/outageconfiguration.md
   - docs/models/operations/pausewebsitemonitoringrequest.md
   - docs/models/operations/pausewebsitemonitoringresponse.md
+  - docs/models/operations/pluginoperationrequest.md
+  - docs/models/operations/pluginoperationresponse.md
   - docs/models/operations/rum.md
   - docs/models/operations/searchlogsrequest.md
   - docs/models/operations/searchlogsresponse.md
@@ -276,6 +341,8 @@ generatedFiles:
   - docs/models/operations/updateawsintegrationresponse.md
   - docs/models/operations/updatecompositemetricrequest.md
   - docs/models/operations/updatecompositemetricresponse.md
+  - docs/models/operations/updatedatabaserequest.md
+  - docs/models/operations/updatedatabaseresponse.md
   - docs/models/operations/updateentitybyidrequest.md
   - docs/models/operations/updateentitybyidresponse.md
   - docs/models/operations/updatewebsiterequest.md
@@ -284,6 +351,7 @@ generatedFiles:
   - docs/models/operations/validatemgmtaccountonboardingresponse.md
   - docs/sdks/changeevents/README.md
   - docs/sdks/cloudaccounts/README.md
+  - docs/sdks/dbo/README.md
   - docs/sdks/dem/README.md
   - docs/sdks/entities/README.md
   - docs/sdks/logs/README.md
@@ -326,348 +394,6 @@ examples:
       responses:
         "200":
           application/json: {"id": 119883}
-  createWebsiteMonitor:
-    speakeasy-default-create-website-monitor:
-      requestBody:
-        application/json: {"name": "solarwinds.com", "url": "https://www.solarwinds.com", "availabilityCheckSettings": {"checkForString": {"operator": "CONTAINS", "value": "string"}, "testIntervalInSeconds": 14400, "protocols": ["HTTP", "HTTPS"], "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}"}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "spa": true}}
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-  getWebsiteMonitor:
-    speakeasy-default-get-website-monitor:
-      parameters:
-        path:
-          entityId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720", "type": "Website", "status": "up", "name": "solarwinds.com", "url": "https://www.solarwinds.com", "availabilityCheckSettings": {"checkForString": {"operator": "CONTAINS", "value": "string"}, "testIntervalInSeconds": 14400, "protocols": ["HTTP", "HTTPS"], "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}"}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "snippet": "string", "spa": true}, "lastOutageStartTime": "2025-01-15T14:31:19.735Z", "lastOutageEndTime": "2025-01-15T14:31:19.735Z", "lastTestTime": "2025-01-15T14:31:19.735Z", "lastErrorTime": "2025-01-15T14:31:19.735Z", "lastResponseTime": 376, "nextOnDemandAvailabilityTime": 0}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-  updateWebsiteMonitor:
-    speakeasy-default-update-website-monitor:
-      parameters:
-        path:
-          entityId: "<id>"
-      requestBody:
-        application/json: {"name": "solarwinds.com", "url": "https://www.solarwinds.com", "availabilityCheckSettings": {"checkForString": {"operator": "CONTAINS", "value": "string"}, "testIntervalInSeconds": 14400, "protocols": ["HTTP", "HTTPS"], "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}"}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "spa": true}}
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-  deleteWebsiteMonitor:
-    speakeasy-default-delete-website-monitor:
-      parameters:
-        path:
-          entityId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-  pauseWebsiteMonitor:
-    speakeasy-default-pause-website-monitor:
-      parameters:
-        path:
-          entityId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-  unpauseWebsiteMonitor:
-    speakeasy-default-unpause-website-monitor:
-      parameters:
-        path:
-          entityId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-  listEntities:
-    speakeasy-default-list-entities:
-      parameters:
-        query:
-          type: "<value>"
-      responses:
-        "200":
-          application/json: {"entities": [{"id": "e-1234567890", "type": "SyslogHost", "name": "syslog-host-1", "displayName": "SyslogTest", "createdTime": "2024-11-25T16:38:24Z", "updatedTime": "2024-12-01T16:38:24Z", "lastSeenTime": "2024-11-25T16:38:24Z", "inMaintenance": false, "healthscore": {"score": 100, "category": "good"}, "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}, "attributes": {"protocols": ["HTTP"], "features": ["rum"], "isAvailabilityCheckPaused": false, "extensions": {"has_extension": true}}}], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "401":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "500":
-          application/json: {"code": "InternalServerError", "message": "<value>", "": {}}
-        "501":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-  getEntityById:
-    speakeasy-default-get-entity-by-id:
-      parameters:
-        path:
-          id: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "e-1234567890", "type": "SyslogHost", "name": "syslog-host-1", "displayName": "SyslogTest", "createdTime": "2024-11-25T16:38:24Z", "updatedTime": "2024-12-01T16:38:24Z", "lastSeenTime": "2024-11-25T16:38:24Z", "inMaintenance": false, "healthscore": {"score": 100, "category": "good"}, "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}, "attributes": {"protocols": ["HTTP"], "features": ["rum"], "isAvailabilityCheckPaused": false, "extensions": {"has_extension": true}}}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "401":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "500":
-          application/json: {"code": "InternalServerError", "message": "<value>", "": {}}
-        "501":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-  updateEntityById:
-    speakeasy-default-update-entity-by-id:
-      parameters:
-        path:
-          id: "<id>"
-      requestBody:
-        application/json: {"displayName": "SyslogTest", "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}}
-      responses:
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "401":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "500":
-          application/json: {"code": "InternalServerError", "message": "<value>", "": {}}
-        "501":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-  searchLogs:
-    speakeasy-default-search-logs:
-      parameters:
-        query:
-          direction: "backward"
-      responses:
-        "200":
-          application/json: {"logs": [{"id": "1793698955374546944", "time": "2024-01-01T00:00:00Z", "message": "This is a log message", "hostname": "webserver.example.com", "severity": "INFO", "program": "httpd"}], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
-  listLogArchives:
-    speakeasy-default-list-log-archives:
-      parameters:
-        query:
-          startTime: "<value>"
-          endTime: "<value>"
-      responses:
-        "200":
-          application/json: {"logArchives": [{"id": "logs/138723/dt=2024-01-23/2024-01-23-08.json.gz", "name": "2024-01-23-08.json.gz", "downloadUrl": "https://ssp-log-archives.s3.amazonaws.com/logs/138723/dt%3D2024-01-23/2024-01-23-08.json.gz?X-Amz-Security-Token=IQ...", "archivedTimestamp": "1706020985", "archiveSize": 817226354}, {"id": "logs/138723/dt=2024-01-23/2024-01-23-08.json.gz", "name": "2024-01-23-08.json.gz", "downloadUrl": "https://ssp-log-archives.s3.amazonaws.com/logs/138723/dt%3D2024-01-23/2024-01-23-08.json.gz?X-Amz-Security-Token=IQ...", "archivedTimestamp": "1706020985", "archiveSize": 817226354}, {"id": "logs/138723/dt=2024-01-23/2024-01-23-08.json.gz", "name": "2024-01-23-08.json.gz", "downloadUrl": "https://ssp-log-archives.s3.amazonaws.com/logs/138723/dt%3D2024-01-23/2024-01-23-08.json.gz?X-Amz-Security-Token=IQ...", "archivedTimestamp": "1706020985", "archiveSize": 817226354}], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
-  listEntityTypes:
-    speakeasy-default-list-entity-types:
-      responses:
-        "200":
-          application/json: {"types": ["Service", "ServiceInstance", "KubernetesCluster"]}
-  listMetricsForEntityType:
-    speakeasy-default-list-metrics-for-entity-type:
-      parameters:
-        path:
-          type: "<value>"
-        query: {}
-      responses:
-        "200":
-          application/json: {"type": "KubernetesCluster", "metrics": [{"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "units": "bytes/s", "formula": "rate(system.disk.io[5m]", "lastReportedTime": "2024-11-25T16:38:24Z"}]}
-        "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-  listMetrics:
-    speakeasy-default-list-metrics:
-      responses:
-        "200":
-          application/json: {"metricsInfo": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
-  createCompositeMetric:
-    speakeasy-default-create-composite-metric:
-      requestBody:
-        application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
-      responses:
-        "201":
-          application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "403":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "500": {}
-        "501":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-  getMetricByName:
-    speakeasy-default-get-metric-by-name:
-      parameters:
-        path:
-          name: "<value>"
-      responses:
-        "200":
-          application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "units": "bytes/s", "formula": "rate(system.disk.io[5m]", "lastReportedTime": "2024-11-25T16:38:24Z"}
-        "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-  listMetricAttributes:
-    speakeasy-default-list-metric-attributes:
-      parameters:
-        path:
-          name: "<value>"
-        query: {}
-      responses:
-        "200":
-          application/json: {"names": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
-        "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-  listMetricAttributeValues:
-    speakeasy-default-list-metric-attribute-values:
-      parameters:
-        path:
-          name: "<value>"
-          attributeName: "<value>"
-        query: {}
-      responses:
-        "200":
-          application/json: {"name": "<value>", "values": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
-        "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-  listMetricMeasurements:
-    speakeasy-default-list-metric-measurements:
-      parameters:
-        path:
-          name: "<value>"
-        query:
-          seriesType: "SCALAR"
-      responses:
-        "200":
-          application/json: {"groupings": [{"attributes": [{"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}], "measurements": []}, {"attributes": [{"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}], "measurements": [{"time": "<value>", "value": 730756}, {"time": "<value>", "value": 115821}, {"time": "<value>", "value": 25026}]}, {"attributes": [], "measurements": [{"time": "<value>", "value": 201967}]}], "bucketSizeInSeconds": 45557, "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
-        "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-  createToken:
-    speakeasy-default-create-token:
-      requestBody:
-        application/json: {"name": "<value>", "tags": {"server": "<value>", "tag_without_value": "<value>"}, "type": "ingestion"}
-      responses:
-        "200":
-          application/json: {"token": "<value>"}
-  updateUserMetric:
-    speakeasy-default-update-user-metric:
-      parameters:
-        path:
-          name: "<value>"
-      requestBody:
-        application/json: {"displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
-      responses:
-        "403":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "404": {}
-        "500": {}
-  deleteCompositeMetric:
-    speakeasy-default-delete-composite-metric:
-      parameters:
-        path:
-          name: "<value>"
-      responses:
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "403":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-  getDemSettings:
-    speakeasy-default-get-dem-settings:
-      responses:
-        "200":
-          application/json: {"failingTestLocations": "all", "consecutiveForDown": 2}
-  setDemSettings:
-    speakeasy-default-set-dem-settings:
-      requestBody:
-        application/json: {"failingTestLocations": "all", "consecutiveForDown": 2}
-  createWebsite:
-    speakeasy-default-create-website:
-      requestBody:
-        application/json: {"name": "solarwinds.com", "url": "https://www.solarwinds.com", "availabilityCheckSettings": {"checkForString": {"operator": "CONTAINS", "value": "string"}, "testIntervalInSeconds": 14400, "protocols": ["HTTP", "HTTPS"], "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}", "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "spa": true}}
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "201":
-          application/json: {"id": "e-1448474379026206720"}
-  getWebsite:
-    speakeasy-default-get-website:
-      parameters:
-        path:
-          entityId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720", "type": "Website", "status": "up", "name": "solarwinds.com", "url": "https://www.solarwinds.com", "availabilityCheckSettings": {"checkForString": {"operator": "CONTAINS", "value": "string"}, "testIntervalInSeconds": 14400, "protocols": ["HTTP", "HTTPS"], "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}", "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "snippet": "string", "spa": true}, "lastOutageStartTime": "2025-01-15T14:31:19.735Z", "lastOutageEndTime": "2025-01-15T14:31:19.735Z", "lastTestTime": "2025-01-15T14:31:19.735Z", "lastErrorTime": "2025-01-15T14:31:19.735Z", "lastResponseTime": 376, "nextOnDemandAvailabilityTime": 0}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-  updateWebsite:
-    speakeasy-default-update-website:
-      parameters:
-        path:
-          entityId: "<id>"
-      requestBody:
-        application/json: {"name": "solarwinds.com", "url": "https://www.solarwinds.com", "availabilityCheckSettings": {"checkForString": {"operator": "CONTAINS", "value": "string"}, "testIntervalInSeconds": 14400, "protocols": ["HTTP", "HTTPS"], "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}", "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "spa": true}}
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "201":
-          application/json: {"id": "e-1448474379026206720"}
-  deleteWebsite:
-    speakeasy-default-delete-website:
-      parameters:
-        path:
-          entityId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "201":
-          application/json: {"id": "e-1448474379026206720"}
-  pauseWebsiteMonitoring:
-    speakeasy-default-pause-website-monitoring:
-      parameters:
-        path:
-          entityId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "201":
-          application/json: {"id": "e-1448474379026206720"}
-  unpauseWebsiteMonitoring:
-    speakeasy-default-unpause-website-monitoring:
-      parameters:
-        path:
-          entityId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "201":
-          application/json: {"id": "e-1448474379026206720"}
-  updateCompositeMetric:
-    speakeasy-default-update-composite-metric:
-      parameters:
-        path:
-          name: "<value>"
-      requestBody:
-        application/json: {"displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
-      responses:
-        "403":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "500": {}
-        "200":
-          application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "401":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-        "501":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
   activateAwsIntegration:
     speakeasy-default-activate-aws-integration:
       requestBody:
@@ -721,5 +447,317 @@ examples:
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
         "500":
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
-examplesVersion: 1.0.0
+  observeDatabase:
+    speakeasy-default-observe-database:
+      requestBody:
+        application/json: {"name": "<value>", "agentId": "<id>", "dbType": "mongo", "authMethod": "entraclientsecret", "captureMethod": null, "configOptions": [{"key": "<key>", "value": "<value>"}], "dbConnOptions": {"host": "dependent-bar.com", "port": "<value>", "encryptedCredentials": "", "user": "", "sslEnabled": false, "sslOptions": {"sslMode": "require", "sslCAPath": "", "sslKeyPath": "", "sslCertPath": ""}, "cloudRegion": ""}, "tags": []}
+      responses:
+        "201":
+          application/json: {"id": "<id>"}
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  getPublicKey:
+    speakeasy-default-get-public-key:
+      responses:
+        "200":
+          application/json: {"publicKey": "<value>"}
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  updateDatabase:
+    speakeasy-default-update-database:
+      parameters:
+        path:
+          entityId: "<id>"
+      requestBody:
+        application/json: {"name": ""}
+      responses:
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  deleteDatabase:
+    speakeasy-default-delete-database:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  getPluginConfig:
+    speakeasy-default-get-plugin-config:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "200":
+          application/json: {"pluginConfig": [{"pluginName": "<value>", "config": [{"key": "<key>", "value": "<value>"}]}, {"pluginName": "<value>", "config": []}, {"pluginName": "<value>", "config": [{"key": "<key>", "value": "<value>"}]}]}
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  getPlugins:
+    speakeasy-default-get-plugins:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "200":
+          application/json: {"plugins": [{"pluginName": "<value>", "status": "<value>"}, {"pluginName": "<value>", "status": "<value>"}]}
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  pluginOperation:
+    speakeasy-default-plugin-operation:
+      parameters:
+        path:
+          entityId: "<id>"
+          operation: "<value>"
+      responses:
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  getDemSettings:
+    speakeasy-default-get-dem-settings:
+      responses:
+        "200":
+          application/json: {"failingTestLocations": "all", "consecutiveForDown": 2}
+  setDemSettings:
+    speakeasy-default-set-dem-settings:
+      requestBody:
+        application/json: {"failingTestLocations": "all", "consecutiveForDown": 2}
+  createWebsite:
+    speakeasy-default-create-website:
+      requestBody:
+        application/json: {"name": "solarwinds.com", "url": "https://www.solarwinds.com", "availabilityCheckSettings": {"checkForString": {"operator": "CONTAINS", "value": "string"}, "testIntervalInSeconds": 14400, "protocols": ["HTTP", "HTTPS"], "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}", "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "spa": true}}
+      responses:
+        "201":
+          application/json: {"id": "e-1448474379026206720"}
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  getWebsite:
+    speakeasy-default-get-website:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720", "type": "Website", "status": "up", "name": "solarwinds.com", "url": "https://www.solarwinds.com", "availabilityCheckSettings": {"checkForString": {"operator": "CONTAINS", "value": "string"}, "testIntervalInSeconds": 14400, "protocols": ["HTTP", "HTTPS"], "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}", "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "snippet": "string", "spa": true}, "lastOutageStartTime": "2025-01-15T14:31:19.735Z", "lastOutageEndTime": "2025-01-15T14:31:19.735Z", "lastTestTime": "2025-01-15T14:31:19.735Z", "lastErrorTime": "2025-01-15T14:31:19.735Z", "lastResponseTime": 376, "nextOnDemandAvailabilityTime": 0}
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  updateWebsite:
+    speakeasy-default-update-website:
+      parameters:
+        path:
+          entityId: "<id>"
+      requestBody:
+        application/json: {"name": "solarwinds.com", "url": "https://www.solarwinds.com", "availabilityCheckSettings": {"checkForString": {"operator": "CONTAINS", "value": "string"}, "testIntervalInSeconds": 14400, "protocols": ["HTTP", "HTTPS"], "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}", "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "spa": true}}
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720"}
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  deleteWebsite:
+    speakeasy-default-delete-website:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720"}
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  pauseWebsiteMonitoring:
+    speakeasy-default-pause-website-monitoring:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720"}
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  unpauseWebsiteMonitoring:
+    speakeasy-default-unpause-website-monitoring:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720"}
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  listEntities:
+    speakeasy-default-list-entities:
+      parameters:
+        query:
+          type: "<value>"
+      responses:
+        "200":
+          application/json: {"entities": [{"id": "e-1234567890", "type": "SyslogHost", "name": "syslog-host-1", "displayName": "SyslogTest", "createdTime": "2024-11-25T16:38:24Z", "updatedTime": "2024-12-01T16:38:24Z", "lastSeenTime": "2024-11-25T16:38:24Z", "inMaintenance": false, "healthscore": {"score": 100, "category": "good"}, "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}, "attributes": {"protocols": ["HTTP"], "features": ["rum"], "isAvailabilityCheckPaused": false, "extensions": {"has_extension": true}}}], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "401":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  getEntityById:
+    speakeasy-default-get-entity-by-id:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "e-1234567890", "type": "SyslogHost", "name": "syslog-host-1", "displayName": "SyslogTest", "createdTime": "2024-11-25T16:38:24Z", "updatedTime": "2024-12-01T16:38:24Z", "lastSeenTime": "2024-11-25T16:38:24Z", "inMaintenance": false, "healthscore": {"score": 100, "category": "good"}, "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}, "attributes": {"protocols": ["HTTP"], "features": ["rum"], "isAvailabilityCheckPaused": false, "extensions": {"has_extension": true}}}
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "401":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  updateEntityById:
+    speakeasy-default-update-entity-by-id:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"displayName": "SyslogTest", "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}}
+      responses:
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "401":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  searchLogs:
+    speakeasy-default-search-logs:
+      parameters:
+        query:
+          direction: "backward"
+      responses:
+        "200":
+          application/json: {"logs": [{"id": "1793698955374546944", "time": "2024-01-01T00:00:00Z", "message": "This is a log message", "hostname": "webserver.example.com", "severity": "INFO", "program": "httpd"}], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+  listLogArchives:
+    speakeasy-default-list-log-archives:
+      parameters:
+        query:
+          startTime: "<value>"
+          endTime: "<value>"
+      responses:
+        "200":
+          application/json: {"logArchives": [{"id": "logs/138723/dt=2024-01-23/2024-01-23-08.json.gz", "name": "2024-01-23-08.json.gz", "downloadUrl": "https://ssp-log-archives.s3.amazonaws.com/logs/138723/dt%3D2024-01-23/2024-01-23-08.json.gz?X-Amz-Security-Token=IQ...", "archivedTimestamp": "1706020985", "archiveSize": 817226354}, {"id": "logs/138723/dt=2024-01-23/2024-01-23-08.json.gz", "name": "2024-01-23-08.json.gz", "downloadUrl": "https://ssp-log-archives.s3.amazonaws.com/logs/138723/dt%3D2024-01-23/2024-01-23-08.json.gz?X-Amz-Security-Token=IQ...", "archivedTimestamp": "1706020985", "archiveSize": 817226354}, {"id": "logs/138723/dt=2024-01-23/2024-01-23-08.json.gz", "name": "2024-01-23-08.json.gz", "downloadUrl": "https://ssp-log-archives.s3.amazonaws.com/logs/138723/dt%3D2024-01-23/2024-01-23-08.json.gz?X-Amz-Security-Token=IQ...", "archivedTimestamp": "1706020985", "archiveSize": 817226354}], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+  listEntityTypes:
+    speakeasy-default-list-entity-types:
+      responses:
+        "200":
+          application/json: {"types": ["Service", "ServiceInstance", "KubernetesCluster"]}
+  listMetricsForEntityType:
+    speakeasy-default-list-metrics-for-entity-type:
+      parameters:
+        path:
+          type: "<value>"
+        query: {}
+      responses:
+        "200":
+          application/json: {"type": "KubernetesCluster", "metrics": [{"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "units": "bytes/s", "formula": "rate(system.disk.io[5m]", "lastReportedTime": "2024-11-25T16:38:24Z"}]}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  listMetrics:
+    speakeasy-default-list-metrics:
+      responses:
+        "200":
+          application/json: {"metricsInfo": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+  createCompositeMetric:
+    speakeasy-default-create-composite-metric:
+      requestBody:
+        application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
+      responses:
+        "201":
+          application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "403":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  updateCompositeMetric:
+    speakeasy-default-update-composite-metric:
+      parameters:
+        path:
+          name: "<value>"
+      requestBody:
+        application/json: {"displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
+      responses:
+        "200":
+          application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
+        "400":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "403":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  deleteCompositeMetric:
+    speakeasy-default-delete-composite-metric:
+      parameters:
+        path:
+          name: "<value>"
+      responses:
+        "403":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  getMetricByName:
+    speakeasy-default-get-metric-by-name:
+      parameters:
+        path:
+          name: "<value>"
+      responses:
+        "200":
+          application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "units": "bytes/s", "formula": "rate(system.disk.io[5m]", "lastReportedTime": "2024-11-25T16:38:24Z"}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  listMetricAttributes:
+    speakeasy-default-list-metric-attributes:
+      parameters:
+        path:
+          name: "<value>"
+        query: {}
+      responses:
+        "200":
+          application/json: {"names": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  listMetricAttributeValues:
+    speakeasy-default-list-metric-attribute-values:
+      parameters:
+        path:
+          name: "<value>"
+          attributeName: "<value>"
+        query: {}
+      responses:
+        "200":
+          application/json: {"name": "<value>", "values": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  listMetricMeasurements:
+    speakeasy-default-list-metric-measurements:
+      parameters:
+        path:
+          name: "<value>"
+        query:
+          seriesType: "SCALAR"
+      responses:
+        "200":
+          application/json: {"groupings": [{"attributes": [], "measurements": [{"time": "2025-07-08T21:51:20.598Z", "value": 7307.56}, {"time": "2023-05-07T22:33:23.333Z", "value": 250.26}, {"time": "2023-06-20T08:27:21.001Z", "value": 4929.43}]}, {"attributes": [], "measurements": []}], "bucketSizeInSeconds": 614937, "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+        "404":
+          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+  createToken:
+    speakeasy-default-create-token:
+      requestBody:
+        application/json: {"name": "<value>", "tags": {"server": "<value>", "tag_without_value": "<value>"}, "type": "ingestion"}
+      responses:
+        "200":
+          application/json: {"token": "<value>"}
+examplesVersion: 1.0.1
 generatedTests: {}
