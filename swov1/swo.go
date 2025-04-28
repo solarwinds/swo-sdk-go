@@ -74,6 +74,7 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 type Swo struct {
 	ChangeEvents  *ChangeEvents
 	CloudAccounts *CloudAccounts
+	Dbo           *Dbo
 	Dem           *Dem
 	Entities      *Entities
 	Logs          *Logs
@@ -170,10 +171,10 @@ func New(opts ...SDKOption) *Swo {
 	sdk := &Swo{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "1.0.5",
-			SDKVersion:        "0.1.5",
-			GenVersion:        "2.565.1",
-			UserAgent:         "speakeasy-sdk/go 0.1.5 2.565.1 1.0.5 github.com/solarwinds/swo-sdk-go/swov1",
+			OpenAPIDocVersion: "1.0.6",
+			SDKVersion:        "0.1.6",
+			GenVersion:        "2.593.3",
+			UserAgent:         "speakeasy-sdk/go 0.1.6 2.593.3 1.0.6 github.com/solarwinds/swo-sdk-go/swov1",
 			ServerDefaults: []map[string]string{
 				{
 					"region": "na-01",
@@ -208,6 +209,8 @@ func New(opts ...SDKOption) *Swo {
 	sdk.ChangeEvents = newChangeEvents(sdk.sdkConfiguration)
 
 	sdk.CloudAccounts = newCloudAccounts(sdk.sdkConfiguration)
+
+	sdk.Dbo = newDbo(sdk.sdkConfiguration)
 
 	sdk.Dem = newDem(sdk.sdkConfiguration)
 
