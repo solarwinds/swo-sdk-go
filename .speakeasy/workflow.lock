@@ -2,20 +2,19 @@ speakeasyVersion: 1.542.0
 sources:
     swov1:
         sourceNamespace: solar-winds-observability
-        sourceRevisionDigest: sha256:6d3f16bad2ff7ab7951fc1ffffe9ed7bc0c3de567a7415b65f39bb726f1b2025
+        sourceRevisionDigest: sha256:b72850c51c903909756996e54aac65cfb816d57e5de14de5d9d4d6bf9d8e8184
         sourceBlobDigest: sha256:b729a48869c690073f8bd3061a30e905e8dedd87451afa126de4b4fa34c2f2fe
         tags:
             - latest
-            - speakeasy-sdk-regen-1746058863
             - 1.0.7
 targets:
     swov1:
         source: swov1
         sourceNamespace: solar-winds-observability
-        sourceRevisionDigest: sha256:6d3f16bad2ff7ab7951fc1ffffe9ed7bc0c3de567a7415b65f39bb726f1b2025
+        sourceRevisionDigest: sha256:b72850c51c903909756996e54aac65cfb816d57e5de14de5d9d4d6bf9d8e8184
         sourceBlobDigest: sha256:b729a48869c690073f8bd3061a30e905e8dedd87451afa126de4b4fa34c2f2fe
         codeSamplesNamespace: solar-winds-observability-go-code-samples
-        codeSamplesRevisionDigest: sha256:36c20778a98caab745e7d9f80edcf5af7f4daf05940be2357b9886c618ead319
+        codeSamplesRevisionDigest: sha256:f957ca79b3992ffeb7b15135317d45bf65f90f76549b9aef462252b489a9e88d
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -38,3 +37,5 @@ workflow:
                 labelOverride:
                     fixedValue: Go (SDK)
                 blocking: false
+            testing:
+                enabled: true
