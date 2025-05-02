@@ -171,10 +171,10 @@ func New(opts ...SDKOption) *Swo {
 	sdk := &Swo{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "1.0.6",
-			SDKVersion:        "0.1.6",
-			GenVersion:        "2.593.3",
-			UserAgent:         "speakeasy-sdk/go 0.1.6 2.593.3 1.0.6 github.com/solarwinds/swo-sdk-go/swov1",
+			OpenAPIDocVersion: "1.0.7",
+			SDKVersion:        "0.1.7",
+			GenVersion:        "2.596.2",
+			UserAgent:         "speakeasy-sdk/go 0.1.7 2.596.2 1.0.7 github.com/solarwinds/swo-sdk-go/swov1",
 			ServerDefaults: []map[string]string{
 				{
 					"region": "na-01",
