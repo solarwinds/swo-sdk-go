@@ -6,7 +6,7 @@ management:
   speakeasyVersion: 1.542.0
   generationVersion: 2.596.2
   releaseVersion: 0.1.7
-  configChecksum: 2c814fd2047e6746fe4111ae33d9c7c2
+  configChecksum: bb7970b1d179580e309432137a8e057a
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
@@ -26,11 +26,13 @@ features:
     ignores: 2.81.1
     inputOutputModels: 2.83.0
     intellisenseMarkdownSupport: 0.1.0
+    mockServer: 0.1.0
     nullables: 0.1.1
     pagination: 2.82.4
     responseFormat: 0.1.2
     retries: 2.83.2
     sdkHooks: 0.1.0
+    tests: 0.15.1
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -394,6 +396,209 @@ generatedFiles:
   - models/operations/options.go
   - retry/config.go
   - swo.go
+  - tests/changeevents_test.go
+  - tests/cloudaccounts_test.go
+  - tests/dbo_test.go
+  - tests/dem_test.go
+  - tests/entities_test.go
+  - tests/files.go
+  - tests/logs_test.go
+  - tests/metadata_test.go
+  - tests/metrics_test.go
+  - tests/mockserver/.gitignore
+  - tests/mockserver/Dockerfile
+  - tests/mockserver/Makefile
+  - tests/mockserver/README.md
+  - tests/mockserver/go.mod
+  - tests/mockserver/go.sum
+  - tests/mockserver/internal/handler/assert/contenttype.go
+  - tests/mockserver/internal/handler/assert/header.go
+  - tests/mockserver/internal/handler/assert/parameter.go
+  - tests/mockserver/internal/handler/assert/pointer.go
+  - tests/mockserver/internal/handler/assert/security.go
+  - tests/mockserver/internal/handler/doc.go
+  - tests/mockserver/internal/handler/generated_handler.go
+  - tests/mockserver/internal/handler/generated_handlers.go
+  - tests/mockserver/internal/handler/pathdeletev1dbodatabasesentityid.go
+  - tests/mockserver/internal/handler/pathdeletev1demwebsitesentityid.go
+  - tests/mockserver/internal/handler/pathdeletev1metricsname.go
+  - tests/mockserver/internal/handler/pathgetv1cloudawscontroltowervalidateonboarding.go
+  - tests/mockserver/internal/handler/pathgetv1dbodatabasescredentialspublickey.go
+  - tests/mockserver/internal/handler/pathgetv1dbodatabasesentityidpluginconfig.go
+  - tests/mockserver/internal/handler/pathgetv1dbodatabasesentityidplugins.go
+  - tests/mockserver/internal/handler/pathgetv1demsettings.go
+  - tests/mockserver/internal/handler/pathgetv1demwebsitesentityid.go
+  - tests/mockserver/internal/handler/pathgetv1entities.go
+  - tests/mockserver/internal/handler/pathgetv1entitiesid.go
+  - tests/mockserver/internal/handler/pathgetv1logs.go
+  - tests/mockserver/internal/handler/pathgetv1logsarchives.go
+  - tests/mockserver/internal/handler/pathgetv1metadataentitiestypes.go
+  - tests/mockserver/internal/handler/pathgetv1metadataentitiestypestypemetrics.go
+  - tests/mockserver/internal/handler/pathgetv1metrics.go
+  - tests/mockserver/internal/handler/pathgetv1metricsname.go
+  - tests/mockserver/internal/handler/pathgetv1metricsnameattributes.go
+  - tests/mockserver/internal/handler/pathgetv1metricsnameattributesattributename.go
+  - tests/mockserver/internal/handler/pathgetv1metricsnamemeasurements.go
+  - tests/mockserver/internal/handler/pathpatchv1dbodatabasesentityid.go
+  - tests/mockserver/internal/handler/pathpostv1changeevents.go
+  - tests/mockserver/internal/handler/pathpostv1cloudawscontroltoweractivate.go
+  - tests/mockserver/internal/handler/pathpostv1cloudawscontroltowercreateorgstructure.go
+  - tests/mockserver/internal/handler/pathpostv1cloudawscontroltowerupdate.go
+  - tests/mockserver/internal/handler/pathpostv1dbodatabases.go
+  - tests/mockserver/internal/handler/pathpostv1dbodatabasesentityidpluginsoperationoperation.go
+  - tests/mockserver/internal/handler/pathpostv1demwebsites.go
+  - tests/mockserver/internal/handler/pathpostv1metrics.go
+  - tests/mockserver/internal/handler/pathpostv1metricsmeasurements.go
+  - tests/mockserver/internal/handler/pathpostv1tokens.go
+  - tests/mockserver/internal/handler/pathputv1demsettings.go
+  - tests/mockserver/internal/handler/pathputv1demwebsitesentityid.go
+  - tests/mockserver/internal/handler/pathputv1demwebsitesentityidpausemonitoring.go
+  - tests/mockserver/internal/handler/pathputv1demwebsitesentityidunpausemonitoring.go
+  - tests/mockserver/internal/handler/pathputv1entitiesid.go
+  - tests/mockserver/internal/handler/pathputv1metricsname.go
+  - tests/mockserver/internal/handler/values/files.go
+  - tests/mockserver/internal/logging/doc.go
+  - tests/mockserver/internal/logging/formats.go
+  - tests/mockserver/internal/logging/http_file.go
+  - tests/mockserver/internal/logging/http_logger.go
+  - tests/mockserver/internal/logging/levels.go
+  - tests/mockserver/internal/logging/logger.go
+  - tests/mockserver/internal/logging/oas_operation.go
+  - tests/mockserver/internal/logging/oas_operation_call.go
+  - tests/mockserver/internal/sdk/models/components/activateawsintegrationrequest.go
+  - tests/mockserver/internal/sdk/models/components/awsorganisationalunitrequest.go
+  - tests/mockserver/internal/sdk/models/components/changeevent.go
+  - tests/mockserver/internal/sdk/models/components/checkforstringoperator.go
+  - tests/mockserver/internal/sdk/models/components/commonkeyvaluepair.go
+  - tests/mockserver/internal/sdk/models/components/commonlink.go
+  - tests/mockserver/internal/sdk/models/components/commonmetricinfo.go
+  - tests/mockserver/internal/sdk/models/components/commonpageinfo.go
+  - tests/mockserver/internal/sdk/models/components/compositemetric.go
+  - tests/mockserver/internal/sdk/models/components/createtokenrequest.go
+  - tests/mockserver/internal/sdk/models/components/customheaders.go
+  - tests/mockserver/internal/sdk/models/components/databaseauthmethod.go
+  - tests/mockserver/internal/sdk/models/components/databaseconnectionoptions.go
+  - tests/mockserver/internal/sdk/models/components/databasecredentialspublickeyresponse.go
+  - tests/mockserver/internal/sdk/models/components/databasepluginconfig.go
+  - tests/mockserver/internal/sdk/models/components/databasepluginconfigresponse.go
+  - tests/mockserver/internal/sdk/models/components/databasepluginstatus.go
+  - tests/mockserver/internal/sdk/models/components/databasepluginstatusresponse.go
+  - tests/mockserver/internal/sdk/models/components/databasetype.go
+  - tests/mockserver/internal/sdk/models/components/entity.go
+  - tests/mockserver/internal/sdk/models/components/entityid.go
+  - tests/mockserver/internal/sdk/models/components/entityinput.go
+  - tests/mockserver/internal/sdk/models/components/httpmetadata.go
+  - tests/mockserver/internal/sdk/models/components/logsarchive.go
+  - tests/mockserver/internal/sdk/models/components/logsevent.go
+  - tests/mockserver/internal/sdk/models/components/metricmeasurementsrequest.go
+  - tests/mockserver/internal/sdk/models/components/metricsaggregationmethods.go
+  - tests/mockserver/internal/sdk/models/components/metricseriestype.go
+  - tests/mockserver/internal/sdk/models/components/metricsgrouping.go
+  - tests/mockserver/internal/sdk/models/components/metricsmeasurement.go
+  - tests/mockserver/internal/sdk/models/components/mgmtaccountonboardingrequest.go
+  - tests/mockserver/internal/sdk/models/components/mgmtaccountonboardingresponse.go
+  - tests/mockserver/internal/sdk/models/components/observedatabaserequest.go
+  - tests/mockserver/internal/sdk/models/components/organisationalunit.go
+  - tests/mockserver/internal/sdk/models/components/outageconfiguration.go
+  - tests/mockserver/internal/sdk/models/components/probelocationtype.go
+  - tests/mockserver/internal/sdk/models/components/probeplatform.go
+  - tests/mockserver/internal/sdk/models/components/probeplatformoptions.go
+  - tests/mockserver/internal/sdk/models/components/security.go
+  - tests/mockserver/internal/sdk/models/components/tag.go
+  - tests/mockserver/internal/sdk/models/components/testfrom.go
+  - tests/mockserver/internal/sdk/models/components/updateawsintegrationrequest.go
+  - tests/mockserver/internal/sdk/models/components/updateawsintegrationresponse.go
+  - tests/mockserver/internal/sdk/models/components/updatecompositemetric.go
+  - tests/mockserver/internal/sdk/models/components/updatedatabaserequest.go
+  - tests/mockserver/internal/sdk/models/components/website.go
+  - tests/mockserver/internal/sdk/models/components/websiteprotocol.go
+  - tests/mockserver/internal/sdk/models/operations/activateawsintegration.go
+  - tests/mockserver/internal/sdk/models/operations/createchangeevent.go
+  - tests/mockserver/internal/sdk/models/operations/createcompositemetric.go
+  - tests/mockserver/internal/sdk/models/operations/createorgstructure.go
+  - tests/mockserver/internal/sdk/models/operations/createtoken.go
+  - tests/mockserver/internal/sdk/models/operations/createwebsite.go
+  - tests/mockserver/internal/sdk/models/operations/deletecompositemetric.go
+  - tests/mockserver/internal/sdk/models/operations/deletedatabase.go
+  - tests/mockserver/internal/sdk/models/operations/deletewebsite.go
+  - tests/mockserver/internal/sdk/models/operations/getdemsettings.go
+  - tests/mockserver/internal/sdk/models/operations/getentitybyid.go
+  - tests/mockserver/internal/sdk/models/operations/getmetricbyname.go
+  - tests/mockserver/internal/sdk/models/operations/getpluginconfig.go
+  - tests/mockserver/internal/sdk/models/operations/getplugins.go
+  - tests/mockserver/internal/sdk/models/operations/getpublickey.go
+  - tests/mockserver/internal/sdk/models/operations/getwebsite.go
+  - tests/mockserver/internal/sdk/models/operations/listentities.go
+  - tests/mockserver/internal/sdk/models/operations/listentitytypes.go
+  - tests/mockserver/internal/sdk/models/operations/listlogarchives.go
+  - tests/mockserver/internal/sdk/models/operations/listmetricattributes.go
+  - tests/mockserver/internal/sdk/models/operations/listmetricattributevalues.go
+  - tests/mockserver/internal/sdk/models/operations/listmetricmeasurements.go
+  - tests/mockserver/internal/sdk/models/operations/listmetrics.go
+  - tests/mockserver/internal/sdk/models/operations/listmetricsforentitytype.go
+  - tests/mockserver/internal/sdk/models/operations/listmultimetricmeasurements.go
+  - tests/mockserver/internal/sdk/models/operations/observedatabase.go
+  - tests/mockserver/internal/sdk/models/operations/pausewebsitemonitoring.go
+  - tests/mockserver/internal/sdk/models/operations/pluginoperation.go
+  - tests/mockserver/internal/sdk/models/operations/searchlogs.go
+  - tests/mockserver/internal/sdk/models/operations/setdemsettings.go
+  - tests/mockserver/internal/sdk/models/operations/unpausewebsitemonitoring.go
+  - tests/mockserver/internal/sdk/models/operations/updateawsintegration.go
+  - tests/mockserver/internal/sdk/models/operations/updatecompositemetric.go
+  - tests/mockserver/internal/sdk/models/operations/updatedatabase.go
+  - tests/mockserver/internal/sdk/models/operations/updateentitybyid.go
+  - tests/mockserver/internal/sdk/models/operations/updatewebsite.go
+  - tests/mockserver/internal/sdk/models/operations/validatemgmtaccountonboarding.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/activateawsintegration.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/createcompositemetric.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/createorgstructure.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/createwebsite.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/deletecompositemetric.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/deletedatabase.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/deletewebsite.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/getentitybyid.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/getmetricbyname.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/getpluginconfig.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/getplugins.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/getpublickey.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/getwebsite.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/listentities.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/listmetricattributes.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/listmetricattributevalues.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/listmetricmeasurements.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/listmetricsforentitytype.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/listmultimetricmeasurements.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/observedatabase.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/pausewebsitemonitoring.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/pluginoperation.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/unpausewebsitemonitoring.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/updateawsintegration.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/updatecompositemetric.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/updatedatabase.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/updateentitybyid.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/updatewebsite.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/validatemgmtaccountonboarding.go
+  - tests/mockserver/internal/sdk/types/bigint.go
+  - tests/mockserver/internal/sdk/types/date.go
+  - tests/mockserver/internal/sdk/types/datetime.go
+  - tests/mockserver/internal/sdk/types/decimal.go
+  - tests/mockserver/internal/sdk/types/jsonl/jsonl.go
+  - tests/mockserver/internal/sdk/types/pointers.go
+  - tests/mockserver/internal/sdk/utils/json.go
+  - tests/mockserver/internal/sdk/utils/reflect.go
+  - tests/mockserver/internal/sdk/utils/sort.go
+  - tests/mockserver/internal/server/doc.go
+  - tests/mockserver/internal/server/generated_handlers.go
+  - tests/mockserver/internal/server/internal_handlers.go
+  - tests/mockserver/internal/server/server.go
+  - tests/mockserver/internal/server/server_option.go
+  - tests/mockserver/internal/server/templates/log/index.html.tmpl
+  - tests/mockserver/internal/server/templates/log/operation.html.tmpl
+  - tests/mockserver/internal/server/templates/log/style.css.tmpl
+  - tests/mockserver/internal/tracking/requesttracker.go
+  - tests/mockserver/main.go
+  - tests/testclient.go
+  - tests/tokens_test.go
   - tokens.go
   - types/bigint.go
   - types/date.go
@@ -796,4 +1001,41 @@ examples:
         "400":
           application/json: {"code": 400, "message": "Bad request", "": {}}
 examplesVersion: 1.0.1
-generatedTests: {}
+generatedTests:
+  createChangeEvent: "2025-05-02T09:35:26-06:00"
+  activateAwsIntegration: "2025-05-02T09:35:26-06:00"
+  createOrgStructure: "2025-05-02T09:35:26-06:00"
+  updateAwsIntegration: "2025-05-02T09:35:26-06:00"
+  validateMgmtAccountOnboarding: "2025-05-02T09:35:26-06:00"
+  observeDatabase: "2025-05-02T09:35:26-06:00"
+  getPublicKey: "2025-05-02T09:35:26-06:00"
+  updateDatabase: "2025-05-02T09:35:26-06:00"
+  deleteDatabase: "2025-05-02T09:35:26-06:00"
+  getPluginConfig: "2025-05-02T09:35:26-06:00"
+  getPlugins: "2025-05-02T09:35:26-06:00"
+  pluginOperation: "2025-05-02T09:35:26-06:00"
+  getDemSettings: "2025-05-02T09:35:26-06:00"
+  setDemSettings: "2025-05-02T09:35:26-06:00"
+  createWebsite: "2025-05-02T09:35:26-06:00"
+  getWebsite: "2025-05-02T09:35:26-06:00"
+  updateWebsite: "2025-05-02T09:35:26-06:00"
+  deleteWebsite: "2025-05-02T09:35:26-06:00"
+  pauseWebsiteMonitoring: "2025-05-02T09:35:26-06:00"
+  unpauseWebsiteMonitoring: "2025-05-02T09:35:26-06:00"
+  listEntities: "2025-05-02T09:35:26-06:00"
+  getEntityById: "2025-05-02T09:35:26-06:00"
+  updateEntityById: "2025-05-02T09:35:26-06:00"
+  searchLogs: "2025-05-02T09:35:26-06:00"
+  listLogArchives: "2025-05-02T09:35:26-06:00"
+  listEntityTypes: "2025-05-02T09:35:26-06:00"
+  listMetricsForEntityType: "2025-05-02T09:35:26-06:00"
+  listMetrics: "2025-05-02T09:35:26-06:00"
+  createCompositeMetric: "2025-05-02T09:35:26-06:00"
+  listMultiMetricMeasurements: "2025-05-02T09:35:26-06:00"
+  updateCompositeMetric: "2025-05-02T09:35:26-06:00"
+  deleteCompositeMetric: "2025-05-02T09:35:26-06:00"
+  getMetricByName: "2025-05-02T09:35:26-06:00"
+  listMetricAttributes: "2025-05-02T09:35:26-06:00"
+  listMetricAttributeValues: "2025-05-02T09:35:26-06:00"
+  listMetricMeasurements: "2025-05-02T09:35:26-06:00"
+  createToken: "2025-05-02T09:35:26-06:00"
