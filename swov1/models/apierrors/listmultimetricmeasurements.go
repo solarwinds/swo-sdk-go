@@ -7,8 +7,8 @@ import (
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 )
 
-// GetWebsiteResponseBody - The server cannot find the requested resource.
-type GetWebsiteResponseBody struct {
+// ListMultiMetricMeasurementsResponseBody - The server could not understand the request due to invalid syntax.
+type ListMultiMetricMeasurementsResponseBody struct {
 	// HTTP status code as defined in RFC 2817
 	Code int64 `json:"code"`
 	// Supporting description of the error
@@ -17,9 +17,9 @@ type GetWebsiteResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &GetWebsiteResponseBody{}
+var _ error = &ListMultiMetricMeasurementsResponseBody{}
 
-func (e *GetWebsiteResponseBody) Error() string {
+func (e *ListMultiMetricMeasurementsResponseBody) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

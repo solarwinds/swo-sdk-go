@@ -7,7 +7,7 @@ import (
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 )
 
-// PauseWebsiteMonitoringResponseBody - The server could not understand the request due to invalid syntax.
+// PauseWebsiteMonitoringResponseBody - The server cannot find the requested resource.
 type PauseWebsiteMonitoringResponseBody struct {
 	// HTTP status code as defined in RFC 2817
 	Code int64 `json:"code"`

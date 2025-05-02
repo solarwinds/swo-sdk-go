@@ -7,6 +7,23 @@ import (
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 )
 
+// UpdateWebsiteDemResponseBody - The server cannot find the requested resource.
+type UpdateWebsiteDemResponseBody struct {
+	// HTTP status code as defined in RFC 2817
+	Code int64 `json:"code"`
+	// Supporting description of the error
+	Message  string                  `json:"message"`
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &UpdateWebsiteDemResponseBody{}
+
+func (e *UpdateWebsiteDemResponseBody) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
 // UpdateWebsiteResponseBody - The server could not understand the request due to invalid syntax.
 type UpdateWebsiteResponseBody struct {
 	// HTTP status code as defined in RFC 2817
