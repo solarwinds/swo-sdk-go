@@ -216,6 +216,7 @@ func main() {
 
 * [ListMetrics](docs/sdks/metrics/README.md#listmetrics) - List metrics
 * [CreateCompositeMetric](docs/sdks/metrics/README.md#createcompositemetric) - Create composite metric
+* [ListMultiMetricMeasurements](docs/sdks/metrics/README.md#listmultimetricmeasurements) - List measurements for a batch of metrics
 * [UpdateCompositeMetric](docs/sdks/metrics/README.md#updatecompositemetric) - Update composite metric
 * [DeleteCompositeMetric](docs/sdks/metrics/README.md#deletecompositemetric) - Delete composite metric
 * [GetMetricByName](docs/sdks/metrics/README.md#getmetricbyname) - Get metric info by name

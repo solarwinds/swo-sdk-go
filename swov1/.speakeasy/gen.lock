@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
-  docChecksum: 461bb631c027e551ee770e129f0a2fba
-  docVersion: 1.0.6
-  speakeasyVersion: 1.540.0
-  generationVersion: 2.593.3
-  releaseVersion: 0.1.6
-  configChecksum: 663aa3add1007c9b25e3d90dc8ff5f65
+  docChecksum: 849f9de9e39fda37a75942c8a23e1541
+  docVersion: 1.0.7
+  speakeasyVersion: 1.542.0
+  generationVersion: 2.596.2
+  releaseVersion: 0.1.7
+  configChecksum: 2c814fd2047e6746fe4111ae33d9c7c2
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
@@ -54,6 +54,7 @@ generatedFiles:
   - /models/apierrors/listmetricattributevalues.go
   - /models/apierrors/listmetricmeasurements.go
   - /models/apierrors/listmetricsforentitytype.go
+  - /models/apierrors/listmultimetricmeasurements.go
   - /models/apierrors/observedatabase.go
   - /models/apierrors/pausewebsitemonitoring.go
   - /models/apierrors/pluginoperation.go
@@ -89,6 +90,7 @@ generatedFiles:
   - /models/components/httpmetadata.go
   - /models/components/logsarchive.go
   - /models/components/logsevent.go
+  - /models/components/metricmeasurementsrequest.go
   - /models/components/metricsaggregationmethods.go
   - /models/components/metricseriestype.go
   - /models/components/metricsgrouping.go
@@ -134,6 +136,7 @@ generatedFiles:
   - /models/operations/listmetricmeasurements.go
   - /models/operations/listmetrics.go
   - /models/operations/listmetricsforentitytype.go
+  - /models/operations/listmultimetricmeasurements.go
   - /models/operations/observedatabase.go
   - /models/operations/pausewebsitemonitoring.go
   - /models/operations/pluginoperation.go
@@ -184,6 +187,7 @@ generatedFiles:
   - docs/models/apierrors/listmetricattributevaluesresponsebody.md
   - docs/models/apierrors/listmetricmeasurementsresponsebody.md
   - docs/models/apierrors/listmetricsforentitytyperesponsebody.md
+  - docs/models/apierrors/listmultimetricmeasurementsresponsebody.md
   - docs/models/apierrors/observedatabaseresponsebody.md
   - docs/models/apierrors/pausewebsitemonitoringresponsebody.md
   - docs/models/apierrors/pluginoperationdboresponsebody.md
@@ -200,6 +204,7 @@ generatedFiles:
   - docs/models/apierrors/updateentitybyidentitiesresponsebody.md
   - docs/models/apierrors/updateentitybyidentitiesresponseresponsebody.md
   - docs/models/apierrors/updateentitybyidresponsebody.md
+  - docs/models/apierrors/updatewebsitedemresponsebody.md
   - docs/models/apierrors/updatewebsiteresponsebody.md
   - docs/models/apierrors/validatemgmtaccountonboardingcloudaccountsresponsebody.md
   - docs/models/apierrors/validatemgmtaccountonboardingcloudaccountsresponseresponsebody.md
@@ -232,11 +237,13 @@ generatedFiles:
   - docs/models/components/entityid.md
   - docs/models/components/entityinput.md
   - docs/models/components/failingtestlocations.md
+  - docs/models/components/fillmethod.md
   - docs/models/components/healthscore.md
   - docs/models/components/httpmetadata.md
   - docs/models/components/integrationtype.md
   - docs/models/components/logsarchive.md
   - docs/models/components/logsevent.md
+  - docs/models/components/metricmeasurementsrequest.md
   - docs/models/components/metricsaggregationmethods.md
   - docs/models/components/metricseriestype.md
   - docs/models/components/metricsgrouping.md
@@ -246,11 +253,13 @@ generatedFiles:
   - docs/models/components/observedatabaserequest.md
   - docs/models/components/organisationalunit.md
   - docs/models/components/outageconfiguration.md
+  - docs/models/components/pregroupbymethod.md
   - docs/models/components/probelocationtype.md
   - docs/models/components/probeplatform.md
   - docs/models/components/probeplatformoptions.md
   - docs/models/components/rum.md
   - docs/models/components/security.md
+  - docs/models/components/seriestype.md
   - docs/models/components/ssl.md
   - docs/models/components/sslmode.md
   - docs/models/components/ssloptions.md
@@ -321,6 +330,11 @@ generatedFiles:
   - docs/models/operations/listmetricsrequest.md
   - docs/models/operations/listmetricsresponse.md
   - docs/models/operations/listmetricsresponsebody.md
+  - docs/models/operations/listmultimetricmeasurementsrequest.md
+  - docs/models/operations/listmultimetricmeasurementsrequestbody.md
+  - docs/models/operations/listmultimetricmeasurementsresponse.md
+  - docs/models/operations/listmultimetricmeasurementsresponsebody.md
+  - docs/models/operations/metrics.md
   - docs/models/operations/observedatabaseresponse.md
   - docs/models/operations/observedatabaseresponsebody.md
   - docs/models/operations/option.md
@@ -400,26 +414,26 @@ examples:
         application/json: {"managementAccountId": "<id>", "accountId": "<id>", "enable": false}
       responses:
         "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 400, "message": "Bad request", "": {}}
         "401":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 401, "message": "Access is unauthorized", "": {}}
         "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
         "500":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 500, "message": "Internal error", "": {}}
   createOrgStructure:
     speakeasy-default-create-org-structure:
       requestBody:
         application/json: {"mgmtAccountId": "<id>", "structure": [{"child_id": "<id>", "child_name": "<value>"}, {"child_id": "<id>", "child_name": "<value>"}, {"child_id": "<id>", "child_name": "<value>"}]}
       responses:
         "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 400, "message": "Bad request", "": {}}
         "401":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 401, "message": "Access is unauthorized", "": {}}
         "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
         "500":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 500, "message": "Internal error", "": {}}
   updateAwsIntegration:
     speakeasy-default-update-aws-integration:
       requestBody:
@@ -428,11 +442,11 @@ examples:
         "200":
           application/json: {"selectedRegions": ["<value>", "<value>", "<value>"], "externalId": "<id>", "integrationId": "<id>", "integrationType": "POLLING", "isNewAccount": true}
         "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 400, "message": "Bad request", "": {}}
         "401":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 401, "message": "Access is unauthorized", "": {}}
         "500":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 500, "message": "Internal error", "": {}}
   validateMgmtAccountOnboarding:
     speakeasy-default-validate-mgmt-account-onboarding:
       parameters:
@@ -442,11 +456,11 @@ examples:
         "200":
           application/json: {"isOnboarded": false}
         "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 400, "message": "Bad request", "": {}}
         "401":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 401, "message": "Access is unauthorized", "": {}}
         "500":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 500, "message": "Internal error", "": {}}
   observeDatabase:
     speakeasy-default-observe-database:
       requestBody:
@@ -455,16 +469,16 @@ examples:
         "201":
           application/json: {"id": "<id>"}
         "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 400, "message": "Bad request", "": {}}
   getPublicKey:
     speakeasy-default-get-public-key:
       responses:
         "200":
           application/json: {"publicKey": "<value>"}
         "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 400, "message": "Bad request", "": {}}
         "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   updateDatabase:
     speakeasy-default-update-database:
       parameters:
@@ -474,9 +488,9 @@ examples:
         application/json: {"name": ""}
       responses:
         "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 400, "message": "Bad request", "": {}}
         "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   deleteDatabase:
     speakeasy-default-delete-database:
       parameters:
@@ -484,9 +498,9 @@ examples:
           entityId: "<id>"
       responses:
         "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 400, "message": "Bad request", "": {}}
         "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   getPluginConfig:
     speakeasy-default-get-plugin-config:
       parameters:
@@ -496,9 +510,9 @@ examples:
         "200":
           application/json: {"pluginConfig": [{"pluginName": "<value>", "config": [{"key": "<key>", "value": "<value>"}]}, {"pluginName": "<value>", "config": []}, {"pluginName": "<value>", "config": [{"key": "<key>", "value": "<value>"}]}]}
         "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 400, "message": "Bad request", "": {}}
         "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   getPlugins:
     speakeasy-default-get-plugins:
       parameters:
@@ -508,9 +522,9 @@ examples:
         "200":
           application/json: {"plugins": [{"pluginName": "<value>", "status": "<value>"}, {"pluginName": "<value>", "status": "<value>"}]}
         "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 400, "message": "Bad request", "": {}}
         "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   pluginOperation:
     speakeasy-default-plugin-operation:
       parameters:
@@ -519,9 +533,9 @@ examples:
           operation: "<value>"
       responses:
         "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 400, "message": "Bad request", "": {}}
         "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   getDemSettings:
     speakeasy-default-get-dem-settings:
       responses:
@@ -539,7 +553,7 @@ examples:
         "201":
           application/json: {"id": "e-1448474379026206720"}
         "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 400, "message": "Bad request", "": {}}
   getWebsite:
     speakeasy-default-get-website:
       parameters:
@@ -550,6 +564,8 @@ examples:
           application/json: {"id": "e-1448474379026206720", "type": "Website", "status": "up", "name": "solarwinds.com", "url": "https://www.solarwinds.com", "availabilityCheckSettings": {"checkForString": {"operator": "CONTAINS", "value": "string"}, "testIntervalInSeconds": 14400, "protocols": ["HTTP", "HTTPS"], "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}", "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "snippet": "string", "spa": true}, "lastOutageStartTime": "2025-01-15T14:31:19.735Z", "lastOutageEndTime": "2025-01-15T14:31:19.735Z", "lastTestTime": "2025-01-15T14:31:19.735Z", "lastErrorTime": "2025-01-15T14:31:19.735Z", "lastResponseTime": 376, "nextOnDemandAvailabilityTime": 0}
         "400":
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "404":
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   updateWebsite:
     speakeasy-default-update-website:
       parameters:
@@ -561,7 +577,9 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 400, "message": "Bad request", "": {}}
+        "404":
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   deleteWebsite:
     speakeasy-default-delete-website:
       parameters:
@@ -572,6 +590,8 @@ examples:
           application/json: {"id": "e-1448474379026206720"}
         "400":
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "404":
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   pauseWebsiteMonitoring:
     speakeasy-default-pause-website-monitoring:
       parameters:
@@ -582,6 +602,8 @@ examples:
           application/json: {"id": "e-1448474379026206720"}
         "400":
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "404":
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   unpauseWebsiteMonitoring:
     speakeasy-default-unpause-website-monitoring:
       parameters:
@@ -592,6 +614,8 @@ examples:
           application/json: {"id": "e-1448474379026206720"}
         "400":
           application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+        "404":
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   listEntities:
     speakeasy-default-list-entities:
       parameters:
@@ -601,9 +625,9 @@ examples:
         "200":
           application/json: {"entities": [{"id": "e-1234567890", "type": "SyslogHost", "name": "syslog-host-1", "displayName": "SyslogTest", "createdTime": "2024-11-25T16:38:24Z", "updatedTime": "2024-12-01T16:38:24Z", "lastSeenTime": "2024-11-25T16:38:24Z", "inMaintenance": false, "healthscore": {"score": 100, "category": "good"}, "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}, "attributes": {"protocols": ["HTTP"], "features": ["rum"], "isAvailabilityCheckPaused": false, "extensions": {"has_extension": true}}}], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 400, "message": "Bad request", "": {}}
         "401":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 401, "message": "Access is unauthorized", "": {}}
   getEntityById:
     speakeasy-default-get-entity-by-id:
       parameters:
@@ -613,11 +637,11 @@ examples:
         "200":
           application/json: {"id": "e-1234567890", "type": "SyslogHost", "name": "syslog-host-1", "displayName": "SyslogTest", "createdTime": "2024-11-25T16:38:24Z", "updatedTime": "2024-12-01T16:38:24Z", "lastSeenTime": "2024-11-25T16:38:24Z", "inMaintenance": false, "healthscore": {"score": 100, "category": "good"}, "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}, "attributes": {"protocols": ["HTTP"], "features": ["rum"], "isAvailabilityCheckPaused": false, "extensions": {"has_extension": true}}}
         "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 400, "message": "Bad request", "": {}}
         "401":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 401, "message": "Access is unauthorized", "": {}}
         "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   updateEntityById:
     speakeasy-default-update-entity-by-id:
       parameters:
@@ -627,11 +651,11 @@ examples:
         application/json: {"displayName": "SyslogTest", "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}}
       responses:
         "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 400, "message": "Bad request", "": {}}
         "401":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 401, "message": "Access is unauthorized", "": {}}
         "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   searchLogs:
     speakeasy-default-search-logs:
       parameters:
@@ -664,7 +688,7 @@ examples:
         "200":
           application/json: {"type": "KubernetesCluster", "metrics": [{"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "units": "bytes/s", "formula": "rate(system.disk.io[5m]", "lastReportedTime": "2024-11-25T16:38:24Z"}]}
         "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   listMetrics:
     speakeasy-default-list-metrics:
       responses:
@@ -678,9 +702,9 @@ examples:
         "201":
           application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
         "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 400, "message": "Bad request", "": {}}
         "403":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 403, "message": "Access is forbidden", "": {}}
   updateCompositeMetric:
     speakeasy-default-update-composite-metric:
       parameters:
@@ -692,11 +716,11 @@ examples:
         "200":
           application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
         "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 400, "message": "Bad request", "": {}}
         "403":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 403, "message": "Access is forbidden", "": {}}
         "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   deleteCompositeMetric:
     speakeasy-default-delete-composite-metric:
       parameters:
@@ -704,9 +728,9 @@ examples:
           name: "<value>"
       responses:
         "403":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 403, "message": "Access is forbidden", "": {}}
         "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   getMetricByName:
     speakeasy-default-get-metric-by-name:
       parameters:
@@ -716,7 +740,7 @@ examples:
         "200":
           application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "units": "bytes/s", "formula": "rate(system.disk.io[5m]", "lastReportedTime": "2024-11-25T16:38:24Z"}
         "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   listMetricAttributes:
     speakeasy-default-list-metric-attributes:
       parameters:
@@ -727,7 +751,7 @@ examples:
         "200":
           application/json: {"names": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   listMetricAttributeValues:
     speakeasy-default-list-metric-attribute-values:
       parameters:
@@ -739,7 +763,7 @@ examples:
         "200":
           application/json: {"name": "<value>", "values": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   listMetricMeasurements:
     speakeasy-default-list-metric-measurements:
       parameters:
@@ -751,7 +775,7 @@ examples:
         "200":
           application/json: {"groupings": [{"attributes": [], "measurements": [{"time": "2025-07-08T21:51:20.598Z", "value": 7307.56}, {"time": "2023-05-07T22:33:23.333Z", "value": 250.26}, {"time": "2023-06-20T08:27:21.001Z", "value": 4929.43}]}, {"attributes": [], "measurements": []}], "bucketSizeInSeconds": 614937, "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "404":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
   createToken:
     speakeasy-default-create-token:
       requestBody:
@@ -759,5 +783,17 @@ examples:
       responses:
         "200":
           application/json: {"token": "<value>"}
+  listMultiMetricMeasurements:
+    speakeasy-default-list-multi-metric-measurements:
+      parameters:
+        query:
+          forcePositional: false
+      requestBody:
+        application/json: {"metrics": [{"id": "throughput-series", "name": "dbo.host.queries.tput", "filter": "id:[id1,id2] category:moderate", "groupBy": ["query"], "preGroupBy": ["host"], "preGroupByMethod": "SUM", "seriesType": "TIMESERIES", "fillMethod": "NONE", "fillIfEmpty": false}, {"id": "throughput-series", "name": "dbo.host.queries.tput", "filter": "id:[id1,id2] category:moderate", "groupBy": ["query"], "preGroupBy": ["host"], "preGroupByMethod": "SUM", "seriesType": "TIMESERIES", "fillMethod": "NONE", "fillIfEmpty": false}]}
+      responses:
+        "200":
+          application/json: {"metrics": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+        "400":
+          application/json: {"code": 400, "message": "Bad request", "": {}}
 examplesVersion: 1.0.1
 generatedTests: {}

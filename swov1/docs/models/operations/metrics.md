@@ -1,0 +1,11 @@
+# Metrics
+
+
+## Fields
+
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                | Example                                                                    |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ID`                                                                       | **string*                                                                  | :heavy_minus_sign:                                                         | Entry identification, as (if) provided in the corresponding request entry. | throughput-series                                                          |
+| `Name`                                                                     | *string*                                                                   | :heavy_check_mark:                                                         | Metric name.                                                               | dbo.host.queries.tput                                                      |
+| `Groupings`                                                                | [][components.MetricsGrouping](../../models/components/metricsgrouping.md) | :heavy_check_mark:                                                         | Collection of attributes and measurements.                                 |                                                                            |
+| `BucketSizeInSeconds`                                                      | *int*                                                                      | :heavy_check_mark:                                                         | Bucket size used for computing points in this entry.                       | 1                                                                          |

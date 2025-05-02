@@ -277,7 +277,7 @@ func main() {
 
 | Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
-| apierrors.GetWebsiteResponseBody | 400                              | application/json                 |
+| apierrors.GetWebsiteResponseBody | 404                              | application/json                 |
 | apierrors.APIError               | 4XX, 5XX                         | \*/\*                            |
 
 ## UpdateWebsite
@@ -385,10 +385,11 @@ func main() {
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| apierrors.UpdateWebsiteResponseBody | 400                                 | application/json                    |
-| apierrors.APIError                  | 4XX, 5XX                            | \*/\*                               |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| apierrors.UpdateWebsiteResponseBody    | 400                                    | application/json                       |
+| apierrors.UpdateWebsiteDemResponseBody | 404                                    | application/json                       |
+| apierrors.APIError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## DeleteWebsite
 
@@ -442,7 +443,7 @@ func main() {
 
 | Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| apierrors.DeleteWebsiteResponseBody | 400                                 | application/json                    |
+| apierrors.DeleteWebsiteResponseBody | 404                                 | application/json                    |
 | apierrors.APIError                  | 4XX, 5XX                            | \*/\*                               |
 
 ## PauseWebsiteMonitoring
@@ -497,7 +498,7 @@ func main() {
 
 | Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| apierrors.PauseWebsiteMonitoringResponseBody | 400                                          | application/json                             |
+| apierrors.PauseWebsiteMonitoringResponseBody | 404                                          | application/json                             |
 | apierrors.APIError                           | 4XX, 5XX                                     | \*/\*                                        |
 
 ## UnpauseWebsiteMonitoring
@@ -552,5 +553,5 @@ func main() {
 
 | Error Type                                     | Status Code                                    | Content Type                                   |
 | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| apierrors.UnpauseWebsiteMonitoringResponseBody | 400                                            | application/json                               |
+| apierrors.UnpauseWebsiteMonitoringResponseBody | 404                                            | application/json                               |
 | apierrors.APIError                             | 4XX, 5XX                                       | \*/\*                                          |

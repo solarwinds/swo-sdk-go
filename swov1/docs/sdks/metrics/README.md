@@ -7,6 +7,7 @@
 
 * [ListMetrics](#listmetrics) - List metrics
 * [CreateCompositeMetric](#createcompositemetric) - Create composite metric
+* [ListMultiMetricMeasurements](#listmultimetricmeasurements) - List measurements for a batch of metrics
 * [UpdateCompositeMetric](#updatecompositemetric) - Update composite metric
 * [DeleteCompositeMetric](#deletecompositemetric) - Delete composite metric
 * [GetMetricByName](#getmetricbyname) - Get metric info by name
@@ -137,6 +138,122 @@ func main() {
 | apierrors.CreateCompositeMetricResponseBody        | 400                                                | application/json                                   |
 | apierrors.CreateCompositeMetricMetricsResponseBody | 403                                                | application/json                                   |
 | apierrors.APIError                                 | 4XX, 5XX                                           | \*/\*                                              |
+
+## ListMultiMetricMeasurements
+
+  List metric measurements, potentially filtered and aggregated. This operation mimics the
+  capabilities found in GET `/v1/metrics/{name}/measurements`, extending it for an entire batch of
+  metrics that can be requested at once, over the same time interval.
+
+  It is legal to request the same metric multiple times, using different aggregations. For
+  example, both the total for the interval (scalar) and a time series can be read simultaneously,
+  using two different entries in the request payload. Entries in the response can be matched with
+  the respective requests by metric name. When more than one exist for the same name, an `id`
+  can be provided to disambiguate. This property will be echoed back unchanged and can be used
+  for some or all entries, regardless of whether metrics repeat.
+
+  By default, this endpoint will omit response entries that include no measurements. This is done
+  only when the request contains enough information for the client to successfully match all
+  responses back to their respective requests—i.e., when there is at most one entry for each
+  combination of metric name and `id`. This provides a cleaner response, especially in case where
+  multiple pages need to be traversed and data for most metric entries is exhausted early.
+  Otherwise, empty entries will be included as well and the output will be fully positional. This
+  positional mode can be forced with `forcePositional`.
+
+  Pages can be navigated by following the links returned in `pageInfo`. Those requests must also
+  be POST and must include the same payload that was initially sent. Behavior is undefined
+  otherwise.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Metrics.ListMultiMetricMeasurements(ctx, operations.ListMultiMetricMeasurementsRequest{
+        RequestBody: operations.ListMultiMetricMeasurementsRequestBody{
+            Metrics: []components.MetricMeasurementsRequest{
+                components.MetricMeasurementsRequest{
+                    ID: swov1.String("throughput-series"),
+                    Name: "dbo.host.queries.tput",
+                    Filter: swov1.String("id:[id1,id2] category:moderate"),
+                    GroupBy: []string{
+                        "query",
+                    },
+                    PreGroupBy: []string{
+                        "host",
+                    },
+                    PreGroupByMethod: components.PreGroupByMethodSum.ToPointer(),
+                },
+                components.MetricMeasurementsRequest{
+                    ID: swov1.String("throughput-series"),
+                    Name: "dbo.host.queries.tput",
+                    Filter: swov1.String("id:[id1,id2] category:moderate"),
+                    GroupBy: []string{
+                        "query",
+                    },
+                    PreGroupBy: []string{
+                        "host",
+                    },
+                    PreGroupByMethod: components.PreGroupByMethodSum.ToPointer(),
+                },
+            },
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        for {
+            // handle items
+
+            res, err = res.Next()
+
+            if err != nil {
+                // handle error
+            }
+
+            if res == nil {
+                break
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                      | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                                          | :heavy_check_mark:                                                                                             | The context to use for the request.                                                                            |
+| `request`                                                                                                      | [operations.ListMultiMetricMeasurementsRequest](../../models/operations/listmultimetricmeasurementsrequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
+| `opts`                                                                                                         | [][operations.Option](../../models/operations/option.md)                                                       | :heavy_minus_sign:                                                                                             | The options for this request.                                                                                  |
+
+### Response
+
+**[*operations.ListMultiMetricMeasurementsResponse](../../models/operations/listmultimetricmeasurementsresponse.md), error**
+
+### Errors
+
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| apierrors.ListMultiMetricMeasurementsResponseBody | 400                                               | application/json                                  |
+| apierrors.APIError                                | 4XX, 5XX                                          | \*/\*                                             |
 
 ## UpdateCompositeMetric
 

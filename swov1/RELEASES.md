@@ -69,3 +69,13 @@ Based on:
 - [go v0.1.6] swov1
 ### Releases
 - [Go v0.1.6] https://github.com/solarwinds/swo-sdk-go/releases/tag/swov1/v0.1.6 - swov1
+
+## 2025-05-02 00:18:27
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.542.0 (2.596.2) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.1.7] swov1
+### Releases
+- [Go v0.1.7] https://github.com/solarwinds/swo-sdk-go/releases/tag/swov1/v0.1.7 - swov1
