@@ -18,6 +18,9 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
+  tests:
+    generateNewTests: true
+    skipResponseBodyAssertions: false
 go:
   version: 0.1.7
   additionalDependencies: {}
