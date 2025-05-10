@@ -187,8 +187,15 @@ func main() {
 
 ### [Dem](docs/sdks/dem/README.md)
 
+* [ListProbes](docs/sdks/dem/README.md#listprobes) - Get a list of existing synthetic probes
 * [GetDemSettings](docs/sdks/dem/README.md#getdemsettings) - Get DEM settings
 * [SetDemSettings](docs/sdks/dem/README.md#setdemsettings) - Set DEM settings
+* [CreateURI](docs/sdks/dem/README.md#createuri) - Create URI monitoring configuration
+* [GetURI](docs/sdks/dem/README.md#geturi) - Get URI monitoring configuration
+* [UpdateURI](docs/sdks/dem/README.md#updateuri) - Update URI monitoring configuration
+* [DeleteURI](docs/sdks/dem/README.md#deleteuri) - Delete URI
+* [PauseURIMonitoring](docs/sdks/dem/README.md#pauseurimonitoring) - Pause monitoring of the URI
+* [UnpauseURIMonitoring](docs/sdks/dem/README.md#unpauseurimonitoring) - Unpause monitoring of the URI
 * [CreateWebsite](docs/sdks/dem/README.md#createwebsite) - Create website monitoring configuration
 * [GetWebsite](docs/sdks/dem/README.md#getwebsite) - Get website monitoring configuration
 * [UpdateWebsite](docs/sdks/dem/README.md#updatewebsite) - Update website monitoring configuration
