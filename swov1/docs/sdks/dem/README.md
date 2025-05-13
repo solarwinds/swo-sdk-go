@@ -5,14 +5,72 @@
 
 ### Available Operations
 
+* [ListProbes](#listprobes) - Get a list of existing synthetic probes
 * [GetDemSettings](#getdemsettings) - Get DEM settings
 * [SetDemSettings](#setdemsettings) - Set DEM settings
+* [CreateURI](#createuri) - Create URI monitoring configuration
+* [GetURI](#geturi) - Get URI monitoring configuration
+* [UpdateURI](#updateuri) - Update URI monitoring configuration
+* [DeleteURI](#deleteuri) - Delete URI
+* [PauseURIMonitoring](#pauseurimonitoring) - Pause monitoring of the URI
+* [UnpauseURIMonitoring](#unpauseurimonitoring) - Unpause monitoring of the URI
 * [CreateWebsite](#createwebsite) - Create website monitoring configuration
 * [GetWebsite](#getwebsite) - Get website monitoring configuration
 * [UpdateWebsite](#updatewebsite) - Update website monitoring configuration
 * [DeleteWebsite](#deletewebsite) - Delete website
 * [PauseWebsiteMonitoring](#pausewebsitemonitoring) - Pause monitoring of a website
 * [UnpauseWebsiteMonitoring](#unpausewebsitemonitoring) - Unpause monitoring of a website
+
+## ListProbes
+
+Get a list of existing synthetic probes
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Dem.ListProbes(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+
+### Response
+
+**[*operations.ListProbesResponse](../../models/operations/listprobesresponse.md), error**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| apierrors.ListProbesResponseBody | 500                              | application/json                 |
+| apierrors.APIError               | 4XX, 5XX                         | \*/\*                            |
 
 ## GetDemSettings
 
@@ -119,6 +177,401 @@ func main() {
 | ------------------ | ------------------ | ------------------ |
 | apierrors.APIError | 4XX, 5XX           | \*/\*              |
 
+## CreateURI
+
+Create URI monitoring configuration
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Dem.CreateURI(ctx, components.URI{
+        Name: "example-uri",
+        IPOrDomain: "solarwinds.com",
+        AvailabilityCheckSettings: components.URIAvailabilityCheckSettingsInput{
+            PlatformOptions: &components.PlatformOptions{
+                ProbePlatforms: []components.ProbePlatform{
+                    components.ProbePlatformAws,
+                },
+                TestFromAll: swov1.Bool(true),
+            },
+            TestFrom: components.TestFrom{
+                Type: components.ProbeLocationTypeRegion,
+                Values: []string{
+                    "NA",
+                },
+            },
+            TestIntervalInSeconds: 300,
+            OutageConfiguration: &components.URIAvailabilityCheckSettingsInputOutageConfiguration{
+                FailingTestLocations: components.URIAvailabilityCheckSettingsInputFailingTestLocationsAll,
+                ConsecutiveForDown: 2,
+            },
+            TCP: &components.TCP{
+                Enabled: true,
+                Port: 443,
+            },
+        },
+        Tags: []components.Tag{
+            components.Tag{
+                Key: "environment",
+                Value: "production",
+            },
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.EntityID != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `request`                                                | [components.URI](../../models/components/uri.md)         | :heavy_check_mark:                                       | The request object to use for the request.               |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+
+### Response
+
+**[*operations.CreateURIResponse](../../models/operations/createuriresponse.md), error**
+
+### Errors
+
+| Error Type                      | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| apierrors.CreateURIResponseBody | 400                             | application/json                |
+| apierrors.APIError              | 4XX, 5XX                        | \*/\*                           |
+
+## GetURI
+
+Get URI monitoring configuration
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Dem.GetURI(ctx, operations.GetURIRequest{
+        EntityID: "<id>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
+| `request`                                                            | [operations.GetURIRequest](../../models/operations/geturirequest.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
+| `opts`                                                               | [][operations.Option](../../models/operations/option.md)             | :heavy_minus_sign:                                                   | The options for this request.                                        |
+
+### Response
+
+**[*operations.GetURIResponse](../../models/operations/geturiresponse.md), error**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| apierrors.GetURIResponseBody | 404                          | application/json             |
+| apierrors.APIError           | 4XX, 5XX                     | \*/\*                        |
+
+## UpdateURI
+
+Update URI monitoring configuration
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Dem.UpdateURI(ctx, operations.UpdateURIRequest{
+        EntityID: "<id>",
+        URI: components.URI{
+            Name: "example-uri",
+            IPOrDomain: "solarwinds.com",
+            AvailabilityCheckSettings: components.URIAvailabilityCheckSettingsInput{
+                PlatformOptions: &components.PlatformOptions{
+                    ProbePlatforms: []components.ProbePlatform{
+                        components.ProbePlatformAws,
+                    },
+                    TestFromAll: swov1.Bool(true),
+                },
+                TestFrom: components.TestFrom{
+                    Type: components.ProbeLocationTypeRegion,
+                    Values: []string{
+                        "NA",
+                    },
+                },
+                TestIntervalInSeconds: 300,
+                OutageConfiguration: &components.URIAvailabilityCheckSettingsInputOutageConfiguration{
+                    FailingTestLocations: components.URIAvailabilityCheckSettingsInputFailingTestLocationsAll,
+                    ConsecutiveForDown: 2,
+                },
+                TCP: &components.TCP{
+                    Enabled: true,
+                    Port: 443,
+                },
+            },
+            Tags: []components.Tag{
+                components.Tag{
+                    Key: "environment",
+                    Value: "production",
+                },
+            },
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.EntityID != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
+| `request`                                                                  | [operations.UpdateURIRequest](../../models/operations/updateurirequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `opts`                                                                     | [][operations.Option](../../models/operations/option.md)                   | :heavy_minus_sign:                                                         | The options for this request.                                              |
+
+### Response
+
+**[*operations.UpdateURIResponse](../../models/operations/updateuriresponse.md), error**
+
+### Errors
+
+| Error Type                         | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| apierrors.UpdateURIResponseBody    | 400                                | application/json                   |
+| apierrors.UpdateURIDemResponseBody | 404                                | application/json                   |
+| apierrors.APIError                 | 4XX, 5XX                           | \*/\*                              |
+
+## DeleteURI
+
+Delete URI
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Dem.DeleteURI(ctx, operations.DeleteURIRequest{
+        EntityID: "<id>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.EntityID != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
+| `request`                                                                  | [operations.DeleteURIRequest](../../models/operations/deleteurirequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `opts`                                                                     | [][operations.Option](../../models/operations/option.md)                   | :heavy_minus_sign:                                                         | The options for this request.                                              |
+
+### Response
+
+**[*operations.DeleteURIResponse](../../models/operations/deleteuriresponse.md), error**
+
+### Errors
+
+| Error Type                      | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| apierrors.DeleteURIResponseBody | 404                             | application/json                |
+| apierrors.APIError              | 4XX, 5XX                        | \*/\*                           |
+
+## PauseURIMonitoring
+
+Pause monitoring of the URI
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Dem.PauseURIMonitoring(ctx, operations.PauseURIMonitoringRequest{
+        EntityID: "<id>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.EntityID != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.PauseURIMonitoringRequest](../../models/operations/pauseurimonitoringrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+
+### Response
+
+**[*operations.PauseURIMonitoringResponse](../../models/operations/pauseurimonitoringresponse.md), error**
+
+### Errors
+
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| apierrors.PauseURIMonitoringResponseBody | 404                                      | application/json                         |
+| apierrors.APIError                       | 4XX, 5XX                                 | \*/\*                                    |
+
+## UnpauseURIMonitoring
+
+Unpause monitoring of the URI
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Dem.UnpauseURIMonitoring(ctx, operations.UnpauseURIMonitoringRequest{
+        EntityID: "<id>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.EntityID != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.UnpauseURIMonitoringRequest](../../models/operations/unpauseurimonitoringrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+
+### Response
+
+**[*operations.UnpauseURIMonitoringResponse](../../models/operations/unpauseurimonitoringresponse.md), error**
+
+### Errors
+
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| apierrors.UnpauseURIMonitoringResponseBody | 404                                        | application/json                           |
+| apierrors.APIError                         | 4XX, 5XX                                   | \*/\*                                      |
+
 ## CreateWebsite
 
 Create website monitoring configuration
@@ -147,16 +600,7 @@ func main() {
         Name: "solarwinds.com",
         URL: "https://www.solarwinds.com",
         AvailabilityCheckSettings: &components.AvailabilityCheckSettings{
-            CheckForString: &components.CheckForString{
-                Operator: components.CheckForStringOperatorContains,
-                Value: "string",
-            },
-            TestIntervalInSeconds: 14400,
-            Protocols: []components.WebsiteProtocol{
-                components.WebsiteProtocolHTTP,
-                components.WebsiteProtocolHTTPS,
-            },
-            PlatformOptions: &components.ProbePlatformOptions{
+            PlatformOptions: &components.WebsitePlatformOptions{
                 ProbePlatforms: []components.ProbePlatform{
                     components.ProbePlatformAws,
                 },
@@ -167,6 +611,19 @@ func main() {
                 Values: []string{
                     "NA",
                 },
+            },
+            TestIntervalInSeconds: 14400,
+            OutageConfiguration: &components.WebsiteOutageConfiguration{
+                FailingTestLocations: components.WebsiteFailingTestLocationsAll,
+                ConsecutiveForDown: 2,
+            },
+            CheckForString: &components.CheckForString{
+                Operator: components.CheckForStringOperatorContains,
+                Value: "string",
+            },
+            Protocols: []components.WebsiteProtocol{
+                components.WebsiteProtocolHTTP,
+                components.WebsiteProtocolHTTPS,
             },
             Ssl: &components.Ssl{
                 Enabled: swov1.Bool(true),
@@ -181,10 +638,6 @@ func main() {
             },
             AllowInsecureRenegotiation: swov1.Bool(true),
             PostData: swov1.String("{\"example\": \"value\"}"),
-            OutageConfiguration: &components.WebsiteOutageConfiguration{
-                FailingTestLocations: components.WebsiteFailingTestLocationsAll,
-                ConsecutiveForDown: 2,
-            },
         },
         Tags: []components.Tag{
             components.Tag{
@@ -311,16 +764,7 @@ func main() {
             Name: "solarwinds.com",
             URL: "https://www.solarwinds.com",
             AvailabilityCheckSettings: &components.AvailabilityCheckSettings{
-                CheckForString: &components.CheckForString{
-                    Operator: components.CheckForStringOperatorContains,
-                    Value: "string",
-                },
-                TestIntervalInSeconds: 14400,
-                Protocols: []components.WebsiteProtocol{
-                    components.WebsiteProtocolHTTP,
-                    components.WebsiteProtocolHTTPS,
-                },
-                PlatformOptions: &components.ProbePlatformOptions{
+                PlatformOptions: &components.WebsitePlatformOptions{
                     ProbePlatforms: []components.ProbePlatform{
                         components.ProbePlatformAws,
                     },
@@ -331,6 +775,19 @@ func main() {
                     Values: []string{
                         "NA",
                     },
+                },
+                TestIntervalInSeconds: 14400,
+                OutageConfiguration: &components.WebsiteOutageConfiguration{
+                    FailingTestLocations: components.WebsiteFailingTestLocationsAll,
+                    ConsecutiveForDown: 2,
+                },
+                CheckForString: &components.CheckForString{
+                    Operator: components.CheckForStringOperatorContains,
+                    Value: "string",
+                },
+                Protocols: []components.WebsiteProtocol{
+                    components.WebsiteProtocolHTTP,
+                    components.WebsiteProtocolHTTPS,
                 },
                 Ssl: &components.Ssl{
                     Enabled: swov1.Bool(true),
@@ -345,10 +802,6 @@ func main() {
                 },
                 AllowInsecureRenegotiation: swov1.Bool(true),
                 PostData: swov1.String("{\"example\": \"value\"}"),
-                OutageConfiguration: &components.WebsiteOutageConfiguration{
-                    FailingTestLocations: components.WebsiteFailingTestLocationsAll,
-                    ConsecutiveForDown: 2,
-                },
             },
             Tags: []components.Tag{
                 components.Tag{

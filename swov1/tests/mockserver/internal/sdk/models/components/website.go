@@ -7,6 +7,88 @@ import (
 	"fmt"
 )
 
+// WebsitePlatformOptions - Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, no particular cloud platform will be enforced.
+type WebsitePlatformOptions struct {
+	// Cloud platforms hosting synthetic probes.
+	ProbePlatforms []ProbePlatform `json:"probePlatforms"`
+	//   Use this field to configure whether availability tests should be performed from all selected
+	//   platforms or one randomly selected platform. It has no effect if you provided only one platform
+	//   in the `probePlatforms` field.
+	//
+	//   If set to true, a separate test is made from each of the selected platforms.
+	//
+	//   If set to false, only one of the selected platforms is chosen every time.
+	//
+	//   If omitted, the previous setting will stay in effect. If there is no previous setting, the value
+	//   will default to false.
+	TestFromAll *bool `json:"testFromAll,omitempty"`
+}
+
+func (o *WebsitePlatformOptions) GetProbePlatforms() []ProbePlatform {
+	if o == nil {
+		return []ProbePlatform{}
+	}
+	return o.ProbePlatforms
+}
+
+func (o *WebsitePlatformOptions) GetTestFromAll() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.TestFromAll
+}
+
+// WebsiteFailingTestLocations - How many locations must report a failure for an entity to be considered down.
+type WebsiteFailingTestLocations string
+
+const (
+	WebsiteFailingTestLocationsAll WebsiteFailingTestLocations = "all"
+	WebsiteFailingTestLocationsAny WebsiteFailingTestLocations = "any"
+)
+
+func (e WebsiteFailingTestLocations) ToPointer() *WebsiteFailingTestLocations {
+	return &e
+}
+func (e *WebsiteFailingTestLocations) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "all":
+		fallthrough
+	case "any":
+		*e = WebsiteFailingTestLocations(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for WebsiteFailingTestLocations: %v", v)
+	}
+}
+
+// WebsiteOutageConfiguration -   Default conditions when the entity is considered down.
+//
+//	If omitted or set to null, organization configuration will be used for this entity.
+type WebsiteOutageConfiguration struct {
+	// How many locations must report a failure for an entity to be considered down.
+	FailingTestLocations WebsiteFailingTestLocations `json:"failingTestLocations"`
+	// Number of consecutive failing tests for an entity to be considered down.
+	ConsecutiveForDown int `json:"consecutiveForDown"`
+}
+
+func (o *WebsiteOutageConfiguration) GetFailingTestLocations() WebsiteFailingTestLocations {
+	if o == nil {
+		return WebsiteFailingTestLocations("")
+	}
+	return o.FailingTestLocations
+}
+
+func (o *WebsiteOutageConfiguration) GetConsecutiveForDown() int {
+	if o == nil {
+		return 0
+	}
+	return o.ConsecutiveForDown
+}
+
 // CheckForString -   Use this field to configure whether availability tests should check for presence or absence of a particular string on a page.
 //
 //	If the operator is DOES_NOT_CONTAIN and the value is found on the page, the availability test will fail.
@@ -71,73 +153,25 @@ func (o *Ssl) GetIgnoreIntermediateCertificates() *bool {
 	return o.IgnoreIntermediateCertificates
 }
 
-// WebsiteFailingTestLocations - How many locations must report a failure for an entity to be considered down.
-type WebsiteFailingTestLocations string
-
-const (
-	WebsiteFailingTestLocationsAll WebsiteFailingTestLocations = "all"
-	WebsiteFailingTestLocationsAny WebsiteFailingTestLocations = "any"
-)
-
-func (e WebsiteFailingTestLocations) ToPointer() *WebsiteFailingTestLocations {
-	return &e
-}
-func (e *WebsiteFailingTestLocations) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "all":
-		fallthrough
-	case "any":
-		*e = WebsiteFailingTestLocations(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for WebsiteFailingTestLocations: %v", v)
-	}
-}
-
-// WebsiteOutageConfiguration -   Default conditions when the entity is considered down.
-//
-//	If omitted or set to null, organization configuration will be used for this entity.
-type WebsiteOutageConfiguration struct {
-	// How many locations must report a failure for an entity to be considered down.
-	FailingTestLocations WebsiteFailingTestLocations `json:"failingTestLocations"`
-	// Number of consecutive failing tests for an entity to be considered down.
-	ConsecutiveForDown int `json:"consecutiveForDown"`
-}
-
-func (o *WebsiteOutageConfiguration) GetFailingTestLocations() WebsiteFailingTestLocations {
-	if o == nil {
-		return WebsiteFailingTestLocations("")
-	}
-	return o.FailingTestLocations
-}
-
-func (o *WebsiteOutageConfiguration) GetConsecutiveForDown() int {
-	if o == nil {
-		return 0
-	}
-	return o.ConsecutiveForDown
-}
-
 // AvailabilityCheckSettings - Use this field to configure availability tests for the website.
 type AvailabilityCheckSettings struct {
+	// Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, no particular cloud platform will be enforced.
+	PlatformOptions *WebsitePlatformOptions `json:"platformOptions,omitempty"`
+	//   Configure locations of the synthetic availability test probes.
+	//   Acceptable values depend on the selected type and actual values of existing probes.
+	TestFrom TestFrom `json:"testFrom"`
+	// Configure how often availability tests should be performed. Provide a number of seconds that is one of 60, 300, 600, 900, 1800, 3600, 7200, 14400.
+	TestIntervalInSeconds float64 `json:"testIntervalInSeconds"`
+	//   Default conditions when the entity is considered down.
+	//   If omitted or set to null, organization configuration will be used for this entity.
+	OutageConfiguration *WebsiteOutageConfiguration `json:"outageConfiguration,omitempty"`
 	//   Use this field to configure whether availability tests should check for presence or absence of a particular string on a page.
 	//   If the operator is DOES_NOT_CONTAIN and the value is found on the page, the availability test will fail.
 	//   Likewise, if the operator is CONTAINS and the value is not found on the page, the availability test will fail.
 	//   If omitted or set to null, the string checking functionality will be disabled.
 	CheckForString *CheckForString `json:"checkForString,omitempty"`
-	// Configure how often availability tests should be performed. Provide a number of seconds that is one of 60, 300, 600, 900, 1800, 3600, 7200, 14400.
-	TestIntervalInSeconds float64 `json:"testIntervalInSeconds"`
 	// Configure which protocols need availability tests to be performed. At least one protocol must be provided.
 	Protocols []WebsiteProtocol `json:"protocols"`
-	// Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, no particular cloud platform will be enforced.
-	PlatformOptions *ProbePlatformOptions `json:"platformOptions,omitempty"`
-	//   Configure locations of the synthetic availability test probes.
-	//   Acceptable values depend on the selected type and actual values of existing probes.
-	TestFrom TestFrom `json:"testFrom"`
 	//   Configure monitoring of SSL/TLS certificates validity. This option is relevant for HTTPS protocol only.
 	//   If omitted or set to null, SSL monitoring will be disabled and its previous configuration discarded.
 	Ssl *Ssl `json:"ssl,omitempty"`
@@ -152,33 +186,9 @@ type AvailabilityCheckSettings struct {
 	//   Configure data that will be sent as POST request body by the synthetic probe.
 	//   If omitted or set to null/empty string, the probe will send the usual GET requests.
 	PostData *string `json:"postData,omitempty"`
-	//   Default conditions when the entity is considered down.
-	//   If omitted or set to null, organization configuration will be used for this entity.
-	OutageConfiguration *WebsiteOutageConfiguration `json:"outageConfiguration,omitempty"`
 }
 
-func (o *AvailabilityCheckSettings) GetCheckForString() *CheckForString {
-	if o == nil {
-		return nil
-	}
-	return o.CheckForString
-}
-
-func (o *AvailabilityCheckSettings) GetTestIntervalInSeconds() float64 {
-	if o == nil {
-		return 0.0
-	}
-	return o.TestIntervalInSeconds
-}
-
-func (o *AvailabilityCheckSettings) GetProtocols() []WebsiteProtocol {
-	if o == nil {
-		return []WebsiteProtocol{}
-	}
-	return o.Protocols
-}
-
-func (o *AvailabilityCheckSettings) GetPlatformOptions() *ProbePlatformOptions {
+func (o *AvailabilityCheckSettings) GetPlatformOptions() *WebsitePlatformOptions {
 	if o == nil {
 		return nil
 	}
@@ -190,6 +200,34 @@ func (o *AvailabilityCheckSettings) GetTestFrom() TestFrom {
 		return TestFrom{}
 	}
 	return o.TestFrom
+}
+
+func (o *AvailabilityCheckSettings) GetTestIntervalInSeconds() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TestIntervalInSeconds
+}
+
+func (o *AvailabilityCheckSettings) GetOutageConfiguration() *WebsiteOutageConfiguration {
+	if o == nil {
+		return nil
+	}
+	return o.OutageConfiguration
+}
+
+func (o *AvailabilityCheckSettings) GetCheckForString() *CheckForString {
+	if o == nil {
+		return nil
+	}
+	return o.CheckForString
+}
+
+func (o *AvailabilityCheckSettings) GetProtocols() []WebsiteProtocol {
+	if o == nil {
+		return []WebsiteProtocol{}
+	}
+	return o.Protocols
 }
 
 func (o *AvailabilityCheckSettings) GetSsl() *Ssl {
@@ -218,13 +256,6 @@ func (o *AvailabilityCheckSettings) GetPostData() *string {
 		return nil
 	}
 	return o.PostData
-}
-
-func (o *AvailabilityCheckSettings) GetOutageConfiguration() *WebsiteOutageConfiguration {
-	if o == nil {
-		return nil
-	}
-	return o.OutageConfiguration
 }
 
 // Rum -     Use this field to configure real user monitoring (RUM) for the website.

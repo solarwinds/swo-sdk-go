@@ -50,20 +50,15 @@ func testGetWebsiteGetWebsite0(w http.ResponseWriter, req *http.Request) {
 	respBody := &operations.GetWebsiteResponseBody{
 		ID:     "e-1448474379026206720",
 		Type:   "Website",
-		Status: operations.StatusUp,
+		Status: operations.GetWebsiteStatusUp,
 		Name:   "solarwinds.com",
 		URL:    "https://www.solarwinds.com",
-		AvailabilityCheckSettings: &operations.AvailabilityCheckSettings{
-			CheckForString: &operations.CheckForString{
-				Operator: components.CheckForStringOperatorContains,
-				Value:    "string",
-			},
-			TestIntervalInSeconds: 14400,
-			Protocols: []components.WebsiteProtocol{
-				components.WebsiteProtocolHTTP,
-				components.WebsiteProtocolHTTPS,
-			},
-			PlatformOptions: &components.ProbePlatformOptions{
+		MonitoringOptions: operations.MonitoringOptions{
+			IsAvailabilityActive: true,
+			IsRumActive:          false,
+		},
+		AvailabilityCheckSettings: &operations.GetWebsiteAvailabilityCheckSettings{
+			PlatformOptions: &operations.GetWebsitePlatformOptions{
 				ProbePlatforms: []components.ProbePlatform{
 					components.ProbePlatformAws,
 				},
@@ -74,6 +69,19 @@ func testGetWebsiteGetWebsite0(w http.ResponseWriter, req *http.Request) {
 				Values: []string{
 					"NA",
 				},
+			},
+			TestIntervalInSeconds: 14400,
+			OutageConfiguration: &operations.GetWebsiteOutageConfiguration{
+				FailingTestLocations: operations.GetWebsiteFailingTestLocationsAll,
+				ConsecutiveForDown:   2,
+			},
+			CheckForString: &operations.CheckForString{
+				Operator: components.CheckForStringOperatorContains,
+				Value:    "string",
+			},
+			Protocols: []components.WebsiteProtocol{
+				components.WebsiteProtocolHTTP,
+				components.WebsiteProtocolHTTPS,
 			},
 			Ssl: &operations.Ssl{
 				Enabled:                        types.Bool(true),
@@ -88,10 +96,6 @@ func testGetWebsiteGetWebsite0(w http.ResponseWriter, req *http.Request) {
 			},
 			AllowInsecureRenegotiation: types.Bool(true),
 			PostData:                   types.String("{\"example\": \"value\"}"),
-			OutageConfiguration: &operations.OutageConfiguration{
-				FailingTestLocations: operations.FailingTestLocationsAll,
-				ConsecutiveForDown:   2,
-			},
 		},
 		Tags: []components.Tag{
 			components.Tag{

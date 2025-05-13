@@ -71,16 +71,7 @@ func TestDem_CreateWebsite(t *testing.T) {
 		Name: "solarwinds.com",
 		URL:  "https://www.solarwinds.com",
 		AvailabilityCheckSettings: &components.AvailabilityCheckSettings{
-			CheckForString: &components.CheckForString{
-				Operator: components.CheckForStringOperatorContains,
-				Value:    "string",
-			},
-			TestIntervalInSeconds: 14400,
-			Protocols: []components.WebsiteProtocol{
-				components.WebsiteProtocolHTTP,
-				components.WebsiteProtocolHTTPS,
-			},
-			PlatformOptions: &components.ProbePlatformOptions{
+			PlatformOptions: &components.WebsitePlatformOptions{
 				ProbePlatforms: []components.ProbePlatform{
 					components.ProbePlatformAws,
 				},
@@ -91,6 +82,19 @@ func TestDem_CreateWebsite(t *testing.T) {
 				Values: []string{
 					"NA",
 				},
+			},
+			TestIntervalInSeconds: 14400,
+			OutageConfiguration: &components.WebsiteOutageConfiguration{
+				FailingTestLocations: components.WebsiteFailingTestLocationsAll,
+				ConsecutiveForDown:   2,
+			},
+			CheckForString: &components.CheckForString{
+				Operator: components.CheckForStringOperatorContains,
+				Value:    "string",
+			},
+			Protocols: []components.WebsiteProtocol{
+				components.WebsiteProtocolHTTP,
+				components.WebsiteProtocolHTTPS,
 			},
 			Ssl: &components.Ssl{
 				Enabled:                        swov1.Bool(true),
@@ -105,10 +109,6 @@ func TestDem_CreateWebsite(t *testing.T) {
 			},
 			AllowInsecureRenegotiation: swov1.Bool(true),
 			PostData:                   swov1.String("{\"example\": \"value\"}"),
-			OutageConfiguration: &components.WebsiteOutageConfiguration{
-				FailingTestLocations: components.WebsiteFailingTestLocationsAll,
-				ConsecutiveForDown:   2,
-			},
 		},
 		Tags: []components.Tag{
 			components.Tag{
@@ -150,20 +150,15 @@ func TestDem_GetWebsite(t *testing.T) {
 	assert.Equal(t, &operations.GetWebsiteResponseBody{
 		ID:     "e-1448474379026206720",
 		Type:   "Website",
-		Status: operations.StatusUp,
+		Status: operations.GetWebsiteStatusUp,
 		Name:   "solarwinds.com",
 		URL:    "https://www.solarwinds.com",
-		AvailabilityCheckSettings: &operations.AvailabilityCheckSettings{
-			CheckForString: &operations.CheckForString{
-				Operator: components.CheckForStringOperatorContains,
-				Value:    "string",
-			},
-			TestIntervalInSeconds: 14400,
-			Protocols: []components.WebsiteProtocol{
-				components.WebsiteProtocolHTTP,
-				components.WebsiteProtocolHTTPS,
-			},
-			PlatformOptions: &components.ProbePlatformOptions{
+		MonitoringOptions: operations.MonitoringOptions{
+			IsAvailabilityActive: true,
+			IsRumActive:          false,
+		},
+		AvailabilityCheckSettings: &operations.GetWebsiteAvailabilityCheckSettings{
+			PlatformOptions: &operations.GetWebsitePlatformOptions{
 				ProbePlatforms: []components.ProbePlatform{
 					components.ProbePlatformAws,
 				},
@@ -174,6 +169,19 @@ func TestDem_GetWebsite(t *testing.T) {
 				Values: []string{
 					"NA",
 				},
+			},
+			TestIntervalInSeconds: 14400,
+			OutageConfiguration: &operations.GetWebsiteOutageConfiguration{
+				FailingTestLocations: operations.GetWebsiteFailingTestLocationsAll,
+				ConsecutiveForDown:   2,
+			},
+			CheckForString: &operations.CheckForString{
+				Operator: components.CheckForStringOperatorContains,
+				Value:    "string",
+			},
+			Protocols: []components.WebsiteProtocol{
+				components.WebsiteProtocolHTTP,
+				components.WebsiteProtocolHTTPS,
 			},
 			Ssl: &operations.Ssl{
 				Enabled:                        swov1.Bool(true),
@@ -188,10 +196,6 @@ func TestDem_GetWebsite(t *testing.T) {
 			},
 			AllowInsecureRenegotiation: swov1.Bool(true),
 			PostData:                   swov1.String("{\"example\": \"value\"}"),
-			OutageConfiguration: &operations.OutageConfiguration{
-				FailingTestLocations: operations.FailingTestLocationsAll,
-				ConsecutiveForDown:   2,
-			},
 		},
 		Tags: []components.Tag{
 			components.Tag{
@@ -231,16 +235,7 @@ func TestDem_UpdateWebsite(t *testing.T) {
 			Name: "solarwinds.com",
 			URL:  "https://www.solarwinds.com",
 			AvailabilityCheckSettings: &components.AvailabilityCheckSettings{
-				CheckForString: &components.CheckForString{
-					Operator: components.CheckForStringOperatorContains,
-					Value:    "string",
-				},
-				TestIntervalInSeconds: 14400,
-				Protocols: []components.WebsiteProtocol{
-					components.WebsiteProtocolHTTP,
-					components.WebsiteProtocolHTTPS,
-				},
-				PlatformOptions: &components.ProbePlatformOptions{
+				PlatformOptions: &components.WebsitePlatformOptions{
 					ProbePlatforms: []components.ProbePlatform{
 						components.ProbePlatformAws,
 					},
@@ -251,6 +246,19 @@ func TestDem_UpdateWebsite(t *testing.T) {
 					Values: []string{
 						"NA",
 					},
+				},
+				TestIntervalInSeconds: 14400,
+				OutageConfiguration: &components.WebsiteOutageConfiguration{
+					FailingTestLocations: components.WebsiteFailingTestLocationsAll,
+					ConsecutiveForDown:   2,
+				},
+				CheckForString: &components.CheckForString{
+					Operator: components.CheckForStringOperatorContains,
+					Value:    "string",
+				},
+				Protocols: []components.WebsiteProtocol{
+					components.WebsiteProtocolHTTP,
+					components.WebsiteProtocolHTTPS,
 				},
 				Ssl: &components.Ssl{
 					Enabled:                        swov1.Bool(true),
@@ -265,10 +273,6 @@ func TestDem_UpdateWebsite(t *testing.T) {
 				},
 				AllowInsecureRenegotiation: swov1.Bool(true),
 				PostData:                   swov1.String("{\"example\": \"value\"}"),
-				OutageConfiguration: &components.WebsiteOutageConfiguration{
-					FailingTestLocations: components.WebsiteFailingTestLocationsAll,
-					ConsecutiveForDown:   2,
-				},
 			},
 			Tags: []components.Tag{
 				components.Tag{
@@ -349,6 +353,287 @@ func TestDem_UnpauseWebsiteMonitoring(t *testing.T) {
 	)
 
 	res, err := s.Dem.UnpauseWebsiteMonitoring(ctx, operations.UnpauseWebsiteMonitoringRequest{
+		EntityID: "<id>",
+	})
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.NotNil(t, res.EntityID)
+	assert.Equal(t, &components.EntityID{
+		ID: "e-1448474379026206720",
+	}, res.EntityID)
+
+}
+
+func TestDem_ListProbes(t *testing.T) {
+	ctx := context.Background()
+
+	testHTTPClient := createTestHTTPClient("listProbes")
+
+	s := swov1.New(
+		swov1.WithServerURL(utils.GetEnv("TEST_SERVER_URL", "http://localhost:18080")),
+		swov1.WithClient(testHTTPClient),
+		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
+	)
+
+	res, err := s.Dem.ListProbes(ctx)
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.NotNil(t, res.Object)
+	assert.Equal(t, &operations.ListProbesResponseBody{
+		Probes: []components.Probe{
+			components.Probe{
+				ID:       "probe-1",
+				Name:     "Washington",
+				Active:   true,
+				Platform: components.PlatformAws,
+				Region:   "NA",
+				Country:  "US",
+				City:     "Washington D.C.",
+				Coordinates: components.Coordinates{
+					Latitude:  38.89511,
+					Longitude: -77.03637,
+				},
+				Ipv4Addresses: []string{
+					"34.232.5.40",
+					"44.207.30.12",
+				},
+				Ipv6Addresses: []string{
+					"2001:0db8:85a3:0000:0000:8a2e:0370:7334",
+				},
+			},
+		},
+	}, res.Object)
+
+}
+
+func TestDem_CreateURI(t *testing.T) {
+	ctx := context.Background()
+
+	testHTTPClient := createTestHTTPClient("createUri")
+
+	s := swov1.New(
+		swov1.WithServerURL(utils.GetEnv("TEST_SERVER_URL", "http://localhost:18080")),
+		swov1.WithClient(testHTTPClient),
+		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
+	)
+
+	res, err := s.Dem.CreateURI(ctx, components.URI{
+		Name:       "example-uri",
+		IPOrDomain: "solarwinds.com",
+		AvailabilityCheckSettings: components.URIAvailabilityCheckSettingsInput{
+			PlatformOptions: &components.PlatformOptions{
+				ProbePlatforms: []components.ProbePlatform{
+					components.ProbePlatformAws,
+				},
+				TestFromAll: swov1.Bool(true),
+			},
+			TestFrom: components.TestFrom{
+				Type: components.ProbeLocationTypeRegion,
+				Values: []string{
+					"NA",
+				},
+			},
+			TestIntervalInSeconds: 300,
+			OutageConfiguration: &components.URIAvailabilityCheckSettingsInputOutageConfiguration{
+				FailingTestLocations: components.URIAvailabilityCheckSettingsInputFailingTestLocationsAll,
+				ConsecutiveForDown:   2,
+			},
+			TCP: &components.TCP{
+				Enabled: true,
+				Port:    443,
+			},
+		},
+		Tags: []components.Tag{
+			components.Tag{
+				Key:   "environment",
+				Value: "production",
+			},
+		},
+	})
+	require.NoError(t, err)
+	assert.Equal(t, 201, res.HTTPMeta.Response.StatusCode)
+	assert.NotNil(t, res.EntityID)
+	assert.Equal(t, &components.EntityID{
+		ID: "e-1448474379026206720",
+	}, res.EntityID)
+
+}
+
+func TestDem_GetURI(t *testing.T) {
+	ctx := context.Background()
+
+	testHTTPClient := createTestHTTPClient("getUri")
+
+	s := swov1.New(
+		swov1.WithServerURL(utils.GetEnv("TEST_SERVER_URL", "http://localhost:18080")),
+		swov1.WithClient(testHTTPClient),
+		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
+	)
+
+	res, err := s.Dem.GetURI(ctx, operations.GetURIRequest{
+		EntityID: "<id>",
+	})
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.NotNil(t, res.Object)
+	assert.Equal(t, &operations.GetURIResponseBody{
+		ID:         "e-1448474379026206720",
+		Type:       "Uri",
+		Status:     operations.StatusUp,
+		Name:       "solarwinds.com",
+		IPOrDomain: "solarwinds.com",
+		AvailabilityCheckSettings: operations.AvailabilityCheckSettings{
+			PlatformOptions: &operations.PlatformOptions{
+				ProbePlatforms: []components.ProbePlatform{
+					components.ProbePlatformAws,
+				},
+				TestFromAll: swov1.Bool(true),
+			},
+			TestFrom: components.TestFrom{
+				Type: components.ProbeLocationTypeRegion,
+				Values: []string{
+					"NA",
+				},
+			},
+			TestIntervalInSeconds: 14400,
+			OutageConfiguration: &operations.OutageConfiguration{
+				FailingTestLocations: operations.FailingTestLocationsAll,
+				ConsecutiveForDown:   2,
+			},
+			Ping: &operations.Ping{
+				Enabled: true,
+			},
+			Protocol: operations.ProtocolPing,
+		},
+		Tags: []components.Tag{
+			components.Tag{
+				Key:   "environment",
+				Value: "production",
+			},
+		},
+		LastOutageStartTime: types.MustNewTimeFromString("2025-01-15T14:31:19.735Z"),
+		LastOutageEndTime:   types.MustNewTimeFromString("2025-01-15T14:31:19.735Z"),
+		LastTestTime:        types.MustNewTimeFromString("2025-01-15T14:31:19.735Z"),
+		LastErrorTime:       types.MustNewTimeFromString("2025-01-15T14:31:19.735Z"),
+		LastResponseTime:    swov1.Int(376),
+	}, res.Object)
+
+}
+
+func TestDem_UpdateURI(t *testing.T) {
+	ctx := context.Background()
+
+	testHTTPClient := createTestHTTPClient("updateUri")
+
+	s := swov1.New(
+		swov1.WithServerURL(utils.GetEnv("TEST_SERVER_URL", "http://localhost:18080")),
+		swov1.WithClient(testHTTPClient),
+		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
+	)
+
+	res, err := s.Dem.UpdateURI(ctx, operations.UpdateURIRequest{
+		EntityID: "<id>",
+		URI: components.URI{
+			Name:       "example-uri",
+			IPOrDomain: "solarwinds.com",
+			AvailabilityCheckSettings: components.URIAvailabilityCheckSettingsInput{
+				PlatformOptions: &components.PlatformOptions{
+					ProbePlatforms: []components.ProbePlatform{
+						components.ProbePlatformAws,
+					},
+					TestFromAll: swov1.Bool(true),
+				},
+				TestFrom: components.TestFrom{
+					Type: components.ProbeLocationTypeRegion,
+					Values: []string{
+						"NA",
+					},
+				},
+				TestIntervalInSeconds: 300,
+				OutageConfiguration: &components.URIAvailabilityCheckSettingsInputOutageConfiguration{
+					FailingTestLocations: components.URIAvailabilityCheckSettingsInputFailingTestLocationsAll,
+					ConsecutiveForDown:   2,
+				},
+				TCP: &components.TCP{
+					Enabled: true,
+					Port:    443,
+				},
+			},
+			Tags: []components.Tag{
+				components.Tag{
+					Key:   "environment",
+					Value: "production",
+				},
+			},
+		},
+	})
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.NotNil(t, res.EntityID)
+	assert.Equal(t, &components.EntityID{
+		ID: "e-1448474379026206720",
+	}, res.EntityID)
+
+}
+
+func TestDem_DeleteURI(t *testing.T) {
+	ctx := context.Background()
+
+	testHTTPClient := createTestHTTPClient("deleteUri")
+
+	s := swov1.New(
+		swov1.WithServerURL(utils.GetEnv("TEST_SERVER_URL", "http://localhost:18080")),
+		swov1.WithClient(testHTTPClient),
+		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
+	)
+
+	res, err := s.Dem.DeleteURI(ctx, operations.DeleteURIRequest{
+		EntityID: "<id>",
+	})
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.NotNil(t, res.EntityID)
+	assert.Equal(t, &components.EntityID{
+		ID: "e-1448474379026206720",
+	}, res.EntityID)
+
+}
+
+func TestDem_PauseURIMonitoring(t *testing.T) {
+	ctx := context.Background()
+
+	testHTTPClient := createTestHTTPClient("pauseUriMonitoring")
+
+	s := swov1.New(
+		swov1.WithServerURL(utils.GetEnv("TEST_SERVER_URL", "http://localhost:18080")),
+		swov1.WithClient(testHTTPClient),
+		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
+	)
+
+	res, err := s.Dem.PauseURIMonitoring(ctx, operations.PauseURIMonitoringRequest{
+		EntityID: "<id>",
+	})
+	require.NoError(t, err)
+	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
+	assert.NotNil(t, res.EntityID)
+	assert.Equal(t, &components.EntityID{
+		ID: "e-1448474379026206720",
+	}, res.EntityID)
+
+}
+
+func TestDem_UnpauseURIMonitoring(t *testing.T) {
+	ctx := context.Background()
+
+	testHTTPClient := createTestHTTPClient("unpauseUriMonitoring")
+
+	s := swov1.New(
+		swov1.WithServerURL(utils.GetEnv("TEST_SERVER_URL", "http://localhost:18080")),
+		swov1.WithClient(testHTTPClient),
+		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
+	)
+
+	res, err := s.Dem.UnpauseURIMonitoring(ctx, operations.UnpauseURIMonitoringRequest{
 		EntityID: "<id>",
 	})
 	require.NoError(t, err)
