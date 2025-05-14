@@ -6,9 +6,9 @@ import (
 	"github.com/solarwinds/swo-sdk-go/swov1/internal/utils"
 )
 
-type DatabaseConnectionOptions struct {
+type DatabaseConnectionOptionsUpdate struct {
 	// Database server host
-	Host string `json:"host"`
+	Host *string `json:"host,omitempty"`
 	// Database server port
 	Port *string `default:"" json:"port"`
 	// Encrypted credentials for connecting to database server when using basic auth method (username, password)
@@ -18,74 +18,74 @@ type DatabaseConnectionOptions struct {
 	// Enable ssl when agent connects to database server
 	SslEnabled *bool `default:"false" json:"sslEnabled"`
 	// SSL connection options, when sslEnabled is true
-	SslOptions *DatabaseSslOptions `json:"sslOptions,omitempty"`
+	SslOptions *DatabaseSslOptionsUpdate `json:"sslOptions,omitempty"`
 	// Cloud region in case of database managed by cloud provider, required for IAM authentication
 	CloudRegion *string `default:"" json:"cloudRegion"`
 	// binding for packet sniffing for sniff captureMethod (on-host), example: 0.0.0.0:6379,[::]:6379
 	Bindings *string `default:"" json:"bindings"`
 }
 
-func (d DatabaseConnectionOptions) MarshalJSON() ([]byte, error) {
+func (d DatabaseConnectionOptionsUpdate) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(d, "", false)
 }
 
-func (d *DatabaseConnectionOptions) UnmarshalJSON(data []byte) error {
+func (d *DatabaseConnectionOptionsUpdate) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *DatabaseConnectionOptions) GetHost() string {
+func (o *DatabaseConnectionOptionsUpdate) GetHost() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Host
 }
 
-func (o *DatabaseConnectionOptions) GetPort() *string {
+func (o *DatabaseConnectionOptionsUpdate) GetPort() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Port
 }
 
-func (o *DatabaseConnectionOptions) GetEncryptedCredentials() *string {
+func (o *DatabaseConnectionOptionsUpdate) GetEncryptedCredentials() *string {
 	if o == nil {
 		return nil
 	}
 	return o.EncryptedCredentials
 }
 
-func (o *DatabaseConnectionOptions) GetUser() *string {
+func (o *DatabaseConnectionOptionsUpdate) GetUser() *string {
 	if o == nil {
 		return nil
 	}
 	return o.User
 }
 
-func (o *DatabaseConnectionOptions) GetSslEnabled() *bool {
+func (o *DatabaseConnectionOptionsUpdate) GetSslEnabled() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.SslEnabled
 }
 
-func (o *DatabaseConnectionOptions) GetSslOptions() *DatabaseSslOptions {
+func (o *DatabaseConnectionOptionsUpdate) GetSslOptions() *DatabaseSslOptionsUpdate {
 	if o == nil {
 		return nil
 	}
 	return o.SslOptions
 }
 
-func (o *DatabaseConnectionOptions) GetCloudRegion() *string {
+func (o *DatabaseConnectionOptionsUpdate) GetCloudRegion() *string {
 	if o == nil {
 		return nil
 	}
 	return o.CloudRegion
 }
 
-func (o *DatabaseConnectionOptions) GetBindings() *string {
+func (o *DatabaseConnectionOptionsUpdate) GetBindings() *string {
 	if o == nil {
 		return nil
 	}
