@@ -5,8 +5,10 @@ package components
 type DatabasePluginStatus struct {
 	// Name of plugin observing database server
 	PluginName string `json:"pluginName"`
-	// Status of plugin observing database server
-	Status string `json:"status"`
+	// Deployment Status of plugin observing database server
+	DeploymentStatus string `json:"deploymentStatus"`
+	// Health Status of plugin observing database server
+	HealthStatus string `json:"healthStatus"`
 }
 
 func (o *DatabasePluginStatus) GetPluginName() string {
@@ -16,9 +18,16 @@ func (o *DatabasePluginStatus) GetPluginName() string {
 	return o.PluginName
 }
 
-func (o *DatabasePluginStatus) GetStatus() string {
+func (o *DatabasePluginStatus) GetDeploymentStatus() string {
 	if o == nil {
 		return ""
 	}
-	return o.Status
+	return o.DeploymentStatus
+}
+
+func (o *DatabasePluginStatus) GetHealthStatus() string {
+	if o == nil {
+		return ""
+	}
+	return o.HealthStatus
 }

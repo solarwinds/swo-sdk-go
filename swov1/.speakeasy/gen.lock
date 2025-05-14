@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
-  docChecksum: 240eb0763cf70f894669c01877296ade
+  docChecksum: d8883b15565924ae12142f13ab0ca51f
   docVersion: 1.0.8
-  speakeasyVersion: 1.543.8
-  generationVersion: 2.598.22
-  releaseVersion: 0.1.8
-  configChecksum: 7e86b22cd182e672e352c01249d2867c
+  speakeasyVersion: 1.544.0
+  generationVersion: 2.599.0
+  releaseVersion: 0.1.9
+  configChecksum: 67fccbbe8b17b030f996a0f1c289cd48
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
@@ -87,11 +87,15 @@ generatedFiles:
   - /models/components/customheaders.go
   - /models/components/databaseauthmethod.go
   - /models/components/databaseconnectionoptions.go
+  - /models/components/databaseconnectionoptionsupdate.go
   - /models/components/databasecredentialspublickeyresponse.go
+  - /models/components/databasemetricscapturemethod.go
   - /models/components/databasepluginconfig.go
   - /models/components/databasepluginconfigresponse.go
   - /models/components/databasepluginstatus.go
   - /models/components/databasepluginstatusresponse.go
+  - /models/components/databasessloptions.go
+  - /models/components/databasessloptionsupdate.go
   - /models/components/databasetype.go
   - /models/components/entity.go
   - /models/components/entityid.go
@@ -238,7 +242,6 @@ generatedFiles:
   - docs/models/components/activateawsintegrationrequest.md
   - docs/models/components/availabilitychecksettings.md
   - docs/models/components/awsorganisationalunitrequest.md
-  - docs/models/components/capturemethod.md
   - docs/models/components/category.md
   - docs/models/components/changeevent.md
   - docs/models/components/checkforstring.md
@@ -253,13 +256,17 @@ generatedFiles:
   - docs/models/components/customheaders.md
   - docs/models/components/databaseauthmethod.md
   - docs/models/components/databaseconnectionoptions.md
+  - docs/models/components/databaseconnectionoptionsupdate.md
   - docs/models/components/databasecredentialspublickeyresponse.md
+  - docs/models/components/databasemetricscapturemethod.md
   - docs/models/components/databasepluginconfig.md
   - docs/models/components/databasepluginconfigresponse.md
   - docs/models/components/databasepluginstatus.md
   - docs/models/components/databasepluginstatusresponse.md
+  - docs/models/components/databasessloptions.md
+  - docs/models/components/databasessloptionsupdate.md
+  - docs/models/components/databasessloptionsupdatesslmode.md
   - docs/models/components/databasetype.md
-  - docs/models/components/dbconnoptions.md
   - docs/models/components/entity.md
   - docs/models/components/entityid.md
   - docs/models/components/entityinput.md
@@ -292,7 +299,6 @@ generatedFiles:
   - docs/models/components/seriestype.md
   - docs/models/components/ssl.md
   - docs/models/components/sslmode.md
-  - docs/models/components/ssloptions.md
   - docs/models/components/tag.md
   - docs/models/components/tags.md
   - docs/models/components/tcp.md
@@ -302,8 +308,6 @@ generatedFiles:
   - docs/models/components/updateawsintegrationresponse.md
   - docs/models/components/updatecompositemetric.md
   - docs/models/components/updatedatabaserequest.md
-  - docs/models/components/updatedatabaserequestsslmode.md
-  - docs/models/components/updatedatabaserequestssloptions.md
   - docs/models/components/uri.md
   - docs/models/components/uriavailabilitychecksettingsinput.md
   - docs/models/components/uriavailabilitychecksettingsinputfailingtestlocations.md
@@ -543,11 +547,15 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/components/customheaders.go
   - tests/mockserver/internal/sdk/models/components/databaseauthmethod.go
   - tests/mockserver/internal/sdk/models/components/databaseconnectionoptions.go
+  - tests/mockserver/internal/sdk/models/components/databaseconnectionoptionsupdate.go
   - tests/mockserver/internal/sdk/models/components/databasecredentialspublickeyresponse.go
+  - tests/mockserver/internal/sdk/models/components/databasemetricscapturemethod.go
   - tests/mockserver/internal/sdk/models/components/databasepluginconfig.go
   - tests/mockserver/internal/sdk/models/components/databasepluginconfigresponse.go
   - tests/mockserver/internal/sdk/models/components/databasepluginstatus.go
   - tests/mockserver/internal/sdk/models/components/databasepluginstatusresponse.go
+  - tests/mockserver/internal/sdk/models/components/databasessloptions.go
+  - tests/mockserver/internal/sdk/models/components/databasessloptionsupdate.go
   - tests/mockserver/internal/sdk/models/components/databasetype.go
   - tests/mockserver/internal/sdk/models/components/entity.go
   - tests/mockserver/internal/sdk/models/components/entityid.go
@@ -750,7 +758,7 @@ examples:
   observeDatabase:
     speakeasy-default-observe-database:
       requestBody:
-        application/json: {"name": "<value>", "agentId": "<id>", "dbType": "mongo", "authMethod": "entraclientsecret", "captureMethod": null, "configOptions": [{"key": "<key>", "value": "<value>"}], "dbConnOptions": {"host": "dependent-bar.com", "port": "<value>", "encryptedCredentials": "", "user": "", "sslEnabled": false, "sslOptions": {"sslMode": "require", "sslCAPath": "", "sslKeyPath": "", "sslCertPath": ""}, "cloudRegion": ""}, "tags": []}
+        application/json: {"name": "<value>", "agentId": "<id>", "dbType": "mongo", "authMethod": "entraclientsecret", "captureMethod": "poll", "configOptions": [{"key": "<key>", "value": "<value>"}], "dbConnOptions": {"host": "dependent-bar.com", "port": "<value>", "encryptedCredentials": "", "user": "", "sslEnabled": false, "sslOptions": {"sslMode": "require", "sslCAPath": "", "sslKeyPath": "", "sslCertPath": ""}, "cloudRegion": "", "bindings": ""}, "tags": []}
       responses:
         "201":
           application/json: {"id": "<id>"}
@@ -794,7 +802,7 @@ examples:
           entityId: "<id>"
       responses:
         "200":
-          application/json: {"pluginConfig": [{"pluginName": "<value>", "config": [{"key": "<key>", "value": "<value>"}]}, {"pluginName": "<value>", "config": []}, {"pluginName": "<value>", "config": [{"key": "<key>", "value": "<value>"}]}]}
+          application/json: {"pluginConfig": [{"pluginName": "<value>", "configOptions": [{"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}], "dbConnOptions": [{"key": "<key>", "value": "<value>"}]}, {"pluginName": "<value>", "configOptions": [], "dbConnOptions": [{"key": "<key>", "value": "<value>"}]}, {"pluginName": "<value>", "configOptions": [{"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}], "dbConnOptions": [{"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}]}]}
         "400":
           application/json: {"code": 400, "message": "Bad request", "": {}}
         "404":
@@ -806,7 +814,7 @@ examples:
           entityId: "<id>"
       responses:
         "200":
-          application/json: {"plugins": [{"pluginName": "<value>", "status": "<value>"}, {"pluginName": "<value>", "status": "<value>"}]}
+          application/json: {"plugins": [{"pluginName": "<value>", "deploymentStatus": "<value>", "healthStatus": "<value>"}, {"pluginName": "<value>", "deploymentStatus": "<value>", "healthStatus": "<value>"}]}
         "400":
           application/json: {"code": 400, "message": "Bad request", "": {}}
         "404":
