@@ -2,45 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-	"mockserver/internal/sdk/utils"
-)
-
-// CaptureMethod - Method for capturing metrics from database server: sniff/profiler/slow-log/poll, ignored for SqlServer and Redis
-type CaptureMethod string
-
-const (
-	CaptureMethodSniffer  CaptureMethod = "sniffer"
-	CaptureMethodPoll     CaptureMethod = "poll"
-	CaptureMethodProfiler CaptureMethod = "profiler"
-	CaptureMethodSlowLog  CaptureMethod = "slow-log"
-)
-
-func (e CaptureMethod) ToPointer() *CaptureMethod {
-	return &e
-}
-func (e *CaptureMethod) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "sniffer":
-		fallthrough
-	case "poll":
-		fallthrough
-	case "profiler":
-		fallthrough
-	case "slow-log":
-		*e = CaptureMethod(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CaptureMethod: %v", v)
-	}
-}
-
 type ObserveDatabaseRequest struct {
 	// Name for the observed database entity
 	Name string `json:"name"`
@@ -51,24 +12,13 @@ type ObserveDatabaseRequest struct {
 	// Auth method to be used by the agent to connect to database server
 	AuthMethod DatabaseAuthMethod `json:"authMethod"`
 	// Method for capturing metrics from database server: sniff/profiler/slow-log/poll, ignored for SqlServer and Redis
-	CaptureMethod *CaptureMethod `default:"null" json:"captureMethod"`
+	CaptureMethod *DatabaseMetricsCaptureMethod `json:"captureMethod,omitempty"`
 	// Optional advanced configuration options for plugins, e.g. disable-sampling
-	ConfigOptions []CommonKeyValuePair `json:"configOptions"`
+	ConfigOptions []CommonKeyValuePair `json:"configOptions,omitempty"`
 	// Options specifying how plugins connect to database server
 	DbConnOptions DatabaseConnectionOptions `json:"dbConnOptions"`
 	// Tags for observed database entity
-	Tags []CommonKeyValuePair `json:"tags"`
-}
-
-func (o ObserveDatabaseRequest) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(o, "", false)
-}
-
-func (o *ObserveDatabaseRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, false); err != nil {
-		return err
-	}
-	return nil
+	Tags []CommonKeyValuePair `json:"tags,omitempty"`
 }
 
 func (o *ObserveDatabaseRequest) GetName() string {
@@ -99,7 +49,7 @@ func (o *ObserveDatabaseRequest) GetAuthMethod() DatabaseAuthMethod {
 	return o.AuthMethod
 }
 
-func (o *ObserveDatabaseRequest) GetCaptureMethod() *CaptureMethod {
+func (o *ObserveDatabaseRequest) GetCaptureMethod() *DatabaseMetricsCaptureMethod {
 	if o == nil {
 		return nil
 	}

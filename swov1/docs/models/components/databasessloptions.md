@@ -1,6 +1,4 @@
-# SslOptions
-
-SSL connection options, when sslEnabled is true
+# DatabaseSslOptions
 
 
 ## Fields
