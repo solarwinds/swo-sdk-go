@@ -3,97 +3,14 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 )
-
-// SslMode - SSL mode such as require, verify-ca, verify-full as applicable
-type SslMode string
-
-const (
-	SslModeRequire    SslMode = "require"
-	SslModeVerfifyCa  SslMode = "verfify-ca"
-	SslModeVerifyFull SslMode = "verify-full"
-)
-
-func (e SslMode) ToPointer() *SslMode {
-	return &e
-}
-func (e *SslMode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "require":
-		fallthrough
-	case "verfify-ca":
-		fallthrough
-	case "verify-full":
-		*e = SslMode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SslMode: %v", v)
-	}
-}
-
-// SslOptions - SSL connection options, when sslEnabled is true
-type SslOptions struct {
-	// SSL mode such as require, verify-ca, verify-full as applicable
-	SslMode *SslMode `default:"require" json:"sslMode"`
-	// CA file path
-	SslCAPath *string `default:"" json:"sslCAPath"`
-	// SSL key file path
-	SslKeyPath *string `default:"" json:"sslKeyPath"`
-	// SSL cert file path
-	SslCertPath *string `default:"" json:"sslCertPath"`
-}
-
-func (s SslOptions) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(s, "", false)
-}
-
-func (s *SslOptions) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *SslOptions) GetSslMode() *SslMode {
-	if o == nil {
-		return nil
-	}
-	return o.SslMode
-}
-
-func (o *SslOptions) GetSslCAPath() *string {
-	if o == nil {
-		return nil
-	}
-	return o.SslCAPath
-}
-
-func (o *SslOptions) GetSslKeyPath() *string {
-	if o == nil {
-		return nil
-	}
-	return o.SslKeyPath
-}
-
-func (o *SslOptions) GetSslCertPath() *string {
-	if o == nil {
-		return nil
-	}
-	return o.SslCertPath
-}
 
 type DatabaseConnectionOptions struct {
 	// Database server host
 	Host string `json:"host"`
 	// Database server port
-	Port *string `json:"port"`
+	Port *string `default:"" json:"port"`
 	// Encrypted credentials for connecting to database server when using basic auth method (username, password)
 	EncryptedCredentials *string `default:"" json:"encryptedCredentials"`
 	// Username for connecting to database server needed only for auth methods other than basic auth
@@ -101,9 +18,11 @@ type DatabaseConnectionOptions struct {
 	// Enable ssl when agent connects to database server
 	SslEnabled *bool `default:"false" json:"sslEnabled"`
 	// SSL connection options, when sslEnabled is true
-	SslOptions *SslOptions `json:"sslOptions"`
+	SslOptions *DatabaseSslOptions `json:"sslOptions,omitempty"`
 	// Cloud region in case of database managed by cloud provider, required for IAM authentication
 	CloudRegion *string `default:"" json:"cloudRegion"`
+	// binding for packet sniffing for sniff captureMethod (on-host), example: 0.0.0.0:6379,[::]:6379
+	Bindings *string `default:"" json:"bindings"`
 }
 
 func (d DatabaseConnectionOptions) MarshalJSON() ([]byte, error) {
@@ -152,7 +71,7 @@ func (o *DatabaseConnectionOptions) GetSslEnabled() *bool {
 	return o.SslEnabled
 }
 
-func (o *DatabaseConnectionOptions) GetSslOptions() *SslOptions {
+func (o *DatabaseConnectionOptions) GetSslOptions() *DatabaseSslOptions {
 	if o == nil {
 		return nil
 	}
@@ -164,4 +83,11 @@ func (o *DatabaseConnectionOptions) GetCloudRegion() *string {
 		return nil
 	}
 	return o.CloudRegion
+}
+
+func (o *DatabaseConnectionOptions) GetBindings() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bindings
 }

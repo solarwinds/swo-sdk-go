@@ -6,7 +6,9 @@ type DatabasePluginConfig struct {
 	// Name of plugin observing database server
 	PluginName string `json:"pluginName"`
 	// Configuration of plugin observing database server
-	Config []CommonKeyValuePair `json:"config"`
+	ConfigOptions []CommonKeyValuePair `json:"configOptions"`
+	// Database connection options of plugin observing database server
+	DbConnOptions []CommonKeyValuePair `json:"dbConnOptions"`
 }
 
 func (o *DatabasePluginConfig) GetPluginName() string {
@@ -16,9 +18,16 @@ func (o *DatabasePluginConfig) GetPluginName() string {
 	return o.PluginName
 }
 
-func (o *DatabasePluginConfig) GetConfig() []CommonKeyValuePair {
+func (o *DatabasePluginConfig) GetConfigOptions() []CommonKeyValuePair {
 	if o == nil {
 		return []CommonKeyValuePair{}
 	}
-	return o.Config
+	return o.ConfigOptions
+}
+
+func (o *DatabasePluginConfig) GetDbConnOptions() []CommonKeyValuePair {
+	if o == nil {
+		return []CommonKeyValuePair{}
+	}
+	return o.DbConnOptions
 }

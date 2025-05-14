@@ -25,10 +25,11 @@ func TestDbo_ObserveDatabase(t *testing.T) {
 	)
 
 	res, err := s.Dbo.ObserveDatabase(ctx, components.ObserveDatabaseRequest{
-		Name:       "<value>",
-		AgentID:    "<id>",
-		DbType:     components.DatabaseTypeMongo,
-		AuthMethod: components.DatabaseAuthMethodEntraclientsecret,
+		Name:          "<value>",
+		AgentID:       "<id>",
+		DbType:        components.DatabaseTypeMongo,
+		AuthMethod:    components.DatabaseAuthMethodEntraclientsecret,
+		CaptureMethod: nil,
 		ConfigOptions: []components.CommonKeyValuePair{
 			components.CommonKeyValuePair{
 				Key:   "<key>",
@@ -37,8 +38,7 @@ func TestDbo_ObserveDatabase(t *testing.T) {
 		},
 		DbConnOptions: components.DatabaseConnectionOptions{
 			Host:       "dependent-bar.com",
-			Port:       swov1.String("<value>"),
-			SslOptions: &components.SslOptions{},
+			SslOptions: &components.DatabaseSslOptions{},
 		},
 		Tags: []components.CommonKeyValuePair{},
 	})
@@ -132,7 +132,13 @@ func TestDbo_GetPluginConfig(t *testing.T) {
 		PluginConfig: []components.DatabasePluginConfig{
 			components.DatabasePluginConfig{
 				PluginName: "<value>",
-				Config: []components.CommonKeyValuePair{
+				ConfigOptions: []components.CommonKeyValuePair{
+					components.CommonKeyValuePair{
+						Key:   "<key>",
+						Value: "<value>",
+					},
+				},
+				DbConnOptions: []components.CommonKeyValuePair{
 					components.CommonKeyValuePair{
 						Key:   "<key>",
 						Value: "<value>",
@@ -141,11 +147,28 @@ func TestDbo_GetPluginConfig(t *testing.T) {
 			},
 			components.DatabasePluginConfig{
 				PluginName: "<value>",
-				Config:     []components.CommonKeyValuePair{},
+				ConfigOptions: []components.CommonKeyValuePair{
+					components.CommonKeyValuePair{
+						Key:   "<key>",
+						Value: "<value>",
+					},
+				},
+				DbConnOptions: []components.CommonKeyValuePair{
+					components.CommonKeyValuePair{
+						Key:   "<key>",
+						Value: "<value>",
+					},
+				},
 			},
 			components.DatabasePluginConfig{
 				PluginName: "<value>",
-				Config: []components.CommonKeyValuePair{
+				ConfigOptions: []components.CommonKeyValuePair{
+					components.CommonKeyValuePair{
+						Key:   "<key>",
+						Value: "<value>",
+					},
+				},
+				DbConnOptions: []components.CommonKeyValuePair{
 					components.CommonKeyValuePair{
 						Key:   "<key>",
 						Value: "<value>",
@@ -177,12 +200,14 @@ func TestDbo_GetPlugins(t *testing.T) {
 	assert.Equal(t, &components.DatabasePluginStatusResponse{
 		Plugins: []components.DatabasePluginStatus{
 			components.DatabasePluginStatus{
-				PluginName: "<value>",
-				Status:     "<value>",
+				PluginName:       "<value>",
+				DeploymentStatus: "<value>",
+				HealthStatus:     "<value>",
 			},
 			components.DatabasePluginStatus{
-				PluginName: "<value>",
-				Status:     "<value>",
+				PluginName:       "<value>",
+				DeploymentStatus: "<value>",
+				HealthStatus:     "<value>",
 			},
 		},
 	}, res.DatabasePluginStatusResponse)

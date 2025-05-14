@@ -42,6 +42,7 @@ func main() {
         AgentID: "<id>",
         DbType: components.DatabaseTypeMongo,
         AuthMethod: components.DatabaseAuthMethodEntraclientsecret,
+        CaptureMethod: components.DatabaseMetricsCaptureMethodPoll.ToPointer(),
         ConfigOptions: []components.CommonKeyValuePair{
             components.CommonKeyValuePair{
                 Key: "<key>",
@@ -50,8 +51,7 @@ func main() {
         },
         DbConnOptions: components.DatabaseConnectionOptions{
             Host: "dependent-bar.com",
-            Port: swov1.String("<value>"),
-            SslOptions: &components.SslOptions{},
+            SslOptions: &components.DatabaseSslOptions{},
         },
         Tags: []components.CommonKeyValuePair{},
     })
