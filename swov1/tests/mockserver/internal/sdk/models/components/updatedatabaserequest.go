@@ -9,7 +9,7 @@ import (
 type UpdateDatabaseRequest struct {
 	// Name for the observed database entity
 	Name *string `default:"" json:"name"`
-	// Optional advanced configuration options for plugins, e.g. disable-sampling
+	// Optional advanced configuration options for plugins, e.g. disable-sampling set to true
 	ConfigOptions []CommonKeyValuePair `json:"configOptions,omitempty"`
 	// Options specifying how plugins connect to database server, authentication method change is not supported
 	DbConnOptions *DatabaseConnectionOptionsUpdate `json:"dbConnOptions,omitempty"`

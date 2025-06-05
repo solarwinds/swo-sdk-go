@@ -8,5 +8,5 @@ SSL mode such as require, verify-ca, verify-full as applicable
 | Name                | Value               |
 | ------------------- | ------------------- |
 | `SslModeRequire`    | require             |
-| `SslModeVerfifyCa`  | verfify-ca          |
+| `SslModeVerifyCa`   | verify-ca           |
 | `SslModeVerifyFull` | verify-full         |

@@ -37,7 +37,7 @@ func main() {
     res, err := s.CloudAccounts.ActivateAwsIntegration(ctx, components.ActivateAwsIntegrationRequest{
         ManagementAccountID: "<id>",
         AccountID: "<id>",
-        Enable: false,
+        Enable: true,
     })
     if err != nil {
         log.Fatal(err)
@@ -96,20 +96,7 @@ func main() {
 
     res, err := s.CloudAccounts.CreateOrgStructure(ctx, components.AwsOrganisationalUnitRequest{
         MgmtAccountID: "<id>",
-        Structure: []components.OrganisationalUnit{
-            components.OrganisationalUnit{
-                ChildID: "<id>",
-                ChildName: "<value>",
-            },
-            components.OrganisationalUnit{
-                ChildID: "<id>",
-                ChildName: "<value>",
-            },
-            components.OrganisationalUnit{
-                ChildID: "<id>",
-                ChildName: "<value>",
-            },
-        },
+        Structure: []components.OrganisationalUnit{},
     })
     if err != nil {
         log.Fatal(err)

@@ -187,32 +187,7 @@ func main() {
 
     res, err := s.Metrics.ListMultiMetricMeasurements(ctx, operations.ListMultiMetricMeasurementsRequest{
         RequestBody: operations.ListMultiMetricMeasurementsRequestBody{
-            Metrics: []components.MetricMeasurementsRequest{
-                components.MetricMeasurementsRequest{
-                    ID: swov1.String("throughput-series"),
-                    Name: "dbo.host.queries.tput",
-                    Filter: swov1.String("id:[id1,id2] category:moderate"),
-                    GroupBy: []string{
-                        "query",
-                    },
-                    PreGroupBy: []string{
-                        "host",
-                    },
-                    PreGroupByMethod: components.PreGroupByMethodSum.ToPointer(),
-                },
-                components.MetricMeasurementsRequest{
-                    ID: swov1.String("throughput-series"),
-                    Name: "dbo.host.queries.tput",
-                    Filter: swov1.String("id:[id1,id2] category:moderate"),
-                    GroupBy: []string{
-                        "query",
-                    },
-                    PreGroupBy: []string{
-                        "host",
-                    },
-                    PreGroupByMethod: components.PreGroupByMethodSum.ToPointer(),
-                },
-            },
+            Metrics: []components.MetricMeasurementsRequest{},
         },
     })
     if err != nil {
@@ -604,7 +579,7 @@ func main() {
 
     res, err := s.Metrics.ListMetricMeasurements(ctx, operations.ListMetricMeasurementsRequest{
         Name: "<value>",
-        SeriesType: components.MetricSeriesTypeScalar,
+        SeriesType: components.MetricSeriesTypeTimeseries,
     })
     if err != nil {
         log.Fatal(err)

@@ -49,48 +49,12 @@ func testGetPluginConfigGetPluginConfig0(w http.ResponseWriter, req *http.Reques
 		PluginConfig: []components.DatabasePluginConfig{
 			components.DatabasePluginConfig{
 				PluginName: "<value>",
-				ConfigOptions: []components.CommonKeyValuePair{
-					components.CommonKeyValuePair{
-						Key:   "<key>",
-						Value: "<value>",
-					},
-				},
-				DbConnOptions: []components.CommonKeyValuePair{
-					components.CommonKeyValuePair{
-						Key:   "<key>",
-						Value: "<value>",
-					},
-				},
 			},
 			components.DatabasePluginConfig{
 				PluginName: "<value>",
-				ConfigOptions: []components.CommonKeyValuePair{
-					components.CommonKeyValuePair{
-						Key:   "<key>",
-						Value: "<value>",
-					},
-				},
-				DbConnOptions: []components.CommonKeyValuePair{
-					components.CommonKeyValuePair{
-						Key:   "<key>",
-						Value: "<value>",
-					},
-				},
 			},
 			components.DatabasePluginConfig{
 				PluginName: "<value>",
-				ConfigOptions: []components.CommonKeyValuePair{
-					components.CommonKeyValuePair{
-						Key:   "<key>",
-						Value: "<value>",
-					},
-				},
-				DbConnOptions: []components.CommonKeyValuePair{
-					components.CommonKeyValuePair{
-						Key:   "<key>",
-						Value: "<value>",
-					},
-				},
 			},
 		},
 	}

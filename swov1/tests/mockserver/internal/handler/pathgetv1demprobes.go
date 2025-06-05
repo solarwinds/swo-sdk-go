@@ -8,7 +8,6 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
-	"mockserver/internal/sdk/models/operations"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
 	"net/http"
@@ -46,7 +45,7 @@ func testListProbesListProbes0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &operations.ListProbesResponseBody{
+	respBody := &components.ListProbesResponse{
 		Probes: []components.Probe{
 			components.Probe{
 				ID:       "probe-1",

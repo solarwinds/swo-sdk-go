@@ -3,7 +3,7 @@
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `Key`              | *string*           | :heavy_check_mark: | N/A                |
-| `Value`            | *string*           | :heavy_check_mark: | N/A                |
+| Field              | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `Key`              | *string*           | :heavy_check_mark: | N/A                | environment        |
+| `Value`            | *string*           | :heavy_check_mark: | N/A                | production         |

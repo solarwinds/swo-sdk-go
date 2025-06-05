@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
-  docChecksum: d8883b15565924ae12142f13ab0ca51f
+  docChecksum: 616da72631d7dbb0760449d37bb6ae71
   docVersion: 1.0.8
-  speakeasyVersion: 1.544.0
-  generationVersion: 2.599.0
-  releaseVersion: 0.1.9
-  configChecksum: 67fccbbe8b17b030f996a0f1c289cd48
+  speakeasyVersion: 1.555.3
+  generationVersion: 2.620.2
+  releaseVersion: 0.2.0
+  configChecksum: e8a3d82513adfcc737547f161f9bbf9b
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
@@ -14,7 +14,7 @@ features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.7.4
+    core: 3.7.5
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -30,8 +30,8 @@ features:
     nullables: 0.1.1
     pagination: 2.82.4
     responseFormat: 0.1.2
-    retries: 2.83.2
-    sdkHooks: 0.1.0
+    retries: 2.83.3
+    sdkHooks: 0.2.0
     tests: 0.15.2
 generatedFiles:
   - .devcontainer/README.md
@@ -77,13 +77,13 @@ generatedFiles:
   - /models/components/activateawsintegrationrequest.go
   - /models/components/awsorganisationalunitrequest.go
   - /models/components/changeevent.go
-  - /models/components/checkforstringoperator.go
   - /models/components/commonkeyvaluepair.go
   - /models/components/commonlink.go
   - /models/components/commonmetricinfo.go
   - /models/components/commonpageinfo.go
   - /models/components/compositemetric.go
   - /models/components/createtokenrequest.go
+  - /models/components/createtokenresponse.go
   - /models/components/customheaders.go
   - /models/components/databaseauthmethod.go
   - /models/components/databaseconnectionoptions.go
@@ -100,7 +100,10 @@ generatedFiles:
   - /models/components/entity.go
   - /models/components/entityid.go
   - /models/components/entityinput.go
+  - /models/components/geturiresponse.go
+  - /models/components/getwebsiteresponse.go
   - /models/components/httpmetadata.go
+  - /models/components/listprobesresponse.go
   - /models/components/logsarchive.go
   - /models/components/logsevent.go
   - /models/components/metricmeasurementsrequest.go
@@ -114,7 +117,6 @@ generatedFiles:
   - /models/components/organisationalunit.go
   - /models/components/outageconfiguration.go
   - /models/components/probe.go
-  - /models/components/probelocationtype.go
   - /models/components/probeplatform.go
   - /models/components/security.go
   - /models/components/tag.go
@@ -124,6 +126,7 @@ generatedFiles:
   - /models/components/updatecompositemetric.go
   - /models/components/updatedatabaserequest.go
   - /models/components/uri.go
+  - /models/components/uriavailabilitychecksettings.go
   - /models/components/uriavailabilitychecksettingsinput.go
   - /models/components/website.go
   - /models/components/websiteprotocol.go
@@ -245,7 +248,6 @@ generatedFiles:
   - docs/models/components/category.md
   - docs/models/components/changeevent.md
   - docs/models/components/checkforstring.md
-  - docs/models/components/checkforstringoperator.md
   - docs/models/components/commonkeyvaluepair.md
   - docs/models/components/commonlink.md
   - docs/models/components/commonmetricinfo.md
@@ -253,6 +255,8 @@ generatedFiles:
   - docs/models/components/compositemetric.md
   - docs/models/components/coordinates.md
   - docs/models/components/createtokenrequest.md
+  - docs/models/components/createtokenrequesttype.md
+  - docs/models/components/createtokenresponse.md
   - docs/models/components/customheaders.md
   - docs/models/components/databaseauthmethod.md
   - docs/models/components/databaseconnectionoptions.md
@@ -272,9 +276,21 @@ generatedFiles:
   - docs/models/components/entityinput.md
   - docs/models/components/failingtestlocations.md
   - docs/models/components/fillmethod.md
+  - docs/models/components/geturiresponse.md
+  - docs/models/components/getwebsiteresponse.md
+  - docs/models/components/getwebsiteresponseavailabilitychecksettings.md
+  - docs/models/components/getwebsiteresponsecheckforstring.md
+  - docs/models/components/getwebsiteresponsefailingtestlocations.md
+  - docs/models/components/getwebsiteresponseoperator.md
+  - docs/models/components/getwebsiteresponseoutageconfiguration.md
+  - docs/models/components/getwebsiteresponseplatformoptions.md
+  - docs/models/components/getwebsiteresponserum.md
+  - docs/models/components/getwebsiteresponsessl.md
+  - docs/models/components/getwebsiteresponsestatus.md
   - docs/models/components/healthscore.md
   - docs/models/components/httpmetadata.md
   - docs/models/components/integrationtype.md
+  - docs/models/components/listprobesresponse.md
   - docs/models/components/logsarchive.md
   - docs/models/components/logsevent.md
   - docs/models/components/metricmeasurementsrequest.md
@@ -284,7 +300,9 @@ generatedFiles:
   - docs/models/components/metricsmeasurement.md
   - docs/models/components/mgmtaccountonboardingrequest.md
   - docs/models/components/mgmtaccountonboardingresponse.md
+  - docs/models/components/monitoringoptions.md
   - docs/models/components/observedatabaserequest.md
+  - docs/models/components/operator.md
   - docs/models/components/organisationalunit.md
   - docs/models/components/outageconfiguration.md
   - docs/models/components/ping.md
@@ -292,13 +310,14 @@ generatedFiles:
   - docs/models/components/platformoptions.md
   - docs/models/components/pregroupbymethod.md
   - docs/models/components/probe.md
-  - docs/models/components/probelocationtype.md
   - docs/models/components/probeplatform.md
+  - docs/models/components/protocol.md
   - docs/models/components/rum.md
   - docs/models/components/security.md
   - docs/models/components/seriestype.md
   - docs/models/components/ssl.md
   - docs/models/components/sslmode.md
+  - docs/models/components/status.md
   - docs/models/components/tag.md
   - docs/models/components/tags.md
   - docs/models/components/tcp.md
@@ -309,23 +328,26 @@ generatedFiles:
   - docs/models/components/updatecompositemetric.md
   - docs/models/components/updatedatabaserequest.md
   - docs/models/components/uri.md
+  - docs/models/components/uriavailabilitychecksettings.md
+  - docs/models/components/uriavailabilitychecksettingsfailingtestlocations.md
   - docs/models/components/uriavailabilitychecksettingsinput.md
   - docs/models/components/uriavailabilitychecksettingsinputfailingtestlocations.md
   - docs/models/components/uriavailabilitychecksettingsinputoutageconfiguration.md
+  - docs/models/components/uriavailabilitychecksettingsoutageconfiguration.md
+  - docs/models/components/uriavailabilitychecksettingsping.md
+  - docs/models/components/uriavailabilitychecksettingsplatformoptions.md
+  - docs/models/components/uriavailabilitychecksettingstcp.md
   - docs/models/components/website.md
   - docs/models/components/websitefailingtestlocations.md
   - docs/models/components/websiteoutageconfiguration.md
   - docs/models/components/websiteplatformoptions.md
   - docs/models/components/websiteprotocol.md
   - docs/models/operations/activateawsintegrationresponse.md
-  - docs/models/operations/availabilitychecksettings.md
-  - docs/models/operations/checkforstring.md
   - docs/models/operations/createchangeeventresponse.md
   - docs/models/operations/createchangeeventresponsebody.md
   - docs/models/operations/createcompositemetricresponse.md
   - docs/models/operations/createorgstructureresponse.md
   - docs/models/operations/createtokenresponse.md
-  - docs/models/operations/createtokenresponsebody.md
   - docs/models/operations/createuriresponse.md
   - docs/models/operations/createwebsiteresponse.md
   - docs/models/operations/deletecompositemetricrequest.md
@@ -336,7 +358,6 @@ generatedFiles:
   - docs/models/operations/deleteuriresponse.md
   - docs/models/operations/deletewebsiterequest.md
   - docs/models/operations/deletewebsiteresponse.md
-  - docs/models/operations/failingtestlocations.md
   - docs/models/operations/getdemsettingsresponse.md
   - docs/models/operations/getentitybyidrequest.md
   - docs/models/operations/getentitybyidresponse.md
@@ -349,15 +370,8 @@ generatedFiles:
   - docs/models/operations/getpublickeyresponse.md
   - docs/models/operations/geturirequest.md
   - docs/models/operations/geturiresponse.md
-  - docs/models/operations/geturiresponsebody.md
-  - docs/models/operations/getwebsiteavailabilitychecksettings.md
-  - docs/models/operations/getwebsitefailingtestlocations.md
-  - docs/models/operations/getwebsiteoutageconfiguration.md
-  - docs/models/operations/getwebsiteplatformoptions.md
   - docs/models/operations/getwebsiterequest.md
   - docs/models/operations/getwebsiteresponse.md
-  - docs/models/operations/getwebsiteresponsebody.md
-  - docs/models/operations/getwebsitestatus.md
   - docs/models/operations/listentitiesrequest.md
   - docs/models/operations/listentitiesresponse.md
   - docs/models/operations/listentitiesresponsebody.md
@@ -386,30 +400,20 @@ generatedFiles:
   - docs/models/operations/listmultimetricmeasurementsresponse.md
   - docs/models/operations/listmultimetricmeasurementsresponsebody.md
   - docs/models/operations/listprobesresponse.md
-  - docs/models/operations/listprobesresponsebody.md
   - docs/models/operations/metrics.md
-  - docs/models/operations/monitoringoptions.md
   - docs/models/operations/observedatabaseresponse.md
   - docs/models/operations/observedatabaseresponsebody.md
   - docs/models/operations/option.md
-  - docs/models/operations/outageconfiguration.md
   - docs/models/operations/pauseurimonitoringrequest.md
   - docs/models/operations/pauseurimonitoringresponse.md
   - docs/models/operations/pausewebsitemonitoringrequest.md
   - docs/models/operations/pausewebsitemonitoringresponse.md
-  - docs/models/operations/ping.md
-  - docs/models/operations/platformoptions.md
   - docs/models/operations/pluginoperationrequest.md
   - docs/models/operations/pluginoperationresponse.md
-  - docs/models/operations/protocol.md
-  - docs/models/operations/rum.md
   - docs/models/operations/searchlogsrequest.md
   - docs/models/operations/searchlogsresponse.md
   - docs/models/operations/searchlogsresponsebody.md
   - docs/models/operations/setdemsettingsresponse.md
-  - docs/models/operations/ssl.md
-  - docs/models/operations/status.md
-  - docs/models/operations/tcp.md
   - docs/models/operations/unpauseurimonitoringrequest.md
   - docs/models/operations/unpauseurimonitoringresponse.md
   - docs/models/operations/unpausewebsitemonitoringrequest.md
@@ -439,6 +443,7 @@ generatedFiles:
   - docs/sdks/tokens/README.md
   - entities.go
   - go.mod
+  - internal/config/sdkconfiguration.go
   - internal/hooks/hooks.go
   - internal/utils/contenttype.go
   - internal/utils/env.go
@@ -537,13 +542,13 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/components/activateawsintegrationrequest.go
   - tests/mockserver/internal/sdk/models/components/awsorganisationalunitrequest.go
   - tests/mockserver/internal/sdk/models/components/changeevent.go
-  - tests/mockserver/internal/sdk/models/components/checkforstringoperator.go
   - tests/mockserver/internal/sdk/models/components/commonkeyvaluepair.go
   - tests/mockserver/internal/sdk/models/components/commonlink.go
   - tests/mockserver/internal/sdk/models/components/commonmetricinfo.go
   - tests/mockserver/internal/sdk/models/components/commonpageinfo.go
   - tests/mockserver/internal/sdk/models/components/compositemetric.go
   - tests/mockserver/internal/sdk/models/components/createtokenrequest.go
+  - tests/mockserver/internal/sdk/models/components/createtokenresponse.go
   - tests/mockserver/internal/sdk/models/components/customheaders.go
   - tests/mockserver/internal/sdk/models/components/databaseauthmethod.go
   - tests/mockserver/internal/sdk/models/components/databaseconnectionoptions.go
@@ -560,7 +565,10 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/components/entity.go
   - tests/mockserver/internal/sdk/models/components/entityid.go
   - tests/mockserver/internal/sdk/models/components/entityinput.go
+  - tests/mockserver/internal/sdk/models/components/geturiresponse.go
+  - tests/mockserver/internal/sdk/models/components/getwebsiteresponse.go
   - tests/mockserver/internal/sdk/models/components/httpmetadata.go
+  - tests/mockserver/internal/sdk/models/components/listprobesresponse.go
   - tests/mockserver/internal/sdk/models/components/logsarchive.go
   - tests/mockserver/internal/sdk/models/components/logsevent.go
   - tests/mockserver/internal/sdk/models/components/metricmeasurementsrequest.go
@@ -574,7 +582,6 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/components/organisationalunit.go
   - tests/mockserver/internal/sdk/models/components/outageconfiguration.go
   - tests/mockserver/internal/sdk/models/components/probe.go
-  - tests/mockserver/internal/sdk/models/components/probelocationtype.go
   - tests/mockserver/internal/sdk/models/components/probeplatform.go
   - tests/mockserver/internal/sdk/models/components/security.go
   - tests/mockserver/internal/sdk/models/components/tag.go
@@ -584,6 +591,7 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/components/updatecompositemetric.go
   - tests/mockserver/internal/sdk/models/components/updatedatabaserequest.go
   - tests/mockserver/internal/sdk/models/components/uri.go
+  - tests/mockserver/internal/sdk/models/components/uriavailabilitychecksettings.go
   - tests/mockserver/internal/sdk/models/components/uriavailabilitychecksettingsinput.go
   - tests/mockserver/internal/sdk/models/components/website.go
   - tests/mockserver/internal/sdk/models/components/websiteprotocol.go
@@ -701,46 +709,46 @@ examples:
         application/json: {"id": 1731676626, "name": "app-deploys", "title": "deployed v45", "timestamp": 1731676626, "source": "foo3.example.com", "tags": {"app": "foo", "environment": "production"}, "links": [{"rel": "self", "href": "https://example.com"}]}
       responses:
         "200":
-          application/json: {"id": 119883}
+          application/json: {"id": 208943}
   activateAwsIntegration:
     speakeasy-default-activate-aws-integration:
       requestBody:
-        application/json: {"managementAccountId": "<id>", "accountId": "<id>", "enable": false}
+        application/json: {"managementAccountId": "<id>", "accountId": "<id>", "enable": true}
       responses:
         "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
+          application/json: {"message": "Bad request"}
         "401":
-          application/json: {"code": 401, "message": "Access is unauthorized", "": {}}
+          application/json: {"message": "Access is unauthorized"}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
         "500":
-          application/json: {"code": 500, "message": "Internal error", "": {}}
+          application/json: {"message": "Internal error"}
   createOrgStructure:
     speakeasy-default-create-org-structure:
       requestBody:
-        application/json: {"mgmtAccountId": "<id>", "structure": [{"child_id": "<id>", "child_name": "<value>"}, {"child_id": "<id>", "child_name": "<value>"}, {"child_id": "<id>", "child_name": "<value>"}]}
+        application/json: {"mgmtAccountId": "<id>", "structure": []}
       responses:
         "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
+          application/json: {"message": "Bad request"}
         "401":
-          application/json: {"code": 401, "message": "Access is unauthorized", "": {}}
+          application/json: {"message": "Access is unauthorized"}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
         "500":
-          application/json: {"code": 500, "message": "Internal error", "": {}}
+          application/json: {"message": "Internal error"}
   updateAwsIntegration:
     speakeasy-default-update-aws-integration:
       requestBody:
         application/json: {"managementAccountId": "<id>", "accountId": "<id>", "accountName": "<value>", "roleArn": "<value>"}
       responses:
         "200":
-          application/json: {"selectedRegions": ["<value>", "<value>", "<value>"], "externalId": "<id>", "integrationId": "<id>", "integrationType": "POLLING", "isNewAccount": true}
+          application/json: {"selectedRegions": ["<value 1>", "<value 2>", "<value 3>"], "externalId": "<id>", "integrationId": "<id>", "integrationType": "STREAMING", "isNewAccount": true}
         "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
+          application/json: {"message": "Bad request"}
         "401":
-          application/json: {"code": 401, "message": "Access is unauthorized", "": {}}
+          application/json: {"message": "Access is unauthorized"}
         "500":
-          application/json: {"code": 500, "message": "Internal error", "": {}}
+          application/json: {"message": "Internal error"}
   validateMgmtAccountOnboarding:
     speakeasy-default-validate-mgmt-account-onboarding:
       parameters:
@@ -748,31 +756,31 @@ examples:
           request: {"managementAccountId": "<id>"}
       responses:
         "200":
-          application/json: {"isOnboarded": false}
+          application/json: {"isOnboarded": true}
         "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
+          application/json: {"message": "Bad request"}
         "401":
-          application/json: {"code": 401, "message": "Access is unauthorized", "": {}}
+          application/json: {"message": "Access is unauthorized"}
         "500":
-          application/json: {"code": 500, "message": "Internal error", "": {}}
+          application/json: {"message": "Internal error"}
   observeDatabase:
     speakeasy-default-observe-database:
       requestBody:
-        application/json: {"name": "<value>", "agentId": "<id>", "dbType": "mongo", "authMethod": "entraclientsecret", "captureMethod": "poll", "configOptions": [{"key": "<key>", "value": "<value>"}], "dbConnOptions": {"host": "dependent-bar.com", "port": "<value>", "encryptedCredentials": "", "user": "", "sslEnabled": false, "sslOptions": {"sslMode": "require", "sslCAPath": "", "sslKeyPath": "", "sslCertPath": ""}, "cloudRegion": "", "bindings": ""}, "tags": []}
+        application/json: {"name": "<value>", "agentId": "<id>", "dbType": "mongo", "authMethod": "entraclientsecret", "dbConnOptions": {"host": "mixed-scrap.com", "port": "", "dbname": "", "encryptedCredentials": "", "user": "", "sslEnabled": false, "cloudRegion": "", "bindings": ""}}
       responses:
         "201":
           application/json: {"id": "<id>"}
         "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
+          application/json: {"message": "Bad request"}
   getPublicKey:
     speakeasy-default-get-public-key:
       responses:
         "200":
           application/json: {"publicKey": "<value>"}
         "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
+          application/json: {"message": "Bad request"}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   updateDatabase:
     speakeasy-default-update-database:
       parameters:
@@ -782,9 +790,9 @@ examples:
         application/json: {"name": ""}
       responses:
         "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
+          application/json: {"message": "Bad request"}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   deleteDatabase:
     speakeasy-default-delete-database:
       parameters:
@@ -792,9 +800,9 @@ examples:
           entityId: "<id>"
       responses:
         "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
+          application/json: {"message": "Bad request"}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   getPluginConfig:
     speakeasy-default-get-plugin-config:
       parameters:
@@ -802,11 +810,11 @@ examples:
           entityId: "<id>"
       responses:
         "200":
-          application/json: {"pluginConfig": [{"pluginName": "<value>", "configOptions": [{"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}], "dbConnOptions": [{"key": "<key>", "value": "<value>"}]}, {"pluginName": "<value>", "configOptions": [], "dbConnOptions": [{"key": "<key>", "value": "<value>"}]}, {"pluginName": "<value>", "configOptions": [{"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}], "dbConnOptions": [{"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}, {"key": "<key>", "value": "<value>"}]}]}
+          application/json: {"pluginConfig": [{"pluginName": "<value>", "configOptions": [{"key": "<key>", "value": "<value>"}], "dbConnOptions": []}]}
         "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
+          application/json: {"message": "Bad request"}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   getPlugins:
     speakeasy-default-get-plugins:
       parameters:
@@ -814,11 +822,11 @@ examples:
           entityId: "<id>"
       responses:
         "200":
-          application/json: {"plugins": [{"pluginName": "<value>", "deploymentStatus": "<value>", "healthStatus": "<value>"}, {"pluginName": "<value>", "deploymentStatus": "<value>", "healthStatus": "<value>"}]}
+          application/json: {"plugins": [{"pluginName": "<value>", "deploymentStatus": "<value>", "healthStatus": "<value>"}]}
         "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
+          application/json: {"message": "Bad request"}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   pluginOperation:
     speakeasy-default-plugin-operation:
       parameters:
@@ -827,9 +835,16 @@ examples:
           operation: "<value>"
       responses:
         "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
+          application/json: {"message": "Bad request"}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
+  listProbes:
+    speakeasy-default-list-probes:
+      responses:
+        "200":
+          application/json: {"probes": [{"id": "probe-1", "name": "Washington", "active": true, "platform": "AWS", "region": "NA", "country": "US", "city": "Washington D.C.", "coordinates": {"latitude": 38.89511, "longitude": -77.03637}, "ipv4Addresses": ["34.232.5.40", "44.207.30.12"], "ipv6Addresses": ["2001:0db8:85a3:0000:0000:8a2e:0370:7334"]}]}
+        "500":
+          application/json: {"message": "Internal error"}
   getDemSettings:
     speakeasy-default-get-dem-settings:
       responses:
@@ -839,6 +854,69 @@ examples:
     speakeasy-default-set-dem-settings:
       requestBody:
         application/json: {"failingTestLocations": "all", "consecutiveForDown": 2}
+  createUri:
+    speakeasy-default-create-uri:
+      requestBody:
+        application/json: {"name": "solarwinds.com", "ipOrDomain": "solarwinds.com", "availabilityCheckSettings": {"platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "testIntervalInSeconds": 14400, "outageConfiguration": null, "ping": {"enabled": true}, "tcp": {"enabled": true, "port": 443, "stringToSend": "GET / HTTP/1.1\r\nHost: solarwinds.com\r\nConnection: close\r\n\r\n", "stringToExpect": "HTTP/1.1 200 OK"}}, "tags": [{"key": "environment", "value": "production"}]}
+      responses:
+        "201":
+          application/json: {"id": "e-1448474379026206720"}
+        "400":
+          application/json: {"message": "Bad request"}
+  getUri:
+    speakeasy-default-get-uri:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720", "type": "Uri", "status": "up", "name": "solarwinds.com", "ipOrDomain": "solarwinds.com", "availabilityCheckSettings": {"platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "testIntervalInSeconds": 14400, "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}, "ping": {"enabled": true}, "tcp": {"enabled": true, "port": 443, "stringToSend": "GET / HTTP/1.1\r\nHost: solarwinds.com\r\nConnection: close\r\n\r\n", "stringToExpect": "HTTP/1.1 200 OK"}, "protocol": "PING"}, "tags": [{"key": "environment", "value": "production"}], "lastOutageStartTime": "2025-01-15T14:31:19.735Z", "lastOutageEndTime": "2025-01-15T14:31:19.735Z", "lastTestTime": "2025-01-15T14:31:19.735Z", "lastErrorTime": "2025-01-15T14:31:19.735Z", "lastResponseTime": 376}
+        "404":
+          application/json: {"message": "Cannot find resource"}
+  updateUri:
+    speakeasy-default-update-uri:
+      parameters:
+        path:
+          entityId: "<id>"
+      requestBody:
+        application/json: {"name": "solarwinds.com", "ipOrDomain": "solarwinds.com", "availabilityCheckSettings": {"platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "testIntervalInSeconds": 14400, "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}, "ping": {"enabled": true}, "tcp": {"enabled": true, "port": 443, "stringToSend": "GET / HTTP/1.1\r\nHost: solarwinds.com\r\nConnection: close\r\n\r\n", "stringToExpect": "HTTP/1.1 200 OK"}}, "tags": [{"key": "environment", "value": "production"}]}
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720"}
+        "400":
+          application/json: {"message": "Bad request"}
+        "404":
+          application/json: {"message": "Cannot find resource"}
+  deleteUri:
+    speakeasy-default-delete-uri:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720"}
+        "404":
+          application/json: {"message": "Cannot find resource"}
+  pauseUriMonitoring:
+    speakeasy-default-pause-uri-monitoring:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720"}
+        "404":
+          application/json: {"message": "Cannot find resource"}
+  unpauseUriMonitoring:
+    speakeasy-default-unpause-uri-monitoring:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720"}
+        "404":
+          application/json: {"message": "Cannot find resource"}
   createWebsite:
     speakeasy-default-create-website:
       requestBody:
@@ -847,7 +925,7 @@ examples:
         "201":
           application/json: {"id": "e-1448474379026206720"}
         "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
+          application/json: {"message": "Bad request"}
   getWebsite:
     speakeasy-default-get-website:
       parameters:
@@ -855,11 +933,9 @@ examples:
           entityId: "<id>"
       responses:
         "200":
-          application/json: {"id": "e-1448474379026206720", "type": "Website", "status": "up", "name": "solarwinds.com", "url": "https://www.solarwinds.com", "monitoringOptions": {"isAvailabilityActive": true, "isRumActive": false}, "availabilityCheckSettings": {"platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "testIntervalInSeconds": 14400, "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}, "checkForString": {"operator": "CONTAINS", "value": "string"}, "protocols": ["HTTP", "HTTPS"], "ssl": {"enabled": true, "daysPriorToExpiration": 7, "ignoreIntermediateCertificates": true}, "customHeaders": [{"name": "string", "value": "string"}], "allowInsecureRenegotiation": true, "postData": "{\"example\": \"value\"}"}, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "snippet": "string", "spa": true}, "lastOutageStartTime": "2025-01-15T14:31:19.735Z", "lastOutageEndTime": "2025-01-15T14:31:19.735Z", "lastTestTime": "2025-01-15T14:31:19.735Z", "lastErrorTime": "2025-01-15T14:31:19.735Z", "lastResponseTime": 376, "nextOnDemandAvailabilityTime": 0}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
+          application/json: {"id": "e-1448474379026206720", "type": "Website", "status": "up", "name": "solarwinds.com", "url": "https://www.solarwinds.com", "monitoringOptions": {"isAvailabilityActive": true, "isRumActive": false}, "availabilityCheckSettings": null, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "snippet": "string", "spa": true}, "lastOutageStartTime": "2025-01-15T14:31:19.735Z", "lastOutageEndTime": "2025-01-15T14:31:19.735Z", "lastTestTime": "2025-01-15T14:31:19.735Z", "lastErrorTime": "2025-01-15T14:31:19.735Z", "lastResponseTime": 376, "nextOnDemandAvailabilityTime": 0}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   updateWebsite:
     speakeasy-default-update-website:
       parameters:
@@ -871,9 +947,9 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
+          application/json: {"message": "Bad request"}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   deleteWebsite:
     speakeasy-default-delete-website:
       parameters:
@@ -882,10 +958,8 @@ examples:
       responses:
         "200":
           application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   pauseWebsiteMonitoring:
     speakeasy-default-pause-website-monitoring:
       parameters:
@@ -894,10 +968,8 @@ examples:
       responses:
         "200":
           application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   unpauseWebsiteMonitoring:
     speakeasy-default-unpause-website-monitoring:
       parameters:
@@ -906,10 +978,8 @@ examples:
       responses:
         "200":
           application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": 404, "message": "Entity does not exist", "": {}}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   listEntities:
     speakeasy-default-list-entities:
       parameters:
@@ -919,9 +989,9 @@ examples:
         "200":
           application/json: {"entities": [{"id": "e-1234567890", "type": "SyslogHost", "name": "syslog-host-1", "displayName": "SyslogTest", "createdTime": "2024-11-25T16:38:24Z", "updatedTime": "2024-12-01T16:38:24Z", "lastSeenTime": "2024-11-25T16:38:24Z", "inMaintenance": false, "healthscore": {"score": 100, "category": "good"}, "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}, "attributes": {"protocols": ["HTTP"], "features": ["rum"], "isAvailabilityCheckPaused": false, "extensions": {"has_extension": true}}}], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
+          application/json: {"message": "Bad request"}
         "401":
-          application/json: {"code": 401, "message": "Access is unauthorized", "": {}}
+          application/json: {"message": "Access is unauthorized"}
   getEntityById:
     speakeasy-default-get-entity-by-id:
       parameters:
@@ -931,11 +1001,11 @@ examples:
         "200":
           application/json: {"id": "e-1234567890", "type": "SyslogHost", "name": "syslog-host-1", "displayName": "SyslogTest", "createdTime": "2024-11-25T16:38:24Z", "updatedTime": "2024-12-01T16:38:24Z", "lastSeenTime": "2024-11-25T16:38:24Z", "inMaintenance": false, "healthscore": {"score": 100, "category": "good"}, "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}, "attributes": {"protocols": ["HTTP"], "features": ["rum"], "isAvailabilityCheckPaused": false, "extensions": {"has_extension": true}}}
         "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
+          application/json: {"message": "Bad request"}
         "401":
-          application/json: {"code": 401, "message": "Access is unauthorized", "": {}}
+          application/json: {"message": "Access is unauthorized"}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   updateEntityById:
     speakeasy-default-update-entity-by-id:
       parameters:
@@ -945,11 +1015,11 @@ examples:
         application/json: {"displayName": "SyslogTest", "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}}
       responses:
         "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
+          application/json: {"message": "Bad request"}
         "401":
-          application/json: {"code": 401, "message": "Access is unauthorized", "": {}}
+          application/json: {"message": "Access is unauthorized"}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   searchLogs:
     speakeasy-default-search-logs:
       parameters:
@@ -957,7 +1027,7 @@ examples:
           direction: "backward"
       responses:
         "200":
-          application/json: {"logs": [{"id": "1793698955374546944", "time": "2024-01-01T00:00:00Z", "message": "This is a log message", "hostname": "webserver.example.com", "severity": "INFO", "program": "httpd"}], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+          application/json: {"logs": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
   listLogArchives:
     speakeasy-default-list-log-archives:
       parameters:
@@ -966,7 +1036,7 @@ examples:
           endTime: "<value>"
       responses:
         "200":
-          application/json: {"logArchives": [{"id": "logs/138723/dt=2024-01-23/2024-01-23-08.json.gz", "name": "2024-01-23-08.json.gz", "downloadUrl": "https://ssp-log-archives.s3.amazonaws.com/logs/138723/dt%3D2024-01-23/2024-01-23-08.json.gz?X-Amz-Security-Token=IQ...", "archivedTimestamp": "1706020985", "archiveSize": 817226354}, {"id": "logs/138723/dt=2024-01-23/2024-01-23-08.json.gz", "name": "2024-01-23-08.json.gz", "downloadUrl": "https://ssp-log-archives.s3.amazonaws.com/logs/138723/dt%3D2024-01-23/2024-01-23-08.json.gz?X-Amz-Security-Token=IQ...", "archivedTimestamp": "1706020985", "archiveSize": 817226354}, {"id": "logs/138723/dt=2024-01-23/2024-01-23-08.json.gz", "name": "2024-01-23-08.json.gz", "downloadUrl": "https://ssp-log-archives.s3.amazonaws.com/logs/138723/dt%3D2024-01-23/2024-01-23-08.json.gz?X-Amz-Security-Token=IQ...", "archivedTimestamp": "1706020985", "archiveSize": 817226354}], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+          application/json: {"logArchives": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
   listEntityTypes:
     speakeasy-default-list-entity-types:
       responses:
@@ -977,12 +1047,11 @@ examples:
       parameters:
         path:
           type: "<value>"
-        query: {}
       responses:
         "200":
-          application/json: {"type": "KubernetesCluster", "metrics": [{"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "units": "bytes/s", "formula": "rate(system.disk.io[5m]", "lastReportedTime": "2024-11-25T16:38:24Z"}]}
+          application/json: {"type": "KubernetesCluster", "metrics": [{"name": "composite.k8s.pod.container.status.restarts.increase", "units": "count", "formula": "increase(k8s.kube_pod_container_status_restarts_total[5m])", "lastReportedTime": "2021-01-01T00:00:00Z"}]}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   listMetrics:
     speakeasy-default-list-metrics:
       responses:
@@ -996,9 +1065,21 @@ examples:
         "201":
           application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
         "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
+          application/json: {"message": "Bad request"}
         "403":
-          application/json: {"code": 403, "message": "Access is forbidden", "": {}}
+          application/json: {"message": "Access is forbidden"}
+  listMultiMetricMeasurements:
+    speakeasy-default-list-multi-metric-measurements:
+      parameters:
+        query:
+          forcePositional: false
+      requestBody:
+        application/json: {"metrics": []}
+      responses:
+        "200":
+          application/json: {"metrics": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+        "400":
+          application/json: {"message": "Bad request"}
   updateCompositeMetric:
     speakeasy-default-update-composite-metric:
       parameters:
@@ -1010,11 +1091,11 @@ examples:
         "200":
           application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
         "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
+          application/json: {"message": "Bad request"}
         "403":
-          application/json: {"code": 403, "message": "Access is forbidden", "": {}}
+          application/json: {"message": "Access is forbidden"}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   deleteCompositeMetric:
     speakeasy-default-delete-composite-metric:
       parameters:
@@ -1022,9 +1103,9 @@ examples:
           name: "<value>"
       responses:
         "403":
-          application/json: {"code": 403, "message": "Access is forbidden", "": {}}
+          application/json: {"message": "Access is forbidden"}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   getMetricByName:
     speakeasy-default-get-metric-by-name:
       parameters:
@@ -1034,132 +1115,48 @@ examples:
         "200":
           application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "units": "bytes/s", "formula": "rate(system.disk.io[5m]", "lastReportedTime": "2024-11-25T16:38:24Z"}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   listMetricAttributes:
     speakeasy-default-list-metric-attributes:
       parameters:
         path:
           name: "<value>"
-        query: {}
       responses:
         "200":
-          application/json: {"names": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+          application/json: {"names": ["<value 1>", "<value 2>", "<value 3>"], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   listMetricAttributeValues:
     speakeasy-default-list-metric-attribute-values:
       parameters:
         path:
           name: "<value>"
           attributeName: "<value>"
-        query: {}
       responses:
         "200":
-          application/json: {"name": "<value>", "values": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+          application/json: {"name": "<value>", "values": ["<value 1>", "<value 2>", "<value 3>"], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   listMetricMeasurements:
     speakeasy-default-list-metric-measurements:
       parameters:
         path:
           name: "<value>"
         query:
-          seriesType: "SCALAR"
+          seriesType: "TIMESERIES"
       responses:
         "200":
-          application/json: {"groupings": [{"attributes": [], "measurements": [{"time": "2025-07-08T21:51:20.598Z", "value": 7307.56}, {"time": "2023-05-07T22:33:23.333Z", "value": 250.26}, {"time": "2023-06-20T08:27:21.001Z", "value": 4929.43}]}, {"attributes": [], "measurements": []}], "bucketSizeInSeconds": 614937, "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+          application/json: {"groupings": [{"attributes": [], "measurements": []}], "bucketSizeInSeconds": 845799, "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
+          application/json: {"message": "Cannot find resource"}
   createToken:
     speakeasy-default-create-token:
       requestBody:
         application/json: {"name": "<value>", "tags": {"server": "<value>", "tag_without_value": "<value>"}, "type": "ingestion"}
       responses:
         "200":
-          application/json: {"token": "<value>"}
-  listMultiMetricMeasurements:
-    speakeasy-default-list-multi-metric-measurements:
-      parameters:
-        query:
-          forcePositional: false
-      requestBody:
-        application/json: {"metrics": [{"id": "throughput-series", "name": "dbo.host.queries.tput", "filter": "id:[id1,id2] category:moderate", "groupBy": ["query"], "preGroupBy": ["host"], "preGroupByMethod": "SUM", "seriesType": "TIMESERIES", "fillMethod": "NONE", "fillIfEmpty": false}, {"id": "throughput-series", "name": "dbo.host.queries.tput", "filter": "id:[id1,id2] category:moderate", "groupBy": ["query"], "preGroupBy": ["host"], "preGroupByMethod": "SUM", "seriesType": "TIMESERIES", "fillMethod": "NONE", "fillIfEmpty": false}]}
-      responses:
-        "200":
-          application/json: {"metrics": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
-        "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
-  listProbes:
-    speakeasy-default-list-probes:
-      responses:
-        "200":
-          application/json: {"probes": [{"id": "probe-1", "name": "Washington", "active": true, "platform": "AWS", "region": "NA", "country": "US", "city": "Washington D.C.", "coordinates": {"latitude": 38.89511, "longitude": -77.03637}, "ipv4Addresses": ["34.232.5.40", "44.207.30.12"], "ipv6Addresses": ["2001:0db8:85a3:0000:0000:8a2e:0370:7334"]}]}
-        "500":
-          application/json: {"code": 500, "message": "Internal error", "": {}}
-  createUri:
-    speakeasy-default-create-uri:
-      requestBody:
-        application/json: {"name": "example-uri", "ipOrDomain": "solarwinds.com", "availabilityCheckSettings": {"platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "testIntervalInSeconds": 300, "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}, "tcp": {"enabled": true, "port": 443}}, "tags": [{"key": "environment", "value": "production"}]}
-      responses:
-        "201":
-          application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
-  getUri:
-    speakeasy-default-get-uri:
-      parameters:
-        path:
-          entityId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720", "type": "Uri", "status": "up", "name": "solarwinds.com", "ipOrDomain": "solarwinds.com", "availabilityCheckSettings": {"platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "testIntervalInSeconds": 14400, "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}, "ping": {"enabled": true}, "protocol": "PING"}, "tags": [{"key": "environment", "value": "production"}], "lastOutageStartTime": "2025-01-15T14:31:19.735Z", "lastOutageEndTime": "2025-01-15T14:31:19.735Z", "lastTestTime": "2025-01-15T14:31:19.735Z", "lastErrorTime": "2025-01-15T14:31:19.735Z", "lastResponseTime": 376}
-        "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
-  updateUri:
-    speakeasy-default-update-uri:
-      parameters:
-        path:
-          entityId: "<id>"
-      requestBody:
-        application/json: {"name": "example-uri", "ipOrDomain": "solarwinds.com", "availabilityCheckSettings": {"platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "testIntervalInSeconds": 300, "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}, "tcp": {"enabled": true, "port": 443}}, "tags": [{"key": "environment", "value": "production"}]}
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "400":
-          application/json: {"code": 400, "message": "Bad request", "": {}}
-        "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
-  deleteUri:
-    speakeasy-default-delete-uri:
-      parameters:
-        path:
-          entityId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
-  pauseUriMonitoring:
-    speakeasy-default-pause-uri-monitoring:
-      parameters:
-        path:
-          entityId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
-  unpauseUriMonitoring:
-    speakeasy-default-unpause-uri-monitoring:
-      parameters:
-        path:
-          entityId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "e-1448474379026206720"}
-        "404":
-          application/json: {"code": 404, "message": "Cannot find resource", "": {}}
-examplesVersion: 1.0.1
+          application/json: {"token": "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"}
+examplesVersion: 1.0.2
 generatedTests:
   createChangeEvent: "2025-05-02T09:35:26-06:00"
   activateAwsIntegration: "2025-05-02T09:35:26-06:00"

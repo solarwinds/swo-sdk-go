@@ -2,16 +2,51 @@
 
 package components
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// Type - Specificity for location of synthetic probes to be used for availability tests.
+type Type string
+
+const (
+	TypeRegion  Type = "REGION"
+	TypeCountry Type = "COUNTRY"
+	TypeCity    Type = "CITY"
+)
+
+func (e Type) ToPointer() *Type {
+	return &e
+}
+func (e *Type) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "REGION":
+		fallthrough
+	case "COUNTRY":
+		fallthrough
+	case "CITY":
+		*e = Type(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Type: %v", v)
+	}
+}
+
 type TestFrom struct {
 	// Specificity for location of synthetic probes to be used for availability tests.
-	Type ProbeLocationType `json:"type"`
+	Type Type `json:"type"`
 	// A list of probe location values of the selected type. At least one value matching an existing probe must be provided.
 	Values []string `json:"values"`
 }
 
-func (o *TestFrom) GetType() ProbeLocationType {
+func (o *TestFrom) GetType() Type {
 	if o == nil {
-		return ProbeLocationType("")
+		return Type("")
 	}
 	return o.Type
 }

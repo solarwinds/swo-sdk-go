@@ -8,7 +8,6 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
-	"mockserver/internal/sdk/models/operations"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -47,43 +46,39 @@ func testGetWebsiteGetWebsite0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &operations.GetWebsiteResponseBody{
+	respBody := &components.GetWebsiteResponse{
 		ID:     "e-1448474379026206720",
 		Type:   "Website",
-		Status: operations.GetWebsiteStatusUp,
+		Status: components.GetWebsiteResponseStatusUp,
 		Name:   "solarwinds.com",
 		URL:    "https://www.solarwinds.com",
-		MonitoringOptions: operations.MonitoringOptions{
-			IsAvailabilityActive: true,
-			IsRumActive:          false,
-		},
-		AvailabilityCheckSettings: &operations.GetWebsiteAvailabilityCheckSettings{
-			PlatformOptions: &operations.GetWebsitePlatformOptions{
+		AvailabilityCheckSettings: &components.GetWebsiteResponseAvailabilityCheckSettings{
+			PlatformOptions: &components.GetWebsiteResponsePlatformOptions{
 				ProbePlatforms: []components.ProbePlatform{
 					components.ProbePlatformAws,
 				},
 				TestFromAll: types.Bool(true),
 			},
 			TestFrom: components.TestFrom{
-				Type: components.ProbeLocationTypeRegion,
+				Type: components.TypeRegion,
 				Values: []string{
 					"NA",
 				},
 			},
 			TestIntervalInSeconds: 14400,
-			OutageConfiguration: &operations.GetWebsiteOutageConfiguration{
-				FailingTestLocations: operations.GetWebsiteFailingTestLocationsAll,
+			OutageConfiguration: &components.GetWebsiteResponseOutageConfiguration{
+				FailingTestLocations: components.GetWebsiteResponseFailingTestLocationsAll,
 				ConsecutiveForDown:   2,
 			},
-			CheckForString: &operations.CheckForString{
-				Operator: components.CheckForStringOperatorContains,
+			CheckForString: &components.GetWebsiteResponseCheckForString{
+				Operator: components.GetWebsiteResponseOperatorContains,
 				Value:    "string",
 			},
 			Protocols: []components.WebsiteProtocol{
 				components.WebsiteProtocolHTTP,
 				components.WebsiteProtocolHTTPS,
 			},
-			Ssl: &operations.Ssl{
+			Ssl: &components.GetWebsiteResponseSsl{
 				Enabled:                        types.Bool(true),
 				DaysPriorToExpiration:          types.Int(7),
 				IgnoreIntermediateCertificates: types.Bool(true),
@@ -103,7 +98,7 @@ func testGetWebsiteGetWebsite0(w http.ResponseWriter, req *http.Request) {
 				Value: "production",
 			},
 		},
-		Rum: &operations.Rum{
+		Rum: &components.GetWebsiteResponseRum{
 			ApdexTimeInSeconds: types.Int(4),
 			Snippet:            types.String("string"),
 			Spa:                true,

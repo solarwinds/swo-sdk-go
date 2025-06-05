@@ -7,7 +7,6 @@ import (
 	"github.com/solarwinds/swo-sdk-go/swov1"
 	"github.com/solarwinds/swo-sdk-go/swov1/internal/utils"
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
-	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
@@ -30,13 +29,13 @@ func TestTokens_CreateToken(t *testing.T) {
 			Server:          "<value>",
 			TagWithoutValue: "<value>",
 		},
-		Type: components.TypeIngestion,
+		Type: components.CreateTokenRequestTypeIngestion,
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.Object)
-	assert.Equal(t, &operations.CreateTokenResponseBody{
+	assert.NotNil(t, res.CreateTokenResponse)
+	assert.Equal(t, &components.CreateTokenResponse{
 		Token: "<value>",
-	}, res.Object)
+	}, res.CreateTokenResponse)
 
 }
