@@ -89,6 +89,33 @@ func (o *WebsiteOutageConfiguration) GetConsecutiveForDown() int {
 	return o.ConsecutiveForDown
 }
 
+// Operator - Defines whether the check should pass only when the string is present on the page (CONTAINS) or only when it is absent (DOES_NOT_CONTAIN).
+type Operator string
+
+const (
+	OperatorContains       Operator = "CONTAINS"
+	OperatorDoesNotContain Operator = "DOES_NOT_CONTAIN"
+)
+
+func (e Operator) ToPointer() *Operator {
+	return &e
+}
+func (e *Operator) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "CONTAINS":
+		fallthrough
+	case "DOES_NOT_CONTAIN":
+		*e = Operator(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Operator: %v", v)
+	}
+}
+
 // CheckForString -   Use this field to configure whether availability tests should check for presence or absence of a particular string on a page.
 //
 //	If the operator is DOES_NOT_CONTAIN and the value is found on the page, the availability test will fail.
@@ -96,14 +123,14 @@ func (o *WebsiteOutageConfiguration) GetConsecutiveForDown() int {
 //	If omitted or set to null, the string checking functionality will be disabled.
 type CheckForString struct {
 	// Defines whether the check should pass only when the string is present on the page (CONTAINS) or only when it is absent (DOES_NOT_CONTAIN).
-	Operator CheckForStringOperator `json:"operator"`
+	Operator Operator `json:"operator"`
 	// The string that which will be searched in the page source code.
 	Value string `json:"value"`
 }
 
-func (o *CheckForString) GetOperator() CheckForStringOperator {
+func (o *CheckForString) GetOperator() Operator {
 	if o == nil {
-		return CheckForStringOperator("")
+		return Operator("")
 	}
 	return o.Operator
 }

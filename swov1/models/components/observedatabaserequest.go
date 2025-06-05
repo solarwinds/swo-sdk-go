@@ -5,15 +5,18 @@ package components
 type ObserveDatabaseRequest struct {
 	// Name for the observed database entity
 	Name string `json:"name"`
-	// Swo Agent ID wehre the plugins for observing database server should run
+	// Swo Agent ID where the plugin(s) for observing database server should run
 	AgentID string `json:"agentId"`
 	// Database server type: mysql/mongo/mssql/pgsql/redis
 	DbType DatabaseType `json:"dbType"`
 	// Auth method to be used by the agent to connect to database server
 	AuthMethod DatabaseAuthMethod `json:"authMethod"`
-	// Method for capturing metrics from database server: sniff/profiler/slow-log/poll, ignored for SqlServer and Redis
+	// Method for capturing metrics from database server: sniffer/poll/profiler/slow-log, ignored for SqlServer and Redis
+	// Sniffer is supported for mysql, mongo, redis and pgsql.
+	// Poll is supported for mysql, mssql, pgsql.
+	// profiler and slow-log are supported for mongo.
 	CaptureMethod *DatabaseMetricsCaptureMethod `json:"captureMethod,omitempty"`
-	// Optional advanced configuration options for plugins, e.g. disable-sampling
+	// Optional advanced configuration options for plugins, e.g. disable-sampling set to true
 	ConfigOptions []CommonKeyValuePair `json:"configOptions,omitempty"`
 	// Options specifying how plugins connect to database server
 	DbConnOptions DatabaseConnectionOptions `json:"dbConnOptions"`

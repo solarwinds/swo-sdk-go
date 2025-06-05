@@ -7,7 +7,7 @@ import (
 	"log"
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
-	"mockserver/internal/sdk/models/operations"
+	"mockserver/internal/sdk/models/components"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
 	"net/http"
@@ -50,7 +50,7 @@ func testCreateTokenCreateToken0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &operations.CreateTokenResponseBody{
+	respBody := &components.CreateTokenResponse{
 		Token: "<value>",
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

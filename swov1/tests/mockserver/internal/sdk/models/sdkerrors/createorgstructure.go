@@ -9,11 +9,8 @@ import (
 
 // CreateOrgStructureCloudAccountsResponse500ResponseBody - Server error
 type CreateOrgStructureCloudAccountsResponse500ResponseBody struct {
-	// HTTP status code as defined in RFC 2817
-	Code int64 `json:"code"`
 	// Supporting description of the error
 	Message  string                  `json:"message"`
-	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -26,11 +23,8 @@ func (e *CreateOrgStructureCloudAccountsResponse500ResponseBody) Error() string 
 
 // CreateOrgStructureCloudAccountsResponseResponseBody - The server cannot find the requested resource.
 type CreateOrgStructureCloudAccountsResponseResponseBody struct {
-	// HTTP status code as defined in RFC 2817
-	Code int64 `json:"code"`
 	// Supporting description of the error
 	Message  string                  `json:"message"`
-	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -43,11 +37,8 @@ func (e *CreateOrgStructureCloudAccountsResponseResponseBody) Error() string {
 
 // CreateOrgStructureCloudAccountsResponseBody - Access is unauthorized.
 type CreateOrgStructureCloudAccountsResponseBody struct {
-	// HTTP status code as defined in RFC 2817
-	Code int64 `json:"code"`
 	// Supporting description of the error
 	Message  string                  `json:"message"`
-	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -60,10 +51,9 @@ func (e *CreateOrgStructureCloudAccountsResponseBody) Error() string {
 
 // CreateOrgStructureResponseBody - The server could not understand the request due to invalid syntax.
 type CreateOrgStructureResponseBody struct {
-	// HTTP status code as defined in RFC 2817
-	Code int64 `json:"code"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
 	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }

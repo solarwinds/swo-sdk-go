@@ -42,18 +42,9 @@ func main() {
         AgentID: "<id>",
         DbType: components.DatabaseTypeMongo,
         AuthMethod: components.DatabaseAuthMethodEntraclientsecret,
-        CaptureMethod: components.DatabaseMetricsCaptureMethodPoll.ToPointer(),
-        ConfigOptions: []components.CommonKeyValuePair{
-            components.CommonKeyValuePair{
-                Key: "<key>",
-                Value: "<value>",
-            },
-        },
         DbConnOptions: components.DatabaseConnectionOptions{
-            Host: "dependent-bar.com",
-            SslOptions: &components.DatabaseSslOptions{},
+            Host: "mixed-scrap.com",
         },
-        Tags: []components.CommonKeyValuePair{},
     })
     if err != nil {
         log.Fatal(err)

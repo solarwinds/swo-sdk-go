@@ -78,7 +78,7 @@ func TestDem_CreateWebsite(t *testing.T) {
 				TestFromAll: swov1.Bool(true),
 			},
 			TestFrom: components.TestFrom{
-				Type: components.ProbeLocationTypeRegion,
+				Type: components.TypeRegion,
 				Values: []string{
 					"NA",
 				},
@@ -89,7 +89,7 @@ func TestDem_CreateWebsite(t *testing.T) {
 				ConsecutiveForDown:   2,
 			},
 			CheckForString: &components.CheckForString{
-				Operator: components.CheckForStringOperatorContains,
+				Operator: components.OperatorContains,
 				Value:    "string",
 			},
 			Protocols: []components.WebsiteProtocol{
@@ -146,44 +146,40 @@ func TestDem_GetWebsite(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.Object)
-	assert.Equal(t, &operations.GetWebsiteResponseBody{
+	assert.NotNil(t, res.GetWebsiteResponse)
+	assert.Equal(t, &components.GetWebsiteResponse{
 		ID:     "e-1448474379026206720",
 		Type:   "Website",
-		Status: operations.GetWebsiteStatusUp,
+		Status: components.GetWebsiteResponseStatusUp,
 		Name:   "solarwinds.com",
 		URL:    "https://www.solarwinds.com",
-		MonitoringOptions: operations.MonitoringOptions{
-			IsAvailabilityActive: true,
-			IsRumActive:          false,
-		},
-		AvailabilityCheckSettings: &operations.GetWebsiteAvailabilityCheckSettings{
-			PlatformOptions: &operations.GetWebsitePlatformOptions{
+		AvailabilityCheckSettings: &components.GetWebsiteResponseAvailabilityCheckSettings{
+			PlatformOptions: &components.GetWebsiteResponsePlatformOptions{
 				ProbePlatforms: []components.ProbePlatform{
 					components.ProbePlatformAws,
 				},
 				TestFromAll: swov1.Bool(true),
 			},
 			TestFrom: components.TestFrom{
-				Type: components.ProbeLocationTypeRegion,
+				Type: components.TypeRegion,
 				Values: []string{
 					"NA",
 				},
 			},
 			TestIntervalInSeconds: 14400,
-			OutageConfiguration: &operations.GetWebsiteOutageConfiguration{
-				FailingTestLocations: operations.GetWebsiteFailingTestLocationsAll,
+			OutageConfiguration: &components.GetWebsiteResponseOutageConfiguration{
+				FailingTestLocations: components.GetWebsiteResponseFailingTestLocationsAll,
 				ConsecutiveForDown:   2,
 			},
-			CheckForString: &operations.CheckForString{
-				Operator: components.CheckForStringOperatorContains,
+			CheckForString: &components.GetWebsiteResponseCheckForString{
+				Operator: components.GetWebsiteResponseOperatorContains,
 				Value:    "string",
 			},
 			Protocols: []components.WebsiteProtocol{
 				components.WebsiteProtocolHTTP,
 				components.WebsiteProtocolHTTPS,
 			},
-			Ssl: &operations.Ssl{
+			Ssl: &components.GetWebsiteResponseSsl{
 				Enabled:                        swov1.Bool(true),
 				DaysPriorToExpiration:          swov1.Int(7),
 				IgnoreIntermediateCertificates: swov1.Bool(true),
@@ -203,7 +199,7 @@ func TestDem_GetWebsite(t *testing.T) {
 				Value: "production",
 			},
 		},
-		Rum: &operations.Rum{
+		Rum: &components.GetWebsiteResponseRum{
 			ApdexTimeInSeconds: swov1.Int(4),
 			Snippet:            swov1.String("string"),
 			Spa:                true,
@@ -214,7 +210,7 @@ func TestDem_GetWebsite(t *testing.T) {
 		LastErrorTime:                types.MustNewTimeFromString("2025-01-15T14:31:19.735Z"),
 		LastResponseTime:             swov1.Int(376),
 		NextOnDemandAvailabilityTime: swov1.Int(0),
-	}, res.Object)
+	}, res.GetWebsiteResponse)
 
 }
 
@@ -242,7 +238,7 @@ func TestDem_UpdateWebsite(t *testing.T) {
 					TestFromAll: swov1.Bool(true),
 				},
 				TestFrom: components.TestFrom{
-					Type: components.ProbeLocationTypeRegion,
+					Type: components.TypeRegion,
 					Values: []string{
 						"NA",
 					},
@@ -253,7 +249,7 @@ func TestDem_UpdateWebsite(t *testing.T) {
 					ConsecutiveForDown:   2,
 				},
 				CheckForString: &components.CheckForString{
-					Operator: components.CheckForStringOperatorContains,
+					Operator: components.OperatorContains,
 					Value:    "string",
 				},
 				Protocols: []components.WebsiteProtocol{
@@ -378,8 +374,8 @@ func TestDem_ListProbes(t *testing.T) {
 	res, err := s.Dem.ListProbes(ctx)
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.Object)
-	assert.Equal(t, &operations.ListProbesResponseBody{
+	assert.NotNil(t, res.ListProbesResponse)
+	assert.Equal(t, &components.ListProbesResponse{
 		Probes: []components.Probe{
 			components.Probe{
 				ID:       "probe-1",
@@ -402,7 +398,7 @@ func TestDem_ListProbes(t *testing.T) {
 				},
 			},
 		},
-	}, res.Object)
+	}, res.ListProbesResponse)
 
 }
 
@@ -428,7 +424,7 @@ func TestDem_CreateURI(t *testing.T) {
 				TestFromAll: swov1.Bool(true),
 			},
 			TestFrom: components.TestFrom{
-				Type: components.ProbeLocationTypeRegion,
+				Type: components.TypeRegion,
 				Values: []string{
 					"NA",
 				},
@@ -475,35 +471,35 @@ func TestDem_GetURI(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.Object)
-	assert.Equal(t, &operations.GetURIResponseBody{
+	assert.NotNil(t, res.GetURIResponse)
+	assert.Equal(t, &components.GetURIResponse{
 		ID:         "e-1448474379026206720",
 		Type:       "Uri",
-		Status:     operations.StatusUp,
+		Status:     components.StatusUp,
 		Name:       "solarwinds.com",
 		IPOrDomain: "solarwinds.com",
-		AvailabilityCheckSettings: operations.AvailabilityCheckSettings{
-			PlatformOptions: &operations.PlatformOptions{
+		AvailabilityCheckSettings: components.URIAvailabilityCheckSettings{
+			PlatformOptions: &components.URIAvailabilityCheckSettingsPlatformOptions{
 				ProbePlatforms: []components.ProbePlatform{
 					components.ProbePlatformAws,
 				},
 				TestFromAll: swov1.Bool(true),
 			},
 			TestFrom: components.TestFrom{
-				Type: components.ProbeLocationTypeRegion,
+				Type: components.TypeRegion,
 				Values: []string{
 					"NA",
 				},
 			},
 			TestIntervalInSeconds: 14400,
-			OutageConfiguration: &operations.OutageConfiguration{
-				FailingTestLocations: operations.FailingTestLocationsAll,
+			OutageConfiguration: &components.URIAvailabilityCheckSettingsOutageConfiguration{
+				FailingTestLocations: components.URIAvailabilityCheckSettingsFailingTestLocationsAll,
 				ConsecutiveForDown:   2,
 			},
-			Ping: &operations.Ping{
+			Ping: &components.URIAvailabilityCheckSettingsPing{
 				Enabled: true,
 			},
-			Protocol: operations.ProtocolPing,
+			Protocol: components.ProtocolPing,
 		},
 		Tags: []components.Tag{
 			components.Tag{
@@ -516,7 +512,7 @@ func TestDem_GetURI(t *testing.T) {
 		LastTestTime:        types.MustNewTimeFromString("2025-01-15T14:31:19.735Z"),
 		LastErrorTime:       types.MustNewTimeFromString("2025-01-15T14:31:19.735Z"),
 		LastResponseTime:    swov1.Int(376),
-	}, res.Object)
+	}, res.GetURIResponse)
 
 }
 
@@ -544,7 +540,7 @@ func TestDem_UpdateURI(t *testing.T) {
 					TestFromAll: swov1.Bool(true),
 				},
 				TestFrom: components.TestFrom{
-					Type: components.ProbeLocationTypeRegion,
+					Type: components.TypeRegion,
 					Values: []string{
 						"NA",
 					},

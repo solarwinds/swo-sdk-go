@@ -48,7 +48,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.ListProbesResponse != nil {
         // handle response
     }
 }
@@ -202,7 +202,7 @@ func main() {
     )
 
     res, err := s.Dem.CreateURI(ctx, components.URI{
-        Name: "example-uri",
+        Name: "solarwinds.com",
         IPOrDomain: "solarwinds.com",
         AvailabilityCheckSettings: components.URIAvailabilityCheckSettingsInput{
             PlatformOptions: &components.PlatformOptions{
@@ -212,19 +212,25 @@ func main() {
                 TestFromAll: swov1.Bool(true),
             },
             TestFrom: components.TestFrom{
-                Type: components.ProbeLocationTypeRegion,
+                Type: components.TypeRegion,
                 Values: []string{
                     "NA",
                 },
             },
-            TestIntervalInSeconds: 300,
-            OutageConfiguration: &components.URIAvailabilityCheckSettingsInputOutageConfiguration{
-                FailingTestLocations: components.URIAvailabilityCheckSettingsInputFailingTestLocationsAll,
-                ConsecutiveForDown: 2,
+            TestIntervalInSeconds: 14400,
+            OutageConfiguration: nil,
+            Ping: &components.Ping{
+                Enabled: true,
             },
             TCP: &components.TCP{
                 Enabled: true,
                 Port: 443,
+                StringToSend: swov1.String("GET / HTTP/1.1\r\n" +
+                "Host: solarwinds.com\r\n" +
+                "Connection: close\r\n" +
+                "\r\n" +
+                ""),
+                StringToExpect: swov1.String("HTTP/1.1 200 OK"),
             },
         },
         Tags: []components.Tag{
@@ -292,7 +298,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.GetURIResponse != nil {
         // handle response
     }
 }
@@ -345,7 +351,7 @@ func main() {
     res, err := s.Dem.UpdateURI(ctx, operations.UpdateURIRequest{
         EntityID: "<id>",
         URI: components.URI{
-            Name: "example-uri",
+            Name: "solarwinds.com",
             IPOrDomain: "solarwinds.com",
             AvailabilityCheckSettings: components.URIAvailabilityCheckSettingsInput{
                 PlatformOptions: &components.PlatformOptions{
@@ -355,19 +361,28 @@ func main() {
                     TestFromAll: swov1.Bool(true),
                 },
                 TestFrom: components.TestFrom{
-                    Type: components.ProbeLocationTypeRegion,
+                    Type: components.TypeRegion,
                     Values: []string{
                         "NA",
                     },
                 },
-                TestIntervalInSeconds: 300,
+                TestIntervalInSeconds: 14400,
                 OutageConfiguration: &components.URIAvailabilityCheckSettingsInputOutageConfiguration{
                     FailingTestLocations: components.URIAvailabilityCheckSettingsInputFailingTestLocationsAll,
                     ConsecutiveForDown: 2,
                 },
+                Ping: &components.Ping{
+                    Enabled: true,
+                },
                 TCP: &components.TCP{
                     Enabled: true,
                     Port: 443,
+                    StringToSend: swov1.String("GET / HTTP/1.1\r\n" +
+                    "Host: solarwinds.com\r\n" +
+                    "Connection: close\r\n" +
+                    "\r\n" +
+                    ""),
+                    StringToExpect: swov1.String("HTTP/1.1 200 OK"),
                 },
             },
             Tags: []components.Tag{
@@ -607,7 +622,7 @@ func main() {
                 TestFromAll: swov1.Bool(true),
             },
             TestFrom: components.TestFrom{
-                Type: components.ProbeLocationTypeRegion,
+                Type: components.TypeRegion,
                 Values: []string{
                     "NA",
                 },
@@ -618,7 +633,7 @@ func main() {
                 ConsecutiveForDown: 2,
             },
             CheckForString: &components.CheckForString{
-                Operator: components.CheckForStringOperatorContains,
+                Operator: components.OperatorContains,
                 Value: "string",
             },
             Protocols: []components.WebsiteProtocol{
@@ -708,7 +723,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.GetWebsiteResponse != nil {
         // handle response
     }
 }
@@ -771,7 +786,7 @@ func main() {
                     TestFromAll: swov1.Bool(true),
                 },
                 TestFrom: components.TestFrom{
-                    Type: components.ProbeLocationTypeRegion,
+                    Type: components.TypeRegion,
                     Values: []string{
                         "NA",
                     },
@@ -782,7 +797,7 @@ func main() {
                     ConsecutiveForDown: 2,
                 },
                 CheckForString: &components.CheckForString{
-                    Operator: components.CheckForStringOperatorContains,
+                    Operator: components.OperatorContains,
                     Value: "string",
                 },
                 Protocols: []components.WebsiteProtocol{

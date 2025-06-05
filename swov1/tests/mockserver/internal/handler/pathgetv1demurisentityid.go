@@ -8,7 +8,6 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
-	"mockserver/internal/sdk/models/operations"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -47,34 +46,34 @@ func testGetURIGetUri0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &operations.GetURIResponseBody{
+	respBody := &components.GetURIResponse{
 		ID:         "e-1448474379026206720",
 		Type:       "Uri",
-		Status:     operations.StatusUp,
+		Status:     components.StatusUp,
 		Name:       "solarwinds.com",
 		IPOrDomain: "solarwinds.com",
-		AvailabilityCheckSettings: operations.AvailabilityCheckSettings{
-			PlatformOptions: &operations.PlatformOptions{
+		AvailabilityCheckSettings: components.URIAvailabilityCheckSettings{
+			PlatformOptions: &components.URIAvailabilityCheckSettingsPlatformOptions{
 				ProbePlatforms: []components.ProbePlatform{
 					components.ProbePlatformAws,
 				},
 				TestFromAll: types.Bool(true),
 			},
 			TestFrom: components.TestFrom{
-				Type: components.ProbeLocationTypeRegion,
+				Type: components.TypeRegion,
 				Values: []string{
 					"NA",
 				},
 			},
 			TestIntervalInSeconds: 14400,
-			OutageConfiguration: &operations.OutageConfiguration{
-				FailingTestLocations: operations.FailingTestLocationsAll,
+			OutageConfiguration: &components.URIAvailabilityCheckSettingsOutageConfiguration{
+				FailingTestLocations: components.URIAvailabilityCheckSettingsFailingTestLocationsAll,
 				ConsecutiveForDown:   2,
 			},
-			Ping: &operations.Ping{
+			Ping: &components.URIAvailabilityCheckSettingsPing{
 				Enabled: true,
 			},
-			Protocol: operations.ProtocolPing,
+			Protocol: components.ProtocolPing,
 		},
 		Tags: []components.Tag{
 			components.Tag{

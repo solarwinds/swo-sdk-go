@@ -1,4 +1,4 @@
-# Rum
+# GetWebsiteResponseRum
 
 Use this field to configure real user monitoring (RUM) for the website.
 You are required to configure at least availability monitoring or real user monitoring to be able to create website.

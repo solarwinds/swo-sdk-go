@@ -6,22 +6,10 @@ import (
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 )
 
-// CreateTokenResponseBody - The request has succeeded.
-type CreateTokenResponseBody struct {
-	Token string `json:"token"`
-}
-
-func (o *CreateTokenResponseBody) GetToken() string {
-	if o == nil {
-		return ""
-	}
-	return o.Token
-}
-
 type CreateTokenResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The request has succeeded.
-	Object *CreateTokenResponseBody
+	CreateTokenResponse *components.CreateTokenResponse
 }
 
 func (o *CreateTokenResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -31,9 +19,9 @@ func (o *CreateTokenResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *CreateTokenResponse) GetObject() *CreateTokenResponseBody {
+func (o *CreateTokenResponse) GetCreateTokenResponse() *components.CreateTokenResponse {
 	if o == nil {
 		return nil
 	}
-	return o.Object
+	return o.CreateTokenResponse
 }
