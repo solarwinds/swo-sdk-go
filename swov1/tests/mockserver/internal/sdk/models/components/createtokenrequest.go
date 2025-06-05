@@ -26,33 +26,33 @@ func (o *Tags) GetTagWithoutValue() string {
 	return o.TagWithoutValue
 }
 
-type Type string
+type CreateTokenRequestType string
 
 const (
-	TypeIngestion Type = "ingestion"
+	CreateTokenRequestTypeIngestion CreateTokenRequestType = "ingestion"
 )
 
-func (e Type) ToPointer() *Type {
+func (e CreateTokenRequestType) ToPointer() *CreateTokenRequestType {
 	return &e
 }
-func (e *Type) UnmarshalJSON(data []byte) error {
+func (e *CreateTokenRequestType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "ingestion":
-		*e = Type(v)
+		*e = CreateTokenRequestType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Type: %v", v)
+		return fmt.Errorf("invalid value for CreateTokenRequestType: %v", v)
 	}
 }
 
 type CreateTokenRequest struct {
-	Name string `json:"name"`
-	Tags Tags   `json:"tags"`
-	Type Type   `json:"type"`
+	Name string                 `json:"name"`
+	Tags Tags                   `json:"tags"`
+	Type CreateTokenRequestType `json:"type"`
 }
 
 func (o *CreateTokenRequest) GetName() string {
@@ -69,9 +69,9 @@ func (o *CreateTokenRequest) GetTags() Tags {
 	return o.Tags
 }
 
-func (o *CreateTokenRequest) GetType() Type {
+func (o *CreateTokenRequest) GetType() CreateTokenRequestType {
 	if o == nil {
-		return Type("")
+		return CreateTokenRequestType("")
 	}
 	return o.Type
 }

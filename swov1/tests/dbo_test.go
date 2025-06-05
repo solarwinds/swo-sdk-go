@@ -38,6 +38,7 @@ func TestDbo_ObserveDatabase(t *testing.T) {
 		},
 		DbConnOptions: components.DatabaseConnectionOptions{
 			Host:       "dependent-bar.com",
+			Port:       swov1.String("<value>"),
 			SslOptions: &components.DatabaseSslOptions{},
 		},
 		Tags: []components.CommonKeyValuePair{},
@@ -132,48 +133,12 @@ func TestDbo_GetPluginConfig(t *testing.T) {
 		PluginConfig: []components.DatabasePluginConfig{
 			components.DatabasePluginConfig{
 				PluginName: "<value>",
-				ConfigOptions: []components.CommonKeyValuePair{
-					components.CommonKeyValuePair{
-						Key:   "<key>",
-						Value: "<value>",
-					},
-				},
-				DbConnOptions: []components.CommonKeyValuePair{
-					components.CommonKeyValuePair{
-						Key:   "<key>",
-						Value: "<value>",
-					},
-				},
 			},
 			components.DatabasePluginConfig{
 				PluginName: "<value>",
-				ConfigOptions: []components.CommonKeyValuePair{
-					components.CommonKeyValuePair{
-						Key:   "<key>",
-						Value: "<value>",
-					},
-				},
-				DbConnOptions: []components.CommonKeyValuePair{
-					components.CommonKeyValuePair{
-						Key:   "<key>",
-						Value: "<value>",
-					},
-				},
 			},
 			components.DatabasePluginConfig{
 				PluginName: "<value>",
-				ConfigOptions: []components.CommonKeyValuePair{
-					components.CommonKeyValuePair{
-						Key:   "<key>",
-						Value: "<value>",
-					},
-				},
-				DbConnOptions: []components.CommonKeyValuePair{
-					components.CommonKeyValuePair{
-						Key:   "<key>",
-						Value: "<value>",
-					},
-				},
 			},
 		},
 	}, res.DatabasePluginConfigResponse)
@@ -200,14 +165,10 @@ func TestDbo_GetPlugins(t *testing.T) {
 	assert.Equal(t, &components.DatabasePluginStatusResponse{
 		Plugins: []components.DatabasePluginStatus{
 			components.DatabasePluginStatus{
-				PluginName:       "<value>",
-				DeploymentStatus: "<value>",
-				HealthStatus:     "<value>",
+				PluginName: "<value>",
 			},
 			components.DatabasePluginStatus{
-				PluginName:       "<value>",
-				DeploymentStatus: "<value>",
-				HealthStatus:     "<value>",
+				PluginName: "<value>",
 			},
 		},
 	}, res.DatabasePluginStatusResponse)

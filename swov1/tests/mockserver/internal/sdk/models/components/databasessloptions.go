@@ -13,7 +13,7 @@ type SslMode string
 
 const (
 	SslModeRequire    SslMode = "require"
-	SslModeVerfifyCa  SslMode = "verfify-ca"
+	SslModeVerifyCa   SslMode = "verify-ca"
 	SslModeVerifyFull SslMode = "verify-full"
 )
 
@@ -28,7 +28,7 @@ func (e *SslMode) UnmarshalJSON(data []byte) error {
 	switch v {
 	case "require":
 		fallthrough
-	case "verfify-ca":
+	case "verify-ca":
 		fallthrough
 	case "verify-full":
 		*e = SslMode(v)

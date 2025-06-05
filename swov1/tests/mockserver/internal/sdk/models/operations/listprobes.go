@@ -6,23 +6,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// ListProbesResponseBody - The request has succeeded.
-type ListProbesResponseBody struct {
-	// Synthetic probes used to perform availability tests.
-	Probes []components.Probe `json:"probes"`
-}
-
-func (o *ListProbesResponseBody) GetProbes() []components.Probe {
-	if o == nil {
-		return []components.Probe{}
-	}
-	return o.Probes
-}
-
 type ListProbesResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The request has succeeded.
-	Object *ListProbesResponseBody
+	ListProbesResponse *components.ListProbesResponse
 }
 
 func (o *ListProbesResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -32,9 +19,9 @@ func (o *ListProbesResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *ListProbesResponse) GetObject() *ListProbesResponseBody {
+func (o *ListProbesResponse) GetListProbesResponse() *components.ListProbesResponse {
 	if o == nil {
 		return nil
 	}
-	return o.Object
+	return o.ListProbesResponse
 }

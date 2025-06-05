@@ -13,8 +13,8 @@ const (
 	DatabaseAuthMethodBasic             DatabaseAuthMethod = "basic"
 	DatabaseAuthMethodAwsiam            DatabaseAuthMethod = "awsiam"
 	DatabaseAuthMethodWindows           DatabaseAuthMethod = "windows"
-	DatabaseAuthMethodEntraclientcert   DatabaseAuthMethod = "entraclientcert"
 	DatabaseAuthMethodEntraclientsecret DatabaseAuthMethod = "entraclientsecret"
+	DatabaseAuthMethodEntraclientcert   DatabaseAuthMethod = "entraclientcert"
 	DatabaseAuthMethodCert              DatabaseAuthMethod = "cert"
 )
 
@@ -33,9 +33,9 @@ func (e *DatabaseAuthMethod) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "windows":
 		fallthrough
-	case "entraclientcert":
-		fallthrough
 	case "entraclientsecret":
+		fallthrough
+	case "entraclientcert":
 		fallthrough
 	case "cert":
 		*e = DatabaseAuthMethod(v)

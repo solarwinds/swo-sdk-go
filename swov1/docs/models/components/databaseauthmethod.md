@@ -8,6 +8,6 @@
 | `DatabaseAuthMethodBasic`             | basic                                 |
 | `DatabaseAuthMethodAwsiam`            | awsiam                                |
 | `DatabaseAuthMethodWindows`           | windows                               |
-| `DatabaseAuthMethodEntraclientcert`   | entraclientcert                       |
 | `DatabaseAuthMethodEntraclientsecret` | entraclientsecret                     |
+| `DatabaseAuthMethodEntraclientcert`   | entraclientcert                       |
 | `DatabaseAuthMethodCert`              | cert                                  |

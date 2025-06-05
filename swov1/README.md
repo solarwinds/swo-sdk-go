@@ -455,7 +455,7 @@ func main() {
 	res, err := s.CloudAccounts.ActivateAwsIntegration(ctx, components.ActivateAwsIntegrationRequest{
 		ManagementAccountID: "<id>",
 		AccountID:           "<id>",
-		Enable:              false,
+		Enable:              true,
 	})
 	if err != nil {
 

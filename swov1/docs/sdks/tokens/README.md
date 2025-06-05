@@ -37,12 +37,12 @@ func main() {
             Server: "<value>",
             TagWithoutValue: "<value>",
         },
-        Type: components.TypeIngestion,
+        Type: components.CreateTokenRequestTypeIngestion,
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res.CreateTokenResponse != nil {
         // handle response
     }
 }

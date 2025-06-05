@@ -9,11 +9,8 @@ import (
 
 // GetEntityByIDEntitiesResponseResponseBody - The server cannot find the requested resource.
 type GetEntityByIDEntitiesResponseResponseBody struct {
-	// HTTP status code as defined in RFC 2817
-	Code int64 `json:"code"`
 	// Supporting description of the error
 	Message  string                  `json:"message"`
-	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -26,11 +23,8 @@ func (e *GetEntityByIDEntitiesResponseResponseBody) Error() string {
 
 // GetEntityByIDEntitiesResponseBody - Access is unauthorized.
 type GetEntityByIDEntitiesResponseBody struct {
-	// HTTP status code as defined in RFC 2817
-	Code int64 `json:"code"`
 	// Supporting description of the error
 	Message  string                  `json:"message"`
-	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -43,10 +37,9 @@ func (e *GetEntityByIDEntitiesResponseBody) Error() string {
 
 // GetEntityByIDResponseBody - The server could not understand the request due to invalid syntax.
 type GetEntityByIDResponseBody struct {
-	// HTTP status code as defined in RFC 2817
-	Code int64 `json:"code"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
 	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }

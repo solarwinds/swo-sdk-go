@@ -9,11 +9,8 @@ import (
 
 // ActivateAwsIntegrationCloudAccountsResponse500ResponseBody - Server error
 type ActivateAwsIntegrationCloudAccountsResponse500ResponseBody struct {
-	// HTTP status code as defined in RFC 2817
-	Code int64 `json:"code"`
 	// Supporting description of the error
 	Message  string                  `json:"message"`
-	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -26,11 +23,8 @@ func (e *ActivateAwsIntegrationCloudAccountsResponse500ResponseBody) Error() str
 
 // ActivateAwsIntegrationCloudAccountsResponseResponseBody - The server cannot find the requested resource.
 type ActivateAwsIntegrationCloudAccountsResponseResponseBody struct {
-	// HTTP status code as defined in RFC 2817
-	Code int64 `json:"code"`
 	// Supporting description of the error
 	Message  string                  `json:"message"`
-	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -43,11 +37,8 @@ func (e *ActivateAwsIntegrationCloudAccountsResponseResponseBody) Error() string
 
 // ActivateAwsIntegrationCloudAccountsResponseBody - Access is unauthorized.
 type ActivateAwsIntegrationCloudAccountsResponseBody struct {
-	// HTTP status code as defined in RFC 2817
-	Code int64 `json:"code"`
 	// Supporting description of the error
 	Message  string                  `json:"message"`
-	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -60,10 +51,9 @@ func (e *ActivateAwsIntegrationCloudAccountsResponseBody) Error() string {
 
 // ActivateAwsIntegrationResponseBody - The server could not understand the request due to invalid syntax.
 type ActivateAwsIntegrationResponseBody struct {
-	// HTTP status code as defined in RFC 2817
-	Code int64 `json:"code"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
 	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }

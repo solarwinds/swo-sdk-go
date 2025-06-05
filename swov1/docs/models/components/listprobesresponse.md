@@ -1,6 +1,4 @@
-# ListProbesResponseBody
-
-The request has succeeded.
+# ListProbesResponse
 
 
 ## Fields

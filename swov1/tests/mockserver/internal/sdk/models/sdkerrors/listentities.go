@@ -9,11 +9,8 @@ import (
 
 // ListEntitiesEntitiesResponseBody - Access is unauthorized.
 type ListEntitiesEntitiesResponseBody struct {
-	// HTTP status code as defined in RFC 2817
-	Code int64 `json:"code"`
 	// Supporting description of the error
 	Message  string                  `json:"message"`
-	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -26,10 +23,9 @@ func (e *ListEntitiesEntitiesResponseBody) Error() string {
 
 // ListEntitiesResponseBody - The server could not understand the request due to invalid syntax.
 type ListEntitiesResponseBody struct {
-	// HTTP status code as defined in RFC 2817
-	Code int64 `json:"code"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
 	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }

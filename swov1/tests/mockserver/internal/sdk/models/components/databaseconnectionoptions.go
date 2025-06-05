@@ -11,6 +11,8 @@ type DatabaseConnectionOptions struct {
 	Host string `json:"host"`
 	// Database server port
 	Port *string `default:"" json:"port"`
+	// Database schema name
+	Dbname *string `default:"" json:"dbname"`
 	// Encrypted credentials for connecting to database server when using basic auth method (username, password)
 	EncryptedCredentials *string `default:"" json:"encryptedCredentials"`
 	// Username for connecting to database server needed only for auth methods other than basic auth
@@ -21,7 +23,7 @@ type DatabaseConnectionOptions struct {
 	SslOptions *DatabaseSslOptions `json:"sslOptions,omitempty"`
 	// Cloud region in case of database managed by cloud provider, required for IAM authentication
 	CloudRegion *string `default:"" json:"cloudRegion"`
-	// binding for packet sniffing for sniff captureMethod (on-host), example: 0.0.0.0:6379,[::]:6379
+	// binding for packet sniffing for sniffer captureMethod (on-host), example: 0.0.0.0:6379,[::]:6379
 	Bindings *string `default:"" json:"bindings"`
 }
 
@@ -48,6 +50,13 @@ func (o *DatabaseConnectionOptions) GetPort() *string {
 		return nil
 	}
 	return o.Port
+}
+
+func (o *DatabaseConnectionOptions) GetDbname() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Dbname
 }
 
 func (o *DatabaseConnectionOptions) GetEncryptedCredentials() *string {

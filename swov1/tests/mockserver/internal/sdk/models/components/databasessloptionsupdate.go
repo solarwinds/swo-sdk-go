@@ -13,7 +13,7 @@ type DatabaseSslOptionsUpdateSslMode string
 
 const (
 	DatabaseSslOptionsUpdateSslModeRequire    DatabaseSslOptionsUpdateSslMode = "require"
-	DatabaseSslOptionsUpdateSslModeVerfifyCa  DatabaseSslOptionsUpdateSslMode = "verfify-ca"
+	DatabaseSslOptionsUpdateSslModeVerifyCa   DatabaseSslOptionsUpdateSslMode = "verify-ca"
 	DatabaseSslOptionsUpdateSslModeVerifyFull DatabaseSslOptionsUpdateSslMode = "verify-full"
 )
 
@@ -28,7 +28,7 @@ func (e *DatabaseSslOptionsUpdateSslMode) UnmarshalJSON(data []byte) error {
 	switch v {
 	case "require":
 		fallthrough
-	case "verfify-ca":
+	case "verify-ca":
 		fallthrough
 	case "verify-full":
 		*e = DatabaseSslOptionsUpdateSslMode(v)

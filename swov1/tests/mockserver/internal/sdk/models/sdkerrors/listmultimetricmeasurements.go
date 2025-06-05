@@ -9,10 +9,9 @@ import (
 
 // ListMultiMetricMeasurementsResponseBody - The server could not understand the request due to invalid syntax.
 type ListMultiMetricMeasurementsResponseBody struct {
-	// HTTP status code as defined in RFC 2817
-	Code int64 `json:"code"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
 	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }

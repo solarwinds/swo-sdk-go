@@ -9,11 +9,8 @@ import (
 
 // DeleteURIResponseBody - The server cannot find the requested resource.
 type DeleteURIResponseBody struct {
-	// HTTP status code as defined in RFC 2817
-	Code int64 `json:"code"`
 	// Supporting description of the error
 	Message  string                  `json:"message"`
-	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
