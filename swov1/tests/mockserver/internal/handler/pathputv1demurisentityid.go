@@ -50,7 +50,7 @@ func testUpdateURIUpdateUri0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.EntityID{
+	var respBody *components.EntityID = &components.EntityID{
 		ID: "e-1448474379026206720",
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

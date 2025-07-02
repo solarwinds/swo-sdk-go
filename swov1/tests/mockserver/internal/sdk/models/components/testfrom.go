@@ -7,19 +7,19 @@ import (
 	"fmt"
 )
 
-// Type - Specificity for location of synthetic probes to be used for availability tests.
-type Type string
+// TestFromType - Specificity for location of synthetic probes to be used for availability tests.
+type TestFromType string
 
 const (
-	TypeRegion  Type = "REGION"
-	TypeCountry Type = "COUNTRY"
-	TypeCity    Type = "CITY"
+	TestFromTypeRegion  TestFromType = "REGION"
+	TestFromTypeCountry TestFromType = "COUNTRY"
+	TestFromTypeCity    TestFromType = "CITY"
 )
 
-func (e Type) ToPointer() *Type {
+func (e TestFromType) ToPointer() *TestFromType {
 	return &e
 }
-func (e *Type) UnmarshalJSON(data []byte) error {
+func (e *TestFromType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -30,23 +30,23 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 	case "COUNTRY":
 		fallthrough
 	case "CITY":
-		*e = Type(v)
+		*e = TestFromType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Type: %v", v)
+		return fmt.Errorf("invalid value for TestFromType: %v", v)
 	}
 }
 
 type TestFrom struct {
 	// Specificity for location of synthetic probes to be used for availability tests.
-	Type Type `json:"type"`
+	Type TestFromType `json:"type"`
 	// A list of probe location values of the selected type. At least one value matching an existing probe must be provided.
 	Values []string `json:"values"`
 }
 
-func (o *TestFrom) GetType() Type {
+func (o *TestFrom) GetType() TestFromType {
 	if o == nil {
-		return Type("")
+		return TestFromType("")
 	}
 	return o.Type
 }

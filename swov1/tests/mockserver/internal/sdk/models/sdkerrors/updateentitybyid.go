@@ -7,36 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// UpdateEntityByIDEntitiesResponseResponseBody - The server cannot find the requested resource.
-type UpdateEntityByIDEntitiesResponseResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &UpdateEntityByIDEntitiesResponseResponseBody{}
-
-func (e *UpdateEntityByIDEntitiesResponseResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// UpdateEntityByIDEntitiesResponseBody - Access is unauthorized.
-type UpdateEntityByIDEntitiesResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &UpdateEntityByIDEntitiesResponseBody{}
-
-func (e *UpdateEntityByIDEntitiesResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// UpdateEntityByIDResponseBody - The server could not understand the request due to invalid syntax.
-type UpdateEntityByIDResponseBody struct {
+// UpdateEntityByIDNotFoundError - The server cannot find the requested resource.
+type UpdateEntityByIDNotFoundError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -44,9 +18,45 @@ type UpdateEntityByIDResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &UpdateEntityByIDResponseBody{}
+var _ error = &UpdateEntityByIDNotFoundError{}
 
-func (e *UpdateEntityByIDResponseBody) Error() string {
+func (e *UpdateEntityByIDNotFoundError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// UpdateEntityByIDUnauthorizedError - Access is unauthorized.
+type UpdateEntityByIDUnauthorizedError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &UpdateEntityByIDUnauthorizedError{}
+
+func (e *UpdateEntityByIDUnauthorizedError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// UpdateEntityByIDBadRequestError - The server could not understand the request due to invalid syntax.
+type UpdateEntityByIDBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &UpdateEntityByIDBadRequestError{}
+
+func (e *UpdateEntityByIDBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

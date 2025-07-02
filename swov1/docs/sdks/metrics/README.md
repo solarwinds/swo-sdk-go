@@ -136,7 +136,7 @@ func main() {
 | Error Type                                         | Status Code                                        | Content Type                                       |
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
 | apierrors.CreateCompositeMetricResponseBody        | 400                                                | application/json                                   |
-| apierrors.CreateCompositeMetricMetricsResponseBody | 403                                                | application/json                                   |
+| apierrors.CreateCompositeMetricMetricsResponseBody | 409                                                | application/json                                   |
 | apierrors.APIError                                 | 4XX, 5XX                                           | \*/\*                                              |
 
 ## ListMultiMetricMeasurements

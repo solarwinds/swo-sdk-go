@@ -7,22 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// PluginOperationDboResponseBody - The server cannot find the requested resource.
-type PluginOperationDboResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &PluginOperationDboResponseBody{}
-
-func (e *PluginOperationDboResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// PluginOperationResponseBody - The server could not understand the request due to invalid syntax.
-type PluginOperationResponseBody struct {
+// PluginOperationNotFoundError - The server cannot find the requested resource.
+type PluginOperationNotFoundError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -30,9 +18,27 @@ type PluginOperationResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &PluginOperationResponseBody{}
+var _ error = &PluginOperationNotFoundError{}
 
-func (e *PluginOperationResponseBody) Error() string {
+func (e *PluginOperationNotFoundError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// PluginOperationBadRequestError - The server could not understand the request due to invalid syntax.
+type PluginOperationBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &PluginOperationBadRequestError{}
+
+func (e *PluginOperationBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

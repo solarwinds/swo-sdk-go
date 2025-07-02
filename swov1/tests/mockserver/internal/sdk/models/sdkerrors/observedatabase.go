@@ -7,8 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// ObserveDatabaseResponseBody - The server could not understand the request due to invalid syntax.
-type ObserveDatabaseResponseBody struct {
+// ObserveDatabaseBadRequestError - The server could not understand the request due to invalid syntax.
+type ObserveDatabaseBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -16,9 +18,9 @@ type ObserveDatabaseResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &ObserveDatabaseResponseBody{}
+var _ error = &ObserveDatabaseBadRequestError{}
 
-func (e *ObserveDatabaseResponseBody) Error() string {
+func (e *ObserveDatabaseBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

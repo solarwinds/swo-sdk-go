@@ -9,6 +9,8 @@ import (
 
 // CreateWebsiteResponseBody - The server could not understand the request due to invalid syntax.
 type CreateWebsiteResponseBody struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field

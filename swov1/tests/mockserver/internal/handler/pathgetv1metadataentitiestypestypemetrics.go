@@ -47,7 +47,7 @@ func testListMetricsForEntityTypeListMetricsForEntityType0(w http.ResponseWriter
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &operations.ListMetricsForEntityTypeResponseBody{
+	var respBody *operations.ListMetricsForEntityTypeResponseBody = &operations.ListMetricsForEntityTypeResponseBody{
 		Type: "KubernetesCluster",
 		Metrics: []components.CommonMetricInfo{
 			components.CommonMetricInfo{

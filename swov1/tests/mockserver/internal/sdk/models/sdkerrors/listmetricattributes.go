@@ -7,16 +7,20 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// ListMetricAttributesResponseBody - The server cannot find the requested resource.
-type ListMetricAttributesResponseBody struct {
+// ListMetricAttributesNotFoundError - The server cannot find the requested resource.
+type ListMetricAttributesNotFoundError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &ListMetricAttributesResponseBody{}
+var _ error = &ListMetricAttributesNotFoundError{}
 
-func (e *ListMetricAttributesResponseBody) Error() string {
+func (e *ListMetricAttributesNotFoundError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

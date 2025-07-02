@@ -45,7 +45,7 @@ func testGetPluginsGetPlugins0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DatabasePluginStatusResponse{
+	var respBody *components.DatabasePluginStatusResponse = &components.DatabasePluginStatusResponse{
 		Plugins: []components.DatabasePluginStatus{
 			components.DatabasePluginStatus{
 				PluginName: "<value>",

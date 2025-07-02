@@ -7,36 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// UpdateCompositeMetricMetricsResponseResponseBody - The server cannot find the requested resource.
-type UpdateCompositeMetricMetricsResponseResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &UpdateCompositeMetricMetricsResponseResponseBody{}
-
-func (e *UpdateCompositeMetricMetricsResponseResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// UpdateCompositeMetricMetricsResponseBody - Access is forbidden.
-type UpdateCompositeMetricMetricsResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &UpdateCompositeMetricMetricsResponseBody{}
-
-func (e *UpdateCompositeMetricMetricsResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// UpdateCompositeMetricResponseBody - The server could not understand the request due to invalid syntax.
-type UpdateCompositeMetricResponseBody struct {
+// UpdateCompositeMetricNotFoundError - The server cannot find the requested resource.
+type UpdateCompositeMetricNotFoundError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -44,9 +18,45 @@ type UpdateCompositeMetricResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &UpdateCompositeMetricResponseBody{}
+var _ error = &UpdateCompositeMetricNotFoundError{}
 
-func (e *UpdateCompositeMetricResponseBody) Error() string {
+func (e *UpdateCompositeMetricNotFoundError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// UpdateCompositeMetricForbiddenError - Access is forbidden.
+type UpdateCompositeMetricForbiddenError struct {
+	// Uniquely identifies an error condition.
+	Code *components.MetricErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &UpdateCompositeMetricForbiddenError{}
+
+func (e *UpdateCompositeMetricForbiddenError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// UpdateCompositeMetricBadRequestError - The server could not understand the request due to invalid syntax.
+type UpdateCompositeMetricBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &UpdateCompositeMetricBadRequestError{}
+
+func (e *UpdateCompositeMetricBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

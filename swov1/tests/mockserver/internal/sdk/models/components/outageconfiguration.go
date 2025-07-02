@@ -7,18 +7,18 @@ import (
 	"fmt"
 )
 
-// FailingTestLocations - How many locations must report a failure for an entity to be considered down.
-type FailingTestLocations string
+// OutageConfigurationFailingTestLocations - How many locations must report a failure for an entity to be considered down.
+type OutageConfigurationFailingTestLocations string
 
 const (
-	FailingTestLocationsAll FailingTestLocations = "all"
-	FailingTestLocationsAny FailingTestLocations = "any"
+	OutageConfigurationFailingTestLocationsAll OutageConfigurationFailingTestLocations = "all"
+	OutageConfigurationFailingTestLocationsAny OutageConfigurationFailingTestLocations = "any"
 )
 
-func (e FailingTestLocations) ToPointer() *FailingTestLocations {
+func (e OutageConfigurationFailingTestLocations) ToPointer() *OutageConfigurationFailingTestLocations {
 	return &e
 }
-func (e *FailingTestLocations) UnmarshalJSON(data []byte) error {
+func (e *OutageConfigurationFailingTestLocations) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -27,23 +27,23 @@ func (e *FailingTestLocations) UnmarshalJSON(data []byte) error {
 	case "all":
 		fallthrough
 	case "any":
-		*e = FailingTestLocations(v)
+		*e = OutageConfigurationFailingTestLocations(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FailingTestLocations: %v", v)
+		return fmt.Errorf("invalid value for OutageConfigurationFailingTestLocations: %v", v)
 	}
 }
 
 type OutageConfiguration struct {
 	// How many locations must report a failure for an entity to be considered down.
-	FailingTestLocations FailingTestLocations `json:"failingTestLocations"`
+	FailingTestLocations OutageConfigurationFailingTestLocations `json:"failingTestLocations"`
 	// Number of consecutive failing tests for an entity to be considered down.
 	ConsecutiveForDown int `json:"consecutiveForDown"`
 }
 
-func (o *OutageConfiguration) GetFailingTestLocations() FailingTestLocations {
+func (o *OutageConfiguration) GetFailingTestLocations() OutageConfigurationFailingTestLocations {
 	if o == nil {
-		return FailingTestLocations("")
+		return OutageConfigurationFailingTestLocations("")
 	}
 	return o.FailingTestLocations
 }

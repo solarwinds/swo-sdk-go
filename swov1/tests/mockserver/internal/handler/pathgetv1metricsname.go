@@ -46,7 +46,7 @@ func testGetMetricByNameGetMetricByName0(w http.ResponseWriter, req *http.Reques
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.CommonMetricInfo{
+	var respBody *components.CommonMetricInfo = &components.CommonMetricInfo{
 		Name:             "composite.custom.system.disk.io.rate",
 		DisplayName:      types.String("Disk IO rate"),
 		Description:      types.String("Disk bytes transferred per second"),

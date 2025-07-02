@@ -50,7 +50,7 @@ func testObserveDatabaseObserveDatabase0(w http.ResponseWriter, req *http.Reques
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &operations.ObserveDatabaseResponseBody{
+	var respBody *operations.ObserveDatabaseResponseBody = &operations.ObserveDatabaseResponseBody{
 		ID: "<id>",
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

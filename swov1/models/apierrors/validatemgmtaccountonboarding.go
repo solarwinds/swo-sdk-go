@@ -9,8 +9,12 @@ import (
 
 // ValidateMgmtAccountOnboardingCloudAccountsResponseResponseBody - Server error
 type ValidateMgmtAccountOnboardingCloudAccountsResponseResponseBody struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -23,8 +27,12 @@ func (e *ValidateMgmtAccountOnboardingCloudAccountsResponseResponseBody) Error()
 
 // ValidateMgmtAccountOnboardingCloudAccountsResponseBody - Access is unauthorized.
 type ValidateMgmtAccountOnboardingCloudAccountsResponseBody struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -37,6 +45,8 @@ func (e *ValidateMgmtAccountOnboardingCloudAccountsResponseBody) Error() string 
 
 // ValidateMgmtAccountOnboardingResponseBody - The server could not understand the request due to invalid syntax.
 type ValidateMgmtAccountOnboardingResponseBody struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field

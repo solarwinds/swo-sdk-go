@@ -7,22 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// UpdateWebsiteDemResponseBody - The server cannot find the requested resource.
-type UpdateWebsiteDemResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &UpdateWebsiteDemResponseBody{}
-
-func (e *UpdateWebsiteDemResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// UpdateWebsiteResponseBody - The server could not understand the request due to invalid syntax.
-type UpdateWebsiteResponseBody struct {
+// UpdateWebsiteNotFoundError - The server cannot find the requested resource.
+type UpdateWebsiteNotFoundError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -30,9 +18,27 @@ type UpdateWebsiteResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &UpdateWebsiteResponseBody{}
+var _ error = &UpdateWebsiteNotFoundError{}
 
-func (e *UpdateWebsiteResponseBody) Error() string {
+func (e *UpdateWebsiteNotFoundError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// UpdateWebsiteBadRequestError - The server could not understand the request due to invalid syntax.
+type UpdateWebsiteBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &UpdateWebsiteBadRequestError{}
+
+func (e *UpdateWebsiteBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

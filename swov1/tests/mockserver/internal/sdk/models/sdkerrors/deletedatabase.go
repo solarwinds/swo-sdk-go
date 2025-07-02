@@ -7,22 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// DeleteDatabaseDboResponseBody - The server cannot find the requested resource.
-type DeleteDatabaseDboResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &DeleteDatabaseDboResponseBody{}
-
-func (e *DeleteDatabaseDboResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// DeleteDatabaseResponseBody - The server could not understand the request due to invalid syntax.
-type DeleteDatabaseResponseBody struct {
+// DeleteDatabaseNotFoundError - The server cannot find the requested resource.
+type DeleteDatabaseNotFoundError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -30,9 +18,27 @@ type DeleteDatabaseResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &DeleteDatabaseResponseBody{}
+var _ error = &DeleteDatabaseNotFoundError{}
 
-func (e *DeleteDatabaseResponseBody) Error() string {
+func (e *DeleteDatabaseNotFoundError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// DeleteDatabaseBadRequestError - The server could not understand the request due to invalid syntax.
+type DeleteDatabaseBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &DeleteDatabaseBadRequestError{}
+
+func (e *DeleteDatabaseBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

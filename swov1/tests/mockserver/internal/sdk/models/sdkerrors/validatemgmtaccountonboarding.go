@@ -7,36 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// ValidateMgmtAccountOnboardingCloudAccountsResponseResponseBody - Server error
-type ValidateMgmtAccountOnboardingCloudAccountsResponseResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &ValidateMgmtAccountOnboardingCloudAccountsResponseResponseBody{}
-
-func (e *ValidateMgmtAccountOnboardingCloudAccountsResponseResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// ValidateMgmtAccountOnboardingCloudAccountsResponseBody - Access is unauthorized.
-type ValidateMgmtAccountOnboardingCloudAccountsResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &ValidateMgmtAccountOnboardingCloudAccountsResponseBody{}
-
-func (e *ValidateMgmtAccountOnboardingCloudAccountsResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// ValidateMgmtAccountOnboardingResponseBody - The server could not understand the request due to invalid syntax.
-type ValidateMgmtAccountOnboardingResponseBody struct {
+// ValidateMgmtAccountOnboardingInternalServerError - Server error
+type ValidateMgmtAccountOnboardingInternalServerError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -44,9 +18,45 @@ type ValidateMgmtAccountOnboardingResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &ValidateMgmtAccountOnboardingResponseBody{}
+var _ error = &ValidateMgmtAccountOnboardingInternalServerError{}
 
-func (e *ValidateMgmtAccountOnboardingResponseBody) Error() string {
+func (e *ValidateMgmtAccountOnboardingInternalServerError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// ValidateMgmtAccountOnboardingUnauthorizedError - Access is unauthorized.
+type ValidateMgmtAccountOnboardingUnauthorizedError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &ValidateMgmtAccountOnboardingUnauthorizedError{}
+
+func (e *ValidateMgmtAccountOnboardingUnauthorizedError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// ValidateMgmtAccountOnboardingBadRequestError - The server could not understand the request due to invalid syntax.
+type ValidateMgmtAccountOnboardingBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &ValidateMgmtAccountOnboardingBadRequestError{}
+
+func (e *ValidateMgmtAccountOnboardingBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

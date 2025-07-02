@@ -7,16 +7,20 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// ListProbesResponseBody - Server error
-type ListProbesResponseBody struct {
+// ListProbesInternalServerError - Server error
+type ListProbesInternalServerError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &ListProbesResponseBody{}
+var _ error = &ListProbesInternalServerError{}
 
-func (e *ListProbesResponseBody) Error() string {
+func (e *ListProbesInternalServerError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

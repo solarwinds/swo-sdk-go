@@ -7,16 +7,20 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// GetWebsiteResponseBody - The server cannot find the requested resource.
-type GetWebsiteResponseBody struct {
+// GetWebsiteNotFoundError - The server cannot find the requested resource.
+type GetWebsiteNotFoundError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &GetWebsiteResponseBody{}
+var _ error = &GetWebsiteNotFoundError{}
 
-func (e *GetWebsiteResponseBody) Error() string {
+func (e *GetWebsiteNotFoundError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
