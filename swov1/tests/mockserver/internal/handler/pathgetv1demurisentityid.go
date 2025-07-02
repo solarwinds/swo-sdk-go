@@ -46,10 +46,10 @@ func testGetURIGetUri0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetURIResponse{
+	var respBody *components.GetURIResponse = &components.GetURIResponse{
 		ID:         "e-1448474379026206720",
 		Type:       "Uri",
-		Status:     components.StatusUp,
+		Status:     components.GetURIResponseStatusUp,
 		Name:       "solarwinds.com",
 		IPOrDomain: "solarwinds.com",
 		AvailabilityCheckSettings: components.URIAvailabilityCheckSettings{
@@ -60,7 +60,7 @@ func testGetURIGetUri0(w http.ResponseWriter, req *http.Request) {
 				TestFromAll: types.Bool(true),
 			},
 			TestFrom: components.TestFrom{
-				Type: components.TypeRegion,
+				Type: components.TestFromTypeRegion,
 				Values: []string{
 					"NA",
 				},

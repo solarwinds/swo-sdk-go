@@ -47,7 +47,7 @@ func testListMetricMeasurementsListMetricMeasurements0(w http.ResponseWriter, re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &operations.ListMetricMeasurementsResponseBody{
+	var respBody *operations.ListMetricMeasurementsResponseBody = &operations.ListMetricMeasurementsResponseBody{
 		Groupings: []components.MetricsGrouping{
 			components.MetricsGrouping{
 				Attributes: []components.CommonKeyValuePair{},

@@ -7,22 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// GetPluginsDboResponseBody - The server cannot find the requested resource.
-type GetPluginsDboResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &GetPluginsDboResponseBody{}
-
-func (e *GetPluginsDboResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// GetPluginsResponseBody - The server could not understand the request due to invalid syntax.
-type GetPluginsResponseBody struct {
+// GetPluginsNotFoundError - The server cannot find the requested resource.
+type GetPluginsNotFoundError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -30,9 +18,27 @@ type GetPluginsResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &GetPluginsResponseBody{}
+var _ error = &GetPluginsNotFoundError{}
 
-func (e *GetPluginsResponseBody) Error() string {
+func (e *GetPluginsNotFoundError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// GetPluginsBadRequestError - The server could not understand the request due to invalid syntax.
+type GetPluginsBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &GetPluginsBadRequestError{}
+
+func (e *GetPluginsBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

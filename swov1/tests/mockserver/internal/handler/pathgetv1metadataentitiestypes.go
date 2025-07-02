@@ -45,7 +45,7 @@ func testListEntityTypesListEntityTypes0(w http.ResponseWriter, req *http.Reques
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &operations.ListEntityTypesResponseBody{
+	var respBody *operations.ListEntityTypesResponseBody = &operations.ListEntityTypesResponseBody{
 		Types: []string{
 			"Service",
 			"ServiceInstance",

@@ -13,7 +13,11 @@ type DatabaseConnectionOptions struct {
 	Port *string `default:"" json:"port"`
 	// Database schema name
 	Dbname *string `default:"" json:"dbname"`
-	// Encrypted credentials for connecting to database server when using basic auth method (username, password)
+	// Encrypted credentials for connecting to the database server when using basic authentication (username, password)
+	// can be generated using this command:
+	// ./dbo-headless-installer -swoparams=<SwoParamasJsonFile> --encrypt-creds --user=<USERNAME> --password=<PASSWORD>
+	// Use the dbo-headless-installer binary located at:
+	// https://agent-binaries.cloud.solarwinds.com/?prefix=dbo-headless-installer/latest/
 	EncryptedCredentials *string `default:"" json:"encryptedCredentials"`
 	// Username for connecting to database server needed only for auth methods other than basic auth
 	User *string `default:"" json:"user"`

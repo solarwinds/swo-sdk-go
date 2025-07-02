@@ -7,8 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// ListMultiMetricMeasurementsResponseBody - The server could not understand the request due to invalid syntax.
-type ListMultiMetricMeasurementsResponseBody struct {
+// ListMultiMetricMeasurementsBadRequestError - The server could not understand the request due to invalid syntax.
+type ListMultiMetricMeasurementsBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -16,9 +18,9 @@ type ListMultiMetricMeasurementsResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &ListMultiMetricMeasurementsResponseBody{}
+var _ error = &ListMultiMetricMeasurementsBadRequestError{}
 
-func (e *ListMultiMetricMeasurementsResponseBody) Error() string {
+func (e *ListMultiMetricMeasurementsBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

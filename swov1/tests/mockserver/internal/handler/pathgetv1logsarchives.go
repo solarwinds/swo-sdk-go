@@ -46,7 +46,7 @@ func testListLogArchivesListLogArchives0(w http.ResponseWriter, req *http.Reques
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &operations.ListLogArchivesResponseBody{
+	var respBody *operations.ListLogArchivesResponseBody = &operations.ListLogArchivesResponseBody{
 		LogArchives: []components.LogsArchive{
 			components.LogsArchive{
 				ID:                "logs/138723/dt=2024-01-23/2024-01-23-08.json.gz",

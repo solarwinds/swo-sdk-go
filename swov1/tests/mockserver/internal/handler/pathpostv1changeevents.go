@@ -50,7 +50,7 @@ func testCreateChangeEventCreateChangeEvent0(w http.ResponseWriter, req *http.Re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &operations.CreateChangeEventResponseBody{
+	var respBody *operations.CreateChangeEventResponseBody = &operations.CreateChangeEventResponseBody{
 		ID: 119883,
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

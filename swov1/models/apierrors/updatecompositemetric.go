@@ -9,8 +9,12 @@ import (
 
 // UpdateCompositeMetricMetricsResponseResponseBody - The server cannot find the requested resource.
 type UpdateCompositeMetricMetricsResponseResponseBody struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -23,8 +27,12 @@ func (e *UpdateCompositeMetricMetricsResponseResponseBody) Error() string {
 
 // UpdateCompositeMetricMetricsResponseBody - Access is forbidden.
 type UpdateCompositeMetricMetricsResponseBody struct {
+	// Uniquely identifies an error condition.
+	Code *components.MetricErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -37,6 +45,8 @@ func (e *UpdateCompositeMetricMetricsResponseBody) Error() string {
 
 // UpdateCompositeMetricResponseBody - The server could not understand the request due to invalid syntax.
 type UpdateCompositeMetricResponseBody struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field

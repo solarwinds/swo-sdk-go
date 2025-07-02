@@ -51,8 +51,8 @@ func testListMultiMetricMeasurementsListMultiMetricMeasurements0(w http.Response
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &operations.ListMultiMetricMeasurementsResponseBody{
-		Metrics: []operations.Metrics{},
+	var respBody *operations.ListMultiMetricMeasurementsResponseBody = &operations.ListMultiMetricMeasurementsResponseBody{
+		Metrics: []operations.Metric{},
 		PageInfo: components.CommonPageInfo{
 			PrevPage: "<value>",
 			NextPage: "<value>",

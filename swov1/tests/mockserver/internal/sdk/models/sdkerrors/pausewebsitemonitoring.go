@@ -7,16 +7,20 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// PauseWebsiteMonitoringResponseBody - The server cannot find the requested resource.
-type PauseWebsiteMonitoringResponseBody struct {
+// PauseWebsiteMonitoringNotFoundError - The server cannot find the requested resource.
+type PauseWebsiteMonitoringNotFoundError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &PauseWebsiteMonitoringResponseBody{}
+var _ error = &PauseWebsiteMonitoringNotFoundError{}
 
-func (e *PauseWebsiteMonitoringResponseBody) Error() string {
+func (e *PauseWebsiteMonitoringNotFoundError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

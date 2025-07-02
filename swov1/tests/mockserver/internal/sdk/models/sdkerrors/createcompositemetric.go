@@ -7,22 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// CreateCompositeMetricMetricsResponseBody - Access is forbidden.
-type CreateCompositeMetricMetricsResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &CreateCompositeMetricMetricsResponseBody{}
-
-func (e *CreateCompositeMetricMetricsResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// CreateCompositeMetricResponseBody - The server could not understand the request due to invalid syntax.
-type CreateCompositeMetricResponseBody struct {
+// ConflictError - The request conflicts with the current state of the server.
+type ConflictError struct {
+	// Uniquely identifies an error condition.
+	Code *components.MetricErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -30,9 +18,27 @@ type CreateCompositeMetricResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &CreateCompositeMetricResponseBody{}
+var _ error = &ConflictError{}
 
-func (e *CreateCompositeMetricResponseBody) Error() string {
+func (e *ConflictError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// CreateCompositeMetricBadRequestError - The server could not understand the request due to invalid syntax.
+type CreateCompositeMetricBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &CreateCompositeMetricBadRequestError{}
+
+func (e *CreateCompositeMetricBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

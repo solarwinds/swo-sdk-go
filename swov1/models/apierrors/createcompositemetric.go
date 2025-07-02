@@ -7,10 +7,14 @@ import (
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 )
 
-// CreateCompositeMetricMetricsResponseBody - Access is forbidden.
+// CreateCompositeMetricMetricsResponseBody - The request conflicts with the current state of the server.
 type CreateCompositeMetricMetricsResponseBody struct {
+	// Uniquely identifies an error condition.
+	Code *components.MetricErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -23,6 +27,8 @@ func (e *CreateCompositeMetricMetricsResponseBody) Error() string {
 
 // CreateCompositeMetricResponseBody - The server could not understand the request due to invalid syntax.
 type CreateCompositeMetricResponseBody struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field

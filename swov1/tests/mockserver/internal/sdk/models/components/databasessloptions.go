@@ -8,19 +8,19 @@ import (
 	"mockserver/internal/sdk/utils"
 )
 
-// SslMode - SSL mode such as require, verify-ca, verify-full as applicable
-type SslMode string
+// DatabaseSslOptionsSslMode - SSL mode such as require, verify-ca, verify-full as applicable
+type DatabaseSslOptionsSslMode string
 
 const (
-	SslModeRequire    SslMode = "require"
-	SslModeVerifyCa   SslMode = "verify-ca"
-	SslModeVerifyFull SslMode = "verify-full"
+	DatabaseSslOptionsSslModeRequire    DatabaseSslOptionsSslMode = "require"
+	DatabaseSslOptionsSslModeVerifyCa   DatabaseSslOptionsSslMode = "verify-ca"
+	DatabaseSslOptionsSslModeVerifyFull DatabaseSslOptionsSslMode = "verify-full"
 )
 
-func (e SslMode) ToPointer() *SslMode {
+func (e DatabaseSslOptionsSslMode) ToPointer() *DatabaseSslOptionsSslMode {
 	return &e
 }
-func (e *SslMode) UnmarshalJSON(data []byte) error {
+func (e *DatabaseSslOptionsSslMode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -31,16 +31,16 @@ func (e *SslMode) UnmarshalJSON(data []byte) error {
 	case "verify-ca":
 		fallthrough
 	case "verify-full":
-		*e = SslMode(v)
+		*e = DatabaseSslOptionsSslMode(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SslMode: %v", v)
+		return fmt.Errorf("invalid value for DatabaseSslOptionsSslMode: %v", v)
 	}
 }
 
 type DatabaseSslOptions struct {
 	// SSL mode such as require, verify-ca, verify-full as applicable
-	SslMode *SslMode `default:"require" json:"sslMode"`
+	SslMode *DatabaseSslOptionsSslMode `default:"require" json:"sslMode"`
 	// CA file path
 	SslCAPath *string `default:"" json:"sslCAPath"`
 	// SSL key file path
@@ -60,7 +60,7 @@ func (d *DatabaseSslOptions) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *DatabaseSslOptions) GetSslMode() *SslMode {
+func (o *DatabaseSslOptions) GetSslMode() *DatabaseSslOptionsSslMode {
 	if o == nil {
 		return nil
 	}

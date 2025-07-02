@@ -7,8 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// CreateURIResponseBody - The server could not understand the request due to invalid syntax.
-type CreateURIResponseBody struct {
+// CreateURIBadRequestError - The server could not understand the request due to invalid syntax.
+type CreateURIBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -16,9 +18,9 @@ type CreateURIResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &CreateURIResponseBody{}
+var _ error = &CreateURIBadRequestError{}
 
-func (e *CreateURIResponseBody) Error() string {
+func (e *CreateURIBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

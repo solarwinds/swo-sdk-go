@@ -9,8 +9,12 @@ import (
 
 // GetPluginConfigDboResponseBody - The server cannot find the requested resource.
 type GetPluginConfigDboResponseBody struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -23,6 +27,8 @@ func (e *GetPluginConfigDboResponseBody) Error() string {
 
 // GetPluginConfigResponseBody - The server could not understand the request due to invalid syntax.
 type GetPluginConfigResponseBody struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field

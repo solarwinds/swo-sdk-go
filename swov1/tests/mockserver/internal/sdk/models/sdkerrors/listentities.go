@@ -7,22 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// ListEntitiesEntitiesResponseBody - Access is unauthorized.
-type ListEntitiesEntitiesResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &ListEntitiesEntitiesResponseBody{}
-
-func (e *ListEntitiesEntitiesResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// ListEntitiesResponseBody - The server could not understand the request due to invalid syntax.
-type ListEntitiesResponseBody struct {
+// ListEntitiesUnauthorizedError - Access is unauthorized.
+type ListEntitiesUnauthorizedError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -30,9 +18,27 @@ type ListEntitiesResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &ListEntitiesResponseBody{}
+var _ error = &ListEntitiesUnauthorizedError{}
 
-func (e *ListEntitiesResponseBody) Error() string {
+func (e *ListEntitiesUnauthorizedError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// ListEntitiesBadRequestError - The server could not understand the request due to invalid syntax.
+type ListEntitiesBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &ListEntitiesBadRequestError{}
+
+func (e *ListEntitiesBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

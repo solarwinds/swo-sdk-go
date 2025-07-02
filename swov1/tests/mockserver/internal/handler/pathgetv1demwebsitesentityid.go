@@ -46,7 +46,7 @@ func testGetWebsiteGetWebsite0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetWebsiteResponse{
+	var respBody *components.GetWebsiteResponse = &components.GetWebsiteResponse{
 		ID:     "e-1448474379026206720",
 		Type:   "Website",
 		Status: components.GetWebsiteResponseStatusUp,
@@ -60,7 +60,7 @@ func testGetWebsiteGetWebsite0(w http.ResponseWriter, req *http.Request) {
 				TestFromAll: types.Bool(true),
 			},
 			TestFrom: components.TestFrom{
-				Type: components.TypeRegion,
+				Type: components.TestFromTypeRegion,
 				Values: []string{
 					"NA",
 				},

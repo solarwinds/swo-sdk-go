@@ -7,22 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// GetPublicKeyDboResponseBody - The server cannot find the requested resource.
-type GetPublicKeyDboResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &GetPublicKeyDboResponseBody{}
-
-func (e *GetPublicKeyDboResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// GetPublicKeyResponseBody - The server could not understand the request due to invalid syntax.
-type GetPublicKeyResponseBody struct {
+// GetPublicKeyNotFoundError - The server cannot find the requested resource.
+type GetPublicKeyNotFoundError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -30,9 +18,27 @@ type GetPublicKeyResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &GetPublicKeyResponseBody{}
+var _ error = &GetPublicKeyNotFoundError{}
 
-func (e *GetPublicKeyResponseBody) Error() string {
+func (e *GetPublicKeyNotFoundError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// GetPublicKeyBadRequestError - The server could not understand the request due to invalid syntax.
+type GetPublicKeyBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &GetPublicKeyBadRequestError{}
+
+func (e *GetPublicKeyBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
