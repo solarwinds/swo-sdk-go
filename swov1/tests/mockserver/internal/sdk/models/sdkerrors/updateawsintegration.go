@@ -7,36 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// UpdateAwsIntegrationCloudAccountsResponseResponseBody - Server error
-type UpdateAwsIntegrationCloudAccountsResponseResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &UpdateAwsIntegrationCloudAccountsResponseResponseBody{}
-
-func (e *UpdateAwsIntegrationCloudAccountsResponseResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// UpdateAwsIntegrationCloudAccountsResponseBody - Access is unauthorized.
-type UpdateAwsIntegrationCloudAccountsResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &UpdateAwsIntegrationCloudAccountsResponseBody{}
-
-func (e *UpdateAwsIntegrationCloudAccountsResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// UpdateAwsIntegrationResponseBody - The server could not understand the request due to invalid syntax.
-type UpdateAwsIntegrationResponseBody struct {
+// UpdateAwsIntegrationInternalServerError - Server error
+type UpdateAwsIntegrationInternalServerError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -44,9 +18,45 @@ type UpdateAwsIntegrationResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &UpdateAwsIntegrationResponseBody{}
+var _ error = &UpdateAwsIntegrationInternalServerError{}
 
-func (e *UpdateAwsIntegrationResponseBody) Error() string {
+func (e *UpdateAwsIntegrationInternalServerError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// UpdateAwsIntegrationUnauthorizedError - Access is unauthorized.
+type UpdateAwsIntegrationUnauthorizedError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &UpdateAwsIntegrationUnauthorizedError{}
+
+func (e *UpdateAwsIntegrationUnauthorizedError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// UpdateAwsIntegrationBadRequestError - The server could not understand the request due to invalid syntax.
+type UpdateAwsIntegrationBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &UpdateAwsIntegrationBadRequestError{}
+
+func (e *UpdateAwsIntegrationBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

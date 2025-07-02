@@ -46,7 +46,7 @@ func testSearchLogsSearchLogs0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &operations.SearchLogsResponseBody{
+	var respBody *operations.SearchLogsResponseBody = &operations.SearchLogsResponseBody{
 		Logs: []components.LogsEvent{
 			components.LogsEvent{
 				ID:       "1793698955374546944",

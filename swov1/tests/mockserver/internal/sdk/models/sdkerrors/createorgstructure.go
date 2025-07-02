@@ -7,50 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// CreateOrgStructureCloudAccountsResponse500ResponseBody - Server error
-type CreateOrgStructureCloudAccountsResponse500ResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &CreateOrgStructureCloudAccountsResponse500ResponseBody{}
-
-func (e *CreateOrgStructureCloudAccountsResponse500ResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// CreateOrgStructureCloudAccountsResponseResponseBody - The server cannot find the requested resource.
-type CreateOrgStructureCloudAccountsResponseResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &CreateOrgStructureCloudAccountsResponseResponseBody{}
-
-func (e *CreateOrgStructureCloudAccountsResponseResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// CreateOrgStructureCloudAccountsResponseBody - Access is unauthorized.
-type CreateOrgStructureCloudAccountsResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &CreateOrgStructureCloudAccountsResponseBody{}
-
-func (e *CreateOrgStructureCloudAccountsResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// CreateOrgStructureResponseBody - The server could not understand the request due to invalid syntax.
-type CreateOrgStructureResponseBody struct {
+// CreateOrgStructureInternalServerError - Server error
+type CreateOrgStructureInternalServerError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -58,9 +18,63 @@ type CreateOrgStructureResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &CreateOrgStructureResponseBody{}
+var _ error = &CreateOrgStructureInternalServerError{}
 
-func (e *CreateOrgStructureResponseBody) Error() string {
+func (e *CreateOrgStructureInternalServerError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// CreateOrgStructureNotFoundError - The server cannot find the requested resource.
+type CreateOrgStructureNotFoundError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &CreateOrgStructureNotFoundError{}
+
+func (e *CreateOrgStructureNotFoundError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// CreateOrgStructureUnauthorizedError - Access is unauthorized.
+type CreateOrgStructureUnauthorizedError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &CreateOrgStructureUnauthorizedError{}
+
+func (e *CreateOrgStructureUnauthorizedError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// CreateOrgStructureBadRequestError - The server could not understand the request due to invalid syntax.
+type CreateOrgStructureBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &CreateOrgStructureBadRequestError{}
+
+func (e *CreateOrgStructureBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

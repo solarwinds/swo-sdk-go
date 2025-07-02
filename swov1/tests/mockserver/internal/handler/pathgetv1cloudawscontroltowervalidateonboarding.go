@@ -45,7 +45,7 @@ func testValidateMgmtAccountOnboardingValidateMgmtAccountOnboarding0(w http.Resp
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.MgmtAccountOnboardingResponse{
+	var respBody *components.MgmtAccountOnboardingResponse = &components.MgmtAccountOnboardingResponse{
 		IsOnboarded: false,
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

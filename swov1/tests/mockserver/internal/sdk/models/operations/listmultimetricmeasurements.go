@@ -97,7 +97,7 @@ func (o *ListMultiMetricMeasurementsRequest) GetRequestBody() ListMultiMetricMea
 	return o.RequestBody
 }
 
-type Metrics struct {
+type Metric struct {
 	// Entry identification, as (if) provided in the corresponding request entry.
 	ID *string `json:"id,omitempty"`
 	// Metric name.
@@ -108,28 +108,28 @@ type Metrics struct {
 	BucketSizeInSeconds int `json:"bucketSizeInSeconds"`
 }
 
-func (o *Metrics) GetID() *string {
+func (o *Metric) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Metrics) GetName() string {
+func (o *Metric) GetName() string {
 	if o == nil {
 		return ""
 	}
 	return o.Name
 }
 
-func (o *Metrics) GetGroupings() []components.MetricsGrouping {
+func (o *Metric) GetGroupings() []components.MetricsGrouping {
 	if o == nil {
 		return []components.MetricsGrouping{}
 	}
 	return o.Groupings
 }
 
-func (o *Metrics) GetBucketSizeInSeconds() int {
+func (o *Metric) GetBucketSizeInSeconds() int {
 	if o == nil {
 		return 0
 	}
@@ -138,13 +138,13 @@ func (o *Metrics) GetBucketSizeInSeconds() int {
 
 // ListMultiMetricMeasurementsResponseBody - The request has succeeded.
 type ListMultiMetricMeasurementsResponseBody struct {
-	Metrics  []Metrics                 `json:"metrics"`
+	Metrics  []Metric                  `json:"metrics"`
 	PageInfo components.CommonPageInfo `json:"pageInfo"`
 }
 
-func (o *ListMultiMetricMeasurementsResponseBody) GetMetrics() []Metrics {
+func (o *ListMultiMetricMeasurementsResponseBody) GetMetrics() []Metric {
 	if o == nil {
-		return []Metrics{}
+		return []Metric{}
 	}
 	return o.Metrics
 }

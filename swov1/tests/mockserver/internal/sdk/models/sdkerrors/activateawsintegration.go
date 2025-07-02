@@ -7,50 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// ActivateAwsIntegrationCloudAccountsResponse500ResponseBody - Server error
-type ActivateAwsIntegrationCloudAccountsResponse500ResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &ActivateAwsIntegrationCloudAccountsResponse500ResponseBody{}
-
-func (e *ActivateAwsIntegrationCloudAccountsResponse500ResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// ActivateAwsIntegrationCloudAccountsResponseResponseBody - The server cannot find the requested resource.
-type ActivateAwsIntegrationCloudAccountsResponseResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &ActivateAwsIntegrationCloudAccountsResponseResponseBody{}
-
-func (e *ActivateAwsIntegrationCloudAccountsResponseResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// ActivateAwsIntegrationCloudAccountsResponseBody - Access is unauthorized.
-type ActivateAwsIntegrationCloudAccountsResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &ActivateAwsIntegrationCloudAccountsResponseBody{}
-
-func (e *ActivateAwsIntegrationCloudAccountsResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// ActivateAwsIntegrationResponseBody - The server could not understand the request due to invalid syntax.
-type ActivateAwsIntegrationResponseBody struct {
+// ActivateAwsIntegrationInternalServerError - Server error
+type ActivateAwsIntegrationInternalServerError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -58,9 +18,63 @@ type ActivateAwsIntegrationResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &ActivateAwsIntegrationResponseBody{}
+var _ error = &ActivateAwsIntegrationInternalServerError{}
 
-func (e *ActivateAwsIntegrationResponseBody) Error() string {
+func (e *ActivateAwsIntegrationInternalServerError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// ActivateAwsIntegrationNotFoundError - The server cannot find the requested resource.
+type ActivateAwsIntegrationNotFoundError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &ActivateAwsIntegrationNotFoundError{}
+
+func (e *ActivateAwsIntegrationNotFoundError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// ActivateAwsIntegrationUnauthorizedError - Access is unauthorized.
+type ActivateAwsIntegrationUnauthorizedError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &ActivateAwsIntegrationUnauthorizedError{}
+
+func (e *ActivateAwsIntegrationUnauthorizedError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// ActivateAwsIntegrationBadRequestError - The server could not understand the request due to invalid syntax.
+type ActivateAwsIntegrationBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &ActivateAwsIntegrationBadRequestError{}
+
+func (e *ActivateAwsIntegrationBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

@@ -51,7 +51,7 @@ func testCreateCompositeMetricCreateCompositeMetric0(w http.ResponseWriter, req 
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.CompositeMetric{
+	var respBody *components.CompositeMetric = &components.CompositeMetric{
 		Name:        "composite.custom.system.disk.io.rate",
 		DisplayName: types.String("Disk IO rate"),
 		Description: types.String("Disk bytes transferred per second"),

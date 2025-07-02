@@ -45,7 +45,7 @@ func testListProbesListProbes0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.ListProbesResponse{
+	var respBody *components.ListProbesResponse = &components.ListProbesResponse{
 		Probes: []components.Probe{
 			components.Probe{
 				ID:       "probe-1",

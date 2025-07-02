@@ -7,22 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// UpdateDatabaseDboResponseBody - The server cannot find the requested resource.
-type UpdateDatabaseDboResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &UpdateDatabaseDboResponseBody{}
-
-func (e *UpdateDatabaseDboResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// UpdateDatabaseResponseBody - The server could not understand the request due to invalid syntax.
-type UpdateDatabaseResponseBody struct {
+// UpdateDatabaseNotFoundError - The server cannot find the requested resource.
+type UpdateDatabaseNotFoundError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -30,9 +18,27 @@ type UpdateDatabaseResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &UpdateDatabaseResponseBody{}
+var _ error = &UpdateDatabaseNotFoundError{}
 
-func (e *UpdateDatabaseResponseBody) Error() string {
+func (e *UpdateDatabaseNotFoundError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// UpdateDatabaseBadRequestError - The server could not understand the request due to invalid syntax.
+type UpdateDatabaseBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &UpdateDatabaseBadRequestError{}
+
+func (e *UpdateDatabaseBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

@@ -7,22 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// GetPluginConfigDboResponseBody - The server cannot find the requested resource.
-type GetPluginConfigDboResponseBody struct {
-	// Supporting description of the error
-	Message  string                  `json:"message"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
-}
-
-var _ error = &GetPluginConfigDboResponseBody{}
-
-func (e *GetPluginConfigDboResponseBody) Error() string {
-	data, _ := json.Marshal(e)
-	return string(data)
-}
-
-// GetPluginConfigResponseBody - The server could not understand the request due to invalid syntax.
-type GetPluginConfigResponseBody struct {
+// GetPluginConfigNotFoundError - The server cannot find the requested resource.
+type GetPluginConfigNotFoundError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -30,9 +18,27 @@ type GetPluginConfigResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &GetPluginConfigResponseBody{}
+var _ error = &GetPluginConfigNotFoundError{}
 
-func (e *GetPluginConfigResponseBody) Error() string {
+func (e *GetPluginConfigNotFoundError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}
+
+// GetPluginConfigBadRequestError - The server could not understand the request due to invalid syntax.
+type GetPluginConfigBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
+	// Supporting description of the error
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+var _ error = &GetPluginConfigBadRequestError{}
+
+func (e *GetPluginConfigBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

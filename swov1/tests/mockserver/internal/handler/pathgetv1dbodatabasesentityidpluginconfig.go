@@ -45,7 +45,7 @@ func testGetPluginConfigGetPluginConfig0(w http.ResponseWriter, req *http.Reques
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DatabasePluginConfigResponse{
+	var respBody *components.DatabasePluginConfigResponse = &components.DatabasePluginConfigResponse{
 		PluginConfig: []components.DatabasePluginConfig{
 			components.DatabasePluginConfig{
 				PluginName: "<value>",

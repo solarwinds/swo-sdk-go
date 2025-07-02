@@ -7,8 +7,8 @@ import (
 	"fmt"
 )
 
-// PlatformOptions - Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, no particular cloud platform will be enforced.
-type PlatformOptions struct {
+// URIAvailabilityCheckSettingsInputPlatformOptions - Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, no particular cloud platform will be enforced.
+type URIAvailabilityCheckSettingsInputPlatformOptions struct {
 	// Cloud platforms hosting synthetic probes.
 	ProbePlatforms []ProbePlatform `json:"probePlatforms"`
 	//   Use this field to configure whether availability tests should be performed from all selected
@@ -24,14 +24,14 @@ type PlatformOptions struct {
 	TestFromAll *bool `json:"testFromAll,omitempty"`
 }
 
-func (o *PlatformOptions) GetProbePlatforms() []ProbePlatform {
+func (o *URIAvailabilityCheckSettingsInputPlatformOptions) GetProbePlatforms() []ProbePlatform {
 	if o == nil {
 		return []ProbePlatform{}
 	}
 	return o.ProbePlatforms
 }
 
-func (o *PlatformOptions) GetTestFromAll() *bool {
+func (o *URIAvailabilityCheckSettingsInputPlatformOptions) GetTestFromAll() *bool {
 	if o == nil {
 		return nil
 	}
@@ -89,26 +89,26 @@ func (o *URIAvailabilityCheckSettingsInputOutageConfiguration) GetConsecutiveFor
 	return o.ConsecutiveForDown
 }
 
-// Ping -   Use this field to configure ping tests for the URI. If omitted or set to null, ping tests will be disabled.
+// URIAvailabilityCheckSettingsInputPing -   Use this field to configure ping tests for the URI. If omitted or set to null, ping tests will be disabled.
 //
 //	One test type (ping or TCP) must be enabled for a URI.
-type Ping struct {
+type URIAvailabilityCheckSettingsInputPing struct {
 	// Use this field to configure ping tests for the URI. If omitted or set to false, ping tests will be disabled.
 	// One test type (ping or TCP) must be enabled for a URI.
 	Enabled bool `json:"enabled"`
 }
 
-func (o *Ping) GetEnabled() bool {
+func (o *URIAvailabilityCheckSettingsInputPing) GetEnabled() bool {
 	if o == nil {
 		return false
 	}
 	return o.Enabled
 }
 
-// TCP -   Use this field to configure TCP tests for the URI. If omitted or set to null, TCP tests will be disabled.
+// URIAvailabilityCheckSettingsInputTCP -   Use this field to configure TCP tests for the URI. If omitted or set to null, TCP tests will be disabled.
 //
 //	One test type (ping or TCP) must be enabled for a URI.
-type TCP struct {
+type URIAvailabilityCheckSettingsInputTCP struct {
 	// Use this field to configure TCP tests for the URI. If omitted or set to false, TCP tests will be disabled.
 	// One test type (ping or TCP) must be enabled for a URI.
 	Enabled bool `json:"enabled"`
@@ -120,28 +120,28 @@ type TCP struct {
 	StringToExpect *string `json:"stringToExpect,omitempty"`
 }
 
-func (o *TCP) GetEnabled() bool {
+func (o *URIAvailabilityCheckSettingsInputTCP) GetEnabled() bool {
 	if o == nil {
 		return false
 	}
 	return o.Enabled
 }
 
-func (o *TCP) GetPort() int {
+func (o *URIAvailabilityCheckSettingsInputTCP) GetPort() int {
 	if o == nil {
 		return 0
 	}
 	return o.Port
 }
 
-func (o *TCP) GetStringToSend() *string {
+func (o *URIAvailabilityCheckSettingsInputTCP) GetStringToSend() *string {
 	if o == nil {
 		return nil
 	}
 	return o.StringToSend
 }
 
-func (o *TCP) GetStringToExpect() *string {
+func (o *URIAvailabilityCheckSettingsInputTCP) GetStringToExpect() *string {
 	if o == nil {
 		return nil
 	}
@@ -150,7 +150,7 @@ func (o *TCP) GetStringToExpect() *string {
 
 type URIAvailabilityCheckSettingsInput struct {
 	// Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, no particular cloud platform will be enforced.
-	PlatformOptions *PlatformOptions `json:"platformOptions,omitempty"`
+	PlatformOptions *URIAvailabilityCheckSettingsInputPlatformOptions `json:"platformOptions,omitempty"`
 	//   Configure locations of the synthetic availability test probes.
 	//   Acceptable values depend on the selected type and actual values of existing probes.
 	TestFrom TestFrom `json:"testFrom"`
@@ -161,13 +161,13 @@ type URIAvailabilityCheckSettingsInput struct {
 	OutageConfiguration *URIAvailabilityCheckSettingsInputOutageConfiguration `json:"outageConfiguration,omitempty"`
 	//   Use this field to configure ping tests for the URI. If omitted or set to null, ping tests will be disabled.
 	//   One test type (ping or TCP) must be enabled for a URI.
-	Ping *Ping `json:"ping,omitempty"`
+	Ping *URIAvailabilityCheckSettingsInputPing `json:"ping,omitempty"`
 	//   Use this field to configure TCP tests for the URI. If omitted or set to null, TCP tests will be disabled.
 	//   One test type (ping or TCP) must be enabled for a URI.
-	TCP *TCP `json:"tcp,omitempty"`
+	TCP *URIAvailabilityCheckSettingsInputTCP `json:"tcp,omitempty"`
 }
 
-func (o *URIAvailabilityCheckSettingsInput) GetPlatformOptions() *PlatformOptions {
+func (o *URIAvailabilityCheckSettingsInput) GetPlatformOptions() *URIAvailabilityCheckSettingsInputPlatformOptions {
 	if o == nil {
 		return nil
 	}
@@ -195,14 +195,14 @@ func (o *URIAvailabilityCheckSettingsInput) GetOutageConfiguration() *URIAvailab
 	return o.OutageConfiguration
 }
 
-func (o *URIAvailabilityCheckSettingsInput) GetPing() *Ping {
+func (o *URIAvailabilityCheckSettingsInput) GetPing() *URIAvailabilityCheckSettingsInputPing {
 	if o == nil {
 		return nil
 	}
 	return o.Ping
 }
 
-func (o *URIAvailabilityCheckSettingsInput) GetTCP() *TCP {
+func (o *URIAvailabilityCheckSettingsInput) GetTCP() *URIAvailabilityCheckSettingsInputTCP {
 	if o == nil {
 		return nil
 	}

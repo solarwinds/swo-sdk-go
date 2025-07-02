@@ -89,18 +89,18 @@ func (o *WebsiteOutageConfiguration) GetConsecutiveForDown() int {
 	return o.ConsecutiveForDown
 }
 
-// Operator - Defines whether the check should pass only when the string is present on the page (CONTAINS) or only when it is absent (DOES_NOT_CONTAIN).
-type Operator string
+// WebsiteOperator - Defines whether the check should pass only when the string is present on the page (CONTAINS) or only when it is absent (DOES_NOT_CONTAIN).
+type WebsiteOperator string
 
 const (
-	OperatorContains       Operator = "CONTAINS"
-	OperatorDoesNotContain Operator = "DOES_NOT_CONTAIN"
+	WebsiteOperatorContains       WebsiteOperator = "CONTAINS"
+	WebsiteOperatorDoesNotContain WebsiteOperator = "DOES_NOT_CONTAIN"
 )
 
-func (e Operator) ToPointer() *Operator {
+func (e WebsiteOperator) ToPointer() *WebsiteOperator {
 	return &e
 }
-func (e *Operator) UnmarshalJSON(data []byte) error {
+func (e *WebsiteOperator) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -109,43 +109,43 @@ func (e *Operator) UnmarshalJSON(data []byte) error {
 	case "CONTAINS":
 		fallthrough
 	case "DOES_NOT_CONTAIN":
-		*e = Operator(v)
+		*e = WebsiteOperator(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Operator: %v", v)
+		return fmt.Errorf("invalid value for WebsiteOperator: %v", v)
 	}
 }
 
-// CheckForString -   Use this field to configure whether availability tests should check for presence or absence of a particular string on a page.
+// WebsiteCheckForString -   Use this field to configure whether availability tests should check for presence or absence of a particular string on a page.
 //
 //	If the operator is DOES_NOT_CONTAIN and the value is found on the page, the availability test will fail.
 //	Likewise, if the operator is CONTAINS and the value is not found on the page, the availability test will fail.
 //	If omitted or set to null, the string checking functionality will be disabled.
-type CheckForString struct {
+type WebsiteCheckForString struct {
 	// Defines whether the check should pass only when the string is present on the page (CONTAINS) or only when it is absent (DOES_NOT_CONTAIN).
-	Operator Operator `json:"operator"`
+	Operator WebsiteOperator `json:"operator"`
 	// The string that which will be searched in the page source code.
 	Value string `json:"value"`
 }
 
-func (o *CheckForString) GetOperator() Operator {
+func (o *WebsiteCheckForString) GetOperator() WebsiteOperator {
 	if o == nil {
-		return Operator("")
+		return WebsiteOperator("")
 	}
 	return o.Operator
 }
 
-func (o *CheckForString) GetValue() string {
+func (o *WebsiteCheckForString) GetValue() string {
 	if o == nil {
 		return ""
 	}
 	return o.Value
 }
 
-// Ssl -   Configure monitoring of SSL/TLS certificates validity. This option is relevant for HTTPS protocol only.
+// WebsiteSsl -   Configure monitoring of SSL/TLS certificates validity. This option is relevant for HTTPS protocol only.
 //
 //	If omitted or set to null, SSL monitoring will be disabled and its previous configuration discarded.
-type Ssl struct {
+type WebsiteSsl struct {
 	//   Whether SSL monitoring is enabled for the website.
 	//   If set to false, SSL monitoring will be disabled, but the other settings will be remembered in case you re-enable it later.
 	//   If omitted, the previous setting will stay in effect. If there is no previous setting, the value will default to false.
@@ -159,29 +159,29 @@ type Ssl struct {
 	IgnoreIntermediateCertificates *bool `json:"ignoreIntermediateCertificates,omitempty"`
 }
 
-func (o *Ssl) GetEnabled() *bool {
+func (o *WebsiteSsl) GetEnabled() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Enabled
 }
 
-func (o *Ssl) GetDaysPriorToExpiration() *int {
+func (o *WebsiteSsl) GetDaysPriorToExpiration() *int {
 	if o == nil {
 		return nil
 	}
 	return o.DaysPriorToExpiration
 }
 
-func (o *Ssl) GetIgnoreIntermediateCertificates() *bool {
+func (o *WebsiteSsl) GetIgnoreIntermediateCertificates() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.IgnoreIntermediateCertificates
 }
 
-// AvailabilityCheckSettings - Use this field to configure availability tests for the website.
-type AvailabilityCheckSettings struct {
+// WebsiteAvailabilityCheckSettings - Use this field to configure availability tests for the website.
+type WebsiteAvailabilityCheckSettings struct {
 	// Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, no particular cloud platform will be enforced.
 	PlatformOptions *WebsitePlatformOptions `json:"platformOptions,omitempty"`
 	//   Configure locations of the synthetic availability test probes.
@@ -196,12 +196,12 @@ type AvailabilityCheckSettings struct {
 	//   If the operator is DOES_NOT_CONTAIN and the value is found on the page, the availability test will fail.
 	//   Likewise, if the operator is CONTAINS and the value is not found on the page, the availability test will fail.
 	//   If omitted or set to null, the string checking functionality will be disabled.
-	CheckForString *CheckForString `json:"checkForString,omitempty"`
+	CheckForString *WebsiteCheckForString `json:"checkForString,omitempty"`
 	// Configure which protocols need availability tests to be performed. At least one protocol must be provided.
 	Protocols []WebsiteProtocol `json:"protocols"`
 	//   Configure monitoring of SSL/TLS certificates validity. This option is relevant for HTTPS protocol only.
 	//   If omitted or set to null, SSL monitoring will be disabled and its previous configuration discarded.
-	Ssl *Ssl `json:"ssl,omitempty"`
+	Ssl *WebsiteSsl `json:"ssl,omitempty"`
 	//   Configure custom request headers to be sent with each availability test. It is possible to provide multiple headers with the same name.
 	//   If omitted, set to null or set to an empty array, no custom headers will be sent.
 	CustomHeaders []CustomHeaders `json:"customHeaders,omitempty"`
@@ -215,92 +215,92 @@ type AvailabilityCheckSettings struct {
 	PostData *string `json:"postData,omitempty"`
 }
 
-func (o *AvailabilityCheckSettings) GetPlatformOptions() *WebsitePlatformOptions {
+func (o *WebsiteAvailabilityCheckSettings) GetPlatformOptions() *WebsitePlatformOptions {
 	if o == nil {
 		return nil
 	}
 	return o.PlatformOptions
 }
 
-func (o *AvailabilityCheckSettings) GetTestFrom() TestFrom {
+func (o *WebsiteAvailabilityCheckSettings) GetTestFrom() TestFrom {
 	if o == nil {
 		return TestFrom{}
 	}
 	return o.TestFrom
 }
 
-func (o *AvailabilityCheckSettings) GetTestIntervalInSeconds() float64 {
+func (o *WebsiteAvailabilityCheckSettings) GetTestIntervalInSeconds() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.TestIntervalInSeconds
 }
 
-func (o *AvailabilityCheckSettings) GetOutageConfiguration() *WebsiteOutageConfiguration {
+func (o *WebsiteAvailabilityCheckSettings) GetOutageConfiguration() *WebsiteOutageConfiguration {
 	if o == nil {
 		return nil
 	}
 	return o.OutageConfiguration
 }
 
-func (o *AvailabilityCheckSettings) GetCheckForString() *CheckForString {
+func (o *WebsiteAvailabilityCheckSettings) GetCheckForString() *WebsiteCheckForString {
 	if o == nil {
 		return nil
 	}
 	return o.CheckForString
 }
 
-func (o *AvailabilityCheckSettings) GetProtocols() []WebsiteProtocol {
+func (o *WebsiteAvailabilityCheckSettings) GetProtocols() []WebsiteProtocol {
 	if o == nil {
 		return []WebsiteProtocol{}
 	}
 	return o.Protocols
 }
 
-func (o *AvailabilityCheckSettings) GetSsl() *Ssl {
+func (o *WebsiteAvailabilityCheckSettings) GetSsl() *WebsiteSsl {
 	if o == nil {
 		return nil
 	}
 	return o.Ssl
 }
 
-func (o *AvailabilityCheckSettings) GetCustomHeaders() []CustomHeaders {
+func (o *WebsiteAvailabilityCheckSettings) GetCustomHeaders() []CustomHeaders {
 	if o == nil {
 		return nil
 	}
 	return o.CustomHeaders
 }
 
-func (o *AvailabilityCheckSettings) GetAllowInsecureRenegotiation() *bool {
+func (o *WebsiteAvailabilityCheckSettings) GetAllowInsecureRenegotiation() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.AllowInsecureRenegotiation
 }
 
-func (o *AvailabilityCheckSettings) GetPostData() *string {
+func (o *WebsiteAvailabilityCheckSettings) GetPostData() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PostData
 }
 
-// Rum -     Use this field to configure real user monitoring (RUM) for the website.
+// WebsiteRum -     Use this field to configure real user monitoring (RUM) for the website.
 //
 //	You are required to configure at least availability monitoring or real user monitoring to be able to create website.
-type Rum struct {
+type WebsiteRum struct {
 	ApdexTimeInSeconds *int `json:"apdexTimeInSeconds,omitempty"`
 	Spa                bool `json:"spa"`
 }
 
-func (o *Rum) GetApdexTimeInSeconds() *int {
+func (o *WebsiteRum) GetApdexTimeInSeconds() *int {
 	if o == nil {
 		return nil
 	}
 	return o.ApdexTimeInSeconds
 }
 
-func (o *Rum) GetSpa() bool {
+func (o *WebsiteRum) GetSpa() bool {
 	if o == nil {
 		return false
 	}
@@ -313,12 +313,12 @@ type Website struct {
 	// URL of the website. Must be a valid URL with no leading or trailing white space. Must not contain invalid port number (>65535).
 	URL string `json:"url"`
 	// Use this field to configure availability tests for the website.
-	AvailabilityCheckSettings *AvailabilityCheckSettings `json:"availabilityCheckSettings,omitempty"`
+	AvailabilityCheckSettings *WebsiteAvailabilityCheckSettings `json:"availabilityCheckSettings,omitempty"`
 	// Entity tags. Tag is a key-value pair, where there may be only single tag value for the same key.
 	Tags []Tag `json:"tags,omitempty"`
 	//     Use this field to configure real user monitoring (RUM) for the website.
 	//     You are required to configure at least availability monitoring or real user monitoring to be able to create website.
-	Rum *Rum `json:"rum,omitempty"`
+	Rum *WebsiteRum `json:"rum,omitempty"`
 }
 
 func (o *Website) GetName() string {
@@ -335,7 +335,7 @@ func (o *Website) GetURL() string {
 	return o.URL
 }
 
-func (o *Website) GetAvailabilityCheckSettings() *AvailabilityCheckSettings {
+func (o *Website) GetAvailabilityCheckSettings() *WebsiteAvailabilityCheckSettings {
 	if o == nil {
 		return nil
 	}
@@ -349,7 +349,7 @@ func (o *Website) GetTags() []Tag {
 	return o.Tags
 }
 
-func (o *Website) GetRum() *Rum {
+func (o *Website) GetRum() *WebsiteRum {
 	if o == nil {
 		return nil
 	}

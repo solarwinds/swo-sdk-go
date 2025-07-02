@@ -46,7 +46,7 @@ func testListMetricAttributeValuesListMetricAttributeValues0(w http.ResponseWrit
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &operations.ListMetricAttributeValuesResponseBody{
+	var respBody *operations.ListMetricAttributeValuesResponseBody = &operations.ListMetricAttributeValuesResponseBody{
 		Name:   "<value>",
 		Values: []string{},
 		PageInfo: components.CommonPageInfo{

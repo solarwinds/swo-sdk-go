@@ -47,7 +47,7 @@ func testListEntitiesListEntities0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &operations.ListEntitiesResponseBody{
+	var respBody *operations.ListEntitiesResponseBody = &operations.ListEntitiesResponseBody{
 		Entities: []components.Entity{
 			components.Entity{
 				ID:            "e-1234567890",

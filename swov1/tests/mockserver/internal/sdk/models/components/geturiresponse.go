@@ -9,20 +9,20 @@ import (
 	"time"
 )
 
-type Status string
+type GetURIResponseStatus string
 
 const (
-	StatusUp          Status = "up"
-	StatusDown        Status = "down"
-	StatusPaused      Status = "paused"
-	StatusMaintenance Status = "maintenance"
-	StatusUnknown     Status = "unknown"
+	GetURIResponseStatusUp          GetURIResponseStatus = "up"
+	GetURIResponseStatusDown        GetURIResponseStatus = "down"
+	GetURIResponseStatusPaused      GetURIResponseStatus = "paused"
+	GetURIResponseStatusMaintenance GetURIResponseStatus = "maintenance"
+	GetURIResponseStatusUnknown     GetURIResponseStatus = "unknown"
 )
 
-func (e Status) ToPointer() *Status {
+func (e GetURIResponseStatus) ToPointer() *GetURIResponseStatus {
 	return &e
 }
-func (e *Status) UnmarshalJSON(data []byte) error {
+func (e *GetURIResponseStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -37,17 +37,17 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 	case "maintenance":
 		fallthrough
 	case "unknown":
-		*e = Status(v)
+		*e = GetURIResponseStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Status: %v", v)
+		return fmt.Errorf("invalid value for GetURIResponseStatus: %v", v)
 	}
 }
 
 type GetURIResponse struct {
-	ID     string `json:"id"`
-	Type   string `json:"type"`
-	Status Status `json:"status"`
+	ID     string               `json:"id"`
+	Type   string               `json:"type"`
+	Status GetURIResponseStatus `json:"status"`
 	//   Name of the URI, which must be unique within the organization.
 	//   The name must also not contain any control characters, any white space other than space (U+0020), or any consecutive, leading or trailing spaces.
 	Name string `json:"name"`
@@ -94,9 +94,9 @@ func (o *GetURIResponse) GetType() string {
 	return o.Type
 }
 
-func (o *GetURIResponse) GetStatus() Status {
+func (o *GetURIResponse) GetStatus() GetURIResponseStatus {
 	if o == nil {
-		return Status("")
+		return GetURIResponseStatus("")
 	}
 	return o.Status
 }

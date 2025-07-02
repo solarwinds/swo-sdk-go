@@ -7,30 +7,38 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// DeleteCompositeMetricMetricsResponseBody - The server cannot find the requested resource.
-type DeleteCompositeMetricMetricsResponseBody struct {
+// DeleteCompositeMetricNotFoundError - The server cannot find the requested resource.
+type DeleteCompositeMetricNotFoundError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &DeleteCompositeMetricMetricsResponseBody{}
+var _ error = &DeleteCompositeMetricNotFoundError{}
 
-func (e *DeleteCompositeMetricMetricsResponseBody) Error() string {
+func (e *DeleteCompositeMetricNotFoundError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }
 
-// DeleteCompositeMetricResponseBody - Access is forbidden.
-type DeleteCompositeMetricResponseBody struct {
+// DeleteCompositeMetricForbiddenError - Access is forbidden.
+type DeleteCompositeMetricForbiddenError struct {
+	// Uniquely identifies an error condition.
+	Code *components.MetricErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &DeleteCompositeMetricResponseBody{}
+var _ error = &DeleteCompositeMetricForbiddenError{}
 
-func (e *DeleteCompositeMetricResponseBody) Error() string {
+func (e *DeleteCompositeMetricForbiddenError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

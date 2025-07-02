@@ -7,8 +7,10 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// CreateWebsiteResponseBody - The server could not understand the request due to invalid syntax.
-type CreateWebsiteResponseBody struct {
+// CreateWebsiteBadRequestError - The server could not understand the request due to invalid syntax.
+type CreateWebsiteBadRequestError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field
@@ -16,9 +18,9 @@ type CreateWebsiteResponseBody struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &CreateWebsiteResponseBody{}
+var _ error = &CreateWebsiteBadRequestError{}
 
-func (e *CreateWebsiteResponseBody) Error() string {
+func (e *CreateWebsiteBadRequestError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

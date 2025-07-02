@@ -9,8 +9,12 @@ import (
 
 // ActivateAwsIntegrationCloudAccountsResponse500ResponseBody - Server error
 type ActivateAwsIntegrationCloudAccountsResponse500ResponseBody struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -23,8 +27,12 @@ func (e *ActivateAwsIntegrationCloudAccountsResponse500ResponseBody) Error() str
 
 // ActivateAwsIntegrationCloudAccountsResponseResponseBody - The server cannot find the requested resource.
 type ActivateAwsIntegrationCloudAccountsResponseResponseBody struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -37,8 +45,12 @@ func (e *ActivateAwsIntegrationCloudAccountsResponseResponseBody) Error() string
 
 // ActivateAwsIntegrationCloudAccountsResponseBody - Access is unauthorized.
 type ActivateAwsIntegrationCloudAccountsResponseBody struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -51,6 +63,8 @@ func (e *ActivateAwsIntegrationCloudAccountsResponseBody) Error() string {
 
 // ActivateAwsIntegrationResponseBody - The server could not understand the request due to invalid syntax.
 type ActivateAwsIntegrationResponseBody struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field

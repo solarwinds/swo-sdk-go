@@ -9,8 +9,12 @@ import (
 
 // UpdateAwsIntegrationCloudAccountsResponseResponseBody - Server error
 type UpdateAwsIntegrationCloudAccountsResponseResponseBody struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -23,8 +27,12 @@ func (e *UpdateAwsIntegrationCloudAccountsResponseResponseBody) Error() string {
 
 // UpdateAwsIntegrationCloudAccountsResponseBody - Access is unauthorized.
 type UpdateAwsIntegrationCloudAccountsResponseBody struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
@@ -37,6 +45,8 @@ func (e *UpdateAwsIntegrationCloudAccountsResponseBody) Error() string {
 
 // UpdateAwsIntegrationResponseBody - The server could not understand the request due to invalid syntax.
 type UpdateAwsIntegrationResponseBody struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field

@@ -7,16 +7,20 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-// GetMetricByNameResponseBody - The server cannot find the requested resource.
-type GetMetricByNameResponseBody struct {
+// GetMetricByNameNotFoundError - The server cannot find the requested resource.
+type GetMetricByNameNotFoundError struct {
+	// Uniquely identifies an error condition.
+	Code *components.CommonDefaultErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
-	Message  string                  `json:"message"`
+	Message string `json:"message"`
+	// Indicates the invalid field
+	Target   *string                 `json:"target,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &GetMetricByNameResponseBody{}
+var _ error = &GetMetricByNameNotFoundError{}
 
-func (e *GetMetricByNameResponseBody) Error() string {
+func (e *GetMetricByNameNotFoundError) Error() string {
 	data, _ := json.Marshal(e)
 	return string(data)
 }

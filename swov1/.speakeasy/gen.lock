@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
-  docChecksum: 616da72631d7dbb0760449d37bb6ae71
+  docChecksum: de0688513df056d828d0b531916eb22d
   docVersion: 1.0.8
-  speakeasyVersion: 1.555.3
-  generationVersion: 2.620.2
-  releaseVersion: 0.2.0
-  configChecksum: e8a3d82513adfcc737547f161f9bbf9b
+  speakeasyVersion: 1.574.1
+  generationVersion: 2.647.2
+  releaseVersion: 0.3.0
+  configChecksum: 4df973b298a4d2753de30adc926ee831
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
@@ -14,7 +14,7 @@ features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.7.5
+    core: 3.8.1
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -26,13 +26,13 @@ features:
     ignores: 2.81.1
     inputOutputModels: 2.83.0
     intellisenseMarkdownSupport: 0.1.0
-    mockServer: 0.1.0
+    mockServer: 0.1.1
     nullables: 0.1.1
     pagination: 2.82.4
     responseFormat: 0.1.2
     retries: 2.83.3
     sdkHooks: 0.2.0
-    tests: 0.15.2
+    tests: 0.16.0
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -77,6 +77,7 @@ generatedFiles:
   - /models/components/activateawsintegrationrequest.go
   - /models/components/awsorganisationalunitrequest.go
   - /models/components/changeevent.go
+  - /models/components/commondefaulterrorcode.go
   - /models/components/commonkeyvaluepair.go
   - /models/components/commonlink.go
   - /models/components/commonmetricinfo.go
@@ -106,6 +107,7 @@ generatedFiles:
   - /models/components/listprobesresponse.go
   - /models/components/logsarchive.go
   - /models/components/logsevent.go
+  - /models/components/metricerrorcode.go
   - /models/components/metricmeasurementsrequest.go
   - /models/components/metricsaggregationmethods.go
   - /models/components/metricseriestype.go
@@ -248,6 +250,7 @@ generatedFiles:
   - docs/models/components/category.md
   - docs/models/components/changeevent.md
   - docs/models/components/checkforstring.md
+  - docs/models/components/commondefaulterrorcode.md
   - docs/models/components/commonkeyvaluepair.md
   - docs/models/components/commonlink.md
   - docs/models/components/commonmetricinfo.md
@@ -293,6 +296,7 @@ generatedFiles:
   - docs/models/components/listprobesresponse.md
   - docs/models/components/logsarchive.md
   - docs/models/components/logsevent.md
+  - docs/models/components/metricerrorcode.md
   - docs/models/components/metricmeasurementsrequest.md
   - docs/models/components/metricsaggregationmethods.md
   - docs/models/components/metricseriestype.md
@@ -542,6 +546,7 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/components/activateawsintegrationrequest.go
   - tests/mockserver/internal/sdk/models/components/awsorganisationalunitrequest.go
   - tests/mockserver/internal/sdk/models/components/changeevent.go
+  - tests/mockserver/internal/sdk/models/components/commondefaulterrorcode.go
   - tests/mockserver/internal/sdk/models/components/commonkeyvaluepair.go
   - tests/mockserver/internal/sdk/models/components/commonlink.go
   - tests/mockserver/internal/sdk/models/components/commonmetricinfo.go
@@ -571,6 +576,7 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/components/listprobesresponse.go
   - tests/mockserver/internal/sdk/models/components/logsarchive.go
   - tests/mockserver/internal/sdk/models/components/logsevent.go
+  - tests/mockserver/internal/sdk/models/components/metricerrorcode.go
   - tests/mockserver/internal/sdk/models/components/metricmeasurementsrequest.go
   - tests/mockserver/internal/sdk/models/components/metricsaggregationmethods.go
   - tests/mockserver/internal/sdk/models/components/metricseriestype.go
@@ -716,26 +722,26 @@ examples:
         application/json: {"managementAccountId": "<id>", "accountId": "<id>", "enable": true}
       responses:
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
         "401":
-          application/json: {"message": "Access is unauthorized"}
+          application/json: {"message": "Error has occurred."}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
         "500":
-          application/json: {"message": "Internal error"}
+          application/json: {"message": "Error has occurred."}
   createOrgStructure:
     speakeasy-default-create-org-structure:
       requestBody:
         application/json: {"mgmtAccountId": "<id>", "structure": []}
       responses:
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
         "401":
-          application/json: {"message": "Access is unauthorized"}
+          application/json: {"message": "Error has occurred."}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
         "500":
-          application/json: {"message": "Internal error"}
+          application/json: {"message": "Error has occurred."}
   updateAwsIntegration:
     speakeasy-default-update-aws-integration:
       requestBody:
@@ -744,11 +750,11 @@ examples:
         "200":
           application/json: {"selectedRegions": ["<value 1>", "<value 2>", "<value 3>"], "externalId": "<id>", "integrationId": "<id>", "integrationType": "STREAMING", "isNewAccount": true}
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
         "401":
-          application/json: {"message": "Access is unauthorized"}
+          application/json: {"message": "Error has occurred."}
         "500":
-          application/json: {"message": "Internal error"}
+          application/json: {"message": "Error has occurred."}
   validateMgmtAccountOnboarding:
     speakeasy-default-validate-mgmt-account-onboarding:
       parameters:
@@ -758,11 +764,11 @@ examples:
         "200":
           application/json: {"isOnboarded": true}
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
         "401":
-          application/json: {"message": "Access is unauthorized"}
+          application/json: {"message": "Error has occurred."}
         "500":
-          application/json: {"message": "Internal error"}
+          application/json: {"message": "Error has occurred."}
   observeDatabase:
     speakeasy-default-observe-database:
       requestBody:
@@ -771,16 +777,16 @@ examples:
         "201":
           application/json: {"id": "<id>"}
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
   getPublicKey:
     speakeasy-default-get-public-key:
       responses:
         "200":
           application/json: {"publicKey": "<value>"}
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   updateDatabase:
     speakeasy-default-update-database:
       parameters:
@@ -790,9 +796,9 @@ examples:
         application/json: {"name": ""}
       responses:
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   deleteDatabase:
     speakeasy-default-delete-database:
       parameters:
@@ -800,9 +806,9 @@ examples:
           entityId: "<id>"
       responses:
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   getPluginConfig:
     speakeasy-default-get-plugin-config:
       parameters:
@@ -812,9 +818,9 @@ examples:
         "200":
           application/json: {"pluginConfig": [{"pluginName": "<value>", "configOptions": [{"key": "<key>", "value": "<value>"}], "dbConnOptions": []}]}
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   getPlugins:
     speakeasy-default-get-plugins:
       parameters:
@@ -824,9 +830,9 @@ examples:
         "200":
           application/json: {"plugins": [{"pluginName": "<value>", "deploymentStatus": "<value>", "healthStatus": "<value>"}]}
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   pluginOperation:
     speakeasy-default-plugin-operation:
       parameters:
@@ -835,16 +841,16 @@ examples:
           operation: "<value>"
       responses:
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   listProbes:
     speakeasy-default-list-probes:
       responses:
         "200":
           application/json: {"probes": [{"id": "probe-1", "name": "Washington", "active": true, "platform": "AWS", "region": "NA", "country": "US", "city": "Washington D.C.", "coordinates": {"latitude": 38.89511, "longitude": -77.03637}, "ipv4Addresses": ["34.232.5.40", "44.207.30.12"], "ipv6Addresses": ["2001:0db8:85a3:0000:0000:8a2e:0370:7334"]}]}
         "500":
-          application/json: {"message": "Internal error"}
+          application/json: {"message": "Error has occurred."}
   getDemSettings:
     speakeasy-default-get-dem-settings:
       responses:
@@ -862,7 +868,7 @@ examples:
         "201":
           application/json: {"id": "e-1448474379026206720"}
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
   getUri:
     speakeasy-default-get-uri:
       parameters:
@@ -872,7 +878,7 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720", "type": "Uri", "status": "up", "name": "solarwinds.com", "ipOrDomain": "solarwinds.com", "availabilityCheckSettings": {"platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "testIntervalInSeconds": 14400, "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}, "ping": {"enabled": true}, "tcp": {"enabled": true, "port": 443, "stringToSend": "GET / HTTP/1.1\r\nHost: solarwinds.com\r\nConnection: close\r\n\r\n", "stringToExpect": "HTTP/1.1 200 OK"}, "protocol": "PING"}, "tags": [{"key": "environment", "value": "production"}], "lastOutageStartTime": "2025-01-15T14:31:19.735Z", "lastOutageEndTime": "2025-01-15T14:31:19.735Z", "lastTestTime": "2025-01-15T14:31:19.735Z", "lastErrorTime": "2025-01-15T14:31:19.735Z", "lastResponseTime": 376}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   updateUri:
     speakeasy-default-update-uri:
       parameters:
@@ -884,9 +890,9 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   deleteUri:
     speakeasy-default-delete-uri:
       parameters:
@@ -896,7 +902,7 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   pauseUriMonitoring:
     speakeasy-default-pause-uri-monitoring:
       parameters:
@@ -906,7 +912,7 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   unpauseUriMonitoring:
     speakeasy-default-unpause-uri-monitoring:
       parameters:
@@ -916,7 +922,7 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   createWebsite:
     speakeasy-default-create-website:
       requestBody:
@@ -925,7 +931,7 @@ examples:
         "201":
           application/json: {"id": "e-1448474379026206720"}
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
   getWebsite:
     speakeasy-default-get-website:
       parameters:
@@ -935,7 +941,7 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720", "type": "Website", "status": "up", "name": "solarwinds.com", "url": "https://www.solarwinds.com", "monitoringOptions": {"isAvailabilityActive": true, "isRumActive": false}, "availabilityCheckSettings": null, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "snippet": "string", "spa": true}, "lastOutageStartTime": "2025-01-15T14:31:19.735Z", "lastOutageEndTime": "2025-01-15T14:31:19.735Z", "lastTestTime": "2025-01-15T14:31:19.735Z", "lastErrorTime": "2025-01-15T14:31:19.735Z", "lastResponseTime": 376, "nextOnDemandAvailabilityTime": 0}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   updateWebsite:
     speakeasy-default-update-website:
       parameters:
@@ -947,9 +953,9 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   deleteWebsite:
     speakeasy-default-delete-website:
       parameters:
@@ -959,7 +965,7 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   pauseWebsiteMonitoring:
     speakeasy-default-pause-website-monitoring:
       parameters:
@@ -969,7 +975,7 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   unpauseWebsiteMonitoring:
     speakeasy-default-unpause-website-monitoring:
       parameters:
@@ -979,7 +985,7 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   listEntities:
     speakeasy-default-list-entities:
       parameters:
@@ -989,9 +995,9 @@ examples:
         "200":
           application/json: {"entities": [{"id": "e-1234567890", "type": "SyslogHost", "name": "syslog-host-1", "displayName": "SyslogTest", "createdTime": "2024-11-25T16:38:24Z", "updatedTime": "2024-12-01T16:38:24Z", "lastSeenTime": "2024-11-25T16:38:24Z", "inMaintenance": false, "healthscore": {"score": 100, "category": "good"}, "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}, "attributes": {"protocols": ["HTTP"], "features": ["rum"], "isAvailabilityCheckPaused": false, "extensions": {"has_extension": true}}}], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
         "401":
-          application/json: {"message": "Access is unauthorized"}
+          application/json: {"message": "Error has occurred."}
   getEntityById:
     speakeasy-default-get-entity-by-id:
       parameters:
@@ -1001,11 +1007,11 @@ examples:
         "200":
           application/json: {"id": "e-1234567890", "type": "SyslogHost", "name": "syslog-host-1", "displayName": "SyslogTest", "createdTime": "2024-11-25T16:38:24Z", "updatedTime": "2024-12-01T16:38:24Z", "lastSeenTime": "2024-11-25T16:38:24Z", "inMaintenance": false, "healthscore": {"score": 100, "category": "good"}, "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}, "attributes": {"protocols": ["HTTP"], "features": ["rum"], "isAvailabilityCheckPaused": false, "extensions": {"has_extension": true}}}
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
         "401":
-          application/json: {"message": "Access is unauthorized"}
+          application/json: {"message": "Error has occurred."}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   updateEntityById:
     speakeasy-default-update-entity-by-id:
       parameters:
@@ -1015,11 +1021,11 @@ examples:
         application/json: {"displayName": "SyslogTest", "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}}
       responses:
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
         "401":
-          application/json: {"message": "Access is unauthorized"}
+          application/json: {"message": "Error has occurred."}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   searchLogs:
     speakeasy-default-search-logs:
       parameters:
@@ -1051,7 +1057,7 @@ examples:
         "200":
           application/json: {"type": "KubernetesCluster", "metrics": [{"name": "composite.k8s.pod.container.status.restarts.increase", "units": "count", "formula": "increase(k8s.kube_pod_container_status_restarts_total[5m])", "lastReportedTime": "2021-01-01T00:00:00Z"}]}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   listMetrics:
     speakeasy-default-list-metrics:
       responses:
@@ -1065,9 +1071,11 @@ examples:
         "201":
           application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
         "403":
           application/json: {"message": "Access is forbidden"}
+        "409":
+          application/json: {"message": "Error has occurred."}
   listMultiMetricMeasurements:
     speakeasy-default-list-multi-metric-measurements:
       parameters:
@@ -1079,7 +1087,7 @@ examples:
         "200":
           application/json: {"metrics": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
   updateCompositeMetric:
     speakeasy-default-update-composite-metric:
       parameters:
@@ -1091,11 +1099,11 @@ examples:
         "200":
           application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
         "400":
-          application/json: {"message": "Bad request"}
+          application/json: {"message": "Error has occurred."}
         "403":
-          application/json: {"message": "Access is forbidden"}
+          application/json: {"message": "Error has occurred."}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   deleteCompositeMetric:
     speakeasy-default-delete-composite-metric:
       parameters:
@@ -1103,9 +1111,9 @@ examples:
           name: "<value>"
       responses:
         "403":
-          application/json: {"message": "Access is forbidden"}
+          application/json: {"message": "Error has occurred."}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   getMetricByName:
     speakeasy-default-get-metric-by-name:
       parameters:
@@ -1115,7 +1123,7 @@ examples:
         "200":
           application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "units": "bytes/s", "formula": "rate(system.disk.io[5m]", "lastReportedTime": "2024-11-25T16:38:24Z"}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   listMetricAttributes:
     speakeasy-default-list-metric-attributes:
       parameters:
@@ -1125,7 +1133,7 @@ examples:
         "200":
           application/json: {"names": ["<value 1>", "<value 2>", "<value 3>"], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   listMetricAttributeValues:
     speakeasy-default-list-metric-attribute-values:
       parameters:
@@ -1136,7 +1144,7 @@ examples:
         "200":
           application/json: {"name": "<value>", "values": ["<value 1>", "<value 2>", "<value 3>"], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   listMetricMeasurements:
     speakeasy-default-list-metric-measurements:
       parameters:
@@ -1148,7 +1156,7 @@ examples:
         "200":
           application/json: {"groupings": [{"attributes": [], "measurements": []}], "bucketSizeInSeconds": 845799, "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "404":
-          application/json: {"message": "Cannot find resource"}
+          application/json: {"message": "Error has occurred."}
   createToken:
     speakeasy-default-create-token:
       requestBody:
