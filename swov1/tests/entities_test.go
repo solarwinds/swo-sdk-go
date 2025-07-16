@@ -1,6 +1,6 @@
 package tests
 
-// THESE TESTS ARE MANUAL END-TO-END TESTS FOR THE ENTITIES API.
+// THESE TESTS ARE MANUALLY CREATED END-TO-END TESTS FOR THE ENTITIES API.
 //
 // Entity Create and Update operations are eventually consistent,
 // which means these entities take more time than the request allows for creation.
