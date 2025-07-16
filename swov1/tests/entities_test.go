@@ -32,8 +32,8 @@ func TestEntities_ListEntities(t *testing.T) {
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
 	assert.NotNil(t, res.Object)
 	assert.Equal(t, &operations.ListEntitiesResponseBody{
-		Entities: []components.Entity{
-			components.Entity{
+		Entities: []components.EntitiesEntity{
+			components.EntitiesEntity{
 				ID:            "e-1234567890",
 				Type:          "SyslogHost",
 				Name:          swov1.String("syslog-host-1"),
@@ -88,8 +88,8 @@ func TestEntities_GetEntityByID(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.Entity)
-	assert.Equal(t, &components.Entity{
+	assert.NotNil(t, res.EntitiesEntity)
+	assert.Equal(t, &components.EntitiesEntity{
 		ID:            "e-1234567890",
 		Type:          "SyslogHost",
 		Name:          swov1.String("syslog-host-1"),
@@ -118,7 +118,7 @@ func TestEntities_GetEntityByID(t *testing.T) {
 				"has_extension": true,
 			},
 		},
-	}, res.Entity)
+	}, res.EntitiesEntity)
 
 }
 
@@ -135,7 +135,7 @@ func TestEntities_UpdateEntityByID(t *testing.T) {
 
 	res, err := s.Entities.UpdateEntityByID(ctx, operations.UpdateEntityByIDRequest{
 		ID: "<id>",
-		Entity: components.EntityInput{
+		EntitiesEntity: components.EntitiesEntityInput{
 			DisplayName: swov1.String("SyslogTest"),
 			Tags: map[string]*string{
 				"gg.tk.token":  swov1.String("test"),

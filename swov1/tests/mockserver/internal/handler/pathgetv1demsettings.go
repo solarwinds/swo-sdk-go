@@ -45,8 +45,8 @@ func testGetDemSettingsGetDemSettings0(w http.ResponseWriter, req *http.Request)
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	var respBody *components.OutageConfiguration = &components.OutageConfiguration{
-		FailingTestLocations: components.OutageConfigurationFailingTestLocationsAll,
+	var respBody *components.DemOutageConfiguration = &components.DemOutageConfiguration{
+		FailingTestLocations: components.DemOutageConfigurationFailingTestLocationsAll,
 		ConsecutiveForDown:   2,
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

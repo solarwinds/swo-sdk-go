@@ -17,7 +17,7 @@ func main() {
 		swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
-	res, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEvent{
+	res, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEventsChangeEvent{
 		ID:        swov1.Int64(1731676626),
 		Name:      "app-deploys",
 		Title:     "deployed v45",

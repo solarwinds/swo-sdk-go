@@ -9,7 +9,7 @@ import (
 type CreateWebsiteResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The request has succeeded and a new resource has been created as a result.
-	EntityID *components.EntityID
+	CommonEntityID *components.CommonEntityID
 }
 
 func (o *CreateWebsiteResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -19,9 +19,9 @@ func (o *CreateWebsiteResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *CreateWebsiteResponse) GetEntityID() *components.EntityID {
+func (o *CreateWebsiteResponse) GetCommonEntityID() *components.CommonEntityID {
 	if o == nil {
 		return nil
 	}
-	return o.EntityID
+	return o.CommonEntityID
 }

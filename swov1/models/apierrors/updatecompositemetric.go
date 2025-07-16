@@ -28,7 +28,7 @@ func (e *UpdateCompositeMetricMetricsResponseResponseBody) Error() string {
 // UpdateCompositeMetricMetricsResponseBody - Access is forbidden.
 type UpdateCompositeMetricMetricsResponseBody struct {
 	// Uniquely identifies an error condition.
-	Code *components.MetricErrorCode `json:"code,omitempty"`
+	Code *components.MetricsMetricErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field

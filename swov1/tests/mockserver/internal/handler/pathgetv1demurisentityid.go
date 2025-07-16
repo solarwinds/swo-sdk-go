@@ -46,37 +46,37 @@ func testGetURIGetUri0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	var respBody *components.GetURIResponse = &components.GetURIResponse{
+	var respBody *components.DemGetURIResponse = &components.DemGetURIResponse{
 		ID:         "e-1448474379026206720",
 		Type:       "Uri",
-		Status:     components.GetURIResponseStatusUp,
+		Status:     components.DemGetURIResponseStatusUp,
 		Name:       "solarwinds.com",
 		IPOrDomain: "solarwinds.com",
-		AvailabilityCheckSettings: components.URIAvailabilityCheckSettings{
-			PlatformOptions: &components.URIAvailabilityCheckSettingsPlatformOptions{
-				ProbePlatforms: []components.ProbePlatform{
-					components.ProbePlatformAws,
+		AvailabilityCheckSettings: components.DemURIAvailabilityCheckSettings{
+			PlatformOptions: &components.DemURIAvailabilityCheckSettingsPlatformOptions{
+				ProbePlatforms: []components.DemProbePlatform{
+					components.DemProbePlatformAws,
 				},
 				TestFromAll: types.Bool(true),
 			},
-			TestFrom: components.TestFrom{
-				Type: components.TestFromTypeRegion,
+			TestFrom: components.DemTestFrom{
+				Type: components.DemTestFromTypeRegion,
 				Values: []string{
 					"NA",
 				},
 			},
 			TestIntervalInSeconds: 14400,
-			OutageConfiguration: &components.URIAvailabilityCheckSettingsOutageConfiguration{
-				FailingTestLocations: components.URIAvailabilityCheckSettingsFailingTestLocationsAll,
+			OutageConfiguration: &components.DemURIAvailabilityCheckSettingsOutageConfiguration{
+				FailingTestLocations: components.DemURIAvailabilityCheckSettingsFailingTestLocationsAll,
 				ConsecutiveForDown:   2,
 			},
-			Ping: &components.URIAvailabilityCheckSettingsPing{
+			Ping: &components.DemURIAvailabilityCheckSettingsPing{
 				Enabled: true,
 			},
 			Protocol: components.ProtocolPing,
 		},
-		Tags: []components.Tag{
-			components.Tag{
+		Tags: []components.CommonTag{
+			components.CommonTag{
 				Key:   "environment",
 				Value: "production",
 			},

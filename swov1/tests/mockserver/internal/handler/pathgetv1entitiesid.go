@@ -46,7 +46,7 @@ func testGetEntityByIDGetEntityById0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	var respBody *components.Entity = &components.Entity{
+	var respBody *components.EntitiesEntity = &components.EntitiesEntity{
 		ID:            "e-1234567890",
 		Type:          "SyslogHost",
 		Name:          types.String("syslog-host-1"),

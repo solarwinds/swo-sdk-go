@@ -297,7 +297,7 @@ func (s *Metrics) ListMetrics(ctx context.Context, request operations.ListMetric
 
 // CreateCompositeMetric - Create composite metric
 // Create a composite metric given a PromQL query.
-func (s *Metrics) CreateCompositeMetric(ctx context.Context, request components.CompositeMetric, opts ...operations.Option) (*operations.CreateCompositeMetricResponse, error) {
+func (s *Metrics) CreateCompositeMetric(ctx context.Context, request components.MetricsCompositeMetric, opts ...operations.Option) (*operations.CreateCompositeMetricResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -477,12 +477,12 @@ func (s *Metrics) CreateCompositeMetric(ctx context.Context, request components.
 				return nil, err
 			}
 
-			var out components.CompositeMetric
+			var out components.MetricsCompositeMetric
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CompositeMetric = &out
+			res.MetricsCompositeMetric = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -915,7 +915,7 @@ func (s *Metrics) UpdateCompositeMetric(ctx context.Context, request operations.
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "UpdateCompositeMetric", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "MetricsUpdateCompositeMetricRequest", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -1062,12 +1062,12 @@ func (s *Metrics) UpdateCompositeMetric(ctx context.Context, request operations.
 				return nil, err
 			}
 
-			var out components.CompositeMetric
+			var out components.MetricsCompositeMetric
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CompositeMetric = &out
+			res.MetricsCompositeMetric = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

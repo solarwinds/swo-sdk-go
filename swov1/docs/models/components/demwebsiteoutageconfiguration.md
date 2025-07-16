@@ -1,0 +1,12 @@
+# DemWebsiteOutageConfiguration
+
+  Default conditions when the entity is considered down.
+  If omitted or set to null, organization configuration will be used for this entity.
+
+
+## Fields
+
+| Field                                                                                                  | Type                                                                                                   | Required                                                                                               | Description                                                                                            | Example                                                                                                |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `FailingTestLocations`                                                                                 | [components.DemWebsiteFailingTestLocations](../../models/components/demwebsitefailingtestlocations.md) | :heavy_check_mark:                                                                                     | How many locations must report a failure for an entity to be considered down.                          | all                                                                                                    |
+| `ConsecutiveForDown`                                                                                   | *int*                                                                                                  | :heavy_check_mark:                                                                                     | Number of consecutive failing tests for an entity to be considered down.                               | 2                                                                                                      |

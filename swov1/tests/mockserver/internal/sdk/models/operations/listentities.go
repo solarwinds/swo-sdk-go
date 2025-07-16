@@ -47,13 +47,13 @@ func (o *ListEntitiesRequest) GetSkipToken() *string {
 
 // ListEntitiesResponseBody - The request has succeeded.
 type ListEntitiesResponseBody struct {
-	Entities []components.Entity       `json:"entities"`
-	PageInfo components.CommonPageInfo `json:"pageInfo"`
+	Entities []components.EntitiesEntity `json:"entities"`
+	PageInfo components.CommonPageInfo   `json:"pageInfo"`
 }
 
-func (o *ListEntitiesResponseBody) GetEntities() []components.Entity {
+func (o *ListEntitiesResponseBody) GetEntities() []components.EntitiesEntity {
 	if o == nil {
-		return []components.Entity{}
+		return []components.EntitiesEntity{}
 	}
 	return o.Entities
 }

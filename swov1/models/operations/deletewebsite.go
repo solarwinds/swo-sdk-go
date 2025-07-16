@@ -20,7 +20,7 @@ func (o *DeleteWebsiteRequest) GetEntityID() string {
 type DeleteWebsiteResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The request has succeeded.
-	EntityID *components.EntityID
+	CommonEntityID *components.CommonEntityID
 }
 
 func (o *DeleteWebsiteResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -30,9 +30,9 @@ func (o *DeleteWebsiteResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *DeleteWebsiteResponse) GetEntityID() *components.EntityID {
+func (o *DeleteWebsiteResponse) GetCommonEntityID() *components.CommonEntityID {
 	if o == nil {
 		return nil
 	}
-	return o.EntityID
+	return o.CommonEntityID
 }

@@ -9,7 +9,7 @@ import (
 type UpdateWebsiteRequest struct {
 	EntityID string `pathParam:"style=simple,explode=false,name=entityId"`
 	// The updated website monitoring configuration
-	Website components.Website `request:"mediaType=application/json"`
+	DemWebsite components.DemWebsite `request:"mediaType=application/json"`
 }
 
 func (o *UpdateWebsiteRequest) GetEntityID() string {
@@ -19,17 +19,17 @@ func (o *UpdateWebsiteRequest) GetEntityID() string {
 	return o.EntityID
 }
 
-func (o *UpdateWebsiteRequest) GetWebsite() components.Website {
+func (o *UpdateWebsiteRequest) GetDemWebsite() components.DemWebsite {
 	if o == nil {
-		return components.Website{}
+		return components.DemWebsite{}
 	}
-	return o.Website
+	return o.DemWebsite
 }
 
 type UpdateWebsiteResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The request has succeeded.
-	EntityID *components.EntityID
+	CommonEntityID *components.CommonEntityID
 }
 
 func (o *UpdateWebsiteResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -39,9 +39,9 @@ func (o *UpdateWebsiteResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *UpdateWebsiteResponse) GetEntityID() *components.EntityID {
+func (o *UpdateWebsiteResponse) GetCommonEntityID() *components.CommonEntityID {
 	if o == nil {
 		return nil
 	}
-	return o.EntityID
+	return o.CommonEntityID
 }

@@ -7,12 +7,12 @@ import (
 )
 
 type ValidateMgmtAccountOnboardingRequest struct {
-	Request components.MgmtAccountOnboardingRequest `queryParam:"style=form,explode=false,name=request"`
+	Request components.CloudAccountsAwsMgmtAccountOnboardingRequest `queryParam:"style=form,explode=false,name=request"`
 }
 
-func (o *ValidateMgmtAccountOnboardingRequest) GetRequest() components.MgmtAccountOnboardingRequest {
+func (o *ValidateMgmtAccountOnboardingRequest) GetRequest() components.CloudAccountsAwsMgmtAccountOnboardingRequest {
 	if o == nil {
-		return components.MgmtAccountOnboardingRequest{}
+		return components.CloudAccountsAwsMgmtAccountOnboardingRequest{}
 	}
 	return o.Request
 }
@@ -20,7 +20,7 @@ func (o *ValidateMgmtAccountOnboardingRequest) GetRequest() components.MgmtAccou
 type ValidateMgmtAccountOnboardingResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The request has succeeded.
-	MgmtAccountOnboardingResponse *components.MgmtAccountOnboardingResponse
+	CloudAccountsAwsMgmtAccountOnboardingResponse *components.CloudAccountsAwsMgmtAccountOnboardingResponse
 }
 
 func (o *ValidateMgmtAccountOnboardingResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -30,9 +30,9 @@ func (o *ValidateMgmtAccountOnboardingResponse) GetHTTPMeta() components.HTTPMet
 	return o.HTTPMeta
 }
 
-func (o *ValidateMgmtAccountOnboardingResponse) GetMgmtAccountOnboardingResponse() *components.MgmtAccountOnboardingResponse {
+func (o *ValidateMgmtAccountOnboardingResponse) GetCloudAccountsAwsMgmtAccountOnboardingResponse() *components.CloudAccountsAwsMgmtAccountOnboardingResponse {
 	if o == nil {
 		return nil
 	}
-	return o.MgmtAccountOnboardingResponse
+	return o.CloudAccountsAwsMgmtAccountOnboardingResponse
 }

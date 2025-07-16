@@ -9,7 +9,7 @@ import (
 )
 
 type ListMultiMetricMeasurementsRequestBody struct {
-	Metrics []components.MetricMeasurementsRequest `json:"metrics"`
+	Metrics []components.MetricsMeasurementsRequest `json:"metrics"`
 	// Timestamp in ISO 8601 format in UTC timezone: yyyy-MM-ddTHH:mm:ssZ
 	StartTime *time.Time `json:"startTime,omitempty"`
 	// Timestamp in ISO 8601 format in UTC timezone: yyyy-MM-ddTHH:mm:ssZ
@@ -27,9 +27,9 @@ func (l *ListMultiMetricMeasurementsRequestBody) UnmarshalJSON(data []byte) erro
 	return nil
 }
 
-func (o *ListMultiMetricMeasurementsRequestBody) GetMetrics() []components.MetricMeasurementsRequest {
+func (o *ListMultiMetricMeasurementsRequestBody) GetMetrics() []components.MetricsMeasurementsRequest {
 	if o == nil {
-		return []components.MetricMeasurementsRequest{}
+		return []components.MetricsMeasurementsRequest{}
 	}
 	return o.Metrics
 }

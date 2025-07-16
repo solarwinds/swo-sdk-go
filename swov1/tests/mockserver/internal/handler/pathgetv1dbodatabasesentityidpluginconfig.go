@@ -45,16 +45,47 @@ func testGetPluginConfigGetPluginConfig0(w http.ResponseWriter, req *http.Reques
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	var respBody *components.DatabasePluginConfigResponse = &components.DatabasePluginConfigResponse{
-		PluginConfig: []components.DatabasePluginConfig{
-			components.DatabasePluginConfig{
+	var respBody *components.DboDatabasePluginConfigResponse = &components.DboDatabasePluginConfigResponse{
+		PluginConfig: []components.DboDatabasePluginConfig{
+			components.DboDatabasePluginConfig{
 				PluginName: "<value>",
+				ConfigOptions: []components.CommonKeyValuePair{
+					components.CommonKeyValuePair{
+						Key:   "<key>",
+						Value: "<value>",
+					},
+				},
+				DbConnOptions: []components.CommonKeyValuePair{
+					components.CommonKeyValuePair{
+						Key:   "<key>",
+						Value: "<value>",
+					},
+				},
 			},
-			components.DatabasePluginConfig{
+			components.DboDatabasePluginConfig{
 				PluginName: "<value>",
+				ConfigOptions: []components.CommonKeyValuePair{
+					components.CommonKeyValuePair{
+						Key:   "<key>",
+						Value: "<value>",
+					},
+				},
+				DbConnOptions: []components.CommonKeyValuePair{
+					components.CommonKeyValuePair{
+						Key:   "<key>",
+						Value: "<value>",
+					},
+				},
 			},
-			components.DatabasePluginConfig{
-				PluginName: "<value>",
+			components.DboDatabasePluginConfig{
+				PluginName:    "<value>",
+				ConfigOptions: []components.CommonKeyValuePair{},
+				DbConnOptions: []components.CommonKeyValuePair{
+					components.CommonKeyValuePair{
+						Key:   "<key>",
+						Value: "<value>",
+					},
+				},
 			},
 		},
 	}

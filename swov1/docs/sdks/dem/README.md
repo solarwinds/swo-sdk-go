@@ -48,7 +48,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.ListProbesResponse != nil {
+    if res.DemListProbesResponse != nil {
         // handle response
     }
 }
@@ -99,7 +99,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.OutageConfiguration != nil {
+    if res.DemOutageConfiguration != nil {
         // handle response
     }
 }
@@ -146,7 +146,7 @@ func main() {
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    res, err := s.Dem.SetDemSettings(ctx, components.OutageConfiguration{
+    res, err := s.Dem.SetDemSettings(ctx, components.DemOutageConfiguration{
         FailingTestLocations: components.FailingTestLocationsAll,
         ConsecutiveForDown: 2,
     })
@@ -161,11 +161,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `request`                                                                        | [components.OutageConfiguration](../../models/components/outageconfiguration.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [components.DemOutageConfiguration](../../models/components/demoutageconfiguration.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 ### Response
 
@@ -201,17 +201,17 @@ func main() {
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    res, err := s.Dem.CreateURI(ctx, components.URI{
+    res, err := s.Dem.CreateURI(ctx, components.DemURI{
         Name: "solarwinds.com",
         IPOrDomain: "solarwinds.com",
-        AvailabilityCheckSettings: components.URIAvailabilityCheckSettingsInput{
+        AvailabilityCheckSettings: components.DemURIAvailabilityCheckSettingsInput{
             PlatformOptions: &components.PlatformOptions{
-                ProbePlatforms: []components.ProbePlatform{
-                    components.ProbePlatformAws,
+                ProbePlatforms: []components.DemProbePlatform{
+                    components.DemProbePlatformAws,
                 },
                 TestFromAll: swov1.Bool(true),
             },
-            TestFrom: components.TestFrom{
+            TestFrom: components.DemTestFrom{
                 Type: components.TypeRegion,
                 Values: []string{
                     "NA",
@@ -233,8 +233,8 @@ func main() {
                 StringToExpect: swov1.String("HTTP/1.1 200 OK"),
             },
         },
-        Tags: []components.Tag{
-            components.Tag{
+        Tags: []components.CommonTag{
+            components.CommonTag{
                 Key: "environment",
                 Value: "production",
             },
@@ -243,7 +243,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntityID != nil {
+    if res.CommonEntityID != nil {
         // handle response
     }
 }
@@ -254,7 +254,7 @@ func main() {
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `request`                                                | [components.URI](../../models/components/uri.md)         | :heavy_check_mark:                                       | The request object to use for the request.               |
+| `request`                                                | [components.DemURI](../../models/components/demuri.md)   | :heavy_check_mark:                                       | The request object to use for the request.               |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
@@ -298,7 +298,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.GetURIResponse != nil {
+    if res.DemGetURIResponse != nil {
         // handle response
     }
 }
@@ -350,25 +350,25 @@ func main() {
 
     res, err := s.Dem.UpdateURI(ctx, operations.UpdateURIRequest{
         EntityID: "<id>",
-        URI: components.URI{
+        DemURI: components.DemURI{
             Name: "solarwinds.com",
             IPOrDomain: "solarwinds.com",
-            AvailabilityCheckSettings: components.URIAvailabilityCheckSettingsInput{
+            AvailabilityCheckSettings: components.DemURIAvailabilityCheckSettingsInput{
                 PlatformOptions: &components.PlatformOptions{
-                    ProbePlatforms: []components.ProbePlatform{
-                        components.ProbePlatformAws,
+                    ProbePlatforms: []components.DemProbePlatform{
+                        components.DemProbePlatformAws,
                     },
                     TestFromAll: swov1.Bool(true),
                 },
-                TestFrom: components.TestFrom{
+                TestFrom: components.DemTestFrom{
                     Type: components.TypeRegion,
                     Values: []string{
                         "NA",
                     },
                 },
                 TestIntervalInSeconds: 14400,
-                OutageConfiguration: &components.URIAvailabilityCheckSettingsInputOutageConfiguration{
-                    FailingTestLocations: components.URIAvailabilityCheckSettingsInputFailingTestLocationsAll,
+                OutageConfiguration: &components.OutageConfiguration{
+                    FailingTestLocations: components.DemURIAvailabilityCheckSettingsInputFailingTestLocationsAll,
                     ConsecutiveForDown: 2,
                 },
                 Ping: &components.Ping{
@@ -385,8 +385,8 @@ func main() {
                     StringToExpect: swov1.String("HTTP/1.1 200 OK"),
                 },
             },
-            Tags: []components.Tag{
-                components.Tag{
+            Tags: []components.CommonTag{
+                components.CommonTag{
                     Key: "environment",
                     Value: "production",
                 },
@@ -396,7 +396,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntityID != nil {
+    if res.CommonEntityID != nil {
         // handle response
     }
 }
@@ -452,7 +452,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntityID != nil {
+    if res.CommonEntityID != nil {
         // handle response
     }
 }
@@ -507,7 +507,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntityID != nil {
+    if res.CommonEntityID != nil {
         // handle response
     }
 }
@@ -562,7 +562,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntityID != nil {
+    if res.CommonEntityID != nil {
         // handle response
     }
 }
@@ -611,42 +611,42 @@ func main() {
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    res, err := s.Dem.CreateWebsite(ctx, components.Website{
+    res, err := s.Dem.CreateWebsite(ctx, components.DemWebsite{
         Name: "solarwinds.com",
         URL: "https://www.solarwinds.com",
         AvailabilityCheckSettings: &components.AvailabilityCheckSettings{
-            PlatformOptions: &components.WebsitePlatformOptions{
-                ProbePlatforms: []components.ProbePlatform{
-                    components.ProbePlatformAws,
+            PlatformOptions: &components.DemWebsitePlatformOptions{
+                ProbePlatforms: []components.DemProbePlatform{
+                    components.DemProbePlatformAws,
                 },
                 TestFromAll: swov1.Bool(true),
             },
-            TestFrom: components.TestFrom{
+            TestFrom: components.DemTestFrom{
                 Type: components.TypeRegion,
                 Values: []string{
                     "NA",
                 },
             },
             TestIntervalInSeconds: 14400,
-            OutageConfiguration: &components.WebsiteOutageConfiguration{
-                FailingTestLocations: components.WebsiteFailingTestLocationsAll,
+            OutageConfiguration: &components.DemWebsiteOutageConfiguration{
+                FailingTestLocations: components.DemWebsiteFailingTestLocationsAll,
                 ConsecutiveForDown: 2,
             },
             CheckForString: &components.CheckForString{
                 Operator: components.OperatorContains,
                 Value: "string",
             },
-            Protocols: []components.WebsiteProtocol{
-                components.WebsiteProtocolHTTP,
-                components.WebsiteProtocolHTTPS,
+            Protocols: []components.DemWebsiteProtocol{
+                components.DemWebsiteProtocolHTTP,
+                components.DemWebsiteProtocolHTTPS,
             },
             Ssl: &components.Ssl{
                 Enabled: swov1.Bool(true),
                 DaysPriorToExpiration: swov1.Int(7),
                 IgnoreIntermediateCertificates: swov1.Bool(true),
             },
-            CustomHeaders: []components.CustomHeaders{
-                components.CustomHeaders{
+            CustomHeaders: []components.DemCustomHeaders{
+                components.DemCustomHeaders{
                     Name: "string",
                     Value: "string",
                 },
@@ -654,8 +654,8 @@ func main() {
             AllowInsecureRenegotiation: swov1.Bool(true),
             PostData: swov1.String("{\"example\": \"value\"}"),
         },
-        Tags: []components.Tag{
-            components.Tag{
+        Tags: []components.CommonTag{
+            components.CommonTag{
                 Key: "environment",
                 Value: "production",
             },
@@ -668,7 +668,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntityID != nil {
+    if res.CommonEntityID != nil {
         // handle response
     }
 }
@@ -676,11 +676,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `request`                                                | [components.Website](../../models/components/website.md) | :heavy_check_mark:                                       | The request object to use for the request.               |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `ctx`                                                          | [context.Context](https://pkg.go.dev/context#Context)          | :heavy_check_mark:                                             | The context to use for the request.                            |
+| `request`                                                      | [components.DemWebsite](../../models/components/demwebsite.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+| `opts`                                                         | [][operations.Option](../../models/operations/option.md)       | :heavy_minus_sign:                                             | The options for this request.                                  |
 
 ### Response
 
@@ -723,7 +723,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.GetWebsiteResponse != nil {
+    if res.DemGetWebsiteResponse != nil {
         // handle response
     }
 }
@@ -775,42 +775,42 @@ func main() {
 
     res, err := s.Dem.UpdateWebsite(ctx, operations.UpdateWebsiteRequest{
         EntityID: "<id>",
-        Website: components.Website{
+        DemWebsite: components.DemWebsite{
             Name: "solarwinds.com",
             URL: "https://www.solarwinds.com",
             AvailabilityCheckSettings: &components.AvailabilityCheckSettings{
-                PlatformOptions: &components.WebsitePlatformOptions{
-                    ProbePlatforms: []components.ProbePlatform{
-                        components.ProbePlatformAws,
+                PlatformOptions: &components.DemWebsitePlatformOptions{
+                    ProbePlatforms: []components.DemProbePlatform{
+                        components.DemProbePlatformAws,
                     },
                     TestFromAll: swov1.Bool(true),
                 },
-                TestFrom: components.TestFrom{
+                TestFrom: components.DemTestFrom{
                     Type: components.TypeRegion,
                     Values: []string{
                         "NA",
                     },
                 },
                 TestIntervalInSeconds: 14400,
-                OutageConfiguration: &components.WebsiteOutageConfiguration{
-                    FailingTestLocations: components.WebsiteFailingTestLocationsAll,
+                OutageConfiguration: &components.DemWebsiteOutageConfiguration{
+                    FailingTestLocations: components.DemWebsiteFailingTestLocationsAll,
                     ConsecutiveForDown: 2,
                 },
                 CheckForString: &components.CheckForString{
                     Operator: components.OperatorContains,
                     Value: "string",
                 },
-                Protocols: []components.WebsiteProtocol{
-                    components.WebsiteProtocolHTTP,
-                    components.WebsiteProtocolHTTPS,
+                Protocols: []components.DemWebsiteProtocol{
+                    components.DemWebsiteProtocolHTTP,
+                    components.DemWebsiteProtocolHTTPS,
                 },
                 Ssl: &components.Ssl{
                     Enabled: swov1.Bool(true),
                     DaysPriorToExpiration: swov1.Int(7),
                     IgnoreIntermediateCertificates: swov1.Bool(true),
                 },
-                CustomHeaders: []components.CustomHeaders{
-                    components.CustomHeaders{
+                CustomHeaders: []components.DemCustomHeaders{
+                    components.DemCustomHeaders{
                         Name: "string",
                         Value: "string",
                     },
@@ -818,8 +818,8 @@ func main() {
                 AllowInsecureRenegotiation: swov1.Bool(true),
                 PostData: swov1.String("{\"example\": \"value\"}"),
             },
-            Tags: []components.Tag{
-                components.Tag{
+            Tags: []components.CommonTag{
+                components.CommonTag{
                     Key: "environment",
                     Value: "production",
                 },
@@ -833,7 +833,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntityID != nil {
+    if res.CommonEntityID != nil {
         // handle response
     }
 }
@@ -889,7 +889,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntityID != nil {
+    if res.CommonEntityID != nil {
         // handle response
     }
 }
@@ -944,7 +944,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntityID != nil {
+    if res.CommonEntityID != nil {
         // handle response
     }
 }
@@ -999,7 +999,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.EntityID != nil {
+    if res.CommonEntityID != nil {
         // handle response
     }
 }

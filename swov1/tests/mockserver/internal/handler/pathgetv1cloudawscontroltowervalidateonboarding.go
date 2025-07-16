@@ -45,7 +45,7 @@ func testValidateMgmtAccountOnboardingValidateMgmtAccountOnboarding0(w http.Resp
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	var respBody *components.MgmtAccountOnboardingResponse = &components.MgmtAccountOnboardingResponse{
+	var respBody *components.CloudAccountsAwsMgmtAccountOnboardingResponse = &components.CloudAccountsAwsMgmtAccountOnboardingResponse{
 		IsOnboarded: false,
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

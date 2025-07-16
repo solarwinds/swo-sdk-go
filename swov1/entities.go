@@ -517,12 +517,12 @@ func (s *Entities) GetEntityByID(ctx context.Context, request operations.GetEnti
 				return nil, err
 			}
 
-			var out components.Entity
+			var out components.EntitiesEntity
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Entity = &out
+			res.EntitiesEntity = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -663,7 +663,7 @@ func (s *Entities) UpdateEntityByID(ctx context.Context, request operations.Upda
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Entity", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "EntitiesEntity", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}

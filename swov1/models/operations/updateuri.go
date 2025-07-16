@@ -9,7 +9,7 @@ import (
 type UpdateURIRequest struct {
 	EntityID string `pathParam:"style=simple,explode=false,name=entityId"`
 	// The updated URI monitoring configuration
-	URI components.URI `request:"mediaType=application/json"`
+	DemURI components.DemURI `request:"mediaType=application/json"`
 }
 
 func (o *UpdateURIRequest) GetEntityID() string {
@@ -19,17 +19,17 @@ func (o *UpdateURIRequest) GetEntityID() string {
 	return o.EntityID
 }
 
-func (o *UpdateURIRequest) GetURI() components.URI {
+func (o *UpdateURIRequest) GetDemURI() components.DemURI {
 	if o == nil {
-		return components.URI{}
+		return components.DemURI{}
 	}
-	return o.URI
+	return o.DemURI
 }
 
 type UpdateURIResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The request has succeeded.
-	EntityID *components.EntityID
+	CommonEntityID *components.CommonEntityID
 }
 
 func (o *UpdateURIResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -39,9 +39,9 @@ func (o *UpdateURIResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *UpdateURIResponse) GetEntityID() *components.EntityID {
+func (o *UpdateURIResponse) GetCommonEntityID() *components.CommonEntityID {
 	if o == nil {
 		return nil
 	}
-	return o.EntityID
+	return o.CommonEntityID
 }

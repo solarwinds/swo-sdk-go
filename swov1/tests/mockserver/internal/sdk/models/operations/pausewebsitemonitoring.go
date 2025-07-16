@@ -20,7 +20,7 @@ func (o *PauseWebsiteMonitoringRequest) GetEntityID() string {
 type PauseWebsiteMonitoringResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The request has succeeded.
-	EntityID *components.EntityID
+	CommonEntityID *components.CommonEntityID
 }
 
 func (o *PauseWebsiteMonitoringResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -30,9 +30,9 @@ func (o *PauseWebsiteMonitoringResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *PauseWebsiteMonitoringResponse) GetEntityID() *components.EntityID {
+func (o *PauseWebsiteMonitoringResponse) GetCommonEntityID() *components.CommonEntityID {
 	if o == nil {
 		return nil
 	}
-	return o.EntityID
+	return o.CommonEntityID
 }

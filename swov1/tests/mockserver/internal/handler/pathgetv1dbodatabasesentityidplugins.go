@@ -45,13 +45,17 @@ func testGetPluginsGetPlugins0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	var respBody *components.DatabasePluginStatusResponse = &components.DatabasePluginStatusResponse{
-		Plugins: []components.DatabasePluginStatus{
-			components.DatabasePluginStatus{
-				PluginName: "<value>",
+	var respBody *components.DboDatabasePluginStatusResponse = &components.DboDatabasePluginStatusResponse{
+		Plugins: []components.DboDatabasePluginStatus{
+			components.DboDatabasePluginStatus{
+				PluginName:       "<value>",
+				DeploymentStatus: "<value>",
+				HealthStatus:     "<value>",
 			},
-			components.DatabasePluginStatus{
-				PluginName: "<value>",
+			components.DboDatabasePluginStatus{
+				PluginName:       "<value>",
+				DeploymentStatus: "<value>",
+				HealthStatus:     "<value>",
 			},
 		},
 	}
