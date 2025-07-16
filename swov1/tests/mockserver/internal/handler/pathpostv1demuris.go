@@ -50,7 +50,7 @@ func testCreateURICreateUri0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	var respBody *components.EntityID = &components.EntityID{
+	var respBody *components.CommonEntityID = &components.CommonEntityID{
 		ID: "e-1448474379026206720",
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

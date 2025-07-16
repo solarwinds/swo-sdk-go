@@ -32,7 +32,7 @@ func newDbo(rootSDK *Swo, sdkConfig config.SDKConfiguration, hooks *hooks.Hooks)
 }
 
 // ObserveDatabase - Add database observability to a database
-func (s *Dbo) ObserveDatabase(ctx context.Context, request components.ObserveDatabaseRequest, opts ...operations.Option) (*operations.ObserveDatabaseResponse, error) {
+func (s *Dbo) ObserveDatabase(ctx context.Context, request components.DboObserveDatabaseRequest, opts ...operations.Option) (*operations.ObserveDatabaseResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -448,12 +448,12 @@ func (s *Dbo) GetPublicKey(ctx context.Context, opts ...operations.Option) (*ope
 				return nil, err
 			}
 
-			var out components.DatabaseCredentialsPublicKeyResponse
+			var out components.DboDatabaseCredentialsPublicKeyResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DatabaseCredentialsPublicKeyResponse = &out
+			res.DboDatabaseCredentialsPublicKeyResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -569,7 +569,7 @@ func (s *Dbo) UpdateDatabase(ctx context.Context, request operations.UpdateDatab
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "UpdateDatabaseRequest", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "DboUpdateDatabaseRequest", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -1198,12 +1198,12 @@ func (s *Dbo) GetPluginConfig(ctx context.Context, request operations.GetPluginC
 				return nil, err
 			}
 
-			var out components.DatabasePluginConfigResponse
+			var out components.DboDatabasePluginConfigResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DatabasePluginConfigResponse = &out
+			res.DboDatabasePluginConfigResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1459,12 +1459,12 @@ func (s *Dbo) GetPlugins(ctx context.Context, request operations.GetPluginsReque
 				return nil, err
 			}
 
-			var out components.DatabasePluginStatusResponse
+			var out components.DboDatabasePluginStatusResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DatabasePluginStatusResponse = &out
+			res.DboDatabasePluginStatusResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

@@ -28,11 +28,11 @@ func TestDem_GetDemSettings(t *testing.T) {
 	res, err := s.Dem.GetDemSettings(ctx)
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.OutageConfiguration)
-	assert.Equal(t, &components.OutageConfiguration{
+	assert.NotNil(t, res.DemOutageConfiguration)
+	assert.Equal(t, &components.DemOutageConfiguration{
 		FailingTestLocations: components.FailingTestLocationsAll,
 		ConsecutiveForDown:   2,
-	}, res.OutageConfiguration)
+	}, res.DemOutageConfiguration)
 
 }
 
@@ -47,7 +47,7 @@ func TestDem_SetDemSettings(t *testing.T) {
 		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
 	)
 
-	res, err := s.Dem.SetDemSettings(ctx, components.OutageConfiguration{
+	res, err := s.Dem.SetDemSettings(ctx, components.DemOutageConfiguration{
 		FailingTestLocations: components.FailingTestLocationsAll,
 		ConsecutiveForDown:   2,
 	})
@@ -67,42 +67,42 @@ func TestDem_CreateWebsite(t *testing.T) {
 		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
 	)
 
-	res, err := s.Dem.CreateWebsite(ctx, components.Website{
+	res, err := s.Dem.CreateWebsite(ctx, components.DemWebsite{
 		Name: "solarwinds.com",
 		URL:  "https://www.solarwinds.com",
 		AvailabilityCheckSettings: &components.AvailabilityCheckSettings{
-			PlatformOptions: &components.WebsitePlatformOptions{
-				ProbePlatforms: []components.ProbePlatform{
-					components.ProbePlatformAws,
+			PlatformOptions: &components.DemWebsitePlatformOptions{
+				ProbePlatforms: []components.DemProbePlatform{
+					components.DemProbePlatformAws,
 				},
 				TestFromAll: swov1.Bool(true),
 			},
-			TestFrom: components.TestFrom{
+			TestFrom: components.DemTestFrom{
 				Type: components.TypeRegion,
 				Values: []string{
 					"NA",
 				},
 			},
 			TestIntervalInSeconds: 14400,
-			OutageConfiguration: &components.WebsiteOutageConfiguration{
-				FailingTestLocations: components.WebsiteFailingTestLocationsAll,
+			OutageConfiguration: &components.DemWebsiteOutageConfiguration{
+				FailingTestLocations: components.DemWebsiteFailingTestLocationsAll,
 				ConsecutiveForDown:   2,
 			},
 			CheckForString: &components.CheckForString{
 				Operator: components.OperatorContains,
 				Value:    "string",
 			},
-			Protocols: []components.WebsiteProtocol{
-				components.WebsiteProtocolHTTP,
-				components.WebsiteProtocolHTTPS,
+			Protocols: []components.DemWebsiteProtocol{
+				components.DemWebsiteProtocolHTTP,
+				components.DemWebsiteProtocolHTTPS,
 			},
 			Ssl: &components.Ssl{
 				Enabled:                        swov1.Bool(true),
 				DaysPriorToExpiration:          swov1.Int(7),
 				IgnoreIntermediateCertificates: swov1.Bool(true),
 			},
-			CustomHeaders: []components.CustomHeaders{
-				components.CustomHeaders{
+			CustomHeaders: []components.DemCustomHeaders{
+				components.DemCustomHeaders{
 					Name:  "string",
 					Value: "string",
 				},
@@ -110,8 +110,8 @@ func TestDem_CreateWebsite(t *testing.T) {
 			AllowInsecureRenegotiation: swov1.Bool(true),
 			PostData:                   swov1.String("{\"example\": \"value\"}"),
 		},
-		Tags: []components.Tag{
-			components.Tag{
+		Tags: []components.CommonTag{
+			components.CommonTag{
 				Key:   "environment",
 				Value: "production",
 			},
@@ -123,10 +123,10 @@ func TestDem_CreateWebsite(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 201, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.EntityID)
-	assert.Equal(t, &components.EntityID{
+	assert.NotNil(t, res.CommonEntityID)
+	assert.Equal(t, &components.CommonEntityID{
 		ID: "e-1448474379026206720",
-	}, res.EntityID)
+	}, res.CommonEntityID)
 
 }
 
@@ -146,46 +146,50 @@ func TestDem_GetWebsite(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.GetWebsiteResponse)
-	assert.Equal(t, &components.GetWebsiteResponse{
+	assert.NotNil(t, res.DemGetWebsiteResponse)
+	assert.Equal(t, &components.DemGetWebsiteResponse{
 		ID:     "e-1448474379026206720",
 		Type:   "Website",
-		Status: components.GetWebsiteResponseStatusUp,
+		Status: components.DemGetWebsiteResponseStatusUp,
 		Name:   "solarwinds.com",
 		URL:    "https://www.solarwinds.com",
-		AvailabilityCheckSettings: &components.GetWebsiteResponseAvailabilityCheckSettings{
-			PlatformOptions: &components.GetWebsiteResponsePlatformOptions{
-				ProbePlatforms: []components.ProbePlatform{
-					components.ProbePlatformAws,
+		MonitoringOptions: components.MonitoringOptions{
+			IsAvailabilityActive: true,
+			IsRumActive:          false,
+		},
+		AvailabilityCheckSettings: &components.DemGetWebsiteResponseAvailabilityCheckSettings{
+			PlatformOptions: &components.DemGetWebsiteResponsePlatformOptions{
+				ProbePlatforms: []components.DemProbePlatform{
+					components.DemProbePlatformAws,
 				},
 				TestFromAll: swov1.Bool(true),
 			},
-			TestFrom: components.TestFrom{
+			TestFrom: components.DemTestFrom{
 				Type: components.TypeRegion,
 				Values: []string{
 					"NA",
 				},
 			},
 			TestIntervalInSeconds: 14400,
-			OutageConfiguration: &components.GetWebsiteResponseOutageConfiguration{
-				FailingTestLocations: components.GetWebsiteResponseFailingTestLocationsAll,
+			OutageConfiguration: &components.DemGetWebsiteResponseOutageConfiguration{
+				FailingTestLocations: components.DemGetWebsiteResponseFailingTestLocationsAll,
 				ConsecutiveForDown:   2,
 			},
-			CheckForString: &components.GetWebsiteResponseCheckForString{
-				Operator: components.GetWebsiteResponseOperatorContains,
+			CheckForString: &components.DemGetWebsiteResponseCheckForString{
+				Operator: components.DemGetWebsiteResponseOperatorContains,
 				Value:    "string",
 			},
-			Protocols: []components.WebsiteProtocol{
-				components.WebsiteProtocolHTTP,
-				components.WebsiteProtocolHTTPS,
+			Protocols: []components.DemWebsiteProtocol{
+				components.DemWebsiteProtocolHTTP,
+				components.DemWebsiteProtocolHTTPS,
 			},
-			Ssl: &components.GetWebsiteResponseSsl{
+			Ssl: &components.DemGetWebsiteResponseSsl{
 				Enabled:                        swov1.Bool(true),
 				DaysPriorToExpiration:          swov1.Int(7),
 				IgnoreIntermediateCertificates: swov1.Bool(true),
 			},
-			CustomHeaders: []components.CustomHeaders{
-				components.CustomHeaders{
+			CustomHeaders: []components.DemCustomHeaders{
+				components.DemCustomHeaders{
 					Name:  "string",
 					Value: "string",
 				},
@@ -193,13 +197,13 @@ func TestDem_GetWebsite(t *testing.T) {
 			AllowInsecureRenegotiation: swov1.Bool(true),
 			PostData:                   swov1.String("{\"example\": \"value\"}"),
 		},
-		Tags: []components.Tag{
-			components.Tag{
+		Tags: []components.CommonTag{
+			components.CommonTag{
 				Key:   "environment",
 				Value: "production",
 			},
 		},
-		Rum: &components.GetWebsiteResponseRum{
+		Rum: &components.DemGetWebsiteResponseRum{
 			ApdexTimeInSeconds: swov1.Int(4),
 			Snippet:            swov1.String("string"),
 			Spa:                true,
@@ -210,7 +214,7 @@ func TestDem_GetWebsite(t *testing.T) {
 		LastErrorTime:                types.MustNewTimeFromString("2025-01-15T14:31:19.735Z"),
 		LastResponseTime:             swov1.Int(376),
 		NextOnDemandAvailabilityTime: swov1.Int(0),
-	}, res.GetWebsiteResponse)
+	}, res.DemGetWebsiteResponse)
 
 }
 
@@ -227,42 +231,42 @@ func TestDem_UpdateWebsite(t *testing.T) {
 
 	res, err := s.Dem.UpdateWebsite(ctx, operations.UpdateWebsiteRequest{
 		EntityID: "<id>",
-		Website: components.Website{
+		DemWebsite: components.DemWebsite{
 			Name: "solarwinds.com",
 			URL:  "https://www.solarwinds.com",
 			AvailabilityCheckSettings: &components.AvailabilityCheckSettings{
-				PlatformOptions: &components.WebsitePlatformOptions{
-					ProbePlatforms: []components.ProbePlatform{
-						components.ProbePlatformAws,
+				PlatformOptions: &components.DemWebsitePlatformOptions{
+					ProbePlatforms: []components.DemProbePlatform{
+						components.DemProbePlatformAws,
 					},
 					TestFromAll: swov1.Bool(true),
 				},
-				TestFrom: components.TestFrom{
+				TestFrom: components.DemTestFrom{
 					Type: components.TypeRegion,
 					Values: []string{
 						"NA",
 					},
 				},
 				TestIntervalInSeconds: 14400,
-				OutageConfiguration: &components.WebsiteOutageConfiguration{
-					FailingTestLocations: components.WebsiteFailingTestLocationsAll,
+				OutageConfiguration: &components.DemWebsiteOutageConfiguration{
+					FailingTestLocations: components.DemWebsiteFailingTestLocationsAll,
 					ConsecutiveForDown:   2,
 				},
 				CheckForString: &components.CheckForString{
 					Operator: components.OperatorContains,
 					Value:    "string",
 				},
-				Protocols: []components.WebsiteProtocol{
-					components.WebsiteProtocolHTTP,
-					components.WebsiteProtocolHTTPS,
+				Protocols: []components.DemWebsiteProtocol{
+					components.DemWebsiteProtocolHTTP,
+					components.DemWebsiteProtocolHTTPS,
 				},
 				Ssl: &components.Ssl{
 					Enabled:                        swov1.Bool(true),
 					DaysPriorToExpiration:          swov1.Int(7),
 					IgnoreIntermediateCertificates: swov1.Bool(true),
 				},
-				CustomHeaders: []components.CustomHeaders{
-					components.CustomHeaders{
+				CustomHeaders: []components.DemCustomHeaders{
+					components.DemCustomHeaders{
 						Name:  "string",
 						Value: "string",
 					},
@@ -270,8 +274,8 @@ func TestDem_UpdateWebsite(t *testing.T) {
 				AllowInsecureRenegotiation: swov1.Bool(true),
 				PostData:                   swov1.String("{\"example\": \"value\"}"),
 			},
-			Tags: []components.Tag{
-				components.Tag{
+			Tags: []components.CommonTag{
+				components.CommonTag{
 					Key:   "environment",
 					Value: "production",
 				},
@@ -284,10 +288,10 @@ func TestDem_UpdateWebsite(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.EntityID)
-	assert.Equal(t, &components.EntityID{
+	assert.NotNil(t, res.CommonEntityID)
+	assert.Equal(t, &components.CommonEntityID{
 		ID: "e-1448474379026206720",
-	}, res.EntityID)
+	}, res.CommonEntityID)
 
 }
 
@@ -307,10 +311,10 @@ func TestDem_DeleteWebsite(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.EntityID)
-	assert.Equal(t, &components.EntityID{
+	assert.NotNil(t, res.CommonEntityID)
+	assert.Equal(t, &components.CommonEntityID{
 		ID: "e-1448474379026206720",
-	}, res.EntityID)
+	}, res.CommonEntityID)
 
 }
 
@@ -330,10 +334,10 @@ func TestDem_PauseWebsiteMonitoring(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.EntityID)
-	assert.Equal(t, &components.EntityID{
+	assert.NotNil(t, res.CommonEntityID)
+	assert.Equal(t, &components.CommonEntityID{
 		ID: "e-1448474379026206720",
-	}, res.EntityID)
+	}, res.CommonEntityID)
 
 }
 
@@ -353,10 +357,10 @@ func TestDem_UnpauseWebsiteMonitoring(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.EntityID)
-	assert.Equal(t, &components.EntityID{
+	assert.NotNil(t, res.CommonEntityID)
+	assert.Equal(t, &components.CommonEntityID{
 		ID: "e-1448474379026206720",
-	}, res.EntityID)
+	}, res.CommonEntityID)
 
 }
 
@@ -374,10 +378,10 @@ func TestDem_ListProbes(t *testing.T) {
 	res, err := s.Dem.ListProbes(ctx)
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.ListProbesResponse)
-	assert.Equal(t, &components.ListProbesResponse{
-		Probes: []components.Probe{
-			components.Probe{
+	assert.NotNil(t, res.DemListProbesResponse)
+	assert.Equal(t, &components.DemListProbesResponse{
+		Probes: []components.DemProbe{
+			components.DemProbe{
 				ID:       "probe-1",
 				Name:     "Washington",
 				Active:   true,
@@ -398,7 +402,7 @@ func TestDem_ListProbes(t *testing.T) {
 				},
 			},
 		},
-	}, res.ListProbesResponse)
+	}, res.DemListProbesResponse)
 
 }
 
@@ -413,25 +417,25 @@ func TestDem_CreateURI(t *testing.T) {
 		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
 	)
 
-	res, err := s.Dem.CreateURI(ctx, components.URI{
+	res, err := s.Dem.CreateURI(ctx, components.DemURI{
 		Name:       "example-uri",
 		IPOrDomain: "solarwinds.com",
-		AvailabilityCheckSettings: components.URIAvailabilityCheckSettingsInput{
+		AvailabilityCheckSettings: components.DemURIAvailabilityCheckSettingsInput{
 			PlatformOptions: &components.PlatformOptions{
-				ProbePlatforms: []components.ProbePlatform{
-					components.ProbePlatformAws,
+				ProbePlatforms: []components.DemProbePlatform{
+					components.DemProbePlatformAws,
 				},
 				TestFromAll: swov1.Bool(true),
 			},
-			TestFrom: components.TestFrom{
+			TestFrom: components.DemTestFrom{
 				Type: components.TypeRegion,
 				Values: []string{
 					"NA",
 				},
 			},
 			TestIntervalInSeconds: 300,
-			OutageConfiguration: &components.URIAvailabilityCheckSettingsInputOutageConfiguration{
-				FailingTestLocations: components.URIAvailabilityCheckSettingsInputFailingTestLocationsAll,
+			OutageConfiguration: &components.OutageConfiguration{
+				FailingTestLocations: components.DemURIAvailabilityCheckSettingsInputFailingTestLocationsAll,
 				ConsecutiveForDown:   2,
 			},
 			TCP: &components.TCP{
@@ -439,8 +443,8 @@ func TestDem_CreateURI(t *testing.T) {
 				Port:    443,
 			},
 		},
-		Tags: []components.Tag{
-			components.Tag{
+		Tags: []components.CommonTag{
+			components.CommonTag{
 				Key:   "environment",
 				Value: "production",
 			},
@@ -448,10 +452,10 @@ func TestDem_CreateURI(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 201, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.EntityID)
-	assert.Equal(t, &components.EntityID{
+	assert.NotNil(t, res.CommonEntityID)
+	assert.Equal(t, &components.CommonEntityID{
 		ID: "e-1448474379026206720",
-	}, res.EntityID)
+	}, res.CommonEntityID)
 
 }
 
@@ -471,38 +475,38 @@ func TestDem_GetURI(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.GetURIResponse)
-	assert.Equal(t, &components.GetURIResponse{
+	assert.NotNil(t, res.DemGetURIResponse)
+	assert.Equal(t, &components.DemGetURIResponse{
 		ID:         "e-1448474379026206720",
 		Type:       "Uri",
 		Status:     components.StatusUp,
 		Name:       "solarwinds.com",
 		IPOrDomain: "solarwinds.com",
-		AvailabilityCheckSettings: components.URIAvailabilityCheckSettings{
-			PlatformOptions: &components.URIAvailabilityCheckSettingsPlatformOptions{
-				ProbePlatforms: []components.ProbePlatform{
-					components.ProbePlatformAws,
+		AvailabilityCheckSettings: components.DemURIAvailabilityCheckSettings{
+			PlatformOptions: &components.DemURIAvailabilityCheckSettingsPlatformOptions{
+				ProbePlatforms: []components.DemProbePlatform{
+					components.DemProbePlatformAws,
 				},
 				TestFromAll: swov1.Bool(true),
 			},
-			TestFrom: components.TestFrom{
+			TestFrom: components.DemTestFrom{
 				Type: components.TypeRegion,
 				Values: []string{
 					"NA",
 				},
 			},
 			TestIntervalInSeconds: 14400,
-			OutageConfiguration: &components.URIAvailabilityCheckSettingsOutageConfiguration{
-				FailingTestLocations: components.URIAvailabilityCheckSettingsFailingTestLocationsAll,
+			OutageConfiguration: &components.DemURIAvailabilityCheckSettingsOutageConfiguration{
+				FailingTestLocations: components.DemURIAvailabilityCheckSettingsFailingTestLocationsAll,
 				ConsecutiveForDown:   2,
 			},
-			Ping: &components.URIAvailabilityCheckSettingsPing{
+			Ping: &components.DemURIAvailabilityCheckSettingsPing{
 				Enabled: true,
 			},
 			Protocol: components.ProtocolPing,
 		},
-		Tags: []components.Tag{
-			components.Tag{
+		Tags: []components.CommonTag{
+			components.CommonTag{
 				Key:   "environment",
 				Value: "production",
 			},
@@ -512,7 +516,7 @@ func TestDem_GetURI(t *testing.T) {
 		LastTestTime:        types.MustNewTimeFromString("2025-01-15T14:31:19.735Z"),
 		LastErrorTime:       types.MustNewTimeFromString("2025-01-15T14:31:19.735Z"),
 		LastResponseTime:    swov1.Int(376),
-	}, res.GetURIResponse)
+	}, res.DemGetURIResponse)
 
 }
 
@@ -529,25 +533,25 @@ func TestDem_UpdateURI(t *testing.T) {
 
 	res, err := s.Dem.UpdateURI(ctx, operations.UpdateURIRequest{
 		EntityID: "<id>",
-		URI: components.URI{
+		DemURI: components.DemURI{
 			Name:       "example-uri",
 			IPOrDomain: "solarwinds.com",
-			AvailabilityCheckSettings: components.URIAvailabilityCheckSettingsInput{
+			AvailabilityCheckSettings: components.DemURIAvailabilityCheckSettingsInput{
 				PlatformOptions: &components.PlatformOptions{
-					ProbePlatforms: []components.ProbePlatform{
-						components.ProbePlatformAws,
+					ProbePlatforms: []components.DemProbePlatform{
+						components.DemProbePlatformAws,
 					},
 					TestFromAll: swov1.Bool(true),
 				},
-				TestFrom: components.TestFrom{
+				TestFrom: components.DemTestFrom{
 					Type: components.TypeRegion,
 					Values: []string{
 						"NA",
 					},
 				},
 				TestIntervalInSeconds: 300,
-				OutageConfiguration: &components.URIAvailabilityCheckSettingsInputOutageConfiguration{
-					FailingTestLocations: components.URIAvailabilityCheckSettingsInputFailingTestLocationsAll,
+				OutageConfiguration: &components.OutageConfiguration{
+					FailingTestLocations: components.DemURIAvailabilityCheckSettingsInputFailingTestLocationsAll,
 					ConsecutiveForDown:   2,
 				},
 				TCP: &components.TCP{
@@ -555,8 +559,8 @@ func TestDem_UpdateURI(t *testing.T) {
 					Port:    443,
 				},
 			},
-			Tags: []components.Tag{
-				components.Tag{
+			Tags: []components.CommonTag{
+				components.CommonTag{
 					Key:   "environment",
 					Value: "production",
 				},
@@ -565,10 +569,10 @@ func TestDem_UpdateURI(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.EntityID)
-	assert.Equal(t, &components.EntityID{
+	assert.NotNil(t, res.CommonEntityID)
+	assert.Equal(t, &components.CommonEntityID{
 		ID: "e-1448474379026206720",
-	}, res.EntityID)
+	}, res.CommonEntityID)
 
 }
 
@@ -588,10 +592,10 @@ func TestDem_DeleteURI(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.EntityID)
-	assert.Equal(t, &components.EntityID{
+	assert.NotNil(t, res.CommonEntityID)
+	assert.Equal(t, &components.CommonEntityID{
 		ID: "e-1448474379026206720",
-	}, res.EntityID)
+	}, res.CommonEntityID)
 
 }
 
@@ -611,10 +615,10 @@ func TestDem_PauseURIMonitoring(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.EntityID)
-	assert.Equal(t, &components.EntityID{
+	assert.NotNil(t, res.CommonEntityID)
+	assert.Equal(t, &components.CommonEntityID{
 		ID: "e-1448474379026206720",
-	}, res.EntityID)
+	}, res.CommonEntityID)
 
 }
 
@@ -634,9 +638,9 @@ func TestDem_UnpauseURIMonitoring(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.EntityID)
-	assert.Equal(t, &components.EntityID{
+	assert.NotNil(t, res.CommonEntityID)
+	assert.Equal(t, &components.CommonEntityID{
 		ID: "e-1448474379026206720",
-	}, res.EntityID)
+	}, res.CommonEntityID)
 
 }

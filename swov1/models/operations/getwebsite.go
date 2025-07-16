@@ -20,7 +20,7 @@ func (o *GetWebsiteRequest) GetEntityID() string {
 type GetWebsiteResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The request has succeeded.
-	GetWebsiteResponse *components.GetWebsiteResponse
+	DemGetWebsiteResponse *components.DemGetWebsiteResponse
 }
 
 func (o *GetWebsiteResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -30,9 +30,9 @@ func (o *GetWebsiteResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *GetWebsiteResponse) GetGetWebsiteResponse() *components.GetWebsiteResponse {
+func (o *GetWebsiteResponse) GetDemGetWebsiteResponse() *components.DemGetWebsiteResponse {
 	if o == nil {
 		return nil
 	}
-	return o.GetWebsiteResponse
+	return o.DemGetWebsiteResponse
 }

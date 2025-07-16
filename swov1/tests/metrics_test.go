@@ -50,7 +50,7 @@ func TestMetrics_CreateCompositeMetric(t *testing.T) {
 		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
 	)
 
-	res, err := s.Metrics.CreateCompositeMetric(ctx, components.CompositeMetric{
+	res, err := s.Metrics.CreateCompositeMetric(ctx, components.MetricsCompositeMetric{
 		Name:        "composite.custom.system.disk.io.rate",
 		DisplayName: swov1.String("Disk IO rate"),
 		Description: swov1.String("Disk bytes transferred per second"),
@@ -59,14 +59,14 @@ func TestMetrics_CreateCompositeMetric(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 201, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.CompositeMetric)
-	assert.Equal(t, &components.CompositeMetric{
+	assert.NotNil(t, res.MetricsCompositeMetric)
+	assert.Equal(t, &components.MetricsCompositeMetric{
 		Name:        "composite.custom.system.disk.io.rate",
 		DisplayName: swov1.String("Disk IO rate"),
 		Description: swov1.String("Disk bytes transferred per second"),
 		Formula:     "rate(system.disk.io[5m])",
 		Units:       swov1.String("bytes/s"),
-	}, res.CompositeMetric)
+	}, res.MetricsCompositeMetric)
 
 }
 
@@ -83,8 +83,8 @@ func TestMetrics_ListMultiMetricMeasurements(t *testing.T) {
 
 	res, err := s.Metrics.ListMultiMetricMeasurements(ctx, operations.ListMultiMetricMeasurementsRequest{
 		RequestBody: operations.ListMultiMetricMeasurementsRequestBody{
-			Metrics: []components.MetricMeasurementsRequest{
-				components.MetricMeasurementsRequest{
+			Metrics: []components.MetricsMeasurementsRequest{
+				components.MetricsMeasurementsRequest{
 					ID:     swov1.String("throughput-series"),
 					Name:   "dbo.host.queries.tput",
 					Filter: swov1.String("id:[id1,id2] category:moderate"),
@@ -96,7 +96,7 @@ func TestMetrics_ListMultiMetricMeasurements(t *testing.T) {
 					},
 					PreGroupByMethod: components.PreGroupByMethodSum.ToPointer(),
 				},
-				components.MetricMeasurementsRequest{
+				components.MetricsMeasurementsRequest{
 					ID:     swov1.String("throughput-series"),
 					Name:   "dbo.host.queries.tput",
 					Filter: swov1.String("id:[id1,id2] category:moderate"),
@@ -137,7 +137,7 @@ func TestMetrics_UpdateCompositeMetric(t *testing.T) {
 
 	res, err := s.Metrics.UpdateCompositeMetric(ctx, operations.UpdateCompositeMetricRequest{
 		Name: "<value>",
-		UpdateCompositeMetric: components.UpdateCompositeMetric{
+		MetricsUpdateCompositeMetricRequest: components.MetricsUpdateCompositeMetricRequest{
 			DisplayName: swov1.String("Disk IO rate"),
 			Description: swov1.String("Disk bytes transferred per second"),
 			Formula:     "rate(system.disk.io[5m])",
@@ -146,14 +146,14 @@ func TestMetrics_UpdateCompositeMetric(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.CompositeMetric)
-	assert.Equal(t, &components.CompositeMetric{
+	assert.NotNil(t, res.MetricsCompositeMetric)
+	assert.Equal(t, &components.MetricsCompositeMetric{
 		Name:        "composite.custom.system.disk.io.rate",
 		DisplayName: swov1.String("Disk IO rate"),
 		Description: swov1.String("Disk bytes transferred per second"),
 		Formula:     "rate(system.disk.io[5m])",
 		Units:       swov1.String("bytes/s"),
-	}, res.CompositeMetric)
+	}, res.MetricsCompositeMetric)
 
 }
 
@@ -273,7 +273,7 @@ func TestMetrics_ListMetricMeasurements(t *testing.T) {
 
 	res, err := s.Metrics.ListMetricMeasurements(ctx, operations.ListMetricMeasurementsRequest{
 		Name:       "<value>",
-		SeriesType: components.MetricSeriesTypeScalar,
+		SeriesType: components.MetricsMetricSeriesTypeScalar,
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)

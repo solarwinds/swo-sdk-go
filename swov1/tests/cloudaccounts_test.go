@@ -24,7 +24,7 @@ func TestCloudaccounts_ActivateAwsIntegration(t *testing.T) {
 		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
 	)
 
-	res, err := s.CloudAccounts.ActivateAwsIntegration(ctx, components.ActivateAwsIntegrationRequest{
+	res, err := s.CloudAccounts.ActivateAwsIntegration(ctx, components.CloudAccountsAwsActivateIntegrationRequest{
 		ManagementAccountID: "<id>",
 		AccountID:           "<id>",
 		Enable:              false,
@@ -45,18 +45,18 @@ func TestCloudaccounts_CreateOrgStructure(t *testing.T) {
 		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
 	)
 
-	res, err := s.CloudAccounts.CreateOrgStructure(ctx, components.AwsOrganisationalUnitRequest{
+	res, err := s.CloudAccounts.CreateOrgStructure(ctx, components.CloudAccountsAwsOrganisationalUnitRequest{
 		MgmtAccountID: "<id>",
-		Structure: []components.OrganisationalUnit{
-			components.OrganisationalUnit{
+		Structure: []components.CloudAccountsAwsOrganisationalUnit{
+			components.CloudAccountsAwsOrganisationalUnit{
 				ChildID:   "<id>",
 				ChildName: "<value>",
 			},
-			components.OrganisationalUnit{
+			components.CloudAccountsAwsOrganisationalUnit{
 				ChildID:   "<id>",
 				ChildName: "<value>",
 			},
-			components.OrganisationalUnit{
+			components.CloudAccountsAwsOrganisationalUnit{
 				ChildID:   "<id>",
 				ChildName: "<value>",
 			},
@@ -78,7 +78,7 @@ func TestCloudaccounts_UpdateAwsIntegration(t *testing.T) {
 		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
 	)
 
-	res, err := s.CloudAccounts.UpdateAwsIntegration(ctx, components.UpdateAwsIntegrationRequest{
+	res, err := s.CloudAccounts.UpdateAwsIntegration(ctx, components.CloudAccountsAwsUpdateIntegrationRequest{
 		ManagementAccountID: "<id>",
 		AccountID:           "<id>",
 		AccountName:         "<value>",
@@ -86,8 +86,8 @@ func TestCloudaccounts_UpdateAwsIntegration(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.UpdateAwsIntegrationResponse)
-	assert.Equal(t, &components.UpdateAwsIntegrationResponse{
+	assert.NotNil(t, res.CloudAccountsAwsUpdateIntegrationResponse)
+	assert.Equal(t, &components.CloudAccountsAwsUpdateIntegrationResponse{
 		SelectedRegions: []string{
 			"<value>",
 			"<value>",
@@ -97,7 +97,7 @@ func TestCloudaccounts_UpdateAwsIntegration(t *testing.T) {
 		IntegrationID:   "<id>",
 		IntegrationType: components.IntegrationTypePolling,
 		IsNewAccount:    true,
-	}, res.UpdateAwsIntegrationResponse)
+	}, res.CloudAccountsAwsUpdateIntegrationResponse)
 
 }
 
@@ -113,15 +113,15 @@ func TestCloudaccounts_ValidateMgmtAccountOnboarding(t *testing.T) {
 	)
 
 	res, err := s.CloudAccounts.ValidateMgmtAccountOnboarding(ctx, operations.ValidateMgmtAccountOnboardingRequest{
-		Request: components.MgmtAccountOnboardingRequest{
+		Request: components.CloudAccountsAwsMgmtAccountOnboardingRequest{
 			ManagementAccountID: "<id>",
 		},
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.MgmtAccountOnboardingResponse)
-	assert.Equal(t, &components.MgmtAccountOnboardingResponse{
+	assert.NotNil(t, res.CloudAccountsAwsMgmtAccountOnboardingResponse)
+	assert.Equal(t, &components.CloudAccountsAwsMgmtAccountOnboardingResponse{
 		IsOnboarded: false,
-	}, res.MgmtAccountOnboardingResponse)
+	}, res.CloudAccountsAwsMgmtAccountOnboardingResponse)
 
 }

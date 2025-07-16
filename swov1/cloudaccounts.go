@@ -33,7 +33,7 @@ func newCloudAccounts(rootSDK *Swo, sdkConfig config.SDKConfiguration, hooks *ho
 
 // ActivateAwsIntegration - Activate AWS Integration
 // Activate AWS Integration.
-func (s *CloudAccounts) ActivateAwsIntegration(ctx context.Context, request components.ActivateAwsIntegrationRequest, opts ...operations.Option) (*operations.ActivateAwsIntegrationResponse, error) {
+func (s *CloudAccounts) ActivateAwsIntegration(ctx context.Context, request components.CloudAccountsAwsActivateIntegrationRequest, opts ...operations.Option) (*operations.ActivateAwsIntegrationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -332,7 +332,7 @@ func (s *CloudAccounts) ActivateAwsIntegration(ctx context.Context, request comp
 
 // CreateOrgStructure - Create Organizational Structure
 // Create AWS Organizational Structure.
-func (s *CloudAccounts) CreateOrgStructure(ctx context.Context, request components.AwsOrganisationalUnitRequest, opts ...operations.Option) (*operations.CreateOrgStructureResponse, error) {
+func (s *CloudAccounts) CreateOrgStructure(ctx context.Context, request components.CloudAccountsAwsOrganisationalUnitRequest, opts ...operations.Option) (*operations.CreateOrgStructureResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -631,7 +631,7 @@ func (s *CloudAccounts) CreateOrgStructure(ctx context.Context, request componen
 
 // UpdateAwsIntegration - Update AWS Integration
 // Update AWS Integration details.
-func (s *CloudAccounts) UpdateAwsIntegration(ctx context.Context, request components.UpdateAwsIntegrationRequest, opts ...operations.Option) (*operations.UpdateAwsIntegrationResponse, error) {
+func (s *CloudAccounts) UpdateAwsIntegration(ctx context.Context, request components.CloudAccountsAwsUpdateIntegrationRequest, opts ...operations.Option) (*operations.UpdateAwsIntegrationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -811,12 +811,12 @@ func (s *CloudAccounts) UpdateAwsIntegration(ctx context.Context, request compon
 				return nil, err
 			}
 
-			var out components.UpdateAwsIntegrationResponse
+			var out components.CloudAccountsAwsUpdateIntegrationResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.UpdateAwsIntegrationResponse = &out
+			res.CloudAccountsAwsUpdateIntegrationResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1102,12 +1102,12 @@ func (s *CloudAccounts) ValidateMgmtAccountOnboarding(ctx context.Context, reque
 				return nil, err
 			}
 
-			var out components.MgmtAccountOnboardingResponse
+			var out components.CloudAccountsAwsMgmtAccountOnboardingResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.MgmtAccountOnboardingResponse = &out
+			res.CloudAccountsAwsMgmtAccountOnboardingResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

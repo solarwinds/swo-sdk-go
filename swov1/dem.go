@@ -205,12 +205,12 @@ func (s *Dem) ListProbes(ctx context.Context, opts ...operations.Option) (*opera
 				return nil, err
 			}
 
-			var out components.ListProbesResponse
+			var out components.DemListProbesResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.ListProbesResponse = &out
+			res.DemListProbesResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -441,12 +441,12 @@ func (s *Dem) GetDemSettings(ctx context.Context, opts ...operations.Option) (*o
 				return nil, err
 			}
 
-			var out components.OutageConfiguration
+			var out components.DemOutageConfiguration
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.OutageConfiguration = &out
+			res.DemOutageConfiguration = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -479,7 +479,7 @@ func (s *Dem) GetDemSettings(ctx context.Context, opts ...operations.Option) (*o
 }
 
 // SetDemSettings - Set DEM settings
-func (s *Dem) SetDemSettings(ctx context.Context, request components.OutageConfiguration, opts ...operations.Option) (*operations.SetDemSettingsResponse, error) {
+func (s *Dem) SetDemSettings(ctx context.Context, request components.DemOutageConfiguration, opts ...operations.Option) (*operations.SetDemSettingsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -677,7 +677,7 @@ func (s *Dem) SetDemSettings(ctx context.Context, request components.OutageConfi
 }
 
 // CreateURI - Create URI monitoring configuration
-func (s *Dem) CreateURI(ctx context.Context, request components.URI, opts ...operations.Option) (*operations.CreateURIResponse, error) {
+func (s *Dem) CreateURI(ctx context.Context, request components.DemURI, opts ...operations.Option) (*operations.CreateURIResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -857,12 +857,12 @@ func (s *Dem) CreateURI(ctx context.Context, request components.URI, opts ...ope
 				return nil, err
 			}
 
-			var out components.EntityID
+			var out components.CommonEntityID
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntityID = &out
+			res.CommonEntityID = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1093,12 +1093,12 @@ func (s *Dem) GetURI(ctx context.Context, request operations.GetURIRequest, opts
 				return nil, err
 			}
 
-			var out components.GetURIResponse
+			var out components.DemGetURIResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetURIResponse = &out
+			res.DemGetURIResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1189,7 +1189,7 @@ func (s *Dem) UpdateURI(ctx context.Context, request operations.UpdateURIRequest
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "URI", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "DemURI", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -1336,12 +1336,12 @@ func (s *Dem) UpdateURI(ctx context.Context, request operations.UpdateURIRequest
 				return nil, err
 			}
 
-			var out components.EntityID
+			var out components.CommonEntityID
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntityID = &out
+			res.CommonEntityID = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1597,12 +1597,12 @@ func (s *Dem) DeleteURI(ctx context.Context, request operations.DeleteURIRequest
 				return nil, err
 			}
 
-			var out components.EntityID
+			var out components.CommonEntityID
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntityID = &out
+			res.CommonEntityID = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1833,12 +1833,12 @@ func (s *Dem) PauseURIMonitoring(ctx context.Context, request operations.PauseUR
 				return nil, err
 			}
 
-			var out components.EntityID
+			var out components.CommonEntityID
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntityID = &out
+			res.CommonEntityID = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2069,12 +2069,12 @@ func (s *Dem) UnpauseURIMonitoring(ctx context.Context, request operations.Unpau
 				return nil, err
 			}
 
-			var out components.EntityID
+			var out components.CommonEntityID
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntityID = &out
+			res.CommonEntityID = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2132,7 +2132,7 @@ func (s *Dem) UnpauseURIMonitoring(ctx context.Context, request operations.Unpau
 }
 
 // CreateWebsite - Create website monitoring configuration
-func (s *Dem) CreateWebsite(ctx context.Context, request components.Website, opts ...operations.Option) (*operations.CreateWebsiteResponse, error) {
+func (s *Dem) CreateWebsite(ctx context.Context, request components.DemWebsite, opts ...operations.Option) (*operations.CreateWebsiteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -2312,12 +2312,12 @@ func (s *Dem) CreateWebsite(ctx context.Context, request components.Website, opt
 				return nil, err
 			}
 
-			var out components.EntityID
+			var out components.CommonEntityID
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntityID = &out
+			res.CommonEntityID = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2548,12 +2548,12 @@ func (s *Dem) GetWebsite(ctx context.Context, request operations.GetWebsiteReque
 				return nil, err
 			}
 
-			var out components.GetWebsiteResponse
+			var out components.DemGetWebsiteResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.GetWebsiteResponse = &out
+			res.DemGetWebsiteResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2644,7 +2644,7 @@ func (s *Dem) UpdateWebsite(ctx context.Context, request operations.UpdateWebsit
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Website", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "DemWebsite", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -2791,12 +2791,12 @@ func (s *Dem) UpdateWebsite(ctx context.Context, request operations.UpdateWebsit
 				return nil, err
 			}
 
-			var out components.EntityID
+			var out components.CommonEntityID
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntityID = &out
+			res.CommonEntityID = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -3052,12 +3052,12 @@ func (s *Dem) DeleteWebsite(ctx context.Context, request operations.DeleteWebsit
 				return nil, err
 			}
 
-			var out components.EntityID
+			var out components.CommonEntityID
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntityID = &out
+			res.CommonEntityID = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -3288,12 +3288,12 @@ func (s *Dem) PauseWebsiteMonitoring(ctx context.Context, request operations.Pau
 				return nil, err
 			}
 
-			var out components.EntityID
+			var out components.CommonEntityID
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntityID = &out
+			res.CommonEntityID = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -3524,12 +3524,12 @@ func (s *Dem) UnpauseWebsiteMonitoring(ctx context.Context, request operations.U
 				return nil, err
 			}
 
-			var out components.EntityID
+			var out components.CommonEntityID
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.EntityID = &out
+			res.CommonEntityID = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

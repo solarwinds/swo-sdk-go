@@ -46,45 +46,49 @@ func testGetWebsiteGetWebsite0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	var respBody *components.GetWebsiteResponse = &components.GetWebsiteResponse{
+	var respBody *components.DemGetWebsiteResponse = &components.DemGetWebsiteResponse{
 		ID:     "e-1448474379026206720",
 		Type:   "Website",
-		Status: components.GetWebsiteResponseStatusUp,
+		Status: components.DemGetWebsiteResponseStatusUp,
 		Name:   "solarwinds.com",
 		URL:    "https://www.solarwinds.com",
-		AvailabilityCheckSettings: &components.GetWebsiteResponseAvailabilityCheckSettings{
-			PlatformOptions: &components.GetWebsiteResponsePlatformOptions{
-				ProbePlatforms: []components.ProbePlatform{
-					components.ProbePlatformAws,
+		MonitoringOptions: components.MonitoringOptions{
+			IsAvailabilityActive: true,
+			IsRumActive:          false,
+		},
+		AvailabilityCheckSettings: &components.DemGetWebsiteResponseAvailabilityCheckSettings{
+			PlatformOptions: &components.DemGetWebsiteResponsePlatformOptions{
+				ProbePlatforms: []components.DemProbePlatform{
+					components.DemProbePlatformAws,
 				},
 				TestFromAll: types.Bool(true),
 			},
-			TestFrom: components.TestFrom{
-				Type: components.TestFromTypeRegion,
+			TestFrom: components.DemTestFrom{
+				Type: components.DemTestFromTypeRegion,
 				Values: []string{
 					"NA",
 				},
 			},
 			TestIntervalInSeconds: 14400,
-			OutageConfiguration: &components.GetWebsiteResponseOutageConfiguration{
-				FailingTestLocations: components.GetWebsiteResponseFailingTestLocationsAll,
+			OutageConfiguration: &components.DemGetWebsiteResponseOutageConfiguration{
+				FailingTestLocations: components.DemGetWebsiteResponseFailingTestLocationsAll,
 				ConsecutiveForDown:   2,
 			},
-			CheckForString: &components.GetWebsiteResponseCheckForString{
-				Operator: components.GetWebsiteResponseOperatorContains,
+			CheckForString: &components.DemGetWebsiteResponseCheckForString{
+				Operator: components.DemGetWebsiteResponseOperatorContains,
 				Value:    "string",
 			},
-			Protocols: []components.WebsiteProtocol{
-				components.WebsiteProtocolHTTP,
-				components.WebsiteProtocolHTTPS,
+			Protocols: []components.DemWebsiteProtocol{
+				components.DemWebsiteProtocolHTTP,
+				components.DemWebsiteProtocolHTTPS,
 			},
-			Ssl: &components.GetWebsiteResponseSsl{
+			Ssl: &components.DemGetWebsiteResponseSsl{
 				Enabled:                        types.Bool(true),
 				DaysPriorToExpiration:          types.Int(7),
 				IgnoreIntermediateCertificates: types.Bool(true),
 			},
-			CustomHeaders: []components.CustomHeaders{
-				components.CustomHeaders{
+			CustomHeaders: []components.DemCustomHeaders{
+				components.DemCustomHeaders{
 					Name:  "string",
 					Value: "string",
 				},
@@ -92,13 +96,13 @@ func testGetWebsiteGetWebsite0(w http.ResponseWriter, req *http.Request) {
 			AllowInsecureRenegotiation: types.Bool(true),
 			PostData:                   types.String("{\"example\": \"value\"}"),
 		},
-		Tags: []components.Tag{
-			components.Tag{
+		Tags: []components.CommonTag{
+			components.CommonTag{
 				Key:   "environment",
 				Value: "production",
 			},
 		},
-		Rum: &components.GetWebsiteResponseRum{
+		Rum: &components.DemGetWebsiteResponseRum{
 			ApdexTimeInSeconds: types.Int(4),
 			Snippet:            types.String("string"),
 			Spa:                true,

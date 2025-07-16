@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
-  docChecksum: de0688513df056d828d0b531916eb22d
-  docVersion: 1.0.8
-  speakeasyVersion: 1.574.1
-  generationVersion: 2.647.2
-  releaseVersion: 0.3.0
-  configChecksum: 4df973b298a4d2753de30adc926ee831
+  docChecksum: 3c507f632b42b5e917e98b3d15c9bdf4
+  docVersion: 1.0.9
+  speakeasyVersion: 1.582.0
+  generationVersion: 2.657.1
+  releaseVersion: 0.4.0
+  configChecksum: 9856707bd80ab619661af1eb14b3a11b
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
@@ -23,7 +23,6 @@ features:
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.3
-    ignores: 2.81.1
     inputOutputModels: 2.83.0
     intellisenseMarkdownSupport: 0.1.0
     mockServer: 0.1.1
@@ -32,7 +31,7 @@ features:
     responseFormat: 0.1.2
     retries: 2.83.3
     sdkHooks: 0.2.0
-    tests: 0.16.0
+    tests: 0.16.1
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -74,64 +73,64 @@ generatedFiles:
   - /models/apierrors/updateuri.go
   - /models/apierrors/updatewebsite.go
   - /models/apierrors/validatemgmtaccountonboarding.go
-  - /models/components/activateawsintegrationrequest.go
-  - /models/components/awsorganisationalunitrequest.go
-  - /models/components/changeevent.go
+  - /models/components/changeeventschangeevent.go
+  - /models/components/cloudaccountsawsactivateintegrationrequest.go
+  - /models/components/cloudaccountsawsmgmtaccountonboardingrequest.go
+  - /models/components/cloudaccountsawsmgmtaccountonboardingresponse.go
+  - /models/components/cloudaccountsawsorganisationalunit.go
+  - /models/components/cloudaccountsawsorganisationalunitrequest.go
+  - /models/components/cloudaccountsawsupdateintegrationrequest.go
+  - /models/components/cloudaccountsawsupdateintegrationresponse.go
   - /models/components/commondefaulterrorcode.go
+  - /models/components/commonentityid.go
   - /models/components/commonkeyvaluepair.go
   - /models/components/commonlink.go
   - /models/components/commonmetricinfo.go
   - /models/components/commonpageinfo.go
-  - /models/components/compositemetric.go
-  - /models/components/createtokenrequest.go
-  - /models/components/createtokenresponse.go
-  - /models/components/customheaders.go
-  - /models/components/databaseauthmethod.go
-  - /models/components/databaseconnectionoptions.go
-  - /models/components/databaseconnectionoptionsupdate.go
-  - /models/components/databasecredentialspublickeyresponse.go
-  - /models/components/databasemetricscapturemethod.go
-  - /models/components/databasepluginconfig.go
-  - /models/components/databasepluginconfigresponse.go
-  - /models/components/databasepluginstatus.go
-  - /models/components/databasepluginstatusresponse.go
-  - /models/components/databasessloptions.go
-  - /models/components/databasessloptionsupdate.go
-  - /models/components/databasetype.go
-  - /models/components/entity.go
-  - /models/components/entityid.go
-  - /models/components/entityinput.go
-  - /models/components/geturiresponse.go
-  - /models/components/getwebsiteresponse.go
+  - /models/components/commontag.go
+  - /models/components/dbodatabaseauthmethod.go
+  - /models/components/dbodatabaseconnectionoptions.go
+  - /models/components/dbodatabaseconnectionoptionsupdate.go
+  - /models/components/dbodatabasecredentialspublickeyresponse.go
+  - /models/components/dbodatabasemetricscapturemethod.go
+  - /models/components/dbodatabasepluginconfig.go
+  - /models/components/dbodatabasepluginconfigresponse.go
+  - /models/components/dbodatabasepluginstatus.go
+  - /models/components/dbodatabasepluginstatusresponse.go
+  - /models/components/dbodatabasessloptions.go
+  - /models/components/dbodatabasessloptionsupdate.go
+  - /models/components/dbodatabasetype.go
+  - /models/components/dboobservedatabaserequest.go
+  - /models/components/dboupdatedatabaserequest.go
+  - /models/components/demcustomheaders.go
+  - /models/components/demgeturiresponse.go
+  - /models/components/demgetwebsiteresponse.go
+  - /models/components/demlistprobesresponse.go
+  - /models/components/demoutageconfiguration.go
+  - /models/components/demprobe.go
+  - /models/components/demprobeplatform.go
+  - /models/components/demtestfrom.go
+  - /models/components/demuri.go
+  - /models/components/demuriavailabilitychecksettings.go
+  - /models/components/demuriavailabilitychecksettingsinput.go
+  - /models/components/demwebsite.go
+  - /models/components/demwebsiteprotocol.go
+  - /models/components/entitiesentity.go
+  - /models/components/entitiesentityinput.go
   - /models/components/httpmetadata.go
-  - /models/components/listprobesresponse.go
   - /models/components/logsarchive.go
   - /models/components/logsevent.go
-  - /models/components/metricerrorcode.go
-  - /models/components/metricmeasurementsrequest.go
   - /models/components/metricsaggregationmethods.go
-  - /models/components/metricseriestype.go
+  - /models/components/metricscompositemetric.go
   - /models/components/metricsgrouping.go
   - /models/components/metricsmeasurement.go
-  - /models/components/mgmtaccountonboardingrequest.go
-  - /models/components/mgmtaccountonboardingresponse.go
-  - /models/components/observedatabaserequest.go
-  - /models/components/organisationalunit.go
-  - /models/components/outageconfiguration.go
-  - /models/components/probe.go
-  - /models/components/probeplatform.go
+  - /models/components/metricsmeasurementsrequest.go
+  - /models/components/metricsmetricerrorcode.go
+  - /models/components/metricsmetricseriestype.go
+  - /models/components/metricsupdatecompositemetricrequest.go
   - /models/components/security.go
-  - /models/components/tag.go
-  - /models/components/testfrom.go
-  - /models/components/updateawsintegrationrequest.go
-  - /models/components/updateawsintegrationresponse.go
-  - /models/components/updatecompositemetric.go
-  - /models/components/updatedatabaserequest.go
-  - /models/components/uri.go
-  - /models/components/uriavailabilitychecksettings.go
-  - /models/components/uriavailabilitychecksettingsinput.go
-  - /models/components/website.go
-  - /models/components/websiteprotocol.go
+  - /models/components/tokenscreatetokenrequest.go
+  - /models/components/tokenscreatetokenresponse.go
   - /models/operations/activateawsintegration.go
   - /models/operations/createchangeevent.go
   - /models/operations/createcompositemetric.go
@@ -244,77 +243,95 @@ generatedFiles:
   - docs/models/apierrors/validatemgmtaccountonboardingcloudaccountsresponsebody.md
   - docs/models/apierrors/validatemgmtaccountonboardingcloudaccountsresponseresponsebody.md
   - docs/models/apierrors/validatemgmtaccountonboardingresponsebody.md
-  - docs/models/components/activateawsintegrationrequest.md
   - docs/models/components/availabilitychecksettings.md
-  - docs/models/components/awsorganisationalunitrequest.md
   - docs/models/components/category.md
-  - docs/models/components/changeevent.md
+  - docs/models/components/changeeventschangeevent.md
   - docs/models/components/checkforstring.md
+  - docs/models/components/cloudaccountsawsactivateintegrationrequest.md
+  - docs/models/components/cloudaccountsawsmgmtaccountonboardingrequest.md
+  - docs/models/components/cloudaccountsawsmgmtaccountonboardingresponse.md
+  - docs/models/components/cloudaccountsawsorganisationalunit.md
+  - docs/models/components/cloudaccountsawsorganisationalunitrequest.md
+  - docs/models/components/cloudaccountsawsupdateintegrationrequest.md
+  - docs/models/components/cloudaccountsawsupdateintegrationresponse.md
   - docs/models/components/commondefaulterrorcode.md
+  - docs/models/components/commonentityid.md
   - docs/models/components/commonkeyvaluepair.md
   - docs/models/components/commonlink.md
   - docs/models/components/commonmetricinfo.md
   - docs/models/components/commonpageinfo.md
-  - docs/models/components/compositemetric.md
+  - docs/models/components/commontag.md
   - docs/models/components/coordinates.md
-  - docs/models/components/createtokenrequest.md
-  - docs/models/components/createtokenrequesttype.md
-  - docs/models/components/createtokenresponse.md
-  - docs/models/components/customheaders.md
-  - docs/models/components/databaseauthmethod.md
-  - docs/models/components/databaseconnectionoptions.md
-  - docs/models/components/databaseconnectionoptionsupdate.md
-  - docs/models/components/databasecredentialspublickeyresponse.md
-  - docs/models/components/databasemetricscapturemethod.md
-  - docs/models/components/databasepluginconfig.md
-  - docs/models/components/databasepluginconfigresponse.md
-  - docs/models/components/databasepluginstatus.md
-  - docs/models/components/databasepluginstatusresponse.md
-  - docs/models/components/databasessloptions.md
-  - docs/models/components/databasessloptionsupdate.md
-  - docs/models/components/databasessloptionsupdatesslmode.md
-  - docs/models/components/databasetype.md
-  - docs/models/components/entity.md
-  - docs/models/components/entityid.md
-  - docs/models/components/entityinput.md
+  - docs/models/components/dbodatabaseauthmethod.md
+  - docs/models/components/dbodatabaseconnectionoptions.md
+  - docs/models/components/dbodatabaseconnectionoptionsupdate.md
+  - docs/models/components/dbodatabasecredentialspublickeyresponse.md
+  - docs/models/components/dbodatabasemetricscapturemethod.md
+  - docs/models/components/dbodatabasepluginconfig.md
+  - docs/models/components/dbodatabasepluginconfigresponse.md
+  - docs/models/components/dbodatabasepluginstatus.md
+  - docs/models/components/dbodatabasepluginstatusresponse.md
+  - docs/models/components/dbodatabasessloptions.md
+  - docs/models/components/dbodatabasessloptionsupdate.md
+  - docs/models/components/dbodatabasessloptionsupdatesslmode.md
+  - docs/models/components/dbodatabasetype.md
+  - docs/models/components/dboobservedatabaserequest.md
+  - docs/models/components/dboupdatedatabaserequest.md
+  - docs/models/components/demcustomheaders.md
+  - docs/models/components/demgeturiresponse.md
+  - docs/models/components/demgetwebsiteresponse.md
+  - docs/models/components/demgetwebsiteresponseavailabilitychecksettings.md
+  - docs/models/components/demgetwebsiteresponsecheckforstring.md
+  - docs/models/components/demgetwebsiteresponsefailingtestlocations.md
+  - docs/models/components/demgetwebsiteresponseoperator.md
+  - docs/models/components/demgetwebsiteresponseoutageconfiguration.md
+  - docs/models/components/demgetwebsiteresponseplatformoptions.md
+  - docs/models/components/demgetwebsiteresponserum.md
+  - docs/models/components/demgetwebsiteresponsessl.md
+  - docs/models/components/demgetwebsiteresponsestatus.md
+  - docs/models/components/demlistprobesresponse.md
+  - docs/models/components/demoutageconfiguration.md
+  - docs/models/components/demprobe.md
+  - docs/models/components/demprobeplatform.md
+  - docs/models/components/demtestfrom.md
+  - docs/models/components/demuri.md
+  - docs/models/components/demuriavailabilitychecksettings.md
+  - docs/models/components/demuriavailabilitychecksettingsfailingtestlocations.md
+  - docs/models/components/demuriavailabilitychecksettingsinput.md
+  - docs/models/components/demuriavailabilitychecksettingsinputfailingtestlocations.md
+  - docs/models/components/demuriavailabilitychecksettingsoutageconfiguration.md
+  - docs/models/components/demuriavailabilitychecksettingsping.md
+  - docs/models/components/demuriavailabilitychecksettingsplatformoptions.md
+  - docs/models/components/demuriavailabilitychecksettingstcp.md
+  - docs/models/components/demwebsite.md
+  - docs/models/components/demwebsitefailingtestlocations.md
+  - docs/models/components/demwebsiteoutageconfiguration.md
+  - docs/models/components/demwebsiteplatformoptions.md
+  - docs/models/components/demwebsiteprotocol.md
+  - docs/models/components/entitiesentity.md
+  - docs/models/components/entitiesentityinput.md
   - docs/models/components/failingtestlocations.md
   - docs/models/components/fillmethod.md
-  - docs/models/components/geturiresponse.md
-  - docs/models/components/getwebsiteresponse.md
-  - docs/models/components/getwebsiteresponseavailabilitychecksettings.md
-  - docs/models/components/getwebsiteresponsecheckforstring.md
-  - docs/models/components/getwebsiteresponsefailingtestlocations.md
-  - docs/models/components/getwebsiteresponseoperator.md
-  - docs/models/components/getwebsiteresponseoutageconfiguration.md
-  - docs/models/components/getwebsiteresponseplatformoptions.md
-  - docs/models/components/getwebsiteresponserum.md
-  - docs/models/components/getwebsiteresponsessl.md
-  - docs/models/components/getwebsiteresponsestatus.md
   - docs/models/components/healthscore.md
   - docs/models/components/httpmetadata.md
   - docs/models/components/integrationtype.md
-  - docs/models/components/listprobesresponse.md
   - docs/models/components/logsarchive.md
   - docs/models/components/logsevent.md
-  - docs/models/components/metricerrorcode.md
-  - docs/models/components/metricmeasurementsrequest.md
   - docs/models/components/metricsaggregationmethods.md
-  - docs/models/components/metricseriestype.md
+  - docs/models/components/metricscompositemetric.md
   - docs/models/components/metricsgrouping.md
   - docs/models/components/metricsmeasurement.md
-  - docs/models/components/mgmtaccountonboardingrequest.md
-  - docs/models/components/mgmtaccountonboardingresponse.md
+  - docs/models/components/metricsmeasurementsrequest.md
+  - docs/models/components/metricsmetricerrorcode.md
+  - docs/models/components/metricsmetricseriestype.md
+  - docs/models/components/metricsupdatecompositemetricrequest.md
   - docs/models/components/monitoringoptions.md
-  - docs/models/components/observedatabaserequest.md
   - docs/models/components/operator.md
-  - docs/models/components/organisationalunit.md
   - docs/models/components/outageconfiguration.md
   - docs/models/components/ping.md
   - docs/models/components/platform.md
   - docs/models/components/platformoptions.md
   - docs/models/components/pregroupbymethod.md
-  - docs/models/components/probe.md
-  - docs/models/components/probeplatform.md
   - docs/models/components/protocol.md
   - docs/models/components/rum.md
   - docs/models/components/security.md
@@ -322,30 +339,12 @@ generatedFiles:
   - docs/models/components/ssl.md
   - docs/models/components/sslmode.md
   - docs/models/components/status.md
-  - docs/models/components/tag.md
   - docs/models/components/tags.md
   - docs/models/components/tcp.md
-  - docs/models/components/testfrom.md
+  - docs/models/components/tokenscreatetokenrequest.md
+  - docs/models/components/tokenscreatetokenrequesttype.md
+  - docs/models/components/tokenscreatetokenresponse.md
   - docs/models/components/type.md
-  - docs/models/components/updateawsintegrationrequest.md
-  - docs/models/components/updateawsintegrationresponse.md
-  - docs/models/components/updatecompositemetric.md
-  - docs/models/components/updatedatabaserequest.md
-  - docs/models/components/uri.md
-  - docs/models/components/uriavailabilitychecksettings.md
-  - docs/models/components/uriavailabilitychecksettingsfailingtestlocations.md
-  - docs/models/components/uriavailabilitychecksettingsinput.md
-  - docs/models/components/uriavailabilitychecksettingsinputfailingtestlocations.md
-  - docs/models/components/uriavailabilitychecksettingsinputoutageconfiguration.md
-  - docs/models/components/uriavailabilitychecksettingsoutageconfiguration.md
-  - docs/models/components/uriavailabilitychecksettingsping.md
-  - docs/models/components/uriavailabilitychecksettingsplatformoptions.md
-  - docs/models/components/uriavailabilitychecksettingstcp.md
-  - docs/models/components/website.md
-  - docs/models/components/websitefailingtestlocations.md
-  - docs/models/components/websiteoutageconfiguration.md
-  - docs/models/components/websiteplatformoptions.md
-  - docs/models/components/websiteprotocol.md
   - docs/models/operations/activateawsintegrationresponse.md
   - docs/models/operations/createchangeeventresponse.md
   - docs/models/operations/createchangeeventresponsebody.md
@@ -514,7 +513,6 @@ generatedFiles:
   - tests/mockserver/internal/handler/pathgetv1metricsnameattributesattributename.go
   - tests/mockserver/internal/handler/pathgetv1metricsnamemeasurements.go
   - tests/mockserver/internal/handler/pathpatchv1dbodatabasesentityid.go
-  - tests/mockserver/internal/handler/pathpostv1changeevents.go
   - tests/mockserver/internal/handler/pathpostv1cloudawscontroltoweractivate.go
   - tests/mockserver/internal/handler/pathpostv1cloudawscontroltowercreateorgstructure.go
   - tests/mockserver/internal/handler/pathpostv1cloudawscontroltowerupdate.go
@@ -543,64 +541,64 @@ generatedFiles:
   - tests/mockserver/internal/logging/logger.go
   - tests/mockserver/internal/logging/oas_operation.go
   - tests/mockserver/internal/logging/oas_operation_call.go
-  - tests/mockserver/internal/sdk/models/components/activateawsintegrationrequest.go
-  - tests/mockserver/internal/sdk/models/components/awsorganisationalunitrequest.go
-  - tests/mockserver/internal/sdk/models/components/changeevent.go
+  - tests/mockserver/internal/sdk/models/components/changeeventschangeevent.go
+  - tests/mockserver/internal/sdk/models/components/cloudaccountsawsactivateintegrationrequest.go
+  - tests/mockserver/internal/sdk/models/components/cloudaccountsawsmgmtaccountonboardingrequest.go
+  - tests/mockserver/internal/sdk/models/components/cloudaccountsawsmgmtaccountonboardingresponse.go
+  - tests/mockserver/internal/sdk/models/components/cloudaccountsawsorganisationalunit.go
+  - tests/mockserver/internal/sdk/models/components/cloudaccountsawsorganisationalunitrequest.go
+  - tests/mockserver/internal/sdk/models/components/cloudaccountsawsupdateintegrationrequest.go
+  - tests/mockserver/internal/sdk/models/components/cloudaccountsawsupdateintegrationresponse.go
   - tests/mockserver/internal/sdk/models/components/commondefaulterrorcode.go
+  - tests/mockserver/internal/sdk/models/components/commonentityid.go
   - tests/mockserver/internal/sdk/models/components/commonkeyvaluepair.go
   - tests/mockserver/internal/sdk/models/components/commonlink.go
   - tests/mockserver/internal/sdk/models/components/commonmetricinfo.go
   - tests/mockserver/internal/sdk/models/components/commonpageinfo.go
-  - tests/mockserver/internal/sdk/models/components/compositemetric.go
-  - tests/mockserver/internal/sdk/models/components/createtokenrequest.go
-  - tests/mockserver/internal/sdk/models/components/createtokenresponse.go
-  - tests/mockserver/internal/sdk/models/components/customheaders.go
-  - tests/mockserver/internal/sdk/models/components/databaseauthmethod.go
-  - tests/mockserver/internal/sdk/models/components/databaseconnectionoptions.go
-  - tests/mockserver/internal/sdk/models/components/databaseconnectionoptionsupdate.go
-  - tests/mockserver/internal/sdk/models/components/databasecredentialspublickeyresponse.go
-  - tests/mockserver/internal/sdk/models/components/databasemetricscapturemethod.go
-  - tests/mockserver/internal/sdk/models/components/databasepluginconfig.go
-  - tests/mockserver/internal/sdk/models/components/databasepluginconfigresponse.go
-  - tests/mockserver/internal/sdk/models/components/databasepluginstatus.go
-  - tests/mockserver/internal/sdk/models/components/databasepluginstatusresponse.go
-  - tests/mockserver/internal/sdk/models/components/databasessloptions.go
-  - tests/mockserver/internal/sdk/models/components/databasessloptionsupdate.go
-  - tests/mockserver/internal/sdk/models/components/databasetype.go
-  - tests/mockserver/internal/sdk/models/components/entity.go
-  - tests/mockserver/internal/sdk/models/components/entityid.go
-  - tests/mockserver/internal/sdk/models/components/entityinput.go
-  - tests/mockserver/internal/sdk/models/components/geturiresponse.go
-  - tests/mockserver/internal/sdk/models/components/getwebsiteresponse.go
+  - tests/mockserver/internal/sdk/models/components/commontag.go
+  - tests/mockserver/internal/sdk/models/components/dbodatabaseauthmethod.go
+  - tests/mockserver/internal/sdk/models/components/dbodatabaseconnectionoptions.go
+  - tests/mockserver/internal/sdk/models/components/dbodatabaseconnectionoptionsupdate.go
+  - tests/mockserver/internal/sdk/models/components/dbodatabasecredentialspublickeyresponse.go
+  - tests/mockserver/internal/sdk/models/components/dbodatabasemetricscapturemethod.go
+  - tests/mockserver/internal/sdk/models/components/dbodatabasepluginconfig.go
+  - tests/mockserver/internal/sdk/models/components/dbodatabasepluginconfigresponse.go
+  - tests/mockserver/internal/sdk/models/components/dbodatabasepluginstatus.go
+  - tests/mockserver/internal/sdk/models/components/dbodatabasepluginstatusresponse.go
+  - tests/mockserver/internal/sdk/models/components/dbodatabasessloptions.go
+  - tests/mockserver/internal/sdk/models/components/dbodatabasessloptionsupdate.go
+  - tests/mockserver/internal/sdk/models/components/dbodatabasetype.go
+  - tests/mockserver/internal/sdk/models/components/dboobservedatabaserequest.go
+  - tests/mockserver/internal/sdk/models/components/dboupdatedatabaserequest.go
+  - tests/mockserver/internal/sdk/models/components/demcustomheaders.go
+  - tests/mockserver/internal/sdk/models/components/demgeturiresponse.go
+  - tests/mockserver/internal/sdk/models/components/demgetwebsiteresponse.go
+  - tests/mockserver/internal/sdk/models/components/demlistprobesresponse.go
+  - tests/mockserver/internal/sdk/models/components/demoutageconfiguration.go
+  - tests/mockserver/internal/sdk/models/components/demprobe.go
+  - tests/mockserver/internal/sdk/models/components/demprobeplatform.go
+  - tests/mockserver/internal/sdk/models/components/demtestfrom.go
+  - tests/mockserver/internal/sdk/models/components/demuri.go
+  - tests/mockserver/internal/sdk/models/components/demuriavailabilitychecksettings.go
+  - tests/mockserver/internal/sdk/models/components/demuriavailabilitychecksettingsinput.go
+  - tests/mockserver/internal/sdk/models/components/demwebsite.go
+  - tests/mockserver/internal/sdk/models/components/demwebsiteprotocol.go
+  - tests/mockserver/internal/sdk/models/components/entitiesentity.go
+  - tests/mockserver/internal/sdk/models/components/entitiesentityinput.go
   - tests/mockserver/internal/sdk/models/components/httpmetadata.go
-  - tests/mockserver/internal/sdk/models/components/listprobesresponse.go
   - tests/mockserver/internal/sdk/models/components/logsarchive.go
   - tests/mockserver/internal/sdk/models/components/logsevent.go
-  - tests/mockserver/internal/sdk/models/components/metricerrorcode.go
-  - tests/mockserver/internal/sdk/models/components/metricmeasurementsrequest.go
   - tests/mockserver/internal/sdk/models/components/metricsaggregationmethods.go
-  - tests/mockserver/internal/sdk/models/components/metricseriestype.go
+  - tests/mockserver/internal/sdk/models/components/metricscompositemetric.go
   - tests/mockserver/internal/sdk/models/components/metricsgrouping.go
   - tests/mockserver/internal/sdk/models/components/metricsmeasurement.go
-  - tests/mockserver/internal/sdk/models/components/mgmtaccountonboardingrequest.go
-  - tests/mockserver/internal/sdk/models/components/mgmtaccountonboardingresponse.go
-  - tests/mockserver/internal/sdk/models/components/observedatabaserequest.go
-  - tests/mockserver/internal/sdk/models/components/organisationalunit.go
-  - tests/mockserver/internal/sdk/models/components/outageconfiguration.go
-  - tests/mockserver/internal/sdk/models/components/probe.go
-  - tests/mockserver/internal/sdk/models/components/probeplatform.go
+  - tests/mockserver/internal/sdk/models/components/metricsmeasurementsrequest.go
+  - tests/mockserver/internal/sdk/models/components/metricsmetricerrorcode.go
+  - tests/mockserver/internal/sdk/models/components/metricsmetricseriestype.go
+  - tests/mockserver/internal/sdk/models/components/metricsupdatecompositemetricrequest.go
   - tests/mockserver/internal/sdk/models/components/security.go
-  - tests/mockserver/internal/sdk/models/components/tag.go
-  - tests/mockserver/internal/sdk/models/components/testfrom.go
-  - tests/mockserver/internal/sdk/models/components/updateawsintegrationrequest.go
-  - tests/mockserver/internal/sdk/models/components/updateawsintegrationresponse.go
-  - tests/mockserver/internal/sdk/models/components/updatecompositemetric.go
-  - tests/mockserver/internal/sdk/models/components/updatedatabaserequest.go
-  - tests/mockserver/internal/sdk/models/components/uri.go
-  - tests/mockserver/internal/sdk/models/components/uriavailabilitychecksettings.go
-  - tests/mockserver/internal/sdk/models/components/uriavailabilitychecksettingsinput.go
-  - tests/mockserver/internal/sdk/models/components/website.go
-  - tests/mockserver/internal/sdk/models/components/websiteprotocol.go
+  - tests/mockserver/internal/sdk/models/components/tokenscreatetokenrequest.go
+  - tests/mockserver/internal/sdk/models/components/tokenscreatetokenresponse.go
   - tests/mockserver/internal/sdk/models/operations/activateawsintegration.go
   - tests/mockserver/internal/sdk/models/operations/createchangeevent.go
   - tests/mockserver/internal/sdk/models/operations/createcompositemetric.go
@@ -715,6 +713,8 @@ examples:
         application/json: {"id": 1731676626, "name": "app-deploys", "title": "deployed v45", "timestamp": 1731676626, "source": "foo3.example.com", "tags": {"app": "foo", "environment": "production"}, "links": [{"rel": "self", "href": "https://example.com"}]}
       responses:
         "200":
+          application/json: {"id": 208943}
+        "202":
           application/json: {"id": 208943}
   activateAwsIntegration:
     speakeasy-default-activate-aws-integration:

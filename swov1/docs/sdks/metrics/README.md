@@ -103,7 +103,7 @@ func main() {
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    res, err := s.Metrics.CreateCompositeMetric(ctx, components.CompositeMetric{
+    res, err := s.Metrics.CreateCompositeMetric(ctx, components.MetricsCompositeMetric{
         Name: "composite.custom.system.disk.io.rate",
         DisplayName: swov1.String("Disk IO rate"),
         Description: swov1.String("Disk bytes transferred per second"),
@@ -113,7 +113,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.CompositeMetric != nil {
+    if res.MetricsCompositeMetric != nil {
         // handle response
     }
 }
@@ -121,11 +121,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
-| `request`                                                                | [components.CompositeMetric](../../models/components/compositemetric.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
-| `opts`                                                                   | [][operations.Option](../../models/operations/option.md)                 | :heavy_minus_sign:                                                       | The options for this request.                                            |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [components.MetricsCompositeMetric](../../models/components/metricscompositemetric.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 ### Response
 
@@ -187,7 +187,7 @@ func main() {
 
     res, err := s.Metrics.ListMultiMetricMeasurements(ctx, operations.ListMultiMetricMeasurementsRequest{
         RequestBody: operations.ListMultiMetricMeasurementsRequestBody{
-            Metrics: []components.MetricMeasurementsRequest{},
+            Metrics: []components.MetricsMeasurementsRequest{},
         },
     })
     if err != nil {
@@ -257,7 +257,7 @@ func main() {
 
     res, err := s.Metrics.UpdateCompositeMetric(ctx, operations.UpdateCompositeMetricRequest{
         Name: "<value>",
-        UpdateCompositeMetric: components.UpdateCompositeMetric{
+        MetricsUpdateCompositeMetricRequest: components.MetricsUpdateCompositeMetricRequest{
             DisplayName: swov1.String("Disk IO rate"),
             Description: swov1.String("Disk bytes transferred per second"),
             Formula: "rate(system.disk.io[5m])",
@@ -267,7 +267,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.CompositeMetric != nil {
+    if res.MetricsCompositeMetric != nil {
         // handle response
     }
 }
@@ -579,7 +579,7 @@ func main() {
 
     res, err := s.Metrics.ListMetricMeasurements(ctx, operations.ListMetricMeasurementsRequest{
         Name: "<value>",
-        SeriesType: components.MetricSeriesTypeTimeseries,
+        SeriesType: components.MetricsMetricSeriesTypeTimeseries,
     })
     if err != nil {
         log.Fatal(err)

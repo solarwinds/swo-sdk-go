@@ -34,7 +34,7 @@ func main() {
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    res, err := s.CloudAccounts.ActivateAwsIntegration(ctx, components.ActivateAwsIntegrationRequest{
+    res, err := s.CloudAccounts.ActivateAwsIntegration(ctx, components.CloudAccountsAwsActivateIntegrationRequest{
         ManagementAccountID: "<id>",
         AccountID: "<id>",
         Enable: true,
@@ -50,11 +50,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
-| `request`                                                                                            | [components.ActivateAwsIntegrationRequest](../../models/components/activateawsintegrationrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
-| `opts`                                                                                               | [][operations.Option](../../models/operations/option.md)                                             | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
+| Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                                                          | :heavy_check_mark:                                                                                                             | The context to use for the request.                                                                                            |
+| `request`                                                                                                                      | [components.CloudAccountsAwsActivateIntegrationRequest](../../models/components/cloudaccountsawsactivateintegrationrequest.md) | :heavy_check_mark:                                                                                                             | The request object to use for the request.                                                                                     |
+| `opts`                                                                                                                         | [][operations.Option](../../models/operations/option.md)                                                                       | :heavy_minus_sign:                                                                                                             | The options for this request.                                                                                                  |
 
 ### Response
 
@@ -94,9 +94,9 @@ func main() {
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    res, err := s.CloudAccounts.CreateOrgStructure(ctx, components.AwsOrganisationalUnitRequest{
+    res, err := s.CloudAccounts.CreateOrgStructure(ctx, components.CloudAccountsAwsOrganisationalUnitRequest{
         MgmtAccountID: "<id>",
-        Structure: []components.OrganisationalUnit{},
+        Structure: []components.CloudAccountsAwsOrganisationalUnit{},
     })
     if err != nil {
         log.Fatal(err)
@@ -109,11 +109,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
-| `request`                                                                                          | [components.AwsOrganisationalUnitRequest](../../models/components/awsorganisationalunitrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `opts`                                                                                             | [][operations.Option](../../models/operations/option.md)                                           | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
+| Parameter                                                                                                                    | Type                                                                                                                         | Required                                                                                                                     | Description                                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                                        | :heavy_check_mark:                                                                                                           | The context to use for the request.                                                                                          |
+| `request`                                                                                                                    | [components.CloudAccountsAwsOrganisationalUnitRequest](../../models/components/cloudaccountsawsorganisationalunitrequest.md) | :heavy_check_mark:                                                                                                           | The request object to use for the request.                                                                                   |
+| `opts`                                                                                                                       | [][operations.Option](../../models/operations/option.md)                                                                     | :heavy_minus_sign:                                                                                                           | The options for this request.                                                                                                |
 
 ### Response
 
@@ -153,7 +153,7 @@ func main() {
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    res, err := s.CloudAccounts.UpdateAwsIntegration(ctx, components.UpdateAwsIntegrationRequest{
+    res, err := s.CloudAccounts.UpdateAwsIntegration(ctx, components.CloudAccountsAwsUpdateIntegrationRequest{
         ManagementAccountID: "<id>",
         AccountID: "<id>",
         AccountName: "<value>",
@@ -162,7 +162,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.UpdateAwsIntegrationResponse != nil {
+    if res.CloudAccountsAwsUpdateIntegrationResponse != nil {
         // handle response
     }
 }
@@ -170,11 +170,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [components.UpdateAwsIntegrationRequest](../../models/components/updateawsintegrationrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+| Parameter                                                                                                                  | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                                      | :heavy_check_mark:                                                                                                         | The context to use for the request.                                                                                        |
+| `request`                                                                                                                  | [components.CloudAccountsAwsUpdateIntegrationRequest](../../models/components/cloudaccountsawsupdateintegrationrequest.md) | :heavy_check_mark:                                                                                                         | The request object to use for the request.                                                                                 |
+| `opts`                                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                                   | :heavy_minus_sign:                                                                                                         | The options for this request.                                                                                              |
 
 ### Response
 
@@ -215,14 +215,14 @@ func main() {
     )
 
     res, err := s.CloudAccounts.ValidateMgmtAccountOnboarding(ctx, operations.ValidateMgmtAccountOnboardingRequest{
-        Request: components.MgmtAccountOnboardingRequest{
+        Request: components.CloudAccountsAwsMgmtAccountOnboardingRequest{
             ManagementAccountID: "<id>",
         },
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.MgmtAccountOnboardingResponse != nil {
+    if res.CloudAccountsAwsMgmtAccountOnboardingResponse != nil {
         // handle response
     }
 }

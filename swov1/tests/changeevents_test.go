@@ -3,49 +3,9 @@
 package tests
 
 import (
-	"context"
-	"github.com/solarwinds/swo-sdk-go/swov1"
-	"github.com/solarwinds/swo-sdk-go/swov1/internal/utils"
-	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
-	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 	"testing"
 )
 
 func TestChangeevents_CreateChangeEvent(t *testing.T) {
-	ctx := context.Background()
-
-	testHTTPClient := createTestHTTPClient("createChangeEvent")
-
-	s := swov1.New(
-		swov1.WithServerURL(utils.GetEnv("TEST_SERVER_URL", "http://localhost:18080")),
-		swov1.WithClient(testHTTPClient),
-		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
-	)
-
-	res, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEvent{
-		ID:        swov1.Int64(1731676626),
-		Name:      "app-deploys",
-		Title:     "deployed v45",
-		Timestamp: swov1.Int64(1731676626),
-		Source:    swov1.String("foo3.example.com"),
-		Tags: map[string]string{
-			"app":         "foo",
-			"environment": "production",
-		},
-		Links: []components.CommonLink{
-			components.CommonLink{
-				Rel:  "self",
-				Href: "https://example.com",
-			},
-		},
-	})
-	require.NoError(t, err)
-	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.Object)
-	assert.Equal(t, &operations.CreateChangeEventResponseBody{
-		ID: 119883,
-	}, res.Object)
-
+	t.Skip("incomplete test found please make sure to address the following errors: [`workflow step createChangeEvent.test referencing operation createChangeEvent does not contain response with status code 200`]")
 }

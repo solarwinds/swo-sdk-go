@@ -9,7 +9,7 @@ import (
 type ListProbesResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The request has succeeded.
-	ListProbesResponse *components.ListProbesResponse
+	DemListProbesResponse *components.DemListProbesResponse
 }
 
 func (o *ListProbesResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -19,9 +19,9 @@ func (o *ListProbesResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *ListProbesResponse) GetListProbesResponse() *components.ListProbesResponse {
+func (o *ListProbesResponse) GetDemListProbesResponse() *components.DemListProbesResponse {
 	if o == nil {
 		return nil
 	}
-	return o.ListProbesResponse
+	return o.DemListProbesResponse
 }

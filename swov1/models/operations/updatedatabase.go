@@ -7,8 +7,8 @@ import (
 )
 
 type UpdateDatabaseRequest struct {
-	EntityID              string                           `pathParam:"style=simple,explode=false,name=entityId"`
-	UpdateDatabaseRequest components.UpdateDatabaseRequest `request:"mediaType=application/json"`
+	EntityID                 string                              `pathParam:"style=simple,explode=false,name=entityId"`
+	DboUpdateDatabaseRequest components.DboUpdateDatabaseRequest `request:"mediaType=application/json"`
 }
 
 func (o *UpdateDatabaseRequest) GetEntityID() string {
@@ -18,11 +18,11 @@ func (o *UpdateDatabaseRequest) GetEntityID() string {
 	return o.EntityID
 }
 
-func (o *UpdateDatabaseRequest) GetUpdateDatabaseRequest() components.UpdateDatabaseRequest {
+func (o *UpdateDatabaseRequest) GetDboUpdateDatabaseRequest() components.DboUpdateDatabaseRequest {
 	if o == nil {
-		return components.UpdateDatabaseRequest{}
+		return components.DboUpdateDatabaseRequest{}
 	}
-	return o.UpdateDatabaseRequest
+	return o.DboUpdateDatabaseRequest
 }
 
 type UpdateDatabaseResponse struct {

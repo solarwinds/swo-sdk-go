@@ -36,7 +36,6 @@ func GeneratedHandlers(ctx context.Context, dir *logging.HTTPFileDirectory, rt *
 		NewGeneratedHandler(ctx, http.MethodGet, "/v1/metrics/{name}/attributes/{attributeName}", pathGetV1MetricsNameAttributesAttributeName(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodGet, "/v1/metrics/{name}/measurements", pathGetV1MetricsNameMeasurements(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPatch, "/v1/dbo/databases/{entityId}", pathPatchV1DboDatabasesEntityID(dir, rt)),
-		NewGeneratedHandler(ctx, http.MethodPost, "/v1/changeevents", pathPostV1Changeevents(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPost, "/v1/cloud/aws/controlTower/activate", pathPostV1CloudAwsControlTowerActivate(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPost, "/v1/cloud/aws/controlTower/createOrgStructure", pathPostV1CloudAwsControlTowerCreateOrgStructure(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPost, "/v1/cloud/aws/controlTower/update", pathPostV1CloudAwsControlTowerUpdate(dir, rt)),

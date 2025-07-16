@@ -45,7 +45,7 @@ func testGetPublicKeyGetPublicKey0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	var respBody *components.DatabaseCredentialsPublicKeyResponse = &components.DatabaseCredentialsPublicKeyResponse{
+	var respBody *components.DboDatabaseCredentialsPublicKeyResponse = &components.DboDatabaseCredentialsPublicKeyResponse{
 		PublicKey: "<value>",
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

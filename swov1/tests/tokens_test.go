@@ -23,19 +23,19 @@ func TestTokens_CreateToken(t *testing.T) {
 		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
 	)
 
-	res, err := s.Tokens.CreateToken(ctx, components.CreateTokenRequest{
+	res, err := s.Tokens.CreateToken(ctx, components.TokensCreateTokenRequest{
 		Name: "<value>",
 		Tags: components.Tags{
 			Server:          "<value>",
 			TagWithoutValue: "<value>",
 		},
-		Type: components.CreateTokenRequestTypeIngestion,
+		Type: components.TokensCreateTokenRequestTypeIngestion,
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.CreateTokenResponse)
-	assert.Equal(t, &components.CreateTokenResponse{
+	assert.NotNil(t, res.TokensCreateTokenResponse)
+	assert.Equal(t, &components.TokensCreateTokenResponse{
 		Token: "<value>",
-	}, res.CreateTokenResponse)
+	}, res.TokensCreateTokenResponse)
 
 }

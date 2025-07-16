@@ -21,7 +21,7 @@ func (o *GetEntityByIDRequest) GetID() string {
 type GetEntityByIDResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The request has succeeded.
-	Entity *components.Entity
+	EntitiesEntity *components.EntitiesEntity
 }
 
 func (o *GetEntityByIDResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -31,9 +31,9 @@ func (o *GetEntityByIDResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *GetEntityByIDResponse) GetEntity() *components.Entity {
+func (o *GetEntityByIDResponse) GetEntitiesEntity() *components.EntitiesEntity {
 	if o == nil {
 		return nil
 	}
-	return o.Entity
+	return o.EntitiesEntity
 }

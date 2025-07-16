@@ -10,7 +10,7 @@ type UpdateCompositeMetricRequest struct {
 	// The metric name
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 	// Metric properties to update
-	UpdateCompositeMetric components.UpdateCompositeMetric `request:"mediaType=application/json"`
+	MetricsUpdateCompositeMetricRequest components.MetricsUpdateCompositeMetricRequest `request:"mediaType=application/json"`
 }
 
 func (o *UpdateCompositeMetricRequest) GetName() string {
@@ -20,17 +20,17 @@ func (o *UpdateCompositeMetricRequest) GetName() string {
 	return o.Name
 }
 
-func (o *UpdateCompositeMetricRequest) GetUpdateCompositeMetric() components.UpdateCompositeMetric {
+func (o *UpdateCompositeMetricRequest) GetMetricsUpdateCompositeMetricRequest() components.MetricsUpdateCompositeMetricRequest {
 	if o == nil {
-		return components.UpdateCompositeMetric{}
+		return components.MetricsUpdateCompositeMetricRequest{}
 	}
-	return o.UpdateCompositeMetric
+	return o.MetricsUpdateCompositeMetricRequest
 }
 
 type UpdateCompositeMetricResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The request has succeeded.
-	CompositeMetric *components.CompositeMetric
+	MetricsCompositeMetric *components.MetricsCompositeMetric
 }
 
 func (o *UpdateCompositeMetricResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -40,9 +40,9 @@ func (o *UpdateCompositeMetricResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *UpdateCompositeMetricResponse) GetCompositeMetric() *components.CompositeMetric {
+func (o *UpdateCompositeMetricResponse) GetMetricsCompositeMetric() *components.MetricsCompositeMetric {
 	if o == nil {
 		return nil
 	}
-	return o.CompositeMetric
+	return o.MetricsCompositeMetric
 }
