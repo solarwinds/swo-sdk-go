@@ -6,7 +6,6 @@ sources:
         sourceBlobDigest: sha256:04766a81a8b257ee0edfee5efdc88bc170a86e1699b6c08dff65bc675345eba9
         tags:
             - latest
-            - speakeasy-sdk-regen-1752625236
             - 1.0.9
 targets:
     swov1:
@@ -15,7 +14,7 @@ targets:
         sourceRevisionDigest: sha256:c649135e8a61700835f2cb8475b2d7d4e58ae9f516e7db2ac3d5dbf91aaf2013
         sourceBlobDigest: sha256:04766a81a8b257ee0edfee5efdc88bc170a86e1699b6c08dff65bc675345eba9
         codeSamplesNamespace: solar-winds-observability-go-code-samples
-        codeSamplesRevisionDigest: sha256:7e8c45dbc511ecf533f6a92098b732061272176b6ae4a18cb7bcf739622ea8b4
+        codeSamplesRevisionDigest: sha256:e0a46dad9692be7a71aaddae92ec9760eb99f3b9c81ee658d16a95c9057cfd8b
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.9
   speakeasyVersion: 1.582.0
   generationVersion: 2.657.1
-  releaseVersion: 0.4.0
-  configChecksum: 9856707bd80ab619661af1eb14b3a11b
+  releaseVersion: 0.6.3
+  configChecksum: 9fef75e72acd6601cf0e48d43ae56644
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
@@ -466,15 +466,7 @@ generatedFiles:
   - models/operations/options.go
   - retry/config.go
   - swo.go
-  - tests/changeevents_test.go
-  - tests/cloudaccounts_test.go
-  - tests/dbo_test.go
-  - tests/dem_test.go
-  - tests/entities_test.go
   - tests/files.go
-  - tests/logs_test.go
-  - tests/metadata_test.go
-  - tests/metrics_test.go
   - tests/mockserver/.gitignore
   - tests/mockserver/Dockerfile
   - tests/mockserver/Makefile
@@ -489,48 +481,13 @@ generatedFiles:
   - tests/mockserver/internal/handler/doc.go
   - tests/mockserver/internal/handler/generated_handler.go
   - tests/mockserver/internal/handler/generated_handlers.go
-  - tests/mockserver/internal/handler/pathdeletev1dbodatabasesentityid.go
-  - tests/mockserver/internal/handler/pathdeletev1demurisentityid.go
-  - tests/mockserver/internal/handler/pathdeletev1demwebsitesentityid.go
   - tests/mockserver/internal/handler/pathdeletev1metricsname.go
-  - tests/mockserver/internal/handler/pathgetv1cloudawscontroltowervalidateonboarding.go
-  - tests/mockserver/internal/handler/pathgetv1dbodatabasescredentialspublickey.go
-  - tests/mockserver/internal/handler/pathgetv1dbodatabasesentityidpluginconfig.go
-  - tests/mockserver/internal/handler/pathgetv1dbodatabasesentityidplugins.go
-  - tests/mockserver/internal/handler/pathgetv1demprobes.go
-  - tests/mockserver/internal/handler/pathgetv1demsettings.go
-  - tests/mockserver/internal/handler/pathgetv1demurisentityid.go
-  - tests/mockserver/internal/handler/pathgetv1demwebsitesentityid.go
-  - tests/mockserver/internal/handler/pathgetv1entities.go
-  - tests/mockserver/internal/handler/pathgetv1entitiesid.go
   - tests/mockserver/internal/handler/pathgetv1logs.go
-  - tests/mockserver/internal/handler/pathgetv1logsarchives.go
   - tests/mockserver/internal/handler/pathgetv1metadataentitiestypes.go
   - tests/mockserver/internal/handler/pathgetv1metadataentitiestypestypemetrics.go
-  - tests/mockserver/internal/handler/pathgetv1metrics.go
   - tests/mockserver/internal/handler/pathgetv1metricsname.go
-  - tests/mockserver/internal/handler/pathgetv1metricsnameattributes.go
-  - tests/mockserver/internal/handler/pathgetv1metricsnameattributesattributename.go
-  - tests/mockserver/internal/handler/pathgetv1metricsnamemeasurements.go
-  - tests/mockserver/internal/handler/pathpatchv1dbodatabasesentityid.go
-  - tests/mockserver/internal/handler/pathpostv1cloudawscontroltoweractivate.go
-  - tests/mockserver/internal/handler/pathpostv1cloudawscontroltowercreateorgstructure.go
-  - tests/mockserver/internal/handler/pathpostv1cloudawscontroltowerupdate.go
-  - tests/mockserver/internal/handler/pathpostv1dbodatabases.go
-  - tests/mockserver/internal/handler/pathpostv1dbodatabasesentityidpluginsoperationoperation.go
-  - tests/mockserver/internal/handler/pathpostv1demuris.go
-  - tests/mockserver/internal/handler/pathpostv1demwebsites.go
+  - tests/mockserver/internal/handler/pathpostv1changeevents.go
   - tests/mockserver/internal/handler/pathpostv1metrics.go
-  - tests/mockserver/internal/handler/pathpostv1metricsmeasurements.go
-  - tests/mockserver/internal/handler/pathpostv1tokens.go
-  - tests/mockserver/internal/handler/pathputv1demsettings.go
-  - tests/mockserver/internal/handler/pathputv1demurisentityid.go
-  - tests/mockserver/internal/handler/pathputv1demurisentityidpausemonitoring.go
-  - tests/mockserver/internal/handler/pathputv1demurisentityidunpausemonitoring.go
-  - tests/mockserver/internal/handler/pathputv1demwebsitesentityid.go
-  - tests/mockserver/internal/handler/pathputv1demwebsitesentityidpausemonitoring.go
-  - tests/mockserver/internal/handler/pathputv1demwebsitesentityidunpausemonitoring.go
-  - tests/mockserver/internal/handler/pathputv1entitiesid.go
   - tests/mockserver/internal/handler/pathputv1metricsname.go
   - tests/mockserver/internal/handler/values/files.go
   - tests/mockserver/internal/logging/doc.go
@@ -698,8 +655,8 @@ generatedFiles:
   - tests/mockserver/internal/server/templates/log/style.css.tmpl
   - tests/mockserver/internal/tracking/requesttracker.go
   - tests/mockserver/main.go
+  - tests/sdk_test.go
   - tests/testclient.go
-  - tests/tokens_test.go
   - tokens.go
   - types/bigint.go
   - types/date.go

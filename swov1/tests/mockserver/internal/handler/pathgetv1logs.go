@@ -22,15 +22,17 @@ func pathGetV1Logs(dir *logging.HTTPFileDirectory, rt *tracking.RequestTracker) 
 		count := rt.GetRequestCount(test, instanceID)
 
 		switch fmt.Sprintf("%s[%d]", test, count) {
-		case "searchLogs[0]":
-			dir.HandlerFunc("searchLogs", testSearchLogsSearchLogs0)(w, req)
+		case "logs-search[0]":
+			dir.HandlerFunc("searchLogs", testSearchLogsLogsSearch0)(w, req)
+		case "logs-search[1]":
+			dir.HandlerFunc("searchLogs", testSearchLogsLogsSearch1)(w, req)
 		default:
 			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)
 		}
 	}
 }
 
-func testSearchLogsSearchLogs0(w http.ResponseWriter, req *http.Request) {
+func testSearchLogsLogsSearch0(w http.ResponseWriter, req *http.Request) {
 	if err := assert.SecurityAuthorizationHeader(req, false, "Bearer"); err != nil {
 		log.Printf("assertion error: %s\n", err)
 		http.Error(w, err.Error(), http.StatusUnauthorized)
@@ -47,16 +49,45 @@ func testSearchLogsSearchLogs0(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	var respBody *operations.SearchLogsResponseBody = &operations.SearchLogsResponseBody{
-		Logs: []components.LogsEvent{
-			components.LogsEvent{
-				ID:       "1793698955374546944",
-				Time:     "2024-01-01T00:00:00Z",
-				Message:  "This is a log message",
-				Hostname: "webserver.example.com",
-				Severity: "INFO",
-				Program:  "httpd",
-			},
+		Logs: []components.LogsEvent{},
+		PageInfo: components.CommonPageInfo{
+			PrevPage: "<value>",
+			NextPage: "<value>",
 		},
+	}
+	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)
+
+	if err != nil {
+		http.Error(
+			w,
+			"Unable to encode response body as JSON: "+err.Error(),
+			http.StatusInternalServerError,
+		)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	_, _ = w.Write(respBodyBytes)
+}
+
+func testSearchLogsLogsSearch1(w http.ResponseWriter, req *http.Request) {
+	if err := assert.SecurityAuthorizationHeader(req, false, "Bearer"); err != nil {
+		log.Printf("assertion error: %s\n", err)
+		http.Error(w, err.Error(), http.StatusUnauthorized)
+		return
+	}
+	if err := assert.AcceptHeader(req, []string{"application/json"}); err != nil {
+		log.Printf("assertion error: %s\n", err)
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	if err := assert.HeaderExists(req, "User-Agent"); err != nil {
+		log.Printf("assertion error: %s\n", err)
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	var respBody *operations.SearchLogsResponseBody = &operations.SearchLogsResponseBody{
+		Logs: []components.LogsEvent{},
 		PageInfo: components.CommonPageInfo{
 			PrevPage: "<value>",
 			NextPage: "<value>",

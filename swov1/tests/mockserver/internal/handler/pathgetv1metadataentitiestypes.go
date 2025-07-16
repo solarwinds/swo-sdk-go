@@ -21,15 +21,15 @@ func pathGetV1MetadataEntitiesTypes(dir *logging.HTTPFileDirectory, rt *tracking
 		count := rt.GetRequestCount(test, instanceID)
 
 		switch fmt.Sprintf("%s[%d]", test, count) {
-		case "listEntityTypes[0]":
-			dir.HandlerFunc("listEntityTypes", testListEntityTypesListEntityTypes0)(w, req)
+		case "metadata-entity-types-list[0]":
+			dir.HandlerFunc("listEntityTypes", testListEntityTypesMetadataEntityTypesList0)(w, req)
 		default:
 			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)
 		}
 	}
 }
 
-func testListEntityTypesListEntityTypes0(w http.ResponseWriter, req *http.Request) {
+func testListEntityTypesMetadataEntityTypesList0(w http.ResponseWriter, req *http.Request) {
 	if err := assert.SecurityAuthorizationHeader(req, false, "Bearer"); err != nil {
 		log.Printf("assertion error: %s\n", err)
 		http.Error(w, err.Error(), http.StatusUnauthorized)
