@@ -23,15 +23,17 @@ func pathGetV1MetadataEntitiesTypesTypeMetrics(dir *logging.HTTPFileDirectory, r
 		count := rt.GetRequestCount(test, instanceID)
 
 		switch fmt.Sprintf("%s[%d]", test, count) {
-		case "listMetricsForEntityType[0]":
-			dir.HandlerFunc("listMetricsForEntityType", testListMetricsForEntityTypeListMetricsForEntityType0)(w, req)
+		case "metadata-entity-type-metrics-list[0]":
+			dir.HandlerFunc("listMetricsForEntityType", testListMetricsForEntityTypeMetadataEntityTypeMetricsList0)(w, req)
+		case "metadata-entity-type-metrics-list[1]":
+			dir.HandlerFunc("listMetricsForEntityType", testListMetricsForEntityTypeMetadataEntityTypeMetricsList1)(w, req)
 		default:
 			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)
 		}
 	}
 }
 
-func testListMetricsForEntityTypeListMetricsForEntityType0(w http.ResponseWriter, req *http.Request) {
+func testListMetricsForEntityTypeMetadataEntityTypeMetricsList0(w http.ResponseWriter, req *http.Request) {
 	if err := assert.SecurityAuthorizationHeader(req, false, "Bearer"); err != nil {
 		log.Printf("assertion error: %s\n", err)
 		http.Error(w, err.Error(), http.StatusUnauthorized)
@@ -48,15 +50,55 @@ func testListMetricsForEntityTypeListMetricsForEntityType0(w http.ResponseWriter
 		return
 	}
 	var respBody *operations.ListMetricsForEntityTypeResponseBody = &operations.ListMetricsForEntityTypeResponseBody{
-		Type: "KubernetesCluster",
+		Type: "Website",
 		Metrics: []components.CommonMetricInfo{
 			components.CommonMetricInfo{
-				Name:             "composite.custom.system.disk.io.rate",
-				DisplayName:      types.String("Disk IO rate"),
-				Description:      types.String("Disk bytes transferred per second"),
-				Units:            types.String("bytes/s"),
-				Formula:          types.String("rate(system.disk.io[5m]"),
-				LastReportedTime: types.MustNewTimeFromString("2024-11-25T16:38:24Z"),
+				Name:             "composite.k8s.pod.container.status.restarts.increase",
+				Units:            types.String("count"),
+				Formula:          types.String("increase(k8s.kube_pod_container_status_restarts_total[5m])"),
+				LastReportedTime: types.MustNewTimeFromString("2021-01-01T00:00:00Z"),
+			},
+		},
+	}
+	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)
+
+	if err != nil {
+		http.Error(
+			w,
+			"Unable to encode response body as JSON: "+err.Error(),
+			http.StatusInternalServerError,
+		)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	_, _ = w.Write(respBodyBytes)
+}
+
+func testListMetricsForEntityTypeMetadataEntityTypeMetricsList1(w http.ResponseWriter, req *http.Request) {
+	if err := assert.SecurityAuthorizationHeader(req, false, "Bearer"); err != nil {
+		log.Printf("assertion error: %s\n", err)
+		http.Error(w, err.Error(), http.StatusUnauthorized)
+		return
+	}
+	if err := assert.AcceptHeader(req, []string{"application/json"}); err != nil {
+		log.Printf("assertion error: %s\n", err)
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	if err := assert.HeaderExists(req, "User-Agent"); err != nil {
+		log.Printf("assertion error: %s\n", err)
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	var respBody *operations.ListMetricsForEntityTypeResponseBody = &operations.ListMetricsForEntityTypeResponseBody{
+		Type: "Uri",
+		Metrics: []components.CommonMetricInfo{
+			components.CommonMetricInfo{
+				Name:             "composite.k8s.pod.container.status.restarts.increase",
+				Units:            types.String("count"),
+				Formula:          types.String("increase(k8s.kube_pod_container_status_restarts_total[5m])"),
+				LastReportedTime: types.MustNewTimeFromString("2021-01-01T00:00:00Z"),
 			},
 		},
 	}
