@@ -1,0 +1,9 @@
+# CloudAccountsAwsOrganisationalUnitRequest
+
+
+## Fields
+
+| Field                                                                                                            | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `MgmtAccountID`                                                                                                  | *string*                                                                                                         | :heavy_check_mark:                                                                                               | AWS Control Tower Management Account ID.                                                                         |
+| `Structure`                                                                                                      | [][components.CloudAccountsAwsOrganisationalUnit](../../models/components/cloudaccountsawsorganisationalunit.md) | :heavy_check_mark:                                                                                               | Organisational Structure of the AWS Account.                                                                     |

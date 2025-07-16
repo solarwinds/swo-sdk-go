@@ -20,7 +20,7 @@ func (o *GetPluginsRequest) GetEntityID() string {
 type GetPluginsResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The request has succeeded.
-	DatabasePluginStatusResponse *components.DatabasePluginStatusResponse
+	DboDatabasePluginStatusResponse *components.DboDatabasePluginStatusResponse
 }
 
 func (o *GetPluginsResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -30,9 +30,9 @@ func (o *GetPluginsResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *GetPluginsResponse) GetDatabasePluginStatusResponse() *components.DatabasePluginStatusResponse {
+func (o *GetPluginsResponse) GetDboDatabasePluginStatusResponse() *components.DboDatabasePluginStatusResponse {
 	if o == nil {
 		return nil
 	}
-	return o.DatabasePluginStatusResponse
+	return o.DboDatabasePluginStatusResponse
 }

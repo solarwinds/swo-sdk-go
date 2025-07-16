@@ -28,7 +28,7 @@ func (e *DeleteCompositeMetricMetricsResponseBody) Error() string {
 // DeleteCompositeMetricResponseBody - Access is forbidden.
 type DeleteCompositeMetricResponseBody struct {
 	// Uniquely identifies an error condition.
-	Code *components.MetricErrorCode `json:"code,omitempty"`
+	Code *components.MetricsMetricErrorCode `json:"code,omitempty"`
 	// Supporting description of the error
 	Message string `json:"message"`
 	// Indicates the invalid field

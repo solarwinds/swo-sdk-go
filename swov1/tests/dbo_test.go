@@ -24,11 +24,11 @@ func TestDbo_ObserveDatabase(t *testing.T) {
 		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
 	)
 
-	res, err := s.Dbo.ObserveDatabase(ctx, components.ObserveDatabaseRequest{
+	res, err := s.Dbo.ObserveDatabase(ctx, components.DboObserveDatabaseRequest{
 		Name:          "<value>",
 		AgentID:       "<id>",
-		DbType:        components.DatabaseTypeMongo,
-		AuthMethod:    components.DatabaseAuthMethodEntraclientsecret,
+		DbType:        components.DboDatabaseTypeMongo,
+		AuthMethod:    components.DboDatabaseAuthMethodEntraclientsecret,
 		CaptureMethod: nil,
 		ConfigOptions: []components.CommonKeyValuePair{
 			components.CommonKeyValuePair{
@@ -36,10 +36,10 @@ func TestDbo_ObserveDatabase(t *testing.T) {
 				Value: "<value>",
 			},
 		},
-		DbConnOptions: components.DatabaseConnectionOptions{
+		DbConnOptions: components.DboDatabaseConnectionOptions{
 			Host:       "dependent-bar.com",
 			Port:       swov1.String("<value>"),
-			SslOptions: &components.DatabaseSslOptions{},
+			SslOptions: &components.DboDatabaseSslOptions{},
 		},
 		Tags: []components.CommonKeyValuePair{},
 	})
@@ -66,10 +66,10 @@ func TestDbo_GetPublicKey(t *testing.T) {
 	res, err := s.Dbo.GetPublicKey(ctx)
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.DatabaseCredentialsPublicKeyResponse)
-	assert.Equal(t, &components.DatabaseCredentialsPublicKeyResponse{
+	assert.NotNil(t, res.DboDatabaseCredentialsPublicKeyResponse)
+	assert.Equal(t, &components.DboDatabaseCredentialsPublicKeyResponse{
 		PublicKey: "<value>",
-	}, res.DatabaseCredentialsPublicKeyResponse)
+	}, res.DboDatabaseCredentialsPublicKeyResponse)
 
 }
 
@@ -85,8 +85,8 @@ func TestDbo_UpdateDatabase(t *testing.T) {
 	)
 
 	res, err := s.Dbo.UpdateDatabase(ctx, operations.UpdateDatabaseRequest{
-		EntityID:              "<id>",
-		UpdateDatabaseRequest: components.UpdateDatabaseRequest{},
+		EntityID:                 "<id>",
+		DboUpdateDatabaseRequest: components.DboUpdateDatabaseRequest{},
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 204, res.HTTPMeta.Response.StatusCode)
@@ -128,20 +128,51 @@ func TestDbo_GetPluginConfig(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.DatabasePluginConfigResponse)
-	assert.Equal(t, &components.DatabasePluginConfigResponse{
-		PluginConfig: []components.DatabasePluginConfig{
-			components.DatabasePluginConfig{
+	assert.NotNil(t, res.DboDatabasePluginConfigResponse)
+	assert.Equal(t, &components.DboDatabasePluginConfigResponse{
+		PluginConfig: []components.DboDatabasePluginConfig{
+			components.DboDatabasePluginConfig{
 				PluginName: "<value>",
+				ConfigOptions: []components.CommonKeyValuePair{
+					components.CommonKeyValuePair{
+						Key:   "<key>",
+						Value: "<value>",
+					},
+				},
+				DbConnOptions: []components.CommonKeyValuePair{
+					components.CommonKeyValuePair{
+						Key:   "<key>",
+						Value: "<value>",
+					},
+				},
 			},
-			components.DatabasePluginConfig{
+			components.DboDatabasePluginConfig{
 				PluginName: "<value>",
+				ConfigOptions: []components.CommonKeyValuePair{
+					components.CommonKeyValuePair{
+						Key:   "<key>",
+						Value: "<value>",
+					},
+				},
+				DbConnOptions: []components.CommonKeyValuePair{
+					components.CommonKeyValuePair{
+						Key:   "<key>",
+						Value: "<value>",
+					},
+				},
 			},
-			components.DatabasePluginConfig{
-				PluginName: "<value>",
+			components.DboDatabasePluginConfig{
+				PluginName:    "<value>",
+				ConfigOptions: []components.CommonKeyValuePair{},
+				DbConnOptions: []components.CommonKeyValuePair{
+					components.CommonKeyValuePair{
+						Key:   "<key>",
+						Value: "<value>",
+					},
+				},
 			},
 		},
-	}, res.DatabasePluginConfigResponse)
+	}, res.DboDatabasePluginConfigResponse)
 
 }
 
@@ -161,17 +192,21 @@ func TestDbo_GetPlugins(t *testing.T) {
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, res.HTTPMeta.Response.StatusCode)
-	assert.NotNil(t, res.DatabasePluginStatusResponse)
-	assert.Equal(t, &components.DatabasePluginStatusResponse{
-		Plugins: []components.DatabasePluginStatus{
-			components.DatabasePluginStatus{
-				PluginName: "<value>",
+	assert.NotNil(t, res.DboDatabasePluginStatusResponse)
+	assert.Equal(t, &components.DboDatabasePluginStatusResponse{
+		Plugins: []components.DboDatabasePluginStatus{
+			components.DboDatabasePluginStatus{
+				PluginName:       "<value>",
+				DeploymentStatus: "<value>",
+				HealthStatus:     "<value>",
 			},
-			components.DatabasePluginStatus{
-				PluginName: "<value>",
+			components.DboDatabasePluginStatus{
+				PluginName:       "<value>",
+				DeploymentStatus: "<value>",
+				HealthStatus:     "<value>",
 			},
 		},
-	}, res.DatabasePluginStatusResponse)
+	}, res.DboDatabasePluginStatusResponse)
 
 }
 

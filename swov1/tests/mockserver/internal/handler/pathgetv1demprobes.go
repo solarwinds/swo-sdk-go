@@ -45,9 +45,9 @@ func testListProbesListProbes0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	var respBody *components.ListProbesResponse = &components.ListProbesResponse{
-		Probes: []components.Probe{
-			components.Probe{
+	var respBody *components.DemListProbesResponse = &components.DemListProbesResponse{
+		Probes: []components.DemProbe{
+			components.DemProbe{
 				ID:       "probe-1",
 				Name:     "Washington",
 				Active:   true,

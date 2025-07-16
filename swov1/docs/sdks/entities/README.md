@@ -107,7 +107,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Entity != nil {
+    if res.EntitiesEntity != nil {
         // handle response
     }
 }
@@ -161,7 +161,7 @@ func main() {
 
     res, err := s.Entities.UpdateEntityByID(ctx, operations.UpdateEntityByIDRequest{
         ID: "<id>",
-        Entity: components.EntityInput{
+        EntitiesEntity: components.EntitiesEntityInput{
             DisplayName: swov1.String("SyslogTest"),
             Tags: map[string]*string{
                 "gg.tk.token": swov1.String("test"),

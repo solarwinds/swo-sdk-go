@@ -31,18 +31,18 @@ func main() {
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    res, err := s.Tokens.CreateToken(ctx, components.CreateTokenRequest{
+    res, err := s.Tokens.CreateToken(ctx, components.TokensCreateTokenRequest{
         Name: "<value>",
         Tags: components.Tags{
             Server: "<value>",
             TagWithoutValue: "<value>",
         },
-        Type: components.CreateTokenRequestTypeIngestion,
+        Type: components.TokensCreateTokenRequestTypeIngestion,
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.CreateTokenResponse != nil {
+    if res.TokensCreateTokenResponse != nil {
         // handle response
     }
 }
@@ -50,11 +50,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [components.CreateTokenRequest](../../models/components/createtokenrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [components.TokensCreateTokenRequest](../../models/components/tokenscreatetokenrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][operations.Option](../../models/operations/option.md)                                   | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
 ### Response
 

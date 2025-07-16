@@ -9,7 +9,7 @@ import (
 type CreateTokenResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The request has succeeded.
-	CreateTokenResponse *components.CreateTokenResponse
+	TokensCreateTokenResponse *components.TokensCreateTokenResponse
 }
 
 func (o *CreateTokenResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -19,9 +19,9 @@ func (o *CreateTokenResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *CreateTokenResponse) GetCreateTokenResponse() *components.CreateTokenResponse {
+func (o *CreateTokenResponse) GetTokensCreateTokenResponse() *components.TokensCreateTokenResponse {
 	if o == nil {
 		return nil
 	}
-	return o.CreateTokenResponse
+	return o.TokensCreateTokenResponse
 }

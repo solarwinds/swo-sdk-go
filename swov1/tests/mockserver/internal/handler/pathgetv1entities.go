@@ -48,8 +48,8 @@ func testListEntitiesListEntities0(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	var respBody *operations.ListEntitiesResponseBody = &operations.ListEntitiesResponseBody{
-		Entities: []components.Entity{
-			components.Entity{
+		Entities: []components.EntitiesEntity{
+			components.EntitiesEntity{
 				ID:            "e-1234567890",
 				Type:          "SyslogHost",
 				Name:          types.String("syslog-host-1"),

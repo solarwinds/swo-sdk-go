@@ -50,7 +50,7 @@ func testUpdateAwsIntegrationUpdateAwsIntegration0(w http.ResponseWriter, req *h
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	var respBody *components.UpdateAwsIntegrationResponse = &components.UpdateAwsIntegrationResponse{
+	var respBody *components.CloudAccountsAwsUpdateIntegrationResponse = &components.CloudAccountsAwsUpdateIntegrationResponse{
 		SelectedRegions: []string{
 			"<value>",
 			"<value>",

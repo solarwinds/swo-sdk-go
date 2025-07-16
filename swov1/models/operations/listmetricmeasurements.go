@@ -26,7 +26,7 @@ type ListMetricMeasurementsRequest struct {
 	// Secondary aggregation to allow aggregating data points inside individual buckets. Has to be set together with `preGroupBy`.
 	PreGroupByMethod *string `queryParam:"style=form,explode=false,name=preGroupByMethod"`
 	// Indicates what type of data to return.
-	SeriesType components.MetricSeriesType `queryParam:"style=form,explode=false,name=seriesType"`
+	SeriesType components.MetricsMetricSeriesType `queryParam:"style=form,explode=false,name=seriesType"`
 	// Timestamp in ISO 8601 format in UTC timezone: yyyy-MM-ddTHH:mm:ssZ
 	StartTime *time.Time `queryParam:"style=form,explode=false,name=startTime"`
 	// Timestamp in ISO 8601 format in UTC timezone: yyyy-MM-ddTHH:mm:ssZ
@@ -97,9 +97,9 @@ func (o *ListMetricMeasurementsRequest) GetPreGroupByMethod() *string {
 	return o.PreGroupByMethod
 }
 
-func (o *ListMetricMeasurementsRequest) GetSeriesType() components.MetricSeriesType {
+func (o *ListMetricMeasurementsRequest) GetSeriesType() components.MetricsMetricSeriesType {
 	if o == nil {
-		return components.MetricSeriesType("")
+		return components.MetricsMetricSeriesType("")
 	}
 	return o.SeriesType
 }

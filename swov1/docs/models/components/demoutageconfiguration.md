@@ -1,0 +1,9 @@
+# DemOutageConfiguration
+
+
+## Fields
+
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        | Example                                                                            |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `FailingTestLocations`                                                             | [components.FailingTestLocations](../../models/components/failingtestlocations.md) | :heavy_check_mark:                                                                 | How many locations must report a failure for an entity to be considered down.      | all                                                                                |
+| `ConsecutiveForDown`                                                               | *int*                                                                              | :heavy_check_mark:                                                                 | Number of consecutive failing tests for an entity to be considered down.           | 2                                                                                  |

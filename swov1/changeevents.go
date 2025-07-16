@@ -32,7 +32,7 @@ func newChangeEvents(rootSDK *Swo, sdkConfig config.SDKConfiguration, hooks *hoo
 }
 
 // CreateChangeEvent - Create an event
-func (s *ChangeEvents) CreateChangeEvent(ctx context.Context, request components.ChangeEvent, opts ...operations.Option) (*operations.CreateChangeEventResponse, error) {
+func (s *ChangeEvents) CreateChangeEvent(ctx context.Context, request components.ChangeEventsChangeEvent, opts ...operations.Option) (*operations.CreateChangeEventResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -204,7 +204,7 @@ func (s *ChangeEvents) CreateChangeEvent(ctx context.Context, request components
 	}
 
 	switch {
-	case httpRes.StatusCode == 200:
+	case httpRes.StatusCode == 202:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)

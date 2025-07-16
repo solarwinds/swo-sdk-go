@@ -32,7 +32,7 @@ func newTokens(rootSDK *Swo, sdkConfig config.SDKConfiguration, hooks *hooks.Hoo
 }
 
 // CreateToken - Create ingestion token
-func (s *Tokens) CreateToken(ctx context.Context, request components.CreateTokenRequest, opts ...operations.Option) (*operations.CreateTokenResponse, error) {
+func (s *Tokens) CreateToken(ctx context.Context, request components.TokensCreateTokenRequest, opts ...operations.Option) (*operations.CreateTokenResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -212,12 +212,12 @@ func (s *Tokens) CreateToken(ctx context.Context, request components.CreateToken
 				return nil, err
 			}
 
-			var out components.CreateTokenResponse
+			var out components.TokensCreateTokenResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.CreateTokenResponse = &out
+			res.TokensCreateTokenResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
