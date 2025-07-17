@@ -71,7 +71,6 @@ import(
 	"context"
 	"os"
 	"github.com/solarwinds/swo-sdk-go/swov1"
-	"github.com/solarwinds/swo-sdk-go/swov1/types"
 	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
 	"log"
 )
@@ -85,8 +84,6 @@ func main() {
 
     res, err := s.Metadata.ListMetricsForEntityType(ctx, operations.ListMetricsForEntityTypeRequest{
         Type: "<value>",
-        StartTime: types.MustNewTimeFromString("2024-01-01T00:00:00Z"),
-        EndTime: types.MustNewTimeFromString("2024-12-31T23:59:59Z"),
     })
     if err != nil {
         log.Fatal(err)

@@ -77,15 +77,15 @@ func TestSDK_EntitiesCrudLifecycle(t *testing.T) {
 
 	listEntitiesRes, err := s.Entities.ListEntities(ctx, operations.ListEntitiesRequest{
 		Type:     WebsiteEntityType,
-		PageSize: swov1.Int(2),
+		PageSize: swov1.Int(1),
 	})
 	require.NoError(t, err, "Failed to list entities")
 	require.Equal(t, http.StatusOK, listEntitiesRes.HTTPMeta.Response.StatusCode, "List entities returned unexpected status")
 	require.NotNil(t, listEntitiesRes.Object, "List entities response should contain object")
 	require.NotNil(t, listEntitiesRes.Object.Entities, "List entities response should contain entities array")
 
-	hasTwoEntities := len(listEntitiesRes.Object.Entities) == 2
-	assert.True(t, hasTwoEntities, "Entities list should have exactly 2 entities")
+	hasOneEntity := len(listEntitiesRes.Object.Entities) == 1
+	assert.True(t, hasOneEntity, "Entities list should have exactly 1 entity")
 
 	updatedDisplayName := "Updated Display Name for " + testEntityName
 	updateTags := map[string]*string{

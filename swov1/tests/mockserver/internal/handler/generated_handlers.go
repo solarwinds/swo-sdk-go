@@ -14,8 +14,6 @@ func GeneratedHandlers(ctx context.Context, dir *logging.HTTPFileDirectory, rt *
 	return []*GeneratedHandler{
 		NewGeneratedHandler(ctx, http.MethodDelete, "/v1/metrics/{name}", pathDeleteV1MetricsName(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodGet, "/v1/logs", pathGetV1Logs(dir, rt)),
-		NewGeneratedHandler(ctx, http.MethodGet, "/v1/metadata/entities/types", pathGetV1MetadataEntitiesTypes(dir, rt)),
-		NewGeneratedHandler(ctx, http.MethodGet, "/v1/metadata/entities/types/{type}/metrics", pathGetV1MetadataEntitiesTypesTypeMetrics(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodGet, "/v1/metrics/{name}", pathGetV1MetricsName(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPost, "/v1/changeevents", pathPostV1Changeevents(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPost, "/v1/metrics", pathPostV1Metrics(dir, rt)),
