@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.9
   speakeasyVersion: 1.582.0
   generationVersion: 2.657.1
-  releaseVersion: 0.6.3
-  configChecksum: 9fef75e72acd6601cf0e48d43ae56644
+  releaseVersion: 0.6.8
+  configChecksum: 635ef97c709758d8f7e3eb0d51ebac93
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
@@ -483,8 +483,6 @@ generatedFiles:
   - tests/mockserver/internal/handler/generated_handlers.go
   - tests/mockserver/internal/handler/pathdeletev1metricsname.go
   - tests/mockserver/internal/handler/pathgetv1logs.go
-  - tests/mockserver/internal/handler/pathgetv1metadataentitiestypes.go
-  - tests/mockserver/internal/handler/pathgetv1metadataentitiestypestypemetrics.go
   - tests/mockserver/internal/handler/pathgetv1metricsname.go
   - tests/mockserver/internal/handler/pathpostv1changeevents.go
   - tests/mockserver/internal/handler/pathpostv1metrics.go
