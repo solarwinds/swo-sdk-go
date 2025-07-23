@@ -23,14 +23,7 @@ import (
 )
 
 const (
-	WebsiteAvailabilityTimeout = DefaultTimeout
-	WebsiteUpdateTimeout       = UpdateTimeout
-	RetryInterval              = DefaultRetryInterval
-	UpdateRetryInterval        = DefaultUpdateRetryInterval
-
-	TestWebsiteName = "swo-sdk-dem-websites-e2e-crud-test"
-	OriginalURL     = OriginalTestURL
-	UpdatedURL      = UpdatedTestURL
+	testWebsiteName = TestEntityName + "-website-e2e"
 )
 
 func TestSDK_DemWebsiteCrudLifecycle(t *testing.T) {
@@ -38,8 +31,8 @@ func TestSDK_DemWebsiteCrudLifecycle(t *testing.T) {
 	s := CreateTestClient("website-e2e-crud")
 
 	createWebsiteRes, err := s.Dem.CreateWebsite(ctx, components.DemWebsite{
-		Name: TestWebsiteName,
-		URL:  OriginalURL,
+		Name: testWebsiteName,
+		URL:  OriginalTestURL,
 		AvailabilityCheckSettings: &components.AvailabilityCheckSettings{
 			TestFrom: components.DemTestFrom{
 				Type:   components.TypeRegion,
@@ -67,14 +60,14 @@ func TestSDK_DemWebsiteCrudLifecycle(t *testing.T) {
 		}
 	}()
 
-	website := WaitForWebsite(t, ctx, s, entityID, WebsiteAvailabilityTimeout)
-	VerifyWebsite(t, website, TestWebsiteName, OriginalURL)
+	website := waitForWebsite(t, ctx, s, entityID, DefaultTimeout)
+	verifyWebsite(t, website, testWebsiteName, OriginalTestURL)
 
 	updateWebsiteRes, err := s.Dem.UpdateWebsite(ctx, operations.UpdateWebsiteRequest{
 		EntityID: entityID,
 		DemWebsite: components.DemWebsite{
-			Name: TestWebsiteName,
-			URL:  UpdatedURL,
+			Name: testWebsiteName,
+			URL:  UpdatedTestURL,
 			AvailabilityCheckSettings: &components.AvailabilityCheckSettings{
 				TestFrom: components.DemTestFrom{
 					Type:   components.TypeRegion,
@@ -92,7 +85,7 @@ func TestSDK_DemWebsiteCrudLifecycle(t *testing.T) {
 		statusCode := updateWebsiteRes.HTTPMeta.Response.StatusCode
 		if statusCode == http.StatusOK || statusCode == http.StatusNoContent {
 			t.Logf("Updated website entity with ID: %s", entityID)
-			WaitForUpdatedWebsite(t, ctx, s, entityID, UpdatedURL, UpdatedTestInterval, WebsiteUpdateTimeout)
+			waitForUpdatedWebsite(t, ctx, s, entityID, UpdatedTestURL, UpdatedTestInterval, UpdateTimeout)
 
 			getRes, err := s.Dem.GetWebsite(ctx, operations.GetWebsiteRequest{
 				EntityID: entityID,
@@ -118,10 +111,10 @@ func TestSDK_DemWebsiteCrudLifecycle(t *testing.T) {
 		assert.Equal(t, http.StatusNotFound, getWebsiteRes.HTTPMeta.Response.StatusCode, "Website should not be found after it's deleted")
 	}
 
-	t.Log("DEM Websites End-to-end test completed successfully.")
+	t.Log("DEM Websites End-to-end test completed.")
 }
 
-func WaitForWebsite(t *testing.T, ctx context.Context, s *swov1.Swo, entityID string, timeout time.Duration) *components.DemGetWebsiteResponse {
+func waitForWebsite(t *testing.T, ctx context.Context, s *swov1.Swo, entityID string, timeout time.Duration) *components.DemGetWebsiteResponse {
 	var website *components.DemGetWebsiteResponse
 
 	assert.Eventually(t, func() bool {
@@ -146,19 +139,19 @@ func WaitForWebsite(t *testing.T, ctx context.Context, s *swov1.Swo, entityID st
 		assert.Equal(t, WebsiteEntityType, website.Type)
 		return true
 
-	}, timeout, RetryInterval, "Website should become available within %v", timeout)
+	}, timeout, DefaultRetryInterval, "Website should become available within %v", timeout)
 
 	return website
 }
 
-func VerifyWebsite(t *testing.T, website *components.DemGetWebsiteResponse, expectedName, expectedURL string) {
+func verifyWebsite(t *testing.T, website *components.DemGetWebsiteResponse, expectedName, expectedURL string) {
 	assert.Equal(t, expectedName, website.Name)
 	assert.Equal(t, expectedURL, website.URL)
 	assert.NotNil(t, website.AvailabilityCheckSettings)
 	assert.Contains(t, ValidWebsiteStatuses, website.Status)
 }
 
-func WaitForUpdatedWebsite(t *testing.T, ctx context.Context, s *swov1.Swo, entityID, expectedURL string, expectedInterval float64, timeout time.Duration) {
+func waitForUpdatedWebsite(t *testing.T, ctx context.Context, s *swov1.Swo, entityID, expectedURL string, expectedInterval float64, timeout time.Duration) {
 	assert.Eventually(t, func() bool {
 		getWebsiteRes, err := s.Dem.GetWebsite(ctx, operations.GetWebsiteRequest{
 			EntityID: entityID,
@@ -177,5 +170,5 @@ func WaitForUpdatedWebsite(t *testing.T, ctx context.Context, s *swov1.Swo, enti
 		}
 		return false
 
-	}, timeout, UpdateRetryInterval, "Updated website data should be created within %v", timeout)
+	}, timeout, DefaultUpdateRetryInterval, "Updated website data should be created within %v", timeout)
 }

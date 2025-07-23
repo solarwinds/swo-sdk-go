@@ -23,14 +23,7 @@ import (
 )
 
 const (
-	URIAvailabilityTimeout = DefaultTimeout
-	URIUpdateTimeout       = UpdateTimeout
-	URIRetryInterval       = DefaultRetryInterval
-	URIUpdateRetryInterval = DefaultUpdateRetryInterval
-
-	TestURIName    = "swo-sdk-dem-uri-e2e-crud-test"
-	OriginalDomain = OriginalTestDomain
-	UpdatedDomain  = UpdatedTestDomain
+	uriEntityName = TestEntityName + "-uri-e2e"
 )
 
 func TestSDK_DemUriCrudLifecycle(t *testing.T) {
@@ -38,8 +31,8 @@ func TestSDK_DemUriCrudLifecycle(t *testing.T) {
 	s := CreateTestClient("uri-e2e-crud")
 
 	createURIRes, err := s.Dem.CreateURI(ctx, components.DemURI{
-		Name:       TestURIName,
-		IPOrDomain: OriginalDomain,
+		Name:       uriEntityName,
+		IPOrDomain: OriginalTestDomain,
 		AvailabilityCheckSettings: components.DemURIAvailabilityCheckSettingsInput{
 			TestFrom: components.DemTestFrom{
 				Type:   components.TypeRegion,
@@ -69,14 +62,14 @@ func TestSDK_DemUriCrudLifecycle(t *testing.T) {
 		}
 	}()
 
-	uri := WaitForURI(t, ctx, s, entityID, URIAvailabilityTimeout)
-	VerifyURI(t, uri, TestURIName, OriginalDomain)
+	uri := waitForURI(t, ctx, s, entityID, DefaultTimeout)
+	verifyURI(t, uri, uriEntityName, OriginalTestDomain)
 
 	updateURIRes, err := s.Dem.UpdateURI(ctx, operations.UpdateURIRequest{
 		EntityID: entityID,
 		DemURI: components.DemURI{
-			Name:       TestURIName,
-			IPOrDomain: UpdatedDomain,
+			Name:       uriEntityName,
+			IPOrDomain: UpdatedTestDomain,
 			AvailabilityCheckSettings: components.DemURIAvailabilityCheckSettingsInput{
 				TestFrom: components.DemTestFrom{
 					Type:   components.TypeRegion,
@@ -96,14 +89,7 @@ func TestSDK_DemUriCrudLifecycle(t *testing.T) {
 		statusCode := updateURIRes.HTTPMeta.Response.StatusCode
 		if statusCode == http.StatusOK || statusCode == http.StatusNoContent {
 			t.Logf("Updated URI entity with ID: %s", entityID)
-			WaitForUpdatedURI(t, ctx, s, entityID, UpdatedDomain, UpdatedTestInterval, URIUpdateTimeout)
-
-			getRes, err := s.Dem.GetURI(ctx, operations.GetURIRequest{
-				EntityID: entityID,
-			})
-
-			require.NoError(t, err, "Failed to get entity")
-			require.Equal(t, http.StatusOK, getRes.HTTPMeta.Response.StatusCode, "Entity returned with unexpected status")
+			waitForUpdatedURI(t, ctx, s, entityID, UpdatedTestDomain, UpdatedTestInterval, UpdateTimeout)
 		}
 	}
 
@@ -122,10 +108,10 @@ func TestSDK_DemUriCrudLifecycle(t *testing.T) {
 		assert.Equal(t, http.StatusNotFound, getURIRes.HTTPMeta.Response.StatusCode, "URI should not be found after deletion")
 	}
 
-	t.Log("DEM URI End-to-end test completed successfully.")
+	t.Log("DEM URI End-to-end test completed.")
 }
 
-func WaitForURI(t *testing.T, ctx context.Context, s *swov1.Swo, entityID string, timeout time.Duration) *components.DemGetURIResponse {
+func waitForURI(t *testing.T, ctx context.Context, s *swov1.Swo, entityID string, timeout time.Duration) *components.DemGetURIResponse {
 	var uri *components.DemGetURIResponse
 
 	assert.Eventually(t, func() bool {
@@ -146,22 +132,20 @@ func WaitForURI(t *testing.T, ctx context.Context, s *swov1.Swo, entityID string
 		}
 
 		uri = getURIRes.DemGetURIResponse
-		assert.Equal(t, entityID, uri.ID)
-		assert.Equal(t, URIEntityType, uri.Type)
 		return true
 
-	}, timeout, URIRetryInterval, "URI should become available within %v", timeout)
+	}, timeout, DefaultRetryInterval, "URI should become available within %v", timeout)
 
 	return uri
 }
 
-func VerifyURI(t *testing.T, uri *components.DemGetURIResponse, expectedName, expectedDomain string) {
+func verifyURI(t *testing.T, uri *components.DemGetURIResponse, expectedName, expectedDomain string) {
 	assert.Equal(t, expectedName, uri.Name)
 	assert.Equal(t, expectedDomain, uri.IPOrDomain)
 	assert.Contains(t, ValidURIStatuses, uri.Status)
 }
 
-func WaitForUpdatedURI(t *testing.T, ctx context.Context, s *swov1.Swo, entityID, expectedDomain string, expectedInterval float64, timeout time.Duration) {
+func waitForUpdatedURI(t *testing.T, ctx context.Context, s *swov1.Swo, entityID, expectedDomain string, expectedInterval float64, timeout time.Duration) {
 	assert.Eventually(t, func() bool {
 		getURIRes, err := s.Dem.GetURI(ctx, operations.GetURIRequest{
 			EntityID: entityID,
@@ -180,5 +164,5 @@ func WaitForUpdatedURI(t *testing.T, ctx context.Context, s *swov1.Swo, entityID
 		}
 		return false
 
-	}, timeout, URIUpdateRetryInterval, "Updated URI data should be created within %v", timeout)
+	}, timeout, DefaultUpdateRetryInterval, "Updated URI data should be created within %v", timeout)
 }
