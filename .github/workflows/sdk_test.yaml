@@ -6,6 +6,11 @@ permissions:
   statuses: write
   id-token: write
 "on":
+  pull_request:
+    branches:
+      - main
+    paths:
+      - swov1/**
   workflow_dispatch:
     inputs:
       target:
@@ -20,4 +25,4 @@ jobs:
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
-      
+
