@@ -1,0 +1,24 @@
+name: E2E Tests
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - swov1/**
+  workflow_dispatch:
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+    env:
+      SWO_STAGE_API_TOKEN: ${{ secrets.SWO_STAGE_API_TOKEN }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+      - name: Run E2E tests
+        run: |
+          cd swov1
+          go test ./tests/...
