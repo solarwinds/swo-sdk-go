@@ -1,0 +1,4 @@
+inputs:
+    - location: https://api.na-01.cloud.solarwinds.com/v1/openapi.json
+overlays:
+    - location: swov1/.speakeasy/overlays/auth.yaml
