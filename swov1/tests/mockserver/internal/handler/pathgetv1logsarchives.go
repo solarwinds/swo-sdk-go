@@ -14,7 +14,7 @@ import (
 	"net/http"
 )
 
-func pathGetV1Logs(dir *logging.HTTPFileDirectory, rt *tracking.RequestTracker) http.HandlerFunc {
+func pathGetV1LogsArchives(dir *logging.HTTPFileDirectory, rt *tracking.RequestTracker) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		test := req.Header.Get("x-speakeasy-test-name")
 		instanceID := req.Header.Get("x-speakeasy-test-instance-id")
@@ -22,15 +22,15 @@ func pathGetV1Logs(dir *logging.HTTPFileDirectory, rt *tracking.RequestTracker) 
 		count := rt.GetRequestCount(test, instanceID)
 
 		switch fmt.Sprintf("%s[%d]", test, count) {
-		case "logs-search[0]":
-			dir.HandlerFunc("searchLogs", testSearchLogsLogsSearch0)(w, req)
+		case "logs-list-archives[0]":
+			dir.HandlerFunc("listLogArchives", testListLogArchivesLogsListArchives0)(w, req)
 		default:
 			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)
 		}
 	}
 }
 
-func testSearchLogsLogsSearch0(w http.ResponseWriter, req *http.Request) {
+func testListLogArchivesLogsListArchives0(w http.ResponseWriter, req *http.Request) {
 	if err := assert.SecurityAuthorizationHeader(req, false, "Bearer"); err != nil {
 		log.Printf("assertion error: %s\n", err)
 		http.Error(w, err.Error(), http.StatusUnauthorized)
@@ -46,8 +46,8 @@ func testSearchLogsLogsSearch0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	var respBody *operations.SearchLogsResponseBody = &operations.SearchLogsResponseBody{
-		Logs: []components.LogsEvent{},
+	var respBody *operations.ListLogArchivesResponseBody = &operations.ListLogArchivesResponseBody{
+		LogArchives: []components.LogsArchive{},
 		PageInfo: components.CommonPageInfo{
 			PrevPage: "<value>",
 			NextPage: "<value>",

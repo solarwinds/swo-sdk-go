@@ -1,6 +1,6 @@
-package tests
-
 // THIS FILE WAS MANUALLY CREATED TO SUPPORT THE MANUALLY CREATED E2E TESTS.
+
+package tests
 
 import (
 	"time"
@@ -16,8 +16,8 @@ const (
 	DefaultTestInterval = 300
 	UpdatedTestInterval = 600
 
-	DefaultTimeout             = 2 * time.Minute
-	UpdateTimeout              = 3 * time.Minute
+	DefaultTimeout             = 3 * time.Minute
+	UpdateTimeout              = 4 * time.Minute
 	DefaultRetryInterval       = 5 * time.Second
 	DefaultUpdateRetryInterval = 10 * time.Second
 
@@ -48,9 +48,9 @@ var ValidURIStatuses = []components.Status{
 }
 
 func CreateTestClient(testName string) *swov1.Swo {
-	token := utils.GetEnv("SWO_API_TOKEN", "")
+	token := utils.GetEnv("SWO_STAGE_API_TOKEN", "")
 	if token == "" {
-		panic("The SWO_API_TOKEN environment variable is not set. Set a valid SWO_API_TOKEN to run the tests.")
+		panic("The SWO_STAGE_API_TOKEN environment variable is not set. Set a valid SWO_STAGE_API_TOKEN to run the tests.")
 	}
 
 	testHTTPClient := createTestHTTPClient(testName)

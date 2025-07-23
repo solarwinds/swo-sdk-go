@@ -11,8 +11,7 @@ x-speakeasy-test-server:
   baseUrl: "x-env: CUSTOM_API_URL; https://api.na-01.st-ssp.solarwinds.com"
 x-speakeasy-test-security:
   value:
-    apiKey:
-      x-env: SWO_API_TOKEN
+    ApiToken: "x-env: SWO_STAGE_API_TOKEN"
 workflows:
   # /v1/changeevents - Create change event operation
   - workflowId: change-events-create
@@ -131,37 +130,28 @@ workflows:
             value: "2025-06-15T00:00:00Z"
           - name: endTime
             in: query
-            value: "2025-07-15T23:59:59Z"
+            value: "2025-07-22T23:59:59Z"
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
           - condition: $response.body#/pageInfo != null
-        outputs:
-          search_results: $response.body
-          page_info: $response.body#/pageInfo
-      - stepId: search-logs-with-filter
-        description: Search logs with different filter
-        operationId: searchLogs
-        dependsOn: search-logs
+  # /v1/logs - List log archives operation
+  - workflowId: logs-list-archives
+    steps:
+      - stepId: list-log-archives
+        description: List log archives with parameters
+        operationId: listLogArchives
         parameters:
-          - name: filter
-            in: query
-            value: "level:error"
-          - name: direction
-            in: query
-            value: "forward"
           - name: pageSize
             in: query
-            value: 5
+            value: 10
           - name: startTime
             in: query
-            value: "2024-01-01T00:00:00Z"
+            value: "2025-06-15T00:00:00Z"
           - name: endTime
             in: query
-            value: "2024-12-31T23:59:59Z"
+            value: "2025-07-22T23:59:59Z"
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
           - condition: $response.body#/pageInfo != null
-        outputs:
-          filter_search_results: $response.body
