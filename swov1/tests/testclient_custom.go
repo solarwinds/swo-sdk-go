@@ -21,6 +21,9 @@ const (
 	DefaultRetryInterval       = 5 * time.Second
 	DefaultUpdateRetryInterval = 10 * time.Second
 
+	TestEntityName = "swo-sdk-e2e-crud-test"
+	TestEntityURL  = "https://swo-sdk-e2e-test.com"
+
 	WebsiteEntityType = "Website"
 	URIEntityType     = "Uri"
 

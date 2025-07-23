@@ -19,13 +19,17 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+const (
+	metadataEntityName = TestEntityName + "-metadata-e2e"
+)
+
 func TestSDK_MetadataE2E(t *testing.T) {
 	ctx := context.Background()
 	s := CreateTestClient("metadata-e2e")
 
 	createWebsiteRes, err := s.Dem.CreateWebsite(ctx, components.DemWebsite{
-		Name: testEntityName + "-metadata-e2e",
-		URL:  testEntityURL + "/metadata-e2e",
+		Name: metadataEntityName,
+		URL:  OriginalTestURL,
 		AvailabilityCheckSettings: &components.AvailabilityCheckSettings{
 			TestFrom: components.DemTestFrom{
 				Type:   components.TypeRegion,
@@ -52,14 +56,12 @@ func TestSDK_MetadataE2E(t *testing.T) {
 		}
 	}()
 
-	waitForEntityAvailability(ctx, t, s, entityID)
+	waitForEntityAvailability(ctx, t, s, entityID, metadataEntityName)
 
 	res, err := s.Metadata.ListEntityTypes(ctx)
 	require.NoError(t, err, "Failed to list entity types")
 	require.Equal(t, http.StatusOK, res.HTTPMeta.Response.StatusCode, "List entity types returned unexpected status")
 	assert.NotEmpty(t, res.Object.Types, "Entity types should not be empty")
-
-	t.Log("ListEntityTypes succeeded.")
 
 	websiteMetricsRes, err := s.Metadata.ListMetricsForEntityType(ctx, operations.ListMetricsForEntityTypeRequest{
 		Type: WebsiteEntityType,
@@ -69,6 +71,5 @@ func TestSDK_MetadataE2E(t *testing.T) {
 	assert.Equal(t, WebsiteEntityType, websiteMetricsRes.Object.Type)
 	assert.NotEmpty(t, websiteMetricsRes.Object.Metrics, "Website metrics should not be empty")
 
-	t.Log("ListMetricsForEntityType succeeded.")
-	t.Log("Metadata E2E test completed successfully.")
+	t.Log("Metadata E2E test completed.")
 }
