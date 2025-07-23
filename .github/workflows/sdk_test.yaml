@@ -6,11 +6,6 @@ permissions:
   statuses: write
   id-token: write
 "on":
-  pull_request:
-    branches:
-      - main
-    paths:
-      - swov1/**
   workflow_dispatch:
     inputs:
       target:
