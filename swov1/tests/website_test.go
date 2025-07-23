@@ -1,5 +1,3 @@
-package tests
-
 // THESE TESTS ARE MANUALLY CREATED END-TO-END TESTS FOR THE DEM Websites API.
 //
 // Website Create and Update operations are eventually consistent,
@@ -8,6 +6,8 @@ package tests
 // preventing us from generating these tests from the tests.arazzo file,
 // since there's no way to "wait" for entity creation,
 // or a way to implement retry logic in generated tests.
+
+package tests
 
 import (
 	"context"

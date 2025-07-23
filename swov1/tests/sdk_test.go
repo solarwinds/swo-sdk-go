@@ -21,7 +21,7 @@ func TestSDK_ChangeEventsCreate(t *testing.T) {
 
 	s := swov1.New(
 		swov1.WithServerURL(utils.GetEnv("CUSTOM_API_URL", "https://api.na-01.st-ssp.solarwinds.com")),
-		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
+		swov1.WithSecurity(utils.GetEnv("SWO_STAGE_API_TOKEN", "value")),
 		swov1.WithClient(testHTTPClient),
 	)
 
@@ -48,7 +48,7 @@ func TestSDK_CompositeMetricsCrudLifecycle(t *testing.T) {
 
 	s := swov1.New(
 		swov1.WithServerURL(utils.GetEnv("CUSTOM_API_URL", "https://api.na-01.st-ssp.solarwinds.com")),
-		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
+		swov1.WithSecurity(utils.GetEnv("SWO_STAGE_API_TOKEN", "value")),
 		swov1.WithClient(testHTTPClient),
 	)
 
@@ -127,27 +127,38 @@ func TestSDK_LogsSearch(t *testing.T) {
 
 	s := swov1.New(
 		swov1.WithServerURL(utils.GetEnv("CUSTOM_API_URL", "https://api.na-01.st-ssp.solarwinds.com")),
-		swov1.WithSecurity(utils.GetEnv("SWO_API_TOKEN", "value")),
+		swov1.WithSecurity(utils.GetEnv("SWO_STAGE_API_TOKEN", "value")),
 		swov1.WithClient(testHTTPClient),
 	)
 
 	searchLogsRes, err := s.Logs.SearchLogs(ctx, operations.SearchLogsRequest{
 		Filter:    swov1.String("level:info"),
 		StartTime: types.MustNewTimeFromString("2025-06-15T00:00:00Z"),
-		EndTime:   types.MustNewTimeFromString("2025-07-15T23:59:59Z"),
+		EndTime:   types.MustNewTimeFromString("2025-07-22T23:59:59Z"),
 		PageSize:  swov1.Int(10),
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, searchLogsRes.HTTPMeta.Response.StatusCode)
 
-	searchLogsWithFilterRes, err := s.Logs.SearchLogs(ctx, operations.SearchLogsRequest{
-		Filter:    swov1.String("level:error"),
-		StartTime: types.MustNewTimeFromString("2024-01-01T00:00:00Z"),
-		EndTime:   types.MustNewTimeFromString("2024-12-31T23:59:59Z"),
-		Direction: swov1.String("forward"),
-		PageSize:  swov1.Int(5),
+}
+
+func TestSDK_LogsListArchives(t *testing.T) {
+	ctx := context.Background()
+
+	testHTTPClient := createTestHTTPClient("logs-list-archives")
+
+	s := swov1.New(
+		swov1.WithServerURL(utils.GetEnv("CUSTOM_API_URL", "https://api.na-01.st-ssp.solarwinds.com")),
+		swov1.WithSecurity(utils.GetEnv("SWO_STAGE_API_TOKEN", "value")),
+		swov1.WithClient(testHTTPClient),
+	)
+
+	listLogArchivesRes, err := s.Logs.ListLogArchives(ctx, operations.ListLogArchivesRequest{
+		StartTime: "2025-06-15T00:00:00Z",
+		EndTime:   "2025-07-22T23:59:59Z",
+		PageSize:  swov1.Int(10),
 	})
 	require.NoError(t, err)
-	assert.Equal(t, 200, searchLogsWithFilterRes.HTTPMeta.Response.StatusCode)
+	assert.Equal(t, 200, listLogArchivesRes.HTTPMeta.Response.StatusCode)
 
 }
