@@ -21,4 +21,4 @@ jobs:
       - name: Run E2E tests
         run: |
           cd swov1
-          go test ./tests/...
+          go test -v ./tests
