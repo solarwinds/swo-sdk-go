@@ -21,15 +21,15 @@ func pathPostV1Tokens(dir *logging.HTTPFileDirectory, rt *tracking.RequestTracke
 		count := rt.GetRequestCount(test, instanceID)
 
 		switch fmt.Sprintf("%s[%d]", test, count) {
-		case "createToken[0]":
-			dir.HandlerFunc("createToken", testCreateTokenCreateToken0)(w, req)
+		case "tokens[0]":
+			dir.HandlerFunc("createToken", testCreateTokenTokens0)(w, req)
 		default:
 			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)
 		}
 	}
 }
 
-func testCreateTokenCreateToken0(w http.ResponseWriter, req *http.Request) {
+func testCreateTokenTokens0(w http.ResponseWriter, req *http.Request) {
 	if err := assert.SecurityAuthorizationHeader(req, false, "Bearer"); err != nil {
 		log.Printf("assertion error: %s\n", err)
 		http.Error(w, err.Error(), http.StatusUnauthorized)
@@ -51,7 +51,7 @@ func testCreateTokenCreateToken0(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	var respBody *components.TokensCreateTokenResponse = &components.TokensCreateTokenResponse{
-		Token: "<value>",
+		Token: "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)
 

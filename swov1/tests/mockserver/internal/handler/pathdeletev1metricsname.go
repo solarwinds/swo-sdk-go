@@ -19,15 +19,15 @@ func pathDeleteV1MetricsName(dir *logging.HTTPFileDirectory, rt *tracking.Reques
 		count := rt.GetRequestCount(test, instanceID)
 
 		switch fmt.Sprintf("%s[%d]", test, count) {
-		case "deleteCompositeMetric[0]":
-			dir.HandlerFunc("deleteCompositeMetric", testDeleteCompositeMetricDeleteCompositeMetric0)(w, req)
+		case "compositeMetricsCrudLifecycle[4]":
+			dir.HandlerFunc("deleteCompositeMetric", testDeleteCompositeMetricCompositeMetricsCrudLifecycle4)(w, req)
 		default:
 			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)
 		}
 	}
 }
 
-func testDeleteCompositeMetricDeleteCompositeMetric0(w http.ResponseWriter, req *http.Request) {
+func testDeleteCompositeMetricCompositeMetricsCrudLifecycle4(w http.ResponseWriter, req *http.Request) {
 	if err := assert.SecurityAuthorizationHeader(req, false, "Bearer"); err != nil {
 		log.Printf("assertion error: %s\n", err)
 		http.Error(w, err.Error(), http.StatusUnauthorized)

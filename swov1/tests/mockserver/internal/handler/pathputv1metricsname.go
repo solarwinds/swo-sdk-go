@@ -22,15 +22,15 @@ func pathPutV1MetricsName(dir *logging.HTTPFileDirectory, rt *tracking.RequestTr
 		count := rt.GetRequestCount(test, instanceID)
 
 		switch fmt.Sprintf("%s[%d]", test, count) {
-		case "updateCompositeMetric[0]":
-			dir.HandlerFunc("updateCompositeMetric", testUpdateCompositeMetricUpdateCompositeMetric0)(w, req)
+		case "compositeMetricsCrudLifecycle[2]":
+			dir.HandlerFunc("updateCompositeMetric", testUpdateCompositeMetricCompositeMetricsCrudLifecycle2)(w, req)
 		default:
 			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)
 		}
 	}
 }
 
-func testUpdateCompositeMetricUpdateCompositeMetric0(w http.ResponseWriter, req *http.Request) {
+func testUpdateCompositeMetricCompositeMetricsCrudLifecycle2(w http.ResponseWriter, req *http.Request) {
 	if err := assert.SecurityAuthorizationHeader(req, false, "Bearer"); err != nil {
 		log.Printf("assertion error: %s\n", err)
 		http.Error(w, err.Error(), http.StatusUnauthorized)
@@ -52,10 +52,10 @@ func testUpdateCompositeMetricUpdateCompositeMetric0(w http.ResponseWriter, req 
 		return
 	}
 	var respBody *components.MetricsCompositeMetric = &components.MetricsCompositeMetric{
-		Name:        "composite.custom.system.disk.io.rate",
-		DisplayName: types.String("Disk IO rate"),
-		Description: types.String("Disk bytes transferred per second"),
-		Formula:     "rate(system.disk.io[5m])",
+		Name:        "composite.swo.sdk.e2e.create.metric.test",
+		DisplayName: types.String("SWO SDK E2E Updated Metric Test"),
+		Description: types.String("SWO SDK composite metric end to end updated test"),
+		Formula:     "rate(system.cpu.usage[2m])",
 		Units:       types.String("bytes/s"),
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)
