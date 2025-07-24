@@ -21,15 +21,15 @@ func pathPostV1Changeevents(dir *logging.HTTPFileDirectory, rt *tracking.Request
 		count := rt.GetRequestCount(test, instanceID)
 
 		switch fmt.Sprintf("%s[%d]", test, count) {
-		case "change-events-create[0]":
-			dir.HandlerFunc("createChangeEvent", testCreateChangeEventChangeEventsCreate0)(w, req)
+		case "changeEvents[0]":
+			dir.HandlerFunc("createChangeEvent", testCreateChangeEventChangeEvents0)(w, req)
 		default:
 			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)
 		}
 	}
 }
 
-func testCreateChangeEventChangeEventsCreate0(w http.ResponseWriter, req *http.Request) {
+func testCreateChangeEventChangeEvents0(w http.ResponseWriter, req *http.Request) {
 	if err := assert.SecurityAuthorizationHeader(req, false, "Bearer"); err != nil {
 		log.Printf("assertion error: %s\n", err)
 		http.Error(w, err.Error(), http.StatusUnauthorized)
