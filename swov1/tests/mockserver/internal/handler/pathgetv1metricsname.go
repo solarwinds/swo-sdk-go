@@ -22,9 +22,9 @@ func pathGetV1MetricsName(dir *logging.HTTPFileDirectory, rt *tracking.RequestTr
 		count := rt.GetRequestCount(test, instanceID)
 
 		switch fmt.Sprintf("%s[%d]", test, count) {
-		case "composite-metrics-crud-lifecycle[1]":
+		case "compositeMetricsCrudLifecycle[1]":
 			dir.HandlerFunc("getMetricByName", testGetMetricByNameCompositeMetricsCrudLifecycle1)(w, req)
-		case "composite-metrics-crud-lifecycle[3]":
+		case "compositeMetricsCrudLifecycle[3]":
 			dir.HandlerFunc("getMetricByName", testGetMetricByNameCompositeMetricsCrudLifecycle3)(w, req)
 		default:
 			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)

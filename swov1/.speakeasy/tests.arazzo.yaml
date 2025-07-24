@@ -5,18 +5,18 @@ info:
   version: 0.0.1
 sourceDescriptions:
   - name: public-api
-    url: https://api.na-01.st-ssp.solarwinds.com/v1/openapi.json
+    url: https://api.na-01.cloud.solarwinds.com/v1/openapi.json
     type: openapi
 x-speakeasy-test-server:
-  baseUrl: "x-env: CUSTOM_API_URL; https://api.na-01.st-ssp.solarwinds.com"
+  baseUrl: "x-env: PUBLIC_API_STAGE_URL"
 x-speakeasy-test-security:
   value:
     ApiToken: "x-env: SWO_STAGE_API_TOKEN"
 workflows:
   # /v1/changeevents - Create change event operation
-  - workflowId: change-events-create
+  - workflowId: changeEvents
     steps:
-      - stepId: create-change-event
+      - stepId: create
         description: Create a new change event
         operationId: createChangeEvent
         requestBody:
@@ -27,9 +27,9 @@ workflows:
           - condition: $response.header.Content-Type == application/json
           - condition: $response.body#/id != null
         outputs:
-          event_id: $response.body#/id
+          eventId: $response.body#/id
   # /v1/metrics - Composite metrics CRUD operations
-  - workflowId: composite-metrics-crud-lifecycle
+  - workflowId: compositeMetricsCrudLifecycle
     steps:
       - stepId: create
         operationId: createCompositeMetric
@@ -46,7 +46,7 @@ workflows:
           - condition: $response.body#/units == "bytes/s"
         outputs:
           name: $response.body#/name
-      - stepId: get-metric-by-name
+      - stepId: getByName
         description: Retrieve the created metric by name
         operationId: getMetricByName
         dependsOn: create
@@ -63,11 +63,11 @@ workflows:
           - condition: $response.body#/formula == "rate(system.disk.io[1m])"
           - condition: $response.body#/units == "bytes/s"
         outputs:
-          retrieved_metric: $response.body
+          retrievedMetric: $response.body
       - stepId: update
         description: Update the created composite metric
         operationId: updateCompositeMetric
-        dependsOn: get-metric-by-name
+        dependsOn: getMetricByName
         parameters:
           - name: name
             in: path
@@ -84,8 +84,8 @@ workflows:
           - condition: $response.body#/formula == "rate(system.cpu.usage[2m])"
           - condition: $response.body#/units == "bytes/s"
         outputs:
-          updated_metric: $response.body
-      - stepId: get-updated-metric
+          updatedMetric: $response.body
+      - stepId: getUpdatedMetric
         description: Retrieve the updated metric to verify changes
         operationId: getMetricByName
         dependsOn: update
@@ -102,11 +102,11 @@ workflows:
           - condition: $response.body#/formula == "rate(system.cpu.usage[2m])"
           - condition: $response.body#/units == "bytes/s"
         outputs:
-          final_metric: $response.body
+          finalMetric: $response.body
       - stepId: delete
         description: Delete the composite metric
         operationId: deleteCompositeMetric
-        dependsOn: get-updated-metric
+        dependsOn: getUpdatedMetric
         parameters:
           - name: name
             in: path
@@ -114,9 +114,9 @@ workflows:
         successCriteria:
           - condition: $statusCode == 204
   # /v1/logs - Search logs operation
-  - workflowId: logs-search
+  - workflowId: logsSearch
     steps:
-      - stepId: search-logs
+      - stepId: search
         description: Search logs with basic parameters
         operationId: searchLogs
         parameters:
@@ -140,9 +140,9 @@ workflows:
           - condition: $response.header.Content-Type == application/json
           - condition: $response.body#/pageInfo != null
   # /v1/logs - List log archives operation
-  - workflowId: logs-list-archives
+  - workflowId: logsArchives
     steps:
-      - stepId: list-log-archives
+      - stepId: list
         description: List log archives with parameters
         operationId: listLogArchives
         parameters:
@@ -159,3 +159,20 @@ workflows:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
           - condition: $response.body#/pageInfo != null
+  # /v1/tokens - Create token operation
+  - workflowId: tokens
+    steps:
+      - stepId: create
+        operationId: createToken
+        requestBody:
+          contentType: application/json
+          payload:
+            name: "swo-sdk-e2e-test-token"
+            tags:
+              server: "swo-sdk-e2e-test-server"
+              tag_without_value: "swo-sdk-e2e-test-tag"
+            type: ingestion
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - condition: $response.body#/token != null

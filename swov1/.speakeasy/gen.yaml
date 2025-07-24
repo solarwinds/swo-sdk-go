@@ -26,7 +26,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 go:
-  version: 0.7.0
+  version: 0.7.5
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: false
   baseErrorName: SwoError
@@ -45,8 +45,8 @@ go:
   inputModelSuffix: input
   maxMethodParams: 0
   methodArguments: require-security-and-request
-  modulePath: ""
+  modulePath: github.com/solarwinds/swo-sdk-go/swov1
   outputModelSuffix: output
   packageName: github.com/solarwinds/swo-sdk-go/swov1
   responseFormat: envelope-http
-  sdkPackageName: ""
+  sdkPackageName: swov1

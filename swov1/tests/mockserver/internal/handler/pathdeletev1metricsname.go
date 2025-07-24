@@ -19,7 +19,7 @@ func pathDeleteV1MetricsName(dir *logging.HTTPFileDirectory, rt *tracking.Reques
 		count := rt.GetRequestCount(test, instanceID)
 
 		switch fmt.Sprintf("%s[%d]", test, count) {
-		case "composite-metrics-crud-lifecycle[4]":
+		case "compositeMetricsCrudLifecycle[4]":
 			dir.HandlerFunc("deleteCompositeMetric", testDeleteCompositeMetricCompositeMetricsCrudLifecycle4)(w, req)
 		default:
 			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)

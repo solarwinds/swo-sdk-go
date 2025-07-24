@@ -14,18 +14,18 @@ import (
 	"testing"
 )
 
-func TestSDK_ChangeEventsCreate(t *testing.T) {
+func TestSDK_ChangeEvents(t *testing.T) {
 	ctx := context.Background()
 
-	testHTTPClient := createTestHTTPClient("change-events-create")
+	testHTTPClient := createTestHTTPClient("changeEvents")
 
 	s := swov1.New(
-		swov1.WithServerURL(utils.GetEnv("CUSTOM_API_URL", "https://api.na-01.st-ssp.solarwinds.com")),
+		swov1.WithServerURL(utils.GetEnv("PUBLIC_API_STAGE_URL", "")),
 		swov1.WithSecurity(utils.GetEnv("SWO_STAGE_API_TOKEN", "value")),
 		swov1.WithClient(testHTTPClient),
 	)
 
-	createChangeEventRes, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEventsChangeEvent{
+	createRes, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEventsChangeEvent{
 		Name:        "swo-sdk-e2e-test-event",
 		Title:       "SWO SDK E2E Test Deployment",
 		Source:      swov1.String("swo-sdk-go-test"),
@@ -37,17 +37,17 @@ func TestSDK_ChangeEventsCreate(t *testing.T) {
 		},
 	})
 	require.NoError(t, err)
-	assert.Equal(t, 202, createChangeEventRes.HTTPMeta.Response.StatusCode)
+	assert.Equal(t, 202, createRes.HTTPMeta.Response.StatusCode)
 
 }
 
 func TestSDK_CompositeMetricsCrudLifecycle(t *testing.T) {
 	ctx := context.Background()
 
-	testHTTPClient := createTestHTTPClient("composite-metrics-crud-lifecycle")
+	testHTTPClient := createTestHTTPClient("compositeMetricsCrudLifecycle")
 
 	s := swov1.New(
-		swov1.WithServerURL(utils.GetEnv("CUSTOM_API_URL", "https://api.na-01.st-ssp.solarwinds.com")),
+		swov1.WithServerURL(utils.GetEnv("PUBLIC_API_STAGE_URL", "")),
 		swov1.WithSecurity(utils.GetEnv("SWO_STAGE_API_TOKEN", "value")),
 		swov1.WithClient(testHTTPClient),
 	)
@@ -70,20 +70,20 @@ func TestSDK_CompositeMetricsCrudLifecycle(t *testing.T) {
 	assert.NotNil(t, createRes.MetricsCompositeMetric.Units)
 	assert.Equal(t, swov1.String("bytes/s"), createRes.MetricsCompositeMetric.Units)
 
-	getMetricByNameRes, err := s.Metrics.GetMetricByName(ctx, operations.GetMetricByNameRequest{
+	getByNameRes, err := s.Metrics.GetMetricByName(ctx, operations.GetMetricByNameRequest{
 		Name: createRes.MetricsCompositeMetric.Name,
 	})
 	require.NoError(t, err)
-	assert.Equal(t, 200, getMetricByNameRes.HTTPMeta.Response.StatusCode)
-	assert.Equal(t, "composite.swo.sdk.e2e.create.metric.test", getMetricByNameRes.CommonMetricInfo.Name)
-	assert.NotNil(t, getMetricByNameRes.CommonMetricInfo.DisplayName)
-	assert.Equal(t, swov1.String("SWO SDK E2E Create Metric Test"), getMetricByNameRes.CommonMetricInfo.DisplayName)
-	assert.NotNil(t, getMetricByNameRes.CommonMetricInfo.Description)
-	assert.Equal(t, swov1.String("SWO SDK composite metric end to end create test"), getMetricByNameRes.CommonMetricInfo.Description)
-	assert.NotNil(t, getMetricByNameRes.CommonMetricInfo.Formula)
-	assert.Equal(t, swov1.String("rate(system.disk.io[1m])"), getMetricByNameRes.CommonMetricInfo.Formula)
-	assert.NotNil(t, getMetricByNameRes.CommonMetricInfo.Units)
-	assert.Equal(t, swov1.String("bytes/s"), getMetricByNameRes.CommonMetricInfo.Units)
+	assert.Equal(t, 200, getByNameRes.HTTPMeta.Response.StatusCode)
+	assert.Equal(t, "composite.swo.sdk.e2e.create.metric.test", getByNameRes.CommonMetricInfo.Name)
+	assert.NotNil(t, getByNameRes.CommonMetricInfo.DisplayName)
+	assert.Equal(t, swov1.String("SWO SDK E2E Create Metric Test"), getByNameRes.CommonMetricInfo.DisplayName)
+	assert.NotNil(t, getByNameRes.CommonMetricInfo.Description)
+	assert.Equal(t, swov1.String("SWO SDK composite metric end to end create test"), getByNameRes.CommonMetricInfo.Description)
+	assert.NotNil(t, getByNameRes.CommonMetricInfo.Formula)
+	assert.Equal(t, swov1.String("rate(system.disk.io[1m])"), getByNameRes.CommonMetricInfo.Formula)
+	assert.NotNil(t, getByNameRes.CommonMetricInfo.Units)
+	assert.Equal(t, swov1.String("bytes/s"), getByNameRes.CommonMetricInfo.Units)
 
 	updateRes, err := s.Metrics.UpdateCompositeMetric(ctx, operations.UpdateCompositeMetricRequest{
 		Name: createRes.MetricsCompositeMetric.Name,
@@ -131,42 +131,67 @@ func TestSDK_CompositeMetricsCrudLifecycle(t *testing.T) {
 func TestSDK_LogsSearch(t *testing.T) {
 	ctx := context.Background()
 
-	testHTTPClient := createTestHTTPClient("logs-search")
+	testHTTPClient := createTestHTTPClient("logsSearch")
 
 	s := swov1.New(
-		swov1.WithServerURL(utils.GetEnv("CUSTOM_API_URL", "https://api.na-01.st-ssp.solarwinds.com")),
+		swov1.WithServerURL(utils.GetEnv("PUBLIC_API_STAGE_URL", "")),
 		swov1.WithSecurity(utils.GetEnv("SWO_STAGE_API_TOKEN", "value")),
 		swov1.WithClient(testHTTPClient),
 	)
 
-	searchLogsRes, err := s.Logs.SearchLogs(ctx, operations.SearchLogsRequest{
+	searchRes, err := s.Logs.SearchLogs(ctx, operations.SearchLogsRequest{
 		Filter:    swov1.String("level:info"),
 		StartTime: types.MustNewTimeFromString("2025-06-15T00:00:00Z"),
 		EndTime:   types.MustNewTimeFromString("2025-07-22T23:59:59Z"),
 		PageSize:  swov1.Int(10),
 	})
 	require.NoError(t, err)
-	assert.Equal(t, 200, searchLogsRes.HTTPMeta.Response.StatusCode)
+	assert.Equal(t, 200, searchRes.HTTPMeta.Response.StatusCode)
 
 }
 
-func TestSDK_LogsListArchives(t *testing.T) {
+func TestSDK_LogsArchives(t *testing.T) {
 	ctx := context.Background()
 
-	testHTTPClient := createTestHTTPClient("logs-list-archives")
+	testHTTPClient := createTestHTTPClient("logsArchives")
 
 	s := swov1.New(
-		swov1.WithServerURL(utils.GetEnv("CUSTOM_API_URL", "https://api.na-01.st-ssp.solarwinds.com")),
+		swov1.WithServerURL(utils.GetEnv("PUBLIC_API_STAGE_URL", "")),
 		swov1.WithSecurity(utils.GetEnv("SWO_STAGE_API_TOKEN", "value")),
 		swov1.WithClient(testHTTPClient),
 	)
 
-	listLogArchivesRes, err := s.Logs.ListLogArchives(ctx, operations.ListLogArchivesRequest{
+	listRes, err := s.Logs.ListLogArchives(ctx, operations.ListLogArchivesRequest{
 		StartTime: "2025-06-15T00:00:00Z",
 		EndTime:   "2025-07-22T23:59:59Z",
 		PageSize:  swov1.Int(10),
 	})
 	require.NoError(t, err)
-	assert.Equal(t, 200, listLogArchivesRes.HTTPMeta.Response.StatusCode)
+	assert.Equal(t, 200, listRes.HTTPMeta.Response.StatusCode)
+
+}
+
+func TestSDK_Tokens(t *testing.T) {
+	ctx := context.Background()
+
+	testHTTPClient := createTestHTTPClient("tokens")
+
+	s := swov1.New(
+		swov1.WithServerURL(utils.GetEnv("PUBLIC_API_STAGE_URL", "")),
+		swov1.WithSecurity(utils.GetEnv("SWO_STAGE_API_TOKEN", "value")),
+		swov1.WithClient(testHTTPClient),
+	)
+
+	createRes, err := s.Tokens.CreateToken(ctx, components.TokensCreateTokenRequest{
+		Name: "swo-sdk-e2e-test-token",
+		Tags: components.Tags{
+			Server:          "swo-sdk-e2e-test-server",
+			TagWithoutValue: "swo-sdk-e2e-test-tag",
+		},
+		Type: components.TokensCreateTokenRequestTypeIngestion,
+	})
+	require.NoError(t, err)
+	assert.Equal(t, 200, createRes.HTTPMeta.Response.StatusCode)
+	assert.NotEmpty(t, createRes.TokensCreateTokenResponse.Token)
 
 }

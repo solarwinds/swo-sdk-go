@@ -22,7 +22,7 @@ func pathGetV1Logs(dir *logging.HTTPFileDirectory, rt *tracking.RequestTracker) 
 		count := rt.GetRequestCount(test, instanceID)
 
 		switch fmt.Sprintf("%s[%d]", test, count) {
-		case "logs-search[0]":
+		case "logsSearch[0]":
 			dir.HandlerFunc("searchLogs", testSearchLogsLogsSearch0)(w, req)
 		default:
 			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)

@@ -3,6 +3,7 @@
 package tests
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/solarwinds/swo-sdk-go/swov1"
@@ -32,6 +33,9 @@ const (
 
 	OriginalTestURL = "https://create-sdk-e2e-test.com"
 	UpdatedTestURL  = "https://update-sdk-e2e-test.com"
+
+	publicApiUrlEnvName   = "PUBLIC_API_STAGE_URL"
+	publicApiTokenEnvName = "SWO_STAGE_API_TOKEN"
 )
 
 var ValidWebsiteStatuses = []components.DemGetWebsiteResponseStatus{
@@ -51,15 +55,21 @@ var ValidURIStatuses = []components.Status{
 }
 
 func CreateTestClient(testName string) *swov1.Swo {
-	token := utils.GetEnv("SWO_STAGE_API_TOKEN", "")
-	if token == "" {
-		panic("The SWO_STAGE_API_TOKEN environment variable is not set. Set a valid SWO_STAGE_API_TOKEN to run the tests.")
-	}
+	publicApiUrl := requireEnv(publicApiUrlEnvName)
+	publicApiToken := requireEnv(publicApiTokenEnvName)
 
 	testHTTPClient := createTestHTTPClient(testName)
 	return swov1.New(
-		swov1.WithServerURL(utils.GetEnv("CUSTOM_API_URL", "https://api.na-01.st-ssp.solarwinds.com")),
-		swov1.WithSecurity(token),
+		swov1.WithServerURL(publicApiUrl),
+		swov1.WithSecurity(publicApiToken),
 		swov1.WithClient(testHTTPClient),
 	)
+}
+
+func requireEnv(name string) string {
+	val := utils.GetEnv(name, "")
+	if val == "" {
+		panic(fmt.Sprintf("The %s environment variable is not set. Set a valid %s to run the tests.", name, name))
+	}
+	return val
 }
