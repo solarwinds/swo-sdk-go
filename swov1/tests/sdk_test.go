@@ -76,6 +76,14 @@ func TestSDK_CompositeMetricsCrudLifecycle(t *testing.T) {
 	require.NoError(t, err)
 	assert.Equal(t, 200, getMetricByNameRes.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, "composite.swo.sdk.e2e.create.metric.test", getMetricByNameRes.CommonMetricInfo.Name)
+	assert.NotNil(t, getMetricByNameRes.CommonMetricInfo.DisplayName)
+	assert.Equal(t, swov1.String("SWO SDK E2E Create Metric Test"), getMetricByNameRes.CommonMetricInfo.DisplayName)
+	assert.NotNil(t, getMetricByNameRes.CommonMetricInfo.Description)
+	assert.Equal(t, swov1.String("SWO SDK composite metric end to end create test"), getMetricByNameRes.CommonMetricInfo.Description)
+	assert.NotNil(t, getMetricByNameRes.CommonMetricInfo.Formula)
+	assert.Equal(t, swov1.String("rate(system.disk.io[1m])"), getMetricByNameRes.CommonMetricInfo.Formula)
+	assert.NotNil(t, getMetricByNameRes.CommonMetricInfo.Units)
+	assert.Equal(t, swov1.String("bytes/s"), getMetricByNameRes.CommonMetricInfo.Units)
 
 	updateRes, err := s.Metrics.UpdateCompositeMetric(ctx, operations.UpdateCompositeMetricRequest{
 		Name: createRes.MetricsCompositeMetric.Name,

@@ -50,10 +50,10 @@ func testGetMetricByNameCompositeMetricsCrudLifecycle1(w http.ResponseWriter, re
 	}
 	var respBody *components.CommonMetricInfo = &components.CommonMetricInfo{
 		Name:             "composite.swo.sdk.e2e.create.metric.test",
-		DisplayName:      types.String("Disk IO rate"),
-		Description:      types.String("Disk bytes transferred per second"),
+		DisplayName:      types.String("SWO SDK E2E Create Metric Test"),
+		Description:      types.String("SWO SDK composite metric end to end create test"),
 		Units:            types.String("bytes/s"),
-		Formula:          types.String("rate(system.disk.io[5m]"),
+		Formula:          types.String("rate(system.disk.io[1m])"),
 		LastReportedTime: types.MustNewTimeFromString("2024-11-25T16:38:24Z"),
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

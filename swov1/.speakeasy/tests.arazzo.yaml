@@ -58,6 +58,10 @@ workflows:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
           - condition: $response.body#/name == "composite.swo.sdk.e2e.create.metric.test"
+          - condition: $response.body#/displayName == "SWO SDK E2E Create Metric Test"
+          - condition: $response.body#/description == "SWO SDK composite metric end to end create test"
+          - condition: $response.body#/formula == "rate(system.disk.io[1m])"
+          - condition: $response.body#/units == "bytes/s"
         outputs:
           retrieved_metric: $response.body
       - stepId: update
