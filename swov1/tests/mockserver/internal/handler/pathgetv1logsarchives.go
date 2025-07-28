@@ -22,15 +22,15 @@ func pathGetV1LogsArchives(dir *logging.HTTPFileDirectory, rt *tracking.RequestT
 		count := rt.GetRequestCount(test, instanceID)
 
 		switch fmt.Sprintf("%s[%d]", test, count) {
-		case "listLogArchives[0]":
-			dir.HandlerFunc("listLogArchives", testListLogArchivesListLogArchives0)(w, req)
+		case "logsArchives[0]":
+			dir.HandlerFunc("listLogArchives", testListLogArchivesLogsArchives0)(w, req)
 		default:
 			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)
 		}
 	}
 }
 
-func testListLogArchivesListLogArchives0(w http.ResponseWriter, req *http.Request) {
+func testListLogArchivesLogsArchives0(w http.ResponseWriter, req *http.Request) {
 	if err := assert.SecurityAuthorizationHeader(req, false, "Bearer"); err != nil {
 		log.Printf("assertion error: %s\n", err)
 		http.Error(w, err.Error(), http.StatusUnauthorized)
@@ -47,29 +47,7 @@ func testListLogArchivesListLogArchives0(w http.ResponseWriter, req *http.Reques
 		return
 	}
 	var respBody *operations.ListLogArchivesResponseBody = &operations.ListLogArchivesResponseBody{
-		LogArchives: []components.LogsArchive{
-			components.LogsArchive{
-				ID:                "logs/138723/dt=2024-01-23/2024-01-23-08.json.gz",
-				Name:              "2024-01-23-08.json.gz",
-				DownloadURL:       "https://ssp-log-archives.s3.amazonaws.com/logs/138723/dt%3D2024-01-23/2024-01-23-08.json.gz?X-Amz-Security-Token=IQ...",
-				ArchivedTimestamp: "1706020985",
-				ArchiveSize:       817226354,
-			},
-			components.LogsArchive{
-				ID:                "logs/138723/dt=2024-01-23/2024-01-23-08.json.gz",
-				Name:              "2024-01-23-08.json.gz",
-				DownloadURL:       "https://ssp-log-archives.s3.amazonaws.com/logs/138723/dt%3D2024-01-23/2024-01-23-08.json.gz?X-Amz-Security-Token=IQ...",
-				ArchivedTimestamp: "1706020985",
-				ArchiveSize:       817226354,
-			},
-			components.LogsArchive{
-				ID:                "logs/138723/dt=2024-01-23/2024-01-23-08.json.gz",
-				Name:              "2024-01-23-08.json.gz",
-				DownloadURL:       "https://ssp-log-archives.s3.amazonaws.com/logs/138723/dt%3D2024-01-23/2024-01-23-08.json.gz?X-Amz-Security-Token=IQ...",
-				ArchivedTimestamp: "1706020985",
-				ArchiveSize:       817226354,
-			},
-		},
+		LogArchives: []components.LogsArchive{},
 		PageInfo: components.CommonPageInfo{
 			PrevPage: "<value>",
 			NextPage: "<value>",

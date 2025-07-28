@@ -19,12 +19,14 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
+  mockServer:
+    disabled: false
   tests:
     generateTests: true
     generateNewTests: true
     skipResponseBodyAssertions: false
 go:
-  version: 0.4.0
+  version: 0.7.12
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: false
   baseErrorName: SwoError
@@ -43,6 +45,8 @@ go:
   inputModelSuffix: input
   maxMethodParams: 0
   methodArguments: require-security-and-request
+  modulePath: github.com/solarwinds/swo-sdk-go/swov1
   outputModelSuffix: output
   packageName: github.com/solarwinds/swo-sdk-go/swov1
   responseFormat: envelope-http
+  sdkPackageName: swov1

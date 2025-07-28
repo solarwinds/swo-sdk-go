@@ -1,1285 +1,178 @@
 arazzo: 1.0.1
 info:
-  title: Test Suite
-  summary: Created from /Users/michael.anderson/Dev/solarwinds/swo-sdk-go/.speakeasy/temp/output_fcc8ac.json
+  title: SWO End-to-End CRUD Contract Tests
+  summary: Contract tests that run against the SWO Public API
   version: 0.0.1
 sourceDescriptions:
-  - name: /Users/michael.anderson/Dev/solarwinds/swo-sdk-go/.speakeasy/temp/output_fcc8ac.json
-    url: https://TBD.com
+  - name: public-api
+    url: https://api.na-01.cloud.solarwinds.com/v1/openapi.json
     type: openapi
+x-speakeasy-test-server:
+  baseUrl: "x-env: PUBLIC_SWO_API_STAGE_URL"
+x-speakeasy-test-security:
+  value:
+    ApiToken: "x-env: SWO_STAGE_API_TOKEN"
 workflows:
-  - workflowId: createChangeEvent
+  # /v1/changeevents - Create change event operation
+  - workflowId: changeEvents
     steps:
-      - stepId: test
+      - stepId: create
+        description: Create a new change event
         operationId: createChangeEvent
         requestBody:
           contentType: application/json
-          payload:
-            id: 1731676626
-            links:
-              - href: https://example.com
-                rel: self
-            name: app-deploys
-            source: foo3.example.com
-            tags:
-              app: foo
-              environment: production
-            timestamp: 1731676626
-            title: deployed v45
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "id": 119883
-              }
-            type: simple
-    x-speakeasy-test-group: changeEvents
-  - workflowId: activateAwsIntegration
-    steps:
-      - stepId: test
-        operationId: activateAwsIntegration
-        requestBody:
-          contentType: application/json
-          payload:
-            accountId: <id>
-            enable: false
-            managementAccountId: <id>
-        successCriteria:
-          - condition: $statusCode == 200
-    x-speakeasy-test-group: cloudAccounts
-  - workflowId: createOrgStructure
-    steps:
-      - stepId: test
-        operationId: createOrgStructure
-        requestBody:
-          contentType: application/json
-          payload:
-            mgmtAccountId: <id>
-            structure:
-              - child_id: <id>
-                child_name: <value>
-              - child_id: <id>
-                child_name: <value>
-              - child_id: <id>
-                child_name: <value>
-        successCriteria:
-          - condition: $statusCode == 200
-    x-speakeasy-test-group: cloudAccounts
-  - workflowId: updateAwsIntegration
-    steps:
-      - stepId: test
-        operationId: updateAwsIntegration
-        requestBody:
-          contentType: application/json
-          payload:
-            accountId: <id>
-            accountName: <value>
-            managementAccountId: <id>
-            roleArn: <value>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "selectedRegions": [
-                  "\u003cvalue\u003e",
-                  "\u003cvalue\u003e",
-                  "\u003cvalue\u003e"
-                ],
-                "externalId": "\u003cid\u003e",
-                "integrationId": "\u003cid\u003e",
-                "integrationType": "POLLING",
-                "isNewAccount": true
-              }
-            type: simple
-    x-speakeasy-test-group: cloudAccounts
-  - workflowId: validateMgmtAccountOnboarding
-    steps:
-      - stepId: test
-        operationId: validateMgmtAccountOnboarding
-        parameters:
-          - name: request
-            in: query
-            value:
-              managementAccountId: <id>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "isOnboarded": false
-              }
-            type: simple
-    x-speakeasy-test-group: cloudAccounts
-  - workflowId: observeDatabase
-    steps:
-      - stepId: test
-        operationId: observeDatabase
-        requestBody:
-          contentType: application/json
-          payload:
-            agentId: <id>
-            authMethod: entraclientsecret
-            captureMethod: null
-            configOptions:
-              - key: <key>
-                value: <value>
-            dbConnOptions:
-              cloudRegion: ""
-              encryptedCredentials: ""
-              host: dependent-bar.com
-              port: <value>
-              sslEnabled: false
-              sslOptions:
-                sslCAPath: ""
-                sslCertPath: ""
-                sslKeyPath: ""
-                sslMode: require
-              user: ""
-            dbType: mongo
-            name: <value>
-            tags: []
-        successCriteria:
-          - condition: $statusCode == 201
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "id": "\u003cid\u003e"
-              }
-            type: simple
-    x-speakeasy-test-group: dbo
-  - workflowId: getPublicKey
-    steps:
-      - stepId: test
-        operationId: getPublicKey
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "publicKey": "\u003cvalue\u003e"
-              }
-            type: simple
-    x-speakeasy-test-group: dbo
-  - workflowId: updateDatabase
-    steps:
-      - stepId: test
-        operationId: updateDatabase
-        parameters:
-          - name: entityId
-            in: path
-            value: <id>
-        requestBody:
-          contentType: application/json
-          payload:
-            name: ""
-        successCriteria:
-          - condition: $statusCode == 204
-    x-speakeasy-test-group: dbo
-  - workflowId: deleteDatabase
-    steps:
-      - stepId: test
-        operationId: deleteDatabase
-        parameters:
-          - name: entityId
-            in: path
-            value: <id>
-        successCriteria:
-          - condition: $statusCode == 204
-    x-speakeasy-test-group: dbo
-  - workflowId: getPluginConfig
-    steps:
-      - stepId: test
-        operationId: getPluginConfig
-        parameters:
-          - name: entityId
-            in: path
-            value: <id>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "pluginConfig": [
-                  {
-                    "pluginName": "\u003cvalue\u003e",
-                    "config": [
-                      {
-                        "key": "\u003ckey\u003e",
-                        "value": "\u003cvalue\u003e"
-                      }
-                    ]
-                  },
-                  {
-                    "pluginName": "\u003cvalue\u003e",
-                    "config": []
-                  },
-                  {
-                    "pluginName": "\u003cvalue\u003e",
-                    "config": [
-                      {
-                        "key": "\u003ckey\u003e",
-                        "value": "\u003cvalue\u003e"
-                      }
-                    ]
-                  }
-                ]
-              }
-            type: simple
-    x-speakeasy-test-group: dbo
-  - workflowId: getPlugins
-    steps:
-      - stepId: test
-        operationId: getPlugins
-        parameters:
-          - name: entityId
-            in: path
-            value: <id>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "plugins": [
-                  {
-                    "pluginName": "\u003cvalue\u003e",
-                    "status": "\u003cvalue\u003e"
-                  },
-                  {
-                    "pluginName": "\u003cvalue\u003e",
-                    "status": "\u003cvalue\u003e"
-                  }
-                ]
-              }
-            type: simple
-    x-speakeasy-test-group: dbo
-  - workflowId: pluginOperation
-    steps:
-      - stepId: test
-        operationId: pluginOperation
-        parameters:
-          - name: entityId
-            in: path
-            value: <id>
-          - name: operation
-            in: path
-            value: <value>
-        successCriteria:
-          - condition: $statusCode == 204
-    x-speakeasy-test-group: dbo
-  - workflowId: getDemSettings
-    steps:
-      - stepId: test
-        operationId: getDemSettings
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "failingTestLocations": "all",
-                "consecutiveForDown": 2
-              }
-            type: simple
-    x-speakeasy-test-group: dem
-  - workflowId: setDemSettings
-    steps:
-      - stepId: test
-        operationId: setDemSettings
-        requestBody:
-          contentType: application/json
-          payload:
-            consecutiveForDown: 2
-            failingTestLocations: all
-        successCriteria:
-          - condition: $statusCode == 200
-    x-speakeasy-test-group: dem
-  - workflowId: createWebsite
-    steps:
-      - stepId: test
-        operationId: createWebsite
-        requestBody:
-          contentType: application/json
-          payload:
-            availabilityCheckSettings:
-              allowInsecureRenegotiation: true
-              checkForString:
-                operator: CONTAINS
-                value: string
-              customHeaders:
-                - name: string
-                  value: string
-              outageConfiguration:
-                consecutiveForDown: 2
-                failingTestLocations: all
-              platformOptions:
-                probePlatforms:
-                  - AWS
-                testFromAll: true
-              postData: '{"example": "value"}'
-              protocols:
-                - HTTP
-                - HTTPS
-              ssl:
-                daysPriorToExpiration: 7
-                enabled: true
-                ignoreIntermediateCertificates: true
-              testFrom:
-                type: REGION
-                values:
-                  - NA
-              testIntervalInSeconds: 14400
-            name: solarwinds.com
-            rum:
-              apdexTimeInSeconds: 4
-              spa: true
-            tags:
-              - key: environment
-                value: production
-            url: https://www.solarwinds.com
-        successCriteria:
-          - condition: $statusCode == 201
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "id": "e-1448474379026206720"
-              }
-            type: simple
-    x-speakeasy-test-group: dem
-  - workflowId: getWebsite
-    steps:
-      - stepId: test
-        operationId: getWebsite
-        parameters:
-          - name: entityId
-            in: path
-            value: <id>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "id": "e-1448474379026206720",
-                "type": "Website",
-                "status": "up",
-                "name": "solarwinds.com",
-                "url": "https://www.solarwinds.com",
-                "availabilityCheckSettings": {
-                  "checkForString": {
-                    "operator": "CONTAINS",
-                    "value": "string"
-                  },
-                  "testIntervalInSeconds": 14400,
-                  "protocols": [
-                    "HTTP",
-                    "HTTPS"
-                  ],
-                  "platformOptions": {
-                    "probePlatforms": [
-                      "AWS"
-                    ],
-                    "testFromAll": true
-                  },
-                  "testFrom": {
-                    "type": "REGION",
-                    "values": [
-                      "NA"
-                    ]
-                  },
-                  "ssl": {
-                    "enabled": true,
-                    "daysPriorToExpiration": 7,
-                    "ignoreIntermediateCertificates": true
-                  },
-                  "customHeaders": [
-                    {
-                      "name": "string",
-                      "value": "string"
-                    }
-                  ],
-                  "allowInsecureRenegotiation": true,
-                  "postData": "{\"example\": \"value\"}",
-                  "outageConfiguration": {
-                    "failingTestLocations": "all",
-                    "consecutiveForDown": 2
-                  }
-                },
-                "tags": [
-                  {
-                    "key": "environment",
-                    "value": "production"
-                  }
-                ],
-                "rum": {
-                  "apdexTimeInSeconds": 4,
-                  "snippet": "string",
-                  "spa": true
-                },
-                "lastOutageStartTime": "2025-01-15T14:31:19.735Z",
-                "lastOutageEndTime": "2025-01-15T14:31:19.735Z",
-                "lastTestTime": "2025-01-15T14:31:19.735Z",
-                "lastErrorTime": "2025-01-15T14:31:19.735Z",
-                "lastResponseTime": 376,
-                "nextOnDemandAvailabilityTime": 0
-              }
-            type: simple
-    x-speakeasy-test-group: dem
-  - workflowId: updateWebsite
-    steps:
-      - stepId: test
-        operationId: updateWebsite
-        parameters:
-          - name: entityId
-            in: path
-            value: <id>
-        requestBody:
-          contentType: application/json
-          payload:
-            availabilityCheckSettings:
-              allowInsecureRenegotiation: true
-              checkForString:
-                operator: CONTAINS
-                value: string
-              customHeaders:
-                - name: string
-                  value: string
-              outageConfiguration:
-                consecutiveForDown: 2
-                failingTestLocations: all
-              platformOptions:
-                probePlatforms:
-                  - AWS
-                testFromAll: true
-              postData: '{"example": "value"}'
-              protocols:
-                - HTTP
-                - HTTPS
-              ssl:
-                daysPriorToExpiration: 7
-                enabled: true
-                ignoreIntermediateCertificates: true
-              testFrom:
-                type: REGION
-                values:
-                  - NA
-              testIntervalInSeconds: 14400
-            name: solarwinds.com
-            rum:
-              apdexTimeInSeconds: 4
-              spa: true
-            tags:
-              - key: environment
-                value: production
-            url: https://www.solarwinds.com
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "id": "e-1448474379026206720"
-              }
-            type: simple
-    x-speakeasy-test-group: dem
-  - workflowId: deleteWebsite
-    steps:
-      - stepId: test
-        operationId: deleteWebsite
-        parameters:
-          - name: entityId
-            in: path
-            value: <id>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "id": "e-1448474379026206720"
-              }
-            type: simple
-    x-speakeasy-test-group: dem
-  - workflowId: pauseWebsiteMonitoring
-    steps:
-      - stepId: test
-        operationId: pauseWebsiteMonitoring
-        parameters:
-          - name: entityId
-            in: path
-            value: <id>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "id": "e-1448474379026206720"
-              }
-            type: simple
-    x-speakeasy-test-group: dem
-  - workflowId: unpauseWebsiteMonitoring
-    steps:
-      - stepId: test
-        operationId: unpauseWebsiteMonitoring
-        parameters:
-          - name: entityId
-            in: path
-            value: <id>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "id": "e-1448474379026206720"
-              }
-            type: simple
-    x-speakeasy-test-group: dem
-  - workflowId: listEntities
-    steps:
-      - stepId: test
-        operationId: listEntities
-        parameters:
-          - name: type
-            in: query
-            value: <value>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "entities": [
-                  {
-                    "id": "e-1234567890",
-                    "type": "SyslogHost",
-                    "name": "syslog-host-1",
-                    "displayName": "SyslogTest",
-                    "createdTime": "2024-11-25T16:38:24Z",
-                    "updatedTime": "2024-12-01T16:38:24Z",
-                    "lastSeenTime": "2024-11-25T16:38:24Z",
-                    "inMaintenance": false,
-                    "healthscore": {
-                      "score": 100,
-                      "category": "good"
-                    },
-                    "tags": {
-                      "gg.tk.token": "test",
-                      "kfi.tk.token": "qa-test"
-                    },
-                    "attributes": {
-                      "protocols": [
-                        "HTTP"
-                      ],
-                      "features": [
-                        "rum"
-                      ],
-                      "isAvailabilityCheckPaused": false,
-                      "extensions": {
-                        "has_extension": true
-                      }
-                    }
-                  }
-                ],
-                "pageInfo": {
-                  "prevPage": "\u003cvalue\u003e",
-                  "nextPage": "\u003cvalue\u003e"
-                }
-              }
-            type: simple
-    x-speakeasy-test-group: entities
-  - workflowId: getEntityById
-    steps:
-      - stepId: test
-        operationId: getEntityById
-        parameters:
-          - name: id
-            in: path
-            value: <id>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "id": "e-1234567890",
-                "type": "SyslogHost",
-                "name": "syslog-host-1",
-                "displayName": "SyslogTest",
-                "createdTime": "2024-11-25T16:38:24Z",
-                "updatedTime": "2024-12-01T16:38:24Z",
-                "lastSeenTime": "2024-11-25T16:38:24Z",
-                "inMaintenance": false,
-                "healthscore": {
-                  "score": 100,
-                  "category": "good"
-                },
-                "tags": {
-                  "gg.tk.token": "test",
-                  "kfi.tk.token": "qa-test"
-                },
-                "attributes": {
-                  "protocols": [
-                    "HTTP"
-                  ],
-                  "features": [
-                    "rum"
-                  ],
-                  "isAvailabilityCheckPaused": false,
-                  "extensions": {
-                    "has_extension": true
-                  }
-                }
-              }
-            type: simple
-    x-speakeasy-test-group: entities
-  - workflowId: updateEntityById
-    steps:
-      - stepId: test
-        operationId: updateEntityById
-        parameters:
-          - name: id
-            in: path
-            value: <id>
-        requestBody:
-          contentType: application/json
-          payload:
-            displayName: SyslogTest
-            tags:
-              gg.tk.token: test
-              kfi.tk.token: qa-test
+          payload: {"name": "swo-sdk-e2e-test-event", "title": "SWO SDK E2E Test Deployment", "source": "swo-sdk-go-test", "description": "End-to-end test deployment event created by SWO SDK", "tags": {"environment": "test", "service": "swo-sdk", "version": "1.0.0"}}
         successCriteria:
           - condition: $statusCode == 202
-    x-speakeasy-test-group: entities
-  - workflowId: searchLogs
-    steps:
-      - stepId: test
-        operationId: searchLogs
-        parameters:
-          - name: direction
-            in: query
-            value: backward
-        successCriteria:
-          - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "logs": [
-                  {
-                    "id": "1793698955374546944",
-                    "time": "2024-01-01T00:00:00Z",
-                    "message": "This is a log message",
-                    "hostname": "webserver.example.com",
-                    "severity": "INFO",
-                    "program": "httpd"
-                  }
-                ],
-                "pageInfo": {
-                  "prevPage": "\u003cvalue\u003e",
-                  "nextPage": "\u003cvalue\u003e"
-                }
-              }
-            type: simple
-    x-speakeasy-test-group: logs
-  - workflowId: listLogArchives
+          - condition: $response.body#/id != null
+        outputs:
+          eventId: $response.body#/id
+  # /v1/metrics - Composite metrics CRUD operations
+  - workflowId: compositeMetricsCrudLifecycle
     steps:
-      - stepId: test
-        operationId: listLogArchives
-        parameters:
-          - name: startTime
-            in: query
-            value: <value>
-          - name: endTime
-            in: query
-            value: <value>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "logArchives": [
-                  {
-                    "id": "logs/138723/dt=2024-01-23/2024-01-23-08.json.gz",
-                    "name": "2024-01-23-08.json.gz",
-                    "downloadUrl": "https://ssp-log-archives.s3.amazonaws.com/logs/138723/dt%3D2024-01-23/2024-01-23-08.json.gz?X-Amz-Security-Token=IQ...",
-                    "archivedTimestamp": "1706020985",
-                    "archiveSize": 817226354
-                  },
-                  {
-                    "id": "logs/138723/dt=2024-01-23/2024-01-23-08.json.gz",
-                    "name": "2024-01-23-08.json.gz",
-                    "downloadUrl": "https://ssp-log-archives.s3.amazonaws.com/logs/138723/dt%3D2024-01-23/2024-01-23-08.json.gz?X-Amz-Security-Token=IQ...",
-                    "archivedTimestamp": "1706020985",
-                    "archiveSize": 817226354
-                  },
-                  {
-                    "id": "logs/138723/dt=2024-01-23/2024-01-23-08.json.gz",
-                    "name": "2024-01-23-08.json.gz",
-                    "downloadUrl": "https://ssp-log-archives.s3.amazonaws.com/logs/138723/dt%3D2024-01-23/2024-01-23-08.json.gz?X-Amz-Security-Token=IQ...",
-                    "archivedTimestamp": "1706020985",
-                    "archiveSize": 817226354
-                  }
-                ],
-                "pageInfo": {
-                  "prevPage": "\u003cvalue\u003e",
-                  "nextPage": "\u003cvalue\u003e"
-                }
-              }
-            type: simple
-    x-speakeasy-test-group: logs
-  - workflowId: listEntityTypes
-    steps:
-      - stepId: test
-        operationId: listEntityTypes
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "types": [
-                  "Service",
-                  "ServiceInstance",
-                  "KubernetesCluster"
-                ]
-              }
-            type: simple
-    x-speakeasy-test-group: metadata
-  - workflowId: listMetricsForEntityType
-    steps:
-      - stepId: test
-        operationId: listMetricsForEntityType
-        parameters:
-          - name: type
-            in: path
-            value: <value>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "type": "KubernetesCluster",
-                "metrics": [
-                  {
-                    "name": "composite.custom.system.disk.io.rate",
-                    "displayName": "Disk IO rate",
-                    "description": "Disk bytes transferred per second",
-                    "units": "bytes/s",
-                    "formula": "rate(system.disk.io[5m]",
-                    "lastReportedTime": "2024-11-25T16:38:24Z"
-                  }
-                ]
-              }
-            type: simple
-    x-speakeasy-test-group: metadata
-  - workflowId: listMetrics
-    steps:
-      - stepId: test
-        operationId: listMetrics
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "metricsInfo": [],
-                "pageInfo": {
-                  "prevPage": "\u003cvalue\u003e",
-                  "nextPage": "\u003cvalue\u003e"
-                }
-              }
-            type: simple
-    x-speakeasy-test-group: metrics
-  - workflowId: createCompositeMetric
-    steps:
-      - stepId: test
+      - stepId: create
         operationId: createCompositeMetric
         requestBody:
           contentType: application/json
-          payload:
-            description: Disk bytes transferred per second
-            displayName: Disk IO rate
-            formula: rate(system.disk.io[5m])
-            name: composite.custom.system.disk.io.rate
-            units: bytes/s
+          payload: {"name": "composite.swo.sdk.e2e.create.metric.test", "displayName": "SWO SDK E2E Create Metric Test", "description": "SWO SDK composite metric end to end create test", "formula": "rate(system.disk.io[1m])", "units": "bytes/s"}
         successCriteria:
           - condition: $statusCode == 201
           - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "name": "composite.custom.system.disk.io.rate",
-                "displayName": "Disk IO rate",
-                "description": "Disk bytes transferred per second",
-                "formula": "rate(system.disk.io[5m])",
-                "units": "bytes/s"
-              }
-            type: simple
-    x-speakeasy-test-group: metrics
-  - workflowId: listMultiMetricMeasurements
-    steps:
-      - stepId: test
-        operationId: listMultiMetricMeasurements
+          - condition: $response.body#/name == "composite.swo.sdk.e2e.create.metric.test"
+          - condition: $response.body#/displayName == "SWO SDK E2E Create Metric Test"
+          - condition: $response.body#/description == "SWO SDK composite metric end to end create test"
+          - condition: $response.body#/formula == "rate(system.disk.io[1m])"
+          - condition: $response.body#/units == "bytes/s"
+        outputs:
+          name: $response.body#/name
+      - stepId: getByName
+        description: Retrieve the created metric by name
+        operationId: getMetricByName
+        dependsOn: create
         parameters:
-          - name: forcePositional
-            in: query
-            value: false
-        requestBody:
-          contentType: application/json
-          payload:
-            metrics:
-              - fillIfEmpty: false
-                fillMethod: NONE
-                filter: id:[id1,id2] category:moderate
-                groupBy:
-                  - query
-                id: throughput-series
-                name: dbo.host.queries.tput
-                preGroupBy:
-                  - host
-                preGroupByMethod: SUM
-                seriesType: TIMESERIES
-              - fillIfEmpty: false
-                fillMethod: NONE
-                filter: id:[id1,id2] category:moderate
-                groupBy:
-                  - query
-                id: throughput-series
-                name: dbo.host.queries.tput
-                preGroupBy:
-                  - host
-                preGroupByMethod: SUM
-                seriesType: TIMESERIES
+          - name: name
+            in: path
+            value: $steps.create.outputs.name
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "metrics": [],
-                "pageInfo": {
-                  "prevPage": "\u003cvalue\u003e",
-                  "nextPage": "\u003cvalue\u003e"
-                }
-              }
-            type: simple
-    x-speakeasy-test-group: metrics
-  - workflowId: updateCompositeMetric
-    steps:
-      - stepId: test
+          - condition: $response.body#/name == "composite.swo.sdk.e2e.create.metric.test"
+          - condition: $response.body#/displayName == "SWO SDK E2E Create Metric Test"
+          - condition: $response.body#/description == "SWO SDK composite metric end to end create test"
+          - condition: $response.body#/formula == "rate(system.disk.io[1m])"
+          - condition: $response.body#/units == "bytes/s"
+        outputs:
+          retrievedMetric: $response.body
+      - stepId: update
+        description: Update the created composite metric
         operationId: updateCompositeMetric
+        dependsOn: getMetricByName
         parameters:
           - name: name
             in: path
-            value: <value>
+            value: $steps.create.outputs.name
         requestBody:
           contentType: application/json
-          payload:
-            description: Disk bytes transferred per second
-            displayName: Disk IO rate
-            formula: rate(system.disk.io[5m])
-            units: bytes/s
+          payload: {"displayName": "SWO SDK E2E Updated Metric Test", "description": "SWO SDK composite metric end to end updated test", "formula": "rate(system.cpu.usage[2m])", "units": "bytes/s"}
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "name": "composite.custom.system.disk.io.rate",
-                "displayName": "Disk IO rate",
-                "description": "Disk bytes transferred per second",
-                "formula": "rate(system.disk.io[5m])",
-                "units": "bytes/s"
-              }
-            type: simple
-    x-speakeasy-test-group: metrics
-  - workflowId: deleteCompositeMetric
-    steps:
-      - stepId: test
-        operationId: deleteCompositeMetric
+          - condition: $response.body#/name == "composite.swo.sdk.e2e.create.metric.test"
+          - condition: $response.body#/displayName == "SWO SDK E2E Updated Metric Test"
+          - condition: $response.body#/description == "SWO SDK composite metric end to end updated test"
+          - condition: $response.body#/formula == "rate(system.cpu.usage[2m])"
+          - condition: $response.body#/units == "bytes/s"
+        outputs:
+          updatedMetric: $response.body
+      - stepId: getUpdatedMetric
+        description: Retrieve the updated metric to verify changes
+        operationId: getMetricByName
+        dependsOn: update
         parameters:
           - name: name
             in: path
-            value: <value>
+            value: $steps.create.outputs.name
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - condition: $response.body#/name == "composite.swo.sdk.e2e.create.metric.test"
+          - condition: $response.body#/displayName == "SWO SDK E2E Updated Metric Test"
+          - condition: $response.body#/description == "SWO SDK composite metric end to end updated test"
+          - condition: $response.body#/formula == "rate(system.cpu.usage[2m])"
+          - condition: $response.body#/units == "bytes/s"
+        outputs:
+          finalMetric: $response.body
+      - stepId: delete
+        description: Delete the composite metric
+        operationId: deleteCompositeMetric
+        dependsOn: getUpdatedMetric
+        parameters:
+          - name: name
+            in: path
+            value: $steps.create.outputs.name
         successCriteria:
           - condition: $statusCode == 204
-    x-speakeasy-test-group: metrics
-  - workflowId: getMetricByName
+  # /v1/logs - Search logs operation
+  - workflowId: logsSearch
     steps:
-      - stepId: test
-        operationId: getMetricByName
+      - stepId: search
+        description: Search logs with basic parameters
+        operationId: searchLogs
         parameters:
-          - name: name
-            in: path
-            value: <value>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "name": "composite.custom.system.disk.io.rate",
-                "displayName": "Disk IO rate",
-                "description": "Disk bytes transferred per second",
-                "units": "bytes/s",
-                "formula": "rate(system.disk.io[5m]",
-                "lastReportedTime": "2024-11-25T16:38:24Z"
-              }
-            type: simple
-    x-speakeasy-test-group: metrics
-  - workflowId: listMetricAttributes
-    steps:
-      - stepId: test
-        operationId: listMetricAttributes
-        parameters:
-          - name: name
-            in: path
-            value: <value>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "names": [],
-                "pageInfo": {
-                  "prevPage": "\u003cvalue\u003e",
-                  "nextPage": "\u003cvalue\u003e"
-                }
-              }
-            type: simple
-    x-speakeasy-test-group: metrics
-  - workflowId: listMetricAttributeValues
-    steps:
-      - stepId: test
-        operationId: listMetricAttributeValues
-        parameters:
-          - name: name
-            in: path
-            value: <value>
-          - name: attributeName
-            in: path
-            value: <value>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "name": "\u003cvalue\u003e",
-                "values": [],
-                "pageInfo": {
-                  "prevPage": "\u003cvalue\u003e",
-                  "nextPage": "\u003cvalue\u003e"
-                }
-              }
-            type: simple
-    x-speakeasy-test-group: metrics
-  - workflowId: listMetricMeasurements
-    steps:
-      - stepId: test
-        operationId: listMetricMeasurements
-        parameters:
-          - name: name
-            in: path
-            value: <value>
-          - name: seriesType
+          - name: filter
             in: query
-            value: SCALAR
+            value: "level:info"
+          - name: direction
+            in: query
+            value: "backward"
+          - name: pageSize
+            in: query
+            value: 10
+          - name: startTime
+            in: query
+            value: "2025-06-15T00:00:00Z"
+          - name: endTime
+            in: query
+            value: "2025-07-22T23:59:59Z"
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "groupings": [
-                  {
-                    "attributes": [],
-                    "measurements": [
-                      {
-                        "time": "2025-07-08T21:51:20.598Z",
-                        "value": 7307.56
-                      },
-                      {
-                        "time": "2023-05-07T22:33:23.333Z",
-                        "value": 250.26
-                      },
-                      {
-                        "time": "2023-06-20T08:27:21.001Z",
-                        "value": 4929.43
-                      }
-                    ]
-                  },
-                  {
-                    "attributes": [],
-                    "measurements": []
-                  }
-                ],
-                "bucketSizeInSeconds": 614937,
-                "pageInfo": {
-                  "prevPage": "\u003cvalue\u003e",
-                  "nextPage": "\u003cvalue\u003e"
-                }
-              }
-            type: simple
-    x-speakeasy-test-group: metrics
-  - workflowId: createToken
+          - condition: $response.body#/pageInfo != null
+  # /v1/logs - List log archives operation
+  - workflowId: logsArchives
     steps:
-      - stepId: test
+      - stepId: list
+        description: List log archives with parameters
+        operationId: listLogArchives
+        parameters:
+          - name: pageSize
+            in: query
+            value: 10
+          - name: startTime
+            in: query
+            value: "2025-06-15T00:00:00Z"
+          - name: endTime
+            in: query
+            value: "2025-07-22T23:59:59Z"
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - condition: $response.body#/pageInfo != null
+  # /v1/tokens - Create token operation
+  - workflowId: tokens
+    steps:
+      - stepId: create
         operationId: createToken
         requestBody:
           contentType: application/json
           payload:
-            name: <value>
+            name: "swo-sdk-e2e-test-token"
             tags:
-              server: <value>
-              tag_without_value: <value>
+              server: "swo-sdk-e2e-test-server"
+              tag_without_value: "swo-sdk-e2e-test-tag"
             type: ingestion
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "token": "\u003cvalue\u003e"
-              }
-            type: simple
-    x-speakeasy-test-group: tokens
-  - workflowId: listProbes
-    steps:
-      - stepId: test
-        operationId: listProbes
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "probes": [
-                  {
-                    "id": "probe-1",
-                    "name": "Washington",
-                    "active": true,
-                    "platform": "AWS",
-                    "region": "NA",
-                    "country": "US",
-                    "city": "Washington D.C.",
-                    "coordinates": {
-                      "latitude": 38.89511,
-                      "longitude": -77.03637
-                    },
-                    "ipv4Addresses": [
-                      "34.232.5.40",
-                      "44.207.30.12"
-                    ],
-                    "ipv6Addresses": [
-                      "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-                    ]
-                  }
-                ]
-              }
-            type: simple
-    x-speakeasy-test-group: dem
-  - workflowId: createUri
-    steps:
-      - stepId: test
-        operationId: createUri
-        requestBody:
-          contentType: application/json
-          payload:
-            availabilityCheckSettings:
-              outageConfiguration:
-                consecutiveForDown: 2
-                failingTestLocations: all
-              platformOptions:
-                probePlatforms:
-                  - AWS
-                testFromAll: true
-              tcp:
-                enabled: true
-                port: 443
-              testFrom:
-                type: REGION
-                values:
-                  - NA
-              testIntervalInSeconds: 300
-            ipOrDomain: solarwinds.com
-            name: example-uri
-            tags:
-              - key: environment
-                value: production
-        successCriteria:
-          - condition: $statusCode == 201
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "id": "e-1448474379026206720"
-              }
-            type: simple
-    x-speakeasy-test-group: dem
-  - workflowId: getUri
-    steps:
-      - stepId: test
-        operationId: getUri
-        parameters:
-          - name: entityId
-            in: path
-            value: <id>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "id": "e-1448474379026206720",
-                "type": "Uri",
-                "status": "up",
-                "name": "solarwinds.com",
-                "ipOrDomain": "solarwinds.com",
-                "availabilityCheckSettings": {
-                  "platformOptions": {
-                    "probePlatforms": [
-                      "AWS"
-                    ],
-                    "testFromAll": true
-                  },
-                  "testFrom": {
-                    "type": "REGION",
-                    "values": [
-                      "NA"
-                    ]
-                  },
-                  "testIntervalInSeconds": 14400,
-                  "outageConfiguration": {
-                    "failingTestLocations": "all",
-                    "consecutiveForDown": 2
-                  },
-                  "ping": {
-                    "enabled": true
-                  },
-                  "protocol": "PING"
-                },
-                "tags": [
-                  {
-                    "key": "environment",
-                    "value": "production"
-                  }
-                ],
-                "lastOutageStartTime": "2025-01-15T14:31:19.735Z",
-                "lastOutageEndTime": "2025-01-15T14:31:19.735Z",
-                "lastTestTime": "2025-01-15T14:31:19.735Z",
-                "lastErrorTime": "2025-01-15T14:31:19.735Z",
-                "lastResponseTime": 376
-              }
-            type: simple
-    x-speakeasy-test-group: dem
-  - workflowId: updateUri
-    steps:
-      - stepId: test
-        operationId: updateUri
-        parameters:
-          - name: entityId
-            in: path
-            value: <id>
-        requestBody:
-          contentType: application/json
-          payload:
-            availabilityCheckSettings:
-              outageConfiguration:
-                consecutiveForDown: 2
-                failingTestLocations: all
-              platformOptions:
-                probePlatforms:
-                  - AWS
-                testFromAll: true
-              tcp:
-                enabled: true
-                port: 443
-              testFrom:
-                type: REGION
-                values:
-                  - NA
-              testIntervalInSeconds: 300
-            ipOrDomain: solarwinds.com
-            name: example-uri
-            tags:
-              - key: environment
-                value: production
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "id": "e-1448474379026206720"
-              }
-            type: simple
-    x-speakeasy-test-group: dem
-  - workflowId: deleteUri
-    steps:
-      - stepId: test
-        operationId: deleteUri
-        parameters:
-          - name: entityId
-            in: path
-            value: <id>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "id": "e-1448474379026206720"
-              }
-            type: simple
-    x-speakeasy-test-group: dem
-  - workflowId: pauseUriMonitoring
-    steps:
-      - stepId: test
-        operationId: pauseUriMonitoring
-        parameters:
-          - name: entityId
-            in: path
-            value: <id>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "id": "e-1448474379026206720"
-              }
-            type: simple
-    x-speakeasy-test-group: dem
-  - workflowId: unpauseUriMonitoring
-    steps:
-      - stepId: test
-        operationId: unpauseUriMonitoring
-        parameters:
-          - name: entityId
-            in: path
-            value: <id>
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - context: $response.body
-            condition: |
-              {
-                "id": "e-1448474379026206720"
-              }
-            type: simple
-    x-speakeasy-test-group: dem
+          - condition: $response.body#/token != null

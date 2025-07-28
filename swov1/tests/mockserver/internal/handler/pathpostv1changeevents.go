@@ -7,14 +7,13 @@ import (
 	"log"
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
-	"mockserver/internal/sdk/models/components"
 	"mockserver/internal/sdk/models/operations"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
 	"net/http"
 )
 
-func pathGetV1Metrics(dir *logging.HTTPFileDirectory, rt *tracking.RequestTracker) http.HandlerFunc {
+func pathPostV1Changeevents(dir *logging.HTTPFileDirectory, rt *tracking.RequestTracker) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		test := req.Header.Get("x-speakeasy-test-name")
 		instanceID := req.Header.Get("x-speakeasy-test-instance-id")
@@ -22,18 +21,23 @@ func pathGetV1Metrics(dir *logging.HTTPFileDirectory, rt *tracking.RequestTracke
 		count := rt.GetRequestCount(test, instanceID)
 
 		switch fmt.Sprintf("%s[%d]", test, count) {
-		case "listMetrics[0]":
-			dir.HandlerFunc("listMetrics", testListMetricsListMetrics0)(w, req)
+		case "changeEvents[0]":
+			dir.HandlerFunc("createChangeEvent", testCreateChangeEventChangeEvents0)(w, req)
 		default:
 			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)
 		}
 	}
 }
 
-func testListMetricsListMetrics0(w http.ResponseWriter, req *http.Request) {
+func testCreateChangeEventChangeEvents0(w http.ResponseWriter, req *http.Request) {
 	if err := assert.SecurityAuthorizationHeader(req, false, "Bearer"); err != nil {
 		log.Printf("assertion error: %s\n", err)
 		http.Error(w, err.Error(), http.StatusUnauthorized)
+		return
+	}
+	if err := assert.ContentType(req, "application/json", true); err != nil {
+		log.Printf("assertion error: %s\n", err)
+		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 	if err := assert.AcceptHeader(req, []string{"application/json"}); err != nil {
@@ -46,12 +50,8 @@ func testListMetricsListMetrics0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	var respBody *operations.ListMetricsResponseBody = &operations.ListMetricsResponseBody{
-		MetricsInfo: []components.CommonMetricInfo{},
-		PageInfo: components.CommonPageInfo{
-			PrevPage: "<value>",
-			NextPage: "<value>",
-		},
+	var respBody *operations.CreateChangeEventResponseBody = &operations.CreateChangeEventResponseBody{
+		ID: 208943,
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)
 
@@ -64,6 +64,6 @@ func testListMetricsListMetrics0(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
+	w.WriteHeader(http.StatusAccepted)
 	_, _ = w.Write(respBodyBytes)
 }

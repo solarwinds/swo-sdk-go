@@ -1,3 +1,6 @@
 .speakeasy/reports
+.speakeasy/temp/
+**/.speakeasy/temp/
 .idea
+.env
 # .gitignore
