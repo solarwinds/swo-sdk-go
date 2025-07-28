@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.9
   speakeasyVersion: 1.589.0
   generationVersion: 2.664.0
-  releaseVersion: 0.7.5
-  configChecksum: d450277217fec24cf97a44a73c9ee6a4
+  releaseVersion: 0.7.12
+  configChecksum: d660f69cb23acaf9b984d421946a9976
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
