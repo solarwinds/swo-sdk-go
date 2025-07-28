@@ -8,7 +8,7 @@ sourceDescriptions:
     url: https://api.na-01.cloud.solarwinds.com/v1/openapi.json
     type: openapi
 x-speakeasy-test-server:
-  baseUrl: "x-env: PUBLIC_API_STAGE_URL"
+  baseUrl: "x-env: PUBLIC_SWO_API_STAGE_URL"
 x-speakeasy-test-security:
   value:
     ApiToken: "x-env: SWO_STAGE_API_TOKEN"

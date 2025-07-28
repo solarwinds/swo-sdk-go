@@ -34,7 +34,7 @@ const (
 	OriginalTestURL = "https://create-sdk-e2e-test.com"
 	UpdatedTestURL  = "https://update-sdk-e2e-test.com"
 
-	publicApiUrlEnvName   = "PUBLIC_API_STAGE_URL"
+	publicApiUrlEnvName   = "PUBLIC_SWO_API_STAGE_URL"
 	publicApiTokenEnvName = "SWO_STAGE_API_TOKEN"
 )
 

@@ -20,7 +20,7 @@ func TestSDK_ChangeEvents(t *testing.T) {
 	testHTTPClient := createTestHTTPClient("changeEvents")
 
 	s := swov1.New(
-		swov1.WithServerURL(utils.GetEnv("PUBLIC_API_STAGE_URL", "")),
+		swov1.WithServerURL(utils.GetEnv("PUBLIC_SWO_API_STAGE_URL", "")),
 		swov1.WithSecurity(utils.GetEnv("SWO_STAGE_API_TOKEN", "value")),
 		swov1.WithClient(testHTTPClient),
 	)
@@ -47,7 +47,7 @@ func TestSDK_CompositeMetricsCrudLifecycle(t *testing.T) {
 	testHTTPClient := createTestHTTPClient("compositeMetricsCrudLifecycle")
 
 	s := swov1.New(
-		swov1.WithServerURL(utils.GetEnv("PUBLIC_API_STAGE_URL", "")),
+		swov1.WithServerURL(utils.GetEnv("PUBLIC_SWO_API_STAGE_URL", "")),
 		swov1.WithSecurity(utils.GetEnv("SWO_STAGE_API_TOKEN", "value")),
 		swov1.WithClient(testHTTPClient),
 	)
@@ -134,7 +134,7 @@ func TestSDK_LogsSearch(t *testing.T) {
 	testHTTPClient := createTestHTTPClient("logsSearch")
 
 	s := swov1.New(
-		swov1.WithServerURL(utils.GetEnv("PUBLIC_API_STAGE_URL", "")),
+		swov1.WithServerURL(utils.GetEnv("PUBLIC_SWO_API_STAGE_URL", "")),
 		swov1.WithSecurity(utils.GetEnv("SWO_STAGE_API_TOKEN", "value")),
 		swov1.WithClient(testHTTPClient),
 	)
@@ -156,7 +156,7 @@ func TestSDK_LogsArchives(t *testing.T) {
 	testHTTPClient := createTestHTTPClient("logsArchives")
 
 	s := swov1.New(
-		swov1.WithServerURL(utils.GetEnv("PUBLIC_API_STAGE_URL", "")),
+		swov1.WithServerURL(utils.GetEnv("PUBLIC_SWO_API_STAGE_URL", "")),
 		swov1.WithSecurity(utils.GetEnv("SWO_STAGE_API_TOKEN", "value")),
 		swov1.WithClient(testHTTPClient),
 	)
@@ -177,7 +177,7 @@ func TestSDK_Tokens(t *testing.T) {
 	testHTTPClient := createTestHTTPClient("tokens")
 
 	s := swov1.New(
-		swov1.WithServerURL(utils.GetEnv("PUBLIC_API_STAGE_URL", "")),
+		swov1.WithServerURL(utils.GetEnv("PUBLIC_SWO_API_STAGE_URL", "")),
 		swov1.WithSecurity(utils.GetEnv("SWO_STAGE_API_TOKEN", "value")),
 		swov1.WithClient(testHTTPClient),
 	)
