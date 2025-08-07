@@ -3,10 +3,10 @@ id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
   docChecksum: 3c507f632b42b5e917e98b3d15c9bdf4
   docVersion: 1.0.9
-  speakeasyVersion: 1.589.0
-  generationVersion: 2.664.0
-  releaseVersion: 0.7.12
-  configChecksum: d660f69cb23acaf9b984d421946a9976
+  speakeasyVersion: 1.598.3
+  generationVersion: 2.674.3
+  releaseVersion: 0.8.0
+  configChecksum: d031f4f202abfc226cb57d5ddff7eec7
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
@@ -14,7 +14,7 @@ features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.9.0
+    core: 3.9.3
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -29,7 +29,7 @@ features:
     nullables: 0.1.1
     pagination: 2.82.4
     responseFormat: 0.1.2
-    retries: 2.83.3
+    retries: 2.84.0
     sdkHooks: 0.2.0
     tests: 0.16.1
 generatedFiles:
