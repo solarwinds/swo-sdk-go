@@ -14,6 +14,7 @@ Search logs within a time period
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="searchLogs" method="get" path="/v1/logs" -->
 ```go
 package main
 
@@ -84,6 +85,7 @@ Retrieves a list of log archives within a time period.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="listLogArchives" method="get" path="/v1/logs/archives" -->
 ```go
 package main
 

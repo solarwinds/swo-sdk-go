@@ -16,6 +16,7 @@ Activate AWS Integration.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="activateAwsIntegration" method="post" path="/v1/cloud/aws/controlTower/activate" -->
 ```go
 package main
 
@@ -76,6 +77,7 @@ Create AWS Organizational Structure.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="createOrgStructure" method="post" path="/v1/cloud/aws/controlTower/createOrgStructure" -->
 ```go
 package main
 
@@ -135,6 +137,7 @@ Update AWS Integration details.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="updateAwsIntegration" method="post" path="/v1/cloud/aws/controlTower/update" -->
 ```go
 package main
 
@@ -195,6 +198,7 @@ Validate if the management account is onboarded.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="validateMgmtAccountOnboarding" method="get" path="/v1/cloud/aws/controlTower/validateOnboarding" -->
 ```go
 package main
 

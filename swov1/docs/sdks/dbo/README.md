@@ -19,6 +19,7 @@ Add database observability to a database
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="observeDatabase" method="post" path="/v1/dbo/databases" -->
 ```go
 package main
 
@@ -80,6 +81,7 @@ Get public key for encrypting database credentials locally
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getPublicKey" method="get" path="/v1/dbo/databases/credentials/public-key" -->
 ```go
 package main
 
@@ -132,6 +134,7 @@ Update an observed database
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="updateDatabase" method="patch" path="/v1/dbo/databases/{entityId}" -->
 ```go
 package main
 
@@ -190,6 +193,7 @@ Delete an observed database
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="deleteDatabase" method="delete" path="/v1/dbo/databases/{entityId}" -->
 ```go
 package main
 
@@ -246,6 +250,7 @@ Get configuration of plugins observing a database
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getPluginConfig" method="get" path="/v1/dbo/databases/{entityId}/pluginConfig" -->
 ```go
 package main
 
@@ -302,6 +307,7 @@ Get status of plugins observing a database
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getPlugins" method="get" path="/v1/dbo/databases/{entityId}/plugins" -->
 ```go
 package main
 
@@ -358,6 +364,7 @@ Apply an operation on a database observability plugin
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="pluginOperation" method="post" path="/v1/dbo/databases/{entityId}/plugins/operation/{operation}" -->
 ```go
 package main
 

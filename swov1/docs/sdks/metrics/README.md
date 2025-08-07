@@ -21,6 +21,7 @@ List metrics available within a time period.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="listMetrics" method="get" path="/v1/metrics" -->
 ```go
 package main
 
@@ -85,6 +86,7 @@ Create a composite metric given a PromQL query.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="createCompositeMetric" method="post" path="/v1/metrics" -->
 ```go
 package main
 
@@ -166,6 +168,7 @@ func main() {
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="listMultiMetricMeasurements" method="post" path="/v1/metrics/measurements" -->
 ```go
 package main
 
@@ -236,6 +239,7 @@ Update a composite metric given a metric name.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="updateCompositeMetric" method="put" path="/v1/metrics/{name}" -->
 ```go
 package main
 
@@ -300,6 +304,7 @@ Delete a composite metric given a metric name.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="deleteCompositeMetric" method="delete" path="/v1/metrics/{name}" -->
 ```go
 package main
 
@@ -356,6 +361,7 @@ Get information about a given metric.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getMetricByName" method="get" path="/v1/metrics/{name}" -->
 ```go
 package main
 
@@ -423,6 +429,7 @@ List attribute names for a given metric.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="listMetricAttributes" method="get" path="/v1/metrics/{name}/attributes" -->
 ```go
 package main
 
@@ -490,6 +497,7 @@ List the values of a given metric's attribute.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="listMetricAttributeValues" method="get" path="/v1/metrics/{name}/attributes/{attributeName}" -->
 ```go
 package main
 
@@ -558,6 +566,7 @@ List metric measurement values, grouped by attributes, filtered by the filter. A
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="listMetricMeasurements" method="get" path="/v1/metrics/{name}/measurements" -->
 ```go
 package main
 

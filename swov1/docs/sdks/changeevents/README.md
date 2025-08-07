@@ -13,6 +13,7 @@ Create an event
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="createChangeEvent" method="post" path="/v1/changeevents" -->
 ```go
 package main
 

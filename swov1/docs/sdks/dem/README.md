@@ -27,6 +27,7 @@ Get a list of existing synthetic probes
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="listProbes" method="get" path="/v1/dem/probes" -->
 ```go
 package main
 
@@ -78,6 +79,7 @@ Get DEM settings
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getDemSettings" method="get" path="/v1/dem/settings" -->
 ```go
 package main
 
@@ -128,6 +130,7 @@ Set DEM settings
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="setDemSettings" method="put" path="/v1/dem/settings" -->
 ```go
 package main
 
@@ -183,6 +186,7 @@ Create URI monitoring configuration
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="createUri" method="post" path="/v1/dem/uris" -->
 ```go
 package main
 
@@ -274,6 +278,7 @@ Get URI monitoring configuration
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getUri" method="get" path="/v1/dem/uris/{entityId}" -->
 ```go
 package main
 
@@ -329,6 +334,7 @@ Update URI monitoring configuration
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="updateUri" method="put" path="/v1/dem/uris/{entityId}" -->
 ```go
 package main
 
@@ -428,6 +434,7 @@ Delete URI
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="deleteUri" method="delete" path="/v1/dem/uris/{entityId}" -->
 ```go
 package main
 
@@ -483,6 +490,7 @@ Pause monitoring of the URI
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="pauseUriMonitoring" method="put" path="/v1/dem/uris/{entityId}/pauseMonitoring" -->
 ```go
 package main
 
@@ -538,6 +546,7 @@ Unpause monitoring of the URI
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="unpauseUriMonitoring" method="put" path="/v1/dem/uris/{entityId}/unpauseMonitoring" -->
 ```go
 package main
 
@@ -593,6 +602,7 @@ Create website monitoring configuration
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="createWebsite" method="post" path="/v1/dem/websites" -->
 ```go
 package main
 
@@ -699,6 +709,7 @@ Get website monitoring configuration
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getWebsite" method="get" path="/v1/dem/websites/{entityId}" -->
 ```go
 package main
 
@@ -754,6 +765,7 @@ Update website monitoring configuration
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="updateWebsite" method="put" path="/v1/dem/websites/{entityId}" -->
 ```go
 package main
 
@@ -865,6 +877,7 @@ Delete website
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="deleteWebsite" method="delete" path="/v1/dem/websites/{entityId}" -->
 ```go
 package main
 
@@ -920,6 +933,7 @@ Pause monitoring of a website
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="pauseWebsiteMonitoring" method="put" path="/v1/dem/websites/{entityId}/pauseMonitoring" -->
 ```go
 package main
 
@@ -975,6 +989,7 @@ Unpause monitoring of a website
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="unpauseWebsiteMonitoring" method="put" path="/v1/dem/websites/{entityId}/unpauseMonitoring" -->
 ```go
 package main
 

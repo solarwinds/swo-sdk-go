@@ -14,6 +14,7 @@ List all available entity types.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="listEntityTypes" method="get" path="/v1/metadata/entities/types" -->
 ```go
 package main
 
@@ -64,6 +65,7 @@ List metrics metadata for an entity type between a start and end time. If start 
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="listMetricsForEntityType" method="get" path="/v1/metadata/entities/types/{type}/metrics" -->
 ```go
 package main
 
