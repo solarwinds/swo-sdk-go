@@ -13,6 +13,7 @@ Create ingestion token
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="createToken" method="post" path="/v1/tokens" -->
 ```go
 package main
 

@@ -15,6 +15,7 @@ Get a list of entities by type. A returned empty list indicates no entities matc
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="listEntities" method="get" path="/v1/entities" -->
 ```go
 package main
 
@@ -83,6 +84,7 @@ Get an entity by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getEntityById" method="get" path="/v1/entities/{id}" -->
 ```go
 package main
 
@@ -140,6 +142,7 @@ Update an entity by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="updateEntityById" method="put" path="/v1/entities/{id}" -->
 ```go
 package main
 
