@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-// DemURIAvailabilityCheckSettingsInputPlatformOptions - Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, no particular cloud platform will be enforced.
+// DemURIAvailabilityCheckSettingsInputPlatformOptions - Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, any available cloud platform may be chosen.
 type DemURIAvailabilityCheckSettingsInputPlatformOptions struct {
 	// Cloud platforms hosting synthetic probes.
 	ProbePlatforms []DemProbePlatform `json:"probePlatforms"`
@@ -149,7 +149,7 @@ func (o *DemURIAvailabilityCheckSettingsInputTCP) GetStringToExpect() *string {
 }
 
 type DemURIAvailabilityCheckSettingsInput struct {
-	// Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, no particular cloud platform will be enforced.
+	// Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, any available cloud platform may be chosen.
 	PlatformOptions *DemURIAvailabilityCheckSettingsInputPlatformOptions `json:"platformOptions,omitempty"`
 	//   Configure locations of the synthetic availability test probes.
 	//   Acceptable values depend on the selected type and actual values of existing probes.

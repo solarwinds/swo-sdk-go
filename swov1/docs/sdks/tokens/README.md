@@ -63,6 +63,10 @@ func main() {
 
 ### Errors
 
-| Error Type         | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| apierrors.APIError | 4XX, 5XX           | \*/\*              |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonForbiddenErrorResponse    | 403                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.CommonUnavailableErrorResponse  | 503                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |

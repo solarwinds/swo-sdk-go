@@ -66,7 +66,7 @@ func (o *MonitoringOptions) GetIsRumActive() bool {
 	return o.IsRumActive
 }
 
-// DemGetWebsiteResponsePlatformOptions - Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, no particular cloud platform will be enforced.
+// DemGetWebsiteResponsePlatformOptions - Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, any available cloud platform may be chosen.
 type DemGetWebsiteResponsePlatformOptions struct {
 	// Cloud platforms hosting synthetic probes.
 	ProbePlatforms []DemProbePlatform `json:"probePlatforms"`
@@ -243,7 +243,7 @@ func (o *DemGetWebsiteResponseSsl) GetIgnoreIntermediateCertificates() *bool {
 //
 //	You are required to configure at least availability monitoring or real user monitoring to be able to create website.
 type DemGetWebsiteResponseAvailabilityCheckSettings struct {
-	// Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, no particular cloud platform will be enforced.
+	// Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, any available cloud platform may be chosen.
 	PlatformOptions *DemGetWebsiteResponsePlatformOptions `json:"platformOptions,omitempty"`
 	//   Configure locations of the synthetic availability test probes.
 	//   Acceptable values depend on the selected type and actual values of existing probes.
@@ -413,7 +413,7 @@ func (d DemGetWebsiteResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DemGetWebsiteResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id", "type", "status", "name", "url", "monitoringOptions"}); err != nil {
 		return err
 	}
 	return nil

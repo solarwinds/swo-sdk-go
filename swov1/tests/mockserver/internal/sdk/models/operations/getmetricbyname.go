@@ -7,7 +7,7 @@ import (
 )
 
 type GetMetricByNameRequest struct {
-	// metric name
+	// Metric name.
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 

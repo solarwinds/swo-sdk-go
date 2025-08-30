@@ -7,9 +7,9 @@ Aggregation method for secondary grouping, inside individual buckets. Has to be 
 
 | Name                    | Value                   |
 | ----------------------- | ----------------------- |
+| `PreGroupByMethodAvg`   | AVG                     |
 | `PreGroupByMethodCount` | COUNT                   |
 | `PreGroupByMethodMin`   | MIN                     |
 | `PreGroupByMethodMax`   | MAX                     |
-| `PreGroupByMethodAvg`   | AVG                     |
 | `PreGroupByMethodSum`   | SUM                     |
 | `PreGroupByMethodLast`  | LAST                    |

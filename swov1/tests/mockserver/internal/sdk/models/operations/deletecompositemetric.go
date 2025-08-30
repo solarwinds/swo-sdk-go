@@ -7,7 +7,7 @@ import (
 )
 
 type DeleteCompositeMetricRequest struct {
-	// The metric name
+	// Metric name.
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 

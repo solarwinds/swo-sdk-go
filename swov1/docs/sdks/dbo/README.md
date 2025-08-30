@@ -70,10 +70,12 @@ func main() {
 
 ### Errors
 
-| Error Type                            | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| apierrors.ObserveDatabaseResponseBody | 400                                   | application/json                      |
-| apierrors.APIError                    | 4XX, 5XX                              | \*/\*                                 |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## GetPublicKey
 
@@ -122,11 +124,13 @@ func main() {
 
 ### Errors
 
-| Error Type                            | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| apierrors.GetPublicKeyResponseBody    | 400                                   | application/json                      |
-| apierrors.GetPublicKeyDboResponseBody | 404                                   | application/json                      |
-| apierrors.APIError                    | 4XX, 5XX                              | \*/\*                                 |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## UpdateDatabase
 
@@ -181,11 +185,13 @@ func main() {
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| apierrors.UpdateDatabaseResponseBody    | 400                                     | application/json                        |
-| apierrors.UpdateDatabaseDboResponseBody | 404                                     | application/json                        |
-| apierrors.APIError                      | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## DeleteDatabase
 
@@ -238,11 +244,13 @@ func main() {
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| apierrors.DeleteDatabaseResponseBody    | 400                                     | application/json                        |
-| apierrors.DeleteDatabaseDboResponseBody | 404                                     | application/json                        |
-| apierrors.APIError                      | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## GetPluginConfig
 
@@ -295,11 +303,13 @@ func main() {
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| apierrors.GetPluginConfigResponseBody    | 400                                      | application/json                         |
-| apierrors.GetPluginConfigDboResponseBody | 404                                      | application/json                         |
-| apierrors.APIError                       | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## GetPlugins
 
@@ -352,11 +362,13 @@ func main() {
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| apierrors.GetPluginsResponseBody    | 400                                 | application/json                    |
-| apierrors.GetPluginsDboResponseBody | 404                                 | application/json                    |
-| apierrors.APIError                  | 4XX, 5XX                            | \*/\*                               |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## PluginOperation
 
@@ -410,8 +422,10 @@ func main() {
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| apierrors.PluginOperationResponseBody    | 400                                      | application/json                         |
-| apierrors.PluginOperationDboResponseBody | 404                                      | application/json                         |
-| apierrors.APIError                       | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |

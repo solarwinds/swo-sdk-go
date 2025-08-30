@@ -9,7 +9,7 @@ import (
 )
 
 type ListMetricsRequest struct {
-	// metric name
+	// Metric name.
 	Name *string `queryParam:"style=form,explode=false,name=name"`
 	// Timestamp in ISO 8601 format in UTC timezone: yyyy-MM-ddTHH:mm:ssZ
 	StartTime *time.Time `queryParam:"style=form,explode=false,name=startTime"`
@@ -26,7 +26,7 @@ func (l ListMetricsRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListMetricsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
 		return err
 	}
 	return nil

@@ -36,7 +36,7 @@ func (d DboDatabaseConnectionOptions) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DboDatabaseConnectionOptions) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"host"}); err != nil {
 		return err
 	}
 	return nil
