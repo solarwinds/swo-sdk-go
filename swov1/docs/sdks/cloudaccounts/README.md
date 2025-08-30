@@ -63,13 +63,13 @@ func main() {
 
 ### Errors
 
-| Error Type                                                           | Status Code                                                          | Content Type                                                         |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| apierrors.ActivateAwsIntegrationResponseBody                         | 400                                                                  | application/json                                                     |
-| apierrors.ActivateAwsIntegrationCloudAccountsResponseBody            | 401                                                                  | application/json                                                     |
-| apierrors.ActivateAwsIntegrationCloudAccountsResponseResponseBody    | 404                                                                  | application/json                                                     |
-| apierrors.ActivateAwsIntegrationCloudAccountsResponse500ResponseBody | 500                                                                  | application/json                                                     |
-| apierrors.APIError                                                   | 4XX, 5XX                                                             | \*/\*                                                                |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## CreateOrgStructure
 
@@ -123,13 +123,13 @@ func main() {
 
 ### Errors
 
-| Error Type                                                       | Status Code                                                      | Content Type                                                     |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| apierrors.CreateOrgStructureResponseBody                         | 400                                                              | application/json                                                 |
-| apierrors.CreateOrgStructureCloudAccountsResponseBody            | 401                                                              | application/json                                                 |
-| apierrors.CreateOrgStructureCloudAccountsResponseResponseBody    | 404                                                              | application/json                                                 |
-| apierrors.CreateOrgStructureCloudAccountsResponse500ResponseBody | 500                                                              | application/json                                                 |
-| apierrors.APIError                                               | 4XX, 5XX                                                         | \*/\*                                                            |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## UpdateAwsIntegration
 
@@ -185,12 +185,12 @@ func main() {
 
 ### Errors
 
-| Error Type                                                      | Status Code                                                     | Content Type                                                    |
-| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| apierrors.UpdateAwsIntegrationResponseBody                      | 400                                                             | application/json                                                |
-| apierrors.UpdateAwsIntegrationCloudAccountsResponseBody         | 401                                                             | application/json                                                |
-| apierrors.UpdateAwsIntegrationCloudAccountsResponseResponseBody | 500                                                             | application/json                                                |
-| apierrors.APIError                                              | 4XX, 5XX                                                        | \*/\*                                                           |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## ValidateMgmtAccountOnboarding
 
@@ -246,9 +246,9 @@ func main() {
 
 ### Errors
 
-| Error Type                                                               | Status Code                                                              | Content Type                                                             |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| apierrors.ValidateMgmtAccountOnboardingResponseBody                      | 400                                                                      | application/json                                                         |
-| apierrors.ValidateMgmtAccountOnboardingCloudAccountsResponseBody         | 401                                                                      | application/json                                                         |
-| apierrors.ValidateMgmtAccountOnboardingCloudAccountsResponseResponseBody | 500                                                                      | application/json                                                         |
-| apierrors.APIError                                                       | 4XX, 5XX                                                                 | \*/\*                                                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |

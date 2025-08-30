@@ -72,11 +72,12 @@ func main() {
 
 ### Errors
 
-| Error Type                                 | Status Code                                | Content Type                               |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| apierrors.ListEntitiesResponseBody         | 400                                        | application/json                           |
-| apierrors.ListEntitiesEntitiesResponseBody | 401                                        | application/json                           |
-| apierrors.APIError                         | 4XX, 5XX                                   | \*/\*                                      |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## GetEntityByID
 
@@ -129,12 +130,13 @@ func main() {
 
 ### Errors
 
-| Error Type                                          | Status Code                                         | Content Type                                        |
-| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| apierrors.GetEntityByIDResponseBody                 | 400                                                 | application/json                                    |
-| apierrors.GetEntityByIDEntitiesResponseBody         | 401                                                 | application/json                                    |
-| apierrors.GetEntityByIDEntitiesResponseResponseBody | 404                                                 | application/json                                    |
-| apierrors.APIError                                  | 4XX, 5XX                                            | \*/\*                                               |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## UpdateEntityByID
 
@@ -195,9 +197,10 @@ func main() {
 
 ### Errors
 
-| Error Type                                             | Status Code                                            | Content Type                                           |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| apierrors.UpdateEntityByIDResponseBody                 | 400                                                    | application/json                                       |
-| apierrors.UpdateEntityByIDEntitiesResponseBody         | 401                                                    | application/json                                       |
-| apierrors.UpdateEntityByIDEntitiesResponseResponseBody | 404                                                    | application/json                                       |
-| apierrors.APIError                                     | 4XX, 5XX                                               | \*/\*                                                  |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |

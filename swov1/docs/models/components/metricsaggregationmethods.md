@@ -5,9 +5,9 @@
 
 | Name                             | Value                            |
 | -------------------------------- | -------------------------------- |
+| `MetricsAggregationMethodsAvg`   | AVG                              |
 | `MetricsAggregationMethodsCount` | COUNT                            |
 | `MetricsAggregationMethodsMin`   | MIN                              |
 | `MetricsAggregationMethodsMax`   | MAX                              |
-| `MetricsAggregationMethodsAvg`   | AVG                              |
 | `MetricsAggregationMethodsSum`   | SUM                              |
 | `MetricsAggregationMethodsLast`  | LAST                             |

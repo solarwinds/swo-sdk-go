@@ -76,9 +76,11 @@ func main() {
 
 ### Errors
 
-| Error Type         | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| apierrors.APIError | 4XX, 5XX           | \*/\*              |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## CreateCompositeMetric
 
@@ -135,11 +137,13 @@ func main() {
 
 ### Errors
 
-| Error Type                                         | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| apierrors.CreateCompositeMetricResponseBody        | 400                                                | application/json                                   |
-| apierrors.CreateCompositeMetricMetricsResponseBody | 409                                                | application/json                                   |
-| apierrors.APIError                                 | 4XX, 5XX                                           | \*/\*                                              |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonConflictErrorResponse     | 409                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## ListMultiMetricMeasurements
 
@@ -228,10 +232,12 @@ func main() {
 
 ### Errors
 
-| Error Type                                        | Status Code                                       | Content Type                                      |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| apierrors.ListMultiMetricMeasurementsResponseBody | 400                                               | application/json                                  |
-| apierrors.APIError                                | 4XX, 5XX                                          | \*/\*                                             |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## UpdateCompositeMetric
 
@@ -291,12 +297,14 @@ func main() {
 
 ### Errors
 
-| Error Type                                                 | Status Code                                                | Content Type                                               |
-| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| apierrors.UpdateCompositeMetricResponseBody                | 400                                                        | application/json                                           |
-| apierrors.UpdateCompositeMetricMetricsResponseBody         | 403                                                        | application/json                                           |
-| apierrors.UpdateCompositeMetricMetricsResponseResponseBody | 404                                                        | application/json                                           |
-| apierrors.APIError                                         | 4XX, 5XX                                                   | \*/\*                                                      |
+| Error Type                                    | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse       | 400                                           | application/json                              |
+| apierrors.CommonUnauthorizedErrorResponse     | 401                                           | application/json                              |
+| apierrors.MetricsMetricForbiddenErrorResponse | 403                                           | application/json                              |
+| apierrors.CommonNotFoundErrorResponse         | 404                                           | application/json                              |
+| apierrors.CommonInternalErrorResponse         | 500                                           | application/json                              |
+| apierrors.APIError                            | 4XX, 5XX                                      | \*/\*                                         |
 
 ## DeleteCompositeMetric
 
@@ -349,11 +357,13 @@ func main() {
 
 ### Errors
 
-| Error Type                                         | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| apierrors.DeleteCompositeMetricResponseBody        | 403                                                | application/json                                   |
-| apierrors.DeleteCompositeMetricMetricsResponseBody | 404                                                | application/json                                   |
-| apierrors.APIError                                 | 4XX, 5XX                                           | \*/\*                                              |
+| Error Type                                    | Status Code                                   | Content Type                                  |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse     | 401                                           | application/json                              |
+| apierrors.MetricsMetricForbiddenErrorResponse | 403                                           | application/json                              |
+| apierrors.CommonNotFoundErrorResponse         | 404                                           | application/json                              |
+| apierrors.CommonInternalErrorResponse         | 500                                           | application/json                              |
+| apierrors.APIError                            | 4XX, 5XX                                      | \*/\*                                         |
 
 ## GetMetricByName
 
@@ -418,10 +428,12 @@ func main() {
 
 ### Errors
 
-| Error Type                            | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| apierrors.GetMetricByNameResponseBody | 404                                   | application/json                      |
-| apierrors.APIError                    | 4XX, 5XX                              | \*/\*                                 |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## ListMetricAttributes
 
@@ -486,10 +498,12 @@ func main() {
 
 ### Errors
 
-| Error Type                                 | Status Code                                | Content Type                               |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| apierrors.ListMetricAttributesResponseBody | 404                                        | application/json                           |
-| apierrors.APIError                         | 4XX, 5XX                                   | \*/\*                                      |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## ListMetricAttributeValues
 
@@ -555,10 +569,12 @@ func main() {
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| apierrors.ListMetricAttributeValuesResponseBody | 404                                             | application/json                                |
-| apierrors.APIError                              | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## ListMetricMeasurements
 
@@ -625,7 +641,9 @@ func main() {
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| apierrors.ListMetricMeasurementsResponseBody | 404                                          | application/json                             |
-| apierrors.APIError                           | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |

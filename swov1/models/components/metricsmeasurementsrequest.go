@@ -8,14 +8,53 @@ import (
 	"github.com/solarwinds/swo-sdk-go/swov1/internal/utils"
 )
 
+// AggregateBy - Aggregation method used to group measurements.
+type AggregateBy string
+
+const (
+	AggregateByAvg   AggregateBy = "AVG"
+	AggregateByCount AggregateBy = "COUNT"
+	AggregateByMin   AggregateBy = "MIN"
+	AggregateByMax   AggregateBy = "MAX"
+	AggregateBySum   AggregateBy = "SUM"
+	AggregateByLast  AggregateBy = "LAST"
+)
+
+func (e AggregateBy) ToPointer() *AggregateBy {
+	return &e
+}
+func (e *AggregateBy) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "AVG":
+		fallthrough
+	case "COUNT":
+		fallthrough
+	case "MIN":
+		fallthrough
+	case "MAX":
+		fallthrough
+	case "SUM":
+		fallthrough
+	case "LAST":
+		*e = AggregateBy(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AggregateBy: %v", v)
+	}
+}
+
 // PreGroupByMethod - Aggregation method for secondary grouping, inside individual buckets. Has to be set together with `preGroupBy`.
 type PreGroupByMethod string
 
 const (
+	PreGroupByMethodAvg   PreGroupByMethod = "AVG"
 	PreGroupByMethodCount PreGroupByMethod = "COUNT"
 	PreGroupByMethodMin   PreGroupByMethod = "MIN"
 	PreGroupByMethodMax   PreGroupByMethod = "MAX"
-	PreGroupByMethodAvg   PreGroupByMethod = "AVG"
 	PreGroupByMethodSum   PreGroupByMethod = "SUM"
 	PreGroupByMethodLast  PreGroupByMethod = "LAST"
 )
@@ -29,13 +68,13 @@ func (e *PreGroupByMethod) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch v {
+	case "AVG":
+		fallthrough
 	case "COUNT":
 		fallthrough
 	case "MIN":
 		fallthrough
 	case "MAX":
-		fallthrough
-	case "AVG":
 		fallthrough
 	case "SUM":
 		fallthrough
@@ -117,7 +156,7 @@ type MetricsMeasurementsRequest struct {
 	// List of attribute names to group measurements by.
 	GroupBy []string `json:"groupBy,omitempty"`
 	// Aggregation method used to group measurements.
-	AggregateBy *MetricsAggregationMethods `json:"aggregateBy,omitempty"`
+	AggregateBy *AggregateBy `json:"aggregateBy,omitempty"`
 	// Secondary grouping, allowing aggregation inside individual buckets. Has to be set together with `preGroupByMethod`.
 	PreGroupBy []string `json:"preGroupBy,omitempty"`
 	// Aggregation method for secondary grouping, inside individual buckets. Has to be set together with `preGroupBy`.
@@ -135,7 +174,7 @@ func (m MetricsMeasurementsRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (m *MetricsMeasurementsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"name"}); err != nil {
 		return err
 	}
 	return nil
@@ -169,7 +208,7 @@ func (o *MetricsMeasurementsRequest) GetGroupBy() []string {
 	return o.GroupBy
 }
 
-func (o *MetricsMeasurementsRequest) GetAggregateBy() *MetricsAggregationMethods {
+func (o *MetricsMeasurementsRequest) GetAggregateBy() *AggregateBy {
 	if o == nil {
 		return nil
 	}

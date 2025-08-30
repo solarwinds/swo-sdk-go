@@ -214,15 +214,11 @@ func (s *CloudAccounts) ActivateAwsIntegration(ctx context.Context, request comp
 				return nil, err
 			}
 
-			var out apierrors.ActivateAwsIntegrationResponseBody
+			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -239,15 +235,11 @@ func (s *CloudAccounts) ActivateAwsIntegration(ctx context.Context, request comp
 				return nil, err
 			}
 
-			var out apierrors.ActivateAwsIntegrationCloudAccountsResponseBody
+			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -264,15 +256,11 @@ func (s *CloudAccounts) ActivateAwsIntegration(ctx context.Context, request comp
 				return nil, err
 			}
 
-			var out apierrors.ActivateAwsIntegrationCloudAccountsResponseResponseBody
+			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -289,15 +277,11 @@ func (s *CloudAccounts) ActivateAwsIntegration(ctx context.Context, request comp
 				return nil, err
 			}
 
-			var out apierrors.ActivateAwsIntegrationCloudAccountsResponse500ResponseBody
+			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -513,15 +497,11 @@ func (s *CloudAccounts) CreateOrgStructure(ctx context.Context, request componen
 				return nil, err
 			}
 
-			var out apierrors.CreateOrgStructureResponseBody
+			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -538,15 +518,11 @@ func (s *CloudAccounts) CreateOrgStructure(ctx context.Context, request componen
 				return nil, err
 			}
 
-			var out apierrors.CreateOrgStructureCloudAccountsResponseBody
+			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -563,15 +539,11 @@ func (s *CloudAccounts) CreateOrgStructure(ctx context.Context, request componen
 				return nil, err
 			}
 
-			var out apierrors.CreateOrgStructureCloudAccountsResponseResponseBody
+			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -588,15 +560,11 @@ func (s *CloudAccounts) CreateOrgStructure(ctx context.Context, request componen
 				return nil, err
 			}
 
-			var out apierrors.CreateOrgStructureCloudAccountsResponse500ResponseBody
+			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -832,15 +800,11 @@ func (s *CloudAccounts) UpdateAwsIntegration(ctx context.Context, request compon
 				return nil, err
 			}
 
-			var out apierrors.UpdateAwsIntegrationResponseBody
+			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -857,15 +821,11 @@ func (s *CloudAccounts) UpdateAwsIntegration(ctx context.Context, request compon
 				return nil, err
 			}
 
-			var out apierrors.UpdateAwsIntegrationCloudAccountsResponseBody
+			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -882,15 +842,11 @@ func (s *CloudAccounts) UpdateAwsIntegration(ctx context.Context, request compon
 				return nil, err
 			}
 
-			var out apierrors.UpdateAwsIntegrationCloudAccountsResponseResponseBody
+			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -1123,15 +1079,11 @@ func (s *CloudAccounts) ValidateMgmtAccountOnboarding(ctx context.Context, reque
 				return nil, err
 			}
 
-			var out apierrors.ValidateMgmtAccountOnboardingResponseBody
+			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -1148,15 +1100,11 @@ func (s *CloudAccounts) ValidateMgmtAccountOnboarding(ctx context.Context, reque
 				return nil, err
 			}
 
-			var out apierrors.ValidateMgmtAccountOnboardingCloudAccountsResponseBody
+			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -1173,15 +1121,11 @@ func (s *CloudAccounts) ValidateMgmtAccountOnboarding(ctx context.Context, reque
 				return nil, err
 			}
 
-			var out apierrors.ValidateMgmtAccountOnboardingCloudAccountsResponseResponseBody
+			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
