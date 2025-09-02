@@ -68,10 +68,11 @@ func main() {
 
 ### Errors
 
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| apierrors.ListProbesResponseBody | 500                              | application/json                 |
-| apierrors.APIError               | 4XX, 5XX                         | \*/\*                            |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## GetDemSettings
 
@@ -120,9 +121,11 @@ func main() {
 
 ### Errors
 
-| Error Type         | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| apierrors.APIError | 4XX, 5XX           | \*/\*              |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## SetDemSettings
 
@@ -176,9 +179,12 @@ func main() {
 
 ### Errors
 
-| Error Type         | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| apierrors.APIError | 4XX, 5XX           | \*/\*              |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## CreateURI
 
@@ -267,10 +273,12 @@ func main() {
 
 ### Errors
 
-| Error Type                      | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| apierrors.CreateURIResponseBody | 400                             | application/json                |
-| apierrors.APIError              | 4XX, 5XX                        | \*/\*                           |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## GetURI
 
@@ -323,10 +331,12 @@ func main() {
 
 ### Errors
 
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| apierrors.GetURIResponseBody | 404                          | application/json             |
-| apierrors.APIError           | 4XX, 5XX                     | \*/\*                        |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## UpdateURI
 
@@ -422,11 +432,13 @@ func main() {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| apierrors.UpdateURIResponseBody    | 400                                | application/json                   |
-| apierrors.UpdateURIDemResponseBody | 404                                | application/json                   |
-| apierrors.APIError                 | 4XX, 5XX                           | \*/\*                              |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## DeleteURI
 
@@ -479,10 +491,12 @@ func main() {
 
 ### Errors
 
-| Error Type                      | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| apierrors.DeleteURIResponseBody | 404                             | application/json                |
-| apierrors.APIError              | 4XX, 5XX                        | \*/\*                           |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## PauseURIMonitoring
 
@@ -535,10 +549,12 @@ func main() {
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| apierrors.PauseURIMonitoringResponseBody | 404                                      | application/json                         |
-| apierrors.APIError                       | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## UnpauseURIMonitoring
 
@@ -591,10 +607,12 @@ func main() {
 
 ### Errors
 
-| Error Type                                 | Status Code                                | Content Type                               |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| apierrors.UnpauseURIMonitoringResponseBody | 404                                        | application/json                           |
-| apierrors.APIError                         | 4XX, 5XX                                   | \*/\*                                      |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## CreateWebsite
 
@@ -698,10 +716,12 @@ func main() {
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| apierrors.CreateWebsiteResponseBody | 400                                 | application/json                    |
-| apierrors.APIError                  | 4XX, 5XX                            | \*/\*                               |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## GetWebsite
 
@@ -754,10 +774,12 @@ func main() {
 
 ### Errors
 
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| apierrors.GetWebsiteResponseBody | 404                              | application/json                 |
-| apierrors.APIError               | 4XX, 5XX                         | \*/\*                            |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## UpdateWebsite
 
@@ -865,11 +887,13 @@ func main() {
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| apierrors.UpdateWebsiteResponseBody    | 400                                    | application/json                       |
-| apierrors.UpdateWebsiteDemResponseBody | 404                                    | application/json                       |
-| apierrors.APIError                     | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## DeleteWebsite
 
@@ -922,10 +946,12 @@ func main() {
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| apierrors.DeleteWebsiteResponseBody | 404                                 | application/json                    |
-| apierrors.APIError                  | 4XX, 5XX                            | \*/\*                               |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## PauseWebsiteMonitoring
 
@@ -978,10 +1004,12 @@ func main() {
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| apierrors.PauseWebsiteMonitoringResponseBody | 404                                          | application/json                             |
-| apierrors.APIError                           | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## UnpauseWebsiteMonitoring
 
@@ -1034,7 +1062,9 @@ func main() {
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| apierrors.UnpauseWebsiteMonitoringResponseBody | 404                                            | application/json                               |
-| apierrors.APIError                             | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |

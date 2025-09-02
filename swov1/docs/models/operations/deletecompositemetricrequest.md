@@ -5,4 +5,4 @@
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `Name`             | *string*           | :heavy_check_mark: | The metric name    |
+| `Name`             | *string*           | :heavy_check_mark: | Metric name.       |

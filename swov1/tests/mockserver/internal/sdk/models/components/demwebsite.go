@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-// DemWebsitePlatformOptions - Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, no particular cloud platform will be enforced.
+// DemWebsitePlatformOptions - Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, any available cloud platform may be chosen.
 type DemWebsitePlatformOptions struct {
 	// Cloud platforms hosting synthetic probes.
 	ProbePlatforms []DemProbePlatform `json:"probePlatforms"`
@@ -182,7 +182,7 @@ func (o *DemWebsiteSsl) GetIgnoreIntermediateCertificates() *bool {
 
 // DemWebsiteAvailabilityCheckSettings - Use this field to configure availability tests for the website.
 type DemWebsiteAvailabilityCheckSettings struct {
-	// Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, no particular cloud platform will be enforced.
+	// Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, any available cloud platform may be chosen.
 	PlatformOptions *DemWebsitePlatformOptions `json:"platformOptions,omitempty"`
 	//   Configure locations of the synthetic availability test probes.
 	//   Acceptable values depend on the selected type and actual values of existing probes.

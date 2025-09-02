@@ -420,15 +420,14 @@ Handling errors in this SDK should largely match your expectations. All operatio
 
 By Default, an API error will return `apierrors.APIError`. When custom error responses are specified for an operation, the SDK may also return their associated error. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation.
 
-For example, the `ActivateAwsIntegration` function may return the following errors:
+For example, the `CreateChangeEvent` function may return the following errors:
 
-| Error Type                                                           | Status Code | Content Type     |
-| -------------------------------------------------------------------- | ----------- | ---------------- |
-| apierrors.ActivateAwsIntegrationResponseBody                         | 400         | application/json |
-| apierrors.ActivateAwsIntegrationCloudAccountsResponseBody            | 401         | application/json |
-| apierrors.ActivateAwsIntegrationCloudAccountsResponseResponseBody    | 404         | application/json |
-| apierrors.ActivateAwsIntegrationCloudAccountsResponse500ResponseBody | 500         | application/json |
-| apierrors.APIError                                                   | 4XX, 5XX    | \*/\*            |
+| Error Type                                | Status Code | Content Type     |
+| ----------------------------------------- | ----------- | ---------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400         | application/json |
+| apierrors.CommonUnauthorizedErrorResponse | 401         | application/json |
+| apierrors.CommonInternalErrorResponse     | 500         | application/json |
+| apierrors.APIError                        | 4XX, 5XX    | \*/\*            |
 
 ### Example
 
@@ -452,32 +451,38 @@ func main() {
 		swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
-	res, err := s.CloudAccounts.ActivateAwsIntegration(ctx, components.CloudAccountsAwsActivateIntegrationRequest{
-		ManagementAccountID: "<id>",
-		AccountID:           "<id>",
-		Enable:              true,
+	res, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEventsChangeEvent{
+		ID:        swov1.Int64(1731676626),
+		Name:      "app-deploys",
+		Title:     "deployed v45",
+		Timestamp: swov1.Int64(1731676626),
+		Source:    swov1.String("foo3.example.com"),
+		Tags: map[string]string{
+			"app":         "foo",
+			"environment": "production",
+		},
+		Links: []components.CommonLink{
+			components.CommonLink{
+				Rel:  "self",
+				Href: "https://example.com",
+			},
+		},
 	})
 	if err != nil {
 
-		var e *apierrors.ActivateAwsIntegrationResponseBody
+		var e *apierrors.CommonBadRequestErrorResponse
 		if errors.As(err, &e) {
 			// handle error
 			log.Fatal(e.Error())
 		}
 
-		var e *apierrors.ActivateAwsIntegrationCloudAccountsResponseBody
+		var e *apierrors.CommonUnauthorizedErrorResponse
 		if errors.As(err, &e) {
 			// handle error
 			log.Fatal(e.Error())
 		}
 
-		var e *apierrors.ActivateAwsIntegrationCloudAccountsResponseResponseBody
-		if errors.As(err, &e) {
-			// handle error
-			log.Fatal(e.Error())
-		}
-
-		var e *apierrors.ActivateAwsIntegrationCloudAccountsResponse500ResponseBody
+		var e *apierrors.CommonInternalErrorResponse
 		if errors.As(err, &e) {
 			// handle error
 			log.Fatal(e.Error())

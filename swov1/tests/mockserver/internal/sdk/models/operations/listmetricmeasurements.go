@@ -9,13 +9,13 @@ import (
 )
 
 type ListMetricMeasurementsRequest struct {
-	// metric name
+	// Metric name.
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 	// Query to filter the measurement values. e.g id: [id1,id2] category: moderate
 	Filter *string `queryParam:"style=form,explode=false,name=filter"`
 	// Comma-delimited list of attribute names to group measurements by. e.g id, category
 	GroupBy *string `queryParam:"style=form,explode=false,name=groupBy"`
-	// Aggregation method used to group measurements.
+	// Aggregation method used to group measurements. Defaults to AVG.
 	AggregateBy *components.MetricsAggregationMethods `queryParam:"style=form,explode=false,name=aggregateBy"`
 	// This parameter is deprecated. Bucket size is determined by the API layer.
 	//
@@ -25,7 +25,7 @@ type ListMetricMeasurementsRequest struct {
 	PreGroupBy *string `queryParam:"style=form,explode=false,name=preGroupBy"`
 	// Secondary aggregation to allow aggregating data points inside individual buckets. Has to be set together with `preGroupBy`.
 	PreGroupByMethod *string `queryParam:"style=form,explode=false,name=preGroupByMethod"`
-	// Indicates what type of data to return.
+	// Indicates what type of data to return. Defaults to TIMESERIES.
 	SeriesType components.MetricsMetricSeriesType `queryParam:"style=form,explode=false,name=seriesType"`
 	// Timestamp in ISO 8601 format in UTC timezone: yyyy-MM-ddTHH:mm:ssZ
 	StartTime *time.Time `queryParam:"style=form,explode=false,name=startTime"`
@@ -42,7 +42,7 @@ func (l ListMetricMeasurementsRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListMetricMeasurementsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"name", "seriesType"}); err != nil {
 		return err
 	}
 	return nil
