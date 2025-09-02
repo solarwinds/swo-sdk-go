@@ -9,7 +9,7 @@ import (
 )
 
 type ListMetricAttributeValuesRequest struct {
-	// metric name
+	// Metric name.
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 	// attribute name
 	AttributeName string `pathParam:"style=simple,explode=false,name=attributeName"`
@@ -28,7 +28,7 @@ func (l ListMetricAttributeValuesRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListMetricAttributeValuesRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"name", "attributeName"}); err != nil {
 		return err
 	}
 	return nil

@@ -184,7 +184,7 @@ func (s *Entities) ListEntities(ctx context.Context, request operations.ListEnti
 
 			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
-		} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
+		} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "500", "5XX"}, httpRes.StatusCode) {
 			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
@@ -277,15 +277,11 @@ func (s *Entities) ListEntities(ctx context.Context, request operations.ListEnti
 				return nil, err
 			}
 
-			var out apierrors.ListEntitiesResponseBody
+			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -302,15 +298,32 @@ func (s *Entities) ListEntities(ctx context.Context, request operations.ListEnti
 				return nil, err
 			}
 
-			var out apierrors.ListEntitiesEntitiesResponseBody
+			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
+			return nil, &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
 			}
+			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 500:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.CommonInternalErrorResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -486,7 +499,7 @@ func (s *Entities) GetEntityByID(ctx context.Context, request operations.GetEnti
 
 			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
-		} else if utils.MatchStatusCodes([]string{"400", "401", "404", "4XX", "5XX"}, httpRes.StatusCode) {
+		} else if utils.MatchStatusCodes([]string{"400", "401", "404", "4XX", "500", "5XX"}, httpRes.StatusCode) {
 			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
@@ -538,15 +551,11 @@ func (s *Entities) GetEntityByID(ctx context.Context, request operations.GetEnti
 				return nil, err
 			}
 
-			var out apierrors.GetEntityByIDResponseBody
+			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -563,15 +572,11 @@ func (s *Entities) GetEntityByID(ctx context.Context, request operations.GetEnti
 				return nil, err
 			}
 
-			var out apierrors.GetEntityByIDEntitiesResponseBody
+			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -588,15 +593,32 @@ func (s *Entities) GetEntityByID(ctx context.Context, request operations.GetEnti
 				return nil, err
 			}
 
-			var out apierrors.GetEntityByIDEntitiesResponseResponseBody
+			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
+			return nil, &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
 			}
+			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 500:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.CommonInternalErrorResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -779,7 +801,7 @@ func (s *Entities) UpdateEntityByID(ctx context.Context, request operations.Upda
 
 			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
-		} else if utils.MatchStatusCodes([]string{"400", "401", "404", "4XX", "5XX"}, httpRes.StatusCode) {
+		} else if utils.MatchStatusCodes([]string{"400", "401", "404", "4XX", "500", "5XX"}, httpRes.StatusCode) {
 			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
@@ -811,15 +833,11 @@ func (s *Entities) UpdateEntityByID(ctx context.Context, request operations.Upda
 				return nil, err
 			}
 
-			var out apierrors.UpdateEntityByIDResponseBody
+			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -836,15 +854,11 @@ func (s *Entities) UpdateEntityByID(ctx context.Context, request operations.Upda
 				return nil, err
 			}
 
-			var out apierrors.UpdateEntityByIDEntitiesResponseBody
+			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -861,15 +875,32 @@ func (s *Entities) UpdateEntityByID(ctx context.Context, request operations.Upda
 				return nil, err
 			}
 
-			var out apierrors.UpdateEntityByIDEntitiesResponseResponseBody
+			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
+			return nil, &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
 			}
+			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 500:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.CommonInternalErrorResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
 			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)

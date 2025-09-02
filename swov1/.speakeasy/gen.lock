@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
-  docChecksum: 3c507f632b42b5e917e98b3d15c9bdf4
+  docChecksum: 57bdea0d0a79128b0e2c4062a98aac69
   docVersion: 1.0.9
-  speakeasyVersion: 1.598.3
-  generationVersion: 2.674.3
-  releaseVersion: 0.8.0
-  configChecksum: d031f4f202abfc226cb57d5ddff7eec7
+  speakeasyVersion: 1.606.10
+  generationVersion: 2.687.13
+  releaseVersion: 0.9.0
+  configChecksum: f8cab7fd34195a6875de945b36086d37
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
@@ -23,13 +23,14 @@ features:
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.3
+    ignores: 2.81.1
     inputOutputModels: 2.83.0
     intellisenseMarkdownSupport: 0.1.0
     mockServer: 0.1.1
     nullables: 0.1.1
     pagination: 2.82.4
     responseFormat: 0.1.2
-    retries: 2.84.0
+    retries: 2.84.2
     sdkHooks: 0.2.0
     tests: 0.16.1
 generatedFiles:
@@ -37,42 +38,14 @@ generatedFiles:
   - .devcontainer/devcontainer.json
   - .devcontainer/setup.sh
   - .gitattributes
-  - /models/apierrors/activateawsintegration.go
-  - /models/apierrors/createcompositemetric.go
-  - /models/apierrors/createorgstructure.go
-  - /models/apierrors/createuri.go
-  - /models/apierrors/createwebsite.go
-  - /models/apierrors/deletecompositemetric.go
-  - /models/apierrors/deletedatabase.go
-  - /models/apierrors/deleteuri.go
-  - /models/apierrors/deletewebsite.go
-  - /models/apierrors/getentitybyid.go
-  - /models/apierrors/getmetricbyname.go
-  - /models/apierrors/getpluginconfig.go
-  - /models/apierrors/getplugins.go
-  - /models/apierrors/getpublickey.go
-  - /models/apierrors/geturi.go
-  - /models/apierrors/getwebsite.go
-  - /models/apierrors/listentities.go
-  - /models/apierrors/listmetricattributes.go
-  - /models/apierrors/listmetricattributevalues.go
-  - /models/apierrors/listmetricmeasurements.go
-  - /models/apierrors/listmetricsforentitytype.go
-  - /models/apierrors/listmultimetricmeasurements.go
-  - /models/apierrors/listprobes.go
-  - /models/apierrors/observedatabase.go
-  - /models/apierrors/pauseurimonitoring.go
-  - /models/apierrors/pausewebsitemonitoring.go
-  - /models/apierrors/pluginoperation.go
-  - /models/apierrors/unpauseurimonitoring.go
-  - /models/apierrors/unpausewebsitemonitoring.go
-  - /models/apierrors/updateawsintegration.go
-  - /models/apierrors/updatecompositemetric.go
-  - /models/apierrors/updatedatabase.go
-  - /models/apierrors/updateentitybyid.go
-  - /models/apierrors/updateuri.go
-  - /models/apierrors/updatewebsite.go
-  - /models/apierrors/validatemgmtaccountonboarding.go
+  - /models/apierrors/commonbadrequesterrorresponse.go
+  - /models/apierrors/commonconflicterrorresponse.go
+  - /models/apierrors/commonforbiddenerrorresponse.go
+  - /models/apierrors/commoninternalerrorresponse.go
+  - /models/apierrors/commonnotfounderrorresponse.go
+  - /models/apierrors/commonunauthorizederrorresponse.go
+  - /models/apierrors/commonunavailableerrorresponse.go
+  - /models/apierrors/metricsmetricforbiddenerrorresponse.go
   - /models/components/changeeventschangeevent.go
   - /models/components/cloudaccountsawsactivateintegrationrequest.go
   - /models/components/cloudaccountsawsmgmtaccountonboardingrequest.go
@@ -81,7 +54,6 @@ generatedFiles:
   - /models/components/cloudaccountsawsorganisationalunitrequest.go
   - /models/components/cloudaccountsawsupdateintegrationrequest.go
   - /models/components/cloudaccountsawsupdateintegrationresponse.go
-  - /models/components/commondefaulterrorcode.go
   - /models/components/commonentityid.go
   - /models/components/commonkeyvaluepair.go
   - /models/components/commonlink.go
@@ -125,7 +97,6 @@ generatedFiles:
   - /models/components/metricsgrouping.go
   - /models/components/metricsmeasurement.go
   - /models/components/metricsmeasurementsrequest.go
-  - /models/components/metricsmetricerrorcode.go
   - /models/components/metricsmetricseriestype.go
   - /models/components/metricsupdatecompositemetricrequest.go
   - /models/components/security.go
@@ -180,69 +151,23 @@ generatedFiles:
   - cloudaccounts.go
   - dbo.go
   - dem.go
-  - docs/models/apierrors/activateawsintegrationcloudaccountsresponse500responsebody.md
-  - docs/models/apierrors/activateawsintegrationcloudaccountsresponsebody.md
-  - docs/models/apierrors/activateawsintegrationcloudaccountsresponseresponsebody.md
-  - docs/models/apierrors/activateawsintegrationresponsebody.md
-  - docs/models/apierrors/createcompositemetricmetricsresponsebody.md
-  - docs/models/apierrors/createcompositemetricresponsebody.md
-  - docs/models/apierrors/createorgstructurecloudaccountsresponse500responsebody.md
-  - docs/models/apierrors/createorgstructurecloudaccountsresponsebody.md
-  - docs/models/apierrors/createorgstructurecloudaccountsresponseresponsebody.md
-  - docs/models/apierrors/createorgstructureresponsebody.md
-  - docs/models/apierrors/createuriresponsebody.md
-  - docs/models/apierrors/createwebsiteresponsebody.md
-  - docs/models/apierrors/deletecompositemetricmetricsresponsebody.md
-  - docs/models/apierrors/deletecompositemetricresponsebody.md
-  - docs/models/apierrors/deletedatabasedboresponsebody.md
-  - docs/models/apierrors/deletedatabaseresponsebody.md
-  - docs/models/apierrors/deleteuriresponsebody.md
-  - docs/models/apierrors/deletewebsiteresponsebody.md
-  - docs/models/apierrors/getentitybyidentitiesresponsebody.md
-  - docs/models/apierrors/getentitybyidentitiesresponseresponsebody.md
-  - docs/models/apierrors/getentitybyidresponsebody.md
-  - docs/models/apierrors/getmetricbynameresponsebody.md
-  - docs/models/apierrors/getpluginconfigdboresponsebody.md
-  - docs/models/apierrors/getpluginconfigresponsebody.md
-  - docs/models/apierrors/getpluginsdboresponsebody.md
-  - docs/models/apierrors/getpluginsresponsebody.md
-  - docs/models/apierrors/getpublickeydboresponsebody.md
-  - docs/models/apierrors/getpublickeyresponsebody.md
-  - docs/models/apierrors/geturiresponsebody.md
-  - docs/models/apierrors/getwebsiteresponsebody.md
-  - docs/models/apierrors/listentitiesentitiesresponsebody.md
-  - docs/models/apierrors/listentitiesresponsebody.md
-  - docs/models/apierrors/listmetricattributesresponsebody.md
-  - docs/models/apierrors/listmetricattributevaluesresponsebody.md
-  - docs/models/apierrors/listmetricmeasurementsresponsebody.md
-  - docs/models/apierrors/listmetricsforentitytyperesponsebody.md
-  - docs/models/apierrors/listmultimetricmeasurementsresponsebody.md
-  - docs/models/apierrors/listprobesresponsebody.md
-  - docs/models/apierrors/observedatabaseresponsebody.md
-  - docs/models/apierrors/pauseurimonitoringresponsebody.md
-  - docs/models/apierrors/pausewebsitemonitoringresponsebody.md
-  - docs/models/apierrors/pluginoperationdboresponsebody.md
-  - docs/models/apierrors/pluginoperationresponsebody.md
-  - docs/models/apierrors/unpauseurimonitoringresponsebody.md
-  - docs/models/apierrors/unpausewebsitemonitoringresponsebody.md
-  - docs/models/apierrors/updateawsintegrationcloudaccountsresponsebody.md
-  - docs/models/apierrors/updateawsintegrationcloudaccountsresponseresponsebody.md
-  - docs/models/apierrors/updateawsintegrationresponsebody.md
-  - docs/models/apierrors/updatecompositemetricmetricsresponsebody.md
-  - docs/models/apierrors/updatecompositemetricmetricsresponseresponsebody.md
-  - docs/models/apierrors/updatecompositemetricresponsebody.md
-  - docs/models/apierrors/updatedatabasedboresponsebody.md
-  - docs/models/apierrors/updatedatabaseresponsebody.md
-  - docs/models/apierrors/updateentitybyidentitiesresponsebody.md
-  - docs/models/apierrors/updateentitybyidentitiesresponseresponsebody.md
-  - docs/models/apierrors/updateentitybyidresponsebody.md
-  - docs/models/apierrors/updateuridemresponsebody.md
-  - docs/models/apierrors/updateuriresponsebody.md
-  - docs/models/apierrors/updatewebsitedemresponsebody.md
-  - docs/models/apierrors/updatewebsiteresponsebody.md
-  - docs/models/apierrors/validatemgmtaccountonboardingcloudaccountsresponsebody.md
-  - docs/models/apierrors/validatemgmtaccountonboardingcloudaccountsresponseresponsebody.md
-  - docs/models/apierrors/validatemgmtaccountonboardingresponsebody.md
+  - docs/models/apierrors/code.md
+  - docs/models/apierrors/commonbadrequesterrorresponse.md
+  - docs/models/apierrors/commonconflicterrorresponse.md
+  - docs/models/apierrors/commonconflicterrorresponsecode.md
+  - docs/models/apierrors/commonforbiddenerrorresponse.md
+  - docs/models/apierrors/commonforbiddenerrorresponsecode.md
+  - docs/models/apierrors/commoninternalerrorresponse.md
+  - docs/models/apierrors/commoninternalerrorresponsecode.md
+  - docs/models/apierrors/commonnotfounderrorresponse.md
+  - docs/models/apierrors/commonnotfounderrorresponsecode.md
+  - docs/models/apierrors/commonunauthorizederrorresponse.md
+  - docs/models/apierrors/commonunauthorizederrorresponsecode.md
+  - docs/models/apierrors/commonunavailableerrorresponse.md
+  - docs/models/apierrors/commonunavailableerrorresponsecode.md
+  - docs/models/apierrors/metricsmetricforbiddenerrorresponse.md
+  - docs/models/apierrors/metricsmetricforbiddenerrorresponsecode.md
+  - docs/models/components/aggregateby.md
   - docs/models/components/availabilitychecksettings.md
   - docs/models/components/category.md
   - docs/models/components/changeeventschangeevent.md
@@ -254,7 +179,6 @@ generatedFiles:
   - docs/models/components/cloudaccountsawsorganisationalunitrequest.md
   - docs/models/components/cloudaccountsawsupdateintegrationrequest.md
   - docs/models/components/cloudaccountsawsupdateintegrationresponse.md
-  - docs/models/components/commondefaulterrorcode.md
   - docs/models/components/commonentityid.md
   - docs/models/components/commonkeyvaluepair.md
   - docs/models/components/commonlink.md
@@ -322,7 +246,6 @@ generatedFiles:
   - docs/models/components/metricsgrouping.md
   - docs/models/components/metricsmeasurement.md
   - docs/models/components/metricsmeasurementsrequest.md
-  - docs/models/components/metricsmetricerrorcode.md
   - docs/models/components/metricsmetricseriestype.md
   - docs/models/components/metricsupdatecompositemetricrequest.md
   - docs/models/components/monitoringoptions.md
@@ -487,7 +410,6 @@ generatedFiles:
   - tests/mockserver/internal/handler/pathgetv1metricsname.go
   - tests/mockserver/internal/handler/pathpostv1changeevents.go
   - tests/mockserver/internal/handler/pathpostv1metrics.go
-  - tests/mockserver/internal/handler/pathpostv1tokens.go
   - tests/mockserver/internal/handler/pathputv1metricsname.go
   - tests/mockserver/internal/handler/values/files.go
   - tests/mockserver/internal/logging/doc.go
@@ -506,13 +428,19 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/components/cloudaccountsawsorganisationalunitrequest.go
   - tests/mockserver/internal/sdk/models/components/cloudaccountsawsupdateintegrationrequest.go
   - tests/mockserver/internal/sdk/models/components/cloudaccountsawsupdateintegrationresponse.go
-  - tests/mockserver/internal/sdk/models/components/commondefaulterrorcode.go
+  - tests/mockserver/internal/sdk/models/components/commonbadrequesterrorresponse.go
+  - tests/mockserver/internal/sdk/models/components/commonconflicterrorresponse.go
   - tests/mockserver/internal/sdk/models/components/commonentityid.go
+  - tests/mockserver/internal/sdk/models/components/commonforbiddenerrorresponse.go
+  - tests/mockserver/internal/sdk/models/components/commoninternalerrorresponse.go
   - tests/mockserver/internal/sdk/models/components/commonkeyvaluepair.go
   - tests/mockserver/internal/sdk/models/components/commonlink.go
   - tests/mockserver/internal/sdk/models/components/commonmetricinfo.go
+  - tests/mockserver/internal/sdk/models/components/commonnotfounderrorresponse.go
   - tests/mockserver/internal/sdk/models/components/commonpageinfo.go
   - tests/mockserver/internal/sdk/models/components/commontag.go
+  - tests/mockserver/internal/sdk/models/components/commonunauthorizederrorresponse.go
+  - tests/mockserver/internal/sdk/models/components/commonunavailableerrorresponse.go
   - tests/mockserver/internal/sdk/models/components/dbodatabaseauthmethod.go
   - tests/mockserver/internal/sdk/models/components/dbodatabaseconnectionoptions.go
   - tests/mockserver/internal/sdk/models/components/dbodatabaseconnectionoptionsupdate.go
@@ -550,7 +478,7 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/components/metricsgrouping.go
   - tests/mockserver/internal/sdk/models/components/metricsmeasurement.go
   - tests/mockserver/internal/sdk/models/components/metricsmeasurementsrequest.go
-  - tests/mockserver/internal/sdk/models/components/metricsmetricerrorcode.go
+  - tests/mockserver/internal/sdk/models/components/metricsmetricforbiddenerrorresponse.go
   - tests/mockserver/internal/sdk/models/components/metricsmetricseriestype.go
   - tests/mockserver/internal/sdk/models/components/metricsupdatecompositemetricrequest.go
   - tests/mockserver/internal/sdk/models/components/security.go
@@ -600,42 +528,14 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/operations/updateuri.go
   - tests/mockserver/internal/sdk/models/operations/updatewebsite.go
   - tests/mockserver/internal/sdk/models/operations/validatemgmtaccountonboarding.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/activateawsintegration.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/createcompositemetric.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/createorgstructure.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/createuri.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/createwebsite.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/deletecompositemetric.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/deletedatabase.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/deleteuri.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/deletewebsite.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/getentitybyid.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/getmetricbyname.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/getpluginconfig.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/getplugins.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/getpublickey.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/geturi.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/getwebsite.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/listentities.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/listmetricattributes.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/listmetricattributevalues.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/listmetricmeasurements.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/listmetricsforentitytype.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/listmultimetricmeasurements.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/listprobes.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/observedatabase.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/pauseurimonitoring.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/pausewebsitemonitoring.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/pluginoperation.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/unpauseurimonitoring.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/unpausewebsitemonitoring.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/updateawsintegration.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/updatecompositemetric.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/updatedatabase.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/updateentitybyid.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/updateuri.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/updatewebsite.go
-  - tests/mockserver/internal/sdk/models/sdkerrors/validatemgmtaccountonboarding.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/commonbadrequesterrorresponse.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/commonconflicterrorresponse.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/commonforbiddenerrorresponse.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/commoninternalerrorresponse.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/commonnotfounderrorresponse.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/commonunauthorizederrorresponse.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/commonunavailableerrorresponse.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/metricsmetricforbiddenerrorresponse.go
   - tests/mockserver/internal/sdk/types/bigint.go
   - tests/mockserver/internal/sdk/types/date.go
   - tests/mockserver/internal/sdk/types/datetime.go
@@ -673,32 +573,38 @@ examples:
           application/json: {"id": 208943}
         "202":
           application/json: {"id": 208943}
+        "400":
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   activateAwsIntegration:
     speakeasy-default-activate-aws-integration:
       requestBody:
         application/json: {"managementAccountId": "<id>", "accountId": "<id>", "enable": true}
       responses:
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
         "401":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
         "500":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   createOrgStructure:
     speakeasy-default-create-org-structure:
       requestBody:
         application/json: {"mgmtAccountId": "<id>", "structure": []}
       responses:
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
         "401":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
         "500":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   updateAwsIntegration:
     speakeasy-default-update-aws-integration:
       requestBody:
@@ -707,11 +613,11 @@ examples:
         "200":
           application/json: {"selectedRegions": ["<value 1>", "<value 2>", "<value 3>"], "externalId": "<id>", "integrationId": "<id>", "integrationType": "STREAMING", "isNewAccount": true}
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
         "401":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
         "500":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   validateMgmtAccountOnboarding:
     speakeasy-default-validate-mgmt-account-onboarding:
       parameters:
@@ -721,11 +627,11 @@ examples:
         "200":
           application/json: {"isOnboarded": true}
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
         "401":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
         "500":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   observeDatabase:
     speakeasy-default-observe-database:
       requestBody:
@@ -734,16 +640,24 @@ examples:
         "201":
           application/json: {"id": "<id>"}
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   getPublicKey:
     speakeasy-default-get-public-key:
       responses:
         "200":
           application/json: {"publicKey": "<value>"}
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   updateDatabase:
     speakeasy-default-update-database:
       parameters:
@@ -753,9 +667,13 @@ examples:
         application/json: {"name": ""}
       responses:
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   deleteDatabase:
     speakeasy-default-delete-database:
       parameters:
@@ -763,9 +681,13 @@ examples:
           entityId: "<id>"
       responses:
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   getPluginConfig:
     speakeasy-default-get-plugin-config:
       parameters:
@@ -775,9 +697,13 @@ examples:
         "200":
           application/json: {"pluginConfig": [{"pluginName": "<value>", "configOptions": [{"key": "<key>", "value": "<value>"}], "dbConnOptions": []}]}
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   getPlugins:
     speakeasy-default-get-plugins:
       parameters:
@@ -787,9 +713,13 @@ examples:
         "200":
           application/json: {"plugins": [{"pluginName": "<value>", "deploymentStatus": "<value>", "healthStatus": "<value>"}]}
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   pluginOperation:
     speakeasy-default-plugin-operation:
       parameters:
@@ -798,25 +728,42 @@ examples:
           operation: "<value>"
       responses:
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   listProbes:
     speakeasy-default-list-probes:
       responses:
         "200":
           application/json: {"probes": [{"id": "probe-1", "name": "Washington", "active": true, "platform": "AWS", "region": "NA", "country": "US", "city": "Washington D.C.", "coordinates": {"latitude": 38.89511, "longitude": -77.03637}, "ipv4Addresses": ["34.232.5.40", "44.207.30.12"], "ipv6Addresses": ["2001:0db8:85a3:0000:0000:8a2e:0370:7334"]}]}
         "500":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
   getDemSettings:
     speakeasy-default-get-dem-settings:
       responses:
         "200":
           application/json: {"failingTestLocations": "all", "consecutiveForDown": 2}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   setDemSettings:
     speakeasy-default-set-dem-settings:
       requestBody:
         application/json: {"failingTestLocations": "all", "consecutiveForDown": 2}
+      responses:
+        "400":
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   createUri:
     speakeasy-default-create-uri:
       requestBody:
@@ -825,7 +772,11 @@ examples:
         "201":
           application/json: {"id": "e-1448474379026206720"}
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   getUri:
     speakeasy-default-get-uri:
       parameters:
@@ -835,7 +786,11 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720", "type": "Uri", "status": "up", "name": "solarwinds.com", "ipOrDomain": "solarwinds.com", "availabilityCheckSettings": {"platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "testIntervalInSeconds": 14400, "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}, "ping": {"enabled": true}, "tcp": {"enabled": true, "port": 443, "stringToSend": "GET / HTTP/1.1\r\nHost: solarwinds.com\r\nConnection: close\r\n\r\n", "stringToExpect": "HTTP/1.1 200 OK"}, "protocol": "PING"}, "tags": [{"key": "environment", "value": "production"}], "lastOutageStartTime": "2025-01-15T14:31:19.735Z", "lastOutageEndTime": "2025-01-15T14:31:19.735Z", "lastTestTime": "2025-01-15T14:31:19.735Z", "lastErrorTime": "2025-01-15T14:31:19.735Z", "lastResponseTime": 376}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   updateUri:
     speakeasy-default-update-uri:
       parameters:
@@ -847,9 +802,13 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   deleteUri:
     speakeasy-default-delete-uri:
       parameters:
@@ -859,7 +818,11 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   pauseUriMonitoring:
     speakeasy-default-pause-uri-monitoring:
       parameters:
@@ -869,7 +832,11 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   unpauseUriMonitoring:
     speakeasy-default-unpause-uri-monitoring:
       parameters:
@@ -879,7 +846,11 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   createWebsite:
     speakeasy-default-create-website:
       requestBody:
@@ -888,7 +859,11 @@ examples:
         "201":
           application/json: {"id": "e-1448474379026206720"}
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   getWebsite:
     speakeasy-default-get-website:
       parameters:
@@ -898,7 +873,11 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720", "type": "Website", "status": "up", "name": "solarwinds.com", "url": "https://www.solarwinds.com", "monitoringOptions": {"isAvailabilityActive": true, "isRumActive": false}, "availabilityCheckSettings": null, "tags": [{"key": "environment", "value": "production"}], "rum": {"apdexTimeInSeconds": 4, "snippet": "string", "spa": true}, "lastOutageStartTime": "2025-01-15T14:31:19.735Z", "lastOutageEndTime": "2025-01-15T14:31:19.735Z", "lastTestTime": "2025-01-15T14:31:19.735Z", "lastErrorTime": "2025-01-15T14:31:19.735Z", "lastResponseTime": 376, "nextOnDemandAvailabilityTime": 0}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   updateWebsite:
     speakeasy-default-update-website:
       parameters:
@@ -910,9 +889,13 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   deleteWebsite:
     speakeasy-default-delete-website:
       parameters:
@@ -922,7 +905,11 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   pauseWebsiteMonitoring:
     speakeasy-default-pause-website-monitoring:
       parameters:
@@ -932,7 +919,11 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   unpauseWebsiteMonitoring:
     speakeasy-default-unpause-website-monitoring:
       parameters:
@@ -942,7 +933,11 @@ examples:
         "200":
           application/json: {"id": "e-1448474379026206720"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   listEntities:
     speakeasy-default-list-entities:
       parameters:
@@ -952,9 +947,11 @@ examples:
         "200":
           application/json: {"entities": [{"id": "e-1234567890", "type": "SyslogHost", "name": "syslog-host-1", "displayName": "SyslogTest", "createdTime": "2024-11-25T16:38:24Z", "updatedTime": "2024-12-01T16:38:24Z", "lastSeenTime": "2024-11-25T16:38:24Z", "inMaintenance": false, "healthscore": {"score": 100, "category": "good"}, "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}, "attributes": {"protocols": ["HTTP"], "features": ["rum"], "isAvailabilityCheckPaused": false, "extensions": {"has_extension": true}}}], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
         "401":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   getEntityById:
     speakeasy-default-get-entity-by-id:
       parameters:
@@ -964,11 +961,13 @@ examples:
         "200":
           application/json: {"id": "e-1234567890", "type": "SyslogHost", "name": "syslog-host-1", "displayName": "SyslogTest", "createdTime": "2024-11-25T16:38:24Z", "updatedTime": "2024-12-01T16:38:24Z", "lastSeenTime": "2024-11-25T16:38:24Z", "inMaintenance": false, "healthscore": {"score": 100, "category": "good"}, "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}, "attributes": {"protocols": ["HTTP"], "features": ["rum"], "isAvailabilityCheckPaused": false, "extensions": {"has_extension": true}}}
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
         "401":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   updateEntityById:
     speakeasy-default-update-entity-by-id:
       parameters:
@@ -978,11 +977,13 @@ examples:
         application/json: {"displayName": "SyslogTest", "tags": {"gg.tk.token": "test", "kfi.tk.token": "qa-test"}}
       responses:
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
         "401":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   searchLogs:
     speakeasy-default-search-logs:
       parameters:
@@ -991,6 +992,12 @@ examples:
       responses:
         "200":
           application/json: {"logs": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+        "400":
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   listLogArchives:
     speakeasy-default-list-log-archives:
       parameters:
@@ -1000,11 +1007,21 @@ examples:
       responses:
         "200":
           application/json: {"logArchives": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+        "400":
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   listEntityTypes:
     speakeasy-default-list-entity-types:
       responses:
         "200":
           application/json: {"types": ["Service", "ServiceInstance", "KubernetesCluster"]}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   listMetricsForEntityType:
     speakeasy-default-list-metrics-for-entity-type:
       parameters:
@@ -1014,12 +1031,20 @@ examples:
         "200":
           application/json: {"type": "KubernetesCluster", "metrics": [{"name": "composite.k8s.pod.container.status.restarts.increase", "units": "count", "formula": "increase(k8s.kube_pod_container_status_restarts_total[5m])", "lastReportedTime": "2021-01-01T00:00:00Z"}]}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   listMetrics:
     speakeasy-default-list-metrics:
       responses:
         "200":
           application/json: {"metricsInfo": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   createCompositeMetric:
     speakeasy-default-create-composite-metric:
       requestBody:
@@ -1028,11 +1053,15 @@ examples:
         "201":
           application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
         "403":
           application/json: {"message": "Access is forbidden"}
         "409":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceConflict"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   listMultiMetricMeasurements:
     speakeasy-default-list-multi-metric-measurements:
       parameters:
@@ -1044,7 +1073,11 @@ examples:
         "200":
           application/json: {"metrics": [], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   updateCompositeMetric:
     speakeasy-default-update-composite-metric:
       parameters:
@@ -1056,11 +1089,15 @@ examples:
         "200":
           application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "formula": "rate(system.disk.io[5m])", "units": "bytes/s"}
         "400":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
         "403":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "CannotModifyMetric"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   deleteCompositeMetric:
     speakeasy-default-delete-composite-metric:
       parameters:
@@ -1068,9 +1105,13 @@ examples:
           name: "<value>"
       responses:
         "403":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "CannotModifyMetric"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   getMetricByName:
     speakeasy-default-get-metric-by-name:
       parameters:
@@ -1080,7 +1121,11 @@ examples:
         "200":
           application/json: {"name": "composite.custom.system.disk.io.rate", "displayName": "Disk IO rate", "description": "Disk bytes transferred per second", "units": "bytes/s", "formula": "rate(system.disk.io[5m]", "lastReportedTime": "2024-11-25T16:38:24Z"}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   listMetricAttributes:
     speakeasy-default-list-metric-attributes:
       parameters:
@@ -1090,7 +1135,11 @@ examples:
         "200":
           application/json: {"names": ["<value 1>", "<value 2>", "<value 3>"], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   listMetricAttributeValues:
     speakeasy-default-list-metric-attribute-values:
       parameters:
@@ -1101,7 +1150,11 @@ examples:
         "200":
           application/json: {"name": "<value>", "values": ["<value 1>", "<value 2>", "<value 3>"], "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   listMetricMeasurements:
     speakeasy-default-list-metric-measurements:
       parameters:
@@ -1113,7 +1166,11 @@ examples:
         "200":
           application/json: {"groupings": [{"attributes": [], "measurements": []}], "bucketSizeInSeconds": 845799, "pageInfo": {"prevPage": "<value>", "nextPage": "<value>"}}
         "404":
-          application/json: {"message": "Error has occurred."}
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
   createToken:
     speakeasy-default-create-token:
       requestBody:
@@ -1121,6 +1178,16 @@ examples:
       responses:
         "200":
           application/json: {"token": "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"}
+        "201":
+          application/json: {"token": "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "403":
+          application/json: {"message": "Error has occurred", "code": "AccessForbidden"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
+        "503":
+          application/json: {"message": "Error has occurred", "code": "ServiceUnavailable"}
 examplesVersion: 1.0.2
 generatedTests:
   createChangeEvent: "2025-05-02T09:35:26-06:00"
@@ -1167,3 +1234,4 @@ generatedTests:
   deleteUri: "2025-05-13T00:19:34Z"
   pauseUriMonitoring: "2025-05-13T00:19:34Z"
   unpauseUriMonitoring: "2025-05-13T00:19:34Z"
+releaseNotes: "## SDK Changes Detected:\n* `Swo.Dem.GetWebsite()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.CloudAccounts.ActivateAwsIntegration()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.CloudAccounts.CreateOrgStructure()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.CloudAccounts.UpdateAwsIntegration()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.CloudAccounts.ValidateMgmtAccountOnboarding()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dbo.ObserveDatabase()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dbo.GetPublicKey()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dbo.DeleteDatabase()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dbo.UpdateDatabase()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dbo.GetPluginConfig()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dbo.GetPlugins()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dbo.PluginOperation()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.ListProbes()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Tokens.CreateToken()`: \n  *  `response` **Changed** **Breaking** :warning:\n  *  `error` **Changed**\n* `Swo.Metrics.ListMetricMeasurements()`: \n  *  `request.Request.AggregateBy` **Changed**\n  *  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.CreateUri()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.GetUri()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.UpdateUri()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.DeleteUri()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.PauseUriMonitoring()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Metrics.ListMetricAttributeValues()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.UnpauseUriMonitoring()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.CreateWebsite()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.UpdateWebsite()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.DeleteWebsite()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.PauseWebsiteMonitoring()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.UnpauseWebsiteMonitoring()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Entities.ListEntities()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Entities.GetEntityById()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Entities.UpdateEntityById()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Metrics.ListMetricAttributes()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Metrics.DeleteCompositeMetric()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Metrics.UpdateCompositeMetric()`: \n  *  `response.status[202]` **Removed** **Breaking** :warning:\n  *  `error` **Changed** **Breaking** :warning:\n* `Swo.Metadata.ListMetricsForEntityType()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Metrics.GetMetricByName()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Metrics.CreateCompositeMetric()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Metrics.ListMultiMetricMeasurements()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Metrics.ListMetrics()`:  `error` **Changed**\n* `Swo.Metadata.ListEntityTypes()`:  `error` **Changed**\n* `Swo.Logs.ListLogArchives()`:  `error` **Changed**\n* `Swo.Logs.SearchLogs()`:  `error` **Changed**\n* `Swo.ChangeEvents.CreateChangeEvent()`:  `error` **Changed**\n* `Swo.Dem.SetDemSettings()`:  `error` **Changed**\n* `Swo.Dem.GetDemSettings()`:  `error` **Changed**\n"
