@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-// DemTestFromType - Specificity for location of synthetic probes to be used for availability tests.
+// DemTestFromType - Geographic scope for selecting synthetic probe locations.
 type DemTestFromType string
 
 const (
@@ -38,7 +38,7 @@ func (e *DemTestFromType) UnmarshalJSON(data []byte) error {
 }
 
 type DemTestFrom struct {
-	// Specificity for location of synthetic probes to be used for availability tests.
+	// Geographic scope for selecting synthetic probe locations.
 	Type DemTestFromType `json:"type"`
 	// A list of probe location values of the selected type. At least one value matching an existing probe must be provided.
 	Values []string `json:"values"`

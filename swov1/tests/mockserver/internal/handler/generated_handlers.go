@@ -18,7 +18,6 @@ func GeneratedHandlers(ctx context.Context, dir *logging.HTTPFileDirectory, rt *
 		NewGeneratedHandler(ctx, http.MethodGet, "/v1/metrics/{name}", pathGetV1MetricsName(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPost, "/v1/changeevents", pathPostV1Changeevents(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPost, "/v1/metrics", pathPostV1Metrics(dir, rt)),
-		NewGeneratedHandler(ctx, http.MethodPost, "/v1/tokens", pathPostV1Tokens(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPut, "/v1/metrics/{name}", pathPutV1MetricsName(dir, rt)),
 	}
 }

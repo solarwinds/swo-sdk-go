@@ -7,7 +7,7 @@ import (
 )
 
 type UpdateCompositeMetricRequest struct {
-	// The metric name
+	// Metric name.
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 	// Metric properties to update
 	MetricsUpdateCompositeMetricRequest components.MetricsUpdateCompositeMetricRequest `request:"mediaType=application/json"`
