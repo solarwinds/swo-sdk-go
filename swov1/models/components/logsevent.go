@@ -11,44 +11,44 @@ type LogsEvent struct {
 	Program  string `json:"program"`
 }
 
-func (l *LogsEvent) GetID() string {
-	if l == nil {
+func (o *LogsEvent) GetID() string {
+	if o == nil {
 		return ""
 	}
-	return l.ID
+	return o.ID
 }
 
-func (l *LogsEvent) GetTime() string {
-	if l == nil {
+func (o *LogsEvent) GetTime() string {
+	if o == nil {
 		return ""
 	}
-	return l.Time
+	return o.Time
 }
 
-func (l *LogsEvent) GetMessage() string {
-	if l == nil {
+func (o *LogsEvent) GetMessage() string {
+	if o == nil {
 		return ""
 	}
-	return l.Message
+	return o.Message
 }
 
-func (l *LogsEvent) GetHostname() string {
-	if l == nil {
+func (o *LogsEvent) GetHostname() string {
+	if o == nil {
 		return ""
 	}
-	return l.Hostname
+	return o.Hostname
 }
 
-func (l *LogsEvent) GetSeverity() string {
-	if l == nil {
+func (o *LogsEvent) GetSeverity() string {
+	if o == nil {
 		return ""
 	}
-	return l.Severity
+	return o.Severity
 }
 
-func (l *LogsEvent) GetProgram() string {
-	if l == nil {
+func (o *LogsEvent) GetProgram() string {
+	if o == nil {
 		return ""
 	}
-	return l.Program
+	return o.Program
 }

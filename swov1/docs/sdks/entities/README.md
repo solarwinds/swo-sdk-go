@@ -167,10 +167,10 @@ func main() {
     res, err := s.Entities.UpdateEntityByID(ctx, operations.UpdateEntityByIDRequest{
         ID: "<id>",
         EntitiesEntity: components.EntitiesEntityInput{
-            DisplayName: swov1.Pointer("SyslogTest"),
+            DisplayName: swov1.String("SyslogTest"),
             Tags: map[string]*string{
-                "gg.tk.token": swov1.Pointer("test"),
-                "kfi.tk.token": swov1.Pointer("qa-test"),
+                "gg.tk.token": swov1.String("test"),
+                "kfi.tk.token": swov1.String("qa-test"),
             },
         },
     })

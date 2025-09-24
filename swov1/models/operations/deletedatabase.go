@@ -10,20 +10,20 @@ type DeleteDatabaseRequest struct {
 	EntityID string `pathParam:"style=simple,explode=false,name=entityId"`
 }
 
-func (d *DeleteDatabaseRequest) GetEntityID() string {
-	if d == nil {
+func (o *DeleteDatabaseRequest) GetEntityID() string {
+	if o == nil {
 		return ""
 	}
-	return d.EntityID
+	return o.EntityID
 }
 
 type DeleteDatabaseResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-func (d *DeleteDatabaseResponse) GetHTTPMeta() components.HTTPMetadata {
-	if d == nil {
+func (o *DeleteDatabaseResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
 		return components.HTTPMetadata{}
 	}
-	return d.HTTPMeta
+	return o.HTTPMeta
 }

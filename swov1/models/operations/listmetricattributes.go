@@ -32,39 +32,39 @@ func (l *ListMetricAttributesRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (l *ListMetricAttributesRequest) GetName() string {
-	if l == nil {
+func (o *ListMetricAttributesRequest) GetName() string {
+	if o == nil {
 		return ""
 	}
-	return l.Name
+	return o.Name
 }
 
-func (l *ListMetricAttributesRequest) GetStartTime() *time.Time {
-	if l == nil {
+func (o *ListMetricAttributesRequest) GetStartTime() *time.Time {
+	if o == nil {
 		return nil
 	}
-	return l.StartTime
+	return o.StartTime
 }
 
-func (l *ListMetricAttributesRequest) GetEndTime() *time.Time {
-	if l == nil {
+func (o *ListMetricAttributesRequest) GetEndTime() *time.Time {
+	if o == nil {
 		return nil
 	}
-	return l.EndTime
+	return o.EndTime
 }
 
-func (l *ListMetricAttributesRequest) GetPageSize() *int {
-	if l == nil {
+func (o *ListMetricAttributesRequest) GetPageSize() *int {
+	if o == nil {
 		return nil
 	}
-	return l.PageSize
+	return o.PageSize
 }
 
-func (l *ListMetricAttributesRequest) GetSkipToken() *string {
-	if l == nil {
+func (o *ListMetricAttributesRequest) GetSkipToken() *string {
+	if o == nil {
 		return nil
 	}
-	return l.SkipToken
+	return o.SkipToken
 }
 
 // ListMetricAttributesResponseBody - The request has succeeded.
@@ -73,18 +73,18 @@ type ListMetricAttributesResponseBody struct {
 	PageInfo components.CommonPageInfo `json:"pageInfo"`
 }
 
-func (l *ListMetricAttributesResponseBody) GetNames() []string {
-	if l == nil {
+func (o *ListMetricAttributesResponseBody) GetNames() []string {
+	if o == nil {
 		return []string{}
 	}
-	return l.Names
+	return o.Names
 }
 
-func (l *ListMetricAttributesResponseBody) GetPageInfo() components.CommonPageInfo {
-	if l == nil {
+func (o *ListMetricAttributesResponseBody) GetPageInfo() components.CommonPageInfo {
+	if o == nil {
 		return components.CommonPageInfo{}
 	}
-	return l.PageInfo
+	return o.PageInfo
 }
 
 type ListMetricAttributesResponse struct {
@@ -95,16 +95,16 @@ type ListMetricAttributesResponse struct {
 	Next func() (*ListMetricAttributesResponse, error)
 }
 
-func (l *ListMetricAttributesResponse) GetHTTPMeta() components.HTTPMetadata {
-	if l == nil {
+func (o *ListMetricAttributesResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
 		return components.HTTPMetadata{}
 	}
-	return l.HTTPMeta
+	return o.HTTPMeta
 }
 
-func (l *ListMetricAttributesResponse) GetObject() *ListMetricAttributesResponseBody {
-	if l == nil {
+func (o *ListMetricAttributesResponse) GetObject() *ListMetricAttributesResponseBody {
+	if o == nil {
 		return nil
 	}
-	return l.Object
+	return o.Object
 }

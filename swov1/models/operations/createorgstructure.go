@@ -10,9 +10,9 @@ type CreateOrgStructureResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-func (c *CreateOrgStructureResponse) GetHTTPMeta() components.HTTPMetadata {
-	if c == nil {
+func (o *CreateOrgStructureResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
 		return components.HTTPMetadata{}
 	}
-	return c.HTTPMeta
+	return o.HTTPMeta
 }

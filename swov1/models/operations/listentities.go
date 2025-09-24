@@ -17,32 +17,32 @@ type ListEntitiesRequest struct {
 	SkipToken *string `queryParam:"style=form,explode=false,name=skipToken"`
 }
 
-func (l *ListEntitiesRequest) GetType() string {
-	if l == nil {
+func (o *ListEntitiesRequest) GetType() string {
+	if o == nil {
 		return ""
 	}
-	return l.Type
+	return o.Type
 }
 
-func (l *ListEntitiesRequest) GetName() *string {
-	if l == nil {
+func (o *ListEntitiesRequest) GetName() *string {
+	if o == nil {
 		return nil
 	}
-	return l.Name
+	return o.Name
 }
 
-func (l *ListEntitiesRequest) GetPageSize() *int {
-	if l == nil {
+func (o *ListEntitiesRequest) GetPageSize() *int {
+	if o == nil {
 		return nil
 	}
-	return l.PageSize
+	return o.PageSize
 }
 
-func (l *ListEntitiesRequest) GetSkipToken() *string {
-	if l == nil {
+func (o *ListEntitiesRequest) GetSkipToken() *string {
+	if o == nil {
 		return nil
 	}
-	return l.SkipToken
+	return o.SkipToken
 }
 
 // ListEntitiesResponseBody - The request has succeeded.
@@ -51,18 +51,18 @@ type ListEntitiesResponseBody struct {
 	PageInfo components.CommonPageInfo   `json:"pageInfo"`
 }
 
-func (l *ListEntitiesResponseBody) GetEntities() []components.EntitiesEntity {
-	if l == nil {
+func (o *ListEntitiesResponseBody) GetEntities() []components.EntitiesEntity {
+	if o == nil {
 		return []components.EntitiesEntity{}
 	}
-	return l.Entities
+	return o.Entities
 }
 
-func (l *ListEntitiesResponseBody) GetPageInfo() components.CommonPageInfo {
-	if l == nil {
+func (o *ListEntitiesResponseBody) GetPageInfo() components.CommonPageInfo {
+	if o == nil {
 		return components.CommonPageInfo{}
 	}
-	return l.PageInfo
+	return o.PageInfo
 }
 
 type ListEntitiesResponse struct {
@@ -73,16 +73,16 @@ type ListEntitiesResponse struct {
 	Next func() (*ListEntitiesResponse, error)
 }
 
-func (l *ListEntitiesResponse) GetHTTPMeta() components.HTTPMetadata {
-	if l == nil {
+func (o *ListEntitiesResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
 		return components.HTTPMetadata{}
 	}
-	return l.HTTPMeta
+	return o.HTTPMeta
 }
 
-func (l *ListEntitiesResponse) GetObject() *ListEntitiesResponseBody {
-	if l == nil {
+func (o *ListEntitiesResponse) GetObject() *ListEntitiesResponseBody {
+	if o == nil {
 		return nil
 	}
-	return l.Object
+	return o.Object
 }
