@@ -11,11 +11,11 @@ type ListEntityTypesResponseBody struct {
 	Types []string `json:"types"`
 }
 
-func (l *ListEntityTypesResponseBody) GetTypes() []string {
-	if l == nil {
+func (o *ListEntityTypesResponseBody) GetTypes() []string {
+	if o == nil {
 		return []string{}
 	}
-	return l.Types
+	return o.Types
 }
 
 type ListEntityTypesResponse struct {
@@ -24,16 +24,16 @@ type ListEntityTypesResponse struct {
 	Object *ListEntityTypesResponseBody
 }
 
-func (l *ListEntityTypesResponse) GetHTTPMeta() components.HTTPMetadata {
-	if l == nil {
+func (o *ListEntityTypesResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
 		return components.HTTPMetadata{}
 	}
-	return l.HTTPMeta
+	return o.HTTPMeta
 }
 
-func (l *ListEntityTypesResponse) GetObject() *ListEntityTypesResponseBody {
-	if l == nil {
+func (o *ListEntityTypesResponse) GetObject() *ListEntityTypesResponseBody {
+	if o == nil {
 		return nil
 	}
-	return l.Object
+	return o.Object
 }

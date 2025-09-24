@@ -32,39 +32,39 @@ func (l *ListMetricsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (l *ListMetricsRequest) GetName() *string {
-	if l == nil {
+func (o *ListMetricsRequest) GetName() *string {
+	if o == nil {
 		return nil
 	}
-	return l.Name
+	return o.Name
 }
 
-func (l *ListMetricsRequest) GetStartTime() *time.Time {
-	if l == nil {
+func (o *ListMetricsRequest) GetStartTime() *time.Time {
+	if o == nil {
 		return nil
 	}
-	return l.StartTime
+	return o.StartTime
 }
 
-func (l *ListMetricsRequest) GetEndTime() *time.Time {
-	if l == nil {
+func (o *ListMetricsRequest) GetEndTime() *time.Time {
+	if o == nil {
 		return nil
 	}
-	return l.EndTime
+	return o.EndTime
 }
 
-func (l *ListMetricsRequest) GetPageSize() *int {
-	if l == nil {
+func (o *ListMetricsRequest) GetPageSize() *int {
+	if o == nil {
 		return nil
 	}
-	return l.PageSize
+	return o.PageSize
 }
 
-func (l *ListMetricsRequest) GetSkipToken() *string {
-	if l == nil {
+func (o *ListMetricsRequest) GetSkipToken() *string {
+	if o == nil {
 		return nil
 	}
-	return l.SkipToken
+	return o.SkipToken
 }
 
 // ListMetricsResponseBody - The request has succeeded.
@@ -73,18 +73,18 @@ type ListMetricsResponseBody struct {
 	PageInfo    components.CommonPageInfo     `json:"pageInfo"`
 }
 
-func (l *ListMetricsResponseBody) GetMetricsInfo() []components.CommonMetricInfo {
-	if l == nil {
+func (o *ListMetricsResponseBody) GetMetricsInfo() []components.CommonMetricInfo {
+	if o == nil {
 		return []components.CommonMetricInfo{}
 	}
-	return l.MetricsInfo
+	return o.MetricsInfo
 }
 
-func (l *ListMetricsResponseBody) GetPageInfo() components.CommonPageInfo {
-	if l == nil {
+func (o *ListMetricsResponseBody) GetPageInfo() components.CommonPageInfo {
+	if o == nil {
 		return components.CommonPageInfo{}
 	}
-	return l.PageInfo
+	return o.PageInfo
 }
 
 type ListMetricsResponse struct {
@@ -95,16 +95,16 @@ type ListMetricsResponse struct {
 	Next func() (*ListMetricsResponse, error)
 }
 
-func (l *ListMetricsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if l == nil {
+func (o *ListMetricsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
 		return components.HTTPMetadata{}
 	}
-	return l.HTTPMeta
+	return o.HTTPMeta
 }
 
-func (l *ListMetricsResponse) GetObject() *ListMetricsResponseBody {
-	if l == nil {
+func (o *ListMetricsResponse) GetObject() *ListMetricsResponseBody {
+	if o == nil {
 		return nil
 	}
-	return l.Object
+	return o.Object
 }

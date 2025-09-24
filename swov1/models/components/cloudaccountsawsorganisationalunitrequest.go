@@ -9,16 +9,16 @@ type CloudAccountsAwsOrganisationalUnitRequest struct {
 	Structure []CloudAccountsAwsOrganisationalUnit `json:"structure"`
 }
 
-func (c *CloudAccountsAwsOrganisationalUnitRequest) GetMgmtAccountID() string {
-	if c == nil {
+func (o *CloudAccountsAwsOrganisationalUnitRequest) GetMgmtAccountID() string {
+	if o == nil {
 		return ""
 	}
-	return c.MgmtAccountID
+	return o.MgmtAccountID
 }
 
-func (c *CloudAccountsAwsOrganisationalUnitRequest) GetStructure() []CloudAccountsAwsOrganisationalUnit {
-	if c == nil {
+func (o *CloudAccountsAwsOrganisationalUnitRequest) GetStructure() []CloudAccountsAwsOrganisationalUnit {
+	if o == nil {
 		return []CloudAccountsAwsOrganisationalUnit{}
 	}
-	return c.Structure
+	return o.Structure
 }

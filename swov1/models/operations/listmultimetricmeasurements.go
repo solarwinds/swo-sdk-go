@@ -27,25 +27,25 @@ func (l *ListMultiMetricMeasurementsRequestBody) UnmarshalJSON(data []byte) erro
 	return nil
 }
 
-func (l *ListMultiMetricMeasurementsRequestBody) GetMetrics() []components.MetricsMeasurementsRequest {
-	if l == nil {
+func (o *ListMultiMetricMeasurementsRequestBody) GetMetrics() []components.MetricsMeasurementsRequest {
+	if o == nil {
 		return []components.MetricsMeasurementsRequest{}
 	}
-	return l.Metrics
+	return o.Metrics
 }
 
-func (l *ListMultiMetricMeasurementsRequestBody) GetStartTime() *time.Time {
-	if l == nil {
+func (o *ListMultiMetricMeasurementsRequestBody) GetStartTime() *time.Time {
+	if o == nil {
 		return nil
 	}
-	return l.StartTime
+	return o.StartTime
 }
 
-func (l *ListMultiMetricMeasurementsRequestBody) GetEndTime() *time.Time {
-	if l == nil {
+func (o *ListMultiMetricMeasurementsRequestBody) GetEndTime() *time.Time {
+	if o == nil {
 		return nil
 	}
-	return l.EndTime
+	return o.EndTime
 }
 
 type ListMultiMetricMeasurementsRequest struct {
@@ -69,32 +69,32 @@ func (l *ListMultiMetricMeasurementsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (l *ListMultiMetricMeasurementsRequest) GetForcePositional() *bool {
-	if l == nil {
+func (o *ListMultiMetricMeasurementsRequest) GetForcePositional() *bool {
+	if o == nil {
 		return nil
 	}
-	return l.ForcePositional
+	return o.ForcePositional
 }
 
-func (l *ListMultiMetricMeasurementsRequest) GetPageSize() *int {
-	if l == nil {
+func (o *ListMultiMetricMeasurementsRequest) GetPageSize() *int {
+	if o == nil {
 		return nil
 	}
-	return l.PageSize
+	return o.PageSize
 }
 
-func (l *ListMultiMetricMeasurementsRequest) GetSkipToken() *string {
-	if l == nil {
+func (o *ListMultiMetricMeasurementsRequest) GetSkipToken() *string {
+	if o == nil {
 		return nil
 	}
-	return l.SkipToken
+	return o.SkipToken
 }
 
-func (l *ListMultiMetricMeasurementsRequest) GetRequestBody() ListMultiMetricMeasurementsRequestBody {
-	if l == nil {
+func (o *ListMultiMetricMeasurementsRequest) GetRequestBody() ListMultiMetricMeasurementsRequestBody {
+	if o == nil {
 		return ListMultiMetricMeasurementsRequestBody{}
 	}
-	return l.RequestBody
+	return o.RequestBody
 }
 
 type Metrics struct {
@@ -108,32 +108,32 @@ type Metrics struct {
 	BucketSizeInSeconds int `json:"bucketSizeInSeconds"`
 }
 
-func (m *Metrics) GetID() *string {
-	if m == nil {
+func (o *Metrics) GetID() *string {
+	if o == nil {
 		return nil
 	}
-	return m.ID
+	return o.ID
 }
 
-func (m *Metrics) GetName() string {
-	if m == nil {
+func (o *Metrics) GetName() string {
+	if o == nil {
 		return ""
 	}
-	return m.Name
+	return o.Name
 }
 
-func (m *Metrics) GetGroupings() []components.MetricsGrouping {
-	if m == nil {
+func (o *Metrics) GetGroupings() []components.MetricsGrouping {
+	if o == nil {
 		return []components.MetricsGrouping{}
 	}
-	return m.Groupings
+	return o.Groupings
 }
 
-func (m *Metrics) GetBucketSizeInSeconds() int {
-	if m == nil {
+func (o *Metrics) GetBucketSizeInSeconds() int {
+	if o == nil {
 		return 0
 	}
-	return m.BucketSizeInSeconds
+	return o.BucketSizeInSeconds
 }
 
 // ListMultiMetricMeasurementsResponseBody - The request has succeeded.
@@ -142,18 +142,18 @@ type ListMultiMetricMeasurementsResponseBody struct {
 	PageInfo components.CommonPageInfo `json:"pageInfo"`
 }
 
-func (l *ListMultiMetricMeasurementsResponseBody) GetMetrics() []Metrics {
-	if l == nil {
+func (o *ListMultiMetricMeasurementsResponseBody) GetMetrics() []Metrics {
+	if o == nil {
 		return []Metrics{}
 	}
-	return l.Metrics
+	return o.Metrics
 }
 
-func (l *ListMultiMetricMeasurementsResponseBody) GetPageInfo() components.CommonPageInfo {
-	if l == nil {
+func (o *ListMultiMetricMeasurementsResponseBody) GetPageInfo() components.CommonPageInfo {
+	if o == nil {
 		return components.CommonPageInfo{}
 	}
-	return l.PageInfo
+	return o.PageInfo
 }
 
 type ListMultiMetricMeasurementsResponse struct {
@@ -164,16 +164,16 @@ type ListMultiMetricMeasurementsResponse struct {
 	Next func() (*ListMultiMetricMeasurementsResponse, error)
 }
 
-func (l *ListMultiMetricMeasurementsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if l == nil {
+func (o *ListMultiMetricMeasurementsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
 		return components.HTTPMetadata{}
 	}
-	return l.HTTPMeta
+	return o.HTTPMeta
 }
 
-func (l *ListMultiMetricMeasurementsResponse) GetObject() *ListMultiMetricMeasurementsResponseBody {
-	if l == nil {
+func (o *ListMultiMetricMeasurementsResponse) GetObject() *ListMultiMetricMeasurementsResponseBody {
+	if o == nil {
 		return nil
 	}
-	return l.Object
+	return o.Object
 }

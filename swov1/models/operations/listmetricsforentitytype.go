@@ -27,25 +27,25 @@ func (l *ListMetricsForEntityTypeRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (l *ListMetricsForEntityTypeRequest) GetType() string {
-	if l == nil {
+func (o *ListMetricsForEntityTypeRequest) GetType() string {
+	if o == nil {
 		return ""
 	}
-	return l.Type
+	return o.Type
 }
 
-func (l *ListMetricsForEntityTypeRequest) GetStartTime() *time.Time {
-	if l == nil {
+func (o *ListMetricsForEntityTypeRequest) GetStartTime() *time.Time {
+	if o == nil {
 		return nil
 	}
-	return l.StartTime
+	return o.StartTime
 }
 
-func (l *ListMetricsForEntityTypeRequest) GetEndTime() *time.Time {
-	if l == nil {
+func (o *ListMetricsForEntityTypeRequest) GetEndTime() *time.Time {
+	if o == nil {
 		return nil
 	}
-	return l.EndTime
+	return o.EndTime
 }
 
 // ListMetricsForEntityTypeResponseBody - The request has succeeded.
@@ -55,18 +55,18 @@ type ListMetricsForEntityTypeResponseBody struct {
 	Metrics []components.CommonMetricInfo `json:"metrics"`
 }
 
-func (l *ListMetricsForEntityTypeResponseBody) GetType() string {
-	if l == nil {
+func (o *ListMetricsForEntityTypeResponseBody) GetType() string {
+	if o == nil {
 		return ""
 	}
-	return l.Type
+	return o.Type
 }
 
-func (l *ListMetricsForEntityTypeResponseBody) GetMetrics() []components.CommonMetricInfo {
-	if l == nil {
+func (o *ListMetricsForEntityTypeResponseBody) GetMetrics() []components.CommonMetricInfo {
+	if o == nil {
 		return []components.CommonMetricInfo{}
 	}
-	return l.Metrics
+	return o.Metrics
 }
 
 type ListMetricsForEntityTypeResponse struct {
@@ -75,16 +75,16 @@ type ListMetricsForEntityTypeResponse struct {
 	Object *ListMetricsForEntityTypeResponseBody
 }
 
-func (l *ListMetricsForEntityTypeResponse) GetHTTPMeta() components.HTTPMetadata {
-	if l == nil {
+func (o *ListMetricsForEntityTypeResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
 		return components.HTTPMetadata{}
 	}
-	return l.HTTPMeta
+	return o.HTTPMeta
 }
 
-func (l *ListMetricsForEntityTypeResponse) GetObject() *ListMetricsForEntityTypeResponseBody {
-	if l == nil {
+func (o *ListMetricsForEntityTypeResponse) GetObject() *ListMetricsForEntityTypeResponseBody {
+	if o == nil {
 		return nil
 	}
-	return l.Object
+	return o.Object
 }

@@ -38,60 +38,60 @@ func (s *SearchLogsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (s *SearchLogsRequest) GetFilter() *string {
-	if s == nil {
+func (o *SearchLogsRequest) GetFilter() *string {
+	if o == nil {
 		return nil
 	}
-	return s.Filter
+	return o.Filter
 }
 
-func (s *SearchLogsRequest) GetGroup() *string {
-	if s == nil {
+func (o *SearchLogsRequest) GetGroup() *string {
+	if o == nil {
 		return nil
 	}
-	return s.Group
+	return o.Group
 }
 
-func (s *SearchLogsRequest) GetEntityID() *string {
-	if s == nil {
+func (o *SearchLogsRequest) GetEntityID() *string {
+	if o == nil {
 		return nil
 	}
-	return s.EntityID
+	return o.EntityID
 }
 
-func (s *SearchLogsRequest) GetStartTime() *time.Time {
-	if s == nil {
+func (o *SearchLogsRequest) GetStartTime() *time.Time {
+	if o == nil {
 		return nil
 	}
-	return s.StartTime
+	return o.StartTime
 }
 
-func (s *SearchLogsRequest) GetEndTime() *time.Time {
-	if s == nil {
+func (o *SearchLogsRequest) GetEndTime() *time.Time {
+	if o == nil {
 		return nil
 	}
-	return s.EndTime
+	return o.EndTime
 }
 
-func (s *SearchLogsRequest) GetDirection() *string {
-	if s == nil {
+func (o *SearchLogsRequest) GetDirection() *string {
+	if o == nil {
 		return nil
 	}
-	return s.Direction
+	return o.Direction
 }
 
-func (s *SearchLogsRequest) GetPageSize() *int {
-	if s == nil {
+func (o *SearchLogsRequest) GetPageSize() *int {
+	if o == nil {
 		return nil
 	}
-	return s.PageSize
+	return o.PageSize
 }
 
-func (s *SearchLogsRequest) GetSkipToken() *string {
-	if s == nil {
+func (o *SearchLogsRequest) GetSkipToken() *string {
+	if o == nil {
 		return nil
 	}
-	return s.SkipToken
+	return o.SkipToken
 }
 
 // SearchLogsResponseBody - The request has succeeded.
@@ -100,18 +100,18 @@ type SearchLogsResponseBody struct {
 	PageInfo components.CommonPageInfo `json:"pageInfo"`
 }
 
-func (s *SearchLogsResponseBody) GetLogs() []components.LogsEvent {
-	if s == nil {
+func (o *SearchLogsResponseBody) GetLogs() []components.LogsEvent {
+	if o == nil {
 		return []components.LogsEvent{}
 	}
-	return s.Logs
+	return o.Logs
 }
 
-func (s *SearchLogsResponseBody) GetPageInfo() components.CommonPageInfo {
-	if s == nil {
+func (o *SearchLogsResponseBody) GetPageInfo() components.CommonPageInfo {
+	if o == nil {
 		return components.CommonPageInfo{}
 	}
-	return s.PageInfo
+	return o.PageInfo
 }
 
 type SearchLogsResponse struct {
@@ -122,16 +122,16 @@ type SearchLogsResponse struct {
 	Next func() (*SearchLogsResponse, error)
 }
 
-func (s *SearchLogsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if s == nil {
+func (o *SearchLogsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
 		return components.HTTPMetadata{}
 	}
-	return s.HTTPMeta
+	return o.HTTPMeta
 }
 
-func (s *SearchLogsResponse) GetObject() *SearchLogsResponseBody {
-	if s == nil {
+func (o *SearchLogsResponse) GetObject() *SearchLogsResponseBody {
+	if o == nil {
 		return nil
 	}
-	return s.Object
+	return o.Object
 }

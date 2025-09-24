@@ -19,51 +19,51 @@ type CloudAccountsAwsUpdateIntegrationRequest struct {
 	ParentOrgUnitID *string `json:"parentOrgUnitId,omitempty"`
 }
 
-func (c *CloudAccountsAwsUpdateIntegrationRequest) GetManagementAccountID() string {
-	if c == nil {
+func (o *CloudAccountsAwsUpdateIntegrationRequest) GetManagementAccountID() string {
+	if o == nil {
 		return ""
 	}
-	return c.ManagementAccountID
+	return o.ManagementAccountID
 }
 
-func (c *CloudAccountsAwsUpdateIntegrationRequest) GetAccountID() string {
-	if c == nil {
+func (o *CloudAccountsAwsUpdateIntegrationRequest) GetAccountID() string {
+	if o == nil {
 		return ""
 	}
-	return c.AccountID
+	return o.AccountID
 }
 
-func (c *CloudAccountsAwsUpdateIntegrationRequest) GetAccountName() string {
-	if c == nil {
+func (o *CloudAccountsAwsUpdateIntegrationRequest) GetAccountName() string {
+	if o == nil {
 		return ""
 	}
-	return c.AccountName
+	return o.AccountName
 }
 
-func (c *CloudAccountsAwsUpdateIntegrationRequest) GetRoleArn() string {
-	if c == nil {
+func (o *CloudAccountsAwsUpdateIntegrationRequest) GetRoleArn() string {
+	if o == nil {
 		return ""
 	}
-	return c.RoleArn
+	return o.RoleArn
 }
 
-func (c *CloudAccountsAwsUpdateIntegrationRequest) GetOrgUnitID() *string {
-	if c == nil {
+func (o *CloudAccountsAwsUpdateIntegrationRequest) GetOrgUnitID() *string {
+	if o == nil {
 		return nil
 	}
-	return c.OrgUnitID
+	return o.OrgUnitID
 }
 
-func (c *CloudAccountsAwsUpdateIntegrationRequest) GetOrgUnitName() *string {
-	if c == nil {
+func (o *CloudAccountsAwsUpdateIntegrationRequest) GetOrgUnitName() *string {
+	if o == nil {
 		return nil
 	}
-	return c.OrgUnitName
+	return o.OrgUnitName
 }
 
-func (c *CloudAccountsAwsUpdateIntegrationRequest) GetParentOrgUnitID() *string {
-	if c == nil {
+func (o *CloudAccountsAwsUpdateIntegrationRequest) GetParentOrgUnitID() *string {
+	if o == nil {
 		return nil
 	}
-	return c.ParentOrgUnitID
+	return o.ParentOrgUnitID
 }

@@ -47,37 +47,37 @@ type CloudAccountsAwsUpdateIntegrationResponse struct {
 	IsNewAccount bool `json:"isNewAccount"`
 }
 
-func (c *CloudAccountsAwsUpdateIntegrationResponse) GetSelectedRegions() []string {
-	if c == nil {
+func (o *CloudAccountsAwsUpdateIntegrationResponse) GetSelectedRegions() []string {
+	if o == nil {
 		return []string{}
 	}
-	return c.SelectedRegions
+	return o.SelectedRegions
 }
 
-func (c *CloudAccountsAwsUpdateIntegrationResponse) GetExternalID() string {
-	if c == nil {
+func (o *CloudAccountsAwsUpdateIntegrationResponse) GetExternalID() string {
+	if o == nil {
 		return ""
 	}
-	return c.ExternalID
+	return o.ExternalID
 }
 
-func (c *CloudAccountsAwsUpdateIntegrationResponse) GetIntegrationID() string {
-	if c == nil {
+func (o *CloudAccountsAwsUpdateIntegrationResponse) GetIntegrationID() string {
+	if o == nil {
 		return ""
 	}
-	return c.IntegrationID
+	return o.IntegrationID
 }
 
-func (c *CloudAccountsAwsUpdateIntegrationResponse) GetIntegrationType() IntegrationType {
-	if c == nil {
+func (o *CloudAccountsAwsUpdateIntegrationResponse) GetIntegrationType() IntegrationType {
+	if o == nil {
 		return IntegrationType("")
 	}
-	return c.IntegrationType
+	return o.IntegrationType
 }
 
-func (c *CloudAccountsAwsUpdateIntegrationResponse) GetIsNewAccount() bool {
-	if c == nil {
+func (o *CloudAccountsAwsUpdateIntegrationResponse) GetIsNewAccount() bool {
+	if o == nil {
 		return false
 	}
-	return c.IsNewAccount
+	return o.IsNewAccount
 }
