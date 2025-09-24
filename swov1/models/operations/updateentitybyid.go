@@ -13,27 +13,27 @@ type UpdateEntityByIDRequest struct {
 	EntitiesEntity components.EntitiesEntityInput `request:"mediaType=application/json"`
 }
 
-func (o *UpdateEntityByIDRequest) GetID() string {
-	if o == nil {
+func (u *UpdateEntityByIDRequest) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateEntityByIDRequest) GetEntitiesEntity() components.EntitiesEntityInput {
-	if o == nil {
+func (u *UpdateEntityByIDRequest) GetEntitiesEntity() components.EntitiesEntityInput {
+	if u == nil {
 		return components.EntitiesEntityInput{}
 	}
-	return o.EntitiesEntity
+	return u.EntitiesEntity
 }
 
 type UpdateEntityByIDResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-func (o *UpdateEntityByIDResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (u *UpdateEntityByIDResponse) GetHTTPMeta() components.HTTPMetadata {
+	if u == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return u.HTTPMeta
 }

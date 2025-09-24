@@ -12,16 +12,16 @@ type ListProbesResponse struct {
 	DemListProbesResponse *components.DemListProbesResponse
 }
 
-func (o *ListProbesResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (l *ListProbesResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return l.HTTPMeta
 }
 
-func (o *ListProbesResponse) GetDemListProbesResponse() *components.DemListProbesResponse {
-	if o == nil {
+func (l *ListProbesResponse) GetDemListProbesResponse() *components.DemListProbesResponse {
+	if l == nil {
 		return nil
 	}
-	return o.DemListProbesResponse
+	return l.DemListProbesResponse
 }

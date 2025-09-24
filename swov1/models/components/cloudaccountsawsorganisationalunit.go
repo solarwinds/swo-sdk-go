@@ -11,23 +11,23 @@ type CloudAccountsAwsOrganisationalUnit struct {
 	ParentID *string `json:"parent_id,omitempty"`
 }
 
-func (o *CloudAccountsAwsOrganisationalUnit) GetChildID() string {
-	if o == nil {
+func (c *CloudAccountsAwsOrganisationalUnit) GetChildID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ChildID
+	return c.ChildID
 }
 
-func (o *CloudAccountsAwsOrganisationalUnit) GetChildName() string {
-	if o == nil {
+func (c *CloudAccountsAwsOrganisationalUnit) GetChildName() string {
+	if c == nil {
 		return ""
 	}
-	return o.ChildName
+	return c.ChildName
 }
 
-func (o *CloudAccountsAwsOrganisationalUnit) GetParentID() *string {
-	if o == nil {
+func (c *CloudAccountsAwsOrganisationalUnit) GetParentID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ParentID
+	return c.ParentID
 }

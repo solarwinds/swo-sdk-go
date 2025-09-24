@@ -11,11 +11,11 @@ type GetEntityByIDRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *GetEntityByIDRequest) GetID() string {
-	if o == nil {
+func (g *GetEntityByIDRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
 type GetEntityByIDResponse struct {
@@ -24,16 +24,16 @@ type GetEntityByIDResponse struct {
 	EntitiesEntity *components.EntitiesEntity
 }
 
-func (o *GetEntityByIDResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetEntityByIDResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetEntityByIDResponse) GetEntitiesEntity() *components.EntitiesEntity {
-	if o == nil {
+func (g *GetEntityByIDResponse) GetEntitiesEntity() *components.EntitiesEntity {
+	if g == nil {
 		return nil
 	}
-	return o.EntitiesEntity
+	return g.EntitiesEntity
 }

@@ -24,58 +24,58 @@ type DboObserveDatabaseRequest struct {
 	Tags []CommonKeyValuePair `json:"tags,omitempty"`
 }
 
-func (o *DboObserveDatabaseRequest) GetName() string {
-	if o == nil {
+func (d *DboObserveDatabaseRequest) GetName() string {
+	if d == nil {
 		return ""
 	}
-	return o.Name
+	return d.Name
 }
 
-func (o *DboObserveDatabaseRequest) GetAgentID() string {
-	if o == nil {
+func (d *DboObserveDatabaseRequest) GetAgentID() string {
+	if d == nil {
 		return ""
 	}
-	return o.AgentID
+	return d.AgentID
 }
 
-func (o *DboObserveDatabaseRequest) GetDbType() DboDatabaseType {
-	if o == nil {
+func (d *DboObserveDatabaseRequest) GetDbType() DboDatabaseType {
+	if d == nil {
 		return DboDatabaseType("")
 	}
-	return o.DbType
+	return d.DbType
 }
 
-func (o *DboObserveDatabaseRequest) GetAuthMethod() DboDatabaseAuthMethod {
-	if o == nil {
+func (d *DboObserveDatabaseRequest) GetAuthMethod() DboDatabaseAuthMethod {
+	if d == nil {
 		return DboDatabaseAuthMethod("")
 	}
-	return o.AuthMethod
+	return d.AuthMethod
 }
 
-func (o *DboObserveDatabaseRequest) GetCaptureMethod() *DboDatabaseMetricsCaptureMethod {
-	if o == nil {
+func (d *DboObserveDatabaseRequest) GetCaptureMethod() *DboDatabaseMetricsCaptureMethod {
+	if d == nil {
 		return nil
 	}
-	return o.CaptureMethod
+	return d.CaptureMethod
 }
 
-func (o *DboObserveDatabaseRequest) GetConfigOptions() []CommonKeyValuePair {
-	if o == nil {
+func (d *DboObserveDatabaseRequest) GetConfigOptions() []CommonKeyValuePair {
+	if d == nil {
 		return nil
 	}
-	return o.ConfigOptions
+	return d.ConfigOptions
 }
 
-func (o *DboObserveDatabaseRequest) GetDbConnOptions() DboDatabaseConnectionOptions {
-	if o == nil {
+func (d *DboObserveDatabaseRequest) GetDbConnOptions() DboDatabaseConnectionOptions {
+	if d == nil {
 		return DboDatabaseConnectionOptions{}
 	}
-	return o.DbConnOptions
+	return d.DbConnOptions
 }
 
-func (o *DboObserveDatabaseRequest) GetTags() []CommonKeyValuePair {
-	if o == nil {
+func (d *DboObserveDatabaseRequest) GetTags() []CommonKeyValuePair {
+	if d == nil {
 		return nil
 	}
-	return o.Tags
+	return d.Tags
 }

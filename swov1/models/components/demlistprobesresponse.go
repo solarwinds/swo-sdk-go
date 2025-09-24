@@ -7,9 +7,9 @@ type DemListProbesResponse struct {
 	Probes []DemProbe `json:"probes"`
 }
 
-func (o *DemListProbesResponse) GetProbes() []DemProbe {
-	if o == nil {
+func (d *DemListProbesResponse) GetProbes() []DemProbe {
+	if d == nil {
 		return []DemProbe{}
 	}
-	return o.Probes
+	return d.Probes
 }
