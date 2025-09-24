@@ -12,16 +12,16 @@ type GetPublicKeyResponse struct {
 	DboDatabaseCredentialsPublicKeyResponse *components.DboDatabaseCredentialsPublicKeyResponse
 }
 
-func (o *GetPublicKeyResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetPublicKeyResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetPublicKeyResponse) GetDboDatabaseCredentialsPublicKeyResponse() *components.DboDatabaseCredentialsPublicKeyResponse {
-	if o == nil {
+func (g *GetPublicKeyResponse) GetDboDatabaseCredentialsPublicKeyResponse() *components.DboDatabaseCredentialsPublicKeyResponse {
+	if g == nil {
 		return nil
 	}
-	return o.DboDatabaseCredentialsPublicKeyResponse
+	return g.DboDatabaseCredentialsPublicKeyResponse
 }

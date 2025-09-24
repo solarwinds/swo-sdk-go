@@ -12,18 +12,18 @@ type UpdateURIRequest struct {
 	DemURI components.DemURI `request:"mediaType=application/json"`
 }
 
-func (o *UpdateURIRequest) GetEntityID() string {
-	if o == nil {
+func (u *UpdateURIRequest) GetEntityID() string {
+	if u == nil {
 		return ""
 	}
-	return o.EntityID
+	return u.EntityID
 }
 
-func (o *UpdateURIRequest) GetDemURI() components.DemURI {
-	if o == nil {
+func (u *UpdateURIRequest) GetDemURI() components.DemURI {
+	if u == nil {
 		return components.DemURI{}
 	}
-	return o.DemURI
+	return u.DemURI
 }
 
 type UpdateURIResponse struct {
@@ -32,16 +32,16 @@ type UpdateURIResponse struct {
 	CommonEntityID *components.CommonEntityID
 }
 
-func (o *UpdateURIResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (u *UpdateURIResponse) GetHTTPMeta() components.HTTPMetadata {
+	if u == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return u.HTTPMeta
 }
 
-func (o *UpdateURIResponse) GetCommonEntityID() *components.CommonEntityID {
-	if o == nil {
+func (u *UpdateURIResponse) GetCommonEntityID() *components.CommonEntityID {
+	if u == nil {
 		return nil
 	}
-	return o.CommonEntityID
+	return u.CommonEntityID
 }

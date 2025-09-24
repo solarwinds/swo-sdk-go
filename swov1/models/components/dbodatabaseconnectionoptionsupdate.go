@@ -42,65 +42,65 @@ func (d *DboDatabaseConnectionOptionsUpdate) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *DboDatabaseConnectionOptionsUpdate) GetHost() *string {
-	if o == nil {
+func (d *DboDatabaseConnectionOptionsUpdate) GetHost() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Host
+	return d.Host
 }
 
-func (o *DboDatabaseConnectionOptionsUpdate) GetPort() *string {
-	if o == nil {
+func (d *DboDatabaseConnectionOptionsUpdate) GetPort() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Port
+	return d.Port
 }
 
-func (o *DboDatabaseConnectionOptionsUpdate) GetDbname() *string {
-	if o == nil {
+func (d *DboDatabaseConnectionOptionsUpdate) GetDbname() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Dbname
+	return d.Dbname
 }
 
-func (o *DboDatabaseConnectionOptionsUpdate) GetEncryptedCredentials() *string {
-	if o == nil {
+func (d *DboDatabaseConnectionOptionsUpdate) GetEncryptedCredentials() *string {
+	if d == nil {
 		return nil
 	}
-	return o.EncryptedCredentials
+	return d.EncryptedCredentials
 }
 
-func (o *DboDatabaseConnectionOptionsUpdate) GetUser() *string {
-	if o == nil {
+func (d *DboDatabaseConnectionOptionsUpdate) GetUser() *string {
+	if d == nil {
 		return nil
 	}
-	return o.User
+	return d.User
 }
 
-func (o *DboDatabaseConnectionOptionsUpdate) GetSslEnabled() *bool {
-	if o == nil {
+func (d *DboDatabaseConnectionOptionsUpdate) GetSslEnabled() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.SslEnabled
+	return d.SslEnabled
 }
 
-func (o *DboDatabaseConnectionOptionsUpdate) GetSslOptions() *DboDatabaseSslOptionsUpdate {
-	if o == nil {
+func (d *DboDatabaseConnectionOptionsUpdate) GetSslOptions() *DboDatabaseSslOptionsUpdate {
+	if d == nil {
 		return nil
 	}
-	return o.SslOptions
+	return d.SslOptions
 }
 
-func (o *DboDatabaseConnectionOptionsUpdate) GetCloudRegion() *string {
-	if o == nil {
+func (d *DboDatabaseConnectionOptionsUpdate) GetCloudRegion() *string {
+	if d == nil {
 		return nil
 	}
-	return o.CloudRegion
+	return d.CloudRegion
 }
 
-func (o *DboDatabaseConnectionOptionsUpdate) GetBindings() *string {
-	if o == nil {
+func (d *DboDatabaseConnectionOptionsUpdate) GetBindings() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Bindings
+	return d.Bindings
 }

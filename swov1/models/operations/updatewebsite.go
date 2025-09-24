@@ -12,18 +12,18 @@ type UpdateWebsiteRequest struct {
 	DemWebsite components.DemWebsite `request:"mediaType=application/json"`
 }
 
-func (o *UpdateWebsiteRequest) GetEntityID() string {
-	if o == nil {
+func (u *UpdateWebsiteRequest) GetEntityID() string {
+	if u == nil {
 		return ""
 	}
-	return o.EntityID
+	return u.EntityID
 }
 
-func (o *UpdateWebsiteRequest) GetDemWebsite() components.DemWebsite {
-	if o == nil {
+func (u *UpdateWebsiteRequest) GetDemWebsite() components.DemWebsite {
+	if u == nil {
 		return components.DemWebsite{}
 	}
-	return o.DemWebsite
+	return u.DemWebsite
 }
 
 type UpdateWebsiteResponse struct {
@@ -32,16 +32,16 @@ type UpdateWebsiteResponse struct {
 	CommonEntityID *components.CommonEntityID
 }
 
-func (o *UpdateWebsiteResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (u *UpdateWebsiteResponse) GetHTTPMeta() components.HTTPMetadata {
+	if u == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return u.HTTPMeta
 }
 
-func (o *UpdateWebsiteResponse) GetCommonEntityID() *components.CommonEntityID {
-	if o == nil {
+func (u *UpdateWebsiteResponse) GetCommonEntityID() *components.CommonEntityID {
+	if u == nil {
 		return nil
 	}
-	return o.CommonEntityID
+	return u.CommonEntityID
 }

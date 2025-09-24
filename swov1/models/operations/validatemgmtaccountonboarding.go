@@ -10,11 +10,11 @@ type ValidateMgmtAccountOnboardingRequest struct {
 	Request components.CloudAccountsAwsMgmtAccountOnboardingRequest `queryParam:"style=form,explode=false,name=request"`
 }
 
-func (o *ValidateMgmtAccountOnboardingRequest) GetRequest() components.CloudAccountsAwsMgmtAccountOnboardingRequest {
-	if o == nil {
+func (v *ValidateMgmtAccountOnboardingRequest) GetRequest() components.CloudAccountsAwsMgmtAccountOnboardingRequest {
+	if v == nil {
 		return components.CloudAccountsAwsMgmtAccountOnboardingRequest{}
 	}
-	return o.Request
+	return v.Request
 }
 
 type ValidateMgmtAccountOnboardingResponse struct {
@@ -23,16 +23,16 @@ type ValidateMgmtAccountOnboardingResponse struct {
 	CloudAccountsAwsMgmtAccountOnboardingResponse *components.CloudAccountsAwsMgmtAccountOnboardingResponse
 }
 
-func (o *ValidateMgmtAccountOnboardingResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (v *ValidateMgmtAccountOnboardingResponse) GetHTTPMeta() components.HTTPMetadata {
+	if v == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return v.HTTPMeta
 }
 
-func (o *ValidateMgmtAccountOnboardingResponse) GetCloudAccountsAwsMgmtAccountOnboardingResponse() *components.CloudAccountsAwsMgmtAccountOnboardingResponse {
-	if o == nil {
+func (v *ValidateMgmtAccountOnboardingResponse) GetCloudAccountsAwsMgmtAccountOnboardingResponse() *components.CloudAccountsAwsMgmtAccountOnboardingResponse {
+	if v == nil {
 		return nil
 	}
-	return o.CloudAccountsAwsMgmtAccountOnboardingResponse
+	return v.CloudAccountsAwsMgmtAccountOnboardingResponse
 }
