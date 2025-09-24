@@ -35,10 +35,10 @@ func main() {
     )
 
     res, err := s.Logs.SearchLogs(ctx, operations.SearchLogsRequest{
-        Filter: swov1.String("level:info"),
+        Filter: swov1.Pointer("level:info"),
         StartTime: types.MustNewTimeFromString("2025-06-15T00:00:00Z"),
         EndTime: types.MustNewTimeFromString("2025-07-22T23:59:59Z"),
-        PageSize: swov1.Int(10),
+        PageSize: swov1.Pointer[int](10),
     })
     if err != nil {
         log.Fatal(err)
@@ -110,7 +110,7 @@ func main() {
     res, err := s.Logs.ListLogArchives(ctx, operations.ListLogArchivesRequest{
         StartTime: "<value>",
         EndTime: "<value>",
-        PageSize: swov1.Int(10),
+        PageSize: swov1.Pointer[int](10),
     })
     if err != nil {
         log.Fatal(err)

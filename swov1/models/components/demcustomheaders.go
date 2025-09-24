@@ -9,16 +9,16 @@ type DemCustomHeaders struct {
 	Value string `json:"value"`
 }
 
-func (o *DemCustomHeaders) GetName() string {
-	if o == nil {
+func (d *DemCustomHeaders) GetName() string {
+	if d == nil {
 		return ""
 	}
-	return o.Name
+	return d.Name
 }
 
-func (o *DemCustomHeaders) GetValue() string {
-	if o == nil {
+func (d *DemCustomHeaders) GetValue() string {
+	if d == nil {
 		return ""
 	}
-	return o.Value
+	return d.Value
 }

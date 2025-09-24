@@ -13,18 +13,18 @@ type UpdateCompositeMetricRequest struct {
 	MetricsUpdateCompositeMetricRequest components.MetricsUpdateCompositeMetricRequest `request:"mediaType=application/json"`
 }
 
-func (o *UpdateCompositeMetricRequest) GetName() string {
-	if o == nil {
+func (u *UpdateCompositeMetricRequest) GetName() string {
+	if u == nil {
 		return ""
 	}
-	return o.Name
+	return u.Name
 }
 
-func (o *UpdateCompositeMetricRequest) GetMetricsUpdateCompositeMetricRequest() components.MetricsUpdateCompositeMetricRequest {
-	if o == nil {
+func (u *UpdateCompositeMetricRequest) GetMetricsUpdateCompositeMetricRequest() components.MetricsUpdateCompositeMetricRequest {
+	if u == nil {
 		return components.MetricsUpdateCompositeMetricRequest{}
 	}
-	return o.MetricsUpdateCompositeMetricRequest
+	return u.MetricsUpdateCompositeMetricRequest
 }
 
 type UpdateCompositeMetricResponse struct {
@@ -33,16 +33,16 @@ type UpdateCompositeMetricResponse struct {
 	MetricsCompositeMetric *components.MetricsCompositeMetric
 }
 
-func (o *UpdateCompositeMetricResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (u *UpdateCompositeMetricResponse) GetHTTPMeta() components.HTTPMetadata {
+	if u == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return u.HTTPMeta
 }
 
-func (o *UpdateCompositeMetricResponse) GetMetricsCompositeMetric() *components.MetricsCompositeMetric {
-	if o == nil {
+func (u *UpdateCompositeMetricResponse) GetMetricsCompositeMetric() *components.MetricsCompositeMetric {
+	if u == nil {
 		return nil
 	}
-	return o.MetricsCompositeMetric
+	return u.MetricsCompositeMetric
 }

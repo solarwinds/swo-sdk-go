@@ -11,23 +11,23 @@ type CloudAccountsAwsActivateIntegrationRequest struct {
 	Enable bool `json:"enable"`
 }
 
-func (o *CloudAccountsAwsActivateIntegrationRequest) GetManagementAccountID() string {
-	if o == nil {
+func (c *CloudAccountsAwsActivateIntegrationRequest) GetManagementAccountID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ManagementAccountID
+	return c.ManagementAccountID
 }
 
-func (o *CloudAccountsAwsActivateIntegrationRequest) GetAccountID() string {
-	if o == nil {
+func (c *CloudAccountsAwsActivateIntegrationRequest) GetAccountID() string {
+	if c == nil {
 		return ""
 	}
-	return o.AccountID
+	return c.AccountID
 }
 
-func (o *CloudAccountsAwsActivateIntegrationRequest) GetEnable() bool {
-	if o == nil {
+func (c *CloudAccountsAwsActivateIntegrationRequest) GetEnable() bool {
+	if c == nil {
 		return false
 	}
-	return o.Enable
+	return c.Enable
 }

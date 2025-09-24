@@ -10,11 +10,11 @@ type GetPluginsRequest struct {
 	EntityID string `pathParam:"style=simple,explode=false,name=entityId"`
 }
 
-func (o *GetPluginsRequest) GetEntityID() string {
-	if o == nil {
+func (g *GetPluginsRequest) GetEntityID() string {
+	if g == nil {
 		return ""
 	}
-	return o.EntityID
+	return g.EntityID
 }
 
 type GetPluginsResponse struct {
@@ -23,16 +23,16 @@ type GetPluginsResponse struct {
 	DboDatabasePluginStatusResponse *components.DboDatabasePluginStatusResponse
 }
 
-func (o *GetPluginsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (g *GetPluginsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if g == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return g.HTTPMeta
 }
 
-func (o *GetPluginsResponse) GetDboDatabasePluginStatusResponse() *components.DboDatabasePluginStatusResponse {
-	if o == nil {
+func (g *GetPluginsResponse) GetDboDatabasePluginStatusResponse() *components.DboDatabasePluginStatusResponse {
+	if g == nil {
 		return nil
 	}
-	return o.DboDatabasePluginStatusResponse
+	return g.DboDatabasePluginStatusResponse
 }

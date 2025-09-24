@@ -12,16 +12,16 @@ type CreateWebsiteResponse struct {
 	CommonEntityID *components.CommonEntityID
 }
 
-func (o *CreateWebsiteResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (c *CreateWebsiteResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return c.HTTPMeta
 }
 
-func (o *CreateWebsiteResponse) GetCommonEntityID() *components.CommonEntityID {
-	if o == nil {
+func (c *CreateWebsiteResponse) GetCommonEntityID() *components.CommonEntityID {
+	if c == nil {
 		return nil
 	}
-	return o.CommonEntityID
+	return c.CommonEntityID
 }

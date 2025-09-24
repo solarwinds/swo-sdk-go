@@ -25,16 +25,16 @@ func (m *MetricsMeasurement) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *MetricsMeasurement) GetTime() time.Time {
-	if o == nil {
+func (m *MetricsMeasurement) GetTime() time.Time {
+	if m == nil {
 		return time.Time{}
 	}
-	return o.Time
+	return m.Time
 }
 
-func (o *MetricsMeasurement) GetValue() float64 {
-	if o == nil {
+func (m *MetricsMeasurement) GetValue() float64 {
+	if m == nil {
 		return 0.0
 	}
-	return o.Value
+	return m.Value
 }

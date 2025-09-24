@@ -24,18 +24,18 @@ type DemWebsitePlatformOptions struct {
 	TestFromAll *bool `json:"testFromAll,omitempty"`
 }
 
-func (o *DemWebsitePlatformOptions) GetProbePlatforms() []DemProbePlatform {
-	if o == nil {
+func (d *DemWebsitePlatformOptions) GetProbePlatforms() []DemProbePlatform {
+	if d == nil {
 		return []DemProbePlatform{}
 	}
-	return o.ProbePlatforms
+	return d.ProbePlatforms
 }
 
-func (o *DemWebsitePlatformOptions) GetTestFromAll() *bool {
-	if o == nil {
+func (d *DemWebsitePlatformOptions) GetTestFromAll() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.TestFromAll
+	return d.TestFromAll
 }
 
 // DemWebsiteFailingTestLocations - How many locations must report a failure for an entity to be considered down.
@@ -75,18 +75,18 @@ type DemWebsiteOutageConfiguration struct {
 	ConsecutiveForDown int `json:"consecutiveForDown"`
 }
 
-func (o *DemWebsiteOutageConfiguration) GetFailingTestLocations() DemWebsiteFailingTestLocations {
-	if o == nil {
+func (d *DemWebsiteOutageConfiguration) GetFailingTestLocations() DemWebsiteFailingTestLocations {
+	if d == nil {
 		return DemWebsiteFailingTestLocations("")
 	}
-	return o.FailingTestLocations
+	return d.FailingTestLocations
 }
 
-func (o *DemWebsiteOutageConfiguration) GetConsecutiveForDown() int {
-	if o == nil {
+func (d *DemWebsiteOutageConfiguration) GetConsecutiveForDown() int {
+	if d == nil {
 		return 0
 	}
-	return o.ConsecutiveForDown
+	return d.ConsecutiveForDown
 }
 
 // Operator - Defines whether the check should pass only when the string is present on the page (CONTAINS) or only when it is absent (DOES_NOT_CONTAIN).
@@ -128,18 +128,18 @@ type CheckForString struct {
 	Value string `json:"value"`
 }
 
-func (o *CheckForString) GetOperator() Operator {
-	if o == nil {
+func (c *CheckForString) GetOperator() Operator {
+	if c == nil {
 		return Operator("")
 	}
-	return o.Operator
+	return c.Operator
 }
 
-func (o *CheckForString) GetValue() string {
-	if o == nil {
+func (c *CheckForString) GetValue() string {
+	if c == nil {
 		return ""
 	}
-	return o.Value
+	return c.Value
 }
 
 // Ssl -   Configure monitoring of SSL/TLS certificates validity. This option is relevant for HTTPS protocol only.
@@ -159,25 +159,25 @@ type Ssl struct {
 	IgnoreIntermediateCertificates *bool `json:"ignoreIntermediateCertificates,omitempty"`
 }
 
-func (o *Ssl) GetEnabled() *bool {
-	if o == nil {
+func (s *Ssl) GetEnabled() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Enabled
+	return s.Enabled
 }
 
-func (o *Ssl) GetDaysPriorToExpiration() *int {
-	if o == nil {
+func (s *Ssl) GetDaysPriorToExpiration() *int {
+	if s == nil {
 		return nil
 	}
-	return o.DaysPriorToExpiration
+	return s.DaysPriorToExpiration
 }
 
-func (o *Ssl) GetIgnoreIntermediateCertificates() *bool {
-	if o == nil {
+func (s *Ssl) GetIgnoreIntermediateCertificates() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.IgnoreIntermediateCertificates
+	return s.IgnoreIntermediateCertificates
 }
 
 // AvailabilityCheckSettings - Use this field to configure availability tests for the website.
@@ -215,74 +215,74 @@ type AvailabilityCheckSettings struct {
 	PostData *string `json:"postData,omitempty"`
 }
 
-func (o *AvailabilityCheckSettings) GetPlatformOptions() *DemWebsitePlatformOptions {
-	if o == nil {
+func (a *AvailabilityCheckSettings) GetPlatformOptions() *DemWebsitePlatformOptions {
+	if a == nil {
 		return nil
 	}
-	return o.PlatformOptions
+	return a.PlatformOptions
 }
 
-func (o *AvailabilityCheckSettings) GetTestFrom() DemTestFrom {
-	if o == nil {
+func (a *AvailabilityCheckSettings) GetTestFrom() DemTestFrom {
+	if a == nil {
 		return DemTestFrom{}
 	}
-	return o.TestFrom
+	return a.TestFrom
 }
 
-func (o *AvailabilityCheckSettings) GetTestIntervalInSeconds() float64 {
-	if o == nil {
+func (a *AvailabilityCheckSettings) GetTestIntervalInSeconds() float64 {
+	if a == nil {
 		return 0.0
 	}
-	return o.TestIntervalInSeconds
+	return a.TestIntervalInSeconds
 }
 
-func (o *AvailabilityCheckSettings) GetOutageConfiguration() *DemWebsiteOutageConfiguration {
-	if o == nil {
+func (a *AvailabilityCheckSettings) GetOutageConfiguration() *DemWebsiteOutageConfiguration {
+	if a == nil {
 		return nil
 	}
-	return o.OutageConfiguration
+	return a.OutageConfiguration
 }
 
-func (o *AvailabilityCheckSettings) GetCheckForString() *CheckForString {
-	if o == nil {
+func (a *AvailabilityCheckSettings) GetCheckForString() *CheckForString {
+	if a == nil {
 		return nil
 	}
-	return o.CheckForString
+	return a.CheckForString
 }
 
-func (o *AvailabilityCheckSettings) GetProtocols() []DemWebsiteProtocol {
-	if o == nil {
+func (a *AvailabilityCheckSettings) GetProtocols() []DemWebsiteProtocol {
+	if a == nil {
 		return []DemWebsiteProtocol{}
 	}
-	return o.Protocols
+	return a.Protocols
 }
 
-func (o *AvailabilityCheckSettings) GetSsl() *Ssl {
-	if o == nil {
+func (a *AvailabilityCheckSettings) GetSsl() *Ssl {
+	if a == nil {
 		return nil
 	}
-	return o.Ssl
+	return a.Ssl
 }
 
-func (o *AvailabilityCheckSettings) GetCustomHeaders() []DemCustomHeaders {
-	if o == nil {
+func (a *AvailabilityCheckSettings) GetCustomHeaders() []DemCustomHeaders {
+	if a == nil {
 		return nil
 	}
-	return o.CustomHeaders
+	return a.CustomHeaders
 }
 
-func (o *AvailabilityCheckSettings) GetAllowInsecureRenegotiation() *bool {
-	if o == nil {
+func (a *AvailabilityCheckSettings) GetAllowInsecureRenegotiation() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.AllowInsecureRenegotiation
+	return a.AllowInsecureRenegotiation
 }
 
-func (o *AvailabilityCheckSettings) GetPostData() *string {
-	if o == nil {
+func (a *AvailabilityCheckSettings) GetPostData() *string {
+	if a == nil {
 		return nil
 	}
-	return o.PostData
+	return a.PostData
 }
 
 // Rum -     Use this field to configure real user monitoring (RUM) for the website.
@@ -293,18 +293,18 @@ type Rum struct {
 	Spa                bool `json:"spa"`
 }
 
-func (o *Rum) GetApdexTimeInSeconds() *int {
-	if o == nil {
+func (r *Rum) GetApdexTimeInSeconds() *int {
+	if r == nil {
 		return nil
 	}
-	return o.ApdexTimeInSeconds
+	return r.ApdexTimeInSeconds
 }
 
-func (o *Rum) GetSpa() bool {
-	if o == nil {
+func (r *Rum) GetSpa() bool {
+	if r == nil {
 		return false
 	}
-	return o.Spa
+	return r.Spa
 }
 
 type DemWebsite struct {
@@ -321,37 +321,37 @@ type DemWebsite struct {
 	Rum *Rum `json:"rum,omitempty"`
 }
 
-func (o *DemWebsite) GetName() string {
-	if o == nil {
+func (d *DemWebsite) GetName() string {
+	if d == nil {
 		return ""
 	}
-	return o.Name
+	return d.Name
 }
 
-func (o *DemWebsite) GetURL() string {
-	if o == nil {
+func (d *DemWebsite) GetURL() string {
+	if d == nil {
 		return ""
 	}
-	return o.URL
+	return d.URL
 }
 
-func (o *DemWebsite) GetAvailabilityCheckSettings() *AvailabilityCheckSettings {
-	if o == nil {
+func (d *DemWebsite) GetAvailabilityCheckSettings() *AvailabilityCheckSettings {
+	if d == nil {
 		return nil
 	}
-	return o.AvailabilityCheckSettings
+	return d.AvailabilityCheckSettings
 }
 
-func (o *DemWebsite) GetTags() []CommonTag {
-	if o == nil {
+func (d *DemWebsite) GetTags() []CommonTag {
+	if d == nil {
 		return nil
 	}
-	return o.Tags
+	return d.Tags
 }
 
-func (o *DemWebsite) GetRum() *Rum {
-	if o == nil {
+func (d *DemWebsite) GetRum() *Rum {
+	if d == nil {
 		return nil
 	}
-	return o.Rum
+	return d.Rum
 }
