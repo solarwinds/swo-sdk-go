@@ -109,10 +109,10 @@ func main() {
 
     res, err := s.Metrics.CreateCompositeMetric(ctx, components.MetricsCompositeMetric{
         Name: "composite.custom.system.disk.io.rate",
-        DisplayName: swov1.String("Disk IO rate"),
-        Description: swov1.String("Disk bytes transferred per second"),
+        DisplayName: swov1.Pointer("Disk IO rate"),
+        Description: swov1.Pointer("Disk bytes transferred per second"),
         Formula: "rate(system.disk.io[5m])",
-        Units: swov1.String("bytes/s"),
+        Units: swov1.Pointer("bytes/s"),
     })
     if err != nil {
         log.Fatal(err)
@@ -268,10 +268,10 @@ func main() {
     res, err := s.Metrics.UpdateCompositeMetric(ctx, operations.UpdateCompositeMetricRequest{
         Name: "<value>",
         MetricsUpdateCompositeMetricRequest: components.MetricsUpdateCompositeMetricRequest{
-            DisplayName: swov1.String("Disk IO rate"),
-            Description: swov1.String("Disk bytes transferred per second"),
+            DisplayName: swov1.Pointer("Disk IO rate"),
+            Description: swov1.Pointer("Disk bytes transferred per second"),
             Formula: "rate(system.disk.io[5m])",
-            Units: swov1.String("bytes/s"),
+            Units: swov1.Pointer("bytes/s"),
         },
     })
     if err != nil {
