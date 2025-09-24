@@ -7,9 +7,9 @@ type CloudAccountsAwsMgmtAccountOnboardingRequest struct {
 	ManagementAccountID string `queryParam:"name=managementAccountId"`
 }
 
-func (c *CloudAccountsAwsMgmtAccountOnboardingRequest) GetManagementAccountID() string {
-	if c == nil {
+func (o *CloudAccountsAwsMgmtAccountOnboardingRequest) GetManagementAccountID() string {
+	if o == nil {
 		return ""
 	}
-	return c.ManagementAccountID
+	return o.ManagementAccountID
 }

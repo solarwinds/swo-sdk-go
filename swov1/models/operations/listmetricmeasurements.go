@@ -48,88 +48,88 @@ func (l *ListMetricMeasurementsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (l *ListMetricMeasurementsRequest) GetName() string {
-	if l == nil {
+func (o *ListMetricMeasurementsRequest) GetName() string {
+	if o == nil {
 		return ""
 	}
-	return l.Name
+	return o.Name
 }
 
-func (l *ListMetricMeasurementsRequest) GetFilter() *string {
-	if l == nil {
+func (o *ListMetricMeasurementsRequest) GetFilter() *string {
+	if o == nil {
 		return nil
 	}
-	return l.Filter
+	return o.Filter
 }
 
-func (l *ListMetricMeasurementsRequest) GetGroupBy() *string {
-	if l == nil {
+func (o *ListMetricMeasurementsRequest) GetGroupBy() *string {
+	if o == nil {
 		return nil
 	}
-	return l.GroupBy
+	return o.GroupBy
 }
 
-func (l *ListMetricMeasurementsRequest) GetAggregateBy() *components.MetricsAggregationMethods {
-	if l == nil {
+func (o *ListMetricMeasurementsRequest) GetAggregateBy() *components.MetricsAggregationMethods {
+	if o == nil {
 		return nil
 	}
-	return l.AggregateBy
+	return o.AggregateBy
 }
 
-func (l *ListMetricMeasurementsRequest) GetBucketSizeInSeconds() *int {
-	if l == nil {
+func (o *ListMetricMeasurementsRequest) GetBucketSizeInSeconds() *int {
+	if o == nil {
 		return nil
 	}
-	return l.BucketSizeInSeconds
+	return o.BucketSizeInSeconds
 }
 
-func (l *ListMetricMeasurementsRequest) GetPreGroupBy() *string {
-	if l == nil {
+func (o *ListMetricMeasurementsRequest) GetPreGroupBy() *string {
+	if o == nil {
 		return nil
 	}
-	return l.PreGroupBy
+	return o.PreGroupBy
 }
 
-func (l *ListMetricMeasurementsRequest) GetPreGroupByMethod() *string {
-	if l == nil {
+func (o *ListMetricMeasurementsRequest) GetPreGroupByMethod() *string {
+	if o == nil {
 		return nil
 	}
-	return l.PreGroupByMethod
+	return o.PreGroupByMethod
 }
 
-func (l *ListMetricMeasurementsRequest) GetSeriesType() components.MetricsMetricSeriesType {
-	if l == nil {
+func (o *ListMetricMeasurementsRequest) GetSeriesType() components.MetricsMetricSeriesType {
+	if o == nil {
 		return components.MetricsMetricSeriesType("")
 	}
-	return l.SeriesType
+	return o.SeriesType
 }
 
-func (l *ListMetricMeasurementsRequest) GetStartTime() *time.Time {
-	if l == nil {
+func (o *ListMetricMeasurementsRequest) GetStartTime() *time.Time {
+	if o == nil {
 		return nil
 	}
-	return l.StartTime
+	return o.StartTime
 }
 
-func (l *ListMetricMeasurementsRequest) GetEndTime() *time.Time {
-	if l == nil {
+func (o *ListMetricMeasurementsRequest) GetEndTime() *time.Time {
+	if o == nil {
 		return nil
 	}
-	return l.EndTime
+	return o.EndTime
 }
 
-func (l *ListMetricMeasurementsRequest) GetPageSize() *int {
-	if l == nil {
+func (o *ListMetricMeasurementsRequest) GetPageSize() *int {
+	if o == nil {
 		return nil
 	}
-	return l.PageSize
+	return o.PageSize
 }
 
-func (l *ListMetricMeasurementsRequest) GetSkipToken() *string {
-	if l == nil {
+func (o *ListMetricMeasurementsRequest) GetSkipToken() *string {
+	if o == nil {
 		return nil
 	}
-	return l.SkipToken
+	return o.SkipToken
 }
 
 // ListMetricMeasurementsResponseBody - The request has succeeded.
@@ -139,25 +139,25 @@ type ListMetricMeasurementsResponseBody struct {
 	PageInfo            components.CommonPageInfo    `json:"pageInfo"`
 }
 
-func (l *ListMetricMeasurementsResponseBody) GetGroupings() []components.MetricsGrouping {
-	if l == nil {
+func (o *ListMetricMeasurementsResponseBody) GetGroupings() []components.MetricsGrouping {
+	if o == nil {
 		return []components.MetricsGrouping{}
 	}
-	return l.Groupings
+	return o.Groupings
 }
 
-func (l *ListMetricMeasurementsResponseBody) GetBucketSizeInSeconds() int {
-	if l == nil {
+func (o *ListMetricMeasurementsResponseBody) GetBucketSizeInSeconds() int {
+	if o == nil {
 		return 0
 	}
-	return l.BucketSizeInSeconds
+	return o.BucketSizeInSeconds
 }
 
-func (l *ListMetricMeasurementsResponseBody) GetPageInfo() components.CommonPageInfo {
-	if l == nil {
+func (o *ListMetricMeasurementsResponseBody) GetPageInfo() components.CommonPageInfo {
+	if o == nil {
 		return components.CommonPageInfo{}
 	}
-	return l.PageInfo
+	return o.PageInfo
 }
 
 type ListMetricMeasurementsResponse struct {
@@ -168,16 +168,16 @@ type ListMetricMeasurementsResponse struct {
 	Next func() (*ListMetricMeasurementsResponse, error)
 }
 
-func (l *ListMetricMeasurementsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if l == nil {
+func (o *ListMetricMeasurementsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
 		return components.HTTPMetadata{}
 	}
-	return l.HTTPMeta
+	return o.HTTPMeta
 }
 
-func (l *ListMetricMeasurementsResponse) GetObject() *ListMetricMeasurementsResponseBody {
-	if l == nil {
+func (o *ListMetricMeasurementsResponse) GetObject() *ListMetricMeasurementsResponseBody {
+	if o == nil {
 		return nil
 	}
-	return l.Object
+	return o.Object
 }

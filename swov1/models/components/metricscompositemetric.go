@@ -15,37 +15,37 @@ type MetricsCompositeMetric struct {
 	Units *string `json:"units,omitempty"`
 }
 
-func (m *MetricsCompositeMetric) GetName() string {
-	if m == nil {
+func (o *MetricsCompositeMetric) GetName() string {
+	if o == nil {
 		return ""
 	}
-	return m.Name
+	return o.Name
 }
 
-func (m *MetricsCompositeMetric) GetDisplayName() *string {
-	if m == nil {
+func (o *MetricsCompositeMetric) GetDisplayName() *string {
+	if o == nil {
 		return nil
 	}
-	return m.DisplayName
+	return o.DisplayName
 }
 
-func (m *MetricsCompositeMetric) GetDescription() *string {
-	if m == nil {
+func (o *MetricsCompositeMetric) GetDescription() *string {
+	if o == nil {
 		return nil
 	}
-	return m.Description
+	return o.Description
 }
 
-func (m *MetricsCompositeMetric) GetFormula() string {
-	if m == nil {
+func (o *MetricsCompositeMetric) GetFormula() string {
+	if o == nil {
 		return ""
 	}
-	return m.Formula
+	return o.Formula
 }
 
-func (m *MetricsCompositeMetric) GetUnits() *string {
-	if m == nil {
+func (o *MetricsCompositeMetric) GetUnits() *string {
+	if o == nil {
 		return nil
 	}
-	return m.Units
+	return o.Units
 }

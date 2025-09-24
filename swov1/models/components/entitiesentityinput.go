@@ -9,16 +9,16 @@ type EntitiesEntityInput struct {
 	Tags map[string]*string `json:"tags"`
 }
 
-func (e *EntitiesEntityInput) GetDisplayName() *string {
-	if e == nil {
+func (o *EntitiesEntityInput) GetDisplayName() *string {
+	if o == nil {
 		return nil
 	}
-	return e.DisplayName
+	return o.DisplayName
 }
 
-func (e *EntitiesEntityInput) GetTags() map[string]*string {
-	if e == nil {
+func (o *EntitiesEntityInput) GetTags() map[string]*string {
+	if o == nil {
 		return map[string]*string{}
 	}
-	return e.Tags
+	return o.Tags
 }

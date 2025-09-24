@@ -7,16 +7,16 @@ type CommonTag struct {
 	Value string `json:"value"`
 }
 
-func (c *CommonTag) GetKey() string {
-	if c == nil {
+func (o *CommonTag) GetKey() string {
+	if o == nil {
 		return ""
 	}
-	return c.Key
+	return o.Key
 }
 
-func (c *CommonTag) GetValue() string {
-	if c == nil {
+func (o *CommonTag) GetValue() string {
+	if o == nil {
 		return ""
 	}
-	return c.Value
+	return o.Value
 }

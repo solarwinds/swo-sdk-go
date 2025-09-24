@@ -13,30 +13,30 @@ type DemURI struct {
 	Tags []CommonTag `json:"tags,omitempty"`
 }
 
-func (d *DemURI) GetName() string {
-	if d == nil {
+func (o *DemURI) GetName() string {
+	if o == nil {
 		return ""
 	}
-	return d.Name
+	return o.Name
 }
 
-func (d *DemURI) GetIPOrDomain() string {
-	if d == nil {
+func (o *DemURI) GetIPOrDomain() string {
+	if o == nil {
 		return ""
 	}
-	return d.IPOrDomain
+	return o.IPOrDomain
 }
 
-func (d *DemURI) GetAvailabilityCheckSettings() DemURIAvailabilityCheckSettingsInput {
-	if d == nil {
+func (o *DemURI) GetAvailabilityCheckSettings() DemURIAvailabilityCheckSettingsInput {
+	if o == nil {
 		return DemURIAvailabilityCheckSettingsInput{}
 	}
-	return d.AvailabilityCheckSettings
+	return o.AvailabilityCheckSettings
 }
 
-func (d *DemURI) GetTags() []CommonTag {
-	if d == nil {
+func (o *DemURI) GetTags() []CommonTag {
+	if o == nil {
 		return nil
 	}
-	return d.Tags
+	return o.Tags
 }

@@ -11,11 +11,11 @@ type GetMetricByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
-func (g *GetMetricByNameRequest) GetName() string {
-	if g == nil {
+func (o *GetMetricByNameRequest) GetName() string {
+	if o == nil {
 		return ""
 	}
-	return g.Name
+	return o.Name
 }
 
 type GetMetricByNameResponse struct {
@@ -26,16 +26,16 @@ type GetMetricByNameResponse struct {
 	Next func() (*GetMetricByNameResponse, error)
 }
 
-func (g *GetMetricByNameResponse) GetHTTPMeta() components.HTTPMetadata {
-	if g == nil {
+func (o *GetMetricByNameResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
 		return components.HTTPMetadata{}
 	}
-	return g.HTTPMeta
+	return o.HTTPMeta
 }
 
-func (g *GetMetricByNameResponse) GetCommonMetricInfo() *components.CommonMetricInfo {
-	if g == nil {
+func (o *GetMetricByNameResponse) GetCommonMetricInfo() *components.CommonMetricInfo {
+	if o == nil {
 		return nil
 	}
-	return g.CommonMetricInfo
+	return o.CommonMetricInfo
 }

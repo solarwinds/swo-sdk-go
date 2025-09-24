@@ -11,23 +11,23 @@ type DboDatabasePluginConfig struct {
 	DbConnOptions []CommonKeyValuePair `json:"dbConnOptions"`
 }
 
-func (d *DboDatabasePluginConfig) GetPluginName() string {
-	if d == nil {
+func (o *DboDatabasePluginConfig) GetPluginName() string {
+	if o == nil {
 		return ""
 	}
-	return d.PluginName
+	return o.PluginName
 }
 
-func (d *DboDatabasePluginConfig) GetConfigOptions() []CommonKeyValuePair {
-	if d == nil {
+func (o *DboDatabasePluginConfig) GetConfigOptions() []CommonKeyValuePair {
+	if o == nil {
 		return []CommonKeyValuePair{}
 	}
-	return d.ConfigOptions
+	return o.ConfigOptions
 }
 
-func (d *DboDatabasePluginConfig) GetDbConnOptions() []CommonKeyValuePair {
-	if d == nil {
+func (o *DboDatabasePluginConfig) GetDbConnOptions() []CommonKeyValuePair {
+	if o == nil {
 		return []CommonKeyValuePair{}
 	}
-	return d.DbConnOptions
+	return o.DbConnOptions
 }

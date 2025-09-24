@@ -10,11 +10,11 @@ type GetWebsiteRequest struct {
 	EntityID string `pathParam:"style=simple,explode=false,name=entityId"`
 }
 
-func (g *GetWebsiteRequest) GetEntityID() string {
-	if g == nil {
+func (o *GetWebsiteRequest) GetEntityID() string {
+	if o == nil {
 		return ""
 	}
-	return g.EntityID
+	return o.EntityID
 }
 
 type GetWebsiteResponse struct {
@@ -23,16 +23,16 @@ type GetWebsiteResponse struct {
 	DemGetWebsiteResponse *components.DemGetWebsiteResponse
 }
 
-func (g *GetWebsiteResponse) GetHTTPMeta() components.HTTPMetadata {
-	if g == nil {
+func (o *GetWebsiteResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
 		return components.HTTPMetadata{}
 	}
-	return g.HTTPMeta
+	return o.HTTPMeta
 }
 
-func (g *GetWebsiteResponse) GetDemGetWebsiteResponse() *components.DemGetWebsiteResponse {
-	if g == nil {
+func (o *GetWebsiteResponse) GetDemGetWebsiteResponse() *components.DemGetWebsiteResponse {
+	if o == nil {
 		return nil
 	}
-	return g.DemGetWebsiteResponse
+	return o.DemGetWebsiteResponse
 }

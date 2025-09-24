@@ -7,9 +7,9 @@ type CloudAccountsAwsMgmtAccountOnboardingResponse struct {
 	IsOnboarded bool `json:"isOnboarded"`
 }
 
-func (c *CloudAccountsAwsMgmtAccountOnboardingResponse) GetIsOnboarded() bool {
-	if c == nil {
+func (o *CloudAccountsAwsMgmtAccountOnboardingResponse) GetIsOnboarded() bool {
+	if o == nil {
 		return false
 	}
-	return c.IsOnboarded
+	return o.IsOnboarded
 }

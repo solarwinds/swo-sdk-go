@@ -45,18 +45,18 @@ type Coordinates struct {
 	Longitude float32 `json:"longitude"`
 }
 
-func (c *Coordinates) GetLatitude() float32 {
-	if c == nil {
+func (o *Coordinates) GetLatitude() float32 {
+	if o == nil {
 		return 0.0
 	}
-	return c.Latitude
+	return o.Latitude
 }
 
-func (c *Coordinates) GetLongitude() float32 {
-	if c == nil {
+func (o *Coordinates) GetLongitude() float32 {
+	if o == nil {
 		return 0.0
 	}
-	return c.Longitude
+	return o.Longitude
 }
 
 type DemProbe struct {
@@ -82,72 +82,72 @@ type DemProbe struct {
 	Ipv6Addresses []string `json:"ipv6Addresses,omitempty"`
 }
 
-func (d *DemProbe) GetID() string {
-	if d == nil {
+func (o *DemProbe) GetID() string {
+	if o == nil {
 		return ""
 	}
-	return d.ID
+	return o.ID
 }
 
-func (d *DemProbe) GetName() string {
-	if d == nil {
+func (o *DemProbe) GetName() string {
+	if o == nil {
 		return ""
 	}
-	return d.Name
+	return o.Name
 }
 
-func (d *DemProbe) GetActive() bool {
-	if d == nil {
+func (o *DemProbe) GetActive() bool {
+	if o == nil {
 		return false
 	}
-	return d.Active
+	return o.Active
 }
 
-func (d *DemProbe) GetPlatform() Platform {
-	if d == nil {
+func (o *DemProbe) GetPlatform() Platform {
+	if o == nil {
 		return Platform("")
 	}
-	return d.Platform
+	return o.Platform
 }
 
-func (d *DemProbe) GetRegion() string {
-	if d == nil {
+func (o *DemProbe) GetRegion() string {
+	if o == nil {
 		return ""
 	}
-	return d.Region
+	return o.Region
 }
 
-func (d *DemProbe) GetCountry() string {
-	if d == nil {
+func (o *DemProbe) GetCountry() string {
+	if o == nil {
 		return ""
 	}
-	return d.Country
+	return o.Country
 }
 
-func (d *DemProbe) GetCity() string {
-	if d == nil {
+func (o *DemProbe) GetCity() string {
+	if o == nil {
 		return ""
 	}
-	return d.City
+	return o.City
 }
 
-func (d *DemProbe) GetCoordinates() Coordinates {
-	if d == nil {
+func (o *DemProbe) GetCoordinates() Coordinates {
+	if o == nil {
 		return Coordinates{}
 	}
-	return d.Coordinates
+	return o.Coordinates
 }
 
-func (d *DemProbe) GetIpv4Addresses() []string {
-	if d == nil {
+func (o *DemProbe) GetIpv4Addresses() []string {
+	if o == nil {
 		return []string{}
 	}
-	return d.Ipv4Addresses
+	return o.Ipv4Addresses
 }
 
-func (d *DemProbe) GetIpv6Addresses() []string {
-	if d == nil {
+func (o *DemProbe) GetIpv6Addresses() []string {
+	if o == nil {
 		return nil
 	}
-	return d.Ipv6Addresses
+	return o.Ipv6Addresses
 }

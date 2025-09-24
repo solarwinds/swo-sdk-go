@@ -7,16 +7,16 @@ type CommonPageInfo struct {
 	NextPage string `json:"nextPage"`
 }
 
-func (c *CommonPageInfo) GetPrevPage() string {
-	if c == nil {
+func (o *CommonPageInfo) GetPrevPage() string {
+	if o == nil {
 		return ""
 	}
-	return c.PrevPage
+	return o.PrevPage
 }
 
-func (c *CommonPageInfo) GetNextPage() string {
-	if c == nil {
+func (o *CommonPageInfo) GetNextPage() string {
+	if o == nil {
 		return ""
 	}
-	return c.NextPage
+	return o.NextPage
 }

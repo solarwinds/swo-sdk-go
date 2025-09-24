@@ -11,27 +11,27 @@ type UpdateDatabaseRequest struct {
 	DboUpdateDatabaseRequest components.DboUpdateDatabaseRequest `request:"mediaType=application/json"`
 }
 
-func (u *UpdateDatabaseRequest) GetEntityID() string {
-	if u == nil {
+func (o *UpdateDatabaseRequest) GetEntityID() string {
+	if o == nil {
 		return ""
 	}
-	return u.EntityID
+	return o.EntityID
 }
 
-func (u *UpdateDatabaseRequest) GetDboUpdateDatabaseRequest() components.DboUpdateDatabaseRequest {
-	if u == nil {
+func (o *UpdateDatabaseRequest) GetDboUpdateDatabaseRequest() components.DboUpdateDatabaseRequest {
+	if o == nil {
 		return components.DboUpdateDatabaseRequest{}
 	}
-	return u.DboUpdateDatabaseRequest
+	return o.DboUpdateDatabaseRequest
 }
 
 type UpdateDatabaseResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-func (u *UpdateDatabaseResponse) GetHTTPMeta() components.HTTPMetadata {
-	if u == nil {
+func (o *UpdateDatabaseResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
 		return components.HTTPMetadata{}
 	}
-	return u.HTTPMeta
+	return o.HTTPMeta
 }

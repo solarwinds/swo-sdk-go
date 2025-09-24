@@ -102,7 +102,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DemOrganizationSettings != nil {
+    if res.DemOutageConfiguration != nil {
         // handle response
     }
 }
@@ -152,15 +152,9 @@ func main() {
         swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
     )
 
-    res, err := s.Dem.SetDemSettings(ctx, components.DemOrganizationSettingsInput{
-        AvailabilityOutageConfiguration: &components.DemOutageConfiguration{
-            FailingTestLocations: components.FailingTestLocationsAll,
-            ConsecutiveForDown: 2,
-        },
-        TransactionOutageConfiguration: &components.DemOutageConfiguration{
-            FailingTestLocations: components.FailingTestLocationsAll,
-            ConsecutiveForDown: 2,
-        },
+    res, err := s.Dem.SetDemSettings(ctx, components.DemOutageConfiguration{
+        FailingTestLocations: components.FailingTestLocationsAll,
+        ConsecutiveForDown: 2,
     })
     if err != nil {
         log.Fatal(err)
@@ -173,11 +167,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
-| `request`                                                                                          | [components.DemOrganizationSettingsInput](../../models/components/demorganizationsettingsinput.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `opts`                                                                                             | [][operations.Option](../../models/operations/option.md)                                           | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [components.DemOutageConfiguration](../../models/components/demoutageconfiguration.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 ### Response
 
@@ -225,7 +219,7 @@ func main() {
                 ProbePlatforms: []components.DemProbePlatform{
                     components.DemProbePlatformAws,
                 },
-                TestFromAll: swov1.Pointer(true),
+                TestFromAll: swov1.Bool(true),
             },
             TestFrom: components.DemTestFrom{
                 Type: components.TypeRegion,
@@ -241,12 +235,12 @@ func main() {
             TCP: &components.TCP{
                 Enabled: true,
                 Port: 443,
-                StringToSend: swov1.Pointer("GET / HTTP/1.1\r\n" +
+                StringToSend: swov1.String("GET / HTTP/1.1\r\n" +
                 "Host: solarwinds.com\r\n" +
                 "Connection: close\r\n" +
                 "\r\n" +
                 ""),
-                StringToExpect: swov1.Pointer("HTTP/1.1 200 OK"),
+                StringToExpect: swov1.String("HTTP/1.1 200 OK"),
             },
         },
         Tags: []components.CommonTag{
@@ -380,7 +374,7 @@ func main() {
                     ProbePlatforms: []components.DemProbePlatform{
                         components.DemProbePlatformAws,
                     },
-                    TestFromAll: swov1.Pointer(true),
+                    TestFromAll: swov1.Bool(true),
                 },
                 TestFrom: components.DemTestFrom{
                     Type: components.TypeRegion,
@@ -399,12 +393,12 @@ func main() {
                 TCP: &components.TCP{
                     Enabled: true,
                     Port: 443,
-                    StringToSend: swov1.Pointer("GET / HTTP/1.1\r\n" +
+                    StringToSend: swov1.String("GET / HTTP/1.1\r\n" +
                     "Host: solarwinds.com\r\n" +
                     "Connection: close\r\n" +
                     "\r\n" +
                     ""),
-                    StringToExpect: swov1.Pointer("HTTP/1.1 200 OK"),
+                    StringToExpect: swov1.String("HTTP/1.1 200 OK"),
                 },
             },
             Tags: []components.CommonTag{
@@ -653,7 +647,7 @@ func main() {
                 ProbePlatforms: []components.DemProbePlatform{
                     components.DemProbePlatformAws,
                 },
-                TestFromAll: swov1.Pointer(true),
+                TestFromAll: swov1.Bool(true),
             },
             TestFrom: components.DemTestFrom{
                 Type: components.TypeRegion,
@@ -675,9 +669,9 @@ func main() {
                 components.DemWebsiteProtocolHTTPS,
             },
             Ssl: &components.Ssl{
-                Enabled: swov1.Pointer(true),
-                DaysPriorToExpiration: swov1.Pointer[int](7),
-                IgnoreIntermediateCertificates: swov1.Pointer(true),
+                Enabled: swov1.Bool(true),
+                DaysPriorToExpiration: swov1.Int(7),
+                IgnoreIntermediateCertificates: swov1.Bool(true),
             },
             CustomHeaders: []components.DemCustomHeaders{
                 components.DemCustomHeaders{
@@ -685,8 +679,8 @@ func main() {
                     Value: "string",
                 },
             },
-            AllowInsecureRenegotiation: swov1.Pointer(true),
-            PostData: swov1.Pointer("{\"example\": \"value\"}"),
+            AllowInsecureRenegotiation: swov1.Bool(true),
+            PostData: swov1.String("{\"example\": \"value\"}"),
         },
         Tags: []components.CommonTag{
             components.CommonTag{
@@ -695,7 +689,7 @@ func main() {
             },
         },
         Rum: &components.Rum{
-            ApdexTimeInSeconds: swov1.Pointer[int](4),
+            ApdexTimeInSeconds: swov1.Int(4),
             Spa: true,
         },
     })
@@ -823,7 +817,7 @@ func main() {
                     ProbePlatforms: []components.DemProbePlatform{
                         components.DemProbePlatformAws,
                     },
-                    TestFromAll: swov1.Pointer(true),
+                    TestFromAll: swov1.Bool(true),
                 },
                 TestFrom: components.DemTestFrom{
                     Type: components.TypeRegion,
@@ -845,9 +839,9 @@ func main() {
                     components.DemWebsiteProtocolHTTPS,
                 },
                 Ssl: &components.Ssl{
-                    Enabled: swov1.Pointer(true),
-                    DaysPriorToExpiration: swov1.Pointer[int](7),
-                    IgnoreIntermediateCertificates: swov1.Pointer(true),
+                    Enabled: swov1.Bool(true),
+                    DaysPriorToExpiration: swov1.Int(7),
+                    IgnoreIntermediateCertificates: swov1.Bool(true),
                 },
                 CustomHeaders: []components.DemCustomHeaders{
                     components.DemCustomHeaders{
@@ -855,8 +849,8 @@ func main() {
                         Value: "string",
                     },
                 },
-                AllowInsecureRenegotiation: swov1.Pointer(true),
-                PostData: swov1.Pointer("{\"example\": \"value\"}"),
+                AllowInsecureRenegotiation: swov1.Bool(true),
+                PostData: swov1.String("{\"example\": \"value\"}"),
             },
             Tags: []components.CommonTag{
                 components.CommonTag{
@@ -865,7 +859,7 @@ func main() {
                 },
             },
             Rum: &components.Rum{
-                ApdexTimeInSeconds: swov1.Pointer[int](4),
+                ApdexTimeInSeconds: swov1.Int(4),
                 Spa: true,
             },
         },
