@@ -23,65 +23,65 @@ type ChangeEventsChangeEvent struct {
 	Links []CommonLink `json:"links,omitempty"`
 }
 
-func (c *ChangeEventsChangeEvent) GetID() *int64 {
-	if c == nil {
+func (o *ChangeEventsChangeEvent) GetID() *int64 {
+	if o == nil {
 		return nil
 	}
-	return c.ID
+	return o.ID
 }
 
-func (c *ChangeEventsChangeEvent) GetName() string {
-	if c == nil {
+func (o *ChangeEventsChangeEvent) GetName() string {
+	if o == nil {
 		return ""
 	}
-	return c.Name
+	return o.Name
 }
 
-func (c *ChangeEventsChangeEvent) GetTitle() string {
-	if c == nil {
+func (o *ChangeEventsChangeEvent) GetTitle() string {
+	if o == nil {
 		return ""
 	}
-	return c.Title
+	return o.Title
 }
 
-func (c *ChangeEventsChangeEvent) GetTimestamp() *int64 {
-	if c == nil {
+func (o *ChangeEventsChangeEvent) GetTimestamp() *int64 {
+	if o == nil {
 		return nil
 	}
-	return c.Timestamp
+	return o.Timestamp
 }
 
-func (c *ChangeEventsChangeEvent) GetSource() *string {
-	if c == nil {
+func (o *ChangeEventsChangeEvent) GetSource() *string {
+	if o == nil {
 		return nil
 	}
-	return c.Source
+	return o.Source
 }
 
-func (c *ChangeEventsChangeEvent) GetDescription() *string {
-	if c == nil {
+func (o *ChangeEventsChangeEvent) GetDescription() *string {
+	if o == nil {
 		return nil
 	}
-	return c.Description
+	return o.Description
 }
 
-func (c *ChangeEventsChangeEvent) GetParentEventID() *int64 {
-	if c == nil {
+func (o *ChangeEventsChangeEvent) GetParentEventID() *int64 {
+	if o == nil {
 		return nil
 	}
-	return c.ParentEventID
+	return o.ParentEventID
 }
 
-func (c *ChangeEventsChangeEvent) GetTags() map[string]string {
-	if c == nil {
+func (o *ChangeEventsChangeEvent) GetTags() map[string]string {
+	if o == nil {
 		return nil
 	}
-	return c.Tags
+	return o.Tags
 }
 
-func (c *ChangeEventsChangeEvent) GetLinks() []CommonLink {
-	if c == nil {
+func (o *ChangeEventsChangeEvent) GetLinks() []CommonLink {
+	if o == nil {
 		return nil
 	}
-	return c.Links
+	return o.Links
 }

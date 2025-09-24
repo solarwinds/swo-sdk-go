@@ -33,44 +33,44 @@ func (c *CommonMetricInfo) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (c *CommonMetricInfo) GetName() string {
-	if c == nil {
+func (o *CommonMetricInfo) GetName() string {
+	if o == nil {
 		return ""
 	}
-	return c.Name
+	return o.Name
 }
 
-func (c *CommonMetricInfo) GetDisplayName() *string {
-	if c == nil {
+func (o *CommonMetricInfo) GetDisplayName() *string {
+	if o == nil {
 		return nil
 	}
-	return c.DisplayName
+	return o.DisplayName
 }
 
-func (c *CommonMetricInfo) GetDescription() *string {
-	if c == nil {
+func (o *CommonMetricInfo) GetDescription() *string {
+	if o == nil {
 		return nil
 	}
-	return c.Description
+	return o.Description
 }
 
-func (c *CommonMetricInfo) GetUnits() *string {
-	if c == nil {
+func (o *CommonMetricInfo) GetUnits() *string {
+	if o == nil {
 		return nil
 	}
-	return c.Units
+	return o.Units
 }
 
-func (c *CommonMetricInfo) GetFormula() *string {
-	if c == nil {
+func (o *CommonMetricInfo) GetFormula() *string {
+	if o == nil {
 		return nil
 	}
-	return c.Formula
+	return o.Formula
 }
 
-func (c *CommonMetricInfo) GetLastReportedTime() *time.Time {
-	if c == nil {
+func (o *CommonMetricInfo) GetLastReportedTime() *time.Time {
+	if o == nil {
 		return nil
 	}
-	return c.LastReportedTime
+	return o.LastReportedTime
 }

@@ -12,16 +12,16 @@ type UpdateAwsIntegrationResponse struct {
 	CloudAccountsAwsUpdateIntegrationResponse *components.CloudAccountsAwsUpdateIntegrationResponse
 }
 
-func (u *UpdateAwsIntegrationResponse) GetHTTPMeta() components.HTTPMetadata {
-	if u == nil {
+func (o *UpdateAwsIntegrationResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
 		return components.HTTPMetadata{}
 	}
-	return u.HTTPMeta
+	return o.HTTPMeta
 }
 
-func (u *UpdateAwsIntegrationResponse) GetCloudAccountsAwsUpdateIntegrationResponse() *components.CloudAccountsAwsUpdateIntegrationResponse {
-	if u == nil {
+func (o *UpdateAwsIntegrationResponse) GetCloudAccountsAwsUpdateIntegrationResponse() *components.CloudAccountsAwsUpdateIntegrationResponse {
+	if o == nil {
 		return nil
 	}
-	return u.CloudAccountsAwsUpdateIntegrationResponse
+	return o.CloudAccountsAwsUpdateIntegrationResponse
 }

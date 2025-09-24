@@ -10,11 +10,11 @@ type DeleteURIRequest struct {
 	EntityID string `pathParam:"style=simple,explode=false,name=entityId"`
 }
 
-func (d *DeleteURIRequest) GetEntityID() string {
-	if d == nil {
+func (o *DeleteURIRequest) GetEntityID() string {
+	if o == nil {
 		return ""
 	}
-	return d.EntityID
+	return o.EntityID
 }
 
 type DeleteURIResponse struct {
@@ -23,16 +23,16 @@ type DeleteURIResponse struct {
 	CommonEntityID *components.CommonEntityID
 }
 
-func (d *DeleteURIResponse) GetHTTPMeta() components.HTTPMetadata {
-	if d == nil {
+func (o *DeleteURIResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
 		return components.HTTPMetadata{}
 	}
-	return d.HTTPMeta
+	return o.HTTPMeta
 }
 
-func (d *DeleteURIResponse) GetCommonEntityID() *components.CommonEntityID {
-	if d == nil {
+func (o *DeleteURIResponse) GetCommonEntityID() *components.CommonEntityID {
+	if o == nil {
 		return nil
 	}
-	return d.CommonEntityID
+	return o.CommonEntityID
 }

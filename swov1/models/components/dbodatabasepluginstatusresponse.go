@@ -7,9 +7,9 @@ type DboDatabasePluginStatusResponse struct {
 	Plugins []DboDatabasePluginStatus `json:"plugins"`
 }
 
-func (d *DboDatabasePluginStatusResponse) GetPlugins() []DboDatabasePluginStatus {
-	if d == nil {
+func (o *DboDatabasePluginStatusResponse) GetPlugins() []DboDatabasePluginStatus {
+	if o == nil {
 		return []DboDatabasePluginStatus{}
 	}
-	return d.Plugins
+	return o.Plugins
 }

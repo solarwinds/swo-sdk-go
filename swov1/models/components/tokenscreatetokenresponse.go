@@ -7,9 +7,9 @@ type TokensCreateTokenResponse struct {
 	Token string `json:"token"`
 }
 
-func (t *TokensCreateTokenResponse) GetToken() string {
-	if t == nil {
+func (o *TokensCreateTokenResponse) GetToken() string {
+	if o == nil {
 		return ""
 	}
-	return t.Token
+	return o.Token
 }

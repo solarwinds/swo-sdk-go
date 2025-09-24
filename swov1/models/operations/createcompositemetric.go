@@ -12,16 +12,16 @@ type CreateCompositeMetricResponse struct {
 	MetricsCompositeMetric *components.MetricsCompositeMetric
 }
 
-func (c *CreateCompositeMetricResponse) GetHTTPMeta() components.HTTPMetadata {
-	if c == nil {
+func (o *CreateCompositeMetricResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
 		return components.HTTPMetadata{}
 	}
-	return c.HTTPMeta
+	return o.HTTPMeta
 }
 
-func (c *CreateCompositeMetricResponse) GetMetricsCompositeMetric() *components.MetricsCompositeMetric {
-	if c == nil {
+func (o *CreateCompositeMetricResponse) GetMetricsCompositeMetric() *components.MetricsCompositeMetric {
+	if o == nil {
 		return nil
 	}
-	return c.MetricsCompositeMetric
+	return o.MetricsCompositeMetric
 }

@@ -11,23 +11,23 @@ type DboDatabasePluginStatus struct {
 	HealthStatus string `json:"healthStatus"`
 }
 
-func (d *DboDatabasePluginStatus) GetPluginName() string {
-	if d == nil {
+func (o *DboDatabasePluginStatus) GetPluginName() string {
+	if o == nil {
 		return ""
 	}
-	return d.PluginName
+	return o.PluginName
 }
 
-func (d *DboDatabasePluginStatus) GetDeploymentStatus() string {
-	if d == nil {
+func (o *DboDatabasePluginStatus) GetDeploymentStatus() string {
+	if o == nil {
 		return ""
 	}
-	return d.DeploymentStatus
+	return o.DeploymentStatus
 }
 
-func (d *DboDatabasePluginStatus) GetHealthStatus() string {
-	if d == nil {
+func (o *DboDatabasePluginStatus) GetHealthStatus() string {
+	if o == nil {
 		return ""
 	}
-	return d.HealthStatus
+	return o.HealthStatus
 }

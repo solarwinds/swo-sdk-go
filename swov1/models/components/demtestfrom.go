@@ -44,16 +44,16 @@ type DemTestFrom struct {
 	Values []string `json:"values"`
 }
 
-func (d *DemTestFrom) GetType() Type {
-	if d == nil {
+func (o *DemTestFrom) GetType() Type {
+	if o == nil {
 		return Type("")
 	}
-	return d.Type
+	return o.Type
 }
 
-func (d *DemTestFrom) GetValues() []string {
-	if d == nil {
+func (o *DemTestFrom) GetValues() []string {
+	if o == nil {
 		return []string{}
 	}
-	return d.Values
+	return o.Values
 }

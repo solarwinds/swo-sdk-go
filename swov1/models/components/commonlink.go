@@ -8,23 +8,23 @@ type CommonLink struct {
 	Label *string `json:"label,omitempty"`
 }
 
-func (c *CommonLink) GetRel() string {
-	if c == nil {
+func (o *CommonLink) GetRel() string {
+	if o == nil {
 		return ""
 	}
-	return c.Rel
+	return o.Rel
 }
 
-func (c *CommonLink) GetHref() string {
-	if c == nil {
+func (o *CommonLink) GetHref() string {
+	if o == nil {
 		return ""
 	}
-	return c.Href
+	return o.Href
 }
 
-func (c *CommonLink) GetLabel() *string {
-	if c == nil {
+func (o *CommonLink) GetLabel() *string {
+	if o == nil {
 		return nil
 	}
-	return c.Label
+	return o.Label
 }

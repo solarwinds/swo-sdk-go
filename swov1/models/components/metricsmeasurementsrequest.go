@@ -180,72 +180,72 @@ func (m *MetricsMeasurementsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (m *MetricsMeasurementsRequest) GetID() *string {
-	if m == nil {
+func (o *MetricsMeasurementsRequest) GetID() *string {
+	if o == nil {
 		return nil
 	}
-	return m.ID
+	return o.ID
 }
 
-func (m *MetricsMeasurementsRequest) GetName() string {
-	if m == nil {
+func (o *MetricsMeasurementsRequest) GetName() string {
+	if o == nil {
 		return ""
 	}
-	return m.Name
+	return o.Name
 }
 
-func (m *MetricsMeasurementsRequest) GetFilter() *string {
-	if m == nil {
+func (o *MetricsMeasurementsRequest) GetFilter() *string {
+	if o == nil {
 		return nil
 	}
-	return m.Filter
+	return o.Filter
 }
 
-func (m *MetricsMeasurementsRequest) GetGroupBy() []string {
-	if m == nil {
+func (o *MetricsMeasurementsRequest) GetGroupBy() []string {
+	if o == nil {
 		return nil
 	}
-	return m.GroupBy
+	return o.GroupBy
 }
 
-func (m *MetricsMeasurementsRequest) GetAggregateBy() *AggregateBy {
-	if m == nil {
+func (o *MetricsMeasurementsRequest) GetAggregateBy() *AggregateBy {
+	if o == nil {
 		return nil
 	}
-	return m.AggregateBy
+	return o.AggregateBy
 }
 
-func (m *MetricsMeasurementsRequest) GetPreGroupBy() []string {
-	if m == nil {
+func (o *MetricsMeasurementsRequest) GetPreGroupBy() []string {
+	if o == nil {
 		return nil
 	}
-	return m.PreGroupBy
+	return o.PreGroupBy
 }
 
-func (m *MetricsMeasurementsRequest) GetPreGroupByMethod() *PreGroupByMethod {
-	if m == nil {
+func (o *MetricsMeasurementsRequest) GetPreGroupByMethod() *PreGroupByMethod {
+	if o == nil {
 		return nil
 	}
-	return m.PreGroupByMethod
+	return o.PreGroupByMethod
 }
 
-func (m *MetricsMeasurementsRequest) GetSeriesType() *SeriesType {
-	if m == nil {
+func (o *MetricsMeasurementsRequest) GetSeriesType() *SeriesType {
+	if o == nil {
 		return nil
 	}
-	return m.SeriesType
+	return o.SeriesType
 }
 
-func (m *MetricsMeasurementsRequest) GetFillMethod() *FillMethod {
-	if m == nil {
+func (o *MetricsMeasurementsRequest) GetFillMethod() *FillMethod {
+	if o == nil {
 		return nil
 	}
-	return m.FillMethod
+	return o.FillMethod
 }
 
-func (m *MetricsMeasurementsRequest) GetFillIfEmpty() *bool {
-	if m == nil {
+func (o *MetricsMeasurementsRequest) GetFillIfEmpty() *bool {
+	if o == nil {
 		return nil
 	}
-	return m.FillIfEmpty
+	return o.FillIfEmpty
 }

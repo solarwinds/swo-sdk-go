@@ -13,16 +13,16 @@ type HTTPMetadata struct {
 	Request *http.Request `json:"-"`
 }
 
-func (h *HTTPMetadata) GetResponse() *http.Response {
-	if h == nil {
+func (o *HTTPMetadata) GetResponse() *http.Response {
+	if o == nil {
 		return nil
 	}
-	return h.Response
+	return o.Response
 }
 
-func (h *HTTPMetadata) GetRequest() *http.Request {
-	if h == nil {
+func (o *HTTPMetadata) GetRequest() *http.Request {
+	if o == nil {
 		return nil
 	}
-	return h.Request
+	return o.Request
 }

@@ -73,11 +73,11 @@ func main() {
 	)
 
 	res, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEventsChangeEvent{
-		ID:        swov1.Pointer[int64](1731676626),
+		ID:        swov1.Int64(1731676626),
 		Name:      "app-deploys",
 		Title:     "deployed v45",
-		Timestamp: swov1.Pointer[int64](1731676626),
-		Source:    swov1.Pointer("foo3.example.com"),
+		Timestamp: swov1.Int64(1731676626),
+		Source:    swov1.String("foo3.example.com"),
 		Tags: map[string]string{
 			"app":         "foo",
 			"environment": "production",
@@ -131,11 +131,11 @@ func main() {
 	)
 
 	res, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEventsChangeEvent{
-		ID:        swov1.Pointer[int64](1731676626),
+		ID:        swov1.Int64(1731676626),
 		Name:      "app-deploys",
 		Title:     "deployed v45",
-		Timestamp: swov1.Pointer[int64](1731676626),
-		Source:    swov1.Pointer("foo3.example.com"),
+		Timestamp: swov1.Int64(1731676626),
+		Source:    swov1.String("foo3.example.com"),
 		Tags: map[string]string{
 			"app":         "foo",
 			"environment": "production",
@@ -318,11 +318,11 @@ func main() {
 	)
 
 	res, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEventsChangeEvent{
-		ID:        swov1.Pointer[int64](1731676626),
+		ID:        swov1.Int64(1731676626),
 		Name:      "app-deploys",
 		Title:     "deployed v45",
-		Timestamp: swov1.Pointer[int64](1731676626),
-		Source:    swov1.Pointer("foo3.example.com"),
+		Timestamp: swov1.Int64(1731676626),
+		Source:    swov1.String("foo3.example.com"),
 		Tags: map[string]string{
 			"app":         "foo",
 			"environment": "production",
@@ -386,11 +386,11 @@ func main() {
 	)
 
 	res, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEventsChangeEvent{
-		ID:        swov1.Pointer[int64](1731676626),
+		ID:        swov1.Int64(1731676626),
 		Name:      "app-deploys",
 		Title:     "deployed v45",
-		Timestamp: swov1.Pointer[int64](1731676626),
-		Source:    swov1.Pointer("foo3.example.com"),
+		Timestamp: swov1.Int64(1731676626),
+		Source:    swov1.String("foo3.example.com"),
 		Tags: map[string]string{
 			"app":         "foo",
 			"environment": "production",
@@ -452,11 +452,11 @@ func main() {
 	)
 
 	res, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEventsChangeEvent{
-		ID:        swov1.Pointer[int64](1731676626),
+		ID:        swov1.Int64(1731676626),
 		Name:      "app-deploys",
 		Title:     "deployed v45",
-		Timestamp: swov1.Pointer[int64](1731676626),
-		Source:    swov1.Pointer("foo3.example.com"),
+		Timestamp: swov1.Int64(1731676626),
+		Source:    swov1.String("foo3.example.com"),
 		Tags: map[string]string{
 			"app":         "foo",
 			"environment": "production",
@@ -532,11 +532,11 @@ func main() {
 	)
 
 	res, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEventsChangeEvent{
-		ID:        swov1.Pointer[int64](1731676626),
+		ID:        swov1.Int64(1731676626),
 		Name:      "app-deploys",
 		Title:     "deployed v45",
-		Timestamp: swov1.Pointer[int64](1731676626),
-		Source:    swov1.Pointer("foo3.example.com"),
+		Timestamp: swov1.Int64(1731676626),
+		Source:    swov1.String("foo3.example.com"),
 		Tags: map[string]string{
 			"app":         "foo",
 			"environment": "production",
@@ -581,11 +581,11 @@ func main() {
 	)
 
 	res, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEventsChangeEvent{
-		ID:        swov1.Pointer[int64](1731676626),
+		ID:        swov1.Int64(1731676626),
 		Name:      "app-deploys",
 		Title:     "deployed v45",
-		Timestamp: swov1.Pointer[int64](1731676626),
-		Source:    swov1.Pointer("foo3.example.com"),
+		Timestamp: swov1.Int64(1731676626),
+		Source:    swov1.String("foo3.example.com"),
 		Tags: map[string]string{
 			"app":         "foo",
 			"environment": "production",

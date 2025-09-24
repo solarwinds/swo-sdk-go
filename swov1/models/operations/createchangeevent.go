@@ -11,11 +11,11 @@ type CreateChangeEventResponseBody struct {
 	ID int64 `json:"id"`
 }
 
-func (c *CreateChangeEventResponseBody) GetID() int64 {
-	if c == nil {
+func (o *CreateChangeEventResponseBody) GetID() int64 {
+	if o == nil {
 		return 0
 	}
-	return c.ID
+	return o.ID
 }
 
 type CreateChangeEventResponse struct {
@@ -24,16 +24,16 @@ type CreateChangeEventResponse struct {
 	Object *CreateChangeEventResponseBody
 }
 
-func (c *CreateChangeEventResponse) GetHTTPMeta() components.HTTPMetadata {
-	if c == nil {
+func (o *CreateChangeEventResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
 		return components.HTTPMetadata{}
 	}
-	return c.HTTPMeta
+	return o.HTTPMeta
 }
 
-func (c *CreateChangeEventResponse) GetObject() *CreateChangeEventResponseBody {
-	if c == nil {
+func (o *CreateChangeEventResponse) GetObject() *CreateChangeEventResponseBody {
+	if o == nil {
 		return nil
 	}
-	return c.Object
+	return o.Object
 }

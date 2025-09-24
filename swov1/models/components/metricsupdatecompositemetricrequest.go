@@ -13,30 +13,30 @@ type MetricsUpdateCompositeMetricRequest struct {
 	Units *string `json:"units,omitempty"`
 }
 
-func (m *MetricsUpdateCompositeMetricRequest) GetDisplayName() *string {
-	if m == nil {
+func (o *MetricsUpdateCompositeMetricRequest) GetDisplayName() *string {
+	if o == nil {
 		return nil
 	}
-	return m.DisplayName
+	return o.DisplayName
 }
 
-func (m *MetricsUpdateCompositeMetricRequest) GetDescription() *string {
-	if m == nil {
+func (o *MetricsUpdateCompositeMetricRequest) GetDescription() *string {
+	if o == nil {
 		return nil
 	}
-	return m.Description
+	return o.Description
 }
 
-func (m *MetricsUpdateCompositeMetricRequest) GetFormula() string {
-	if m == nil {
+func (o *MetricsUpdateCompositeMetricRequest) GetFormula() string {
+	if o == nil {
 		return ""
 	}
-	return m.Formula
+	return o.Formula
 }
 
-func (m *MetricsUpdateCompositeMetricRequest) GetUnits() *string {
-	if m == nil {
+func (o *MetricsUpdateCompositeMetricRequest) GetUnits() *string {
+	if o == nil {
 		return nil
 	}
-	return m.Units
+	return o.Units
 }

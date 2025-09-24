@@ -30,37 +30,37 @@ func (d *DboUpdateDatabaseRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (d *DboUpdateDatabaseRequest) GetName() *string {
-	if d == nil {
+func (o *DboUpdateDatabaseRequest) GetName() *string {
+	if o == nil {
 		return nil
 	}
-	return d.Name
+	return o.Name
 }
 
-func (d *DboUpdateDatabaseRequest) GetConfigOptions() []CommonKeyValuePair {
-	if d == nil {
+func (o *DboUpdateDatabaseRequest) GetConfigOptions() []CommonKeyValuePair {
+	if o == nil {
 		return nil
 	}
-	return d.ConfigOptions
+	return o.ConfigOptions
 }
 
-func (d *DboUpdateDatabaseRequest) GetDbConnOptions() *DboDatabaseConnectionOptionsUpdate {
-	if d == nil {
+func (o *DboUpdateDatabaseRequest) GetDbConnOptions() *DboDatabaseConnectionOptionsUpdate {
+	if o == nil {
 		return nil
 	}
-	return d.DbConnOptions
+	return o.DbConnOptions
 }
 
-func (d *DboUpdateDatabaseRequest) GetTags() []CommonKeyValuePair {
-	if d == nil {
+func (o *DboUpdateDatabaseRequest) GetTags() []CommonKeyValuePair {
+	if o == nil {
 		return nil
 	}
-	return d.Tags
+	return o.Tags
 }
 
-func (d *DboUpdateDatabaseRequest) GetDeployedOn() []string {
-	if d == nil {
+func (o *DboUpdateDatabaseRequest) GetDeployedOn() []string {
+	if o == nil {
 		return nil
 	}
-	return d.DeployedOn
+	return o.DeployedOn
 }
