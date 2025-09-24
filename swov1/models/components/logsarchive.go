@@ -15,37 +15,37 @@ type LogsArchive struct {
 	ArchiveSize int `json:"archiveSize"`
 }
 
-func (o *LogsArchive) GetID() string {
-	if o == nil {
+func (l *LogsArchive) GetID() string {
+	if l == nil {
 		return ""
 	}
-	return o.ID
+	return l.ID
 }
 
-func (o *LogsArchive) GetName() string {
-	if o == nil {
+func (l *LogsArchive) GetName() string {
+	if l == nil {
 		return ""
 	}
-	return o.Name
+	return l.Name
 }
 
-func (o *LogsArchive) GetDownloadURL() string {
-	if o == nil {
+func (l *LogsArchive) GetDownloadURL() string {
+	if l == nil {
 		return ""
 	}
-	return o.DownloadURL
+	return l.DownloadURL
 }
 
-func (o *LogsArchive) GetArchivedTimestamp() string {
-	if o == nil {
+func (l *LogsArchive) GetArchivedTimestamp() string {
+	if l == nil {
 		return ""
 	}
-	return o.ArchivedTimestamp
+	return l.ArchivedTimestamp
 }
 
-func (o *LogsArchive) GetArchiveSize() int {
-	if o == nil {
+func (l *LogsArchive) GetArchiveSize() int {
+	if l == nil {
 		return 0
 	}
-	return o.ArchiveSize
+	return l.ArchiveSize
 }

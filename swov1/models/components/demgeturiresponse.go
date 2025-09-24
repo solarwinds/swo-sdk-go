@@ -80,86 +80,86 @@ func (d *DemGetURIResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *DemGetURIResponse) GetID() string {
-	if o == nil {
+func (d *DemGetURIResponse) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ID
+	return d.ID
 }
 
-func (o *DemGetURIResponse) GetType() string {
-	if o == nil {
+func (d *DemGetURIResponse) GetType() string {
+	if d == nil {
 		return ""
 	}
-	return o.Type
+	return d.Type
 }
 
-func (o *DemGetURIResponse) GetStatus() Status {
-	if o == nil {
+func (d *DemGetURIResponse) GetStatus() Status {
+	if d == nil {
 		return Status("")
 	}
-	return o.Status
+	return d.Status
 }
 
-func (o *DemGetURIResponse) GetName() string {
-	if o == nil {
+func (d *DemGetURIResponse) GetName() string {
+	if d == nil {
 		return ""
 	}
-	return o.Name
+	return d.Name
 }
 
-func (o *DemGetURIResponse) GetIPOrDomain() string {
-	if o == nil {
+func (d *DemGetURIResponse) GetIPOrDomain() string {
+	if d == nil {
 		return ""
 	}
-	return o.IPOrDomain
+	return d.IPOrDomain
 }
 
-func (o *DemGetURIResponse) GetAvailabilityCheckSettings() DemURIAvailabilityCheckSettings {
-	if o == nil {
+func (d *DemGetURIResponse) GetAvailabilityCheckSettings() DemURIAvailabilityCheckSettings {
+	if d == nil {
 		return DemURIAvailabilityCheckSettings{}
 	}
-	return o.AvailabilityCheckSettings
+	return d.AvailabilityCheckSettings
 }
 
-func (o *DemGetURIResponse) GetTags() []CommonTag {
-	if o == nil {
+func (d *DemGetURIResponse) GetTags() []CommonTag {
+	if d == nil {
 		return nil
 	}
-	return o.Tags
+	return d.Tags
 }
 
-func (o *DemGetURIResponse) GetLastOutageStartTime() *time.Time {
-	if o == nil {
+func (d *DemGetURIResponse) GetLastOutageStartTime() *time.Time {
+	if d == nil {
 		return nil
 	}
-	return o.LastOutageStartTime
+	return d.LastOutageStartTime
 }
 
-func (o *DemGetURIResponse) GetLastOutageEndTime() *time.Time {
-	if o == nil {
+func (d *DemGetURIResponse) GetLastOutageEndTime() *time.Time {
+	if d == nil {
 		return nil
 	}
-	return o.LastOutageEndTime
+	return d.LastOutageEndTime
 }
 
-func (o *DemGetURIResponse) GetLastTestTime() *time.Time {
-	if o == nil {
+func (d *DemGetURIResponse) GetLastTestTime() *time.Time {
+	if d == nil {
 		return nil
 	}
-	return o.LastTestTime
+	return d.LastTestTime
 }
 
-func (o *DemGetURIResponse) GetLastErrorTime() *time.Time {
-	if o == nil {
+func (d *DemGetURIResponse) GetLastErrorTime() *time.Time {
+	if d == nil {
 		return nil
 	}
-	return o.LastErrorTime
+	return d.LastErrorTime
 }
 
-func (o *DemGetURIResponse) GetLastResponseTime() *int {
-	if o == nil {
+func (d *DemGetURIResponse) GetLastResponseTime() *int {
+	if d == nil {
 		return nil
 	}
-	return o.LastResponseTime
+	return d.LastResponseTime
 }

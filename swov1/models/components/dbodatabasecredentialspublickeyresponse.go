@@ -8,9 +8,9 @@ type DboDatabaseCredentialsPublicKeyResponse struct {
 	PublicKey string `json:"publicKey"`
 }
 
-func (o *DboDatabaseCredentialsPublicKeyResponse) GetPublicKey() string {
-	if o == nil {
+func (d *DboDatabaseCredentialsPublicKeyResponse) GetPublicKey() string {
+	if d == nil {
 		return ""
 	}
-	return o.PublicKey
+	return d.PublicKey
 }

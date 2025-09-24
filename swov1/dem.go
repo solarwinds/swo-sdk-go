@@ -458,12 +458,12 @@ func (s *Dem) GetDemSettings(ctx context.Context, opts ...operations.Option) (*o
 				return nil, err
 			}
 
-			var out components.DemOutageConfiguration
+			var out components.DemOrganizationSettings
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DemOutageConfiguration = &out
+			res.DemOrganizationSettings = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -538,7 +538,7 @@ func (s *Dem) GetDemSettings(ctx context.Context, opts ...operations.Option) (*o
 }
 
 // SetDemSettings - Set DEM settings
-func (s *Dem) SetDemSettings(ctx context.Context, request components.DemOutageConfiguration, opts ...operations.Option) (*operations.SetDemSettingsResponse, error) {
+func (s *Dem) SetDemSettings(ctx context.Context, request components.DemOrganizationSettingsInput, opts ...operations.Option) (*operations.SetDemSettingsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
