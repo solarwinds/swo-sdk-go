@@ -52,18 +52,18 @@ type MonitoringOptions struct {
 	IsRumActive bool `json:"isRumActive"`
 }
 
-func (o *MonitoringOptions) GetIsAvailabilityActive() bool {
-	if o == nil {
+func (m *MonitoringOptions) GetIsAvailabilityActive() bool {
+	if m == nil {
 		return false
 	}
-	return o.IsAvailabilityActive
+	return m.IsAvailabilityActive
 }
 
-func (o *MonitoringOptions) GetIsRumActive() bool {
-	if o == nil {
+func (m *MonitoringOptions) GetIsRumActive() bool {
+	if m == nil {
 		return false
 	}
-	return o.IsRumActive
+	return m.IsRumActive
 }
 
 // DemGetWebsiteResponsePlatformOptions - Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, any available cloud platform may be chosen.
@@ -83,18 +83,18 @@ type DemGetWebsiteResponsePlatformOptions struct {
 	TestFromAll *bool `json:"testFromAll,omitempty"`
 }
 
-func (o *DemGetWebsiteResponsePlatformOptions) GetProbePlatforms() []DemProbePlatform {
-	if o == nil {
+func (d *DemGetWebsiteResponsePlatformOptions) GetProbePlatforms() []DemProbePlatform {
+	if d == nil {
 		return []DemProbePlatform{}
 	}
-	return o.ProbePlatforms
+	return d.ProbePlatforms
 }
 
-func (o *DemGetWebsiteResponsePlatformOptions) GetTestFromAll() *bool {
-	if o == nil {
+func (d *DemGetWebsiteResponsePlatformOptions) GetTestFromAll() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.TestFromAll
+	return d.TestFromAll
 }
 
 // DemGetWebsiteResponseFailingTestLocations - How many locations must report a failure for an entity to be considered down.
@@ -134,18 +134,18 @@ type DemGetWebsiteResponseOutageConfiguration struct {
 	ConsecutiveForDown int `json:"consecutiveForDown"`
 }
 
-func (o *DemGetWebsiteResponseOutageConfiguration) GetFailingTestLocations() DemGetWebsiteResponseFailingTestLocations {
-	if o == nil {
+func (d *DemGetWebsiteResponseOutageConfiguration) GetFailingTestLocations() DemGetWebsiteResponseFailingTestLocations {
+	if d == nil {
 		return DemGetWebsiteResponseFailingTestLocations("")
 	}
-	return o.FailingTestLocations
+	return d.FailingTestLocations
 }
 
-func (o *DemGetWebsiteResponseOutageConfiguration) GetConsecutiveForDown() int {
-	if o == nil {
+func (d *DemGetWebsiteResponseOutageConfiguration) GetConsecutiveForDown() int {
+	if d == nil {
 		return 0
 	}
-	return o.ConsecutiveForDown
+	return d.ConsecutiveForDown
 }
 
 // DemGetWebsiteResponseOperator - Defines whether the check should pass only when the string is present on the page (CONTAINS) or only when it is absent (DOES_NOT_CONTAIN).
@@ -187,18 +187,18 @@ type DemGetWebsiteResponseCheckForString struct {
 	Value string `json:"value"`
 }
 
-func (o *DemGetWebsiteResponseCheckForString) GetOperator() DemGetWebsiteResponseOperator {
-	if o == nil {
+func (d *DemGetWebsiteResponseCheckForString) GetOperator() DemGetWebsiteResponseOperator {
+	if d == nil {
 		return DemGetWebsiteResponseOperator("")
 	}
-	return o.Operator
+	return d.Operator
 }
 
-func (o *DemGetWebsiteResponseCheckForString) GetValue() string {
-	if o == nil {
+func (d *DemGetWebsiteResponseCheckForString) GetValue() string {
+	if d == nil {
 		return ""
 	}
-	return o.Value
+	return d.Value
 }
 
 // DemGetWebsiteResponseSsl -   Configure monitoring of SSL/TLS certificates validity. This option is relevant for HTTPS protocol only.
@@ -218,25 +218,25 @@ type DemGetWebsiteResponseSsl struct {
 	IgnoreIntermediateCertificates *bool `json:"ignoreIntermediateCertificates,omitempty"`
 }
 
-func (o *DemGetWebsiteResponseSsl) GetEnabled() *bool {
-	if o == nil {
+func (d *DemGetWebsiteResponseSsl) GetEnabled() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Enabled
+	return d.Enabled
 }
 
-func (o *DemGetWebsiteResponseSsl) GetDaysPriorToExpiration() *int {
-	if o == nil {
+func (d *DemGetWebsiteResponseSsl) GetDaysPriorToExpiration() *int {
+	if d == nil {
 		return nil
 	}
-	return o.DaysPriorToExpiration
+	return d.DaysPriorToExpiration
 }
 
-func (o *DemGetWebsiteResponseSsl) GetIgnoreIntermediateCertificates() *bool {
-	if o == nil {
+func (d *DemGetWebsiteResponseSsl) GetIgnoreIntermediateCertificates() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.IgnoreIntermediateCertificates
+	return d.IgnoreIntermediateCertificates
 }
 
 // DemGetWebsiteResponseAvailabilityCheckSettings -   Use this field to configure availability tests for the website.
@@ -276,74 +276,74 @@ type DemGetWebsiteResponseAvailabilityCheckSettings struct {
 	PostData *string `json:"postData,omitempty"`
 }
 
-func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetPlatformOptions() *DemGetWebsiteResponsePlatformOptions {
-	if o == nil {
+func (d *DemGetWebsiteResponseAvailabilityCheckSettings) GetPlatformOptions() *DemGetWebsiteResponsePlatformOptions {
+	if d == nil {
 		return nil
 	}
-	return o.PlatformOptions
+	return d.PlatformOptions
 }
 
-func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetTestFrom() DemTestFrom {
-	if o == nil {
+func (d *DemGetWebsiteResponseAvailabilityCheckSettings) GetTestFrom() DemTestFrom {
+	if d == nil {
 		return DemTestFrom{}
 	}
-	return o.TestFrom
+	return d.TestFrom
 }
 
-func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetTestIntervalInSeconds() float64 {
-	if o == nil {
+func (d *DemGetWebsiteResponseAvailabilityCheckSettings) GetTestIntervalInSeconds() float64 {
+	if d == nil {
 		return 0.0
 	}
-	return o.TestIntervalInSeconds
+	return d.TestIntervalInSeconds
 }
 
-func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetOutageConfiguration() *DemGetWebsiteResponseOutageConfiguration {
-	if o == nil {
+func (d *DemGetWebsiteResponseAvailabilityCheckSettings) GetOutageConfiguration() *DemGetWebsiteResponseOutageConfiguration {
+	if d == nil {
 		return nil
 	}
-	return o.OutageConfiguration
+	return d.OutageConfiguration
 }
 
-func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetCheckForString() *DemGetWebsiteResponseCheckForString {
-	if o == nil {
+func (d *DemGetWebsiteResponseAvailabilityCheckSettings) GetCheckForString() *DemGetWebsiteResponseCheckForString {
+	if d == nil {
 		return nil
 	}
-	return o.CheckForString
+	return d.CheckForString
 }
 
-func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetProtocols() []DemWebsiteProtocol {
-	if o == nil {
+func (d *DemGetWebsiteResponseAvailabilityCheckSettings) GetProtocols() []DemWebsiteProtocol {
+	if d == nil {
 		return []DemWebsiteProtocol{}
 	}
-	return o.Protocols
+	return d.Protocols
 }
 
-func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetSsl() *DemGetWebsiteResponseSsl {
-	if o == nil {
+func (d *DemGetWebsiteResponseAvailabilityCheckSettings) GetSsl() *DemGetWebsiteResponseSsl {
+	if d == nil {
 		return nil
 	}
-	return o.Ssl
+	return d.Ssl
 }
 
-func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetCustomHeaders() []DemCustomHeaders {
-	if o == nil {
+func (d *DemGetWebsiteResponseAvailabilityCheckSettings) GetCustomHeaders() []DemCustomHeaders {
+	if d == nil {
 		return nil
 	}
-	return o.CustomHeaders
+	return d.CustomHeaders
 }
 
-func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetAllowInsecureRenegotiation() *bool {
-	if o == nil {
+func (d *DemGetWebsiteResponseAvailabilityCheckSettings) GetAllowInsecureRenegotiation() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.AllowInsecureRenegotiation
+	return d.AllowInsecureRenegotiation
 }
 
-func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetPostData() *string {
-	if o == nil {
+func (d *DemGetWebsiteResponseAvailabilityCheckSettings) GetPostData() *string {
+	if d == nil {
 		return nil
 	}
-	return o.PostData
+	return d.PostData
 }
 
 // DemGetWebsiteResponseRum - Use this field to configure real user monitoring (RUM) for the website.
@@ -354,25 +354,25 @@ type DemGetWebsiteResponseRum struct {
 	Spa                bool    `json:"spa"`
 }
 
-func (o *DemGetWebsiteResponseRum) GetApdexTimeInSeconds() *int {
-	if o == nil {
+func (d *DemGetWebsiteResponseRum) GetApdexTimeInSeconds() *int {
+	if d == nil {
 		return nil
 	}
-	return o.ApdexTimeInSeconds
+	return d.ApdexTimeInSeconds
 }
 
-func (o *DemGetWebsiteResponseRum) GetSnippet() *string {
-	if o == nil {
+func (d *DemGetWebsiteResponseRum) GetSnippet() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Snippet
+	return d.Snippet
 }
 
-func (o *DemGetWebsiteResponseRum) GetSpa() bool {
-	if o == nil {
+func (d *DemGetWebsiteResponseRum) GetSpa() bool {
+	if d == nil {
 		return false
 	}
-	return o.Spa
+	return d.Spa
 }
 
 type DemGetWebsiteResponse struct {
@@ -419,107 +419,107 @@ func (d *DemGetWebsiteResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *DemGetWebsiteResponse) GetID() string {
-	if o == nil {
+func (d *DemGetWebsiteResponse) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ID
+	return d.ID
 }
 
-func (o *DemGetWebsiteResponse) GetType() string {
-	if o == nil {
+func (d *DemGetWebsiteResponse) GetType() string {
+	if d == nil {
 		return ""
 	}
-	return o.Type
+	return d.Type
 }
 
-func (o *DemGetWebsiteResponse) GetStatus() DemGetWebsiteResponseStatus {
-	if o == nil {
+func (d *DemGetWebsiteResponse) GetStatus() DemGetWebsiteResponseStatus {
+	if d == nil {
 		return DemGetWebsiteResponseStatus("")
 	}
-	return o.Status
+	return d.Status
 }
 
-func (o *DemGetWebsiteResponse) GetName() string {
-	if o == nil {
+func (d *DemGetWebsiteResponse) GetName() string {
+	if d == nil {
 		return ""
 	}
-	return o.Name
+	return d.Name
 }
 
-func (o *DemGetWebsiteResponse) GetURL() string {
-	if o == nil {
+func (d *DemGetWebsiteResponse) GetURL() string {
+	if d == nil {
 		return ""
 	}
-	return o.URL
+	return d.URL
 }
 
-func (o *DemGetWebsiteResponse) GetMonitoringOptions() MonitoringOptions {
-	if o == nil {
+func (d *DemGetWebsiteResponse) GetMonitoringOptions() MonitoringOptions {
+	if d == nil {
 		return MonitoringOptions{}
 	}
-	return o.MonitoringOptions
+	return d.MonitoringOptions
 }
 
-func (o *DemGetWebsiteResponse) GetAvailabilityCheckSettings() *DemGetWebsiteResponseAvailabilityCheckSettings {
-	if o == nil {
+func (d *DemGetWebsiteResponse) GetAvailabilityCheckSettings() *DemGetWebsiteResponseAvailabilityCheckSettings {
+	if d == nil {
 		return nil
 	}
-	return o.AvailabilityCheckSettings
+	return d.AvailabilityCheckSettings
 }
 
-func (o *DemGetWebsiteResponse) GetTags() []CommonTag {
-	if o == nil {
+func (d *DemGetWebsiteResponse) GetTags() []CommonTag {
+	if d == nil {
 		return nil
 	}
-	return o.Tags
+	return d.Tags
 }
 
-func (o *DemGetWebsiteResponse) GetRum() *DemGetWebsiteResponseRum {
-	if o == nil {
+func (d *DemGetWebsiteResponse) GetRum() *DemGetWebsiteResponseRum {
+	if d == nil {
 		return nil
 	}
-	return o.Rum
+	return d.Rum
 }
 
-func (o *DemGetWebsiteResponse) GetLastOutageStartTime() *time.Time {
-	if o == nil {
+func (d *DemGetWebsiteResponse) GetLastOutageStartTime() *time.Time {
+	if d == nil {
 		return nil
 	}
-	return o.LastOutageStartTime
+	return d.LastOutageStartTime
 }
 
-func (o *DemGetWebsiteResponse) GetLastOutageEndTime() *time.Time {
-	if o == nil {
+func (d *DemGetWebsiteResponse) GetLastOutageEndTime() *time.Time {
+	if d == nil {
 		return nil
 	}
-	return o.LastOutageEndTime
+	return d.LastOutageEndTime
 }
 
-func (o *DemGetWebsiteResponse) GetLastTestTime() *time.Time {
-	if o == nil {
+func (d *DemGetWebsiteResponse) GetLastTestTime() *time.Time {
+	if d == nil {
 		return nil
 	}
-	return o.LastTestTime
+	return d.LastTestTime
 }
 
-func (o *DemGetWebsiteResponse) GetLastErrorTime() *time.Time {
-	if o == nil {
+func (d *DemGetWebsiteResponse) GetLastErrorTime() *time.Time {
+	if d == nil {
 		return nil
 	}
-	return o.LastErrorTime
+	return d.LastErrorTime
 }
 
-func (o *DemGetWebsiteResponse) GetLastResponseTime() *int {
-	if o == nil {
+func (d *DemGetWebsiteResponse) GetLastResponseTime() *int {
+	if d == nil {
 		return nil
 	}
-	return o.LastResponseTime
+	return d.LastResponseTime
 }
 
-func (o *DemGetWebsiteResponse) GetNextOnDemandAvailabilityTime() *int {
-	if o == nil {
+func (d *DemGetWebsiteResponse) GetNextOnDemandAvailabilityTime() *int {
+	if d == nil {
 		return nil
 	}
-	return o.NextOnDemandAvailabilityTime
+	return d.NextOnDemandAvailabilityTime
 }

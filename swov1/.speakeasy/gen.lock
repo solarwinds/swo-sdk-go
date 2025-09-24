@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
-  docChecksum: 57bdea0d0a79128b0e2c4062a98aac69
-  docVersion: 1.0.9
-  speakeasyVersion: 1.606.10
-  generationVersion: 2.687.13
-  releaseVersion: 0.9.0
-  configChecksum: f8cab7fd34195a6875de945b36086d37
+  docChecksum: b725d7f7ad3a2d6e3df7d8fb7ee06bae
+  docVersion: 1.0.10
+  speakeasyVersion: 1.625.0
+  generationVersion: 2.715.0
+  releaseVersion: 0.10.0
+  configChecksum: 2397db6ab7d210bc641c8b8b2e5bd0ae
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
@@ -14,12 +14,12 @@ features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.9.3
+    core: 3.11.1
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
     envVarSecurityUsage: 0.3.2
-    globalSecurity: 2.82.11
+    globalSecurity: 2.82.12
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.3
@@ -27,12 +27,12 @@ features:
     inputOutputModels: 2.83.0
     intellisenseMarkdownSupport: 0.1.0
     mockServer: 0.1.1
-    nullables: 0.1.1
+    nullables: 0.2.0
     pagination: 2.82.4
     responseFormat: 0.1.2
     retries: 2.84.2
     sdkHooks: 0.2.0
-    tests: 0.16.1
+    tests: 0.16.2
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -78,6 +78,8 @@ generatedFiles:
   - /models/components/demgeturiresponse.go
   - /models/components/demgetwebsiteresponse.go
   - /models/components/demlistprobesresponse.go
+  - /models/components/demorganizationsettings.go
+  - /models/components/demorganizationsettingsinput.go
   - /models/components/demoutageconfiguration.go
   - /models/components/demprobe.go
   - /models/components/demprobeplatform.go
@@ -214,6 +216,8 @@ generatedFiles:
   - docs/models/components/demgetwebsiteresponsessl.md
   - docs/models/components/demgetwebsiteresponsestatus.md
   - docs/models/components/demlistprobesresponse.md
+  - docs/models/components/demorganizationsettings.md
+  - docs/models/components/demorganizationsettingsinput.md
   - docs/models/components/demoutageconfiguration.md
   - docs/models/components/demprobe.md
   - docs/models/components/demprobeplatform.md
@@ -387,6 +391,8 @@ generatedFiles:
   - metrics.go
   - models/apierrors/apierror.go
   - models/operations/options.go
+  - optionalnullable/optionalnullable.go
+  - optionalnullable/optionalnullable_test.go
   - retry/config.go
   - swo.go
   - tests/files.go
@@ -459,6 +465,8 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/components/demgeturiresponse.go
   - tests/mockserver/internal/sdk/models/components/demgetwebsiteresponse.go
   - tests/mockserver/internal/sdk/models/components/demlistprobesresponse.go
+  - tests/mockserver/internal/sdk/models/components/demorganizationsettings.go
+  - tests/mockserver/internal/sdk/models/components/demorganizationsettingsinput.go
   - tests/mockserver/internal/sdk/models/components/demoutageconfiguration.go
   - tests/mockserver/internal/sdk/models/components/demprobe.go
   - tests/mockserver/internal/sdk/models/components/demprobeplatform.go
@@ -748,7 +756,7 @@ examples:
     speakeasy-default-get-dem-settings:
       responses:
         "200":
-          application/json: {"failingTestLocations": "all", "consecutiveForDown": 2}
+          application/json: {"availabilityOutageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}, "transactionOutageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}}
         "401":
           application/json: {"message": "Error has occurred", "code": "Unauthorized"}
         "500":
@@ -756,7 +764,7 @@ examples:
   setDemSettings:
     speakeasy-default-set-dem-settings:
       requestBody:
-        application/json: {"failingTestLocations": "all", "consecutiveForDown": 2}
+        application/json: {"availabilityOutageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}, "transactionOutageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}}
       responses:
         "400":
           application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
@@ -1234,4 +1242,7 @@ generatedTests:
   deleteUri: "2025-05-13T00:19:34Z"
   pauseUriMonitoring: "2025-05-13T00:19:34Z"
   unpauseUriMonitoring: "2025-05-13T00:19:34Z"
-releaseNotes: "## SDK Changes Detected:\n* `Swo.Dem.GetWebsite()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.CloudAccounts.ActivateAwsIntegration()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.CloudAccounts.CreateOrgStructure()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.CloudAccounts.UpdateAwsIntegration()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.CloudAccounts.ValidateMgmtAccountOnboarding()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dbo.ObserveDatabase()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dbo.GetPublicKey()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dbo.DeleteDatabase()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dbo.UpdateDatabase()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dbo.GetPluginConfig()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dbo.GetPlugins()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dbo.PluginOperation()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.ListProbes()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Tokens.CreateToken()`: \n  *  `response` **Changed** **Breaking** :warning:\n  *  `error` **Changed**\n* `Swo.Metrics.ListMetricMeasurements()`: \n  *  `request.Request.AggregateBy` **Changed**\n  *  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.CreateUri()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.GetUri()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.UpdateUri()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.DeleteUri()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.PauseUriMonitoring()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Metrics.ListMetricAttributeValues()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.UnpauseUriMonitoring()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.CreateWebsite()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.UpdateWebsite()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.DeleteWebsite()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.PauseWebsiteMonitoring()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Dem.UnpauseWebsiteMonitoring()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Entities.ListEntities()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Entities.GetEntityById()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Entities.UpdateEntityById()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Metrics.ListMetricAttributes()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Metrics.DeleteCompositeMetric()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Metrics.UpdateCompositeMetric()`: \n  *  `response.status[202]` **Removed** **Breaking** :warning:\n  *  `error` **Changed** **Breaking** :warning:\n* `Swo.Metadata.ListMetricsForEntityType()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Metrics.GetMetricByName()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Metrics.CreateCompositeMetric()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Metrics.ListMultiMetricMeasurements()`:  `error` **Changed** **Breaking** :warning:\n* `Swo.Metrics.ListMetrics()`:  `error` **Changed**\n* `Swo.Metadata.ListEntityTypes()`:  `error` **Changed**\n* `Swo.Logs.ListLogArchives()`:  `error` **Changed**\n* `Swo.Logs.SearchLogs()`:  `error` **Changed**\n* `Swo.ChangeEvents.CreateChangeEvent()`:  `error` **Changed**\n* `Swo.Dem.SetDemSettings()`:  `error` **Changed**\n* `Swo.Dem.GetDemSettings()`:  `error` **Changed**\n"
+releaseNotes: |
+  ## Go SDK Changes Detected:
+  * `Swo.Dem.GetDemSettings()`:  `response` **Changed** **Breaking** :warning:
+  * `Swo.Dem.SetDemSettings()`:  `request.Request` **Changed** **Breaking** :warning:

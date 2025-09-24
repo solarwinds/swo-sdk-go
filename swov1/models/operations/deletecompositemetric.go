@@ -11,20 +11,20 @@ type DeleteCompositeMetricRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
-func (o *DeleteCompositeMetricRequest) GetName() string {
-	if o == nil {
+func (d *DeleteCompositeMetricRequest) GetName() string {
+	if d == nil {
 		return ""
 	}
-	return o.Name
+	return d.Name
 }
 
 type DeleteCompositeMetricResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-func (o *DeleteCompositeMetricResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (d *DeleteCompositeMetricResponse) GetHTTPMeta() components.HTTPMetadata {
+	if d == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return d.HTTPMeta
 }

@@ -9,7 +9,7 @@ import (
 type GetDemSettingsResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The request has succeeded.
-	DemOutageConfiguration *components.DemOutageConfiguration
+	DemOrganizationSettings *components.DemOrganizationSettings
 }
 
 func (o *GetDemSettingsResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -19,9 +19,9 @@ func (o *GetDemSettingsResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *GetDemSettingsResponse) GetDemOutageConfiguration() *components.DemOutageConfiguration {
+func (o *GetDemSettingsResponse) GetDemOrganizationSettings() *components.DemOrganizationSettings {
 	if o == nil {
 		return nil
 	}
-	return o.DemOutageConfiguration
+	return o.DemOrganizationSettings
 }

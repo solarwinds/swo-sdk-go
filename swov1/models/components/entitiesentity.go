@@ -46,18 +46,18 @@ type Healthscore struct {
 	Category Category `json:"category"`
 }
 
-func (o *Healthscore) GetScore() int {
-	if o == nil {
+func (h *Healthscore) GetScore() int {
+	if h == nil {
 		return 0
 	}
-	return o.Score
+	return h.Score
 }
 
-func (o *Healthscore) GetCategory() Category {
-	if o == nil {
+func (h *Healthscore) GetCategory() Category {
+	if h == nil {
 		return Category("")
 	}
-	return o.Category
+	return h.Category
 }
 
 type EntitiesEntity struct {
@@ -95,79 +95,79 @@ func (e *EntitiesEntity) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *EntitiesEntity) GetID() string {
-	if o == nil {
+func (e *EntitiesEntity) GetID() string {
+	if e == nil {
 		return ""
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntitiesEntity) GetType() string {
-	if o == nil {
+func (e *EntitiesEntity) GetType() string {
+	if e == nil {
 		return ""
 	}
-	return o.Type
+	return e.Type
 }
 
-func (o *EntitiesEntity) GetName() *string {
-	if o == nil {
+func (e *EntitiesEntity) GetName() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Name
+	return e.Name
 }
 
-func (o *EntitiesEntity) GetDisplayName() *string {
-	if o == nil {
+func (e *EntitiesEntity) GetDisplayName() *string {
+	if e == nil {
 		return nil
 	}
-	return o.DisplayName
+	return e.DisplayName
 }
 
-func (o *EntitiesEntity) GetCreatedTime() *time.Time {
-	if o == nil {
+func (e *EntitiesEntity) GetCreatedTime() *time.Time {
+	if e == nil {
 		return nil
 	}
-	return o.CreatedTime
+	return e.CreatedTime
 }
 
-func (o *EntitiesEntity) GetUpdatedTime() *time.Time {
-	if o == nil {
+func (e *EntitiesEntity) GetUpdatedTime() *time.Time {
+	if e == nil {
 		return nil
 	}
-	return o.UpdatedTime
+	return e.UpdatedTime
 }
 
-func (o *EntitiesEntity) GetLastSeenTime() time.Time {
-	if o == nil {
+func (e *EntitiesEntity) GetLastSeenTime() time.Time {
+	if e == nil {
 		return time.Time{}
 	}
-	return o.LastSeenTime
+	return e.LastSeenTime
 }
 
-func (o *EntitiesEntity) GetInMaintenance() bool {
-	if o == nil {
+func (e *EntitiesEntity) GetInMaintenance() bool {
+	if e == nil {
 		return false
 	}
-	return o.InMaintenance
+	return e.InMaintenance
 }
 
-func (o *EntitiesEntity) GetHealthscore() *Healthscore {
-	if o == nil {
+func (e *EntitiesEntity) GetHealthscore() *Healthscore {
+	if e == nil {
 		return nil
 	}
-	return o.Healthscore
+	return e.Healthscore
 }
 
-func (o *EntitiesEntity) GetTags() map[string]*string {
-	if o == nil {
+func (e *EntitiesEntity) GetTags() map[string]*string {
+	if e == nil {
 		return map[string]*string{}
 	}
-	return o.Tags
+	return e.Tags
 }
 
-func (o *EntitiesEntity) GetAttributes() map[string]any {
-	if o == nil {
+func (e *EntitiesEntity) GetAttributes() map[string]any {
+	if e == nil {
 		return nil
 	}
-	return o.Attributes
+	return e.Attributes
 }
