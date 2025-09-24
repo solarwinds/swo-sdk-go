@@ -6,9 +6,9 @@ type CommonEntityID struct {
 	ID string `json:"id"`
 }
 
-func (o *CommonEntityID) GetID() string {
-	if o == nil {
+func (c *CommonEntityID) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }

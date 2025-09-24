@@ -60,30 +60,30 @@ func (d *DboDatabaseSslOptionsUpdate) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *DboDatabaseSslOptionsUpdate) GetSslMode() *DboDatabaseSslOptionsUpdateSslMode {
-	if o == nil {
+func (d *DboDatabaseSslOptionsUpdate) GetSslMode() *DboDatabaseSslOptionsUpdateSslMode {
+	if d == nil {
 		return nil
 	}
-	return o.SslMode
+	return d.SslMode
 }
 
-func (o *DboDatabaseSslOptionsUpdate) GetSslCAPath() *string {
-	if o == nil {
+func (d *DboDatabaseSslOptionsUpdate) GetSslCAPath() *string {
+	if d == nil {
 		return nil
 	}
-	return o.SslCAPath
+	return d.SslCAPath
 }
 
-func (o *DboDatabaseSslOptionsUpdate) GetSslKeyPath() *string {
-	if o == nil {
+func (d *DboDatabaseSslOptionsUpdate) GetSslKeyPath() *string {
+	if d == nil {
 		return nil
 	}
-	return o.SslKeyPath
+	return d.SslKeyPath
 }
 
-func (o *DboDatabaseSslOptionsUpdate) GetSslCertPath() *string {
-	if o == nil {
+func (d *DboDatabaseSslOptionsUpdate) GetSslCertPath() *string {
+	if d == nil {
 		return nil
 	}
-	return o.SslCertPath
+	return d.SslCertPath
 }

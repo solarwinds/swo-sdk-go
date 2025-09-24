@@ -12,16 +12,16 @@ type CreateTokenResponse struct {
 	TokensCreateTokenResponse *components.TokensCreateTokenResponse
 }
 
-func (o *CreateTokenResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (c *CreateTokenResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return c.HTTPMeta
 }
 
-func (o *CreateTokenResponse) GetTokensCreateTokenResponse() *components.TokensCreateTokenResponse {
-	if o == nil {
+func (c *CreateTokenResponse) GetTokensCreateTokenResponse() *components.TokensCreateTokenResponse {
+	if c == nil {
 		return nil
 	}
-	return o.TokensCreateTokenResponse
+	return c.TokensCreateTokenResponse
 }

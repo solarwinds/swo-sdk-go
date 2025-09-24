@@ -24,18 +24,18 @@ type PlatformOptions struct {
 	TestFromAll *bool `json:"testFromAll,omitempty"`
 }
 
-func (o *PlatformOptions) GetProbePlatforms() []DemProbePlatform {
-	if o == nil {
+func (p *PlatformOptions) GetProbePlatforms() []DemProbePlatform {
+	if p == nil {
 		return []DemProbePlatform{}
 	}
-	return o.ProbePlatforms
+	return p.ProbePlatforms
 }
 
-func (o *PlatformOptions) GetTestFromAll() *bool {
-	if o == nil {
+func (p *PlatformOptions) GetTestFromAll() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.TestFromAll
+	return p.TestFromAll
 }
 
 // DemURIAvailabilityCheckSettingsInputFailingTestLocations - How many locations must report a failure for an entity to be considered down.
@@ -98,11 +98,11 @@ type Ping struct {
 	Enabled bool `json:"enabled"`
 }
 
-func (o *Ping) GetEnabled() bool {
-	if o == nil {
+func (p *Ping) GetEnabled() bool {
+	if p == nil {
 		return false
 	}
-	return o.Enabled
+	return p.Enabled
 }
 
 // TCP -   Use this field to configure TCP tests for the URI. If omitted or set to null, TCP tests will be disabled.
@@ -120,32 +120,32 @@ type TCP struct {
 	StringToExpect *string `json:"stringToExpect,omitempty"`
 }
 
-func (o *TCP) GetEnabled() bool {
-	if o == nil {
+func (t *TCP) GetEnabled() bool {
+	if t == nil {
 		return false
 	}
-	return o.Enabled
+	return t.Enabled
 }
 
-func (o *TCP) GetPort() int {
-	if o == nil {
+func (t *TCP) GetPort() int {
+	if t == nil {
 		return 0
 	}
-	return o.Port
+	return t.Port
 }
 
-func (o *TCP) GetStringToSend() *string {
-	if o == nil {
+func (t *TCP) GetStringToSend() *string {
+	if t == nil {
 		return nil
 	}
-	return o.StringToSend
+	return t.StringToSend
 }
 
-func (o *TCP) GetStringToExpect() *string {
-	if o == nil {
+func (t *TCP) GetStringToExpect() *string {
+	if t == nil {
 		return nil
 	}
-	return o.StringToExpect
+	return t.StringToExpect
 }
 
 type DemURIAvailabilityCheckSettingsInput struct {
@@ -167,44 +167,44 @@ type DemURIAvailabilityCheckSettingsInput struct {
 	TCP *TCP `json:"tcp,omitempty"`
 }
 
-func (o *DemURIAvailabilityCheckSettingsInput) GetPlatformOptions() *PlatformOptions {
-	if o == nil {
+func (d *DemURIAvailabilityCheckSettingsInput) GetPlatformOptions() *PlatformOptions {
+	if d == nil {
 		return nil
 	}
-	return o.PlatformOptions
+	return d.PlatformOptions
 }
 
-func (o *DemURIAvailabilityCheckSettingsInput) GetTestFrom() DemTestFrom {
-	if o == nil {
+func (d *DemURIAvailabilityCheckSettingsInput) GetTestFrom() DemTestFrom {
+	if d == nil {
 		return DemTestFrom{}
 	}
-	return o.TestFrom
+	return d.TestFrom
 }
 
-func (o *DemURIAvailabilityCheckSettingsInput) GetTestIntervalInSeconds() float64 {
-	if o == nil {
+func (d *DemURIAvailabilityCheckSettingsInput) GetTestIntervalInSeconds() float64 {
+	if d == nil {
 		return 0.0
 	}
-	return o.TestIntervalInSeconds
+	return d.TestIntervalInSeconds
 }
 
-func (o *DemURIAvailabilityCheckSettingsInput) GetOutageConfiguration() *OutageConfiguration {
-	if o == nil {
+func (d *DemURIAvailabilityCheckSettingsInput) GetOutageConfiguration() *OutageConfiguration {
+	if d == nil {
 		return nil
 	}
-	return o.OutageConfiguration
+	return d.OutageConfiguration
 }
 
-func (o *DemURIAvailabilityCheckSettingsInput) GetPing() *Ping {
-	if o == nil {
+func (d *DemURIAvailabilityCheckSettingsInput) GetPing() *Ping {
+	if d == nil {
 		return nil
 	}
-	return o.Ping
+	return d.Ping
 }
 
-func (o *DemURIAvailabilityCheckSettingsInput) GetTCP() *TCP {
-	if o == nil {
+func (d *DemURIAvailabilityCheckSettingsInput) GetTCP() *TCP {
+	if d == nil {
 		return nil
 	}
-	return o.TCP
+	return d.TCP
 }

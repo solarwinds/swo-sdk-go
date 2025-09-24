@@ -12,18 +12,18 @@ type Tags struct {
 	TagWithoutValue string `json:"tag_without_value"`
 }
 
-func (o *Tags) GetServer() string {
-	if o == nil {
+func (t *Tags) GetServer() string {
+	if t == nil {
 		return ""
 	}
-	return o.Server
+	return t.Server
 }
 
-func (o *Tags) GetTagWithoutValue() string {
-	if o == nil {
+func (t *Tags) GetTagWithoutValue() string {
+	if t == nil {
 		return ""
 	}
-	return o.TagWithoutValue
+	return t.TagWithoutValue
 }
 
 type TokensCreateTokenRequestType string
@@ -55,23 +55,23 @@ type TokensCreateTokenRequest struct {
 	Type TokensCreateTokenRequestType `json:"type"`
 }
 
-func (o *TokensCreateTokenRequest) GetName() string {
-	if o == nil {
+func (t *TokensCreateTokenRequest) GetName() string {
+	if t == nil {
 		return ""
 	}
-	return o.Name
+	return t.Name
 }
 
-func (o *TokensCreateTokenRequest) GetTags() Tags {
-	if o == nil {
+func (t *TokensCreateTokenRequest) GetTags() Tags {
+	if t == nil {
 		return Tags{}
 	}
-	return o.Tags
+	return t.Tags
 }
 
-func (o *TokensCreateTokenRequest) GetType() TokensCreateTokenRequestType {
-	if o == nil {
+func (t *TokensCreateTokenRequest) GetType() TokensCreateTokenRequestType {
+	if t == nil {
 		return TokensCreateTokenRequestType("")
 	}
-	return o.Type
+	return t.Type
 }

@@ -42,65 +42,65 @@ func (d *DboDatabaseConnectionOptions) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *DboDatabaseConnectionOptions) GetHost() string {
-	if o == nil {
+func (d *DboDatabaseConnectionOptions) GetHost() string {
+	if d == nil {
 		return ""
 	}
-	return o.Host
+	return d.Host
 }
 
-func (o *DboDatabaseConnectionOptions) GetPort() *string {
-	if o == nil {
+func (d *DboDatabaseConnectionOptions) GetPort() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Port
+	return d.Port
 }
 
-func (o *DboDatabaseConnectionOptions) GetDbname() *string {
-	if o == nil {
+func (d *DboDatabaseConnectionOptions) GetDbname() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Dbname
+	return d.Dbname
 }
 
-func (o *DboDatabaseConnectionOptions) GetEncryptedCredentials() *string {
-	if o == nil {
+func (d *DboDatabaseConnectionOptions) GetEncryptedCredentials() *string {
+	if d == nil {
 		return nil
 	}
-	return o.EncryptedCredentials
+	return d.EncryptedCredentials
 }
 
-func (o *DboDatabaseConnectionOptions) GetUser() *string {
-	if o == nil {
+func (d *DboDatabaseConnectionOptions) GetUser() *string {
+	if d == nil {
 		return nil
 	}
-	return o.User
+	return d.User
 }
 
-func (o *DboDatabaseConnectionOptions) GetSslEnabled() *bool {
-	if o == nil {
+func (d *DboDatabaseConnectionOptions) GetSslEnabled() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.SslEnabled
+	return d.SslEnabled
 }
 
-func (o *DboDatabaseConnectionOptions) GetSslOptions() *DboDatabaseSslOptions {
-	if o == nil {
+func (d *DboDatabaseConnectionOptions) GetSslOptions() *DboDatabaseSslOptions {
+	if d == nil {
 		return nil
 	}
-	return o.SslOptions
+	return d.SslOptions
 }
 
-func (o *DboDatabaseConnectionOptions) GetCloudRegion() *string {
-	if o == nil {
+func (d *DboDatabaseConnectionOptions) GetCloudRegion() *string {
+	if d == nil {
 		return nil
 	}
-	return o.CloudRegion
+	return d.CloudRegion
 }
 
-func (o *DboDatabaseConnectionOptions) GetBindings() *string {
-	if o == nil {
+func (d *DboDatabaseConnectionOptions) GetBindings() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Bindings
+	return d.Bindings
 }
