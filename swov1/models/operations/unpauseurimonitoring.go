@@ -10,11 +10,11 @@ type UnpauseURIMonitoringRequest struct {
 	EntityID string `pathParam:"style=simple,explode=false,name=entityId"`
 }
 
-func (o *UnpauseURIMonitoringRequest) GetEntityID() string {
-	if o == nil {
+func (u *UnpauseURIMonitoringRequest) GetEntityID() string {
+	if u == nil {
 		return ""
 	}
-	return o.EntityID
+	return u.EntityID
 }
 
 type UnpauseURIMonitoringResponse struct {
@@ -23,16 +23,16 @@ type UnpauseURIMonitoringResponse struct {
 	CommonEntityID *components.CommonEntityID
 }
 
-func (o *UnpauseURIMonitoringResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (u *UnpauseURIMonitoringResponse) GetHTTPMeta() components.HTTPMetadata {
+	if u == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return u.HTTPMeta
 }
 
-func (o *UnpauseURIMonitoringResponse) GetCommonEntityID() *components.CommonEntityID {
-	if o == nil {
+func (u *UnpauseURIMonitoringResponse) GetCommonEntityID() *components.CommonEntityID {
+	if u == nil {
 		return nil
 	}
-	return o.CommonEntityID
+	return u.CommonEntityID
 }

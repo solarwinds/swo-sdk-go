@@ -41,16 +41,16 @@ type DemOutageConfiguration struct {
 	ConsecutiveForDown int `json:"consecutiveForDown"`
 }
 
-func (o *DemOutageConfiguration) GetFailingTestLocations() FailingTestLocations {
-	if o == nil {
+func (d *DemOutageConfiguration) GetFailingTestLocations() FailingTestLocations {
+	if d == nil {
 		return FailingTestLocations("")
 	}
-	return o.FailingTestLocations
+	return d.FailingTestLocations
 }
 
-func (o *DemOutageConfiguration) GetConsecutiveForDown() int {
-	if o == nil {
+func (d *DemOutageConfiguration) GetConsecutiveForDown() int {
+	if d == nil {
 		return 0
 	}
-	return o.ConsecutiveForDown
+	return d.ConsecutiveForDown
 }

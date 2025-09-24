@@ -28,8 +28,8 @@ func TestSDK_ChangeEvents(t *testing.T) {
 	createRes, err := s.ChangeEvents.CreateChangeEvent(ctx, components.ChangeEventsChangeEvent{
 		Name:        "swo-sdk-e2e-test-event",
 		Title:       "SWO SDK E2E Test Deployment",
-		Source:      swov1.String("swo-sdk-go-test"),
-		Description: swov1.String("End-to-end test deployment event created by SWO SDK"),
+		Source:      swov1.Pointer("swo-sdk-go-test"),
+		Description: swov1.Pointer("End-to-end test deployment event created by SWO SDK"),
 		Tags: map[string]string{
 			"environment": "test",
 			"service":     "swo-sdk",
@@ -54,21 +54,21 @@ func TestSDK_CompositeMetricsCrudLifecycle(t *testing.T) {
 
 	createRes, err := s.Metrics.CreateCompositeMetric(ctx, components.MetricsCompositeMetric{
 		Name:        "composite.swo.sdk.e2e.create.metric.test",
-		DisplayName: swov1.String("SWO SDK E2E Create Metric Test"),
-		Description: swov1.String("SWO SDK composite metric end to end create test"),
+		DisplayName: swov1.Pointer("SWO SDK E2E Create Metric Test"),
+		Description: swov1.Pointer("SWO SDK composite metric end to end create test"),
 		Formula:     "rate(system.disk.io[1m])",
-		Units:       swov1.String("bytes/s"),
+		Units:       swov1.Pointer("bytes/s"),
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 201, createRes.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, "composite.swo.sdk.e2e.create.metric.test", createRes.MetricsCompositeMetric.Name)
 	assert.NotNil(t, createRes.MetricsCompositeMetric.DisplayName)
-	assert.Equal(t, swov1.String("SWO SDK E2E Create Metric Test"), createRes.MetricsCompositeMetric.DisplayName)
+	assert.Equal(t, swov1.Pointer("SWO SDK E2E Create Metric Test"), createRes.MetricsCompositeMetric.DisplayName)
 	assert.NotNil(t, createRes.MetricsCompositeMetric.Description)
-	assert.Equal(t, swov1.String("SWO SDK composite metric end to end create test"), createRes.MetricsCompositeMetric.Description)
+	assert.Equal(t, swov1.Pointer("SWO SDK composite metric end to end create test"), createRes.MetricsCompositeMetric.Description)
 	assert.Equal(t, "rate(system.disk.io[1m])", createRes.MetricsCompositeMetric.Formula)
 	assert.NotNil(t, createRes.MetricsCompositeMetric.Units)
-	assert.Equal(t, swov1.String("bytes/s"), createRes.MetricsCompositeMetric.Units)
+	assert.Equal(t, swov1.Pointer("bytes/s"), createRes.MetricsCompositeMetric.Units)
 
 	getByNameRes, err := s.Metrics.GetMetricByName(ctx, operations.GetMetricByNameRequest{
 		Name: createRes.MetricsCompositeMetric.Name,
@@ -77,33 +77,33 @@ func TestSDK_CompositeMetricsCrudLifecycle(t *testing.T) {
 	assert.Equal(t, 200, getByNameRes.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, "composite.swo.sdk.e2e.create.metric.test", getByNameRes.CommonMetricInfo.Name)
 	assert.NotNil(t, getByNameRes.CommonMetricInfo.DisplayName)
-	assert.Equal(t, swov1.String("SWO SDK E2E Create Metric Test"), getByNameRes.CommonMetricInfo.DisplayName)
+	assert.Equal(t, swov1.Pointer("SWO SDK E2E Create Metric Test"), getByNameRes.CommonMetricInfo.DisplayName)
 	assert.NotNil(t, getByNameRes.CommonMetricInfo.Description)
-	assert.Equal(t, swov1.String("SWO SDK composite metric end to end create test"), getByNameRes.CommonMetricInfo.Description)
+	assert.Equal(t, swov1.Pointer("SWO SDK composite metric end to end create test"), getByNameRes.CommonMetricInfo.Description)
 	assert.NotNil(t, getByNameRes.CommonMetricInfo.Formula)
-	assert.Equal(t, swov1.String("rate(system.disk.io[1m])"), getByNameRes.CommonMetricInfo.Formula)
+	assert.Equal(t, swov1.Pointer("rate(system.disk.io[1m])"), getByNameRes.CommonMetricInfo.Formula)
 	assert.NotNil(t, getByNameRes.CommonMetricInfo.Units)
-	assert.Equal(t, swov1.String("bytes/s"), getByNameRes.CommonMetricInfo.Units)
+	assert.Equal(t, swov1.Pointer("bytes/s"), getByNameRes.CommonMetricInfo.Units)
 
 	updateRes, err := s.Metrics.UpdateCompositeMetric(ctx, operations.UpdateCompositeMetricRequest{
 		Name: createRes.MetricsCompositeMetric.Name,
 		MetricsUpdateCompositeMetricRequest: components.MetricsUpdateCompositeMetricRequest{
-			DisplayName: swov1.String("SWO SDK E2E Updated Metric Test"),
-			Description: swov1.String("SWO SDK composite metric end to end updated test"),
+			DisplayName: swov1.Pointer("SWO SDK E2E Updated Metric Test"),
+			Description: swov1.Pointer("SWO SDK composite metric end to end updated test"),
 			Formula:     "rate(system.cpu.usage[2m])",
-			Units:       swov1.String("bytes/s"),
+			Units:       swov1.Pointer("bytes/s"),
 		},
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, updateRes.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, "composite.swo.sdk.e2e.create.metric.test", updateRes.MetricsCompositeMetric.Name)
 	assert.NotNil(t, updateRes.MetricsCompositeMetric.DisplayName)
-	assert.Equal(t, swov1.String("SWO SDK E2E Updated Metric Test"), updateRes.MetricsCompositeMetric.DisplayName)
+	assert.Equal(t, swov1.Pointer("SWO SDK E2E Updated Metric Test"), updateRes.MetricsCompositeMetric.DisplayName)
 	assert.NotNil(t, updateRes.MetricsCompositeMetric.Description)
-	assert.Equal(t, swov1.String("SWO SDK composite metric end to end updated test"), updateRes.MetricsCompositeMetric.Description)
+	assert.Equal(t, swov1.Pointer("SWO SDK composite metric end to end updated test"), updateRes.MetricsCompositeMetric.Description)
 	assert.Equal(t, "rate(system.cpu.usage[2m])", updateRes.MetricsCompositeMetric.Formula)
 	assert.NotNil(t, updateRes.MetricsCompositeMetric.Units)
-	assert.Equal(t, swov1.String("bytes/s"), updateRes.MetricsCompositeMetric.Units)
+	assert.Equal(t, swov1.Pointer("bytes/s"), updateRes.MetricsCompositeMetric.Units)
 
 	getUpdatedMetricRes, err := s.Metrics.GetMetricByName(ctx, operations.GetMetricByNameRequest{
 		Name: createRes.MetricsCompositeMetric.Name,
@@ -112,13 +112,13 @@ func TestSDK_CompositeMetricsCrudLifecycle(t *testing.T) {
 	assert.Equal(t, 200, getUpdatedMetricRes.HTTPMeta.Response.StatusCode)
 	assert.Equal(t, "composite.swo.sdk.e2e.create.metric.test", getUpdatedMetricRes.CommonMetricInfo.Name)
 	assert.NotNil(t, getUpdatedMetricRes.CommonMetricInfo.DisplayName)
-	assert.Equal(t, swov1.String("SWO SDK E2E Updated Metric Test"), getUpdatedMetricRes.CommonMetricInfo.DisplayName)
+	assert.Equal(t, swov1.Pointer("SWO SDK E2E Updated Metric Test"), getUpdatedMetricRes.CommonMetricInfo.DisplayName)
 	assert.NotNil(t, getUpdatedMetricRes.CommonMetricInfo.Description)
-	assert.Equal(t, swov1.String("SWO SDK composite metric end to end updated test"), getUpdatedMetricRes.CommonMetricInfo.Description)
+	assert.Equal(t, swov1.Pointer("SWO SDK composite metric end to end updated test"), getUpdatedMetricRes.CommonMetricInfo.Description)
 	assert.NotNil(t, getUpdatedMetricRes.CommonMetricInfo.Formula)
-	assert.Equal(t, swov1.String("rate(system.cpu.usage[2m])"), getUpdatedMetricRes.CommonMetricInfo.Formula)
+	assert.Equal(t, swov1.Pointer("rate(system.cpu.usage[2m])"), getUpdatedMetricRes.CommonMetricInfo.Formula)
 	assert.NotNil(t, getUpdatedMetricRes.CommonMetricInfo.Units)
-	assert.Equal(t, swov1.String("bytes/s"), getUpdatedMetricRes.CommonMetricInfo.Units)
+	assert.Equal(t, swov1.Pointer("bytes/s"), getUpdatedMetricRes.CommonMetricInfo.Units)
 
 	deleteRes, err := s.Metrics.DeleteCompositeMetric(ctx, operations.DeleteCompositeMetricRequest{
 		Name: createRes.MetricsCompositeMetric.Name,
@@ -140,10 +140,10 @@ func TestSDK_LogsSearch(t *testing.T) {
 	)
 
 	searchRes, err := s.Logs.SearchLogs(ctx, operations.SearchLogsRequest{
-		Filter:    swov1.String("level:info"),
+		Filter:    swov1.Pointer("level:info"),
 		StartTime: types.MustNewTimeFromString("2025-06-15T00:00:00Z"),
 		EndTime:   types.MustNewTimeFromString("2025-07-22T23:59:59Z"),
-		PageSize:  swov1.Int(10),
+		PageSize:  swov1.Pointer[int](10),
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, searchRes.HTTPMeta.Response.StatusCode)
@@ -164,7 +164,7 @@ func TestSDK_LogsArchives(t *testing.T) {
 	listRes, err := s.Logs.ListLogArchives(ctx, operations.ListLogArchivesRequest{
 		StartTime: "2025-06-15T00:00:00Z",
 		EndTime:   "2025-07-22T23:59:59Z",
-		PageSize:  swov1.Int(10),
+		PageSize:  swov1.Pointer[int](10),
 	})
 	require.NoError(t, err)
 	assert.Equal(t, 200, listRes.HTTPMeta.Response.StatusCode)
