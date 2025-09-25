@@ -131,34 +131,40 @@ workflows:
             value: 10
           - name: startTime
             in: query
-            value: "x-env: QUERY_START_TIME"
+            value: $inputs.QUERY_START_TIME
           - name: endTime
             in: query
-            value: "x-env: QUERY_END_TIME"
+            value: $inputs.QUERY_END_TIME
+        inputs:
+          QUERY_START_TIME: "x-env: QUERY_START_TIME"
+          QUERY_END_TIME: "x-env: QUERY_END_TIME"
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
           - condition: $response.body#/pageInfo != null
   # /v1/logs - List log archives operation
-  - workflowId: logsArchives
-    steps:
-      - stepId: list
-        description: List log archives with parameters
-        operationId: listLogArchives
-        parameters:
-          - name: pageSize
-            in: query
-            value: 10
-          - name: startTime
-            in: query
-            value: "x-env: x-env: QUERY_START_TIME"
-          - name: endTime
-            in: query
-            value: "x-env: QUERY_END_TIME"
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.header.Content-Type == application/json
-          - condition: $response.body#/pageInfo != null
+#  - workflowId: logsArchives
+#    steps:
+#      - stepId: list
+#        description: List log archives with parameters
+#        operationId: listLogArchives
+#        parameters:
+#          - name: pageSize
+#            in: query
+#            value: 10
+#          - name: startTime
+#            in: query
+#            value: $inputs.QUERY_START_TIME
+#          - name: endTime
+#            in: query
+#            value: $inputs.QUERY_END_TIME
+#        inputs:
+#          QUERY_START_TIME: "x-env: QUERY_START_TIME"
+#          QUERY_END_TIME: "x-env: QUERY_END_TIME"
+#        successCriteria:
+#          - condition: $statusCode == 200
+#          - condition: $response.header.Content-Type == application/json
+#          - condition: $response.body#/pageInfo != null
   # /v1/tokens - Create token operation
   - workflowId: tokens
     steps:
