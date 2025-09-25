@@ -11,8 +11,6 @@ on:
 jobs:
   call-generate:
     uses: ./.github/workflows/swov1_generation.yaml
-    secrets: inherit
-
   e2e-tests:
     runs-on: ubuntu-latest
     container:

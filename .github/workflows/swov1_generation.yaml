@@ -18,7 +18,6 @@ permissions:
   schedule:
     - cron: 0 0 * * *
   workflow_call:
-    secrets: inherit
 jobs:
   generate:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@v15
