@@ -19,6 +19,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Set QUERY_START_TIME and QUERY_END_TIME
+        id: set_query_times
+        run: |
+          export QUERY_START_TIME=$(date -u -d '6 hours 1 minute ago' +%Y-%m-%dT%H:%M:%SZ)
+          export QUERY_END_TIME=$(date -u -d '1 minute ago' +%Y-%m-%dT%H:%M:%SZ)
+          echo "QUERY_START_TIME=$QUERY_START_TIME" >> $GITHUB_ENV
+          echo "QUERY_END_TIME=$QUERY_END_TIME" >> $GITHUB_ENV
       - name: Run E2E tests
         run: |
           cd swov1
