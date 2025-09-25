@@ -131,10 +131,13 @@ workflows:
             value: 10
           - name: startTime
             in: query
-            value: "2025-06-15T00:00:00Z"
+            value: $inputs.QUERY_START_TIME
           - name: endTime
             in: query
-            value: "2025-07-22T23:59:59Z"
+            value: $inputs.QUERY_END_TIME
+        inputs:
+          QUERY_START_TIME: "x-env: QUERY_START_TIME"
+          QUERY_END_TIME: "x-env: QUERY_END_TIME"
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -151,10 +154,13 @@ workflows:
             value: 10
           - name: startTime
             in: query
-            value: "2025-06-15T00:00:00Z"
+            value: $inputs.QUERY_START_TIME
           - name: endTime
             in: query
-            value: "2025-07-22T23:59:59Z"
+            value: $inputs.QUERY_END_TIME
+        inputs:
+          QUERY_START_TIME: "x-env: QUERY_START_TIME"
+          QUERY_END_TIME: "x-env: QUERY_END_TIME"
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
