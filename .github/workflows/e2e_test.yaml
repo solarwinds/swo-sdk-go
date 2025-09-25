@@ -15,6 +15,7 @@ jobs:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
   e2e-tests:
+    needs: call-generate
     runs-on: ubuntu-latest
     container:
       image: golang:1.22-alpine
