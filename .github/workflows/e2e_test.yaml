@@ -9,6 +9,10 @@ on:
     - cron: '0 2 * * *'  # Run at 2 AM UTC every day
   workflow_dispatch:
 jobs:
+  call-generate:
+    uses: ./.github/workflows/generate.yaml
+    secrets: inherit
+
   e2e-tests:
     runs-on: ubuntu-latest
     container:
@@ -29,5 +33,4 @@ jobs:
       - name: Run E2E tests
         run: |
           cd swov1
-          speakeasy run
           go test -v ./tests
