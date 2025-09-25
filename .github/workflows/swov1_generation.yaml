@@ -19,8 +19,10 @@ permissions:
     - cron: 0 0 * * *
   workflow_call:
     secrets:
-      github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+      github_access_token:
+        required: true
+      speakeasy_api_key:
+        required: true
 jobs:
   generate:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@v15

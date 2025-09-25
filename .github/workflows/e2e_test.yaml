@@ -11,6 +11,9 @@ on:
 jobs:
   call-generate:
     uses: ./.github/workflows/swov1_generation.yaml
+    secrets:
+      github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
   e2e-tests:
     runs-on: ubuntu-latest
     container:
