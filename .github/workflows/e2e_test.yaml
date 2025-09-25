@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 jobs:
   call-generate:
-    uses: ./.github/workflows/generate.yaml
+    uses: ./.github/workflows/swov1_generation.yaml
     secrets: inherit
 
   e2e-tests:
