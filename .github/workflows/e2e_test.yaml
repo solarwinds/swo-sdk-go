@@ -3,6 +3,8 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - swov1/**
   schedule:
     - cron: '0 2 * * *'  # Run at 2 AM UTC every day
   workflow_dispatch:
