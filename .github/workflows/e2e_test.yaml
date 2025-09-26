@@ -38,16 +38,10 @@ jobs:
         with:
           name: generated-files
           path: swov1/
-      - name: Set QUERY_START_TIME and QUERY_END_TIME if unset
+      - name: Log QUERY_START_TIME and QUERY_END_TIME
         run: |
-          if [ -z "$QUERY_START_TIME" ]; then
-            export QUERY_START_TIME=$(date -u -d "@$(( $(date +%s) - 6*3600 - 60 ))" +%Y-%m-%dT%H:%M:%SZ)
-            echo "QUERY_START_TIME=$QUERY_START_TIME" >> $GITHUB_ENV
-          fi
-          if [ -z "$QUERY_END_TIME" ]; then
-            export QUERY_END_TIME=$(date -u -d "@$(( $(date +%s) - 60 ))" +%Y-%m-%dT%H:%M:%SZ)
-            echo "QUERY_END_TIME=$QUERY_END_TIME" >> $GITHUB_ENV
-          fi
+          echo "QUERY_START_TIME=$QUERY_START_TIME"
+          echo "QUERY_END_TIME=$QUERY_END_TIME"
       - name: Run E2E tests
         run: |
           cd swov1
