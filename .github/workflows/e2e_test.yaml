@@ -14,12 +14,6 @@ on:
       PUBLIC_SWO_API_STAGE_URL:
         required: true
         type: string
-      QUERY_START_TIME:
-        required: false
-        type: string
-      QUERY_END_TIME:
-        required: false
-        type: string
 jobs:
   e2e-tests:
     runs-on: ubuntu-latest
