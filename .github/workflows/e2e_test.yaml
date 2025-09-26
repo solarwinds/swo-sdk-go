@@ -25,6 +25,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Download generated files
+        uses: actions/download-artifact@v4
+        with:
+          name: generated-files
+          path: swov1/
       - name: Set QUERY_START_TIME and QUERY_END_TIME
         id: set_query_times
         run: |

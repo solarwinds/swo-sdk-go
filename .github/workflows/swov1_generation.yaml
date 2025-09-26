@@ -29,7 +29,14 @@ jobs:
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+    steps:
+      - name: Upload generated files
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-files
+          path: swov1/
   call-e2e-tests:
+    needs: generate
     uses: ./.github/workflows/e2e_test.yaml
     secrets:
       SWO_STAGE_API_TOKEN: ${{ secrets.SWO_STAGE_API_TOKEN }}
