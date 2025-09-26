@@ -25,11 +25,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: golang:1.22-alpine
-    env:
-      SWO_STAGE_API_TOKEN: ${{ secrets.SWO_STAGE_API_TOKEN }}
-      PUBLIC_SWO_API_STAGE_URL: ${{ vars.PUBLIC_SWO_API_STAGE_URL }}
-      QUERY_START_TIME: ${{ inputs.QUERY_START_TIME }}
-      QUERY_END_TIME: ${{ inputs.QUERY_END_TIME }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -48,7 +43,17 @@ jobs:
             export QUERY_END_TIME=$(date -u -d "@$(( $(date +%s) - 60 ))" +%Y-%m-%dT%H:%M:%SZ)
             echo "QUERY_END_TIME=$QUERY_END_TIME" >> $GITHUB_ENV
           fi
+        env:
+          SWO_STAGE_API_TOKEN: ${{ secrets.SWO_STAGE_API_TOKEN }}
+          PUBLIC_SWO_API_STAGE_URL: ${{ inputs.PUBLIC_SWO_API_STAGE_URL }}
+          QUERY_START_TIME: ${{ inputs.QUERY_START_TIME }}
+          QUERY_END_TIME: ${{ inputs.QUERY_END_TIME }}
       - name: Run E2E tests
         run: |
           cd swov1
           go test -v ./tests
+        env:
+          SWO_STAGE_API_TOKEN: ${{ secrets.SWO_STAGE_API_TOKEN }}
+          PUBLIC_SWO_API_STAGE_URL: ${{ inputs.PUBLIC_SWO_API_STAGE_URL }}
+          QUERY_START_TIME: ${{ env.QUERY_START_TIME }}
+          QUERY_END_TIME: ${{ env.QUERY_END_TIME }}
