@@ -141,7 +141,7 @@ func TestSDK_LogsSearch(t *testing.T) {
 
 	searchRes, err := s.Logs.SearchLogs(ctx, operations.SearchLogsRequest{
 		Filter:    swov1.Pointer("level:info"),
-		StartTime: types.MustNewTimeFromString("2025-06-15T00:00:00Z"),
+		StartTime: types.MustNewTimeFromString("2024-06-15T00:00:00Z"),
 		EndTime:   types.MustNewTimeFromString("2025-07-22T23:59:59Z"),
 		PageSize:  swov1.Pointer[int](10),
 	})
