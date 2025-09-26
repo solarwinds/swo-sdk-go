@@ -33,4 +33,5 @@ jobs:
     uses: ./.github/workflows/e2e_test.yaml
     secrets:
       SWO_STAGE_API_TOKEN: ${{ secrets.SWO_STAGE_API_TOKEN }}
+    with:
       PUBLIC_SWO_API_STAGE_URL: ${{ vars.PUBLIC_SWO_API_STAGE_URL }}
