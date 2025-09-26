@@ -18,7 +18,18 @@ permissions:
   schedule:
     - cron: 0 0 * * *
 jobs:
+  set-query-times:
+    runs-on: ubuntu-latest
+    outputs:
+      start: ${{ steps.set-times.outputs.start }}
+      end: ${{ steps.set-times.outputs.end }}
+    steps:
+      - id: set-times
+        run: |
+          echo "start=$(date -u -d "@$(( $(date +%s) - 6*3600 - 60 ))" +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_OUTPUT
+          echo "end=$(date -u -d "@$(( $(date +%s) - 60 ))" +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_OUTPUT
   generate:
+    needs: set-query-times
     uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@v15
     with:
       force: ${{ github.event.inputs.force }}
@@ -29,6 +40,9 @@ jobs:
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+    env:
+      QUERY_START_TIME: ${{ needs.set-query-times.outputs.start }}
+      QUERY_END_TIME: ${{ needs.set-query-times.outputs.end }}
   upload-generated:
     needs: generate
     runs-on: ubuntu-latest
@@ -41,9 +55,11 @@ jobs:
           name: generated-files
           path: swov1/
   call-e2e-tests:
-    needs: upload-generated
+    needs: [upload-generated, set-query-times]
     uses: ./.github/workflows/e2e_test.yaml
     secrets:
       SWO_STAGE_API_TOKEN: ${{ secrets.SWO_STAGE_API_TOKEN }}
     with:
       PUBLIC_SWO_API_STAGE_URL: ${{ vars.PUBLIC_SWO_API_STAGE_URL }}
+      QUERY_START_TIME: ${{ needs.set-query-times.outputs.start }}
+      QUERY_END_TIME: ${{ needs.set-query-times.outputs.end }}

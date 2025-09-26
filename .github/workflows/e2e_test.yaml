@@ -14,6 +14,12 @@ on:
       PUBLIC_SWO_API_STAGE_URL:
         required: true
         type: string
+      QUERY_START_TIME:
+        required: false
+        type: string
+      QUERY_END_TIME:
+        required: false
+        type: string
 jobs:
   e2e-tests:
     runs-on: ubuntu-latest
@@ -22,6 +28,8 @@ jobs:
     env:
       SWO_STAGE_API_TOKEN: ${{ secrets.SWO_STAGE_API_TOKEN }}
       PUBLIC_SWO_API_STAGE_URL: ${{ vars.PUBLIC_SWO_API_STAGE_URL }}
+      QUERY_START_TIME: ${{ inputs.QUERY_START_TIME }}
+      QUERY_END_TIME: ${{ inputs.QUERY_END_TIME }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,13 +38,16 @@ jobs:
         with:
           name: generated-files
           path: swov1/
-      - name: Set QUERY_START_TIME and QUERY_END_TIME
-        id: set_query_times
+      - name: Set QUERY_START_TIME and QUERY_END_TIME if unset
         run: |
-          export QUERY_START_TIME=$(date -u -d "@$(( $(date +%s) - 6*3600 - 60 ))" +%Y-%m-%dT%H:%M:%SZ)
-          export QUERY_END_TIME=$(date -u -d "@$(( $(date +%s) - 60 ))" +%Y-%m-%dT%H:%M:%SZ)
-          echo "QUERY_START_TIME=$QUERY_START_TIME" >> $GITHUB_ENV
-          echo "QUERY_END_TIME=$QUERY_END_TIME" >> $GITHUB_ENV
+          if [ -z "$QUERY_START_TIME" ]; then
+            export QUERY_START_TIME=$(date -u -d "@$(( $(date +%s) - 6*3600 - 60 ))" +%Y-%m-%dT%H:%M:%SZ)
+            echo "QUERY_START_TIME=$QUERY_START_TIME" >> $GITHUB_ENV
+          fi
+          if [ -z "$QUERY_END_TIME" ]; then
+            export QUERY_END_TIME=$(date -u -d "@$(( $(date +%s) - 60 ))" +%Y-%m-%dT%H:%M:%SZ)
+            echo "QUERY_END_TIME=$QUERY_END_TIME" >> $GITHUB_ENV
+          fi
       - name: Run E2E tests
         run: |
           cd swov1
