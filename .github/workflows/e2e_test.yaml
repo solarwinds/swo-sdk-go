@@ -38,10 +38,6 @@ jobs:
         with:
           name: generated-files
           path: swov1/
-      - name: Log QUERY_START_TIME and QUERY_END_TIME
-        run: |
-          echo "QUERY_START_TIME=$QUERY_START_TIME"
-          echo "QUERY_END_TIME=$QUERY_END_TIME"
       - name: Run E2E tests
         run: |
           cd swov1
