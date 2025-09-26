@@ -17,12 +17,6 @@ permissions:
         type: string
   schedule:
     - cron: 0 0 * * *
-  workflow_call:
-    secrets:
-      github_access_token:
-        required: true
-      speakeasy_api_key:
-        required: true
 jobs:
   generate:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@v15
@@ -35,3 +29,8 @@ jobs:
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+  call-e2e-tests:
+    uses: ./.github/workflows/e2e_test.yaml
+    secrets:
+      SWO_STAGE_API_TOKEN: ${{ secrets.SWO_STAGE_API_TOKEN }}
+      PUBLIC_SWO_API_STAGE_URL: ${{ vars.PUBLIC_SWO_API_STAGE_URL }}
