@@ -40,9 +40,6 @@ jobs:
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
-    env:
-      QUERY_START_TIME: ${{ needs.set-query-times.outputs.start }}
-      QUERY_END_TIME: ${{ needs.set-query-times.outputs.end }}
   upload-generated:
     needs: generate
     runs-on: ubuntu-latest
