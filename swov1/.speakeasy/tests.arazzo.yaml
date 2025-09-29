@@ -1,3 +1,9 @@
+# NOTE:
+#   Before running tests or codegen locally, you must replace __QUERY_START_TIME__ and __QUERY_END_TIME__ in this file.
+#   Run:
+#       python3 replace_env_in_yaml.py swov1/.speakeasy/tests.arazzo.yaml
+#   after setting the required environment variables (e.g., by sourcing swov1/.env).
+
 arazzo: 1.0.1
 info:
   title: SWO End-to-End CRUD Contract Tests
@@ -131,13 +137,10 @@ workflows:
             value: 10
           - name: startTime
             in: query
-            value: $inputs.QUERY_START_TIME
+            value: __QUERY_START_TIME__
           - name: endTime
             in: query
-            value: $inputs.QUERY_END_TIME
-        inputs:
-          QUERY_START_TIME: "x-env: QUERY_START_TIME"
-          QUERY_END_TIME: "x-env: QUERY_END_TIME"
+            value: __QUERY_END_TIME__
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
@@ -154,13 +157,10 @@ workflows:
             value: 10
           - name: startTime
             in: query
-            value: $inputs.QUERY_START_TIME
+            value: __QUERY_START_TIME__
           - name: endTime
             in: query
-            value: $inputs.QUERY_END_TIME
-        inputs:
-          QUERY_START_TIME: "x-env: QUERY_START_TIME"
-          QUERY_END_TIME: "x-env: QUERY_END_TIME"
+            value: __QUERY_END_TIME__
         successCriteria:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
