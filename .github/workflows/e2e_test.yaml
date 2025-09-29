@@ -12,7 +12,7 @@ jobs:
   e2e-tests:
     runs-on: ubuntu-latest
     container:
-      image: golang:1.22-alpine
+      image: golang:1.23-alpine
     env:
       SWO_STAGE_API_TOKEN: ${{ secrets.SWO_STAGE_API_TOKEN }}
       PUBLIC_SWO_API_STAGE_URL: ${{ vars.PUBLIC_SWO_API_STAGE_URL }}
@@ -22,10 +22,20 @@ jobs:
       - name: Set QUERY_START_TIME and QUERY_END_TIME
         id: set_query_times
         run: |
-          export QUERY_START_TIME=$(date -u -d '6 hours 1 minute ago' +%Y-%m-%dT%H:%M:%SZ)
-          export QUERY_END_TIME=$(date -u -d '1 minute ago' +%Y-%m-%dT%H:%M:%SZ)
+          export QUERY_START_TIME=$(date -u -d "@$(( $(date +%s) - 6*3600 - 60 ))" +%Y-%m-%dT%H:%M:%SZ)
+          export QUERY_END_TIME=$(date -u -d "@$(( $(date +%s) - 60 ))" +%Y-%m-%dT%H:%M:%SZ)
           echo "QUERY_START_TIME=$QUERY_START_TIME" >> $GITHUB_ENV
           echo "QUERY_END_TIME=$QUERY_END_TIME" >> $GITHUB_ENV
+      - name: Install Speakeasy CLI
+        run: |
+          wget -q https://github.com/speakeasy-api/speakeasy/releases/download/v1.631.4/speakeasy_linux_amd64.zip          
+          unzip -o speakeasy_linux_amd64.zip -d /usr/local/bin
+          chmod +x /usr/local/bin/speakeasy
+      - name: Run Speakeasy codegen
+        env:
+          SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
+        run: |
+          speakeasy run --minimal
       - name: Run E2E tests
         run: |
           cd swov1
