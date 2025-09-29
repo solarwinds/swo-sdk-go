@@ -32,6 +32,8 @@ jobs:
           unzip -o speakeasy_linux_amd64.zip -d /usr/local/bin
           chmod +x /usr/local/bin/speakeasy
       - name: Run Speakeasy codegen
+        env:
+          SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
         run: |
           speakeasy run --minimal --skip-compile
       - name: Run E2E tests
