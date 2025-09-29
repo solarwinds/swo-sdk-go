@@ -28,7 +28,7 @@ jobs:
           echo "QUERY_END_TIME=$QUERY_END_TIME" >> $GITHUB_ENV
       - name: Install Speakeasy CLI
         run: |
-          wget -qO- https://github.com/speakeasy-api/speakeasy/releases/latest/download/speakeasy_Linux_x86_64.tar.gz | tar xz -C /usr/local/bin
+          wget -qO- https://github.com/speakeasy-api/speakeasy/releases/latest/download/speakeasy_Linux_musl_x86_64.tar.gz | tar xz -C /usr/local/bin
           chmod +x /usr/local/bin/speakeasy
       - name: Run Speakeasy codegen
         run: |
