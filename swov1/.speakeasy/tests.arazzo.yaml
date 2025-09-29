@@ -13,6 +13,32 @@ x-speakeasy-test-security:
   value:
     ApiToken: "x-env: SWO_STAGE_API_TOKEN"
 workflows:
+  - workflowId: checkQueryTimesWithinLastDay
+    inputs:
+      QUERY_START_TIME: "x-env: QUERY_START_TIME"
+      QUERY_END_TIME: "x-env: QUERY_END_TIME"
+    steps:
+      - stepId: checkTimes
+        operationId: none
+        description: Check QUERY_START_TIME and QUERY_END_TIME are within the last 24 hours
+        run: |
+          echo "QUERY_START_TIME: $inputs.QUERY_START_TIME"
+          echo "QUERY_END_TIME: $inputs.QUERY_END_TIME"
+          now=$(date -u +%s)
+          start=$(date -u -d "$inputs.QUERY_START_TIME" +%s)
+          end=$(date -u -d "$inputs.QUERY_END_TIME" +%s)
+          if [ $((now - start)) -gt 86400 ]; then
+            echo "QUERY_START_TIME is more than 24h ago"
+            exit 1
+          fi
+          if [ $((now - end)) -gt 86400 ]; then
+            echo "QUERY_END_TIME is more than 24h ago"
+            exit 1
+          fi
+          if [ $start -gt $end ]; then
+            echo "QUERY_START_TIME is after QUERY_END_TIME"
+            exit 1
+          fi
   # /v1/changeevents - Create change event operation
   - workflowId: changeEvents
     steps:

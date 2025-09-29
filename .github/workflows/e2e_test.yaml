@@ -22,10 +22,17 @@ jobs:
       - name: Set QUERY_START_TIME and QUERY_END_TIME
         id: set_query_times
         run: |
-          export QUERY_START_TIME=$(date -u -d '6 hours 1 minute ago' +%Y-%m-%dT%H:%M:%SZ)
-          export QUERY_END_TIME=$(date -u -d '1 minute ago' +%Y-%m-%dT%H:%M:%SZ)
+          export QUERY_START_TIME=$(date -u -d "@$(( $(date +%s) - 6*3600 - 60 ))" +%Y-%m-%dT%H:%M:%SZ)
+          export QUERY_END_TIME=$(date -u -d "@$(( $(date +%s) - 60 ))" +%Y-%m-%dT%H:%M:%SZ)
           echo "QUERY_START_TIME=$QUERY_START_TIME" >> $GITHUB_ENV
           echo "QUERY_END_TIME=$QUERY_END_TIME" >> $GITHUB_ENV
+      - name: Install Speakeasy CLI
+        run: |
+          wget -qO- https://github.com/speakeasy-api/speakeasy/releases/latest/download/speakeasy-linux-amd64.tar.gz | tar xz -C /usr/local/bin
+          chmod +x /usr/local/bin/speakeasy
+      - name: Run Speakeasy codegen
+        run: |
+          speakeasy run --minimal --skip-compile
       - name: Run E2E tests
         run: |
           cd swov1
