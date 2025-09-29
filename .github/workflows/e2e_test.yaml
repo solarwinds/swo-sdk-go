@@ -35,7 +35,7 @@ jobs:
         env:
           SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
         run: |
-          speakeasy run --minimal --skip-compile
+          speakeasy run --minimal
       - name: Run E2E tests
         run: |
           cd swov1
