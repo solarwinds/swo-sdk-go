@@ -32,7 +32,8 @@ jobs:
           echo "QUERY_END_TIME=$QUERY_END_TIME" >> $GITHUB_ENV
       - name: Install Python
         run: |
-          apk add --no-cache python3
+          sudo apt-get update
+          sudo apt-get install -y python3
       - name: Replace query time placeholders in YAML
         run: |
           python3 replace_env_in_yaml.py swov1/.speakeasy/tests.arazzo.yaml
