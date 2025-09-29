@@ -23,13 +23,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Set QUERY_START_TIME and QUERY_END_TIME
-        id: set_query_times
-        run: |
-          export QUERY_START_TIME=$(date -u -d "@$(( $(date +%s) - 6*3600 - 60 ))" +%Y-%m-%dT%H:%M:%SZ)
-          export QUERY_END_TIME=$(date -u -d "@$(( $(date +%s) - 60 ))" +%Y-%m-%dT%H:%M:%SZ)
-          echo "QUERY_START_TIME=$QUERY_START_TIME" >> $GITHUB_ENV
-          echo "QUERY_END_TIME=$QUERY_END_TIME" >> $GITHUB_ENV
       - name: Install Python
         run: |
           sudo apt-get update
@@ -37,9 +30,6 @@ jobs:
       - name: Replace query time placeholders in YAML
         run: |
           python3 replace_env_in_yaml.py swov1/.speakeasy/tests.arazzo.yaml
-        env:
-          QUERY_START_TIME: ${{ env.QUERY_START_TIME }}
-          QUERY_END_TIME: ${{ env.QUERY_END_TIME }}
   generate:
     needs: pre-generate
     uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@v15
