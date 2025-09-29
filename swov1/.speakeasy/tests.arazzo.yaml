@@ -2,7 +2,6 @@
 #   Before running tests or codegen locally, you must replace __QUERY_START_TIME__ and __QUERY_END_TIME__ in this file.
 #   Run:
 #       python3 replace_env_in_yaml.py swov1/.speakeasy/tests.arazzo.yaml
-#   after setting the required environment variables (e.g., by sourcing swov1/.env).
 
 arazzo: 1.0.1
 info:
