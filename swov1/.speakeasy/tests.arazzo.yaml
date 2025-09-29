@@ -179,6 +179,6 @@ workflows:
               tag_without_value: "swo-sdk-e2e-test-tag"
             type: ingestion
         successCriteria:
-          - condition: $statusCode == 200
+          - condition: $statusCode == 201
           - condition: $response.header.Content-Type == application/json
           - condition: $response.body#/token != null
