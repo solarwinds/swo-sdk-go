@@ -27,6 +27,7 @@ jobs:
           pip install pyyaml
       - name: Replace query time placeholders in YAML
         run: |
+          . venv/bin/activate
           python3 replace_env_in_yaml.py swov1/.speakeasy/tests.arazzo.yaml
       - name: Install Speakeasy CLI
         run: |
