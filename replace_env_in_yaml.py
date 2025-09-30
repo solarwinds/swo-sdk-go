@@ -1,11 +1,22 @@
 import sys
 import shutil
 from datetime import datetime, timedelta, timezone
+import yaml
 
-# Usage:
-#   Before running tests or codegen locally, run:
-#       python3 replace_env_in_yaml.py swov1/.speakeasy/tests.arazzo.yaml
-# This replaces placeholders in the YAML with the current environment variable values.
+def replace_placeholders(obj, start_time_str, end_time_str):
+    if isinstance(obj, dict):
+        return {k: replace_placeholders(v, start_time_str, end_time_str) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [replace_placeholders(i, start_time_str, end_time_str) for i in obj]
+    elif isinstance(obj, str):
+        if obj == "__QUERY_START_TIME__":
+            return start_time_str
+        elif obj == "__QUERY_END_TIME__":
+            return end_time_str
+        else:
+            return obj
+    else:
+        return obj
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -23,8 +34,11 @@ if __name__ == "__main__":
     end_time_str = end_time.strftime("%Y-%m-%dT%H:%M:%SZ")
 
     with open(yaml_file, "r") as f:
-        content = f.read()
-    content = content.replace("__QUERY_START_TIME__", f'"{start_time_str}"')
-    content = content.replace("__QUERY_END_TIME__", f'"{end_time_str}"')
+        data = yaml.safe_load(f)
+
+    data = replace_placeholders(data, start_time_str, end_time_str)
+
     with open(yaml_file, "w") as f:
-        f.write(content)
+        yaml.safe_dump(data, f, default_flow_style=False)
+
+    print(f"Successfully replaced placeholders in {yaml_file}")

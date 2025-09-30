@@ -19,9 +19,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Install Python
-        run: |
-          apk add --no-cache python3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
       - name: Replace query time placeholders in YAML
         run: |
           python3 replace_env_in_yaml.py swov1/.speakeasy/tests.arazzo.yaml
