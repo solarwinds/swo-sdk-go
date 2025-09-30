@@ -39,20 +39,23 @@ jobs:
           SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
         run: |
           speakeasy run --minimal
-      - name: Run E2E tests
+      - name: Run E2E tests (non-scheduled)
+        if: github.event_name != 'schedule'
         run: |
           cd swov1
           go test -v ./tests
-      - name: Notify Slack with test results
+      - name: Run E2E tests and notify Slack (scheduled)
         if: github.event_name == 'schedule'
         run: |
-          if [ $? -eq 0 ]; then
+          cd swov1
+          TEST_OUTPUT=$(go test -v ./tests 2>&1)
+          TEST_EXIT_CODE=$?
+          if [ $TEST_EXIT_CODE -eq 0 ]; then
             STATUS="PASSED"
           else
             STATUS="FAILED"
           fi
           PAYLOAD="{
-            \"text\": \"E2E Tests (\${{ github.workflow }}) on main branch: $STATUS\nSee details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"
+            \"text\": \"E2E Tests (\${{ github.workflow }}) on main branch: $STATUS\nSee details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\nTest Output:\n$(echo \"$TEST_OUTPUT\" | tail -n 20)\"
           }"
           curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" ${{ secrets.SLACK_WEBHOOK_URL }}
-
