@@ -43,3 +43,16 @@ jobs:
         run: |
           cd swov1
           go test -v ./tests
+      - name: Notify Slack with test results
+        if: github.event_name == 'schedule'
+        run: |
+          if [ $? -eq 0 ]; then
+            STATUS="PASSED"
+          else
+            STATUS="FAILED"
+          fi
+          PAYLOAD="{
+            \"text\": \"E2E Tests (\${{ github.workflow }}) on main branch: $STATUS\nSee details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"
+          }"
+          curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" ${{ secrets.SLACK_WEBHOOK_URL }}
+
