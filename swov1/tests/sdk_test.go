@@ -141,8 +141,8 @@ func TestSDK_LogsSearch(t *testing.T) {
 
 	searchRes, err := s.Logs.SearchLogs(ctx, operations.SearchLogsRequest{
 		Filter:    swov1.Pointer("level:info"),
-		StartTime: types.MustNewTimeFromString("2025-06-15T00:00:00Z"),
-		EndTime:   types.MustNewTimeFromString("2025-07-22T23:59:59Z"),
+		StartTime: types.MustNewTimeFromString("2025-09-29T13:49:06Z"),
+		EndTime:   types.MustNewTimeFromString("2025-09-29T19:49:06Z"),
 		PageSize:  swov1.Pointer[int](10),
 	})
 	require.NoError(t, err)
@@ -162,8 +162,8 @@ func TestSDK_LogsArchives(t *testing.T) {
 	)
 
 	listRes, err := s.Logs.ListLogArchives(ctx, operations.ListLogArchivesRequest{
-		StartTime: "2025-06-15T00:00:00Z",
-		EndTime:   "2025-07-22T23:59:59Z",
+		StartTime: "2025-09-29T13:49:06Z",
+		EndTime:   "2025-09-29T19:49:06Z",
 		PageSize:  swov1.Pointer[int](10),
 	})
 	require.NoError(t, err)
@@ -172,5 +172,26 @@ func TestSDK_LogsArchives(t *testing.T) {
 }
 
 func TestSDK_Tokens(t *testing.T) {
-	t.Skip("incomplete test found please make sure to address the following errors: [`workflow step tokens.create referencing operation createToken does not contain response with status code 200`]")
+	ctx := context.Background()
+
+	testHTTPClient := createTestHTTPClient("tokens")
+
+	s := swov1.New(
+		swov1.WithServerURL(utils.GetEnv("PUBLIC_SWO_API_STAGE_URL", "")),
+		swov1.WithSecurity(utils.GetEnv("SWO_STAGE_API_TOKEN", "value")),
+		swov1.WithClient(testHTTPClient),
+	)
+
+	createRes, err := s.Tokens.CreateToken(ctx, components.TokensCreateTokenRequest{
+		Name: "swo-sdk-e2e-test-token",
+		Tags: components.Tags{
+			Server:          "swo-sdk-e2e-test-server",
+			TagWithoutValue: "swo-sdk-e2e-test-tag",
+		},
+		Type: components.TokensCreateTokenRequestTypeIngestion,
+	})
+	require.NoError(t, err)
+	assert.Equal(t, 201, createRes.HTTPMeta.Response.StatusCode)
+	assert.NotEmpty(t, createRes.TokensCreateTokenResponse.Token)
+
 }
