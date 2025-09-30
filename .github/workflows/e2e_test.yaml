@@ -20,7 +20,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Install Python
-        run:  apk add --no-cache python3
+        run:  |
+          python3 -m venv venv
+          . venv/bin/activate
+          pip install pyyaml
       - name: Replace query time placeholders in YAML
         run: |
           python3 replace_env_in_yaml.py swov1/.speakeasy/tests.arazzo.yaml
