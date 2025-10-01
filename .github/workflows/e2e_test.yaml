@@ -16,11 +16,12 @@ jobs:
     env:
       SWO_STAGE_API_TOKEN: ${{ secrets.SWO_STAGE_API_TOKEN }}
       PUBLIC_SWO_API_STAGE_URL: ${{ vars.PUBLIC_SWO_API_STAGE_URL }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Install Python
-        run:  |
+        run: |
           apk add --no-cache python3 py3-pip
           python3 -m venv venv
           . venv/bin/activate
@@ -31,7 +32,7 @@ jobs:
           python3 replace_env_in_yaml.py swov1/.speakeasy/tests.arazzo.yaml
       - name: Install Speakeasy CLI
         run: |
-          wget -q https://github.com/speakeasy-api/speakeasy/releases/download/v1.631.4/speakeasy_linux_amd64.zip          
+          wget -q https://github.com/speakeasy-api/speakeasy/releases/download/v1.631.4/speakeasy_linux_amd64.zip
           unzip -o speakeasy_linux_amd64.zip -d /usr/local/bin
           chmod +x /usr/local/bin/speakeasy
       - name: Install curl
@@ -54,4 +55,4 @@ jobs:
           PAYLOAD="{
             \"text\": \"E2E Tests (\${{ github.workflow }}) on main branch: $STATUS\nSee details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\nTest Output:\n$(echo \"$TEST_OUTPUT\" | tail -n 20)\"
           }"
-          curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" ${{ secrets.SLACK_WEBHOOK_URL }}
+          curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
