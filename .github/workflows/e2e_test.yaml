@@ -52,9 +52,10 @@ jobs:
           else
             STATUS="FAILED"
           fi
+          FILTERED_OUTPUT=$(echo "$TEST_OUTPUT" | grep -A 2 -B 2 "error" | grep -v "completed" | grep -v "Deleted")
           PAYLOAD=$(cat <<EOF
           {
-            "text": "E2E Tests (E2E Tests) on main branch: $STATUS\nSee details: https://github.com/solarwinds/swo-sdk-go/actions/runs/18170151433\nTest Output:\n$(echo "$TEST_OUTPUT" | tail -n 20 | sed 's/"/\\"/g')"
+            "text": "E2E Tests (main branch): $STATUS\nSee details: https://github.com/solarwinds/swo-sdk-go/actions/runs/18170151433\nTest Errors:\n$(echo "$FILTERED_OUTPUT" | sed 's/"/\\"/g')"
           }
           EOF
           )
