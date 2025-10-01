@@ -34,6 +34,8 @@ jobs:
           wget -q https://github.com/speakeasy-api/speakeasy/releases/download/v1.631.4/speakeasy_linux_amd64.zip          
           unzip -o speakeasy_linux_amd64.zip -d /usr/local/bin
           chmod +x /usr/local/bin/speakeasy
+      - name: Install curl
+        run: apk add --no-cache curl
       - name: Run Speakeasy codegen
         env:
           SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
