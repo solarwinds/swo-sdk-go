@@ -55,7 +55,7 @@ jobs:
           ERROR_LINES=$(echo "$TEST_OUTPUT" | grep "error" | sed 's/"/\\"/g')
           PAYLOAD=$(cat <<EOF
           {
-            "text": "E2E Tests (main branch): $STATUS\nSee details: https://github.com/solarwinds/swo-sdk-go/actions/runs/18170151433\nTest Errors:\n\`\`\`\n$ERROR_LINES\n\`\`\`"
+            "text": "Nightly E2E Tests: $STATUS\nSee details: https://github.com/solarwinds/swo-sdk-go/actions/runs/18170151433\nTest Errors:\n\`\`\`\n$ERROR_LINES\n\`\`\`"
           }
           EOF
           )
