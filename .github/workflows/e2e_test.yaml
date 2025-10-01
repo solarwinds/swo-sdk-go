@@ -52,7 +52,10 @@ jobs:
           else
             STATUS="FAILED"
           fi
-          PAYLOAD="{
-            \"text\": \"E2E Tests (\${{ github.workflow }}) on main branch: $STATUS\nSee details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} \nTest Output:\n$(echo \"$TEST_OUTPUT\" | tail -n 20)\"
-          }"
+          PAYLOAD=$(cat <<EOF
+          {
+            "text": "E2E Tests (E2E Tests) on main branch: $STATUS\nSee details: https://github.com/solarwinds/swo-sdk-go/actions/runs/18170151433\nTest Output:\n$(echo "$TEST_OUTPUT" | tail -n 20 | sed 's/"/\\"/g')"
+          }
+          EOF
+          )
           curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
