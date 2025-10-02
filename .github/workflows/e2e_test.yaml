@@ -46,39 +46,36 @@ jobs:
         run: |
           cd swov1
           TEST_OUTPUT=$(go test -v ./tests 2>&1)
-          
-          # Build a map of test statuses
+
           declare -A TEST_STATUS
           while read -r line; do
-          if [[ $line =~ ^===\ RUN ]]; then
-          test=${line##* }
-          TEST_STATUS["$test"]="RUN"
-          elif [[ $line =~ ^---\ PASS:\ (.*) ]]; then
-          test=${BASH_REMATCH[1]}
-          TEST_STATUS["$test"]="PASSED"
-          elif [[ $line =~ ^---\ FAIL:\ (.*) ]]; then
-          test=${BASH_REMATCH[1]}
-          TEST_STATUS["$test"]="FAILED"
-          fi
+            if [[ $line =~ ^===\ RUN ]]; then
+              test=${line##* }
+              TEST_STATUS["$test"]="RUN"
+            elif [[ $line =~ ^---\ PASS:\ (.*) ]]; then
+              test=${BASH_REMATCH[1]}
+              TEST_STATUS["$test"]="PASSED"
+            elif [[ $line =~ ^---\ FAIL:\ (.*) ]]; then
+              test=${BASH_REMATCH[1]}
+              TEST_STATUS["$test"]="FAILED"
+            fi
           done <<< "$TEST_OUTPUT"
-          
-          # Format test summary with dashes
+
           TEST_SUMMARY=$(echo "$TEST_OUTPUT" | awk '
-          /^=== RUN/ { test=$3 }
-        /^--- PASS:/ { print "- " test " :white_check_mark: PASSED" }
-        /^--- FAIL:/ { print "- " test " :x: FAILED" }
+            /^=== RUN/ { test=$3 }
+            /^--- PASS:/ { print "- " test " :white_check_mark: PASSED" }
+            /^--- FAIL:/ { print "- " test " :x: FAILED" }
           ')
 
-        # Collect errors, show status for each
-        ERRORS=""
-        while read -r line; do
-        if [[ $line =~ ^([a-zA-Z0-9_]+)_e2e_test\.go:[0-9]+: ]]; then
-            test=$(echo "$line" | awk -F: '{print $1}' | awk -F'/' '{print $NF}' | awk -F'_' '{print "TestSDK_"$2}')
-            status=${TEST_STATUS["$test"]}
-            ERRORS+="\n• $test ($status):\n\`\`\`\n$line\n\`\`\`"
-          fi
+          ERRORS=""
+          while read -r line; do
+            if [[ $line =~ ^([a-zA-Z0-9_]+)_e2e_test\.go:[0-9]+: ]]; then
+              test=$(echo "$line" | awk -F: '{print $1}' | awk -F'/' '{print $NF}' | awk -F'_' '{print "TestSDK_"$2}')
+              status=${TEST_STATUS["$test"]}
+              ERRORS+="\n• $test ($status):\n\`\`\`\n$line\n\`\`\`"
+            fi
           done <<< "$(echo "$TEST_OUTPUT" | grep 'error')"
-        
+
           TEST_EXIT_CODE=$?
           if [ $TEST_EXIT_CODE -eq 0 ]; then
             STATUS="PASSED"
