@@ -48,57 +48,75 @@ jobs:
         shell: bash
         run: |
           cd swov1
+          START_TIME=$(date +%s)
+
           TEST_OUTPUT=$(go test -v ./tests 2>&1)
+          TEST_EXIT_CODE=$?
+
+          END_TIME=$(date +%s)
+          DURATION_SEC=$((END_TIME - START_TIME))
+          DURATION_FMT=$(printf '%dm %02ds' $((DURATION_SEC/60)) $((DURATION_SEC%60)))
 
           declare -A TEST_STATUS
-          while read -r line; do
-            if [[ $line =~ ^===\ RUN ]]; then
-              test=${line##* }
-              TEST_STATUS["$test"]="RUN"
-            elif [[ $line =~ ^---\ PASS:\ (.*) ]]; then
-              test=${BASH_REMATCH[1]}
-              TEST_STATUS["$test"]="PASSED"
-            elif [[ $line =~ ^---\ FAIL:\ (.*) ]]; then
-              test=${BASH_REMATCH[1]}
-              TEST_STATUS["$test"]="FAILED"
+          declare -A TEST_ERRORS
+          declare -a TEST_ORDER
+
+          CURRENT_TEST=""
+          while IFS= read -r line; do
+            if [[ $line =~ ^===\ RUN[[:space:]]+(.+) ]]; then
+              CURRENT_TEST="${BASH_REMATCH[1]}"
+              TEST_STATUS["$CURRENT_TEST"]="RUN"
+              TEST_ORDER+=("$CURRENT_TEST")
+            elif [[ $line =~ ^---\ PASS:\ (.+) ]]; then
+              TEST_STATUS["${BASH_REMATCH[1]}"]="PASSED"
+            elif [[ $line =~ ^---\ FAIL:\ (.+) ]]; then
+              TEST_STATUS["${BASH_REMATCH[1]}"]="FAILED"
             fi
           done <<< "$TEST_OUTPUT"
 
-          TEST_SUMMARY=""
-          while read -r line; do
-            if [[ $line =~ ^===\ RUN ]]; then
-              test=${line##* }
-            elif [[ $line =~ ^---\ PASS:\ (.*) ]]; then
-              test=${BASH_REMATCH[1]}
-              TEST_SUMMARY+="- $test \:white_check_mark\: PASSED\n"
-            elif [[ $line =~ ^---\ FAIL:\ (.*) ]]; then
-              test=${BASH_REMATCH[1]}
-              TEST_SUMMARY+="- $test \:x\: FAILED\n"
-            fi
-          done <<< "$TEST_OUTPUT"
-
-          ERRORS=""
-          while read -r line; do
-            if [[ $line =~ ^([a-zA-Z0-9_]+)_e2e_test\.go:([0-9]+): ]]; then
-              file=${BASH_REMATCH[1]}
-              lineno=${BASH_REMATCH[2]}
-              test="TestSDK_${file}_e2e"
-              status=${TEST_STATUS["$test"]}
-              [[ -z "$status" ]] && status="UNKNOWN"
-              ERRORS+="• $test ($status):\n\`\`\`\n$line\n\`\`\`\n"
+          # Gather errors under each test
+          while IFS= read -r line; do
+            if [[ $line =~ ^([a-zA-Z0-9_]+)_e2e_test\.go:[0-9]+: ]]; then
+              FILE_LINE=${line%%:*}
+              TEST_NAME=$(echo "$FILE_LINE" | awk -F_ '{print "TestSDK_"$2}')
+              TEST_ERRORS["$TEST_NAME"]+="$line"$'\n'
             fi
           done <<< "$(echo "$TEST_OUTPUT" | grep 'error')"
 
-          TEST_EXIT_CODE=$?
+          # Build summary: each test and its errors (if any)
+          TEST_SUMMARY=""
+          for test in "${TEST_ORDER[@]}"; do
+            STATUS="${TEST_STATUS[$test]}"
+            if [[ "$STATUS" == "PASSED" ]]; then
+              EMOJI=":white_check_mark:"
+            elif [[ "$STATUS" == "FAILED" ]]; then
+              EMOJI=":x:"
+            else
+              EMOJI=":grey_question:"
+            fi
+            TEST_SUMMARY+="• *$test* $EMOJI"
+            if [[ -n "${TEST_ERRORS[$test]}" ]]; then
+              TEST_SUMMARY+="\n> \`\`\`\n${TEST_ERRORS[$test]}\`\`\`"
+            fi
+            TEST_SUMMARY+="\n"
+          done
+
           if [ $TEST_EXIT_CODE -eq 0 ]; then
-            STATUS="PASSED"
+            OVERALL_STATUS="*PASSED*"
           else
-            STATUS="FAILED"
+            OVERALL_STATUS="*FAILED*"
           fi
+
+          # Compose Slack message as block quote
           PAYLOAD=$(cat <<EOF
-          {
-            "text": "*Nightly E2E Tests: $STATUS*\nSee details: https://github.com/solarwinds/swo-sdk-go/actions/runs/18170151433\n\n$TEST_SUMMARY$ERRORS"
-          }
+          > *Nightly SWO SDK GO Tests:* $OVERALL_STATUS
+          > *Duration:* $DURATION_FMT
+          > *See details:* <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}>
+          >
+          > *Test Results:*
+          $TEST_SUMMARY
           EOF
           )
-        curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
+
+      # Post to Slack (example for webhook)
+        curl -X POST -H 'Content-type: application/json' --data "$(jq -nc --arg text "$PAYLOAD" '{"text":$text}')" "$SLACK_WEBHOOK_URL"
