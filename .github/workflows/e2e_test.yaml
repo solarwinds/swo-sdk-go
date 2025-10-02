@@ -39,12 +39,15 @@ jobs:
         run: apk add --no-cache curl
       - name: Install jq
         run: apk add --no-cache jq
+      - name: Install bash
+        run: apk add --no-cache bash
       - name: Run Speakeasy codegen
         env:
           SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
         run: |
           speakeasy run --minimal
       - name: Run E2E tests and notify Slack (scheduled)
+        shell: bash
         run: |
           cd swov1
           TEST_OUTPUT_FILE=$(mktemp)
