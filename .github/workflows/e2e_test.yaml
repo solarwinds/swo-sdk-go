@@ -43,6 +43,7 @@ jobs:
         run: |
           speakeasy run --minimal
       - name: Run E2E tests and notify Slack (scheduled)
+        shell: bash
         run: |
           cd swov1
           TEST_OUTPUT=$(go test -v ./tests 2>&1)
@@ -53,6 +54,9 @@ jobs:
               test=${line##* }
               TEST_STATUS["$test"]="RUN"
             elif [[ $line =~ ^---\ PASS:\ (.*) ]]; then
+              test=${BASH_REMATCH[1]}
+              TEST_STATUS["$test"]="PASSED"
+            elif [[ $line =~ ^---\ FAIL:\ (.*) ]]; then
               test=${BASH_REMATCH[1]}
               TEST_STATUS["$test"]="PASSED"
             elif [[ $line =~ ^---\ FAIL:\ (.*) ]]; then
