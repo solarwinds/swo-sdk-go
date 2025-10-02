@@ -117,6 +117,8 @@ jobs:
           $TEST_SUMMARY
           EOF
           )
-
-      # Post to Slack (example for webhook)
-        curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
+          
+          # Post to Slack (example for webhook)
+          # Use jq to properly escape JSON for Slack
+          apk add --no-cache jq
+          curl -X POST -H 'Content-type: application/json' --data "$(jq -nc --arg text "$PAYLOAD" '{"text":$text}')" "$SLACK_WEBHOOK_URL"
