@@ -48,7 +48,7 @@ jobs:
         run: |
           cd swov1
           TEST_OUTPUT=$(go test -v ./tests 2>&1 || true)
-          TEST_EXIT_CODE=${PIPESTATUS[0]:-$?}
+          TEST_EXIT_CODE=$?
           
           TEST_SUMMARY=$(echo "$TEST_OUTPUT" | awk '
           /^=== RUN/ { test=$3 }
