@@ -46,31 +46,43 @@ jobs:
           speakeasy run --minimal
       - name: Run E2E tests and notify Slack (scheduled)
         run: |
-          cd swov1
-          TEST_OUTPUT=$(go test -v ./tests 2>&1)
-          
+          set -e
+          cd swov1 || { echo "Failed to cd into swov1"; exit 1; }
+
+          TEST_OUTPUT=$(go test -v ./tests 2>&1) || {
+            echo "go test failed with exit code $?. Output:"
+            echo "$TEST_OUTPUT"
+            exit 1
+          }
+
           TEST_SUMMARY=$(echo "$TEST_OUTPUT" | awk '
           /^=== RUN/ { test=$3 }
           /^--- PASS:/ { print "*" test "* :white_check_mark: PASSED" }
           /^--- FAIL:/ { print "*" test "* :x: FAILED" }
           ')
-          
-          # Collect errors under each test
+
           ERRORS=$(echo "$TEST_OUTPUT" | awk '
           /^=== RUN/ { test=$3 }
           /error/ { print "*" test "*:\n```\n" $0 "\n```" }
           ')
-          
-          TEST_EXIT_CODE=$?
+
+          TEST_EXIT_CODE=0
+          if echo "$TEST_OUTPUT" | grep -q "^FAIL"; then
+            TEST_EXIT_CODE=1
+          fi
+
           if [ $TEST_EXIT_CODE -eq 0 ]; then
             STATUS="PASSED"
           else
             STATUS="FAILED"
           fi
-          
+
           PAYLOAD=$(jq -n --arg summary "$TEST_SUMMARY" --arg errors "$ERRORS" --arg status "$STATUS" '
             {
               text: "*Nightly E2E Tests: \($status)*\nSee details: https://github.com/solarwinds/swo-sdk-go/actions/runs/18170151433\n\n\($summary)\n\n\($errors)"
             }
           ')
-          curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
+          curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL || {
+            echo "Failed to send Slack notification"
+            exit 1
+          }
