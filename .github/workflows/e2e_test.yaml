@@ -42,6 +42,8 @@ jobs:
           SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
         run: |
           speakeasy run --minimal
+      - name: Install Bash
+        run: apk add --no-cache bash
       - name: Run E2E tests and notify Slack (scheduled)
         shell: bash
         run: |
