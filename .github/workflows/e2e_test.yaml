@@ -37,6 +37,8 @@ jobs:
           chmod +x /usr/local/bin/speakeasy
       - name: Install curl
         run: apk add --no-cache curl
+      - name: Install jq
+        run: apk add --no-cache jq
       - name: Run Speakeasy codegen
         env:
           SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
@@ -67,11 +69,9 @@ jobs:
             STATUS="FAILED"
           fi
           
-          PAYLOAD=$(cat <<EOF
-          {
-            "text": "*Nightly E2E Tests: $STATUS*\nSee details: https://github.com/solarwinds/swo-sdk-go/actions/runs/18170151433\n\n$TEST_SUMMARY\n\n$ERRORS"
-          }
-          EOF
-          )
-          
+          PAYLOAD=$(jq -n --arg summary "$TEST_SUMMARY" --arg errors "$ERRORS" --arg status "$STATUS" '
+            {
+              text: "*Nightly E2E Tests: \($status)*\nSee details: https://github.com/solarwinds/swo-sdk-go/actions/runs/18170151433\n\n\($summary)\n\n\($errors)"
+            }
+          ')
           curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
