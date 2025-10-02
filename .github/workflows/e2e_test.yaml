@@ -49,49 +49,58 @@ jobs:
         run: |
           cd swov1
           TEST_OUTPUT=$(go test -v ./tests 2>&1)
-
+          
           declare -A TEST_STATUS
           while read -r line; do
-            if [[ $line =~ ^===\ RUN ]]; then
-              test=${line##* }
-              TEST_STATUS["$test"]="RUN"
-            elif [[ $line =~ ^---\ PASS:\ (.*) ]]; then
-              test=${BASH_REMATCH[1]}
-              TEST_STATUS["$test"]="PASSED"
-            elif [[ $line =~ ^---\ FAIL:\ (.*) ]]; then
-              test=${BASH_REMATCH[1]}
-              TEST_STATUS["$test"]="PASSED"
-            elif [[ $line =~ ^---\ FAIL:\ (.*) ]]; then
-              test=${BASH_REMATCH[1]}
-              TEST_STATUS["$test"]="FAILED"
-            fi
+          if [[ $line =~ ^===\ RUN ]]; then
+          test=${line##* }
+          TEST_STATUS["$test"]="RUN"
+          elif [[ $line =~ ^---\ PASS:\ (.*) ]]; then
+          test=${BASH_REMATCH[1]}
+          TEST_STATUS["$test"]="PASSED"
+          elif [[ $line =~ ^---\ FAIL:\ (.*) ]]; then
+          test=${BASH_REMATCH[1]}
+          TEST_STATUS["$test"]="FAILED"
+          fi
           done <<< "$TEST_OUTPUT"
-
-          TEST_SUMMARY=$(echo "$TEST_OUTPUT" | awk '
-            /^=== RUN/ { test=$3 }
-            /^--- PASS:/ { print "- " test " :white_check_mark: PASSED" }
-            /^--- FAIL:/ { print "- " test " :x: FAILED" }
-          ')
-
+          
+          TEST_SUMMARY=""
+          while read -r line; do
+          if [[ $line =~ ^===\ RUN ]]; then
+          test=${line##* }
+          elif [[ $line =~ ^---\ PASS:\ (.*) ]]; then
+          test=${BASH_REMATCH[1]}
+        TEST_SUMMARY+="- $test \:white_check_mark\: PASSED\n"
+          elif [[ $line =~ ^---\ FAIL:\ (.*) ]]; then
+          test=${BASH_REMATCH[1]}
+        TEST_SUMMARY+="- $test \:x\: FAILED\n"
+          fi
+          done <<< "$TEST_OUTPUT"
+          
           ERRORS=""
           while read -r line; do
-            if [[ $line =~ ^([a-zA-Z0-9_]+)_e2e_test\.go:[0-9]+: ]]; then
-              test=$(echo "$line" | awk -F: '{print $1}' | awk -F'/' '{print $NF}' | awk -F'_' '{print "TestSDK_"$2}')
-              status=${TEST_STATUS["$test"]}
-              ERRORS+="\n• $test ($status):\n\`\`\`\n$line\n\`\`\`"
-            fi
+        if [[ $line =~ ^([a-zA-Z0-9_]+)_e2e_test\.go:([0-9]+): ]]; then
+         file=${BASH_REMATCH[1]}
+         lineno=${BASH_REMATCH[2]}
+  # Find the test name from the summary
+         test=$(grep -o "TestSDK_${file^}CrudLifecycle" <<< "$TEST_SUMMARY")
+         [[ -z "$test" ]] && test="TestSDK_${file^}CrudLifecycle"
+         status=${TEST_STATUS["$test"]}
+         [[ -z "$status" ]] && status="UNKNOWN"
+         ERRORS+="• $test ($status):\n\`\`\`\n$line\n\`\`\`\n"
+          fi
           done <<< "$(echo "$TEST_OUTPUT" | grep 'error')"
-
+          
           TEST_EXIT_CODE=$?
           if [ $TEST_EXIT_CODE -eq 0 ]; then
-            STATUS="PASSED"
+          STATUS="PASSED"
           else
-            STATUS="FAILED"
+          STATUS="FAILED"
           fi
           PAYLOAD=$(cat <<EOF
           {
-            "text": "*Nightly E2E Tests: $STATUS*\nSee details: https://github.com/solarwinds/swo-sdk-go/actions/runs/18170151433\n\n$TEST_SUMMARY\n$ERRORS"
+            "text": "*Nightly E2E Tests: $STATUS*\nSee details: https://github.com/solarwinds/swo-sdk-go/actions/runs/18170151433\n\n$TEST_SUMMARY$ERRORS"
           }
           EOF
           )
-          curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
+        curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
