@@ -119,4 +119,4 @@ jobs:
           )
 
       # Post to Slack (example for webhook)
-        curl -X POST -H 'Content-type: application/json' --data "$(jq -nc --arg text "$PAYLOAD" '{"text":$text}')" "$SLACK_WEBHOOK_URL"
+        curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
