@@ -56,9 +56,9 @@ jobs:
           
           # Collect errors under each test
           ERRORS=$(echo "$TEST_OUTPUT" | awk '
-            /^=== RUN/ { test=$3 }
-            /error/ { print "• `" test "`:\n```\n" $0 "\n```" }
-            ')
+          /^=== RUN/ { test=$3 }
+          /error/ { print "**" test "**:\n```\n" $0 "\n```" }
+          ')
           
           TEST_EXIT_CODE=$?
           if [ $TEST_EXIT_CODE -eq 0 ]; then
