@@ -16,11 +16,12 @@ jobs:
     env:
       SWO_STAGE_API_TOKEN: ${{ secrets.SWO_STAGE_API_TOKEN }}
       PUBLIC_SWO_API_STAGE_URL: ${{ vars.PUBLIC_SWO_API_STAGE_URL }}
+      SLACK_WEBHOOK_URL: ${{ vars.SLACK_WEBHOOK_URL }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Install Python
-        run:  |
+        run: |
           apk add --no-cache python3 py3-pip
           python3 -m venv venv
           . venv/bin/activate
@@ -31,15 +32,50 @@ jobs:
           python3 replace_env_in_yaml.py swov1/.speakeasy/tests.arazzo.yaml
       - name: Install Speakeasy CLI
         run: |
-          wget -q https://github.com/speakeasy-api/speakeasy/releases/download/v1.631.4/speakeasy_linux_amd64.zip          
+          wget -q https://github.com/speakeasy-api/speakeasy/releases/download/v1.631.4/speakeasy_linux_amd64.zip
           unzip -o speakeasy_linux_amd64.zip -d /usr/local/bin
           chmod +x /usr/local/bin/speakeasy
+      - name: Install curl
+        run: apk add --no-cache curl
+      - name: Install jq
+        run: apk add --no-cache jq
+      - name: Install bash
+        run: apk add --no-cache bash
       - name: Run Speakeasy codegen
         env:
           SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
         run: |
           speakeasy run --minimal
-      - name: Run E2E tests
+      - name: Run E2E tests and notify Slack (scheduled)
+        shell: bash
         run: |
           cd swov1
-          go test -v ./tests
+          TEST_OUTPUT_FILE=$(mktemp)
+          go test -v ./tests 2>&1 | tee "$TEST_OUTPUT_FILE"
+          TEST_EXIT_CODE=${PIPESTATUS[0]}
+          
+          TEST_OUTPUT=$(cat "$TEST_OUTPUT_FILE")
+          
+          TEST_SUMMARY=$(echo "$TEST_OUTPUT" | awk '
+          /^=== RUN/ { test=$3 }
+          /^--- PASS:/ { print "*" test "* :white_check_mark: PASSED" }
+          /^--- FAIL:/ { print "*" test "* :x: FAILED" }
+          ')
+        
+          ERRORS=$(echo "$TEST_OUTPUT" | awk '
+          /^=== RUN/ { test=$3 }
+          /error/ { print "*" test "*:\n```\n" $0 "\n```" }
+          ')
+        
+          if [ "$TEST_EXIT_CODE" -eq 0 ]; then
+            STATUS="PASSED"
+          else
+            STATUS="FAILED"
+          fi
+        
+          PAYLOAD=$(jq -n --arg summary "$TEST_SUMMARY" --arg errors "$ERRORS" --arg status "$STATUS" '
+            {
+              text: "*Nightly E2E Tests: \($status)*\nSee details: https://github.com/solarwinds/swo-sdk-go/actions/runs/18170151433\n\n\($summary)\n\n\($errors)"
+            }
+          ')
+          curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
