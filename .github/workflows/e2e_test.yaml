@@ -47,12 +47,7 @@ jobs:
       - name: Run E2E tests and notify Slack (scheduled)
         run: |
           cd swov1
-          START_TIME=$(date +%s)
           TEST_OUTPUT=$(go test -v ./tests 2>&1)
-          TEST_EXIT_CODE=$?  # Capture exit code immediately after go test
-          END_TIME=$(date +%s)
-          DURATION=$((END_TIME - START_TIME))
-          DURATION_FMT=$(printf "%02d:%02d" $((DURATION/60)) $((DURATION%60)))
           
           TEST_SUMMARY=$(echo "$TEST_OUTPUT" | awk '
           /^=== RUN/ { test=$3 }
@@ -65,16 +60,17 @@ jobs:
           /^=== RUN/ { test=$3 }
           /error/ { print "*" test "*:\n```\n" $0 "\n```" }
           ')
-        
+          
+          TEST_EXIT_CODE=$?
           if [ $TEST_EXIT_CODE -eq 0 ]; then
             STATUS="PASSED"
           else
             STATUS="FAILED"
           fi
-        
-          PAYLOAD=$(jq -n --arg summary "$TEST_SUMMARY" --arg errors "$ERRORS" --arg status "$STATUS" --arg duration "$DURATION_FMT" '
+          
+          PAYLOAD=$(jq -n --arg summary "$TEST_SUMMARY" --arg errors "$ERRORS" --arg status "$STATUS" '
             {
-              text: "*Nightly SWO SDK GO tests: \($status)*\nDuration: \($duration)\nSee details: https://github.com/solarwinds/swo-sdk-go/actions/runs/18170151433\n\n\($summary)\n\n\($errors)"
+              text: "*Nightly E2E Tests: \($status)*\nSee details: https://github.com/solarwinds/swo-sdk-go/actions/runs/18170151433\n\n\($summary)\n\n\($errors)"
             }
           ')
           curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
