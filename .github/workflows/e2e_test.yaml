@@ -47,8 +47,11 @@ jobs:
       - name: Run E2E tests and notify Slack (scheduled)
         run: |
           cd swov1
-          TEST_OUTPUT=$(go test -v ./tests 2>&1 || true)
-          TEST_EXIT_CODE=$?
+          TEST_OUTPUT_FILE=$(mktemp)
+          go test -v ./tests 2>&1 | tee "$TEST_OUTPUT_FILE"
+          TEST_EXIT_CODE=${PIPESTATUS[0]}
+          
+          TEST_OUTPUT=$(cat "$TEST_OUTPUT_FILE")
           
           TEST_SUMMARY=$(echo "$TEST_OUTPUT" | awk '
           /^=== RUN/ { test=$3 }
