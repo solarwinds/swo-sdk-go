@@ -141,8 +141,8 @@ func TestSDK_LogsSearch(t *testing.T) {
 
 	searchRes, err := s.Logs.SearchLogs(ctx, operations.SearchLogsRequest{
 		Filter:    swov1.Pointer("level:info"),
-		StartTime: types.MustNewTimeFromString("2025-09-29T13:49:06Z"),
-		EndTime:   types.MustNewTimeFromString("2025-09-29T19:49:06Z"),
+		StartTime: types.MustNewTimeFromString("__QUERY_START_TIME__"),
+		EndTime:   types.MustNewTimeFromString("__QUERY_END_TIME__"),
 		PageSize:  swov1.Pointer[int](10),
 	})
 	require.NoError(t, err)
@@ -162,8 +162,8 @@ func TestSDK_LogsArchives(t *testing.T) {
 	)
 
 	listRes, err := s.Logs.ListLogArchives(ctx, operations.ListLogArchivesRequest{
-		StartTime: "2025-09-29T13:49:06Z",
-		EndTime:   "2025-09-29T19:49:06Z",
+		StartTime: "__QUERY_START_TIME__",
+		EndTime:   "__QUERY_END_TIME__",
 		PageSize:  swov1.Pointer[int](10),
 	})
 	require.NoError(t, err)
