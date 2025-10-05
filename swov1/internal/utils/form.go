@@ -10,8 +10,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ericlagergren/decimal"
-
 	"github.com/solarwinds/swo-sdk-go/swov1/optionalnullable"
 	"github.com/solarwinds/swo-sdk-go/swov1/types"
 )
@@ -41,8 +39,6 @@ func populateForm(paramName string, explode bool, objType reflect.Type, objValue
 		case types.Date:
 			formValues.Add(paramName, valToString(objValue.Interface()))
 		case big.Int:
-			formValues.Add(paramName, valToString(objValue.Interface()))
-		case decimal.Big:
 			formValues.Add(paramName, valToString(objValue.Interface()))
 		default:
 			var items []string
