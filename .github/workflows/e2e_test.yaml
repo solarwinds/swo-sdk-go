@@ -65,25 +65,17 @@ jobs:
           TEST_SUMMARY=$(awk '
             /^=== RUN/ { test=$3; testname=test }
             /^--- PASS:/ { print "*" testname "* :white_check_mark: PASSED" }
-            /^--- FAIL:/ { print "*" testname "* :x: FAILED"; failed[testname]=1 }
-            {
-              # Capture output for failed tests
-              if (in_failed && failed[testname]) {
-                error_lines = error_lines $0 "\n"
-              }
-              if (/^--- FAIL:/) {
-                in_failed=1
-                error_lines=""
-              } else if (/^=== RUN|^--- PASS:|^ok |^FAIL$/) {
-                if (in_failed && failed[testname]) {
-                  print "```\n" error_lines "```"
-                }
-                in_failed=0
-                error_lines=""
-              }
+            /^--- FAIL:/ { print "*" testname "* :x: FAILED"; failed[testname]=1; in_failed=1; error_lines="" }
+            in_failed && !/^=== RUN/ && !/^--- PASS:/ && !/^ok / && !/^FAIL$/ {
+              error_lines = error_lines $0 "\n"
+            }
+            (/^=== RUN/ || /^--- PASS:/ || /^ok / || /^FAIL$/) && in_failed {
+              print "```\n" error_lines "```"
+              in_failed=0
+              error_lines=""
             }
             END {
-              if (in_failed && failed[testname]) {
+              if (in_failed) {
                 print "```\n" error_lines "```"
               }
             }
@@ -104,5 +96,7 @@ jobs:
               text: "\($emoji) *Nightly E2E Tests: \($status)*\nSee details: \($run_url)\n\n\($summary)"
             }
           ')
+          curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
+          exit 0
           curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
           exit 0
