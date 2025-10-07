@@ -20,25 +20,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - name: Install Python
         run: |
           apk add --no-cache python3 py3-pip
           python3 -m venv venv
           . venv/bin/activate
           pip install pyyaml
-
       - name: Replace query time placeholders in YAML
         run: |
           . venv/bin/activate
           python3 replace_env_in_yaml.py swov1/.speakeasy/tests.arazzo.yaml
-
       - name: Install Speakeasy CLI
         run: |
           wget -q https://github.com/speakeasy-api/speakeasy/releases/download/v1.631.4/speakeasy_linux_amd64.zip
           unzip -o speakeasy_linux_amd64.zip -d /usr/local/bin
           chmod +x /usr/local/bin/speakeasy
-
       - name: Install curl
         run: apk add --no-cache curl
 
@@ -53,8 +49,13 @@ jobs:
           SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
         run: |
           speakeasy run --minimal
-
+      - name: Run E2E tests (non-scheduled)
+        if: github.event_name != 'schedule'
+        run: |
+          cd swov1
+          go test -v ./tests
       - name: Run E2E tests and notify Slack (scheduled)
+        if: github.event_name == 'schedule'
         shell: bash
         run: |
           cd swov1
