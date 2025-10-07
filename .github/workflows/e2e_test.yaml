@@ -63,45 +63,29 @@ jobs:
 
           TEST_SUMMARY=$(awk '
             /^=== RUN/ {
-              if (in_failed && error_lines != "") {
-                print "```\n" error_lines "```"
-              }
-              in_failed=0
-              error_lines=""
               testname=$3
+              collecting=1
+              lines=""
+              next
             }
-            /^--- PASS:/ {
-              if (in_failed && error_lines != "") {
-                print "```\n" error_lines "```"
-              }
-              in_failed=0
-              error_lines=""
+            collecting && /^--- PASS:/ {
               print "*" testname "*: PASSED"
+              collecting=0
+              lines=""
+              next
             }
-            /^--- FAIL:/ {
-              if (in_failed && error_lines != "") {
-                print "```\n" error_lines "```"
-              }
-              in_failed=1
-              error_lines=""
+            collecting && /^--- FAIL:/ {
               print "*" testname "*: FAILED"
+              if (lines != "") {
+                print "```\n" lines "```"
+              }
+              collecting=0
+              lines=""
               next
             }
-            in_failed && !/^=== RUN/ && !/^--- PASS:/ && !/^--- FAIL:/ {
-              error_lines = error_lines $0 "\n"
+            collecting && !/^--- PASS:/ && !/^--- FAIL:/ && !/^=== RUN/ {
+              lines = lines $0 "\n"
               next
-            }
-            in_failed && (/^=== RUN/ || /^--- PASS:/ || /^--- FAIL:/) {
-              if (error_lines != "") {
-                print "```\n" error_lines "```"
-              }
-              in_failed=0
-              error_lines=""
-            }
-            END {
-              if (in_failed && error_lines != "") {
-                print "```\n" error_lines "```"
-              }
             }
           ' "$TEST_OUTPUT_FILE")
 
