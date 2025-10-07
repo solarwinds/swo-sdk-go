@@ -78,10 +78,14 @@ jobs:
               if (in_failed) {
                 print "```\n" error_lines "```"
               }
+              if (length(failed) > 0) {
+                print "\n:x: Some tests FAILED"
+                exit 1
+              }
             }
           ' "$TEST_OUTPUT_FILE")
 
-          if [ "$TEST_EXIT_CODE" -eq 0 ]; then
+          if [ "$?" -eq 0 ]; then
             STATUS="PASSED"
             STATUS_EMOJI=":white_check_mark:"
           else
@@ -96,7 +100,5 @@ jobs:
               text: "\($emoji) *Nightly E2E Tests: \($status)*\nSee details: \($run_url)\n\n\($summary)"
             }
           ')
-          curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
-          exit 0
           curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
           exit 0
