@@ -20,32 +20,40 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
       - name: Install Python
         run: |
           apk add --no-cache python3 py3-pip
           python3 -m venv venv
           . venv/bin/activate
           pip install pyyaml
+
       - name: Replace query time placeholders in YAML
         run: |
           . venv/bin/activate
           python3 replace_env_in_yaml.py swov1/.speakeasy/tests.arazzo.yaml
+
       - name: Install Speakeasy CLI
         run: |
           wget -q https://github.com/speakeasy-api/speakeasy/releases/download/v1.631.4/speakeasy_linux_amd64.zip
           unzip -o speakeasy_linux_amd64.zip -d /usr/local/bin
           chmod +x /usr/local/bin/speakeasy
+
       - name: Install curl
         run: apk add --no-cache curl
+
       - name: Install jq
         run: apk add --no-cache jq
+
       - name: Install bash
         run: apk add --no-cache bash
+
       - name: Run Speakeasy codegen
         env:
           SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
         run: |
           speakeasy run --minimal
+
       - name: Run E2E tests and notify Slack (scheduled)
         shell: bash
         run: |
@@ -65,12 +73,10 @@ jobs:
 
           # Collect detailed errors for failed tests only and group under heading
           ERRORS=$(awk '
-          BEGIN { in_error=0 }
           /^=== RUN/ { test=$3 }
-          /^--- FAIL:/ { in_error=1; curr_test=test; err="" }
-          /^--- PASS:/ { in_error=0 }
-          /^FAIL/ { in_error=0 }
-          in_error && /error/ {
+          /^--- FAIL:/ { failed=1; curr_test=test; next }
+          /^=== RUN/ || /^--- PASS:/ || /^ok / || /^FAIL$/ { failed=0 }
+          failed {
             if (!(curr_test in errors)) {
               test_list[++n]=curr_test
               errors[curr_test]=""
