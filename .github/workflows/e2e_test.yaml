@@ -56,29 +56,36 @@ jobs:
 
           TEST_OUTPUT=$(cat "$TEST_OUTPUT_FILE")
 
-          # Summarize test results with emoji
-          TEST_SUMMARY=$(echo "$TEST_OUTPUT" | awk '
+          # Build summary of all tests (PASS/FAIL)
+          TEST_SUMMARY=$(awk '
           /^=== RUN/ { test=$3 }
           /^--- PASS:/ { print "*" test "* :white_check_mark: PASSED" }
           /^--- FAIL:/ { print "*" test "* :x: FAILED" }
-          ')
+          ' "$TEST_OUTPUT_FILE")
 
-          # Group errors per test
+          # Collect detailed errors for failed tests only and group under heading
           ERRORS=$(awk '
-            /^=== RUN/ { test=$3 }
-            /error/ {
-              if (!errors[test]) {
-                errors[test]=""
-                test_list[++n]=test
-              }
-              errors[test]=errors[test] "\n" $0
+          BEGIN { in_error=0 }
+          /^=== RUN/ { test=$3 }
+          /^--- FAIL:/ { in_error=1; curr_test=test; err="" }
+          /^--- PASS:/ { in_error=0 }
+          /^FAIL/ { in_error=0 }
+          in_error && /error/ {
+            if (!(curr_test in errors)) {
+              test_list[++n]=curr_test
+              errors[curr_test]=""
             }
-            END {
+            errors[curr_test]=errors[curr_test] $0 "\n"
+          }
+          END {
+            if (n > 0) {
+              print "*Test Failures & Errors:*\n"
               for (i=1; i<=n; i++) {
                 t=test_list[i]
-                printf "*%s*:\n```%s\n```\n", t, substr(errors[t],2)
+                printf "*%s*\n```\n%s```\n", t, errors[t]
               }
             }
+          }
           ' "$TEST_OUTPUT_FILE")
 
           if [ "$TEST_EXIT_CODE" -eq 0 ]; then
@@ -89,9 +96,12 @@ jobs:
             STATUS_EMOJI=":x:"
           fi
 
-          PAYLOAD=$(jq -n --arg summary "$TEST_SUMMARY" --arg errors "$ERRORS" --arg status "$STATUS" --arg emoji "$STATUS_EMOJI" '
+          # Use dynamic run URL
+          RUN_URL="https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+
+          PAYLOAD=$(jq -n --arg summary "$TEST_SUMMARY" --arg errors "$ERRORS" --arg status "$STATUS" --arg emoji "$STATUS_EMOJI" --arg run_url "$RUN_URL" '
             {
-              text: "\($emoji) *Nightly E2E Tests: \($status)*\nSee details: https://github.com/solarwinds/swo-sdk-go/actions/runs/18170151433\n\n\($summary)\n\n\($errors)"
+              text: "\($emoji) *Nightly E2E Tests: \($status)*\nSee details: \($run_url)\n\n\($summary)\n\n\($errors)"
             }
           ')
           curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
