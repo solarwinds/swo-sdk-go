@@ -53,29 +53,45 @@ jobs:
           TEST_OUTPUT_FILE=$(mktemp)
           go test -v ./tests 2>&1 | tee "$TEST_OUTPUT_FILE"
           TEST_EXIT_CODE=${PIPESTATUS[0]}
-          
+
           TEST_OUTPUT=$(cat "$TEST_OUTPUT_FILE")
-          
+
+          # Summarize test results with emoji
           TEST_SUMMARY=$(echo "$TEST_OUTPUT" | awk '
           /^=== RUN/ { test=$3 }
           /^--- PASS:/ { print "*" test "* :white_check_mark: PASSED" }
           /^--- FAIL:/ { print "*" test "* :x: FAILED" }
           ')
-          
-          ERRORS=$(echo "$TEST_OUTPUT" | awk '
-          /^=== RUN/ { test=$3 }
-          /error/ { print "*" test "*:\n```\n" $0 "\n```" }
-          ')
-          
+
+          # Group errors per test
+          ERRORS=$(awk '
+            /^=== RUN/ { test=$3 }
+            /error/ {
+              if (!errors[test]) {
+                errors[test]=""
+                test_list[++n]=test
+              }
+              errors[test]=errors[test] "\n" $0
+            }
+            END {
+              for (i=1; i<=n; i++) {
+                t=test_list[i]
+                printf "*%s*:\n```%s\n```\n", t, substr(errors[t],2)
+              }
+            }
+          ' "$TEST_OUTPUT_FILE")
+
           if [ "$TEST_EXIT_CODE" -eq 0 ]; then
             STATUS="PASSED"
+            STATUS_EMOJI=":white_check_mark:"
           else
             STATUS="FAILED"
+            STATUS_EMOJI=":x:"
           fi
-          
-          PAYLOAD=$(jq -n --arg summary "$TEST_SUMMARY" --arg errors "$ERRORS" --arg status "$STATUS" '
+
+          PAYLOAD=$(jq -n --arg summary "$TEST_SUMMARY" --arg errors "$ERRORS" --arg status "$STATUS" --arg emoji "$STATUS_EMOJI" '
             {
-              text: "*Nightly E2E Tests: \($status)*\nSee details: https://github.com/solarwinds/swo-sdk-go/actions/runs/18170151433\n\n\($summary)\n\n\($errors)"
+              text: "\($emoji) *Nightly E2E Tests: \($status)*\nSee details: https://github.com/solarwinds/swo-sdk-go/actions/runs/18170151433\n\n\($summary)\n\n\($errors)"
             }
           ')
           curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
