@@ -62,15 +62,35 @@ jobs:
           go test -v ./tests 2>&1 | tee "$TEST_OUTPUT_FILE" || true
 
           TEST_SUMMARY=$(awk '
-            /^=== RUN/ { test=$3; testname=test }
-            /^--- PASS:/ { print "*" testname "*: PASSED" }
+            /^=== RUN/ { 
+              if (in_failed && error_lines != "") {
+                print "```\n" error_lines "```"
+              }
+              in_failed=0
+              error_lines=""
+              testname=$3
+            }
+            /^--- PASS:/ { 
+              if (in_failed && error_lines != "") {
+                print "```\n" error_lines "```"
+              }
+              in_failed=0
+              error_lines=""
+              print "*" testname "*: PASSED"
+            }
             /^--- FAIL:/ {
-              print "*" testname "*: FAILED"
+              if (in_failed && error_lines != "") {
+                print "```\n" error_lines "```"
+              }
               in_failed=1
               error_lines=""
+              print "*" testname "*: FAILED"
             }
-            in_failed && /^    / { error_lines = error_lines $0 "\n" }
-            in_failed && !/^    / {
+            in_failed && /^    / {
+              error_lines = error_lines $0 "\n"
+            }
+            in_failed && !/^    / && !/^--- FAIL:/ && !/^--- PASS:/ && !/^=== RUN/ {
+              # End of error block
               if (error_lines != "") {
                 print "```\n" error_lines "```"
               }
