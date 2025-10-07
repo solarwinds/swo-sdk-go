@@ -96,7 +96,7 @@ jobs:
 
           PAYLOAD=$(jq -n --arg summary "$TEST_SUMMARY" --arg status "$STATUS" --arg emoji "$STATUS_EMOJI" --arg run_url "$RUN_URL" '
             {
-              text: "\($emoji) *Nightly E2E Tests: \($status)*\nSee details: \($run_url)\n\n\($summary)"
+              text: "\($emoji) *Nightly SWO SDK GO tests: \($status)*\nSee details: \($run_url)\n\n" + ($summary | split("\n") | map("> " + .) | join("\n"))
             }
           ')
           curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
