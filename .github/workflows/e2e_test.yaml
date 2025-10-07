@@ -60,32 +60,32 @@ jobs:
           cd swov1
           TEST_OUTPUT_FILE=$(mktemp)
           go test -v ./tests 2>&1 | tee "$TEST_OUTPUT_FILE" || true
-          TEST_EXIT_CODE=${PIPESTATUS[0]}
 
+          # Run awk and capture both output and exit code
           TEST_SUMMARY=$(awk '
             /^=== RUN/ { test=$3; testname=test }
             /^--- PASS:/ { print "*" testname "* :white_check_mark: PASSED" }
             /^--- FAIL:/ { print "*" testname "* :x: FAILED"; failed[testname]=1; in_failed=1; error_lines="" }
-            in_failed && !/^=== RUN/ && !/^--- PASS:/ && !/^ok / && !/^FAIL$/ {
-              error_lines = error_lines $0 "\n"
-            }
-            (/^=== RUN/ || /^--- PASS:/ || /^ok / || /^FAIL$/) && in_failed {
-              print "```\n" error_lines "```"
+            in_failed && /^    / { error_lines = error_lines $0 "\n" }
+            !/^    / && in_failed {
+              if (error_lines != "") {
+                print "```\n" error_lines "```"
+              }
               in_failed=0
               error_lines=""
             }
             END {
-              if (in_failed) {
+              if (in_failed && error_lines != "") {
                 print "```\n" error_lines "```"
               }
               if (length(failed) > 0) {
-                print "\n:x: Some tests FAILED"
                 exit 1
               }
             }
           ' "$TEST_OUTPUT_FILE")
+          AWK_EXIT_CODE=$?
 
-          if [ "$?" -eq 0 ]; then
+          if [ "$AWK_EXIT_CODE" -eq 0 ]; then
             STATUS="PASSED"
             STATUS_EMOJI=":white_check_mark:"
           else
