@@ -16,7 +16,7 @@ jobs:
     env:
       SWO_STAGE_API_TOKEN: ${{ secrets.SWO_API_TOKEN }}
       PUBLIC_SWO_API_STAGE_URL: ${{ secrets.PUBLIC_SWO_API_STAGE_URL }}
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SWO_PUBLIC_API_WEBHOOK }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
