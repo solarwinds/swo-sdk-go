@@ -61,18 +61,18 @@ jobs:
           /^--- PASS:/ { print "*" test "* :white_check_mark: PASSED" }
           /^--- FAIL:/ { print "*" test "* :x: FAILED" }
           ')
-        
+          
           ERRORS=$(echo "$TEST_OUTPUT" | awk '
           /^=== RUN/ { test=$3 }
           /error/ { print "*" test "*:\n```\n" $0 "\n```" }
           ')
-        
+          
           if [ "$TEST_EXIT_CODE" -eq 0 ]; then
             STATUS="PASSED"
           else
             STATUS="FAILED"
           fi
-        
+          
           PAYLOAD=$(jq -n --arg summary "$TEST_SUMMARY" --arg errors "$ERRORS" --arg status "$STATUS" '
             {
               text: "*Nightly E2E Tests: \($status)*\nSee details: https://github.com/solarwinds/swo-sdk-go/actions/runs/18170151433\n\n\($summary)\n\n\($errors)"
