@@ -62,36 +62,31 @@ jobs:
           go test -v ./tests 2>&1 | tee "$TEST_OUTPUT_FILE" || true
           TEST_EXIT_CODE=${PIPESTATUS[0]}
 
-          TEST_OUTPUT=$(cat "$TEST_OUTPUT_FILE")
-
-          # Build summary of all tests (PASS/FAIL)
           TEST_SUMMARY=$(awk '
-          /^=== RUN/ { test=$3 }
-          /^--- PASS:/ { print "*" test "* :white_check_mark: PASSED" }
-          /^--- FAIL:/ { print "*" test "* :x: FAILED" }
-          ' "$TEST_OUTPUT_FILE")
-
-          # Collect detailed errors for failed tests only and group under heading
-          ERRORS=$(awk '
-          /^=== RUN/ { test=$3 }
-          /^--- FAIL:/ { failed=1; curr_test=test; next }
-          /^=== RUN/ || /^--- PASS:/ || /^ok / || /^FAIL$/ { failed=0 }
-          failed {
-            if (!(curr_test in errors)) {
-              test_list[++n]=curr_test
-              errors[curr_test]=""
-            }
-            errors[curr_test]=errors[curr_test] $0 "\n"
-          }
-          END {
-            if (n > 0) {
-              print "*Test Failures & Errors:*\n"
-              for (i=1; i<=n; i++) {
-                t=test_list[i]
-                printf "*%s*\n```\n%s```\n", t, errors[t]
+            /^=== RUN/ { test=$3; testname=test }
+            /^--- PASS:/ { print "*" testname "* :white_check_mark: PASSED" }
+            /^--- FAIL:/ { print "*" testname "* :x: FAILED"; failed[testname]=1 }
+            {
+              # Capture output for failed tests
+              if (in_failed && failed[testname]) {
+                error_lines = error_lines $0 "\n"
+              }
+              if (/^--- FAIL:/) {
+                in_failed=1
+                error_lines=""
+              } else if (/^=== RUN|^--- PASS:|^ok |^FAIL$/) {
+                if (in_failed && failed[testname]) {
+                  print "```\n" error_lines "```"
+                }
+                in_failed=0
+                error_lines=""
               }
             }
-          }
+            END {
+              if (in_failed && failed[testname]) {
+                print "```\n" error_lines "```"
+              }
+            }
           ' "$TEST_OUTPUT_FILE")
 
           if [ "$TEST_EXIT_CODE" -eq 0 ]; then
@@ -102,12 +97,11 @@ jobs:
             STATUS_EMOJI=":x:"
           fi
 
-          # Use dynamic run URL
           RUN_URL="https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
 
-          PAYLOAD=$(jq -n --arg summary "$TEST_SUMMARY" --arg errors "$ERRORS" --arg status "$STATUS" --arg emoji "$STATUS_EMOJI" --arg run_url "$RUN_URL" '
+          PAYLOAD=$(jq -n --arg summary "$TEST_SUMMARY" --arg status "$STATUS" --arg emoji "$STATUS_EMOJI" --arg run_url "$RUN_URL" '
             {
-              text: "\($emoji) *Nightly E2E Tests: \($status)*\nSee details: \($run_url)\n\n\($summary)\n\n\($errors)"
+              text: "\($emoji) *Nightly E2E Tests: \($status)*\nSee details: \($run_url)\n\n\($summary)"
             }
           ')
           curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
