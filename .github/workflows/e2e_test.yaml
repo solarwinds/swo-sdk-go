@@ -61,13 +61,12 @@ jobs:
           TEST_OUTPUT_FILE=$(mktemp)
           go test -v ./tests 2>&1 | tee "$TEST_OUTPUT_FILE" || true
 
-          # Run awk and capture both output and exit code
           TEST_SUMMARY=$(awk '
             /^=== RUN/ { test=$3; testname=test }
             /^--- PASS:/ { print "*" testname "* :white_check_mark: PASSED" }
             /^--- FAIL:/ { print "*" testname "* :x: FAILED"; failed[testname]=1; in_failed=1; error_lines="" }
             in_failed && /^    / { error_lines = error_lines $0 "\n" }
-            !/^    / && in_failed {
+            in_failed && !/^    / {
               if (error_lines != "") {
                 print "```\n" error_lines "```"
               }
