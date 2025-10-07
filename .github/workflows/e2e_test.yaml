@@ -15,7 +15,7 @@ jobs:
       image: golang:1.23-alpine
     env:
       SWO_STAGE_API_TOKEN: ${{ secrets.SWO_STAGE_API_TOKEN }}
-      PUBLIC_SWO_API_STAGE_URL: ${{ vars.PUBLIC_SWO_API_STAGE_URL }}
+      PUBLIC_SWO_API_STAGE_URL: ${{ secrets.PUBLIC_SWO_API_STAGE_URL }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
