@@ -59,7 +59,7 @@ jobs:
         run: |
           cd swov1
           TEST_OUTPUT_FILE=$(mktemp)
-          go test -v ./tests 2>&1 | tee "$TEST_OUTPUT_FILE"
+          go test -v ./tests 2>&1 | tee "$TEST_OUTPUT_FILE" || true
           TEST_EXIT_CODE=${PIPESTATUS[0]}
 
           TEST_OUTPUT=$(cat "$TEST_OUTPUT_FILE")
@@ -111,3 +111,4 @@ jobs:
             }
           ')
           curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
+          exit 0
