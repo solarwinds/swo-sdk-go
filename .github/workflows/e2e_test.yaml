@@ -83,7 +83,6 @@ jobs:
             collecting && /^--- FAIL:/ {
               print "*" testname "*: FAILED"
               if (lines != "") {
-                # Remove leading/trailing newlines, wrap in blockquote code block
                 print "> ```\n" trim(lines) "\n```"
               }
               collecting=0
@@ -91,17 +90,18 @@ jobs:
               next
             }
             collecting && !/^--- PASS:/ && !/^--- FAIL:/ && !/^=== RUN/ {
-              # Skip the first error line (e.g. sdk_test.go:169:)
               if (skip_first) {
                 skip_first=0
                 next
               }
-              # Remove leading indentation
               sub(/^[ \t]+/, "", $0)
               lines = lines $0 "\n"
               next
             }
           ' "$TEST_OUTPUT_FILE")
+
+          # Extract duration from last FAIL or ok line
+          DURATION=$(grep -E '^(FAIL|ok)\s' "$TEST_OUTPUT_FILE" | tail -1 | awk '{print $NF}')
 
           if grep -q 'FAILED' <<< "$TEST_SUMMARY"; then
             STATUS="FAILED"
@@ -113,9 +113,9 @@ jobs:
 
           RUN_URL="https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
 
-          PAYLOAD=$(jq -n --arg summary "$TEST_SUMMARY" --arg status "$STATUS" --arg emoji "$STATUS_EMOJI" --arg run_url "$RUN_URL" '
+          PAYLOAD=$(jq -n --arg summary "$TEST_SUMMARY" --arg status "$STATUS" --arg emoji "$STATUS_EMOJI" --arg run_url "$RUN_URL" --arg duration "$DURATION" '
             {
-              text: "\($emoji) *Nightly SWO SDK GO tests: \($status)*\n\n" +
+              text: "\($emoji) *Nightly SWO SDK GO tests: \($status)*\nDuration: \($duration)\nSee details: \($run_url)\n\n" +
                 (
                   ($summary | split("\n"))
                   | map(
@@ -126,8 +126,7 @@ jobs:
                       end
                     )
                   | join("\n")
-                ) +
-                "\nSee details: \($run_url)"
+                )
             }
           ')
           curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
