@@ -14,7 +14,7 @@ jobs:
     container:
       image: golang:1.23-alpine
     env:
-      SWO_STAGE_API_TOKEN: ${{ secrets.SWO_STAGE_API_TOKEN }}
+      SWO_STAGE_API_TOKEN: ${{ secrets.SWO_API_TOKEN }}
       PUBLIC_SWO_API_STAGE_URL: ${{ secrets.PUBLIC_SWO_API_STAGE_URL }}
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
