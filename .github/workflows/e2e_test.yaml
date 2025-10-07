@@ -63,8 +63,8 @@ jobs:
 
           TEST_SUMMARY=$(awk '
             /^=== RUN/ { test=$3; testname=test }
-            /^--- PASS:/ { print "*" testname "* :white_check_mark: PASSED" }
-            /^--- FAIL:/ { print "*" testname "* :x: FAILED"; failed[testname]=1; in_failed=1; error_lines="" }
+            /^--- PASS:/ { print "*" testname "*: PASSED" }
+            /^--- FAIL:/ { print "*" testname "*: FAILED"; failed[testname]=1; in_failed=1; error_lines="" }
             in_failed && /^    / { error_lines = error_lines $0 "\n" }
             in_failed && !/^    / {
               if (error_lines != "") {
