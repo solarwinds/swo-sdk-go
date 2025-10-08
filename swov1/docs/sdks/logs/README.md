@@ -36,8 +36,8 @@ func main() {
 
     res, err := s.Logs.SearchLogs(ctx, operations.SearchLogsRequest{
         Filter: swov1.Pointer("level:info"),
-        StartTime: types.MustNewTimeFromString("__QUERY_START_TIME__"),
-        EndTime: types.MustNewTimeFromString("__QUERY_END_TIME__"),
+        StartTime: types.MustNewTimeFromString("2025-10-08T12:02:57Z"),
+        EndTime: types.MustNewTimeFromString("2025-10-08T20:02:57Z"),
         PageSize: swov1.Pointer[int](10),
     })
     if err != nil {

@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.10
   speakeasyVersion: 1.636.2
   generationVersion: 2.723.8
-  releaseVersion: 0.10.1
-  configChecksum: 4b3b65d3da0528b8a28916b2fba49146
+  releaseVersion: 0.10.2
+  configChecksum: 0b889589af370ec0385c8c6ededc2708
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
@@ -411,6 +411,7 @@ generatedFiles:
   - tests/mockserver/internal/handler/generated_handlers.go
   - tests/mockserver/internal/handler/pathdeletev1metricsname.go
   - tests/mockserver/internal/handler/pathgetv1logs.go
+  - tests/mockserver/internal/handler/pathgetv1logsarchives.go
   - tests/mockserver/internal/handler/pathgetv1metricsname.go
   - tests/mockserver/internal/handler/pathpostv1changeevents.go
   - tests/mockserver/internal/handler/pathpostv1metrics.go
@@ -1240,8 +1241,3 @@ generatedTests:
   deleteUri: "2025-05-13T00:19:34Z"
   pauseUriMonitoring: "2025-05-13T00:19:34Z"
   unpauseUriMonitoring: "2025-05-13T00:19:34Z"
-releaseNotes: |
-  ## Go SDK Changes Detected:
-  * `Swo.Logs.ListLogArchives()`:  `response.LogArchives.[].ArchiveSize` **Changed** **Breaking** :warning:
-  * `Swo.Entities.ListEntities()`:  `response.Entities.[].Healthscore` **Changed**
-  * `Swo.Entities.GetEntityById()`:  `response.Healthscore` **Changed**
