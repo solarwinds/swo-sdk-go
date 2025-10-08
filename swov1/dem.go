@@ -62,7 +62,7 @@ func (s *Dem) ListProbes(ctx context.Context, opts ...operations.Option) (*opera
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "listProbes",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -315,7 +315,7 @@ func (s *Dem) GetDemSettings(ctx context.Context, opts ...operations.Option) (*o
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getDemSettings",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -568,7 +568,7 @@ func (s *Dem) SetDemSettings(ctx context.Context, request components.DemOrganiza
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "setDemSettings",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
@@ -829,7 +829,7 @@ func (s *Dem) CreateURI(ctx context.Context, request components.DemURI, opts ...
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "createUri",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
@@ -1110,7 +1110,7 @@ func (s *Dem) GetURI(ctx context.Context, request operations.GetURIRequest, opts
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getUri",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1384,7 +1384,7 @@ func (s *Dem) UpdateURI(ctx context.Context, request operations.UpdateURIRequest
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "updateUri",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "DemURI", "json", `request:"mediaType=application/json"`)
@@ -1686,7 +1686,7 @@ func (s *Dem) DeleteURI(ctx context.Context, request operations.DeleteURIRequest
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "deleteUri",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1960,7 +1960,7 @@ func (s *Dem) PauseURIMonitoring(ctx context.Context, request operations.PauseUR
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "pauseUriMonitoring",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -2234,7 +2234,7 @@ func (s *Dem) UnpauseURIMonitoring(ctx context.Context, request operations.Unpau
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "unpauseUriMonitoring",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -2508,7 +2508,7 @@ func (s *Dem) CreateWebsite(ctx context.Context, request components.DemWebsite, 
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "createWebsite",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
@@ -2789,7 +2789,7 @@ func (s *Dem) GetWebsite(ctx context.Context, request operations.GetWebsiteReque
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getWebsite",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -3063,7 +3063,7 @@ func (s *Dem) UpdateWebsite(ctx context.Context, request operations.UpdateWebsit
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "updateWebsite",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "DemWebsite", "json", `request:"mediaType=application/json"`)
@@ -3365,7 +3365,7 @@ func (s *Dem) DeleteWebsite(ctx context.Context, request operations.DeleteWebsit
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "deleteWebsite",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -3639,7 +3639,7 @@ func (s *Dem) PauseWebsiteMonitoring(ctx context.Context, request operations.Pau
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "pauseWebsiteMonitoring",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -3913,7 +3913,7 @@ func (s *Dem) UnpauseWebsiteMonitoring(ctx context.Context, request operations.U
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "unpauseWebsiteMonitoring",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

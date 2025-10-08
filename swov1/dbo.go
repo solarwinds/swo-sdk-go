@@ -62,7 +62,7 @@ func (s *Dbo) ObserveDatabase(ctx context.Context, request components.DboObserve
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "observeDatabase",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
@@ -343,7 +343,7 @@ func (s *Dbo) GetPublicKey(ctx context.Context, opts ...operations.Option) (*ope
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getPublicKey",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -638,7 +638,7 @@ func (s *Dbo) UpdateDatabase(ctx context.Context, request operations.UpdateDatab
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "updateDatabase",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "DboUpdateDatabaseRequest", "json", `request:"mediaType=application/json"`)
@@ -920,7 +920,7 @@ func (s *Dbo) DeleteDatabase(ctx context.Context, request operations.DeleteDatab
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "deleteDatabase",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1195,7 +1195,7 @@ func (s *Dbo) GetPluginConfig(ctx context.Context, request operations.GetPluginC
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getPluginConfig",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1490,7 +1490,7 @@ func (s *Dbo) GetPlugins(ctx context.Context, request operations.GetPluginsReque
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getPlugins",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1785,7 +1785,7 @@ func (s *Dbo) PluginOperation(ctx context.Context, request operations.PluginOper
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "pluginOperation",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

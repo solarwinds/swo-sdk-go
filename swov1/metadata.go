@@ -63,7 +63,7 @@ func (s *Metadata) ListEntityTypes(ctx context.Context, opts ...operations.Optio
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "listEntityTypes",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -317,7 +317,7 @@ func (s *Metadata) ListMetricsForEntityType(ctx context.Context, request operati
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "listMetricsForEntityType",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

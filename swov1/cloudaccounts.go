@@ -63,7 +63,7 @@ func (s *CloudAccounts) ActivateAwsIntegration(ctx context.Context, request comp
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "activateAwsIntegration",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
@@ -346,7 +346,7 @@ func (s *CloudAccounts) CreateOrgStructure(ctx context.Context, request componen
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "createOrgStructure",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
@@ -629,7 +629,7 @@ func (s *CloudAccounts) UpdateAwsIntegration(ctx context.Context, request compon
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "updateAwsIntegration",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
@@ -911,7 +911,7 @@ func (s *CloudAccounts) ValidateMgmtAccountOnboarding(ctx context.Context, reque
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "validateMgmtAccountOnboarding",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

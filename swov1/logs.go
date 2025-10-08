@@ -69,7 +69,7 @@ func (s *Logs) SearchLogs(ctx context.Context, request operations.SearchLogsRequ
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "searchLogs",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -398,7 +398,7 @@ func (s *Logs) ListLogArchives(ctx context.Context, request operations.ListLogAr
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "listLogArchives",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

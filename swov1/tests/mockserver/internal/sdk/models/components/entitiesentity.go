@@ -41,21 +41,21 @@ func (e *Category) UnmarshalJSON(data []byte) error {
 
 type Healthscore struct {
 	// Health score value from 0 to 100.
-	Score int `json:"score"`
+	Score *int `json:"score,omitempty"`
 	// Health Score category label.
-	Category Category `json:"category"`
+	Category *Category `json:"category,omitempty"`
 }
 
-func (o *Healthscore) GetScore() int {
+func (o *Healthscore) GetScore() *int {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.Score
 }
 
-func (o *Healthscore) GetCategory() Category {
+func (o *Healthscore) GetCategory() *Category {
 	if o == nil {
-		return Category("")
+		return nil
 	}
 	return o.Category
 }

@@ -68,7 +68,7 @@ func (s *Entities) ListEntities(ctx context.Context, request operations.ListEnti
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "listEntities",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -387,7 +387,7 @@ func (s *Entities) GetEntityByID(ctx context.Context, request operations.GetEnti
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getEntityById",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -682,7 +682,7 @@ func (s *Entities) UpdateEntityByID(ctx context.Context, request operations.Upda
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "updateEntityById",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "EntitiesEntity", "json", `request:"mediaType=application/json"`)

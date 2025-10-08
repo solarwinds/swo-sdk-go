@@ -12,7 +12,7 @@ type LogsArchive struct {
 	// The timestamp of when the log archive was created in epoch time
 	ArchivedTimestamp string `json:"archivedTimestamp"`
 	// The size of the archive
-	ArchiveSize int `json:"archiveSize"`
+	ArchiveSize float32 `json:"archiveSize"`
 }
 
 func (o *LogsArchive) GetID() string {
@@ -43,9 +43,9 @@ func (o *LogsArchive) GetArchivedTimestamp() string {
 	return o.ArchivedTimestamp
 }
 
-func (o *LogsArchive) GetArchiveSize() int {
+func (o *LogsArchive) GetArchiveSize() float32 {
 	if o == nil {
-		return 0
+		return 0.0
 	}
 	return o.ArchiveSize
 }
