@@ -62,7 +62,7 @@ func TestSDK_EntitiesCrudLifecycle(t *testing.T) {
 
 	waitForEntityAvailability(ctx, t, s, entityID, testEntityName)
 
-	/*listEntitiesRes, err := s.Entities.ListEntities(ctx, operations.ListEntitiesRequest{
+	listEntitiesRes, err := s.Entities.ListEntities(ctx, operations.ListEntitiesRequest{
 		Type:     WebsiteEntityType,
 		PageSize: swov1.Int(1),
 	})
@@ -72,7 +72,7 @@ func TestSDK_EntitiesCrudLifecycle(t *testing.T) {
 	require.NotNil(t, listEntitiesRes.Object.Entities, "List entities response should contain entities array")
 
 	hasAtLeastOneEntity := len(listEntitiesRes.Object.Entities) >= 1
-	assert.True(t, hasAtLeastOneEntity, "Entities list should have exactly 1 entity")*/
+	assert.True(t, hasAtLeastOneEntity, "Entities list should have exactly 1 entity")
 
 	updatedDisplayName := "Updated Display Name for " + testEntityName
 	updateTags := map[string]*string{
