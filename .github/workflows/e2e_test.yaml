@@ -37,13 +37,10 @@ jobs:
           chmod +x /usr/local/bin/speakeasy
       - name: Install curl
         run: apk add --no-cache curl
-
       - name: Install jq
         run: apk add --no-cache jq
-
       - name: Install bash
         run: apk add --no-cache bash
-
       - name: Run Speakeasy codegen
         env:
           SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
@@ -76,13 +73,13 @@ jobs:
               next
             }
             collecting && /^--- PASS:/ {
-              print "*" testname "*: PASSED"
+              print testname ": Passed"
               collecting=0
               lines=""
               next
             }
             collecting && /^--- FAIL:/ {
-              print "*" testname "*: FAILED"
+              print testname ": FAILED"
               if (lines != "") {
                 print "> ```\n" trim(lines) "\n```"
               }
