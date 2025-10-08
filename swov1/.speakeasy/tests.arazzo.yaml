@@ -159,7 +159,7 @@ workflows:
           - condition: $statusCode == 200
           - condition: $response.header.Content-Type == application/json
           - condition: $response.body#/pageInfo != null
-          - condition: $response.body#/logArchives[?(@.archiveSize == 0)] == []
+          - condition: $response.body#/logArchives[*].archiveSize != 0
   # /v1/tokens - Create token operation
   - workflowId: tokens
     steps:
