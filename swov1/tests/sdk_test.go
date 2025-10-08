@@ -141,8 +141,8 @@ func TestSDK_LogsSearch(t *testing.T) {
 
 	searchRes, err := s.Logs.SearchLogs(ctx, operations.SearchLogsRequest{
 		Filter:    swov1.Pointer("level:info"),
-		StartTime: types.MustNewTimeFromString("2025-09-29T13:49:06Z"),
-		EndTime:   types.MustNewTimeFromString("2025-09-29T19:49:06Z"),
+		StartTime: types.MustNewTimeFromString("__QUERY_START_TIME__"),
+		EndTime:   types.MustNewTimeFromString("__QUERY_END_TIME__"),
 		PageSize:  swov1.Pointer[int](10),
 	})
 	require.NoError(t, err)
@@ -151,24 +151,7 @@ func TestSDK_LogsSearch(t *testing.T) {
 }
 
 func TestSDK_LogsArchives(t *testing.T) {
-	ctx := context.Background()
-
-	testHTTPClient := createTestHTTPClient("logsArchives")
-
-	s := swov1.New(
-		swov1.WithServerURL(utils.GetEnv("PUBLIC_SWO_API_STAGE_URL", "")),
-		swov1.WithSecurity(utils.GetEnv("SWO_STAGE_API_TOKEN", "value")),
-		swov1.WithClient(testHTTPClient),
-	)
-
-	listRes, err := s.Logs.ListLogArchives(ctx, operations.ListLogArchivesRequest{
-		StartTime: "2025-09-29T13:49:06Z",
-		EndTime:   "2025-09-29T19:49:06Z",
-		PageSize:  swov1.Pointer[int](10),
-	})
-	require.NoError(t, err)
-	assert.Equal(t, 200, listRes.HTTPMeta.Response.StatusCode)
-
+	t.Skip("incomplete test found please make sure to address the following errors: [`workflow step logsArchives.list contains criterion simple with invalid condition`]")
 }
 
 func TestSDK_Tokens(t *testing.T) {

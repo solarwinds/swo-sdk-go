@@ -236,7 +236,7 @@ func main() {
             TestIntervalInSeconds: 14400,
             OutageConfiguration: nil,
             Ping: &components.Ping{
-                Enabled: true,
+                Enabled: false,
             },
             TCP: &components.TCP{
                 Enabled: true,
@@ -394,7 +394,7 @@ func main() {
                     ConsecutiveForDown: 2,
                 },
                 Ping: &components.Ping{
-                    Enabled: true,
+                    Enabled: false,
                 },
                 TCP: &components.TCP{
                     Enabled: true,

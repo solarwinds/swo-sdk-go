@@ -231,7 +231,6 @@ func main() {
 * [ListMetricAttributeValues](docs/sdks/metrics/README.md#listmetricattributevalues) - List metric attribute values
 * [ListMetricMeasurements](docs/sdks/metrics/README.md#listmetricmeasurements) - List metric measurement values, grouped by attributes, filtered by the filter. An empty list indicates no data points are available for the given parameters.
 
-
 ### [Tokens](docs/sdks/tokens/README.md)
 
 * [CreateToken](docs/sdks/tokens/README.md#createtoken) - Create ingestion token

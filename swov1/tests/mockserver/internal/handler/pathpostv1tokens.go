@@ -8,13 +8,12 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
-	"mockserver/internal/sdk/models/operations"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
 	"net/http"
 )
 
-func pathGetV1LogsArchives(dir *logging.HTTPFileDirectory, rt *tracking.RequestTracker) http.HandlerFunc {
+func pathPostV1Tokens(dir *logging.HTTPFileDirectory, rt *tracking.RequestTracker) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		test := req.Header.Get("x-speakeasy-test-name")
 		instanceID := req.Header.Get("x-speakeasy-test-instance-id")
@@ -22,18 +21,23 @@ func pathGetV1LogsArchives(dir *logging.HTTPFileDirectory, rt *tracking.RequestT
 		count := rt.GetRequestCount(test, instanceID)
 
 		switch fmt.Sprintf("%s[%d]", test, count) {
-		case "logsArchives[0]":
-			dir.HandlerFunc("listLogArchives", testListLogArchivesLogsArchives0)(w, req)
+		case "tokens[0]":
+			dir.HandlerFunc("createToken", testCreateTokenTokens0)(w, req)
 		default:
 			http.Error(w, fmt.Sprintf("Unknown test: %s[%d]", test, count), http.StatusBadRequest)
 		}
 	}
 }
 
-func testListLogArchivesLogsArchives0(w http.ResponseWriter, req *http.Request) {
+func testCreateTokenTokens0(w http.ResponseWriter, req *http.Request) {
 	if err := assert.SecurityAuthorizationHeader(req, false, "Bearer"); err != nil {
 		log.Printf("assertion error: %s\n", err)
 		http.Error(w, err.Error(), http.StatusUnauthorized)
+		return
+	}
+	if err := assert.ContentType(req, "application/json", true); err != nil {
+		log.Printf("assertion error: %s\n", err)
+		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 	if err := assert.AcceptHeader(req, []string{"application/json"}); err != nil {
@@ -46,12 +50,8 @@ func testListLogArchivesLogsArchives0(w http.ResponseWriter, req *http.Request) 
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	var respBody *operations.ListLogArchivesResponseBody = &operations.ListLogArchivesResponseBody{
-		LogArchives: []components.LogsArchive{},
-		PageInfo: components.CommonPageInfo{
-			PrevPage: "<value>",
-			NextPage: "<value>",
-		},
+	var respBody *components.TokensCreateTokenResponse = &components.TokensCreateTokenResponse{
+		Token: "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)
 
@@ -64,6 +64,6 @@ func testListLogArchivesLogsArchives0(w http.ResponseWriter, req *http.Request) 
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
+	w.WriteHeader(http.StatusCreated)
 	_, _ = w.Write(respBodyBytes)
 }

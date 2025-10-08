@@ -69,7 +69,7 @@ func (s *Metrics) ListMetrics(ctx context.Context, request operations.ListMetric
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "listMetrics",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -369,7 +369,7 @@ func (s *Metrics) CreateCompositeMetric(ctx context.Context, request components.
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "createCompositeMetric",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
@@ -699,7 +699,7 @@ func (s *Metrics) ListMultiMetricMeasurements(ctx context.Context, request opera
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "listMultiMetricMeasurements",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -1026,7 +1026,7 @@ func (s *Metrics) UpdateCompositeMetric(ctx context.Context, request operations.
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "updateCompositeMetric",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "MetricsUpdateCompositeMetricRequest", "json", `request:"mediaType=application/json"`)
@@ -1350,7 +1350,7 @@ func (s *Metrics) DeleteCompositeMetric(ctx context.Context, request operations.
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "deleteCompositeMetric",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1631,7 +1631,7 @@ func (s *Metrics) GetMetricByName(ctx context.Context, request operations.GetMet
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getMetricByName",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1949,7 +1949,7 @@ func (s *Metrics) ListMetricAttributes(ctx context.Context, request operations.L
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "listMetricAttributes",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -2275,7 +2275,7 @@ func (s *Metrics) ListMetricAttributeValues(ctx context.Context, request operati
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "listMetricAttributeValues",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -2601,7 +2601,7 @@ func (s *Metrics) ListMetricMeasurements(ctx context.Context, request operations
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "listMetricMeasurements",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
