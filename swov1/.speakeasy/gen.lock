@@ -3,10 +3,10 @@ id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
   docChecksum: 4d011ada64cb5058ffcd101784b32285
   docVersion: 1.0.10
-  speakeasyVersion: 1.636.2
-  generationVersion: 2.723.8
-  releaseVersion: 0.10.2
-  configChecksum: 0b889589af370ec0385c8c6ededc2708
+  speakeasyVersion: 1.636.3
+  generationVersion: 2.723.11
+  releaseVersion: 0.10.3
+  configChecksum: ead596083abb2590054c0a0731227a25
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
