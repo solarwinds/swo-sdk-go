@@ -177,3 +177,207 @@ workflows:
           - condition: $statusCode == 201
           - condition: $response.header.Content-Type == application/json
           - condition: $response.body#/token != null
+  - workflowId: createTransaction
+    steps:
+      - stepId: test
+        operationId: createTransaction
+        requestBody:
+          contentType: application/json
+          payload:
+            description: Opens Solarwinds homepage
+            name: Solarwinds
+            tags:
+              - key: environment
+                value: production
+            testDefinition:
+              commands:
+                - command: OPEN
+                  target: https://example.com
+              outageConfiguration:
+                consecutiveForDown: 2
+                failingTestLocations: all
+              platformOptions:
+                probePlatforms:
+                  - AWS
+                testFromAll: true
+              testFrom:
+                type: REGION
+                values:
+                  - NA
+              testIntervalInSeconds: 14400
+              windowSize:
+                height: 156492
+                width: 28965
+        successCriteria:
+          - condition: $statusCode == 201
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "id": "e-1448474379026206720"
+              }
+            type: simple
+    x-speakeasy-test-group: dem
+    x-speakeasy-test-rebuild: true
+  - workflowId: getTransaction
+    steps:
+      - stepId: test
+        operationId: getTransaction
+        parameters:
+          - name: entityId
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "id": "e-1448474379026206720",
+                "type": "SyntheticTransaction",
+                "status": "up",
+                "name": "\u003cvalue\u003e",
+                "testDefinition": {
+                  "testFrom": {
+                    "type": "REGION",
+                    "values": [
+                      "NA"
+                    ]
+                  },
+                  "platformOptions": {
+                    "probePlatforms": [
+                      "AWS"
+                    ],
+                    "testFromAll": true
+                  },
+                  "outageConfiguration": {
+                    "failingTestLocations": "all",
+                    "consecutiveForDown": 2
+                  },
+                  "testIntervalInSeconds": 14400,
+                  "windowSize": {
+                    "width": 806070,
+                    "height": 380201
+                  },
+                  "commands": [
+                    {
+                      "command": "OPEN",
+                      "target": "https://example.com"
+                    }
+                  ]
+                },
+                "tags": [
+                  {
+                    "key": "environment",
+                    "value": "production"
+                  }
+                ],
+                "lastOutageStartTime": "2025-01-15T14:31:19.735Z",
+                "lastOutageEndTime": "2025-01-15T14:31:19.735Z",
+                "lastTestTime": "2025-01-15T14:31:19.735Z",
+                "lastErrorTime": "2025-01-15T14:31:19.735Z"
+              }
+            type: simple
+    x-speakeasy-test-group: dem
+    x-speakeasy-test-rebuild: true
+  - workflowId: updateTransaction
+    steps:
+      - stepId: test
+        operationId: updateTransaction
+        parameters:
+          - name: entityId
+            in: path
+            value: <id>
+        requestBody:
+          contentType: application/json
+          payload:
+            description: Opens Solarwinds homepage
+            name: Solarwinds
+            tags:
+              - key: environment
+                value: production
+            testDefinition:
+              commands:
+                - command: OPEN
+                  target: https://example.com
+              outageConfiguration: null
+              platformOptions:
+                probePlatforms:
+                  - AWS
+                testFromAll: true
+              testFrom:
+                type: REGION
+                values:
+                  - NA
+              testIntervalInSeconds: 14400
+              windowSize:
+                height: 72607
+                width: 750299
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "id": "e-1448474379026206720"
+              }
+            type: simple
+    x-speakeasy-test-group: dem
+    x-speakeasy-test-rebuild: true
+  - workflowId: deleteTransaction
+    steps:
+      - stepId: test
+        operationId: deleteTransaction
+        parameters:
+          - name: entityId
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "id": "e-1448474379026206720"
+              }
+            type: simple
+    x-speakeasy-test-group: dem
+    x-speakeasy-test-rebuild: true
+  - workflowId: pauseTransactionMonitoring
+    steps:
+      - stepId: test
+        operationId: pauseTransactionMonitoring
+        parameters:
+          - name: entityId
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "id": "e-1448474379026206720"
+              }
+            type: simple
+    x-speakeasy-test-group: dem
+    x-speakeasy-test-rebuild: true
+  - workflowId: unpauseTransactionMonitoring
+    steps:
+      - stepId: test
+        operationId: unpauseTransactionMonitoring
+        parameters:
+          - name: entityId
+            in: path
+            value: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "id": "e-1448474379026206720"
+              }
+            type: simple
+    x-speakeasy-test-group: dem
+    x-speakeasy-test-rebuild: true

@@ -7,8 +7,8 @@ import (
 	"fmt"
 )
 
-// PlatformOptions - Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, any available cloud platform may be chosen.
-type PlatformOptions struct {
+// DemURIAvailabilityCheckSettingsInputPlatformOptions - Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, any available cloud platform may be chosen.
+type DemURIAvailabilityCheckSettingsInputPlatformOptions struct {
 	// Cloud platforms hosting synthetic probes.
 	ProbePlatforms []DemProbePlatform `json:"probePlatforms"`
 	//   Use this field to configure whether availability tests should be performed from all selected
@@ -24,18 +24,18 @@ type PlatformOptions struct {
 	TestFromAll *bool `json:"testFromAll,omitempty"`
 }
 
-func (p *PlatformOptions) GetProbePlatforms() []DemProbePlatform {
-	if p == nil {
+func (d *DemURIAvailabilityCheckSettingsInputPlatformOptions) GetProbePlatforms() []DemProbePlatform {
+	if d == nil {
 		return []DemProbePlatform{}
 	}
-	return p.ProbePlatforms
+	return d.ProbePlatforms
 }
 
-func (p *PlatformOptions) GetTestFromAll() *bool {
-	if p == nil {
+func (d *DemURIAvailabilityCheckSettingsInputPlatformOptions) GetTestFromAll() *bool {
+	if d == nil {
 		return nil
 	}
-	return p.TestFromAll
+	return d.TestFromAll
 }
 
 // DemURIAvailabilityCheckSettingsInputFailingTestLocations - How many locations must report a failure for an entity to be considered down.
@@ -65,36 +65,75 @@ func (e *DemURIAvailabilityCheckSettingsInputFailingTestLocations) UnmarshalJSON
 	}
 }
 
-// OutageConfiguration -   Default conditions when the entity is considered down.
+// DemURIAvailabilityCheckSettingsInputOutageConfiguration -   Default conditions when the entity is considered down.
 //
 //	If omitted or set to null, organization configuration will be used for this entity.
-type OutageConfiguration struct {
+type DemURIAvailabilityCheckSettingsInputOutageConfiguration struct {
 	// How many locations must report a failure for an entity to be considered down.
 	FailingTestLocations DemURIAvailabilityCheckSettingsInputFailingTestLocations `json:"failingTestLocations"`
 	// Number of consecutive failing tests for an entity to be considered down.
 	ConsecutiveForDown int `json:"consecutiveForDown"`
 }
 
-func (o *OutageConfiguration) GetFailingTestLocations() DemURIAvailabilityCheckSettingsInputFailingTestLocations {
-	if o == nil {
+func (d *DemURIAvailabilityCheckSettingsInputOutageConfiguration) GetFailingTestLocations() DemURIAvailabilityCheckSettingsInputFailingTestLocations {
+	if d == nil {
 		return DemURIAvailabilityCheckSettingsInputFailingTestLocations("")
 	}
-	return o.FailingTestLocations
+	return d.FailingTestLocations
 }
 
-func (o *OutageConfiguration) GetConsecutiveForDown() int {
-	if o == nil {
+func (d *DemURIAvailabilityCheckSettingsInputOutageConfiguration) GetConsecutiveForDown() int {
+	if d == nil {
 		return 0
 	}
-	return o.ConsecutiveForDown
+	return d.ConsecutiveForDown
 }
 
-// Ping -   Use this field to configure ping tests for the URI. If omitted or set to null, ping tests will be disabled.
-//
-//	One test type (ping or TCP) must be enabled for a URI.
+// DNS tests configuration for the URI. If omitted or set to null, DNS tests are disabled.
+type DNS struct {
+	// Enables or disables DNS tests for the URI.
+	// Exactly one test type (DNS, ping, TCP, or UDP) must be enabled for a URI.
+	Enabled bool `json:"enabled"`
+	// Nameserver to be used for DNS queries. Can be an IP address or domain name.
+	Nameserver string `json:"nameserver"`
+	// Port number to be used for DNS queries.
+	Port *int `json:"port,omitempty"`
+	// Expected IP address in DNS response.
+	IPToExpect string `json:"ipToExpect"`
+}
+
+func (d *DNS) GetEnabled() bool {
+	if d == nil {
+		return false
+	}
+	return d.Enabled
+}
+
+func (d *DNS) GetNameserver() string {
+	if d == nil {
+		return ""
+	}
+	return d.Nameserver
+}
+
+func (d *DNS) GetPort() *int {
+	if d == nil {
+		return nil
+	}
+	return d.Port
+}
+
+func (d *DNS) GetIPToExpect() string {
+	if d == nil {
+		return ""
+	}
+	return d.IPToExpect
+}
+
+// Ping tests configuration for the URI. If omitted or set to null, ping tests are disabled.
 type Ping struct {
-	// Use this field to configure ping tests for the URI. If omitted or set to false, ping tests will be disabled.
-	// One test type (ping or TCP) must be enabled for a URI.
+	// Enables or disables ping tests for the URI.
+	// Exactly one test type (DNS, ping, TCP, or UDP) must be enabled for a URI.
 	Enabled bool `json:"enabled"`
 }
 
@@ -105,18 +144,16 @@ func (p *Ping) GetEnabled() bool {
 	return p.Enabled
 }
 
-// TCP -   Use this field to configure TCP tests for the URI. If omitted or set to null, TCP tests will be disabled.
-//
-//	One test type (ping or TCP) must be enabled for a URI.
+// TCP tests configuration for the URI. If omitted or set to null, TCP tests are disabled.
 type TCP struct {
-	// Use this field to configure TCP tests for the URI. If omitted or set to false, TCP tests will be disabled.
-	// One test type (ping or TCP) must be enabled for a URI.
+	// Enables or disables TCP tests for the URI.
+	// Exactly one test type (DNS, ping, TCP, or UDP) must be enabled for a URI.
 	Enabled bool `json:"enabled"`
 	// Port number to be used in TCP tests.
 	Port int `json:"port"`
-	// Use this field to specify a string to send in the body of a TCP request.
+	// String to send in the body of a TCP request.
 	StringToSend *string `json:"stringToSend,omitempty"`
-	// Use this field to specify a string to search for in the body of a TCP response.
+	// String to search for in the body of a TCP response.
 	StringToExpect *string `json:"stringToExpect,omitempty"`
 }
 
@@ -148,9 +185,50 @@ func (t *TCP) GetStringToExpect() *string {
 	return t.StringToExpect
 }
 
+// UDP tests configuration for the URI. If omitted or set to null, UDP tests are disabled.
+type UDP struct {
+	// Enables or disables UDP tests for the URI.
+	// Exactly one test type (DNS, ping, TCP, or UDP) must be enabled for a URI.
+	Enabled bool `json:"enabled"`
+	// Port number to be used in UDP tests.
+	Port int `json:"port"`
+	// String to send in the body of a UDP request.
+	StringToSend string `json:"stringToSend"`
+	// String to search for in the body of a UDP response.
+	StringToExpect string `json:"stringToExpect"`
+}
+
+func (u *UDP) GetEnabled() bool {
+	if u == nil {
+		return false
+	}
+	return u.Enabled
+}
+
+func (u *UDP) GetPort() int {
+	if u == nil {
+		return 0
+	}
+	return u.Port
+}
+
+func (u *UDP) GetStringToSend() string {
+	if u == nil {
+		return ""
+	}
+	return u.StringToSend
+}
+
+func (u *UDP) GetStringToExpect() string {
+	if u == nil {
+		return ""
+	}
+	return u.StringToExpect
+}
+
 type DemURIAvailabilityCheckSettingsInput struct {
 	// Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, any available cloud platform may be chosen.
-	PlatformOptions *PlatformOptions `json:"platformOptions,omitempty"`
+	PlatformOptions *DemURIAvailabilityCheckSettingsInputPlatformOptions `json:"platformOptions,omitempty"`
 	//   Configure locations of the synthetic availability test probes.
 	//   Acceptable values depend on the selected type and actual values of existing probes.
 	TestFrom DemTestFrom `json:"testFrom"`
@@ -158,16 +236,18 @@ type DemURIAvailabilityCheckSettingsInput struct {
 	TestIntervalInSeconds float64 `json:"testIntervalInSeconds"`
 	//   Default conditions when the entity is considered down.
 	//   If omitted or set to null, organization configuration will be used for this entity.
-	OutageConfiguration *OutageConfiguration `json:"outageConfiguration,omitempty"`
-	//   Use this field to configure ping tests for the URI. If omitted or set to null, ping tests will be disabled.
-	//   One test type (ping or TCP) must be enabled for a URI.
+	OutageConfiguration *DemURIAvailabilityCheckSettingsInputOutageConfiguration `json:"outageConfiguration,omitempty"`
+	// DNS tests configuration for the URI. If omitted or set to null, DNS tests are disabled.
+	DNS *DNS `json:"dns,omitempty"`
+	// Ping tests configuration for the URI. If omitted or set to null, ping tests are disabled.
 	Ping *Ping `json:"ping,omitempty"`
-	//   Use this field to configure TCP tests for the URI. If omitted or set to null, TCP tests will be disabled.
-	//   One test type (ping or TCP) must be enabled for a URI.
+	// TCP tests configuration for the URI. If omitted or set to null, TCP tests are disabled.
 	TCP *TCP `json:"tcp,omitempty"`
+	// UDP tests configuration for the URI. If omitted or set to null, UDP tests are disabled.
+	UDP *UDP `json:"udp,omitempty"`
 }
 
-func (d *DemURIAvailabilityCheckSettingsInput) GetPlatformOptions() *PlatformOptions {
+func (d *DemURIAvailabilityCheckSettingsInput) GetPlatformOptions() *DemURIAvailabilityCheckSettingsInputPlatformOptions {
 	if d == nil {
 		return nil
 	}
@@ -188,11 +268,18 @@ func (d *DemURIAvailabilityCheckSettingsInput) GetTestIntervalInSeconds() float6
 	return d.TestIntervalInSeconds
 }
 
-func (d *DemURIAvailabilityCheckSettingsInput) GetOutageConfiguration() *OutageConfiguration {
+func (d *DemURIAvailabilityCheckSettingsInput) GetOutageConfiguration() *DemURIAvailabilityCheckSettingsInputOutageConfiguration {
 	if d == nil {
 		return nil
 	}
 	return d.OutageConfiguration
+}
+
+func (d *DemURIAvailabilityCheckSettingsInput) GetDNS() *DNS {
+	if d == nil {
+		return nil
+	}
+	return d.DNS
 }
 
 func (d *DemURIAvailabilityCheckSettingsInput) GetPing() *Ping {
@@ -207,4 +294,11 @@ func (d *DemURIAvailabilityCheckSettingsInput) GetTCP() *TCP {
 		return nil
 	}
 	return d.TCP
+}
+
+func (d *DemURIAvailabilityCheckSettingsInput) GetUDP() *UDP {
+	if d == nil {
+		return nil
+	}
+	return d.UDP
 }

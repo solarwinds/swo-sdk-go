@@ -12,13 +12,19 @@ import (
 // GeneratedHandlers returns all generated handlers.
 func GeneratedHandlers(ctx context.Context, dir *logging.HTTPFileDirectory, rt *tracking.RequestTracker) []*GeneratedHandler {
 	return []*GeneratedHandler{
+		NewGeneratedHandler(ctx, http.MethodDelete, "/v1/dem/transactions/{entityId}", pathDeleteV1DemTransactionsEntityID(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodDelete, "/v1/metrics/{name}", pathDeleteV1MetricsName(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodGet, "/v1/dem/transactions/{entityId}", pathGetV1DemTransactionsEntityID(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodGet, "/v1/logs", pathGetV1Logs(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodGet, "/v1/logs/archives", pathGetV1LogsArchives(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodGet, "/v1/metrics/{name}", pathGetV1MetricsName(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPost, "/v1/changeevents", pathPostV1Changeevents(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodPost, "/v1/dem/transactions", pathPostV1DemTransactions(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPost, "/v1/metrics", pathPostV1Metrics(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPost, "/v1/tokens", pathPostV1Tokens(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodPut, "/v1/dem/transactions/{entityId}", pathPutV1DemTransactionsEntityID(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodPut, "/v1/dem/transactions/{entityId}/pauseMonitoring", pathPutV1DemTransactionsEntityIDPauseMonitoring(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodPut, "/v1/dem/transactions/{entityId}/unpauseMonitoring", pathPutV1DemTransactionsEntityIDUnpauseMonitoring(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPut, "/v1/metrics/{name}", pathPutV1MetricsName(dir, rt)),
 	}
 }
