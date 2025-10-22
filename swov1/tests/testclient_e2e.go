@@ -46,7 +46,7 @@ var ValidWebsiteStatuses = []components.DemGetWebsiteResponseStatus{
 	components.DemGetWebsiteResponseStatusMaintenance,
 }
 
-var ValidURIStatuses = []components.Status{
+var ValidURIStatuses = []components.DemGetURIResponseStatus{
 	components.StatusUp,
 	components.StatusDown,
 	components.StatusUnknown,
