@@ -9,20 +9,20 @@ import (
 	"time"
 )
 
-type Status string
+type DemGetURIResponseStatus string
 
 const (
-	StatusUp          Status = "up"
-	StatusDown        Status = "down"
-	StatusPaused      Status = "paused"
-	StatusMaintenance Status = "maintenance"
-	StatusUnknown     Status = "unknown"
+	DemGetURIResponseStatusUp          DemGetURIResponseStatus = "up"
+	DemGetURIResponseStatusDown        DemGetURIResponseStatus = "down"
+	DemGetURIResponseStatusPaused      DemGetURIResponseStatus = "paused"
+	DemGetURIResponseStatusMaintenance DemGetURIResponseStatus = "maintenance"
+	DemGetURIResponseStatusUnknown     DemGetURIResponseStatus = "unknown"
 )
 
-func (e Status) ToPointer() *Status {
+func (e DemGetURIResponseStatus) ToPointer() *DemGetURIResponseStatus {
 	return &e
 }
-func (e *Status) UnmarshalJSON(data []byte) error {
+func (e *DemGetURIResponseStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -37,23 +37,23 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 	case "maintenance":
 		fallthrough
 	case "unknown":
-		*e = Status(v)
+		*e = DemGetURIResponseStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Status: %v", v)
+		return fmt.Errorf("invalid value for DemGetURIResponseStatus: %v", v)
 	}
 }
 
 type DemGetURIResponse struct {
-	ID     string `json:"id"`
-	Type   string `json:"type"`
-	Status Status `json:"status"`
+	ID     string                  `json:"id"`
+	Type   string                  `json:"type"`
+	Status DemGetURIResponseStatus `json:"status"`
 	//   Name of the URI, which must be unique within the organization.
 	//   The name must also not contain any control characters, any white space other than space (U+0020), or any consecutive, leading or trailing spaces.
 	Name string `json:"name"`
 	// IP/domain address of the URI.
 	IPOrDomain string `json:"ipOrDomain"`
-	// Availability tests configuration for the URI.
+	// Availability check tests configuration for the URI.
 	AvailabilityCheckSettings DemURIAvailabilityCheckSettings `json:"availabilityCheckSettings"`
 	// Entity tags. Tag is a key-value pair, where there may be only single tag value for the same key.
 	Tags []CommonTag `json:"tags,omitempty"`
@@ -94,9 +94,9 @@ func (d *DemGetURIResponse) GetType() string {
 	return d.Type
 }
 
-func (d *DemGetURIResponse) GetStatus() Status {
+func (d *DemGetURIResponse) GetStatus() DemGetURIResponseStatus {
 	if d == nil {
-		return Status("")
+		return DemGetURIResponseStatus("")
 	}
 	return d.Status
 }

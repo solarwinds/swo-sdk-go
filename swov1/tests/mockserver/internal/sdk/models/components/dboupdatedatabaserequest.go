@@ -2,32 +2,19 @@
 
 package components
 
-import (
-	"mockserver/internal/sdk/utils"
-)
-
 type DboUpdateDatabaseRequest struct {
 	// Name for the observed database entity
-	Name *string `default:"" json:"name"`
-	// Optional advanced configuration options for plugins, e.g. disable-sampling set to true
+	Name *string `json:"name,omitempty"`
+	// Optional advanced configuration options for plugins, e.g. disable-sampling set to true.
+	// An existing config option can be removed by setting its value to empty string.
 	ConfigOptions []CommonKeyValuePair `json:"configOptions,omitempty"`
 	// Options specifying how plugins connect to database server, authentication method change is not supported
 	DbConnOptions *DboDatabaseConnectionOptionsUpdate `json:"dbConnOptions,omitempty"`
-	// Tags for observed database entity
+	// Tags for observed database entity.
+	// An existing tag can be removed by setting its value to empty string.
 	Tags []CommonKeyValuePair `json:"tags,omitempty"`
 	// Host entity/entities where database server is deployed on
 	DeployedOn []string `json:"deployedOn,omitempty"`
-}
-
-func (d DboUpdateDatabaseRequest) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(d, "", false)
-}
-
-func (d *DboUpdateDatabaseRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *DboUpdateDatabaseRequest) GetName() *string {
