@@ -7,5 +7,7 @@ Protocol used to test availability of the URI.
 
 | Name           | Value          |
 | -------------- | -------------- |
+| `ProtocolDNS`  | DNS            |
 | `ProtocolPing` | PING           |
 | `ProtocolTCP`  | TCP            |
+| `ProtocolUDP`  | UDP            |

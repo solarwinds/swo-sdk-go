@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
-  docChecksum: 4d011ada64cb5058ffcd101784b32285
-  docVersion: 1.0.10
-  speakeasyVersion: 1.636.2
-  generationVersion: 2.723.8
-  releaseVersion: 0.10.2
-  configChecksum: 0b889589af370ec0385c8c6ededc2708
+  docChecksum: bf64871f45ea70efc6ea549f9b0c796c
+  docVersion: 1.0.11
+  speakeasyVersion: 1.638.1
+  generationVersion: 2.729.2
+  releaseVersion: 0.11.0
+  configChecksum: ec44923f2813759cedd6d6bf489277cf
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
@@ -14,7 +14,7 @@ features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.11.1
+    core: 3.12.0
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -28,7 +28,7 @@ features:
     intellisenseMarkdownSupport: 0.1.0
     mockServer: 0.1.1
     nullables: 0.2.1
-    pagination: 2.82.4
+    pagination: 2.82.5
     responseFormat: 0.1.2
     retries: 2.84.2
     sdkHooks: 0.2.0
@@ -75,6 +75,7 @@ generatedFiles:
   - /models/components/dboobservedatabaserequest.go
   - /models/components/dboupdatedatabaserequest.go
   - /models/components/demcustomheaders.go
+  - /models/components/demgettransactionresponse.go
   - /models/components/demgeturiresponse.go
   - /models/components/demgetwebsiteresponse.go
   - /models/components/demlistprobesresponse.go
@@ -84,11 +85,16 @@ generatedFiles:
   - /models/components/demprobe.go
   - /models/components/demprobeplatform.go
   - /models/components/demtestfrom.go
+  - /models/components/demtransaction.go
+  - /models/components/demtransactioncommand.go
+  - /models/components/demtransactioncommandname.go
+  - /models/components/demtransactiontestdefinition.go
   - /models/components/demuri.go
   - /models/components/demuriavailabilitychecksettings.go
   - /models/components/demuriavailabilitychecksettingsinput.go
   - /models/components/demwebsite.go
   - /models/components/demwebsiteprotocol.go
+  - /models/components/demwindowsize.go
   - /models/components/entitiesentity.go
   - /models/components/entitiesentityinput.go
   - /models/components/httpmetadata.go
@@ -109,10 +115,12 @@ generatedFiles:
   - /models/operations/createcompositemetric.go
   - /models/operations/createorgstructure.go
   - /models/operations/createtoken.go
+  - /models/operations/createtransaction.go
   - /models/operations/createuri.go
   - /models/operations/createwebsite.go
   - /models/operations/deletecompositemetric.go
   - /models/operations/deletedatabase.go
+  - /models/operations/deletetransaction.go
   - /models/operations/deleteuri.go
   - /models/operations/deletewebsite.go
   - /models/operations/getdemsettings.go
@@ -121,6 +129,7 @@ generatedFiles:
   - /models/operations/getpluginconfig.go
   - /models/operations/getplugins.go
   - /models/operations/getpublickey.go
+  - /models/operations/gettransaction.go
   - /models/operations/geturi.go
   - /models/operations/getwebsite.go
   - /models/operations/listentities.go
@@ -134,17 +143,20 @@ generatedFiles:
   - /models/operations/listmultimetricmeasurements.go
   - /models/operations/listprobes.go
   - /models/operations/observedatabase.go
+  - /models/operations/pausetransactionmonitoring.go
   - /models/operations/pauseurimonitoring.go
   - /models/operations/pausewebsitemonitoring.go
   - /models/operations/pluginoperation.go
   - /models/operations/searchlogs.go
   - /models/operations/setdemsettings.go
+  - /models/operations/unpausetransactionmonitoring.go
   - /models/operations/unpauseurimonitoring.go
   - /models/operations/unpausewebsitemonitoring.go
   - /models/operations/updateawsintegration.go
   - /models/operations/updatecompositemetric.go
   - /models/operations/updatedatabase.go
   - /models/operations/updateentitybyid.go
+  - /models/operations/updatetransaction.go
   - /models/operations/updateuri.go
   - /models/operations/updatewebsite.go
   - /models/operations/validatemgmtaccountonboarding.go
@@ -204,7 +216,9 @@ generatedFiles:
   - docs/models/components/dboobservedatabaserequest.md
   - docs/models/components/dboupdatedatabaserequest.md
   - docs/models/components/demcustomheaders.md
+  - docs/models/components/demgettransactionresponse.md
   - docs/models/components/demgeturiresponse.md
+  - docs/models/components/demgeturiresponsestatus.md
   - docs/models/components/demgetwebsiteresponse.md
   - docs/models/components/demgetwebsiteresponseavailabilitychecksettings.md
   - docs/models/components/demgetwebsiteresponsecheckforstring.md
@@ -222,20 +236,31 @@ generatedFiles:
   - docs/models/components/demprobe.md
   - docs/models/components/demprobeplatform.md
   - docs/models/components/demtestfrom.md
+  - docs/models/components/demtransaction.md
+  - docs/models/components/demtransactioncommand.md
+  - docs/models/components/demtransactioncommandname.md
+  - docs/models/components/demtransactiontestdefinition.md
+  - docs/models/components/demtransactiontestdefinitionfailingtestlocations.md
   - docs/models/components/demuri.md
   - docs/models/components/demuriavailabilitychecksettings.md
+  - docs/models/components/demuriavailabilitychecksettingsdns.md
   - docs/models/components/demuriavailabilitychecksettingsfailingtestlocations.md
   - docs/models/components/demuriavailabilitychecksettingsinput.md
   - docs/models/components/demuriavailabilitychecksettingsinputfailingtestlocations.md
+  - docs/models/components/demuriavailabilitychecksettingsinputoutageconfiguration.md
+  - docs/models/components/demuriavailabilitychecksettingsinputplatformoptions.md
   - docs/models/components/demuriavailabilitychecksettingsoutageconfiguration.md
   - docs/models/components/demuriavailabilitychecksettingsping.md
   - docs/models/components/demuriavailabilitychecksettingsplatformoptions.md
   - docs/models/components/demuriavailabilitychecksettingstcp.md
+  - docs/models/components/demuriavailabilitychecksettingsudp.md
   - docs/models/components/demwebsite.md
   - docs/models/components/demwebsitefailingtestlocations.md
   - docs/models/components/demwebsiteoutageconfiguration.md
   - docs/models/components/demwebsiteplatformoptions.md
   - docs/models/components/demwebsiteprotocol.md
+  - docs/models/components/demwindowsize.md
+  - docs/models/components/dns.md
   - docs/models/components/entitiesentity.md
   - docs/models/components/entitiesentityinput.md
   - docs/models/components/failingtestlocations.md
@@ -272,18 +297,22 @@ generatedFiles:
   - docs/models/components/tokenscreatetokenrequesttype.md
   - docs/models/components/tokenscreatetokenresponse.md
   - docs/models/components/type.md
+  - docs/models/components/udp.md
   - docs/models/operations/activateawsintegrationresponse.md
   - docs/models/operations/createchangeeventresponse.md
   - docs/models/operations/createchangeeventresponsebody.md
   - docs/models/operations/createcompositemetricresponse.md
   - docs/models/operations/createorgstructureresponse.md
   - docs/models/operations/createtokenresponse.md
+  - docs/models/operations/createtransactionresponse.md
   - docs/models/operations/createuriresponse.md
   - docs/models/operations/createwebsiteresponse.md
   - docs/models/operations/deletecompositemetricrequest.md
   - docs/models/operations/deletecompositemetricresponse.md
   - docs/models/operations/deletedatabaserequest.md
   - docs/models/operations/deletedatabaseresponse.md
+  - docs/models/operations/deletetransactionrequest.md
+  - docs/models/operations/deletetransactionresponse.md
   - docs/models/operations/deleteurirequest.md
   - docs/models/operations/deleteuriresponse.md
   - docs/models/operations/deletewebsiterequest.md
@@ -298,6 +327,8 @@ generatedFiles:
   - docs/models/operations/getpluginsrequest.md
   - docs/models/operations/getpluginsresponse.md
   - docs/models/operations/getpublickeyresponse.md
+  - docs/models/operations/gettransactionrequest.md
+  - docs/models/operations/gettransactionresponse.md
   - docs/models/operations/geturirequest.md
   - docs/models/operations/geturiresponse.md
   - docs/models/operations/getwebsiterequest.md
@@ -334,6 +365,8 @@ generatedFiles:
   - docs/models/operations/observedatabaseresponse.md
   - docs/models/operations/observedatabaseresponsebody.md
   - docs/models/operations/option.md
+  - docs/models/operations/pausetransactionmonitoringrequest.md
+  - docs/models/operations/pausetransactionmonitoringresponse.md
   - docs/models/operations/pauseurimonitoringrequest.md
   - docs/models/operations/pauseurimonitoringresponse.md
   - docs/models/operations/pausewebsitemonitoringrequest.md
@@ -344,6 +377,8 @@ generatedFiles:
   - docs/models/operations/searchlogsresponse.md
   - docs/models/operations/searchlogsresponsebody.md
   - docs/models/operations/setdemsettingsresponse.md
+  - docs/models/operations/unpausetransactionmonitoringrequest.md
+  - docs/models/operations/unpausetransactionmonitoringresponse.md
   - docs/models/operations/unpauseurimonitoringrequest.md
   - docs/models/operations/unpauseurimonitoringresponse.md
   - docs/models/operations/unpausewebsitemonitoringrequest.md
@@ -355,6 +390,8 @@ generatedFiles:
   - docs/models/operations/updatedatabaseresponse.md
   - docs/models/operations/updateentitybyidrequest.md
   - docs/models/operations/updateentitybyidresponse.md
+  - docs/models/operations/updatetransactionrequest.md
+  - docs/models/operations/updatetransactionresponse.md
   - docs/models/operations/updateurirequest.md
   - docs/models/operations/updateuriresponse.md
   - docs/models/operations/updatewebsiterequest.md
@@ -462,6 +499,7 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/components/dboobservedatabaserequest.go
   - tests/mockserver/internal/sdk/models/components/dboupdatedatabaserequest.go
   - tests/mockserver/internal/sdk/models/components/demcustomheaders.go
+  - tests/mockserver/internal/sdk/models/components/demgettransactionresponse.go
   - tests/mockserver/internal/sdk/models/components/demgeturiresponse.go
   - tests/mockserver/internal/sdk/models/components/demgetwebsiteresponse.go
   - tests/mockserver/internal/sdk/models/components/demlistprobesresponse.go
@@ -471,11 +509,16 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/components/demprobe.go
   - tests/mockserver/internal/sdk/models/components/demprobeplatform.go
   - tests/mockserver/internal/sdk/models/components/demtestfrom.go
+  - tests/mockserver/internal/sdk/models/components/demtransaction.go
+  - tests/mockserver/internal/sdk/models/components/demtransactioncommand.go
+  - tests/mockserver/internal/sdk/models/components/demtransactioncommandname.go
+  - tests/mockserver/internal/sdk/models/components/demtransactiontestdefinition.go
   - tests/mockserver/internal/sdk/models/components/demuri.go
   - tests/mockserver/internal/sdk/models/components/demuriavailabilitychecksettings.go
   - tests/mockserver/internal/sdk/models/components/demuriavailabilitychecksettingsinput.go
   - tests/mockserver/internal/sdk/models/components/demwebsite.go
   - tests/mockserver/internal/sdk/models/components/demwebsiteprotocol.go
+  - tests/mockserver/internal/sdk/models/components/demwindowsize.go
   - tests/mockserver/internal/sdk/models/components/entitiesentity.go
   - tests/mockserver/internal/sdk/models/components/entitiesentityinput.go
   - tests/mockserver/internal/sdk/models/components/httpmetadata.go
@@ -497,10 +540,12 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/operations/createcompositemetric.go
   - tests/mockserver/internal/sdk/models/operations/createorgstructure.go
   - tests/mockserver/internal/sdk/models/operations/createtoken.go
+  - tests/mockserver/internal/sdk/models/operations/createtransaction.go
   - tests/mockserver/internal/sdk/models/operations/createuri.go
   - tests/mockserver/internal/sdk/models/operations/createwebsite.go
   - tests/mockserver/internal/sdk/models/operations/deletecompositemetric.go
   - tests/mockserver/internal/sdk/models/operations/deletedatabase.go
+  - tests/mockserver/internal/sdk/models/operations/deletetransaction.go
   - tests/mockserver/internal/sdk/models/operations/deleteuri.go
   - tests/mockserver/internal/sdk/models/operations/deletewebsite.go
   - tests/mockserver/internal/sdk/models/operations/getdemsettings.go
@@ -509,6 +554,7 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/operations/getpluginconfig.go
   - tests/mockserver/internal/sdk/models/operations/getplugins.go
   - tests/mockserver/internal/sdk/models/operations/getpublickey.go
+  - tests/mockserver/internal/sdk/models/operations/gettransaction.go
   - tests/mockserver/internal/sdk/models/operations/geturi.go
   - tests/mockserver/internal/sdk/models/operations/getwebsite.go
   - tests/mockserver/internal/sdk/models/operations/listentities.go
@@ -522,17 +568,20 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/operations/listmultimetricmeasurements.go
   - tests/mockserver/internal/sdk/models/operations/listprobes.go
   - tests/mockserver/internal/sdk/models/operations/observedatabase.go
+  - tests/mockserver/internal/sdk/models/operations/pausetransactionmonitoring.go
   - tests/mockserver/internal/sdk/models/operations/pauseurimonitoring.go
   - tests/mockserver/internal/sdk/models/operations/pausewebsitemonitoring.go
   - tests/mockserver/internal/sdk/models/operations/pluginoperation.go
   - tests/mockserver/internal/sdk/models/operations/searchlogs.go
   - tests/mockserver/internal/sdk/models/operations/setdemsettings.go
+  - tests/mockserver/internal/sdk/models/operations/unpausetransactionmonitoring.go
   - tests/mockserver/internal/sdk/models/operations/unpauseurimonitoring.go
   - tests/mockserver/internal/sdk/models/operations/unpausewebsitemonitoring.go
   - tests/mockserver/internal/sdk/models/operations/updateawsintegration.go
   - tests/mockserver/internal/sdk/models/operations/updatecompositemetric.go
   - tests/mockserver/internal/sdk/models/operations/updatedatabase.go
   - tests/mockserver/internal/sdk/models/operations/updateentitybyid.go
+  - tests/mockserver/internal/sdk/models/operations/updatetransaction.go
   - tests/mockserver/internal/sdk/models/operations/updateuri.go
   - tests/mockserver/internal/sdk/models/operations/updatewebsite.go
   - tests/mockserver/internal/sdk/models/operations/validatemgmtaccountonboarding.go
@@ -671,7 +720,7 @@ examples:
         path:
           entityId: "<id>"
       requestBody:
-        application/json: {"name": ""}
+        application/json: {}
       responses:
         "400":
           application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
@@ -774,7 +823,7 @@ examples:
   createUri:
     speakeasy-default-create-uri:
       requestBody:
-        application/json: {"name": "solarwinds.com", "ipOrDomain": "solarwinds.com", "availabilityCheckSettings": {"platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "testIntervalInSeconds": 14400, "outageConfiguration": null, "ping": {"enabled": false}, "tcp": {"enabled": true, "port": 443, "stringToSend": "GET / HTTP/1.1\r\nHost: solarwinds.com\r\nConnection: close\r\n\r\n", "stringToExpect": "HTTP/1.1 200 OK"}}, "tags": [{"key": "environment", "value": "production"}]}
+        application/json: {"name": "solarwinds.com", "ipOrDomain": "solarwinds.com", "availabilityCheckSettings": {"platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "testIntervalInSeconds": 14400, "outageConfiguration": null, "dns": {"enabled": false, "nameserver": "8.8.8.8", "port": 53, "ipToExpect": "1.2.3.4"}, "ping": {"enabled": false}, "tcp": {"enabled": true, "port": 443, "stringToSend": "GET / HTTP/1.1\r\nHost: solarwinds.com\r\nConnection: close\r\n\r\n", "stringToExpect": "HTTP/1.1 200 OK"}, "udp": null}, "tags": [{"key": "environment", "value": "production"}]}
       responses:
         "201":
           application/json: {"id": "e-1448474379026206720"}
@@ -791,7 +840,7 @@ examples:
           entityId: "<id>"
       responses:
         "200":
-          application/json: {"id": "e-1448474379026206720", "type": "Uri", "status": "up", "name": "solarwinds.com", "ipOrDomain": "solarwinds.com", "availabilityCheckSettings": {"platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "testIntervalInSeconds": 14400, "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}, "ping": {"enabled": false}, "tcp": {"enabled": true, "port": 443, "stringToSend": "GET / HTTP/1.1\r\nHost: solarwinds.com\r\nConnection: close\r\n\r\n", "stringToExpect": "HTTP/1.1 200 OK"}, "protocol": "PING"}, "tags": [{"key": "environment", "value": "production"}], "lastOutageStartTime": "2025-01-15T14:31:19.735Z", "lastOutageEndTime": "2025-01-15T14:31:19.735Z", "lastTestTime": "2025-01-15T14:31:19.735Z", "lastErrorTime": "2025-01-15T14:31:19.735Z", "lastResponseTime": 376}
+          application/json: {"id": "e-1448474379026206720", "type": "Uri", "status": "up", "name": "solarwinds.com", "ipOrDomain": "solarwinds.com", "availabilityCheckSettings": {"platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "testIntervalInSeconds": 14400, "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}, "dns": {"enabled": false, "nameserver": "8.8.8.8", "port": 53, "ipToExpect": "1.2.3.4"}, "ping": {"enabled": false}, "tcp": {"enabled": true, "port": 443, "stringToSend": "GET / HTTP/1.1\r\nHost: solarwinds.com\r\nConnection: close\r\n\r\n", "stringToExpect": "HTTP/1.1 200 OK"}, "udp": {"enabled": false, "port": 8888, "stringToSend": "GET / HTTP/1.1\r\nHost: solarwinds.com\r\nConnection: close\r\n\r\n", "stringToExpect": "HTTP/1.1 200 OK"}, "protocol": "PING"}, "tags": [{"key": "environment", "value": "production"}], "lastOutageStartTime": "2025-01-15T14:31:19.735Z", "lastOutageEndTime": "2025-01-15T14:31:19.735Z", "lastTestTime": "2025-01-15T14:31:19.735Z", "lastErrorTime": "2025-01-15T14:31:19.735Z", "lastResponseTime": 376}
         "404":
           application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
         "401":
@@ -804,7 +853,7 @@ examples:
         path:
           entityId: "<id>"
       requestBody:
-        application/json: {"name": "solarwinds.com", "ipOrDomain": "solarwinds.com", "availabilityCheckSettings": {"platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "testIntervalInSeconds": 14400, "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}, "ping": {"enabled": false}, "tcp": {"enabled": true, "port": 443, "stringToSend": "GET / HTTP/1.1\r\nHost: solarwinds.com\r\nConnection: close\r\n\r\n", "stringToExpect": "HTTP/1.1 200 OK"}}, "tags": [{"key": "environment", "value": "production"}]}
+        application/json: {"name": "solarwinds.com", "ipOrDomain": "solarwinds.com", "availabilityCheckSettings": {"platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "testFrom": {"type": "REGION", "values": ["NA"]}, "testIntervalInSeconds": 14400, "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}, "dns": {"enabled": false, "nameserver": "8.8.8.8", "port": 53, "ipToExpect": "1.2.3.4"}, "ping": {"enabled": false}, "tcp": {"enabled": true, "port": 443, "stringToSend": "GET / HTTP/1.1\r\nHost: solarwinds.com\r\nConnection: close\r\n\r\n", "stringToExpect": "HTTP/1.1 200 OK"}, "udp": {"enabled": false, "port": 8888, "stringToSend": "GET / HTTP/1.1\r\nHost: solarwinds.com\r\nConnection: close\r\n\r\n", "stringToExpect": "HTTP/1.1 200 OK"}}, "tags": [{"key": "environment", "value": "production"}]}
       responses:
         "200":
           application/json: {"id": "e-1448474379026206720"}
@@ -1195,6 +1244,93 @@ examples:
           application/json: {"message": "Error has occurred", "code": "InternalError"}
         "503":
           application/json: {"message": "Error has occurred", "code": "ServiceUnavailable"}
+  createTransaction:
+    speakeasy-default-create-transaction:
+      requestBody:
+        application/json: {"name": "Solarwinds", "description": "Opens Solarwinds homepage", "testDefinition": {"testFrom": {"type": "REGION", "values": ["NA"]}, "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}, "testIntervalInSeconds": 14400, "windowSize": {"width": 28965, "height": 156492}, "commands": [{"command": "OPEN", "target": "https://example.com"}]}, "tags": [{"key": "environment", "value": "production"}]}
+      responses:
+        "201":
+          application/json: {"id": "e-1448474379026206720"}
+        "400":
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
+  getTransaction:
+    speakeasy-default-get-transaction:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720", "type": "SyntheticTransaction", "status": "up", "name": "<value>", "testDefinition": {"testFrom": {"type": "REGION", "values": ["NA"]}, "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "outageConfiguration": {"failingTestLocations": "all", "consecutiveForDown": 2}, "testIntervalInSeconds": 14400, "windowSize": {"width": 806070, "height": 380201}, "commands": [{"command": "OPEN", "target": "https://example.com"}]}, "tags": [{"key": "environment", "value": "production"}], "lastOutageStartTime": "2025-01-15T14:31:19.735Z", "lastOutageEndTime": "2025-01-15T14:31:19.735Z", "lastTestTime": "2025-01-15T14:31:19.735Z", "lastErrorTime": "2025-01-15T14:31:19.735Z"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "404":
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
+  updateTransaction:
+    speakeasy-default-update-transaction:
+      parameters:
+        path:
+          entityId: "<id>"
+      requestBody:
+        application/json: {"name": "Solarwinds", "description": "Opens Solarwinds homepage", "testDefinition": {"testFrom": {"type": "REGION", "values": ["NA"]}, "platformOptions": {"probePlatforms": ["AWS"], "testFromAll": true}, "outageConfiguration": null, "testIntervalInSeconds": 14400, "windowSize": {"width": 750299, "height": 72607}, "commands": [{"command": "OPEN", "target": "https://example.com"}]}, "tags": [{"key": "environment", "value": "production"}]}
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720"}
+        "400":
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "404":
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
+  deleteTransaction:
+    speakeasy-default-delete-transaction:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "404":
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
+  pauseTransactionMonitoring:
+    speakeasy-default-pause-transaction-monitoring:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "404":
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
+  unpauseTransactionMonitoring:
+    speakeasy-default-unpause-transaction-monitoring:
+      parameters:
+        path:
+          entityId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "e-1448474379026206720"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "404":
+          application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
 examplesVersion: 1.0.2
 generatedTests:
   createChangeEvent: "2025-05-02T09:35:26-06:00"
@@ -1241,3 +1377,4 @@ generatedTests:
   deleteUri: "2025-05-13T00:19:34Z"
   pauseUriMonitoring: "2025-05-13T00:19:34Z"
   unpauseUriMonitoring: "2025-05-13T00:19:34Z"
+releaseNotes: "## Go SDK Changes Detected:\n* `Swo.Dem.CreateTransaction()`: **Added**\n* `Swo.Dem.GetTransaction()`: **Added**\n* `Swo.Dem.UpdateTransaction()`: **Added**\n* `Swo.Dem.DeleteTransaction()`: **Added**\n* `Swo.Dem.PauseTransactionMonitoring()`: **Added**\n* `Swo.Dem.UnpauseTransactionMonitoring()`: **Added**\n* `Swo.Dbo.UpdateDatabase()`: \n  *  `request.Request.Dbo.updateDatabaseRequest.Name` **Changed**\n* `Swo.Dem.CreateUri()`: \n  *  `request.Request.AvailabilityCheckSettings` **Changed**\n* `Swo.Dem.GetUri()`:  `response.AvailabilityCheckSettings` **Changed**\n* `Swo.Dem.UpdateUri()`: \n  *  `request.Request.Dem.uri.AvailabilityCheckSettings` **Changed**\n"
