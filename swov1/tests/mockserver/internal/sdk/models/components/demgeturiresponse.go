@@ -53,7 +53,7 @@ type DemGetURIResponse struct {
 	Name string `json:"name"`
 	// IP/domain address of the URI.
 	IPOrDomain string `json:"ipOrDomain"`
-	// Availability tests configuration for the URI.
+	// Availability check tests configuration for the URI.
 	AvailabilityCheckSettings DemURIAvailabilityCheckSettings `json:"availabilityCheckSettings"`
 	// Entity tags. Tag is a key-value pair, where there may be only single tag value for the same key.
 	Tags []CommonTag `json:"tags,omitempty"`

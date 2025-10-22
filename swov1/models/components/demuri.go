@@ -7,7 +7,7 @@ type DemURI struct {
 	Name string `json:"name"`
 	// IP/domain of the URI.
 	IPOrDomain string `json:"ipOrDomain"`
-	// Use this field to configure availability tests for the URI.
+	// Availability tests configuration for the URI.
 	AvailabilityCheckSettings DemURIAvailabilityCheckSettingsInput `json:"availabilityCheckSettings"`
 	// Tags associated with the URI for categorization.
 	Tags []CommonTag `json:"tags,omitempty"`

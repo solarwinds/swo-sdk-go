@@ -8,6 +8,12 @@
 * [ListProbes](#listprobes) - Get a list of existing synthetic probes
 * [GetDemSettings](#getdemsettings) - Get DEM settings
 * [SetDemSettings](#setdemsettings) - Set DEM settings
+* [CreateTransaction](#createtransaction) - Create transaction monitoring configuration
+* [GetTransaction](#gettransaction) - Get transaction monitoring configuration
+* [UpdateTransaction](#updatetransaction) - Update transaction monitoring configuration
+* [DeleteTransaction](#deletetransaction) - Delete transaction
+* [PauseTransactionMonitoring](#pausetransactionmonitoring) - Pause monitoring of the transaction
+* [UnpauseTransactionMonitoring](#unpausetransactionmonitoring) - Unpause monitoring of the transaction
 * [CreateURI](#createuri) - Create URI monitoring configuration
 * [GetURI](#geturi) - Get URI monitoring configuration
 * [UpdateURI](#updateuri) - Update URI monitoring configuration
@@ -192,6 +198,428 @@ func main() {
 | apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
 | apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
+## CreateTransaction
+
+Create transaction monitoring configuration
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="createTransaction" method="post" path="/v1/dem/transactions" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Dem.CreateTransaction(ctx, components.DemTransaction{
+        Name: "Solarwinds",
+        Description: swov1.Pointer("Opens Solarwinds homepage"),
+        TestDefinition: components.DemTransactionTestDefinition{
+            TestFrom: components.DemTestFrom{
+                Type: components.TypeRegion,
+                Values: []string{
+                    "NA",
+                },
+            },
+            PlatformOptions: &components.PlatformOptions{
+                ProbePlatforms: []components.DemProbePlatform{
+                    components.DemProbePlatformAws,
+                },
+                TestFromAll: swov1.Pointer(true),
+            },
+            OutageConfiguration: &components.OutageConfiguration{
+                FailingTestLocations: components.DemTransactionTestDefinitionFailingTestLocationsAll,
+                ConsecutiveForDown: 2,
+            },
+            TestIntervalInSeconds: 14400,
+            WindowSize: components.DemWindowSize{
+                Width: 28965,
+                Height: 156492,
+            },
+            Commands: []components.DemTransactionCommand{
+                components.DemTransactionCommand{
+                    Command: components.DemTransactionCommandNameOpen,
+                    Target: swov1.Pointer("https://example.com"),
+                },
+            },
+        },
+        Tags: []components.CommonTag{
+            components.CommonTag{
+                Key: "environment",
+                Value: "production",
+            },
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.CommonEntityID != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
+| `request`                                                              | [components.DemTransaction](../../models/components/demtransaction.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+| `opts`                                                                 | [][operations.Option](../../models/operations/option.md)               | :heavy_minus_sign:                                                     | The options for this request.                                          |
+
+### Response
+
+**[*operations.CreateTransactionResponse](../../models/operations/createtransactionresponse.md), error**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
+
+## GetTransaction
+
+Get transaction monitoring configuration
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getTransaction" method="get" path="/v1/dem/transactions/{entityId}" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Dem.GetTransaction(ctx, operations.GetTransactionRequest{
+        EntityID: "<id>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.DemGetTransactionResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.GetTransactionRequest](../../models/operations/gettransactionrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+
+### Response
+
+**[*operations.GetTransactionResponse](../../models/operations/gettransactionresponse.md), error**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
+
+## UpdateTransaction
+
+Update transaction monitoring configuration
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="updateTransaction" method="put" path="/v1/dem/transactions/{entityId}" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Dem.UpdateTransaction(ctx, operations.UpdateTransactionRequest{
+        EntityID: "<id>",
+        DemTransaction: components.DemTransaction{
+            Name: "Solarwinds",
+            Description: swov1.Pointer("Opens Solarwinds homepage"),
+            TestDefinition: components.DemTransactionTestDefinition{
+                TestFrom: components.DemTestFrom{
+                    Type: components.TypeRegion,
+                    Values: []string{
+                        "NA",
+                    },
+                },
+                PlatformOptions: &components.PlatformOptions{
+                    ProbePlatforms: []components.DemProbePlatform{
+                        components.DemProbePlatformAws,
+                    },
+                    TestFromAll: swov1.Pointer(true),
+                },
+                OutageConfiguration: nil,
+                TestIntervalInSeconds: 14400,
+                WindowSize: components.DemWindowSize{
+                    Width: 750299,
+                    Height: 72607,
+                },
+                Commands: []components.DemTransactionCommand{
+                    components.DemTransactionCommand{
+                        Command: components.DemTransactionCommandNameOpen,
+                        Target: swov1.Pointer("https://example.com"),
+                    },
+                },
+            },
+            Tags: []components.CommonTag{
+                components.CommonTag{
+                    Key: "environment",
+                    Value: "production",
+                },
+            },
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.CommonEntityID != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.UpdateTransactionRequest](../../models/operations/updatetransactionrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][operations.Option](../../models/operations/option.md)                                   | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
+
+### Response
+
+**[*operations.UpdateTransactionResponse](../../models/operations/updatetransactionresponse.md), error**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
+
+## DeleteTransaction
+
+Delete transaction
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="deleteTransaction" method="delete" path="/v1/dem/transactions/{entityId}" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Dem.DeleteTransaction(ctx, operations.DeleteTransactionRequest{
+        EntityID: "<id>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.CommonEntityID != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.DeleteTransactionRequest](../../models/operations/deletetransactionrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][operations.Option](../../models/operations/option.md)                                   | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
+
+### Response
+
+**[*operations.DeleteTransactionResponse](../../models/operations/deletetransactionresponse.md), error**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
+
+## PauseTransactionMonitoring
+
+Pause monitoring of the transaction
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="pauseTransactionMonitoring" method="put" path="/v1/dem/transactions/{entityId}/pauseMonitoring" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Dem.PauseTransactionMonitoring(ctx, operations.PauseTransactionMonitoringRequest{
+        EntityID: "<id>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.CommonEntityID != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
+| `request`                                                                                                    | [operations.PauseTransactionMonitoringRequest](../../models/operations/pausetransactionmonitoringrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `opts`                                                                                                       | [][operations.Option](../../models/operations/option.md)                                                     | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
+
+### Response
+
+**[*operations.PauseTransactionMonitoringResponse](../../models/operations/pausetransactionmonitoringresponse.md), error**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
+
+## UnpauseTransactionMonitoring
+
+Unpause monitoring of the transaction
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="unpauseTransactionMonitoring" method="put" path="/v1/dem/transactions/{entityId}/unpauseMonitoring" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Dem.UnpauseTransactionMonitoring(ctx, operations.UnpauseTransactionMonitoringRequest{
+        EntityID: "<id>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.CommonEntityID != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                                            | :heavy_check_mark:                                                                                               | The context to use for the request.                                                                              |
+| `request`                                                                                                        | [operations.UnpauseTransactionMonitoringRequest](../../models/operations/unpausetransactionmonitoringrequest.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
+| `opts`                                                                                                           | [][operations.Option](../../models/operations/option.md)                                                         | :heavy_minus_sign:                                                                                               | The options for this request.                                                                                    |
+
+### Response
+
+**[*operations.UnpauseTransactionMonitoringResponse](../../models/operations/unpausetransactionmonitoringresponse.md), error**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
+
 ## CreateURI
 
 Create URI monitoring configuration
@@ -221,7 +649,7 @@ func main() {
         Name: "solarwinds.com",
         IPOrDomain: "solarwinds.com",
         AvailabilityCheckSettings: components.DemURIAvailabilityCheckSettingsInput{
-            PlatformOptions: &components.PlatformOptions{
+            PlatformOptions: &components.DemURIAvailabilityCheckSettingsInputPlatformOptions{
                 ProbePlatforms: []components.DemProbePlatform{
                     components.DemProbePlatformAws,
                 },
@@ -235,6 +663,12 @@ func main() {
             },
             TestIntervalInSeconds: 14400,
             OutageConfiguration: nil,
+            DNS: &components.DNS{
+                Enabled: false,
+                Nameserver: "8.8.8.8",
+                Port: swov1.Pointer[int](53),
+                IPToExpect: "1.2.3.4",
+            },
             Ping: &components.Ping{
                 Enabled: false,
             },
@@ -248,6 +682,7 @@ func main() {
                 ""),
                 StringToExpect: swov1.Pointer("HTTP/1.1 200 OK"),
             },
+            UDP: nil,
         },
         Tags: []components.CommonTag{
             components.CommonTag{
@@ -376,7 +811,7 @@ func main() {
             Name: "solarwinds.com",
             IPOrDomain: "solarwinds.com",
             AvailabilityCheckSettings: components.DemURIAvailabilityCheckSettingsInput{
-                PlatformOptions: &components.PlatformOptions{
+                PlatformOptions: &components.DemURIAvailabilityCheckSettingsInputPlatformOptions{
                     ProbePlatforms: []components.DemProbePlatform{
                         components.DemProbePlatformAws,
                     },
@@ -389,9 +824,15 @@ func main() {
                     },
                 },
                 TestIntervalInSeconds: 14400,
-                OutageConfiguration: &components.OutageConfiguration{
+                OutageConfiguration: &components.DemURIAvailabilityCheckSettingsInputOutageConfiguration{
                     FailingTestLocations: components.DemURIAvailabilityCheckSettingsInputFailingTestLocationsAll,
                     ConsecutiveForDown: 2,
+                },
+                DNS: &components.DNS{
+                    Enabled: false,
+                    Nameserver: "8.8.8.8",
+                    Port: swov1.Pointer[int](53),
+                    IPToExpect: "1.2.3.4",
                 },
                 Ping: &components.Ping{
                     Enabled: false,
@@ -405,6 +846,16 @@ func main() {
                     "\r\n" +
                     ""),
                     StringToExpect: swov1.Pointer("HTTP/1.1 200 OK"),
+                },
+                UDP: &components.UDP{
+                    Enabled: false,
+                    Port: 8888,
+                    StringToSend: "GET / HTTP/1.1\r\n" +
+                    "Host: solarwinds.com\r\n" +
+                    "Connection: close\r\n" +
+                    "\r\n" +
+                    "",
+                    StringToExpect: "HTTP/1.1 200 OK",
                 },
             },
             Tags: []components.CommonTag{
