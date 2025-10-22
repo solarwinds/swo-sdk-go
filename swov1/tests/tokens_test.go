@@ -10,8 +10,6 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/solarwinds/swo-sdk-go/swov1"
-	"github.com/solarwinds/swo-sdk-go/swov1/internal/utils"
 	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -19,14 +17,7 @@ import (
 
 func TestSDK_CreateTokens(t *testing.T) {
 	ctx := context.Background()
-
-	testHTTPClient := createTestHTTPClient("tokens")
-
-	s := swov1.New(
-		swov1.WithServerURL(utils.GetEnv("PUBLIC_SWO_API_STAGE_URL", "")),
-		swov1.WithSecurity(utils.GetEnv("SWO_STAGE_API_TOKEN", "value")),
-		swov1.WithClient(testHTTPClient),
-	)
+	s := CreateTestClient("token-test")
 
 	createRes, err := s.Tokens.CreateToken(ctx, components.TokensCreateTokenRequest{
 		Name: "swo-sdk-e2e-test-token",
