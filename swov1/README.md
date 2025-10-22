@@ -190,6 +190,12 @@ func main() {
 * [ListProbes](docs/sdks/dem/README.md#listprobes) - Get a list of existing synthetic probes
 * [GetDemSettings](docs/sdks/dem/README.md#getdemsettings) - Get DEM settings
 * [SetDemSettings](docs/sdks/dem/README.md#setdemsettings) - Set DEM settings
+* [CreateTransaction](docs/sdks/dem/README.md#createtransaction) - Create transaction monitoring configuration
+* [GetTransaction](docs/sdks/dem/README.md#gettransaction) - Get transaction monitoring configuration
+* [UpdateTransaction](docs/sdks/dem/README.md#updatetransaction) - Update transaction monitoring configuration
+* [DeleteTransaction](docs/sdks/dem/README.md#deletetransaction) - Delete transaction
+* [PauseTransactionMonitoring](docs/sdks/dem/README.md#pausetransactionmonitoring) - Pause monitoring of the transaction
+* [UnpauseTransactionMonitoring](docs/sdks/dem/README.md#unpausetransactionmonitoring) - Unpause monitoring of the transaction
 * [CreateURI](docs/sdks/dem/README.md#createuri) - Create URI monitoring configuration
 * [GetURI](docs/sdks/dem/README.md#geturi) - Get URI monitoring configuration
 * [UpdateURI](docs/sdks/dem/README.md#updateuri) - Update URI monitoring configuration
