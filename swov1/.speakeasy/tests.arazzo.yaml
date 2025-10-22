@@ -160,7 +160,7 @@ workflows:
           - condition: $response.header.Content-Type == application/json
           - condition: $response.body#/pageInfo != null
           - condition: $response.body#/logArchives != null
-  # /v1/tokens - Create and cleanup token operation
+  # /v1/tokens - Create token operation
   - workflowId: tokens
     steps:
       - stepId: create
@@ -177,16 +177,3 @@ workflows:
           - condition: $statusCode == 201
           - condition: $response.header.Content-Type == application/json
           - condition: $response.body#/token != null
-        outputs:
-          token: $response.body#/token
-      - stepId: delete
-        description: Delete the created token using DELETE /v1/tokens/{sig}
-        operationId: deleteToken
-        dependsOn: create
-        parameters:
-          - name: sig
-            in: path
-            value: "x-env: SWO_TOKEN_SIGNATURE"
-        successCriteria:
-          - condition: $statusCode == 200
-          - condition: $response.body == {}
