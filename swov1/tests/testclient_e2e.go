@@ -46,12 +46,12 @@ var ValidWebsiteStatuses = []components.DemGetWebsiteResponseStatus{
 	components.DemGetWebsiteResponseStatusMaintenance,
 }
 
-var ValidURIStatuses = []components.Status{
-	components.StatusUp,
-	components.StatusDown,
-	components.StatusUnknown,
-	components.StatusPaused,
-	components.StatusMaintenance,
+var ValidURIStatuses = []components.DemGetURIResponseStatus{
+	components.DemGetURIResponseStatusUp,
+	components.DemGetURIResponseStatusDown,
+	components.DemGetURIResponseStatusUnknown,
+	components.DemGetURIResponseStatusPaused,
+	components.DemGetURIResponseStatusMaintenance,
 }
 
 func CreateTestClient(testName string) *swov1.Swo {
