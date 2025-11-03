@@ -43,3 +43,17 @@ jobs:
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+  post-generate:
+    needs: generate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install Python
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3
+          pip3 install pyyaml
+      - name: Generate version hook
+        run: |
+          python3 generate_version_hook.py
