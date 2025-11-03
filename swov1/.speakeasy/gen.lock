@@ -3,10 +3,10 @@ id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
   docChecksum: bf64871f45ea70efc6ea549f9b0c796c
   docVersion: 1.0.11
-  speakeasyVersion: 1.638.1
-  generationVersion: 2.729.2
-  releaseVersion: 0.11.0
-  configChecksum: ec44923f2813759cedd6d6bf489277cf
+  speakeasyVersion: 1.648.0
+  generationVersion: 2.737.0
+  releaseVersion: 0.12.0
+  configChecksum: 7922cd21cf83c430ab1f8ddb7178014a
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
@@ -14,7 +14,7 @@ features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.12.0
+    core: 3.13.0
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -22,7 +22,7 @@ features:
     globalSecurity: 2.82.12
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
-    globalServerURLs: 2.82.3
+    globalServerURLs: 2.83.0
     ignores: 2.81.1
     inputOutputModels: 2.83.0
     intellisenseMarkdownSupport: 0.1.0
@@ -452,7 +452,6 @@ generatedFiles:
   - tests/mockserver/internal/handler/pathgetv1metricsname.go
   - tests/mockserver/internal/handler/pathpostv1changeevents.go
   - tests/mockserver/internal/handler/pathpostv1metrics.go
-  - tests/mockserver/internal/handler/pathpostv1tokens.go
   - tests/mockserver/internal/handler/pathputv1metricsname.go
   - tests/mockserver/internal/handler/values/files.go
   - tests/mockserver/internal/logging/doc.go
@@ -1377,4 +1376,3 @@ generatedTests:
   deleteUri: "2025-05-13T00:19:34Z"
   pauseUriMonitoring: "2025-05-13T00:19:34Z"
   unpauseUriMonitoring: "2025-05-13T00:19:34Z"
-releaseNotes: "## Go SDK Changes Detected:\n* `Swo.Dem.CreateTransaction()`: **Added**\n* `Swo.Dem.GetTransaction()`: **Added**\n* `Swo.Dem.UpdateTransaction()`: **Added**\n* `Swo.Dem.DeleteTransaction()`: **Added**\n* `Swo.Dem.PauseTransactionMonitoring()`: **Added**\n* `Swo.Dem.UnpauseTransactionMonitoring()`: **Added**\n* `Swo.Dbo.UpdateDatabase()`: \n  *  `request.Request.Dbo.updateDatabaseRequest.Name` **Changed**\n* `Swo.Dem.CreateUri()`: \n  *  `request.Request.AvailabilityCheckSettings` **Changed**\n* `Swo.Dem.GetUri()`:  `response.AvailabilityCheckSettings` **Changed**\n* `Swo.Dem.UpdateUri()`: \n  *  `request.Request.Dem.uri.AvailabilityCheckSettings` **Changed**\n"

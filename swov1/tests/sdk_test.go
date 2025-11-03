@@ -171,28 +171,3 @@ func TestSDK_LogsArchives(t *testing.T) {
 	assert.NotEmpty(t, listRes.Object.LogArchives)
 
 }
-
-func TestSDK_Tokens(t *testing.T) {
-	ctx := context.Background()
-
-	testHTTPClient := createTestHTTPClient("tokens")
-
-	s := swov1.New(
-		swov1.WithServerURL(utils.GetEnv("PUBLIC_SWO_API_STAGE_URL", "")),
-		swov1.WithSecurity(utils.GetEnv("SWO_STAGE_API_TOKEN", "value")),
-		swov1.WithClient(testHTTPClient),
-	)
-
-	createRes, err := s.Tokens.CreateToken(ctx, components.TokensCreateTokenRequest{
-		Name: "swo-sdk-e2e-test-token",
-		Tags: components.Tags{
-			Server:          "swo-sdk-e2e-test-server",
-			TagWithoutValue: "swo-sdk-e2e-test-tag",
-		},
-		Type: components.TokensCreateTokenRequestTypeIngestion,
-	})
-	require.NoError(t, err)
-	assert.Equal(t, 201, createRes.HTTPMeta.Response.StatusCode)
-	assert.NotEmpty(t, createRes.TokensCreateTokenResponse.Token)
-
-}
