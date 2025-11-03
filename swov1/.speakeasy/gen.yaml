@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 go:
-  version: 0.11.0
+  version: 0.12.0
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: false
   baseErrorName: SwoError
@@ -45,6 +45,7 @@ go:
       operations: models/operations
       shared: models/components
       webhooks: models/webhooks
+  includeEmptyObjects: false
   inputModelSuffix: input
   maxMethodParams: 0
   methodArguments: require-security-and-request
@@ -55,3 +56,4 @@ go:
   respectRequiredFields: false
   responseFormat: envelope-http
   sdkPackageName: swov1
+  unionDeserializationStrategy: left-to-right
