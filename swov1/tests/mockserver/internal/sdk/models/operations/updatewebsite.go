@@ -9,7 +9,7 @@ import (
 type UpdateWebsiteRequest struct {
 	EntityID string `pathParam:"style=simple,explode=false,name=entityId"`
 	// The updated website monitoring configuration
-	DemWebsite components.DemWebsite `request:"mediaType=application/json"`
+	Body components.DemWebsite `request:"mediaType=application/json"`
 }
 
 func (o *UpdateWebsiteRequest) GetEntityID() string {
@@ -19,11 +19,11 @@ func (o *UpdateWebsiteRequest) GetEntityID() string {
 	return o.EntityID
 }
 
-func (o *UpdateWebsiteRequest) GetDemWebsite() components.DemWebsite {
+func (o *UpdateWebsiteRequest) GetBody() components.DemWebsite {
 	if o == nil {
 		return components.DemWebsite{}
 	}
-	return o.DemWebsite
+	return o.Body
 }
 
 type UpdateWebsiteResponse struct {

@@ -31,8 +31,6 @@ const (
 	DemTransactionCommandNameSelectFrame                   DemTransactionCommandName = "SELECT_FRAME"
 	DemTransactionCommandNameSubmit                        DemTransactionCommandName = "SUBMIT"
 	DemTransactionCommandNameSwoAssertURL                  DemTransactionCommandName = "SWO_ASSERT_URL"
-	DemTransactionCommandNameSwoReset                      DemTransactionCommandName = "SWO_RESET"
-	DemTransactionCommandNameSwoSetSecret                  DemTransactionCommandName = "SWO_SET_SECRET"
 	DemTransactionCommandNameSwoWaitForElementTextContains DemTransactionCommandName = "SWO_WAIT_FOR_ELEMENT_TEXT_CONTAINS"
 	DemTransactionCommandNameType                          DemTransactionCommandName = "TYPE"
 	DemTransactionCommandNameUncheck                       DemTransactionCommandName = "UNCHECK"
@@ -89,10 +87,6 @@ func (e *DemTransactionCommandName) UnmarshalJSON(data []byte) error {
 	case "SUBMIT":
 		fallthrough
 	case "SWO_ASSERT_URL":
-		fallthrough
-	case "SWO_RESET":
-		fallthrough
-	case "SWO_SET_SECRET":
 		fallthrough
 	case "SWO_WAIT_FOR_ELEMENT_TEXT_CONTAINS":
 		fallthrough
