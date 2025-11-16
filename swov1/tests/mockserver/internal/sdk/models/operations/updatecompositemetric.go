@@ -10,7 +10,7 @@ type UpdateCompositeMetricRequest struct {
 	// Metric name.
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 	// Metric properties to update
-	MetricsUpdateCompositeMetricRequest components.MetricsUpdateCompositeMetricRequest `request:"mediaType=application/json"`
+	Body components.MetricsUpdateCompositeMetricRequest `request:"mediaType=application/json"`
 }
 
 func (o *UpdateCompositeMetricRequest) GetName() string {
@@ -20,11 +20,11 @@ func (o *UpdateCompositeMetricRequest) GetName() string {
 	return o.Name
 }
 
-func (o *UpdateCompositeMetricRequest) GetMetricsUpdateCompositeMetricRequest() components.MetricsUpdateCompositeMetricRequest {
+func (o *UpdateCompositeMetricRequest) GetBody() components.MetricsUpdateCompositeMetricRequest {
 	if o == nil {
 		return components.MetricsUpdateCompositeMetricRequest{}
 	}
-	return o.MetricsUpdateCompositeMetricRequest
+	return o.Body
 }
 
 type UpdateCompositeMetricResponse struct {

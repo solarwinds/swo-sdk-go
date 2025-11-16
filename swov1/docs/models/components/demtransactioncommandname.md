@@ -26,8 +26,6 @@
 | `DemTransactionCommandNameSelectFrame`                   | SELECT_FRAME                                             |
 | `DemTransactionCommandNameSubmit`                        | SUBMIT                                                   |
 | `DemTransactionCommandNameSwoAssertURL`                  | SWO_ASSERT_URL                                           |
-| `DemTransactionCommandNameSwoReset`                      | SWO_RESET                                                |
-| `DemTransactionCommandNameSwoSetSecret`                  | SWO_SET_SECRET                                           |
 | `DemTransactionCommandNameSwoWaitForElementTextContains` | SWO_WAIT_FOR_ELEMENT_TEXT_CONTAINS                       |
 | `DemTransactionCommandNameType`                          | TYPE                                                     |
 | `DemTransactionCommandNameUncheck`                       | UNCHECK                                                  |

@@ -178,6 +178,8 @@ func main() {
 ### [Dbo](docs/sdks/dbo/README.md)
 
 * [ObserveDatabase](docs/sdks/dbo/README.md#observedatabase) - Add database observability to a database
+* [GetConfig](docs/sdks/dbo/README.md#getconfig) - Get organization-level configuration for database observability agents/plugins
+* [SetConfig](docs/sdks/dbo/README.md#setconfig) - Set organization-level configuration for database observability agents/plugins
 * [GetPublicKey](docs/sdks/dbo/README.md#getpublickey) - Get public key for encrypting database credentials locally
 * [UpdateDatabase](docs/sdks/dbo/README.md#updatedatabase) - Update an observed database
 * [DeleteDatabase](docs/sdks/dbo/README.md#deletedatabase) - Delete an observed database

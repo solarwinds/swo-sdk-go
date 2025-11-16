@@ -9,7 +9,7 @@ import (
 type UpdateURIRequest struct {
 	EntityID string `pathParam:"style=simple,explode=false,name=entityId"`
 	// The updated URI monitoring configuration
-	DemURI components.DemURI `request:"mediaType=application/json"`
+	Body components.DemURI `request:"mediaType=application/json"`
 }
 
 func (o *UpdateURIRequest) GetEntityID() string {
@@ -19,11 +19,11 @@ func (o *UpdateURIRequest) GetEntityID() string {
 	return o.EntityID
 }
 
-func (o *UpdateURIRequest) GetDemURI() components.DemURI {
+func (o *UpdateURIRequest) GetBody() components.DemURI {
 	if o == nil {
 		return components.DemURI{}
 	}
-	return o.DemURI
+	return o.Body
 }
 
 type UpdateURIResponse struct {
