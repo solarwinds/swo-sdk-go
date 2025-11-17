@@ -928,7 +928,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.CommonEntityID != nil {
+    if res != nil {
         // handle response
     }
 }
@@ -1383,7 +1383,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.CommonEntityID != nil {
+    if res != nil {
         // handle response
     }
 }

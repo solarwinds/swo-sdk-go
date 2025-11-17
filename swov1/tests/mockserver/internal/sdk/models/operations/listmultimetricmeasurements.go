@@ -54,8 +54,8 @@ type ListMultiMetricMeasurementsRequest struct {
 	// Number of items in a response page. Default varies by API.
 	PageSize *int `queryParam:"style=form,explode=false,name=pageSize"`
 	// Token for the requested page.
-	SkipToken   *string                                `queryParam:"style=form,explode=false,name=skipToken"`
-	RequestBody ListMultiMetricMeasurementsRequestBody `request:"mediaType=application/json"`
+	SkipToken *string                                `queryParam:"style=form,explode=false,name=skipToken"`
+	Body      ListMultiMetricMeasurementsRequestBody `request:"mediaType=application/json"`
 }
 
 func (l ListMultiMetricMeasurementsRequest) MarshalJSON() ([]byte, error) {
@@ -63,7 +63,7 @@ func (l ListMultiMetricMeasurementsRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListMultiMetricMeasurementsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"RequestBody"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -90,11 +90,11 @@ func (o *ListMultiMetricMeasurementsRequest) GetSkipToken() *string {
 	return o.SkipToken
 }
 
-func (o *ListMultiMetricMeasurementsRequest) GetRequestBody() ListMultiMetricMeasurementsRequestBody {
+func (o *ListMultiMetricMeasurementsRequest) GetBody() ListMultiMetricMeasurementsRequestBody {
 	if o == nil {
 		return ListMultiMetricMeasurementsRequestBody{}
 	}
-	return o.RequestBody
+	return o.Body
 }
 
 type Metric struct {
