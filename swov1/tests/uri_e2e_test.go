@@ -97,7 +97,7 @@ func TestSDK_DemUriCrudLifecycle(t *testing.T) {
 		EntityID: entityID,
 	})
 	require.NoError(t, err, "Failed to delete test URI")
-	require.Equal(t, http.StatusOK, deleteRes.HTTPMeta.Response.StatusCode, "Delete URI returned unexpected status")
+	require.Equal(t, http.StatusNoContent, deleteRes.HTTPMeta.Response.StatusCode, "Delete URI returned unexpected status")
 
 	getURIRes, err := s.Dem.GetURI(ctx, operations.GetURIRequest{
 		EntityID: entityID,
