@@ -10,7 +10,7 @@ type UpdateEntityByIDRequest struct {
 	// The entity's ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Entity properties to update. The entire representation of the entity as to be stored must be provided in the request.
-	EntitiesEntity components.EntitiesEntityInput `request:"mediaType=application/json"`
+	Body components.EntitiesEntityInput `request:"mediaType=application/json"`
 }
 
 func (o *UpdateEntityByIDRequest) GetID() string {
@@ -20,11 +20,11 @@ func (o *UpdateEntityByIDRequest) GetID() string {
 	return o.ID
 }
 
-func (o *UpdateEntityByIDRequest) GetEntitiesEntity() components.EntitiesEntityInput {
+func (o *UpdateEntityByIDRequest) GetBody() components.EntitiesEntityInput {
 	if o == nil {
 		return components.EntitiesEntityInput{}
 	}
-	return o.EntitiesEntity
+	return o.Body
 }
 
 type UpdateEntityByIDResponse struct {

@@ -1,4 +1,4 @@
-# DeleteURIResponse
+# SetConfigResponse
 
 
 ## Fields

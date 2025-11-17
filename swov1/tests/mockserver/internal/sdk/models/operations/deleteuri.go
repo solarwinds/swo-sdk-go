@@ -19,8 +19,6 @@ func (o *DeleteURIRequest) GetEntityID() string {
 
 type DeleteURIResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The request has succeeded.
-	CommonEntityID *components.CommonEntityID
 }
 
 func (o *DeleteURIResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -28,11 +26,4 @@ func (o *DeleteURIResponse) GetHTTPMeta() components.HTTPMetadata {
 		return components.HTTPMetadata{}
 	}
 	return o.HTTPMeta
-}
-
-func (o *DeleteURIResponse) GetCommonEntityID() *components.CommonEntityID {
-	if o == nil {
-		return nil
-	}
-	return o.CommonEntityID
 }

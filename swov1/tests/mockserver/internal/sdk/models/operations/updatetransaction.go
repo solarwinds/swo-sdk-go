@@ -9,7 +9,7 @@ import (
 type UpdateTransactionRequest struct {
 	EntityID string `pathParam:"style=simple,explode=false,name=entityId"`
 	// Update transaction monitoring configuration
-	DemTransaction components.DemTransaction `request:"mediaType=application/json"`
+	Body components.DemTransaction `request:"mediaType=application/json"`
 }
 
 func (o *UpdateTransactionRequest) GetEntityID() string {
@@ -19,11 +19,11 @@ func (o *UpdateTransactionRequest) GetEntityID() string {
 	return o.EntityID
 }
 
-func (o *UpdateTransactionRequest) GetDemTransaction() components.DemTransaction {
+func (o *UpdateTransactionRequest) GetBody() components.DemTransaction {
 	if o == nil {
 		return components.DemTransaction{}
 	}
-	return o.DemTransaction
+	return o.Body
 }
 
 type UpdateTransactionResponse struct {

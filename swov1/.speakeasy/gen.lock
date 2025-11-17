@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
-  docChecksum: bf64871f45ea70efc6ea549f9b0c796c
-  docVersion: 1.0.11
-  speakeasyVersion: 1.648.0
-  generationVersion: 2.737.0
-  releaseVersion: 0.12.0
-  configChecksum: 7922cd21cf83c430ab1f8ddb7178014a
+  docChecksum: d75e426ea971dbb4885d779b2a4105c3
+  docVersion: 1.0.12
+  speakeasyVersion: 1.658.2
+  generationVersion: 2.755.9
+  releaseVersion: 0.12.1
+  configChecksum: 19b6aa78dd1412685da3cfa1ebace4f2
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
@@ -14,7 +14,7 @@ features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.13.0
+    core: 3.13.2
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -60,6 +60,7 @@ generatedFiles:
   - /models/components/commonmetricinfo.go
   - /models/components/commonpageinfo.go
   - /models/components/commontag.go
+  - /models/components/dboconfig.go
   - /models/components/dbodatabaseauthmethod.go
   - /models/components/dbodatabaseconnectionoptions.go
   - /models/components/dbodatabaseconnectionoptionsupdate.go
@@ -123,6 +124,7 @@ generatedFiles:
   - /models/operations/deletetransaction.go
   - /models/operations/deleteuri.go
   - /models/operations/deletewebsite.go
+  - /models/operations/getconfig.go
   - /models/operations/getdemsettings.go
   - /models/operations/getentitybyid.go
   - /models/operations/getmetricbyname.go
@@ -148,6 +150,7 @@ generatedFiles:
   - /models/operations/pausewebsitemonitoring.go
   - /models/operations/pluginoperation.go
   - /models/operations/searchlogs.go
+  - /models/operations/setconfig.go
   - /models/operations/setdemsettings.go
   - /models/operations/unpausetransactionmonitoring.go
   - /models/operations/unpauseurimonitoring.go
@@ -200,6 +203,7 @@ generatedFiles:
   - docs/models/components/commonpageinfo.md
   - docs/models/components/commontag.md
   - docs/models/components/coordinates.md
+  - docs/models/components/dboconfig.md
   - docs/models/components/dbodatabaseauthmethod.md
   - docs/models/components/dbodatabaseconnectionoptions.md
   - docs/models/components/dbodatabaseconnectionoptionsupdate.md
@@ -317,6 +321,7 @@ generatedFiles:
   - docs/models/operations/deleteuriresponse.md
   - docs/models/operations/deletewebsiterequest.md
   - docs/models/operations/deletewebsiteresponse.md
+  - docs/models/operations/getconfigresponse.md
   - docs/models/operations/getdemsettingsresponse.md
   - docs/models/operations/getentitybyidrequest.md
   - docs/models/operations/getentitybyidresponse.md
@@ -376,6 +381,7 @@ generatedFiles:
   - docs/models/operations/searchlogsrequest.md
   - docs/models/operations/searchlogsresponse.md
   - docs/models/operations/searchlogsresponsebody.md
+  - docs/models/operations/setconfigresponse.md
   - docs/models/operations/setdemsettingsresponse.md
   - docs/models/operations/unpausetransactionmonitoringrequest.md
   - docs/models/operations/unpausetransactionmonitoringresponse.md
@@ -483,6 +489,7 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/components/commontag.go
   - tests/mockserver/internal/sdk/models/components/commonunauthorizederrorresponse.go
   - tests/mockserver/internal/sdk/models/components/commonunavailableerrorresponse.go
+  - tests/mockserver/internal/sdk/models/components/dboconfig.go
   - tests/mockserver/internal/sdk/models/components/dbodatabaseauthmethod.go
   - tests/mockserver/internal/sdk/models/components/dbodatabaseconnectionoptions.go
   - tests/mockserver/internal/sdk/models/components/dbodatabaseconnectionoptionsupdate.go
@@ -547,6 +554,7 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/operations/deletetransaction.go
   - tests/mockserver/internal/sdk/models/operations/deleteuri.go
   - tests/mockserver/internal/sdk/models/operations/deletewebsite.go
+  - tests/mockserver/internal/sdk/models/operations/getconfig.go
   - tests/mockserver/internal/sdk/models/operations/getdemsettings.go
   - tests/mockserver/internal/sdk/models/operations/getentitybyid.go
   - tests/mockserver/internal/sdk/models/operations/getmetricbyname.go
@@ -572,6 +580,7 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/operations/pausewebsitemonitoring.go
   - tests/mockserver/internal/sdk/models/operations/pluginoperation.go
   - tests/mockserver/internal/sdk/models/operations/searchlogs.go
+  - tests/mockserver/internal/sdk/models/operations/setconfig.go
   - tests/mockserver/internal/sdk/models/operations/setdemsettings.go
   - tests/mockserver/internal/sdk/models/operations/unpausetransactionmonitoring.go
   - tests/mockserver/internal/sdk/models/operations/unpauseurimonitoring.go
@@ -1330,6 +1339,26 @@ examples:
           application/json: {"message": "Error has occurred", "code": "ResourceNotFound"}
         "500":
           application/json: {"message": "Error has occurred", "code": "InternalError"}
+  getConfig:
+    speakeasy-default-get-config:
+      responses:
+        "200":
+          application/json: {"configOptions": [{"key": "<key>", "value": "<value>"}]}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
+  setConfig:
+    speakeasy-default-set-config:
+      requestBody:
+        application/json: []
+      responses:
+        "400":
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
+        "401":
+          application/json: {"message": "Error has occurred", "code": "Unauthorized"}
+        "500":
+          application/json: {"message": "Error has occurred", "code": "InternalError"}
 examplesVersion: 1.0.2
 generatedTests:
   createChangeEvent: "2025-05-02T09:35:26-06:00"
@@ -1376,3 +1405,9 @@ generatedTests:
   deleteUri: "2025-05-13T00:19:34Z"
   pauseUriMonitoring: "2025-05-13T00:19:34Z"
   unpauseUriMonitoring: "2025-05-13T00:19:34Z"
+releaseNotes: |
+  ## Go SDK Changes Detected:
+  * `Swo.Dem.DeleteUri()`:  `response` **Changed** **Breaking** :warning:
+  * `Swo.Dem.DeleteWebsite()`:  `response` **Changed** **Breaking** :warning:
+  * `Swo.Dbo.GetConfig()`: **Added**
+  * `Swo.Dbo.SetConfig()`: **Added**
