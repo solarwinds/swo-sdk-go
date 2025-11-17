@@ -100,7 +100,7 @@ func TestSDK_DemWebsiteCrudLifecycle(t *testing.T) {
 		EntityID: entityID,
 	})
 	require.NoError(t, err, "Failed to delete test website")
-	require.Equal(t, http.StatusOK, deleteRes.HTTPMeta.Response.StatusCode, "Delete website returned unexpected status")
+	require.Equal(t, http.StatusNoContent, deleteRes.HTTPMeta.Response.StatusCode, "Delete website returned unexpected status")
 
 	getWebsiteRes, err := s.Dem.GetWebsite(ctx, operations.GetWebsiteRequest{
 		EntityID: entityID,
