@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
-  docChecksum: d75e426ea971dbb4885d779b2a4105c3
+  docChecksum: c2a040035c1089ffa2b81d94b51617a6
   docVersion: 1.0.12
-  speakeasyVersion: 1.658.2
-  generationVersion: 2.755.9
-  releaseVersion: 0.12.1
-  configChecksum: 19b6aa78dd1412685da3cfa1ebace4f2
+  speakeasyVersion: 1.665.1
+  generationVersion: 2.767.2
+  releaseVersion: 0.13.0
+  configChecksum: 636b6dd9151ddb77e3c36a62f7f19e8c
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go/swov1
@@ -14,7 +14,7 @@ features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.13.2
+    core: 3.13.5
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -31,7 +31,7 @@ features:
     pagination: 2.82.5
     responseFormat: 0.1.2
     retries: 2.84.2
-    sdkHooks: 0.2.0
+    sdkHooks: 0.3.0
     tests: 0.16.3
 generatedFiles:
   - .devcontainer/README.md
@@ -1405,9 +1405,4 @@ generatedTests:
   deleteUri: "2025-05-13T00:19:34Z"
   pauseUriMonitoring: "2025-05-13T00:19:34Z"
   unpauseUriMonitoring: "2025-05-13T00:19:34Z"
-releaseNotes: |
-  ## Go SDK Changes Detected:
-  * `Swo.Dem.DeleteUri()`:  `response` **Changed** **Breaking** :warning:
-  * `Swo.Dem.DeleteWebsite()`:  `response` **Changed** **Breaking** :warning:
-  * `Swo.Dbo.GetConfig()`: **Added**
-  * `Swo.Dbo.SetConfig()`: **Added**
+releaseNotes: "## Go SDK Changes:\n* `Swo.Metrics.ListMetricMeasurements()`: \n  *  `request.Request.PreGroupByMethod` **Changed** **Breaking** :warning:\n"
