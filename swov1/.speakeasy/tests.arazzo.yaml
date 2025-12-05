@@ -193,3 +193,127 @@ workflows:
             value: ${steps.create.outputs.token.slice(-43)}
         successCriteria:
           - condition: $statusCode == 200
+  # /v1/dbo - Database observability CRUD operations
+  - workflowId: dboCrudLifecycle
+    steps:
+      - stepId: observeDatabase
+        description: Add database observability to a database
+        operationId: observeDatabase
+        requestBody:
+          contentType: application/json
+          payload:
+            {
+              "name": "swo-sdk-e2e-db",
+              "type": "postgresql",
+              "connection": "postgres://user:pass@localhost:5432/dbname",
+              "tags": { "environment": "test", "service": "swo-sdk-db" }
+            }
+        successCriteria:
+          - condition: $statusCode == 201
+          - condition: $response.header.Content-Type == application/json
+          - condition: $response.body#/id != null
+        outputs:
+          entityId: $response.body#/id
+
+      - stepId: updateDatabase
+        description: Update observed database tags
+        operationId: updateDatabase
+        dependsOn: observeDatabase
+        parameters:
+          - name: entityId
+            in: path
+            value: $steps.observeDatabase.outputs.entityId
+        requestBody:
+          contentType: application/json
+          payload:
+            {
+              "tags": { "environment": "updated-test", "service": "swo-sdk-db-updated" }
+            }
+        successCriteria:
+          - condition: $statusCode == 204
+
+      - stepId: getPluginConfig
+        description: Get config of plugins observing a database
+        operationId: getPluginConfig
+        dependsOn: updateDatabase
+        parameters:
+          - name: entityId
+            in: path
+            value: $steps.observeDatabase.outputs.entityId
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+
+      - stepId: getPlugins
+        description: Get status of plugins observing a database
+        operationId: getPlugins
+        dependsOn: updateDatabase
+        parameters:
+          - name: entityId
+            in: path
+            value: $steps.observeDatabase.outputs.entityId
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+
+      - stepId: deleteDatabase
+        description: Delete the observed database
+        operationId: deleteDatabase
+        dependsOn: getPluginConfig
+        parameters:
+          - name: entityId
+            in: path
+            value: $steps.observeDatabase.outputs.entityId
+        successCriteria:
+          - condition: $statusCode == 204
+
+  - workflowId: dboConfigLifecycle
+    steps:
+      - stepId: setConfig
+        description: Set configuration for DBO agents/plugins
+        operationId: setConfig
+        requestBody:
+          contentType: application/json
+          payload:
+            [
+              { "key": "disable-sampling", "value": true }
+            ]
+        successCriteria:
+          - condition: $statusCode == 204
+
+      - stepId: getConfig
+        description: Get configuration for DBO agents/plugins
+        operationId: getConfig
+        dependsOn: setConfig
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - condition: $response.body#/config != null
+
+  - workflowId: dboPublicKey
+    steps:
+      - stepId: getPublicKey
+        description: Get public key for encrypting database credentials locally
+        operationId: getPublicKey
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - condition: $response.body#/publicKey != null
+
+  - workflowId: dboPluginOperation
+    steps:
+      - stepId: pluginOperation
+        description: Apply an operation on a database plugin (restart)
+        operationId: pluginOperation
+        parameters:
+          - name: entityId
+            in: path
+            value: __DYNAMIC_ENTITY_ID__   # Replace with valid entityId
+          - name: operation
+            in: path
+            value: "restart"
+        requestBody:
+          contentType: application/json
+          payload: {}
+        successCriteria:
+          - condition: $statusCode == 204
