@@ -1,5 +1,4 @@
 # Dem
-(*Dem*)
 
 ## Overview
 
