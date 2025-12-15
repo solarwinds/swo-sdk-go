@@ -9,6 +9,7 @@ generation:
     optionalPropertyRendering: withExample
     sdkInitStyle: constructor
   useClassNamesForArrayFields: true
+  sdkHooksConfigAccess: true
   fixes:
     nameResolutionDec2023: true
     nameResolutionFeb2025: false
