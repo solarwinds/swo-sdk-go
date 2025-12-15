@@ -1,5 +1,4 @@
 # ChangeEvents
-(*ChangeEvents*)
 
 ## Overview
 

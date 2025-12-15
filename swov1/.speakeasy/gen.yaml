@@ -9,7 +9,6 @@ generation:
     optionalPropertyRendering: withExample
     sdkInitStyle: constructor
   useClassNamesForArrayFields: true
-  sdkHooksConfigAccess: true
   fixes:
     nameResolutionDec2023: true
     nameResolutionFeb2025: false
@@ -21,17 +20,19 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
     hoistGlobalSecurity: true
+  sdkHooksConfigAccess: true
   schemas:
     allOfMergeStrategy: shallowMerge
   requestBodyFieldName: ""
   mockServer:
     disabled: false
+  persistentEdits: {}
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 go:
-  version: 0.13.0
+  version: 0.13.1
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: false
   baseErrorName: SwoError
