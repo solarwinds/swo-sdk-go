@@ -160,3 +160,59 @@ workflows:
           - condition: $response.header.Content-Type == application/json
           - condition: $response.body#/pageInfo != null
           - condition: $response.body#/logArchives != null
+  - workflowId: dboCrudLifecycle
+    steps:
+      - stepId: create
+        operationId: observeDatabase
+        requestBody:
+          contentType: application/json
+          payload:
+            name: "x-env: SWO_DBO_TEST_NAME"
+            agentId: "x-env: SWO_DBO_TEST_AGENT_ID"
+            dbType: "x-env: SWO_DBO_TEST_TYPE"
+            authMethod: "x-env: SWO_DBO_TEST_AUTH_METHOD"
+            dbConnOptions:
+              host: "x-env: SWO_DBO_TEST_HOST"
+        successCriteria:
+          - condition: $statusCode == 201
+          - condition: $response.header.Content-Type == application/json
+          - condition: $response.body#/id != null
+        outputs:
+          entityId: $response.body#/id
+
+      - stepId: get
+        operationId: getEntityById
+        dependsOn: create
+        parameters:
+          - name: id
+            in: path
+            value: $steps.create.outputs.entityId
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - condition: $response.body#/type == "Database"
+
+      - stepId: update
+        operationId: updateDatabase
+        dependsOn: get
+        parameters:
+          - name: entityId
+            in: path
+            value: $steps.create.outputs.entityId
+        requestBody:
+          contentType: application/json
+          payload:
+            dbConnOptions:
+              host: "updated-host"
+        successCriteria:
+          - condition: $statusCode == 204
+
+      - stepId: delete
+        operationId: deleteDatabase
+        dependsOn: update
+        parameters:
+          - name: entityId
+            in: path
+            value: $steps.create.outputs.entityId
+        successCriteria:
+          - condition: $statusCode == 204
