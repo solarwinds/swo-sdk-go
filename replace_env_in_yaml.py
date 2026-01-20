@@ -27,10 +27,9 @@ if __name__ == "__main__":
     shutil.copyfile(yaml_file, backup_file)
 
     now = datetime.now(timezone.utc) - timedelta(minutes=1)
-    start_time = now - timedelta(hours=8)
     end_time = now
 
-    start_time_str = start_time.strftime("%Y-%m-%dT%H:%M:%SZ")
+    start_time_str = "2026-01-12T21:00:00.026217086Z"
     end_time_str = end_time.strftime("%Y-%m-%dT%H:%M:%SZ")
 
     with open(yaml_file, "r") as f:
