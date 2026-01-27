@@ -29,8 +29,8 @@ if __name__ == "__main__":
     now = datetime.now(timezone.utc) - timedelta(minutes=1)
     end_time = now
 
-    start_time_str = "2026-01-14T21:00:00.026217086Z"
-    end_time_str = "2026-01-16T21:00:00.026217086Z"
+    start_time_str = "2026-01-12T21:00:00.026217086Z"
+    end_time_str = end_time.strftime("%Y-%m-%dT%H:%M:%SZ")
 
     with open(yaml_file, "r") as f:
         data = yaml.safe_load(f)
