@@ -101,7 +101,7 @@ jobs:
           DURATION=$(grep -E '^(FAIL|ok)\s' "$TEST_OUTPUT_FILE" | tail -1 | awk '{print $NF}')
 
           if [ -n "$TEST_SUMMARY" ]; then
-            SUMMARY_TEXT="\n$TEST_SUMMARY"
+            SUMMARY_TEXT="$TEST_SUMMARY"
           else
             SUMMARY_TEXT=""
           fi
@@ -118,7 +118,7 @@ jobs:
 
           PAYLOAD=$(jq -n --arg status "$STATUS" --arg emoji "$STATUS_EMOJI" --arg run_url "$RUN_URL" --arg duration "$DURATION" --arg summary "$SUMMARY_TEXT" '
             {
-              text: "\($emoji) *Nightly SWO SDK GO tests: \($status)*\nDuration: \($duration)\nSee details: \($run_url)\($summary)"
+              text: "\($emoji) *Nightly SWO SDK GO tests: \($status)*\nDuration: \($duration)\nSee details: \($run_url)\n\($summary)"
             }
           ')
           curl -X POST -H 'Content-type: application/json' --data "$PAYLOAD" $SLACK_WEBHOOK_URL
