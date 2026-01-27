@@ -91,7 +91,6 @@ jobs:
                 skip_first=0
                 next
               }
-              if ($0 ~ /^Error Trace:/) next
               sub(/^[ \t]+/, "", $0)
               lines = lines $0 "\n"
               next
