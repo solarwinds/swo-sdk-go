@@ -1,0 +1,9 @@
+# GetURITestResultsResponse
+
+
+## Fields
+
+| Field                                                                                                 | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                            | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                    | :heavy_check_mark:                                                                                    | N/A                                                                                                   |
+| `Object`                                                                                              | [*operations.GetURITestResultsResponseBody](../../models/operations/geturitestresultsresponsebody.md) | :heavy_minus_sign:                                                                                    | An array of test results with pagination info                                                         |

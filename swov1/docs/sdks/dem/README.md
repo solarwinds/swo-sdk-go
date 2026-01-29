@@ -17,13 +17,17 @@
 * [GetURI](#geturi) - Get URI monitoring configuration
 * [UpdateURI](#updateuri) - Update URI monitoring configuration
 * [DeleteURI](#deleteuri) - Delete URI
+* [GetURIOutageStatuses](#geturioutagestatuses) - Get outage statuses
 * [PauseURIMonitoring](#pauseurimonitoring) - Pause monitoring of the URI
+* [GetURITestResults](#geturitestresults) - Get test results
 * [UnpauseURIMonitoring](#unpauseurimonitoring) - Unpause monitoring of the URI
 * [CreateWebsite](#createwebsite) - Create website monitoring configuration
 * [GetWebsite](#getwebsite) - Get website monitoring configuration
 * [UpdateWebsite](#updatewebsite) - Update website monitoring configuration
 * [DeleteWebsite](#deletewebsite) - Delete website
+* [GetWebsiteOutageStatuses](#getwebsiteoutagestatuses) - Get outage statuses
 * [PauseWebsiteMonitoring](#pausewebsitemonitoring) - Pause monitoring of a website
+* [GetWebsiteTestResults](#getwebsitetestresults) - Get test results
 * [UnpauseWebsiteMonitoring](#unpausewebsitemonitoring) - Unpause monitoring of a website
 
 ## ListProbes
@@ -476,7 +480,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.CommonEntityID != nil {
+    if res != nil {
         // handle response
     }
 }
@@ -674,11 +678,7 @@ func main() {
             TCP: &components.TCP{
                 Enabled: true,
                 Port: 443,
-                StringToSend: swov1.Pointer("GET / HTTP/1.1\r\n" +
-                "Host: solarwinds.com\r\n" +
-                "Connection: close\r\n" +
-                "\r\n" +
-                ""),
+                StringToSend: swov1.Pointer("GET / HTTP/1.1\r\nHost: solarwinds.com\r\nConnection: close\r\n\r\n"),
                 StringToExpect: swov1.Pointer("HTTP/1.1 200 OK"),
             },
             UDP: nil,
@@ -839,21 +839,13 @@ func main() {
                 TCP: &components.TCP{
                     Enabled: true,
                     Port: 443,
-                    StringToSend: swov1.Pointer("GET / HTTP/1.1\r\n" +
-                    "Host: solarwinds.com\r\n" +
-                    "Connection: close\r\n" +
-                    "\r\n" +
-                    ""),
+                    StringToSend: swov1.Pointer("GET / HTTP/1.1\r\nHost: solarwinds.com\r\nConnection: close\r\n\r\n"),
                     StringToExpect: swov1.Pointer("HTTP/1.1 200 OK"),
                 },
                 UDP: &components.UDP{
                     Enabled: false,
                     Port: 8888,
-                    StringToSend: "GET / HTTP/1.1\r\n" +
-                    "Host: solarwinds.com\r\n" +
-                    "Connection: close\r\n" +
-                    "\r\n" +
-                    "",
+                    StringToSend: "GET / HTTP/1.1\r\nHost: solarwinds.com\r\nConnection: close\r\n\r\n",
                     StringToExpect: "HTTP/1.1 200 OK",
                 },
             },
@@ -954,6 +946,79 @@ func main() {
 | apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
 | apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
+## GetURIOutageStatuses
+
+Get outage statuses
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getUriOutageStatuses" method="get" path="/v1/dem/uris/{entityId}/outageStatuses" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/types"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Dem.GetURIOutageStatuses(ctx, operations.GetURIOutageStatusesRequest{
+        EntityID: "<id>",
+        StartTime: types.MustTimeFromString("2025-01-07T04:04:57.949Z"),
+        EndTime: types.MustTimeFromString("2026-12-19T15:16:56.899Z"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        for {
+            // handle items
+
+            res, err = res.Next()
+
+            if err != nil {
+                // handle error
+            }
+
+            if res == nil {
+                break
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.GetURIOutageStatusesRequest](../../models/operations/geturioutagestatusesrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+
+### Response
+
+**[*operations.GetURIOutageStatusesResponse](../../models/operations/geturioutagestatusesresponse.md), error**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
+
 ## PauseURIMonitoring
 
 Pause monitoring of the URI
@@ -1009,6 +1074,79 @@ func main() {
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
 | apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
+
+## GetURITestResults
+
+Get test results
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getUriTestResults" method="get" path="/v1/dem/uris/{entityId}/testResults" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/types"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Dem.GetURITestResults(ctx, operations.GetURITestResultsRequest{
+        EntityID: "<id>",
+        StartTime: types.MustTimeFromString("2026-04-27T21:55:07.961Z"),
+        EndTime: types.MustTimeFromString("2024-02-25T12:00:24.429Z"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        for {
+            // handle items
+
+            res, err = res.Next()
+
+            if err != nil {
+                // handle error
+            }
+
+            if res == nil {
+                break
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.GetURITestResultsRequest](../../models/operations/geturitestresultsrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][operations.Option](../../models/operations/option.md)                                   | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
+
+### Response
+
+**[*operations.GetURITestResultsResponse](../../models/operations/geturitestresultsresponse.md), error**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
 | apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
 | apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
@@ -1409,6 +1547,79 @@ func main() {
 | apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
 | apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
+## GetWebsiteOutageStatuses
+
+Get outage statuses
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getWebsiteOutageStatuses" method="get" path="/v1/dem/websites/{entityId}/outageStatuses" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/types"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Dem.GetWebsiteOutageStatuses(ctx, operations.GetWebsiteOutageStatusesRequest{
+        EntityID: "<id>",
+        StartTime: types.MustTimeFromString("2026-11-15T10:02:22.738Z"),
+        EndTime: types.MustTimeFromString("2026-02-24T15:45:54.358Z"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        for {
+            // handle items
+
+            res, err = res.Next()
+
+            if err != nil {
+                // handle error
+            }
+
+            if res == nil {
+                break
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
+| `request`                                                                                                | [operations.GetWebsiteOutageStatusesRequest](../../models/operations/getwebsiteoutagestatusesrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
+
+### Response
+
+**[*operations.GetWebsiteOutageStatusesResponse](../../models/operations/getwebsiteoutagestatusesresponse.md), error**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
+
 ## PauseWebsiteMonitoring
 
 Pause monitoring of a website
@@ -1464,6 +1675,79 @@ func main() {
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
 | apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
+
+## GetWebsiteTestResults
+
+Get test results
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getWebsiteTestResults" method="get" path="/v1/dem/websites/{entityId}/testResults" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/types"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Dem.GetWebsiteTestResults(ctx, operations.GetWebsiteTestResultsRequest{
+        EntityID: "<id>",
+        StartTime: types.MustTimeFromString("2024-05-25T23:02:07.467Z"),
+        EndTime: types.MustTimeFromString("2024-06-25T13:36:39.740Z"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        for {
+            // handle items
+
+            res, err = res.Next()
+
+            if err != nil {
+                // handle error
+            }
+
+            if res == nil {
+                break
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `request`                                                                                          | [operations.GetWebsiteTestResultsRequest](../../models/operations/getwebsitetestresultsrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `opts`                                                                                             | [][operations.Option](../../models/operations/option.md)                                           | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
+
+### Response
+
+**[*operations.GetWebsiteTestResultsResponse](../../models/operations/getwebsitetestresultsresponse.md), error**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
 | apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
 | apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
