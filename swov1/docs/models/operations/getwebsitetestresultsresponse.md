@@ -1,0 +1,9 @@
+# GetWebsiteTestResultsResponse
+
+
+## Fields
+
+| Field                                                                                                         | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                                    | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                            | :heavy_check_mark:                                                                                            | N/A                                                                                                           |
+| `Object`                                                                                                      | [*operations.GetWebsiteTestResultsResponseBody](../../models/operations/getwebsitetestresultsresponsebody.md) | :heavy_minus_sign:                                                                                            | An array of test results with pagination info                                                                 |

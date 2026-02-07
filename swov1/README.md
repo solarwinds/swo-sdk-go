@@ -202,13 +202,17 @@ func main() {
 * [GetURI](docs/sdks/dem/README.md#geturi) - Get URI monitoring configuration
 * [UpdateURI](docs/sdks/dem/README.md#updateuri) - Update URI monitoring configuration
 * [DeleteURI](docs/sdks/dem/README.md#deleteuri) - Delete URI
+* [GetURIOutageStatuses](docs/sdks/dem/README.md#geturioutagestatuses) - Get outage statuses
 * [PauseURIMonitoring](docs/sdks/dem/README.md#pauseurimonitoring) - Pause monitoring of the URI
+* [GetURITestResults](docs/sdks/dem/README.md#geturitestresults) - Get test results
 * [UnpauseURIMonitoring](docs/sdks/dem/README.md#unpauseurimonitoring) - Unpause monitoring of the URI
 * [CreateWebsite](docs/sdks/dem/README.md#createwebsite) - Create website monitoring configuration
 * [GetWebsite](docs/sdks/dem/README.md#getwebsite) - Get website monitoring configuration
 * [UpdateWebsite](docs/sdks/dem/README.md#updatewebsite) - Update website monitoring configuration
 * [DeleteWebsite](docs/sdks/dem/README.md#deletewebsite) - Delete website
+* [GetWebsiteOutageStatuses](docs/sdks/dem/README.md#getwebsiteoutagestatuses) - Get outage statuses
 * [PauseWebsiteMonitoring](docs/sdks/dem/README.md#pausewebsitemonitoring) - Pause monitoring of a website
+* [GetWebsiteTestResults](docs/sdks/dem/README.md#getwebsitetestresults) - Get test results
 * [UnpauseWebsiteMonitoring](docs/sdks/dem/README.md#unpausewebsitemonitoring) - Unpause monitoring of a website
 
 ### [Entities](docs/sdks/entities/README.md)
@@ -261,6 +265,7 @@ import (
 	"context"
 	"github.com/solarwinds/swo-sdk-go/swov1"
 	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"github.com/solarwinds/swo-sdk-go/swov1/types"
 	"log"
 	"os"
 )
@@ -272,8 +277,10 @@ func main() {
 		swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
-	res, err := s.Entities.ListEntities(ctx, operations.ListEntitiesRequest{
-		Type: "<value>",
+	res, err := s.Dem.GetURIOutageStatuses(ctx, operations.GetURIOutageStatusesRequest{
+		EntityID:  "<id>",
+		StartTime: types.MustTimeFromString("2025-01-07T04:04:57.949Z"),
+		EndTime:   types.MustTimeFromString("2026-12-19T15:16:56.899Z"),
 	})
 	if err != nil {
 		log.Fatal(err)
