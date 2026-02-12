@@ -7,9 +7,9 @@
 * [ListMetrics](#listmetrics) - List metrics
 * [CreateCompositeMetric](#createcompositemetric) - Create composite metric
 * [ListMultiMetricMeasurements](#listmultimetricmeasurements) - List measurements for a batch of metrics
+* [GetMetricByName](#getmetricbyname) - Get metric info by name
 * [UpdateCompositeMetric](#updatecompositemetric) - Update composite metric
 * [DeleteCompositeMetric](#deletecompositemetric) - Delete composite metric
-* [GetMetricByName](#getmetricbyname) - Get metric info by name
 * [ListMetricAttributes](#listmetricattributes) - List metric attribute names
 * [ListMetricAttributeValues](#listmetricattributevalues) - List metric attribute values
 * [ListMetricMeasurements](#listmetricmeasurements) - List metric measurement values, grouped by attributes, filtered by the filter. An empty list indicates no data points are available for the given parameters.
@@ -238,6 +238,76 @@ func main() {
 | apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
 | apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
+## GetMetricByName
+
+Get information about a given metric.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getMetricByName" method="get" path="/v1/metrics/{name}" -->
+```go
+package main
+
+import(
+	"context"
+	"os"
+	"github.com/solarwinds/swo-sdk-go/swov1"
+	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := swov1.New(
+        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
+    )
+
+    res, err := s.Metrics.GetMetricByName(ctx, operations.GetMetricByNameRequest{
+        Name: "<value>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.CommonMetricInfo != nil {
+        for {
+            // handle items
+
+            res, err = res.Next()
+
+            if err != nil {
+                // handle error
+            }
+
+            if res == nil {
+                break
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.GetMetricByNameRequest](../../models/operations/getmetricbynamerequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+
+### Response
+
+**[*operations.GetMetricByNameResponse](../../models/operations/getmetricbynameresponse.md), error**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
+| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
+| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
+| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
+
 ## UpdateCompositeMetric
 
 Update a composite metric given a metric name.
@@ -363,76 +433,6 @@ func main() {
 | apierrors.CommonNotFoundErrorResponse         | 404                                           | application/json                              |
 | apierrors.CommonInternalErrorResponse         | 500                                           | application/json                              |
 | apierrors.APIError                            | 4XX, 5XX                                      | \*/\*                                         |
-
-## GetMetricByName
-
-Get information about a given metric.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="getMetricByName" method="get" path="/v1/metrics/{name}" -->
-```go
-package main
-
-import(
-	"context"
-	"os"
-	"github.com/solarwinds/swo-sdk-go/swov1"
-	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := swov1.New(
-        swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
-    )
-
-    res, err := s.Metrics.GetMetricByName(ctx, operations.GetMetricByNameRequest{
-        Name: "<value>",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.CommonMetricInfo != nil {
-        for {
-            // handle items
-
-            res, err = res.Next()
-
-            if err != nil {
-                // handle error
-            }
-
-            if res == nil {
-                break
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.GetMetricByNameRequest](../../models/operations/getmetricbynamerequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
-
-### Response
-
-**[*operations.GetMetricByNameResponse](../../models/operations/getmetricbynameresponse.md), error**
-
-### Errors
-
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
-| apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
-| apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
-| apierrors.APIError                        | 4XX, 5XX                                  | \*/\*                                     |
 
 ## ListMetricAttributes
 
