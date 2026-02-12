@@ -16,6 +16,7 @@ generation:
     requestResponseComponentNamesFeb2024: true
     securityFeb2025: false
     sharedErrorComponentsApr2025: false
+    sharedNestedComponentsJan2026: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
@@ -24,6 +25,7 @@ generation:
   schemas:
     allOfMergeStrategy: shallowMerge
   requestBodyFieldName: ""
+  versioningStrategy: automatic
   mockServer:
     disabled: false
   persistentEdits: {}
@@ -32,7 +34,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 go:
-  version: 0.13.1
+  version: 0.13.2
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: false
   baseErrorName: SwoError
@@ -40,6 +42,7 @@ go:
   defaultErrorName: APIError
   envVarPrefix: SWO
   flattenGlobalSecurity: true
+  forwardCompatibleEnumsByDefault: false
   imports:
     option: openapi
     paths:
@@ -59,6 +62,7 @@ go:
   outputModelSuffix: output
   packageName: github.com/solarwinds/swo-sdk-go/swov1
   respectRequiredFields: false
+  respectTitlesForPrimitiveUnionMembers: false
   responseFormat: envelope-http
   sdkPackageName: swov1
   unionStrategy: left-to-right
