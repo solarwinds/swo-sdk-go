@@ -2,25 +2,29 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type MetricsUpdateCompositeMetricRequest struct {
 	// Display name of the composite metric. A short description of the metric.
-	DisplayName *string `json:"displayName,omitempty"`
+	DisplayName optionalnullable.OptionalNullable[string] `json:"displayName,omitempty"`
 	// Description of the composite metric. A detailed description of the metric.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// PromQL query to calculate the composite metric.
 	Formula string `json:"formula"`
 	// Unit of the composite metric.
-	Units *string `json:"units,omitempty"`
+	Units optionalnullable.OptionalNullable[string] `json:"units,omitempty"`
 }
 
-func (o *MetricsUpdateCompositeMetricRequest) GetDisplayName() *string {
+func (o *MetricsUpdateCompositeMetricRequest) GetDisplayName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayName
 }
 
-func (o *MetricsUpdateCompositeMetricRequest) GetDescription() *string {
+func (o *MetricsUpdateCompositeMetricRequest) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -34,7 +38,7 @@ func (o *MetricsUpdateCompositeMetricRequest) GetFormula() string {
 	return o.Formula
 }
 
-func (o *MetricsUpdateCompositeMetricRequest) GetUnits() *string {
+func (o *MetricsUpdateCompositeMetricRequest) GetUnits() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
