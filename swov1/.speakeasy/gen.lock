@@ -3,7 +3,7 @@ id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
   docChecksum: a07f29701d075344971e8795524e842f
   docVersion: 1.0.14
-  speakeasyVersion: 1.757.1
+  speakeasyVersion: 1.758.0
   generationVersion: 2.866.2
   releaseVersion: 0.13.3
   configChecksum: dee1e0916b8b18de49c44f467899f173
@@ -11,8 +11,8 @@ management:
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go
 persistentEdits:
-  generation_id: 3edb7e31-d83b-4ebc-9a09-4a45b7898910
-  pristine_commit_hash: 8ebb9e96181a8e39ffd3f07934b0293878316076
+  generation_id: 632a9c45-cd54-4847-91cb-78f368853b97
+  pristine_commit_hash: 73b4a6aec327cf12778e1fe653600e0363e256d3
   pristine_tree_hash: 768be1d7db53f64d248d891b0722ada548296ac7
 features:
   go:
