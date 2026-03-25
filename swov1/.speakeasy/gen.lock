@@ -3,22 +3,22 @@ id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
   docChecksum: a07f29701d075344971e8795524e842f
   docVersion: 1.0.14
-  speakeasyVersion: 1.759.1
-  generationVersion: 2.869.10
+  speakeasyVersion: 1.759.2
+  generationVersion: 2.869.23
   releaseVersion: 0.13.3
   configChecksum: dee1e0916b8b18de49c44f467899f173
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go
 persistentEdits:
-  generation_id: d65df989-14c4-498b-9ebd-1423dfd5d077
-  pristine_commit_hash: 6eced0402985e90a8e1a61af5ecf246936e0de35
-  pristine_tree_hash: 7a666a0f05e582b991d913956c5899d953a145c3
+  generation_id: b596dab5-4de8-4b11-ae30-0f5abdaef564
+  pristine_commit_hash: 0f60d71bcdb018b4e519071d87a6f07de4a160de
+  pristine_tree_hash: 9180745d261a46a9b8dc529a64064f8f389b3b7b
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.14
-    core: 3.13.36
+    core: 3.13.40
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -1124,8 +1124,8 @@ trackedFiles:
     pristine_git_object: 5bab95dda362af7a2ef1f1fd8b7b7cef74305adc
   docs/sdks/dem/README.md:
     id: 73655a1bee6e
-    last_write_checksum: sha1:ef8e2cc622bc084efb5a19b4d827258064e654b1
-    pristine_git_object: f36b15225d09e88cd97ec95c5f35ca0af38747dd
+    last_write_checksum: sha1:73a067e2a3ec1917a0ddbb226046fe593170b073
+    pristine_git_object: 06ed85f0402d7f95a9cc0eba3b38a8f7dff03912
   docs/sdks/entities/README.md:
     id: a140ac5181b9
     last_write_checksum: sha1:045a2281d99137461687802348714b948ad7ff00
@@ -1784,8 +1784,8 @@ trackedFiles:
     pristine_git_object: 5b3dc7c122d8ab08905485342d7474f8f163888d
   swo.go:
     id: ae46c351d88b
-    last_write_checksum: sha1:c12ec5341cb27e10e682c65356a56603e5ad3496
-    pristine_git_object: d2e1a7ab6f2f6d33847417ffb6c80bbea03e6161
+    last_write_checksum: sha1:5a5eb5e5f57804f1cec2b70dd6d8f719416a71a2
+    pristine_git_object: d9e4ea7ec84a2122ef3553ce394f348b3ae92e50
   tests/files.go:
     id: 359d10a9a396
     last_write_checksum: sha1:3a57aaa312f7138b23a5506dd3214bffe80bc1cb
