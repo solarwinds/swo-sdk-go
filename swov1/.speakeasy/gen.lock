@@ -3,17 +3,17 @@ id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
   docChecksum: a07f29701d075344971e8795524e842f
   docVersion: 1.0.14
-  speakeasyVersion: 1.759.3
-  generationVersion: 2.869.25
+  speakeasyVersion: 1.760.0
+  generationVersion: 2.873.1
   releaseVersion: 0.13.3
   configChecksum: dee1e0916b8b18de49c44f467899f173
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go
 persistentEdits:
-  generation_id: c1ed21ec-39c9-44e7-afd0-8dba6a8e2a75
-  pristine_commit_hash: 1b60ac6335c00f90dd5fcbb41e7c78176271d96a
-  pristine_tree_hash: cc6370718d38bc077d3243168c3fb4e3599591b9
+  generation_id: f201d3b3-ea27-4225-a6f9-8babec8b9131
+  pristine_commit_hash: da1eba9fd318d7fd87c1197fd08292e81b769664
+  pristine_tree_hash: 9351125bcb088f8caf8531090317675fbc672f43
 features:
   go:
     additionalDependencies: 0.1.0
@@ -23,7 +23,7 @@ features:
     deprecations: 2.81.3
     devContainers: 2.90.0
     envVarSecurityUsage: 0.3.2
-    globalSecurity: 2.82.13
+    globalSecurity: 2.82.15
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.83.1
@@ -1200,8 +1200,8 @@ trackedFiles:
     pristine_git_object: 53f6f9c0173421e1473cc9b015812c471136143b
   internal/utils/security.go:
     id: eeb54c55241b
-    last_write_checksum: sha1:52cefded5223c60fcac5bd56574370e27a4bc3d5
-    pristine_git_object: ce2e1c0cffe3bbd3f111eace502f895175daad22
+    last_write_checksum: sha1:1c0b332b3cf0fa405df0c5bf4e03f335139566b6
+    pristine_git_object: 7c1a372ae314a9d82ab82c3db610e7ffe67ecfab
   internal/utils/union.go:
     id: db86c85746b6
     last_write_checksum: sha1:f4df9d9d7aa99f0972d65d034a5bc23fd0843269
@@ -1784,8 +1784,8 @@ trackedFiles:
     pristine_git_object: 5b3dc7c122d8ab08905485342d7474f8f163888d
   swo.go:
     id: ae46c351d88b
-    last_write_checksum: sha1:deab87beb7d8ea7083025f59e0666a091c37e5f4
-    pristine_git_object: f4abba9c585854b6033e1b8742d6075d5b3eeda6
+    last_write_checksum: sha1:2d8f4c0d65c557d4bcc7ea3adebbbaeac1bedfca
+    pristine_git_object: a3ce0d694a34a2f742ac41464593568090d6bbef
   tests/files.go:
     id: 359d10a9a396
     last_write_checksum: sha1:3a57aaa312f7138b23a5506dd3214bffe80bc1cb
