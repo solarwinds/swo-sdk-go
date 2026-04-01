@@ -1,4 +1,4 @@
-speakeasyVersion: 1.760.0
+speakeasyVersion: 1.761.0
 sources:
     swov1:
         sourceNamespace: solar-winds-observability
