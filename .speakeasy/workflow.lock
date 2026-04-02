@@ -14,7 +14,7 @@ targets:
         sourceRevisionDigest: sha256:3a8d3d53ce075aabc4d4ef6c8d2d4a28a3800e834f0f4b45c6fbe78f69b34e61
         sourceBlobDigest: sha256:c12784972d3c9d163f644dca83fdb7f01d53e2ee9dfbbdad8fc9366f3d36fe40
         codeSamplesNamespace: solar-winds-observability-go-code-samples
-        codeSamplesRevisionDigest: sha256:883647e006c4abf6972cc3fa0afa8ad6772efd2865b81ff1aa466d15ab2c6611
+        codeSamplesRevisionDigest: sha256:0493e66c940099e10f89f985b522f1934950ec2cc2846fc746d0c6ee9ad4624b
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
