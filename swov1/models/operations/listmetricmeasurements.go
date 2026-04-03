@@ -134,9 +134,12 @@ func (l *ListMetricMeasurementsRequest) GetSkipToken() *string {
 
 // ListMetricMeasurementsResponseBody - The request has succeeded.
 type ListMetricMeasurementsResponseBody struct {
-	Groupings           []components.MetricsGrouping `json:"groupings"`
-	BucketSizeInSeconds int                          `json:"bucketSizeInSeconds"`
-	PageInfo            components.CommonPageInfo    `json:"pageInfo"`
+	// Measurement data grouped by attributes.
+	Groupings []components.MetricsGrouping `json:"groupings"`
+	// Bucket size used for computing time series points, in seconds.
+	BucketSizeInSeconds int `json:"bucketSizeInSeconds"`
+	// Pagination information.
+	PageInfo components.CommonPageInfo `json:"pageInfo"`
 }
 
 func (l *ListMetricMeasurementsResponseBody) GetGroupings() []components.MetricsGrouping {

@@ -5,6 +5,7 @@ package components
 import (
 	"encoding/json"
 	"fmt"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -39,7 +40,7 @@ func (e *Category) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Healthscore
+// Healthscore - Health score of the entity. Deprecated: use healthState instead.
 //
 // Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 type Healthscore struct {
@@ -126,7 +127,7 @@ type EntitiesEntity struct {
 	// The name of the entity.
 	Name *string `json:"name,omitempty"`
 	// Entity display name / alias. This value is equal to name unless it is explicitly overridden.
-	DisplayName *string `json:"displayName,omitempty"`
+	DisplayName optionalnullable.OptionalNullable[string] `json:"displayName,omitempty"`
 	// Date and time of entity creation in UTC.
 	CreatedTime *time.Time `json:"createdTime,omitempty"`
 	// Date and time of last entity update in UTC.
@@ -135,6 +136,8 @@ type EntitiesEntity struct {
 	LastSeenTime time.Time `json:"lastSeenTime"`
 	// Flag telling if given entity is in maintenance mode.
 	InMaintenance bool `json:"inMaintenance"`
+	// Health score of the entity. Deprecated: use healthState instead.
+	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Healthscore *Healthscore `json:"healthscore,omitempty"`
 	// Health state of the entity.
@@ -177,7 +180,7 @@ func (o *EntitiesEntity) GetName() *string {
 	return o.Name
 }
 
-func (o *EntitiesEntity) GetDisplayName() *string {
+func (o *EntitiesEntity) GetDisplayName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

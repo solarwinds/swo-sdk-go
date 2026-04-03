@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -11,15 +12,15 @@ type CommonMetricInfo struct {
 	// Name of the metric.
 	Name string `json:"name"`
 	// Display name of the metric. A short description of the metric.
-	DisplayName *string `json:"displayName,omitempty"`
+	DisplayName optionalnullable.OptionalNullable[string] `json:"displayName,omitempty"`
 	// Description of the metric. A detailed description of the metric.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// Unit of the metric.
-	Units *string `json:"units,omitempty"`
+	Units optionalnullable.OptionalNullable[string] `json:"units,omitempty"`
 	// Formula of the metric.
-	Formula *string `json:"formula,omitempty"`
+	Formula optionalnullable.OptionalNullable[string] `json:"formula,omitempty"`
 	// Last reported time of the metric.
-	LastReportedTime *time.Time `json:"lastReportedTime,omitempty"`
+	LastReportedTime optionalnullable.OptionalNullable[time.Time] `json:"lastReportedTime,omitempty"`
 }
 
 func (c CommonMetricInfo) MarshalJSON() ([]byte, error) {
@@ -40,35 +41,35 @@ func (o *CommonMetricInfo) GetName() string {
 	return o.Name
 }
 
-func (o *CommonMetricInfo) GetDisplayName() *string {
+func (o *CommonMetricInfo) GetDisplayName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayName
 }
 
-func (o *CommonMetricInfo) GetDescription() *string {
+func (o *CommonMetricInfo) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *CommonMetricInfo) GetUnits() *string {
+func (o *CommonMetricInfo) GetUnits() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Units
 }
 
-func (o *CommonMetricInfo) GetFormula() *string {
+func (o *CommonMetricInfo) GetFormula() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Formula
 }
 
-func (o *CommonMetricInfo) GetLastReportedTime() *time.Time {
+func (o *CommonMetricInfo) GetLastReportedTime() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
