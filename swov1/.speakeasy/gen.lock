@@ -11,8 +11,8 @@ management:
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go
 persistentEdits:
-  generation_id: eef1fa82-2e47-4877-8f6a-9203caa96d61
-  pristine_commit_hash: adbaa503cb3592941803c84f12ea004d6a0f69da
+  generation_id: 61e9aa6f-45e0-46d2-8945-a8e89255d3fa
+  pristine_commit_hash: 1b3735bd06a94fb26caaa974b3e95c513960396a
   pristine_tree_hash: 292891bc1e0dfd684df711928893707afca16ca2
 features:
   go:
