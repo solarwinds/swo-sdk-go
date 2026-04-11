@@ -3,17 +3,17 @@ id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
   docChecksum: a07f29701d075344971e8795524e842f
   docVersion: 1.0.14
-  speakeasyVersion: 1.761.1
-  generationVersion: 2.879.6
+  speakeasyVersion: 1.761.3
+  generationVersion: 2.879.11
   releaseVersion: 0.13.3
   configChecksum: dee1e0916b8b18de49c44f467899f173
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go
 persistentEdits:
-  generation_id: 9f83bf1e-785d-4b66-ba30-a921217423eb
-  pristine_commit_hash: 639b71aba1f46ee66e758aea194735e68b71ab42
-  pristine_tree_hash: 292891bc1e0dfd684df711928893707afca16ca2
+  generation_id: 54735bea-d4a4-4578-a11e-7ef54af6bea9
+  pristine_commit_hash: f9f4fb0a29aa35bb2b53182147c5f8b4bca1e039
+  pristine_tree_hash: a5b9bc7f7ef0c40b8967533460cd45be21b6c4df
 features:
   go:
     additionalDependencies: 0.1.0
@@ -1784,8 +1784,8 @@ trackedFiles:
     pristine_git_object: 5b3dc7c122d8ab08905485342d7474f8f163888d
   swo.go:
     id: ae46c351d88b
-    last_write_checksum: sha1:ea57b98b98f70afe85c15dc6167893fac9a535f8
-    pristine_git_object: ab848a5ce84032efc043db4eb584949508afcccb
+    last_write_checksum: sha1:2da789ef4e82c54a8c84faac05b57ad897de52d2
+    pristine_git_object: 097fd75df2b966ef65597bacebd5f563ef0a8176
   tests/files.go:
     id: 359d10a9a396
     last_write_checksum: sha1:3a57aaa312f7138b23a5506dd3214bffe80bc1cb
