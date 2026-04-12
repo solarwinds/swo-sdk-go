@@ -6,8 +6,8 @@ You are required to configure at least availability monitoring or real user moni
 
 ## Fields
 
-| Field                | Type                 | Required             | Description          |
-| -------------------- | -------------------- | -------------------- | -------------------- |
-| `ApdexTimeInSeconds` | **int*               | :heavy_minus_sign:   | N/A                  |
-| `Snippet`            | **string*            | :heavy_minus_sign:   | N/A                  |
-| `Spa`                | *bool*               | :heavy_check_mark:   | N/A                  |
+| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `ApdexTimeInSeconds`                                                  | `*int`                                                                | :heavy_minus_sign:                                                    | Apdex time threshold in seconds for performance satisfaction scoring. |
+| `Snippet`                                                             | `*string`                                                             | :heavy_minus_sign:                                                    | JavaScript snippet to embed for real user monitoring.                 |
+| `Spa`                                                                 | `bool`                                                                | :heavy_check_mark:                                                    | Whether the website is a single-page application (SPA).               |

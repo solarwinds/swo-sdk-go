@@ -2,6 +2,16 @@
 
 Defines whether the check should pass only when the string is present on the page (CONTAINS) or only when it is absent (DOES_NOT_CONTAIN).
 
+## Example Usage
+
+```go
+import (
+	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
+)
+
+value := components.DemGetWebsiteResponseOperatorContains
+```
+
 
 ## Values
 

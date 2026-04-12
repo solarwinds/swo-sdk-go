@@ -7,5 +7,5 @@ Coordinates of the probe.
 
 | Field                      | Type                       | Required                   | Description                | Example                    |
 | -------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- |
-| `Latitude`                 | *float32*                  | :heavy_check_mark:         | Latitude of the location.  | 38.89511                   |
-| `Longitude`                | *float32*                  | :heavy_check_mark:         | Longitude of the location. | -77.03637                  |
+| `Latitude`                 | `float32`                  | :heavy_check_mark:         | Latitude of the location.  | 38.89511                   |
+| `Longitude`                | `float32`                  | :heavy_check_mark:         | Longitude of the location. | -77.03637                  |

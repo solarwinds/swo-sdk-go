@@ -206,6 +206,7 @@ func (s *CloudAccounts) ActivateAwsIntegration(ctx context.Context, request comp
 
 	switch {
 	case httpRes.StatusCode == 200:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
@@ -489,6 +490,7 @@ func (s *CloudAccounts) CreateOrgStructure(ctx context.Context, request componen
 
 	switch {
 	case httpRes.StatusCode == 200:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):

@@ -7,8 +7,10 @@ import (
 )
 
 type UpdateDatabaseRequest struct {
-	EntityID string                              `pathParam:"style=simple,explode=false,name=entityId"`
-	Body     components.DboUpdateDatabaseRequest `request:"mediaType=application/json"`
+	// Entity ID.
+	EntityID string `pathParam:"style=simple,explode=false,name=entityId"`
+	// Database configuration updates.
+	Body components.DboUpdateDatabaseRequest `request:"mediaType=application/json"`
 }
 
 func (o *UpdateDatabaseRequest) GetEntityID() string {

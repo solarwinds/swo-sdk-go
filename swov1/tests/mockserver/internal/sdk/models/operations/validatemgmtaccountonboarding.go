@@ -7,6 +7,7 @@ import (
 )
 
 type ValidateMgmtAccountOnboardingRequest struct {
+	// Management account onboarding validation parameters.
 	Request components.CloudAccountsAwsMgmtAccountOnboardingRequest `queryParam:"style=form,explode=false,name=request"`
 }
 

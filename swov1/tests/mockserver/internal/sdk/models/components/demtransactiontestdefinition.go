@@ -5,6 +5,7 @@ package components
 import (
 	"encoding/json"
 	"fmt"
+	"mockserver/internal/sdk/optionalnullable"
 )
 
 // DemTransactionTestDefinitionPlatformOptions - Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, any available cloud platform may be chosen.
@@ -94,16 +95,16 @@ type DemTransactionTestDefinition struct {
 	//   Acceptable values depend on the selected type and actual values of existing probes.
 	TestFrom DemTestFrom `json:"testFrom"`
 	// Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, any available cloud platform may be chosen.
-	PlatformOptions *DemTransactionTestDefinitionPlatformOptions `json:"platformOptions,omitempty"`
+	PlatformOptions optionalnullable.OptionalNullable[DemTransactionTestDefinitionPlatformOptions] `json:"platformOptions,omitempty"`
 	//   Default conditions when the entity is considered down.
 	//   If omitted or set to null, organization configuration will be used for this entity.
-	OutageConfiguration *DemTransactionTestDefinitionOutageConfiguration `json:"outageConfiguration,omitempty"`
+	OutageConfiguration optionalnullable.OptionalNullable[DemTransactionTestDefinitionOutageConfiguration] `json:"outageConfiguration,omitempty"`
 	// Configure how often transaction tests should be performed. Provide a number of seconds that is one of 300, 600, 900, 1800, 3600, 7200, 14400, 43200, 86400.
 	TestIntervalInSeconds float64 `json:"testIntervalInSeconds"`
 	// Configure the browser window size for the transaction.
 	WindowSize DemWindowSize `json:"windowSize"`
 	// Configure the user agent of the browser running the transaction. If omitted or set to null, default user agent will be used.
-	UserAgent *string `json:"userAgent,omitempty"`
+	UserAgent optionalnullable.OptionalNullable[string] `json:"userAgent,omitempty"`
 	// List of commands to perform in the transaction.
 	Commands []DemTransactionCommand `json:"commands"`
 }
@@ -115,14 +116,14 @@ func (o *DemTransactionTestDefinition) GetTestFrom() DemTestFrom {
 	return o.TestFrom
 }
 
-func (o *DemTransactionTestDefinition) GetPlatformOptions() *DemTransactionTestDefinitionPlatformOptions {
+func (o *DemTransactionTestDefinition) GetPlatformOptions() optionalnullable.OptionalNullable[DemTransactionTestDefinitionPlatformOptions] {
 	if o == nil {
 		return nil
 	}
 	return o.PlatformOptions
 }
 
-func (o *DemTransactionTestDefinition) GetOutageConfiguration() *DemTransactionTestDefinitionOutageConfiguration {
+func (o *DemTransactionTestDefinition) GetOutageConfiguration() optionalnullable.OptionalNullable[DemTransactionTestDefinitionOutageConfiguration] {
 	if o == nil {
 		return nil
 	}
@@ -143,7 +144,7 @@ func (o *DemTransactionTestDefinition) GetWindowSize() DemWindowSize {
 	return o.WindowSize
 }
 
-func (o *DemTransactionTestDefinition) GetUserAgent() *string {
+func (o *DemTransactionTestDefinition) GetUserAgent() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
