@@ -230,7 +230,7 @@ Based on:
 ### Releases
 - [Go v0.13.2] https://github.com/solarwinds/swo-sdk-go/releases/tag/swov1/v0.13.2 - swov1
 
-## 2026-04-12 00:34:02
+## 2026-04-13 00:35:04
 ### Changes
 Based on:
 - OpenAPI Doc  
