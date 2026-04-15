@@ -883,7 +883,7 @@ func (s *CloudAccounts) UpdateAwsIntegration(ctx context.Context, request compon
 
 // ValidateMgmtAccountOnboarding - Validate Management Account Onboarding
 // Validate if the management account is onboarded.
-func (s *CloudAccounts) ValidateMgmtAccountOnboarding(ctx context.Context, request operations.ValidateMgmtAccountOnboardingRequest, opts ...operations.Option) (*operations.ValidateMgmtAccountOnboardingResponse, error) {
+func (s *CloudAccounts) ValidateMgmtAccountOnboarding(ctx context.Context, request components.CloudAccountsAwsMgmtAccountOnboardingRequest, opts ...operations.Option) (*operations.ValidateMgmtAccountOnboardingResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -916,6 +916,10 @@ func (s *CloudAccounts) ValidateMgmtAccountOnboarding(ctx context.Context, reque
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
+	if err != nil {
+		return nil, err
+	}
 
 	timeout := o.Timeout
 	if timeout == nil {
@@ -928,15 +932,14 @@ func (s *CloudAccounts) ValidateMgmtAccountOnboarding(ctx context.Context, reque
 		defer cancel()
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "GET", opURL, nil)
+	req, err := http.NewRequestWithContext(ctx, "GET", opURL, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
 	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {

@@ -26,6 +26,7 @@ value := components.DemTransactionCommandNameAssertChecked
 | `DemTransactionCommandNameAssertValue`                   | ASSERT_VALUE                                             |
 | `DemTransactionCommandNameCheck`                         | CHECK                                                    |
 | `DemTransactionCommandNameClick`                         | CLICK                                                    |
+| `DemTransactionCommandNameClickAt`                       | CLICK_AT                                                 |
 | `DemTransactionCommandNameOpen`                          | OPEN                                                     |
 | `DemTransactionCommandNamePause`                         | PAUSE                                                    |
 | `DemTransactionCommandNameSwoAssertTextContains`         | SWO_ASSERT_TEXT_CONTAINS                                 |
