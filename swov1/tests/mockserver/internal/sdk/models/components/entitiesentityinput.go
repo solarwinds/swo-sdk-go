@@ -2,14 +2,18 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type EntitiesEntityInput struct {
 	// Entity display name / alias. This value is equal to name unless it is explicitly overridden.
-	DisplayName *string `json:"displayName,omitempty"`
+	DisplayName optionalnullable.OptionalNullable[string] `json:"displayName,omitempty"`
 	// Entity tags. Tag is a key-value pair, where there may be only a single tag value for the same key.
 	Tags map[string]*string `json:"tags"`
 }
 
-func (o *EntitiesEntityInput) GetDisplayName() *string {
+func (o *EntitiesEntityInput) GetDisplayName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

@@ -246,7 +246,7 @@ func main() {
                 FailingTestLocations: components.DemTransactionTestDefinitionFailingTestLocationsAll,
                 ConsecutiveForDown: 2,
             },
-            TestIntervalInSeconds: 14400,
+            TestIntervalInSeconds: 14400.0,
             WindowSize: components.DemWindowSize{
                 Width: 28965,
                 Height: 156492,
@@ -398,7 +398,7 @@ func main() {
                     TestFromAll: swov1.Pointer(true),
                 },
                 OutageConfiguration: nil,
-                TestIntervalInSeconds: 14400,
+                TestIntervalInSeconds: 14400.0,
                 WindowSize: components.DemWindowSize{
                     Width: 750299,
                     Height: 72607,
@@ -664,7 +664,7 @@ func main() {
                     "NA",
                 },
             },
-            TestIntervalInSeconds: 14400,
+            TestIntervalInSeconds: 14400.0,
             OutageConfiguration: nil,
             DNS: &components.DNS{
                 Enabled: false,
@@ -822,7 +822,7 @@ func main() {
                         "NA",
                     },
                 },
-                TestIntervalInSeconds: 14400,
+                TestIntervalInSeconds: 14400.0,
                 OutageConfiguration: &components.DemURIAvailabilityCheckSettingsInputOutageConfiguration{
                     FailingTestLocations: components.DemURIAvailabilityCheckSettingsInputFailingTestLocationsAll,
                     ConsecutiveForDown: 2,
@@ -1249,7 +1249,7 @@ func main() {
                     "NA",
                 },
             },
-            TestIntervalInSeconds: 14400,
+            TestIntervalInSeconds: 14400.0,
             OutageConfiguration: &components.DemWebsiteOutageConfiguration{
                 FailingTestLocations: components.DemWebsiteFailingTestLocationsAll,
                 ConsecutiveForDown: 2,
@@ -1419,7 +1419,7 @@ func main() {
                         "NA",
                     },
                 },
-                TestIntervalInSeconds: 14400,
+                TestIntervalInSeconds: 14400.0,
                 OutageConfiguration: &components.DemWebsiteOutageConfiguration{
                     FailingTestLocations: components.DemWebsiteFailingTestLocationsAll,
                     ConsecutiveForDown: 2,

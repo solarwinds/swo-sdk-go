@@ -6,7 +6,7 @@
 
 ## Fields
 
-| Field                | Type                 | Required             | Description          |
-| -------------------- | -------------------- | -------------------- | -------------------- |
-| `ApdexTimeInSeconds` | **int*               | :heavy_minus_sign:   | N/A                  |
-| `Spa`                | *bool*               | :heavy_check_mark:   | N/A                  |
+| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `ApdexTimeInSeconds`                                                  | `*int`                                                                | :heavy_minus_sign:                                                    | Apdex time threshold in seconds for performance satisfaction scoring. |
+| `Spa`                                                                 | `bool`                                                                | :heavy_check_mark:                                                    | Whether the website is a single-page application (SPA).               |

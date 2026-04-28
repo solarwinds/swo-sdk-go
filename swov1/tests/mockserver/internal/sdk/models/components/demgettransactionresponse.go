@@ -5,10 +5,12 @@ package components
 import (
 	"encoding/json"
 	"fmt"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
 
+// DemGetTransactionResponseStatus - Current availability status of the transaction.
 type DemGetTransactionResponseStatus string
 
 const (
@@ -45,8 +47,11 @@ func (e *DemGetTransactionResponseStatus) UnmarshalJSON(data []byte) error {
 }
 
 type DemGetTransactionResponse struct {
-	ID     string                          `json:"id"`
-	Type   string                          `json:"type"`
+	// Unique identifier of the transaction.
+	ID string `json:"id"`
+	// Entity type, always 'SyntheticTransaction'.
+	Type string `json:"type"`
+	// Current availability status of the transaction.
 	Status DemGetTransactionResponseStatus `json:"status"`
 	// Name of the transaction, which must be unique within the organization. The name must not contain any control characters, any white space other than space (U+0020), or any consecutive, leading or trailing spaces.
 	Name string `json:"name"`
@@ -59,13 +64,13 @@ type DemGetTransactionResponse struct {
 	// Entity tags. Tag is a key-value pair, where there may be only single tag value for the same key.
 	Tags []CommonTag `json:"tags,omitempty"`
 	// Time when the last outage started.
-	LastOutageStartTime *time.Time `json:"lastOutageStartTime,omitempty"`
+	LastOutageStartTime optionalnullable.OptionalNullable[time.Time] `json:"lastOutageStartTime,omitempty"`
 	// Time when the last outage ended.
-	LastOutageEndTime *time.Time `json:"lastOutageEndTime,omitempty"`
+	LastOutageEndTime optionalnullable.OptionalNullable[time.Time] `json:"lastOutageEndTime,omitempty"`
 	// Time when the last test was performed.
-	LastTestTime *time.Time `json:"lastTestTime,omitempty"`
+	LastTestTime optionalnullable.OptionalNullable[time.Time] `json:"lastTestTime,omitempty"`
 	// Last time when a synthetic test failed.
-	LastErrorTime *time.Time `json:"lastErrorTime,omitempty"`
+	LastErrorTime optionalnullable.OptionalNullable[time.Time] `json:"lastErrorTime,omitempty"`
 }
 
 func (d DemGetTransactionResponse) MarshalJSON() ([]byte, error) {
@@ -135,28 +140,28 @@ func (o *DemGetTransactionResponse) GetTags() []CommonTag {
 	return o.Tags
 }
 
-func (o *DemGetTransactionResponse) GetLastOutageStartTime() *time.Time {
+func (o *DemGetTransactionResponse) GetLastOutageStartTime() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.LastOutageStartTime
 }
 
-func (o *DemGetTransactionResponse) GetLastOutageEndTime() *time.Time {
+func (o *DemGetTransactionResponse) GetLastOutageEndTime() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.LastOutageEndTime
 }
 
-func (o *DemGetTransactionResponse) GetLastTestTime() *time.Time {
+func (o *DemGetTransactionResponse) GetLastTestTime() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.LastTestTime
 }
 
-func (o *DemGetTransactionResponse) GetLastErrorTime() *time.Time {
+func (o *DemGetTransactionResponse) GetLastErrorTime() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

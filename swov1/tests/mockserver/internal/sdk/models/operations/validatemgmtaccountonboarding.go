@@ -6,17 +6,6 @@ import (
 	"mockserver/internal/sdk/models/components"
 )
 
-type ValidateMgmtAccountOnboardingRequest struct {
-	Request components.CloudAccountsAwsMgmtAccountOnboardingRequest `queryParam:"style=form,explode=false,name=request"`
-}
-
-func (o *ValidateMgmtAccountOnboardingRequest) GetRequest() components.CloudAccountsAwsMgmtAccountOnboardingRequest {
-	if o == nil {
-		return components.CloudAccountsAwsMgmtAccountOnboardingRequest{}
-	}
-	return o.Request
-}
-
 type ValidateMgmtAccountOnboardingResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The request has succeeded.

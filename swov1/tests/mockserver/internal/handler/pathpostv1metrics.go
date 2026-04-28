@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -53,10 +54,10 @@ func testCreateCompositeMetricCompositeMetricsCrudLifecycle0(w http.ResponseWrit
 	}
 	var respBody *components.MetricsCompositeMetric = &components.MetricsCompositeMetric{
 		Name:        "composite.swo.sdk.e2e.create.metric.test",
-		DisplayName: types.String("SWO SDK E2E Create Metric Test"),
-		Description: types.String("SWO SDK composite metric end to end create test"),
+		DisplayName: optionalnullable.From(types.String("SWO SDK E2E Create Metric Test")),
+		Description: optionalnullable.From(types.String("SWO SDK composite metric end to end create test")),
 		Formula:     "rate(system.disk.io[1m])",
-		Units:       types.String("bytes/s"),
+		Units:       optionalnullable.From(types.String("bytes/s")),
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)
 

@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -50,11 +51,11 @@ func testGetMetricByNameCompositeMetricsCrudLifecycle1(w http.ResponseWriter, re
 	}
 	var respBody *components.CommonMetricInfo = &components.CommonMetricInfo{
 		Name:             "composite.swo.sdk.e2e.create.metric.test",
-		DisplayName:      types.String("SWO SDK E2E Create Metric Test"),
-		Description:      types.String("SWO SDK composite metric end to end create test"),
-		Units:            types.String("bytes/s"),
-		Formula:          types.String("rate(system.disk.io[1m])"),
-		LastReportedTime: types.MustNewTimeFromString("2024-11-25T16:38:24Z"),
+		DisplayName:      optionalnullable.From(types.String("SWO SDK E2E Create Metric Test")),
+		Description:      optionalnullable.From(types.String("SWO SDK composite metric end to end create test")),
+		Units:            optionalnullable.From(types.String("bytes/s")),
+		Formula:          optionalnullable.From(types.String("rate(system.disk.io[1m])")),
+		LastReportedTime: optionalnullable.From(types.MustNewTimeFromString("2024-11-25T16:38:24Z")),
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)
 
@@ -89,11 +90,11 @@ func testGetMetricByNameCompositeMetricsCrudLifecycle3(w http.ResponseWriter, re
 	}
 	var respBody *components.CommonMetricInfo = &components.CommonMetricInfo{
 		Name:             "composite.swo.sdk.e2e.create.metric.test",
-		DisplayName:      types.String("SWO SDK E2E Updated Metric Test"),
-		Description:      types.String("SWO SDK composite metric end to end updated test"),
-		Units:            types.String("bytes/s"),
-		Formula:          types.String("rate(system.cpu.usage[2m])"),
-		LastReportedTime: types.MustNewTimeFromString("2024-11-25T16:38:24Z"),
+		DisplayName:      optionalnullable.From(types.String("SWO SDK E2E Updated Metric Test")),
+		Description:      optionalnullable.From(types.String("SWO SDK composite metric end to end updated test")),
+		Units:            optionalnullable.From(types.String("bytes/s")),
+		Formula:          optionalnullable.From(types.String("rate(system.cpu.usage[2m])")),
+		LastReportedTime: optionalnullable.From(types.MustNewTimeFromString("2024-11-25T16:38:24Z")),
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)
 

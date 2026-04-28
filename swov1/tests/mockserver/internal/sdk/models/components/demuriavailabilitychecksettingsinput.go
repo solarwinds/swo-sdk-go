@@ -5,6 +5,7 @@ package components
 import (
 	"encoding/json"
 	"fmt"
+	"mockserver/internal/sdk/optionalnullable"
 )
 
 // DemURIAvailabilityCheckSettingsInputPlatformOptions - Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, any available cloud platform may be chosen.
@@ -97,7 +98,7 @@ type DemURIAvailabilityCheckSettingsInputDNS struct {
 	// Nameserver to be used for DNS queries. Can be an IP address or domain name.
 	Nameserver string `json:"nameserver"`
 	// Port number to be used for DNS queries.
-	Port *int `json:"port,omitempty"`
+	Port optionalnullable.OptionalNullable[int] `json:"port,omitempty"`
 	// Expected IP address in DNS response.
 	IPToExpect string `json:"ipToExpect"`
 }
@@ -116,7 +117,7 @@ func (o *DemURIAvailabilityCheckSettingsInputDNS) GetNameserver() string {
 	return o.Nameserver
 }
 
-func (o *DemURIAvailabilityCheckSettingsInputDNS) GetPort() *int {
+func (o *DemURIAvailabilityCheckSettingsInputDNS) GetPort() optionalnullable.OptionalNullable[int] {
 	if o == nil {
 		return nil
 	}
@@ -152,9 +153,9 @@ type DemURIAvailabilityCheckSettingsInputTCP struct {
 	// Port number to be used in TCP tests.
 	Port int `json:"port"`
 	// String to send in the body of a TCP request.
-	StringToSend *string `json:"stringToSend,omitempty"`
+	StringToSend optionalnullable.OptionalNullable[string] `json:"stringToSend,omitempty"`
 	// String to search for in the body of a TCP response.
-	StringToExpect *string `json:"stringToExpect,omitempty"`
+	StringToExpect optionalnullable.OptionalNullable[string] `json:"stringToExpect,omitempty"`
 }
 
 func (o *DemURIAvailabilityCheckSettingsInputTCP) GetEnabled() bool {
@@ -171,14 +172,14 @@ func (o *DemURIAvailabilityCheckSettingsInputTCP) GetPort() int {
 	return o.Port
 }
 
-func (o *DemURIAvailabilityCheckSettingsInputTCP) GetStringToSend() *string {
+func (o *DemURIAvailabilityCheckSettingsInputTCP) GetStringToSend() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.StringToSend
 }
 
-func (o *DemURIAvailabilityCheckSettingsInputTCP) GetStringToExpect() *string {
+func (o *DemURIAvailabilityCheckSettingsInputTCP) GetStringToExpect() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -228,7 +229,7 @@ func (o *DemURIAvailabilityCheckSettingsInputUDP) GetStringToExpect() string {
 
 type DemURIAvailabilityCheckSettingsInput struct {
 	// Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, any available cloud platform may be chosen.
-	PlatformOptions *DemURIAvailabilityCheckSettingsInputPlatformOptions `json:"platformOptions,omitempty"`
+	PlatformOptions optionalnullable.OptionalNullable[DemURIAvailabilityCheckSettingsInputPlatformOptions] `json:"platformOptions,omitempty"`
 	//   Configure locations of the synthetic availability test probes.
 	//   Acceptable values depend on the selected type and actual values of existing probes.
 	TestFrom DemTestFrom `json:"testFrom"`
@@ -236,18 +237,18 @@ type DemURIAvailabilityCheckSettingsInput struct {
 	TestIntervalInSeconds float64 `json:"testIntervalInSeconds"`
 	//   Default conditions when the entity is considered down.
 	//   If omitted or set to null, organization configuration will be used for this entity.
-	OutageConfiguration *DemURIAvailabilityCheckSettingsInputOutageConfiguration `json:"outageConfiguration,omitempty"`
+	OutageConfiguration optionalnullable.OptionalNullable[DemURIAvailabilityCheckSettingsInputOutageConfiguration] `json:"outageConfiguration,omitempty"`
 	// DNS tests configuration for the URI. If omitted or set to null, DNS tests are disabled.
-	DNS *DemURIAvailabilityCheckSettingsInputDNS `json:"dns,omitempty"`
+	DNS optionalnullable.OptionalNullable[DemURIAvailabilityCheckSettingsInputDNS] `json:"dns,omitempty"`
 	// Ping tests configuration for the URI. If omitted or set to null, ping tests are disabled.
-	Ping *DemURIAvailabilityCheckSettingsInputPing `json:"ping,omitempty"`
+	Ping optionalnullable.OptionalNullable[DemURIAvailabilityCheckSettingsInputPing] `json:"ping,omitempty"`
 	// TCP tests configuration for the URI. If omitted or set to null, TCP tests are disabled.
-	TCP *DemURIAvailabilityCheckSettingsInputTCP `json:"tcp,omitempty"`
+	TCP optionalnullable.OptionalNullable[DemURIAvailabilityCheckSettingsInputTCP] `json:"tcp,omitempty"`
 	// UDP tests configuration for the URI. If omitted or set to null, UDP tests are disabled.
-	UDP *DemURIAvailabilityCheckSettingsInputUDP `json:"udp,omitempty"`
+	UDP optionalnullable.OptionalNullable[DemURIAvailabilityCheckSettingsInputUDP] `json:"udp,omitempty"`
 }
 
-func (o *DemURIAvailabilityCheckSettingsInput) GetPlatformOptions() *DemURIAvailabilityCheckSettingsInputPlatformOptions {
+func (o *DemURIAvailabilityCheckSettingsInput) GetPlatformOptions() optionalnullable.OptionalNullable[DemURIAvailabilityCheckSettingsInputPlatformOptions] {
 	if o == nil {
 		return nil
 	}
@@ -268,35 +269,35 @@ func (o *DemURIAvailabilityCheckSettingsInput) GetTestIntervalInSeconds() float6
 	return o.TestIntervalInSeconds
 }
 
-func (o *DemURIAvailabilityCheckSettingsInput) GetOutageConfiguration() *DemURIAvailabilityCheckSettingsInputOutageConfiguration {
+func (o *DemURIAvailabilityCheckSettingsInput) GetOutageConfiguration() optionalnullable.OptionalNullable[DemURIAvailabilityCheckSettingsInputOutageConfiguration] {
 	if o == nil {
 		return nil
 	}
 	return o.OutageConfiguration
 }
 
-func (o *DemURIAvailabilityCheckSettingsInput) GetDNS() *DemURIAvailabilityCheckSettingsInputDNS {
+func (o *DemURIAvailabilityCheckSettingsInput) GetDNS() optionalnullable.OptionalNullable[DemURIAvailabilityCheckSettingsInputDNS] {
 	if o == nil {
 		return nil
 	}
 	return o.DNS
 }
 
-func (o *DemURIAvailabilityCheckSettingsInput) GetPing() *DemURIAvailabilityCheckSettingsInputPing {
+func (o *DemURIAvailabilityCheckSettingsInput) GetPing() optionalnullable.OptionalNullable[DemURIAvailabilityCheckSettingsInputPing] {
 	if o == nil {
 		return nil
 	}
 	return o.Ping
 }
 
-func (o *DemURIAvailabilityCheckSettingsInput) GetTCP() *DemURIAvailabilityCheckSettingsInputTCP {
+func (o *DemURIAvailabilityCheckSettingsInput) GetTCP() optionalnullable.OptionalNullable[DemURIAvailabilityCheckSettingsInputTCP] {
 	if o == nil {
 		return nil
 	}
 	return o.TCP
 }
 
-func (o *DemURIAvailabilityCheckSettingsInput) GetUDP() *DemURIAvailabilityCheckSettingsInputUDP {
+func (o *DemURIAvailabilityCheckSettingsInput) GetUDP() optionalnullable.OptionalNullable[DemURIAvailabilityCheckSettingsInputUDP] {
 	if o == nil {
 		return nil
 	}

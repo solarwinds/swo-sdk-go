@@ -98,19 +98,30 @@
 <body><h2 id="go-sdk-changes">Go SDK Changes:</h2>
 
 <ul>
-<li><code>Swo.Dem.DeleteTransaction()</code>: <code>response</code> <strong>Changed</strong> (Breaking ⚠️)
+<li><code>Swo.CloudAccounts.ValidateMgmtAccountOnboarding()</code>: <code>request.Request</code> <strong>Changed</strong> (Breaking ⚠️)
 
 <ul>
-<li><code>Status[200]</code> <strong>Removed</strong> (Breaking ⚠️)</li>
-<li><code>Status[204]</code> <strong>Added</strong> (Breaking ⚠️)</li>
+<li><code>ManagementAccountId</code> <strong>Added</strong> (Breaking ⚠️)</li>
+<li><code>Request</code> <strong>Removed</strong> (Breaking ⚠️)</li>
 </ul></li>
-<li><code>Swo.Dbo.UnobserveDatabase()</code>: <strong>Added</strong></li>
-<li><code>Swo.Dem.GetUriOutageStatuses()</code>: <strong>Added</strong></li>
-<li><code>Swo.Dem.GetUriTestResults()</code>: <strong>Added</strong></li>
-<li><code>Swo.Dem.GetWebsiteOutageStatuses()</code>: <strong>Added</strong></li>
-<li><code>Swo.Dem.GetWebsiteTestResults()</code>: <strong>Added</strong></li>
-<li><code>Swo.Entities.ListEntities()</code>:  <code>response.Entities[].HealthState</code> <strong>Added</strong></li>
-<li><code>Swo.Entities.GetEntityById()</code>:  <code>response.HealthState</code> <strong>Added</strong></li>
+<li><code>Swo.Dem.GetTransaction()</code>:  <code>response.TestDefinition.Commands[].Command.Enum(clickAt)</code> <strong>Added</strong> (Breaking ⚠️)</li>
+<li><code>Swo.Entities.ListEntities()</code>:  <code>response.Entities[].Healthscore</code> <strong>Removed</strong> (Breaking ⚠️)</li>
+<li><code>Swo.Entities.GetEntityById()</code>:  <code>response.Healthscore</code> <strong>Removed</strong> (Breaking ⚠️)</li>
+<li><code>Swo.Metrics.ListMetricMeasurements()</code>:
+
+<ul>
+<li><code>request.Request.BucketSizeInSeconds</code> <strong>Removed</strong> (Breaking ⚠️)</li>
+</ul></li>
+<li><code>Swo.Dem.CreateTransaction()</code>:
+
+<ul>
+<li><code>request.Request.TestDefinition.Commands[].Command.Enum(clickAt)</code> <strong>Added</strong></li>
+</ul></li>
+<li><code>Swo.Dem.UpdateTransaction()</code>:
+
+<ul>
+<li><code>request.Request.Dem.transaction.TestDefinition.Commands[].Command.Enum(clickAt)</code> <strong>Added</strong></li>
+</ul></li>
 </ul>
 </body>
 </html>

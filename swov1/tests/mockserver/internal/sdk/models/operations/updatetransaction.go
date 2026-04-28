@@ -7,6 +7,7 @@ import (
 )
 
 type UpdateTransactionRequest struct {
+	// Entity ID.
 	EntityID string `pathParam:"style=simple,explode=false,name=entityId"`
 	// Update transaction monitoring configuration
 	Body components.DemTransaction `request:"mediaType=application/json"`

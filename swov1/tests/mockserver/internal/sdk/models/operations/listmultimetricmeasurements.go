@@ -8,7 +8,9 @@ import (
 	"time"
 )
 
+// ListMultiMetricMeasurementsRequestBody - Batch measurement request parameters.
 type ListMultiMetricMeasurementsRequestBody struct {
+	// List of metric measurement requests.
 	Metrics []components.MetricsMeasurementsRequest `json:"metrics"`
 	// Timestamp in ISO 8601 format in UTC timezone: yyyy-MM-ddTHH:mm:ssZ
 	StartTime *time.Time `json:"startTime,omitempty"`
@@ -54,8 +56,9 @@ type ListMultiMetricMeasurementsRequest struct {
 	// Number of items in a response page. Default varies by API.
 	PageSize *int `queryParam:"style=form,explode=false,name=pageSize"`
 	// Token for the requested page.
-	SkipToken *string                                `queryParam:"style=form,explode=false,name=skipToken"`
-	Body      ListMultiMetricMeasurementsRequestBody `request:"mediaType=application/json"`
+	SkipToken *string `queryParam:"style=form,explode=false,name=skipToken"`
+	// Batch measurement request parameters.
+	Body ListMultiMetricMeasurementsRequestBody `request:"mediaType=application/json"`
 }
 
 func (l ListMultiMetricMeasurementsRequest) MarshalJSON() ([]byte, error) {
@@ -138,7 +141,9 @@ func (o *Metric) GetBucketSizeInSeconds() int {
 
 // ListMultiMetricMeasurementsResponseBody - The request has succeeded.
 type ListMultiMetricMeasurementsResponseBody struct {
-	Metrics  []Metric                  `json:"metrics"`
+	// Metric measurement results.
+	Metrics []Metric `json:"metrics"`
+	// Pagination information.
 	PageInfo components.CommonPageInfo `json:"pageInfo"`
 }
 

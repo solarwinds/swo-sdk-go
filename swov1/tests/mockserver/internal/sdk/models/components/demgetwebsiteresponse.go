@@ -5,10 +5,12 @@ package components
 import (
 	"encoding/json"
 	"fmt"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
 
+// DemGetWebsiteResponseStatus - Current availability status of the website.
 type DemGetWebsiteResponseStatus string
 
 const (
@@ -208,31 +210,31 @@ type DemGetWebsiteResponseSsl struct {
 	//   Whether SSL monitoring is enabled for the website.
 	//   If set to false, SSL monitoring will be disabled, but the other settings will be remembered in case you re-enable it later.
 	//   If omitted, the previous setting will stay in effect. If there is no previous setting, the value will default to false.
-	Enabled *bool `json:"enabled,omitempty"`
+	Enabled optionalnullable.OptionalNullable[bool] `json:"enabled,omitempty"`
 	// Number of days before the expiration date an SSL certificate will be considered 'expiring.'
-	DaysPriorToExpiration *int `json:"daysPriorToExpiration,omitempty"`
+	DaysPriorToExpiration optionalnullable.OptionalNullable[int] `json:"daysPriorToExpiration,omitempty"`
 	//   Use this option to limit the certificate expiration check to only the first certificate in the chain (normally the host certificate).
 	//   This way you will not be warned about impending expiration of intermediate or root Certification Authority certificates in the chain.
 	//   This option does not affect any other certificate validity checks besides expiration.
 	//   If omitted, the previous setting will stay in effect. If there is no previous setting, the value will default to false.
-	IgnoreIntermediateCertificates *bool `json:"ignoreIntermediateCertificates,omitempty"`
+	IgnoreIntermediateCertificates optionalnullable.OptionalNullable[bool] `json:"ignoreIntermediateCertificates,omitempty"`
 }
 
-func (o *DemGetWebsiteResponseSsl) GetEnabled() *bool {
+func (o *DemGetWebsiteResponseSsl) GetEnabled() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Enabled
 }
 
-func (o *DemGetWebsiteResponseSsl) GetDaysPriorToExpiration() *int {
+func (o *DemGetWebsiteResponseSsl) GetDaysPriorToExpiration() optionalnullable.OptionalNullable[int] {
 	if o == nil {
 		return nil
 	}
 	return o.DaysPriorToExpiration
 }
 
-func (o *DemGetWebsiteResponseSsl) GetIgnoreIntermediateCertificates() *bool {
+func (o *DemGetWebsiteResponseSsl) GetIgnoreIntermediateCertificates() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -244,7 +246,7 @@ func (o *DemGetWebsiteResponseSsl) GetIgnoreIntermediateCertificates() *bool {
 //	You are required to configure at least availability monitoring or real user monitoring to be able to create website.
 type DemGetWebsiteResponseAvailabilityCheckSettings struct {
 	// Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, any available cloud platform may be chosen.
-	PlatformOptions *DemGetWebsiteResponsePlatformOptions `json:"platformOptions,omitempty"`
+	PlatformOptions optionalnullable.OptionalNullable[DemGetWebsiteResponsePlatformOptions] `json:"platformOptions,omitempty"`
 	//   Configure locations of the synthetic availability test probes.
 	//   Acceptable values depend on the selected type and actual values of existing probes.
 	TestFrom DemTestFrom `json:"testFrom"`
@@ -252,20 +254,20 @@ type DemGetWebsiteResponseAvailabilityCheckSettings struct {
 	TestIntervalInSeconds float64 `json:"testIntervalInSeconds"`
 	//   Default conditions when the entity is considered down.
 	//   If omitted or set to null, organization configuration will be used for this entity.
-	OutageConfiguration *DemGetWebsiteResponseOutageConfiguration `json:"outageConfiguration,omitempty"`
+	OutageConfiguration optionalnullable.OptionalNullable[DemGetWebsiteResponseOutageConfiguration] `json:"outageConfiguration,omitempty"`
 	//   Use this field to configure whether availability tests should check for presence or absence of a particular string on a page.
 	//   If the operator is DOES_NOT_CONTAIN and the value is found on the page, the availability test will fail.
 	//   Likewise, if the operator is CONTAINS and the value is not found on the page, the availability test will fail.
 	//   If omitted or set to null, the string checking functionality will be disabled.
-	CheckForString *DemGetWebsiteResponseCheckForString `json:"checkForString,omitempty"`
+	CheckForString optionalnullable.OptionalNullable[DemGetWebsiteResponseCheckForString] `json:"checkForString,omitempty"`
 	// Configure which protocols need availability tests to be performed. At least one protocol must be provided.
 	Protocols []DemWebsiteProtocol `json:"protocols"`
 	//   Configure monitoring of SSL/TLS certificates validity. This option is relevant for HTTPS protocol only.
 	//   If omitted or set to null, SSL monitoring will be disabled and its previous configuration discarded.
-	Ssl *DemGetWebsiteResponseSsl `json:"ssl,omitempty"`
+	Ssl optionalnullable.OptionalNullable[DemGetWebsiteResponseSsl] `json:"ssl,omitempty"`
 	//   Configure custom request headers to be sent with each availability test. It is possible to provide multiple headers with the same name.
 	//   If omitted, set to null or set to an empty array, no custom headers will be sent.
-	CustomHeaders []DemCustomHeaders `json:"customHeaders,omitempty"`
+	CustomHeaders optionalnullable.OptionalNullable[[]DemCustomHeaders] `json:"customHeaders,omitempty"`
 	//   Allow insecure SSL renegotiation which introduces a security risk in the communication process.
 	//   Checking this option could lead to exposing credentials to unauthorized entities and the possibility of unauthorized access, interception, or manipulation of sensitive data, compromising the integrity and security of the communication channel.
 	//   Available only with HTTPS check.
@@ -273,10 +275,10 @@ type DemGetWebsiteResponseAvailabilityCheckSettings struct {
 	AllowInsecureRenegotiation *bool `json:"allowInsecureRenegotiation,omitempty"`
 	//   Configure data that will be sent as POST request body by the synthetic probe.
 	//   If omitted or set to null/empty string, the probe will send the usual GET requests.
-	PostData *string `json:"postData,omitempty"`
+	PostData optionalnullable.OptionalNullable[string] `json:"postData,omitempty"`
 }
 
-func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetPlatformOptions() *DemGetWebsiteResponsePlatformOptions {
+func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetPlatformOptions() optionalnullable.OptionalNullable[DemGetWebsiteResponsePlatformOptions] {
 	if o == nil {
 		return nil
 	}
@@ -297,14 +299,14 @@ func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetTestIntervalInSecond
 	return o.TestIntervalInSeconds
 }
 
-func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetOutageConfiguration() *DemGetWebsiteResponseOutageConfiguration {
+func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetOutageConfiguration() optionalnullable.OptionalNullable[DemGetWebsiteResponseOutageConfiguration] {
 	if o == nil {
 		return nil
 	}
 	return o.OutageConfiguration
 }
 
-func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetCheckForString() *DemGetWebsiteResponseCheckForString {
+func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetCheckForString() optionalnullable.OptionalNullable[DemGetWebsiteResponseCheckForString] {
 	if o == nil {
 		return nil
 	}
@@ -318,14 +320,14 @@ func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetProtocols() []DemWeb
 	return o.Protocols
 }
 
-func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetSsl() *DemGetWebsiteResponseSsl {
+func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetSsl() optionalnullable.OptionalNullable[DemGetWebsiteResponseSsl] {
 	if o == nil {
 		return nil
 	}
 	return o.Ssl
 }
 
-func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetCustomHeaders() []DemCustomHeaders {
+func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetCustomHeaders() optionalnullable.OptionalNullable[[]DemCustomHeaders] {
 	if o == nil {
 		return nil
 	}
@@ -339,7 +341,7 @@ func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetAllowInsecureRenegot
 	return o.AllowInsecureRenegotiation
 }
 
-func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetPostData() *string {
+func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetPostData() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -349,9 +351,12 @@ func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetPostData() *string {
 // DemGetWebsiteResponseRum - Use this field to configure real user monitoring (RUM) for the website.
 // You are required to configure at least availability monitoring or real user monitoring to be able to create website.
 type DemGetWebsiteResponseRum struct {
-	ApdexTimeInSeconds *int    `json:"apdexTimeInSeconds,omitempty"`
-	Snippet            *string `json:"snippet,omitempty"`
-	Spa                bool    `json:"spa"`
+	// Apdex time threshold in seconds for performance satisfaction scoring.
+	ApdexTimeInSeconds *int `json:"apdexTimeInSeconds,omitempty"`
+	// JavaScript snippet to embed for real user monitoring.
+	Snippet *string `json:"snippet,omitempty"`
+	// Whether the website is a single-page application (SPA).
+	Spa bool `json:"spa"`
 }
 
 func (o *DemGetWebsiteResponseRum) GetApdexTimeInSeconds() *int {
@@ -376,8 +381,11 @@ func (o *DemGetWebsiteResponseRum) GetSpa() bool {
 }
 
 type DemGetWebsiteResponse struct {
-	ID     string                      `json:"id"`
-	Type   string                      `json:"type"`
+	// Unique identifier of the website.
+	ID string `json:"id"`
+	// Entity type, always 'Website'.
+	Type string `json:"type"`
+	// Current availability status of the website.
 	Status DemGetWebsiteResponseStatus `json:"status"`
 	//   Name of the website, which must be unique within the organization.
 	//   The website must also not contain any control characters, any white space other than space (U+0020), or any consecutive, leading or trailing spaces.
@@ -388,22 +396,22 @@ type DemGetWebsiteResponse struct {
 	MonitoringOptions MonitoringOptions `json:"monitoringOptions"`
 	//   Use this field to configure availability tests for the website.
 	//   You are required to configure at least availability monitoring or real user monitoring to be able to create website.
-	AvailabilityCheckSettings *DemGetWebsiteResponseAvailabilityCheckSettings `json:"availabilityCheckSettings,omitempty"`
+	AvailabilityCheckSettings optionalnullable.OptionalNullable[DemGetWebsiteResponseAvailabilityCheckSettings] `json:"availabilityCheckSettings,omitempty"`
 	// Entity tags. Tag is a key-value pair, where there may be only single tag value for the same key.
 	Tags []CommonTag `json:"tags,omitempty"`
 	// Use this field to configure real user monitoring (RUM) for the website.
 	// You are required to configure at least availability monitoring or real user monitoring to be able to create website.
 	Rum *DemGetWebsiteResponseRum `json:"rum,omitempty"`
 	// Time when the last outage started.
-	LastOutageStartTime *time.Time `json:"lastOutageStartTime,omitempty"`
+	LastOutageStartTime optionalnullable.OptionalNullable[time.Time] `json:"lastOutageStartTime,omitempty"`
 	// Time when the last outage ended.
-	LastOutageEndTime *time.Time `json:"lastOutageEndTime,omitempty"`
+	LastOutageEndTime optionalnullable.OptionalNullable[time.Time] `json:"lastOutageEndTime,omitempty"`
 	// Time when the last test was performed.
-	LastTestTime *time.Time `json:"lastTestTime,omitempty"`
+	LastTestTime optionalnullable.OptionalNullable[time.Time] `json:"lastTestTime,omitempty"`
 	// Last time when a synthetic test failed.
-	LastErrorTime *time.Time `json:"lastErrorTime,omitempty"`
+	LastErrorTime optionalnullable.OptionalNullable[time.Time] `json:"lastErrorTime,omitempty"`
 	// Response time from the last synthetic check in milliseconds.
-	LastResponseTime *int `json:"lastResponseTime,omitempty"`
+	LastResponseTime optionalnullable.OptionalNullable[int] `json:"lastResponseTime,omitempty"`
 	// Timestamp for when the next on-demand check could be executed. If at '0', it means you can execute it anytime.
 	NextOnDemandAvailabilityTime *int `json:"nextOnDemandAvailabilityTime,omitempty"`
 }
@@ -461,7 +469,7 @@ func (o *DemGetWebsiteResponse) GetMonitoringOptions() MonitoringOptions {
 	return o.MonitoringOptions
 }
 
-func (o *DemGetWebsiteResponse) GetAvailabilityCheckSettings() *DemGetWebsiteResponseAvailabilityCheckSettings {
+func (o *DemGetWebsiteResponse) GetAvailabilityCheckSettings() optionalnullable.OptionalNullable[DemGetWebsiteResponseAvailabilityCheckSettings] {
 	if o == nil {
 		return nil
 	}
@@ -482,35 +490,35 @@ func (o *DemGetWebsiteResponse) GetRum() *DemGetWebsiteResponseRum {
 	return o.Rum
 }
 
-func (o *DemGetWebsiteResponse) GetLastOutageStartTime() *time.Time {
+func (o *DemGetWebsiteResponse) GetLastOutageStartTime() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.LastOutageStartTime
 }
 
-func (o *DemGetWebsiteResponse) GetLastOutageEndTime() *time.Time {
+func (o *DemGetWebsiteResponse) GetLastOutageEndTime() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.LastOutageEndTime
 }
 
-func (o *DemGetWebsiteResponse) GetLastTestTime() *time.Time {
+func (o *DemGetWebsiteResponse) GetLastTestTime() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.LastTestTime
 }
 
-func (o *DemGetWebsiteResponse) GetLastErrorTime() *time.Time {
+func (o *DemGetWebsiteResponse) GetLastErrorTime() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.LastErrorTime
 }
 
-func (o *DemGetWebsiteResponse) GetLastResponseTime() *int {
+func (o *DemGetWebsiteResponse) GetLastResponseTime() optionalnullable.OptionalNullable[int] {
 	if o == nil {
 		return nil
 	}

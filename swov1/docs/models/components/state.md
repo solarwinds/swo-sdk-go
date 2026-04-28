@@ -2,6 +2,16 @@
 
 Health state of the entity.
 
+## Example Usage
+
+```go
+import (
+	"github.com/solarwinds/swo-sdk-go/swov1/models/components"
+)
+
+value := components.StateGood
+```
+
 
 ## Values
 
