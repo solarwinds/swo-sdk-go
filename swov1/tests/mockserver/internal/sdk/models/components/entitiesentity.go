@@ -10,6 +10,60 @@ import (
 	"time"
 )
 
+// Category - Health Score category label.
+type Category string
+
+const (
+	CategoryGood     Category = "good"
+	CategoryBad      Category = "bad"
+	CategoryModerate Category = "moderate"
+)
+
+func (e Category) ToPointer() *Category {
+	return &e
+}
+func (e *Category) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "good":
+		fallthrough
+	case "bad":
+		fallthrough
+	case "moderate":
+		*e = Category(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Category: %v", v)
+	}
+}
+
+// Healthscore - Health score of the entity. Deprecated: use healthState instead.
+//
+// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+type Healthscore struct {
+	// Health score value from 0 to 100.
+	Score *int `json:"score,omitempty"`
+	// Health Score category label.
+	Category *Category `json:"category,omitempty"`
+}
+
+func (o *Healthscore) GetScore() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Score
+}
+
+func (o *Healthscore) GetCategory() *Category {
+	if o == nil {
+		return nil
+	}
+	return o.Category
+}
+
 // State - Health state of the entity.
 type State string
 
@@ -82,6 +136,10 @@ type EntitiesEntity struct {
 	LastSeenTime time.Time `json:"lastSeenTime"`
 	// Flag telling if given entity is in maintenance mode.
 	InMaintenance bool `json:"inMaintenance"`
+	// Health score of the entity. Deprecated: use healthState instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Healthscore *Healthscore `json:"healthscore,omitempty"`
 	// Health state of the entity.
 	HealthState *HealthState `json:"healthState,omitempty"`
 	// Entity tags. Tag is a key-value pair, where there may be only a single tag value for the same key.
@@ -155,6 +213,13 @@ func (o *EntitiesEntity) GetInMaintenance() bool {
 		return false
 	}
 	return o.InMaintenance
+}
+
+func (o *EntitiesEntity) GetHealthscore() *Healthscore {
+	if o == nil {
+		return nil
+	}
+	return o.Healthscore
 }
 
 func (o *EntitiesEntity) GetHealthState() *HealthState {
