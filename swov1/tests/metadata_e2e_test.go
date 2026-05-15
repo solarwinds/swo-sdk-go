@@ -31,7 +31,7 @@ func TestSDK_MetadataE2E(t *testing.T) {
 		Name: metadataEntityName,
 		URL:  OriginalTestURL,
 		AvailabilityCheckSettings: &components.AvailabilityCheckSettings{
-			TestFrom: components.DemTestFrom{
+			TestFrom: &components.DemTestFrom{
 				Type:   components.TypeRegion,
 				Values: []string{TestRegion},
 			},
