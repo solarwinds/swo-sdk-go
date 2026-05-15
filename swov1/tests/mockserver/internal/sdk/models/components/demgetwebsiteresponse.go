@@ -241,6 +241,32 @@ func (o *DemGetWebsiteResponseSsl) GetIgnoreIntermediateCertificates() optionaln
 	return o.IgnoreIntermediateCertificates
 }
 
+// DemGetWebsiteResponseAuthentication -   Configure HTTP basic authentication for the availability probe requests.
+//
+//	The credentialId field accepts a DEM credential ID, not a plaintext password.
+//	If omitted or set to null, no authentication is applied.
+type DemGetWebsiteResponseAuthentication struct {
+	// Username for HTTP basic authentication.
+	Username string `json:"username"`
+	//   The ID of a DEM synthetic credential. The credential's value is used as the password.
+	//   If omitted or set to null, authentication proceeds with the username only.
+	CredentialID optionalnullable.OptionalNullable[string] `json:"credentialId,omitempty"`
+}
+
+func (o *DemGetWebsiteResponseAuthentication) GetUsername() string {
+	if o == nil {
+		return ""
+	}
+	return o.Username
+}
+
+func (o *DemGetWebsiteResponseAuthentication) GetCredentialID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.CredentialID
+}
+
 // DemGetWebsiteResponseAvailabilityCheckSettings -   Use this field to configure availability tests for the website.
 //
 //	You are required to configure at least availability monitoring or real user monitoring to be able to create website.
@@ -249,7 +275,7 @@ type DemGetWebsiteResponseAvailabilityCheckSettings struct {
 	PlatformOptions optionalnullable.OptionalNullable[DemGetWebsiteResponsePlatformOptions] `json:"platformOptions,omitempty"`
 	//   Configure locations of the synthetic availability test probes.
 	//   Acceptable values depend on the selected type and actual values of existing probes.
-	TestFrom DemTestFrom `json:"testFrom"`
+	TestFrom *DemTestFrom `json:"testFrom,omitempty"`
 	// Configure how often availability tests should be performed. Provide a number of seconds that is one of 60, 300, 600, 900, 1800, 3600, 7200, 14400.
 	TestIntervalInSeconds float64 `json:"testIntervalInSeconds"`
 	//   Default conditions when the entity is considered down.
@@ -276,6 +302,10 @@ type DemGetWebsiteResponseAvailabilityCheckSettings struct {
 	//   Configure data that will be sent as POST request body by the synthetic probe.
 	//   If omitted or set to null/empty string, the probe will send the usual GET requests.
 	PostData optionalnullable.OptionalNullable[string] `json:"postData,omitempty"`
+	//   Configure HTTP basic authentication for the availability probe requests.
+	//   The credentialId field accepts a DEM credential ID, not a plaintext password.
+	//   If omitted or set to null, no authentication is applied.
+	Authentication optionalnullable.OptionalNullable[DemGetWebsiteResponseAuthentication] `json:"authentication,omitempty"`
 }
 
 func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetPlatformOptions() optionalnullable.OptionalNullable[DemGetWebsiteResponsePlatformOptions] {
@@ -285,9 +315,9 @@ func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetPlatformOptions() op
 	return o.PlatformOptions
 }
 
-func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetTestFrom() DemTestFrom {
+func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetTestFrom() *DemTestFrom {
 	if o == nil {
-		return DemTestFrom{}
+		return nil
 	}
 	return o.TestFrom
 }
@@ -346,6 +376,13 @@ func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetPostData() optionaln
 		return nil
 	}
 	return o.PostData
+}
+
+func (o *DemGetWebsiteResponseAvailabilityCheckSettings) GetAuthentication() optionalnullable.OptionalNullable[DemGetWebsiteResponseAuthentication] {
+	if o == nil {
+		return nil
+	}
+	return o.Authentication
 }
 
 // DemGetWebsiteResponseRum - Use this field to configure real user monitoring (RUM) for the website.

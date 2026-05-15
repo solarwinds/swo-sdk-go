@@ -98,8 +98,54 @@
 <body><h2 id="go-sdk-changes">Go SDK Changes:</h2>
 
 <ul>
-<li><code>Swo.Entities.ListEntities()</code>:  <code>response.Entities[].Healthscore</code> <strong>Added</strong></li>
-<li><code>Swo.Entities.GetEntityById()</code>:  <code>response.Healthscore</code> <strong>Added</strong></li>
+<li><code>Swo.Entities.ListEntities()</code>:
+
+<ul>
+<li><code>request.Request.Type</code> <strong>Changed</strong></li>
+<li><code>response.Entities[].HealthState.State</code> <strong>Changed</strong> (Breaking ⚠️)</li>
+</ul></li>
+<li><code>Swo.Entities.GetEntityById()</code>:  <code>response.HealthState.State</code> <strong>Changed</strong> (Breaking ⚠️)</li>
+<li><code>Swo.Dem.CreateUri()</code>:
+
+<ul>
+<li><code>request.Request.AvailabilityCheckSettings.TestFrom</code> <strong>Changed</strong></li>
+</ul></li>
+<li><code>Swo.Dem.GetUri()</code>:  <code>response.AvailabilityCheckSettings.TestFrom</code> <strong>Changed</strong></li>
+<li><code>Swo.Dem.UpdateUri()</code>:
+
+<ul>
+<li><code>request.Request.Dem.uri.AvailabilityCheckSettings.TestFrom</code> <strong>Changed</strong></li>
+</ul></li>
+<li><code>Swo.Dem.CreateWebsite()</code>:
+
+<ul>
+<li><code>request.Request.AvailabilityCheckSettings</code> <strong>Changed</strong>
+
+<ul>
+<li><code>Authentication</code> <strong>Added</strong></li>
+<li><code>TestFrom</code> <strong>Changed</strong></li>
+</ul></li>
+</ul></li>
+<li><code>Swo.Dem.GetWebsite()</code>: <code>response.AvailabilityCheckSettings</code> <strong>Changed</strong>
+
+<ul>
+<li><code>Authentication</code> <strong>Added</strong></li>
+<li><code>TestFrom</code> <strong>Changed</strong></li>
+</ul></li>
+<li><code>Swo.Dem.UpdateWebsite()</code>:
+
+<ul>
+<li><code>request.Request.Dem.website.AvailabilityCheckSettings</code> <strong>Changed</strong>
+
+<ul>
+<li><code>Authentication</code> <strong>Added</strong></li>
+<li><code>TestFrom</code> <strong>Changed</strong></li>
+</ul></li>
+</ul></li>
+<li><code>Swo.Metrics.ListMetrics()</code>:  <code>error.status[400]</code> <strong>Added</strong></li>
+<li><code>Swo.Metrics.ListMetricAttributes()</code>:  <code>error.status[400]</code> <strong>Added</strong></li>
+<li><code>Swo.Metrics.ListMetricAttributeValues()</code>:  <code>error.status[400]</code> <strong>Added</strong></li>
+<li><code>Swo.Metrics.ListMetricMeasurements()</code>:  <code>error.status[400]</code> <strong>Added</strong></li>
 </ul>
 </body>
 </html>
