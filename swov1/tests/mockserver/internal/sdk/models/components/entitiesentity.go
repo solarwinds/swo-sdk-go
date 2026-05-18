@@ -109,10 +109,10 @@ func (e *State) UnmarshalJSON(data []byte) error {
 // HealthState - Health state of the entity.
 type HealthState struct {
 	// Health state of the entity.
-	State *State `json:"state,omitempty"`
+	State optionalnullable.OptionalNullable[State] `json:"state,omitempty"`
 }
 
-func (o *HealthState) GetState() *State {
+func (o *HealthState) GetState() optionalnullable.OptionalNullable[State] {
 	if o == nil {
 		return nil
 	}

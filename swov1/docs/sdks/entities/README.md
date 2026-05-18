@@ -34,7 +34,7 @@ func main() {
     )
 
     res, err := s.Entities.ListEntities(ctx, operations.ListEntitiesRequest{
-        Type: "<value>",
+        Type: swov1.Pointer("<value>"),
     })
     if err != nil {
         log.Fatal(err)
