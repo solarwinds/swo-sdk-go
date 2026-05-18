@@ -34,7 +34,7 @@ func TestSDK_DemUriCrudLifecycle(t *testing.T) {
 		Name:       uriEntityName,
 		IPOrDomain: OriginalTestDomain,
 		AvailabilityCheckSettings: components.DemURIAvailabilityCheckSettingsInput{
-			TestFrom: components.DemTestFrom{
+			TestFrom: &components.DemTestFrom{
 				Type:   components.TypeRegion,
 				Values: []string{TestRegion},
 			},
@@ -71,7 +71,7 @@ func TestSDK_DemUriCrudLifecycle(t *testing.T) {
 			Name:       uriEntityName,
 			IPOrDomain: UpdatedTestDomain,
 			AvailabilityCheckSettings: components.DemURIAvailabilityCheckSettingsInput{
-				TestFrom: components.DemTestFrom{
+				TestFrom: &components.DemTestFrom{
 					Type:   components.TypeRegion,
 					Values: []string{TestRegion},
 				},

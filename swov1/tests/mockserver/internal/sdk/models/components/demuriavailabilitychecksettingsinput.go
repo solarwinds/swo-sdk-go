@@ -232,7 +232,7 @@ type DemURIAvailabilityCheckSettingsInput struct {
 	PlatformOptions optionalnullable.OptionalNullable[DemURIAvailabilityCheckSettingsInputPlatformOptions] `json:"platformOptions,omitempty"`
 	//   Configure locations of the synthetic availability test probes.
 	//   Acceptable values depend on the selected type and actual values of existing probes.
-	TestFrom DemTestFrom `json:"testFrom"`
+	TestFrom *DemTestFrom `json:"testFrom,omitempty"`
 	// Configure how often availability tests should be performed. Provide a number of seconds that is one of 60, 300, 600, 900, 1800, 3600, 7200, 14400.
 	TestIntervalInSeconds float64 `json:"testIntervalInSeconds"`
 	//   Default conditions when the entity is considered down.
@@ -255,9 +255,9 @@ func (o *DemURIAvailabilityCheckSettingsInput) GetPlatformOptions() optionalnull
 	return o.PlatformOptions
 }
 
-func (o *DemURIAvailabilityCheckSettingsInput) GetTestFrom() DemTestFrom {
+func (o *DemURIAvailabilityCheckSettingsInput) GetTestFrom() *DemTestFrom {
 	if o == nil {
-		return DemTestFrom{}
+		return nil
 	}
 	return o.TestFrom
 }

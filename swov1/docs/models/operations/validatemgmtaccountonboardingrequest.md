@@ -1,8 +1,0 @@
-# ValidateMgmtAccountOnboardingRequest
-
-
-## Fields
-
-| Field                                                                                                                              | Type                                                                                                                               | Required                                                                                                                           | Description                                                                                                                        |
-| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `Request`                                                                                                                          | [components.CloudAccountsAwsMgmtAccountOnboardingRequest](../../models/components/cloudaccountsawsmgmtaccountonboardingrequest.md) | :heavy_check_mark:                                                                                                                 | Management account onboarding validation parameters.                                                                               |

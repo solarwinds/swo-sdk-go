@@ -34,7 +34,7 @@ func TestSDK_DemWebsiteCrudLifecycle(t *testing.T) {
 		Name: testWebsiteName,
 		URL:  OriginalTestURL,
 		AvailabilityCheckSettings: &components.AvailabilityCheckSettings{
-			TestFrom: components.DemTestFrom{
+			TestFrom: &components.DemTestFrom{
 				Type:   components.TypeRegion,
 				Values: []string{TestRegion},
 			},
@@ -69,7 +69,7 @@ func TestSDK_DemWebsiteCrudLifecycle(t *testing.T) {
 			Name: testWebsiteName,
 			URL:  UpdatedTestURL,
 			AvailabilityCheckSettings: &components.AvailabilityCheckSettings{
-				TestFrom: components.DemTestFrom{
+				TestFrom: &components.DemTestFrom{
 					Type:   components.TypeRegion,
 					Values: []string{TestRegion},
 				},

@@ -34,7 +34,7 @@ func TestSDK_EntitiesCrudLifecycle(t *testing.T) {
 		Name: testEntityName,
 		URL:  OriginalTestURL,
 		AvailabilityCheckSettings: &components.AvailabilityCheckSettings{
-			TestFrom: components.DemTestFrom{
+			TestFrom: &components.DemTestFrom{
 				Type:   components.TypeRegion,
 				Values: []string{TestRegion},
 			},
@@ -63,7 +63,7 @@ func TestSDK_EntitiesCrudLifecycle(t *testing.T) {
 	waitForEntityAvailability(ctx, t, s, entityID, testEntityName)
 
 	listEntitiesRes, err := s.Entities.ListEntities(ctx, operations.ListEntitiesRequest{
-		Type:     WebsiteEntityType,
+		Type:     swov1.String(WebsiteEntityType),
 		PageSize: swov1.Int(1),
 	})
 	require.NoError(t, err, "Failed to list entities")

@@ -143,9 +143,11 @@ trackedFiles:
     id: 497da8fc3bcd
     last_write_checksum: sha1:c316c25557af2794671583cc3df7ab7446eca029
     pristine_git_object: c7f9aa78c68de3e6e1d167836d85a4a510a219e8
+  docs/models/components/authentication.md:
+    last_write_checksum: sha1:9b704da5c4db79efd7480080f14fd617a74ade08
   docs/models/components/availabilitychecksettings.md:
     id: c81799cdff9e
-    last_write_checksum: sha1:775ab51194fc95b0c412524acd70ec531ca16e94
+    last_write_checksum: sha1:0c9ce56f66854c19b026fe762edf370a6f57a792
     pristine_git_object: a41536a46aa7556e1119e1364a1ea09b716d198e
   docs/models/components/category.md:
     id: 0b89f7c10ecc
@@ -299,9 +301,11 @@ trackedFiles:
     id: 4e5b48f937ba
     last_write_checksum: sha1:25157905d8cf02262bf5e844481d07ebdb082d02
     pristine_git_object: df8103ea891dc141d6556faa261957c7c5637270
+  docs/models/components/demgetwebsiteresponseauthentication.md:
+    last_write_checksum: sha1:e654e790ec8a616ac3382870f5c32b2d7a90418b
   docs/models/components/demgetwebsiteresponseavailabilitychecksettings.md:
     id: a1a364bbef78
-    last_write_checksum: sha1:68357debe577cf7e0e4a47a0d5cb93eaf0c3ac34
+    last_write_checksum: sha1:b44c4e4a2d40cf2cd3f076023c691a8e8bfa3a21
     pristine_git_object: 60afa3c80357b70fe21e711a340f2e9e47523cc8
   docs/models/components/demgetwebsiteresponsecheckforstring.md:
     id: 4fee6f389249
@@ -361,7 +365,7 @@ trackedFiles:
     pristine_git_object: 052cf56a980cac40ad7cea78860a3f75bce6327e
   docs/models/components/demprobe.md:
     id: c40c8c7240e8
-    last_write_checksum: sha1:a617342a87386e95e83f42ef4bc7fd30d5d7a5a4
+    last_write_checksum: sha1:bc2db585a95eec4f684c3801c002d579e723664d
     pristine_git_object: 8575ff21febeadf0f83bf0d273373ad836364574
   docs/models/components/demprobeplatform.md:
     id: c34cf8644c39
@@ -413,7 +417,7 @@ trackedFiles:
     pristine_git_object: 5fe724f6506a0966bd5cb0fa02364678090d0abb
   docs/models/components/demuriavailabilitychecksettings.md:
     id: baafbc51a188
-    last_write_checksum: sha1:6e85cab6c50a6aad9f2edc554c786544aec05e51
+    last_write_checksum: sha1:d75f5251182a316a2288214e5c1a3296dd59b76b
     pristine_git_object: 06c4aa157944a2aa1ef31d360d6f667321d8af8c
   docs/models/components/demuriavailabilitychecksettingsdns.md:
     id: 4b8e4a1cef65
@@ -425,7 +429,7 @@ trackedFiles:
     pristine_git_object: 4ed462fb482b0133f7a0b14d948c028f5f302b67
   docs/models/components/demuriavailabilitychecksettingsinput.md:
     id: 2889f580b880
-    last_write_checksum: sha1:b03827e163ac7997b9c1b4220c7998e2d46c8fef
+    last_write_checksum: sha1:0f98780000fdb532db1554eca69492e0e8f48b5b
     pristine_git_object: 6fabb3969f9b20f1d02ff65385b124d7ee099dcb
   docs/models/components/demuriavailabilitychecksettingsinputfailingtestlocations.md:
     id: 9d3ddd006ba7
@@ -841,7 +845,7 @@ trackedFiles:
     pristine_git_object: 0604f93718ce5b39ca2b99391fa593e1db8fab69
   docs/models/operations/listentitiesrequest.md:
     id: c60f886b79df
-    last_write_checksum: sha1:2f7a881ef219f9e7cc065a96e717105819d5dce8
+    last_write_checksum: sha1:a438c7ff3753c79a0e6fc35921c358f28296f6c4
     pristine_git_object: 5f51537ca9026357d32d9e628a075042f4802a15
   docs/models/operations/listentitiesresponse.md:
     id: 9b58e3447f4c
@@ -1121,11 +1125,11 @@ trackedFiles:
     pristine_git_object: 5bab95dda362af7a2ef1f1fd8b7b7cef74305adc
   docs/sdks/dem/README.md:
     id: 73655a1bee6e
-    last_write_checksum: sha1:73a067e2a3ec1917a0ddbb226046fe593170b073
+    last_write_checksum: sha1:b316a5c98a02a4dcc5ccf307bbc8881e7b8bb370
     pristine_git_object: 06ed85f0402d7f95a9cc0eba3b38a8f7dff03912
   docs/sdks/entities/README.md:
     id: a140ac5181b9
-    last_write_checksum: sha1:045a2281d99137461687802348714b948ad7ff00
+    last_write_checksum: sha1:eb8c9e81e8152560e4c35a5148ee134c291828e7
     pristine_git_object: 5ccbafd5d658caa3f58d519503184b32410f3356
   docs/sdks/logs/README.md:
     id: 5adacd63da21
@@ -1137,7 +1141,7 @@ trackedFiles:
     pristine_git_object: 1d335ceab0830c4e5c5cadb287d618cc88b03625
   docs/sdks/metrics/README.md:
     id: a8545d964e21
-    last_write_checksum: sha1:237525915fd554604a6a4e734faaa652224400a4
+    last_write_checksum: sha1:8435afc4afedb402f6d192e6fa2c9d5c2e5dac13
     pristine_git_object: 59e6c6e8eea466932e4af7e4c0f95226c1aab56d
   docs/sdks/tokens/README.md:
     id: ca61030eb3e5
@@ -1149,7 +1153,7 @@ trackedFiles:
     pristine_git_object: 96180bf550b4571035bddb9c2b66b8d0c0ade1cb
   go.mod:
     id: c47645c391ad
-    last_write_checksum: sha1:7f3567861259c7bf7897091f1ecb008951f2735a
+    last_write_checksum: sha1:8241aea4f8dac05aeeaf5fb5fa37898035bc9cb7
     pristine_git_object: 83a8b2bdf617d3c098a672880dcb0a7c104703ad
   internal/config/sdkconfiguration.go:
     id: 33b8bfac5265
@@ -1221,7 +1225,7 @@ trackedFiles:
     pristine_git_object: d2f31ba4174969a99b6b120287c231d07ac6d532
   metrics.go:
     id: 9539b0d0fd18
-    last_write_checksum: sha1:3db8821f2a2203cabf115b3b27b6cb8182ab1930
+    last_write_checksum: sha1:39561fc9da1d544dcf62e77602534b3b8ea2798f
     pristine_git_object: 4a4913b8771d35862389215cbe551b474841c91b
   models/apierrors/apierror.go:
     id: 4cecf27a5a54
@@ -1389,7 +1393,7 @@ trackedFiles:
     pristine_git_object: 3e61149886964448b109d685ce97e4f699da184d
   models/components/demgetwebsiteresponse.go:
     id: be43c2b80d0c
-    last_write_checksum: sha1:96bd5da96de919a88558e78ad12229c836910c3a
+    last_write_checksum: sha1:83edb2f6f8a4e3c16ae1545ab1efbb2988d92ece
     pristine_git_object: bb7256a1ef9e3210ac868c6f8612e9e37f2afcaa
   models/components/demlistprobesresponse.go:
     id: 11d02b4a2bf0
@@ -1413,7 +1417,7 @@ trackedFiles:
     pristine_git_object: f67bcbee6e24e7f3a6f63205e6d03e8db5ac61f5
   models/components/demprobe.go:
     id: 4de256053ef6
-    last_write_checksum: sha1:b2132f7bc516bd8976e2038341c01876edfdaecb
+    last_write_checksum: sha1:066d54b3c4c921da6de678b9b3c6cd0e856e33a8
     pristine_git_object: 694b0e6da17e573cbe746fe4f124b76741e3582d
   models/components/demprobeplatform.go:
     id: 26a61a0aaa1d
@@ -1457,15 +1461,15 @@ trackedFiles:
     pristine_git_object: 935aa341b9cb5ad93d92c8b83055a2787a292914
   models/components/demuriavailabilitychecksettings.go:
     id: 9b6f9784858a
-    last_write_checksum: sha1:cce9857f5afdb7097469ad42f1ea55c7954f9a93
+    last_write_checksum: sha1:af5343edd4cc7a0e32dfbe9a4232351c2f6873e9
     pristine_git_object: 155671f475c96f89c1920ce07e5ad6c508ed3c2a
   models/components/demuriavailabilitychecksettingsinput.go:
     id: 5c0520999508
-    last_write_checksum: sha1:b64ba3f60c65d5502f25dc1abb55b0998f380720
+    last_write_checksum: sha1:56d2b102853409f3876ddc885c25cdbd4c35c0da
     pristine_git_object: 73e6df5d2dadba8fa1c2993eb31fdfc8ba298cb8
   models/components/demwebsite.go:
     id: de32b08c8bc5
-    last_write_checksum: sha1:716f0783bfdd14818c9113653051cc414e36ae2b
+    last_write_checksum: sha1:03124512a770e1411d6449cd53b900cb2910499e
     pristine_git_object: e1e20ac3c682b6a514e20a9f98f18dd33f88c052
   models/components/demwebsiteprotocol.go:
     id: 79128f18ed6d
@@ -1645,7 +1649,7 @@ trackedFiles:
     pristine_git_object: c83f60c0b31c2c048fffabafac1dace7ee0b02a1
   models/operations/listentities.go:
     id: f03a48bcfd99
-    last_write_checksum: sha1:2dd98f7310f4d14ccff64bc48ae2d4dc3f46e574
+    last_write_checksum: sha1:1476b1608962703f2bd529c36720a1fdf1acaf48
     pristine_git_object: ddf6c0d9a61be39169ee5cb7f659927d0a7cfb8e
   models/operations/listentitytypes.go:
     id: 54549dd629e9
@@ -1781,7 +1785,7 @@ trackedFiles:
     pristine_git_object: 5b3dc7c122d8ab08905485342d7474f8f163888d
   swo.go:
     id: ae46c351d88b
-    last_write_checksum: sha1:b2c29dc2dd7e7442fb87d5a14abfa8ac952282d1
+    last_write_checksum: sha1:c432dcadd53fb80e15474690c9293bfa58e1748f
     pristine_git_object: 05ba26d22af5d3654e46a9063c161ce28c43814d
   tests/files.go:
     id: 359d10a9a396
@@ -1926,7 +1930,7 @@ trackedFiles:
   tests/mockserver/internal/sdk/models/components/demgeturiresponse.go:
     last_write_checksum: sha1:bc73aaae7b3e7b00f6185fda748a3831ea41d051
   tests/mockserver/internal/sdk/models/components/demgetwebsiteresponse.go:
-    last_write_checksum: sha1:3fb1929351ecbe5f92c062636512fa15fb88a8ed
+    last_write_checksum: sha1:4aad52d7b6c3b5fa0fc54a1be516abfeff5288e8
   tests/mockserver/internal/sdk/models/components/demlistprobesresponse.go:
     last_write_checksum: sha1:d89ad76a13a43040b5907f35c90114110dd177d1
   tests/mockserver/internal/sdk/models/components/demorganizationsettings.go:
@@ -1938,7 +1942,7 @@ trackedFiles:
   tests/mockserver/internal/sdk/models/components/demoutagestatus.go:
     last_write_checksum: sha1:39651aa27a00f500620b5c23da439e29075c632e
   tests/mockserver/internal/sdk/models/components/demprobe.go:
-    last_write_checksum: sha1:2e98a819f319aa04a4668f7bfb3b318ab6eda0fe
+    last_write_checksum: sha1:6696ad71e1bb6d4a02ff09bd8d69552c50094ecd
   tests/mockserver/internal/sdk/models/components/demprobeplatform.go:
     last_write_checksum: sha1:48f4908495012df95c1697cb63f2dbcdb50d76f6
   tests/mockserver/internal/sdk/models/components/demsortdirectionparam.go:
@@ -1960,17 +1964,17 @@ trackedFiles:
   tests/mockserver/internal/sdk/models/components/demuri.go:
     last_write_checksum: sha1:7cfc902f8404adf845ad7e5cd97af1fc0cd815b3
   tests/mockserver/internal/sdk/models/components/demuriavailabilitychecksettings.go:
-    last_write_checksum: sha1:42c166784503db760a66e44218c4954a813cfad7
+    last_write_checksum: sha1:a2e9de722daca99c2a9b671d9d07e0236271bdcc
   tests/mockserver/internal/sdk/models/components/demuriavailabilitychecksettingsinput.go:
-    last_write_checksum: sha1:716e69c3590aa26c830657eb7ec06127be30ca01
+    last_write_checksum: sha1:69d20841db32a7af91fa7f25a0682502bab68762
   tests/mockserver/internal/sdk/models/components/demwebsite.go:
-    last_write_checksum: sha1:ff7f7d7c4cf36f24b0fc77501f2b4a4f89d9533b
+    last_write_checksum: sha1:98b44b1a1e9dcc6e284e6bb9ecf58956f11bbe92
   tests/mockserver/internal/sdk/models/components/demwebsiteprotocol.go:
     last_write_checksum: sha1:7ac96b01a77f6902427eba5c33e8f171af165a99
   tests/mockserver/internal/sdk/models/components/demwindowsize.go:
     last_write_checksum: sha1:b971237c853ad24a14cfddf7de4ed5348cd64ded
   tests/mockserver/internal/sdk/models/components/entitiesentity.go:
-    last_write_checksum: sha1:c4eb4357d8e5cfe295fdbd625a35b8b94e5a9b51
+    last_write_checksum: sha1:ce5bf4c7e3dc32cafb6ea0e347b530fa1c302e28
   tests/mockserver/internal/sdk/models/components/entitiesentityinput.go:
     last_write_checksum: sha1:b78be60f9514273e55d7113c137ed8cb2fe276e2
   tests/mockserver/internal/sdk/models/components/httpmetadata.go:
@@ -2056,7 +2060,7 @@ trackedFiles:
   tests/mockserver/internal/sdk/models/operations/getwebsitetestresults.go:
     last_write_checksum: sha1:54be28d7143226b331925b21dcf1cc8fa0c577e8
   tests/mockserver/internal/sdk/models/operations/listentities.go:
-    last_write_checksum: sha1:ae5fab05c3f86193458af0ce53cbd4f6ad96fbd8
+    last_write_checksum: sha1:76c2cc13aed65e75cdc957240843d1f6529eace8
   tests/mockserver/internal/sdk/models/operations/listentitytypes.go:
     last_write_checksum: sha1:6c5f5034a4a899e43aa7b1e83a9b30863fe845a8
   tests/mockserver/internal/sdk/models/operations/listlogarchives.go:
@@ -2685,6 +2689,8 @@ examples:
           application/json: {"message": "Error has occurred", "code": "Unauthorized"}
         "500":
           application/json: {"message": "Error has occurred", "code": "InternalError"}
+        "400":
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
   createCompositeMetric:
     speakeasy-default-create-composite-metric:
       requestBody:
@@ -2780,6 +2786,8 @@ examples:
           application/json: {"message": "Error has occurred", "code": "Unauthorized"}
         "500":
           application/json: {"message": "Error has occurred", "code": "InternalError"}
+        "400":
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
   listMetricAttributeValues:
     speakeasy-default-list-metric-attribute-values:
       parameters:
@@ -2795,6 +2803,8 @@ examples:
           application/json: {"message": "Error has occurred", "code": "Unauthorized"}
         "500":
           application/json: {"message": "Error has occurred", "code": "InternalError"}
+        "400":
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
   listMetricMeasurements:
     speakeasy-default-list-metric-measurements:
       parameters:
@@ -2811,6 +2821,8 @@ examples:
           application/json: {"message": "Error has occurred", "code": "Unauthorized"}
         "500":
           application/json: {"message": "Error has occurred", "code": "InternalError"}
+        "400":
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
   createToken:
     speakeasy-default-create-token:
       requestBody:
