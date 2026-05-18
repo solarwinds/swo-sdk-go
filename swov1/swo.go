@@ -2,7 +2,7 @@
 
 package swov1
 
-// Generated from OpenAPI doc version 1.0.16 and generator version 2.881.4
+// Generated from OpenAPI doc version 1.0.16 and generator version 2.884.4
 
 import (
 	"context"
@@ -152,7 +152,7 @@ func New(opts ...SDKOption) *Swo {
 	sdk := &Swo{
 		SDKVersion: "0.15.1",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.15.1 2.881.4 1.0.16 github.com/solarwinds/swo-sdk-go/swov1",
+			UserAgent:  "speakeasy-sdk/go 0.15.1 2.884.4 1.0.16 github.com/solarwinds/swo-sdk-go/swov1",
 			ServerList: ServerList,
 			ServerVariables: []map[string]string{
 				{
