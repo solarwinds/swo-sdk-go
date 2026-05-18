@@ -91,9 +91,7 @@ func TestSDK_EntitiesCrudLifecycle(t *testing.T) {
 
 	if err != nil {
 		t.Logf("Update operation encountered error: %v", err)
-	}
-
-	if updateRes.HTTPMeta.Response.StatusCode == http.StatusAccepted {
+	} else if updateRes.HTTPMeta.Response.StatusCode == http.StatusAccepted {
 		t.Logf("Updated entity with ID: %s", entityID)
 		waitForEntityUpdate(ctx, t, s, entityID, updatedDisplayName, updateTags)
 	}
