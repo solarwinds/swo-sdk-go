@@ -658,7 +658,7 @@ func main() {
                 },
                 TestFromAll: swov1.Pointer(true),
             },
-            TestFrom: components.DemTestFrom{
+            TestFrom: &components.DemTestFrom{
                 Type: components.TypeRegion,
                 Values: []string{
                     "NA",
@@ -816,7 +816,7 @@ func main() {
                     },
                     TestFromAll: swov1.Pointer(true),
                 },
-                TestFrom: components.DemTestFrom{
+                TestFrom: &components.DemTestFrom{
                     Type: components.TypeRegion,
                     Values: []string{
                         "NA",
@@ -1243,7 +1243,7 @@ func main() {
                 },
                 TestFromAll: swov1.Pointer(true),
             },
-            TestFrom: components.DemTestFrom{
+            TestFrom: &components.DemTestFrom{
                 Type: components.TypeRegion,
                 Values: []string{
                     "NA",
@@ -1413,7 +1413,7 @@ func main() {
                     },
                     TestFromAll: swov1.Pointer(true),
                 },
-                TestFrom: components.DemTestFrom{
+                TestFrom: &components.DemTestFrom{
                     Type: components.TypeRegion,
                     Values: []string{
                         "NA",
