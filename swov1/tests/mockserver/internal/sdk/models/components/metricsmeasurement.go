@@ -11,7 +11,7 @@ type MetricsMeasurement struct {
 	// Time of the measurement.
 	Time time.Time `json:"time"`
 	// Value of the measurement.
-	Value float64 `json:"value"`
+	Value *float64 `json:"value"`
 }
 
 func (m MetricsMeasurement) MarshalJSON() ([]byte, error) {
@@ -32,9 +32,9 @@ func (o *MetricsMeasurement) GetTime() time.Time {
 	return o.Time
 }
 
-func (o *MetricsMeasurement) GetValue() float64 {
+func (o *MetricsMeasurement) GetValue() *float64 {
 	if o == nil {
-		return 0.0
+		return nil
 	}
 	return o.Value
 }

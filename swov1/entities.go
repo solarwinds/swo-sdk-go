@@ -819,7 +819,7 @@ func (s *Entities) UpdateEntityByID(ctx context.Context, request operations.Upda
 	}
 
 	switch {
-	case httpRes.StatusCode == 202:
+	case httpRes.StatusCode == 200:
 		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 400:
 		switch {

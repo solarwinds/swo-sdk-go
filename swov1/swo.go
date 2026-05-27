@@ -150,9 +150,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Swo {
 	sdk := &Swo{
-		SDKVersion: "0.15.1",
+		SDKVersion: "0.15.2",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.15.1 2.884.4 1.0.16 github.com/solarwinds/swo-sdk-go/swov1",
+			UserAgent:  "speakeasy-sdk/go 0.15.2 2.884.4 1.0.16 github.com/solarwinds/swo-sdk-go/swov1",
 			ServerList: ServerList,
 			ServerVariables: []map[string]string{
 				{
