@@ -286,7 +286,7 @@ func (s *Metadata) ListEntityTypes(ctx context.Context, opts ...operations.Optio
 }
 
 // ListMetricsForEntityType - List metrics metadata for an entity type
-// List metrics metadata for an entity type between a start and end time. If start time and end time unspecified, a default time range is be applied. An empty list indicates no metrics matched the given parameters.
+// List metrics metadata for an entity type within a specified time range. If the start and end times are not provided, a default time range is applied. An empty list indicates that no metrics matched the specified parameters.
 func (s *Metadata) ListMetricsForEntityType(ctx context.Context, request operations.ListMetricsForEntityTypeRequest, opts ...operations.Option) (*operations.ListMetricsForEntityTypeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
