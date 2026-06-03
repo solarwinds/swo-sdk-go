@@ -1,24 +1,24 @@
 lockVersion: 2.0.0
 id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
-  docChecksum: 808d32b819f905294fa5be9660a6f516
+  docChecksum: 55a7f405152665f2fc375906e7188355
   docVersion: 1.0.16
-  speakeasyVersion: 1.763.1
-  generationVersion: 2.884.4
-  releaseVersion: 0.15.2
-  configChecksum: 3240c72abb9e73045cd444fff364cd38
+  speakeasyVersion: 1.770.0
+  generationVersion: 2.893.0
+  releaseVersion: 0.15.3
+  configChecksum: c2e364fa77fb6f4bc631b96bc93119db
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go
 persistentEdits:
-  generation_id: 421adf7e-7e4c-4f1c-bca4-2d9cb8cfd957
-  pristine_commit_hash: 70ff0040318d5df5791965707135882f3a9dd361
-  pristine_tree_hash: 05db8b23c3a50ac6a5c4478b1f167e3a70f1631a
+  generation_id: ba70d24e-172d-4a58-ba9f-a3477979e0ab
+  pristine_commit_hash: b0bfd216311f37f0362067b208f76817981dd1a3
+  pristine_tree_hash: cc4c3428df590c80d4c7c2a016894113b2253c94
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.14
-    core: 3.13.40
+    core: 3.13.46
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -45,8 +45,8 @@ trackedFiles:
     pristine_git_object: e163c557da075582c9063da53ff8e45e7876854c
   .devcontainer/devcontainer.json:
     id: b34062a34eb1
-    last_write_checksum: sha1:a518b2fc2f92e998593a1dcb935db4ca1eb2e2f1
-    pristine_git_object: 92f5ba5b54156225322fb4b09d2acf4abde9abc9
+    last_write_checksum: sha1:00c39389eee01217e51057762bde7339d9e56114
+    pristine_git_object: 8f01e56e2f8476fb2a7c79ec6326b3b0d5be8123
   .devcontainer/setup.sh:
     id: 5f1dfbfeb8eb
     last_write_checksum: sha1:d6d0cc9f5078cef6b22f64b02778b1d91fe8d9fd
@@ -1149,16 +1149,16 @@ trackedFiles:
     pristine_git_object: dac877bc4fb2224f1f0dfb5a6a6f6a6bbb6e872a
   docs/sdks/tokens/README.md:
     id: ca61030eb3e5
-    last_write_checksum: sha1:93a4f12d685fefbfe72c0050f0f8c6ff3dcf4f57
-    pristine_git_object: a13234cdf00c4d9e10f7cf8f05779c7560f304aa
+    last_write_checksum: sha1:7356623f8b1653cd8e1a5226eb15a807a8dc4a59
+    pristine_git_object: 4c5427e458b213e9319fed433ceaee1ad7236e48
   entities.go:
     id: d7e3d6868ee7
     last_write_checksum: sha1:564383b1b5f956ba91a8843d105bdbeb751afabb
     pristine_git_object: 9d0ba858092ef2acd7567ecd6e534c8edfbe7b4c
   go.mod:
     id: c47645c391ad
-    last_write_checksum: sha1:7f3567861259c7bf7897091f1ecb008951f2735a
-    pristine_git_object: 83a8b2bdf617d3c098a672880dcb0a7c104703ad
+    last_write_checksum: sha1:cc024de328804bc27612011e239c3088c0361d7c
+    pristine_git_object: 8dee50d1ca751c9c1189dada5857df8473cc7888
   internal/config/sdkconfiguration.go:
     id: 33b8bfac5265
     last_write_checksum: sha1:fa33427d7c4f31987dff46965e215b05370cd70f
@@ -1185,8 +1185,8 @@ trackedFiles:
     pristine_git_object: 99b9ab3ddd00feda089f6095684bfcaacd3d2d15
   internal/utils/json.go:
     id: ad03e3c502d8
-    last_write_checksum: sha1:7a8736ddc8bd01a0e3a5c174805d44b0956038e7
-    pristine_git_object: 076952a82e72b4eda78fd7af44bf2e04bd5fb33b
+    last_write_checksum: sha1:2263f9211d7570ecb46baf3a46911687f32a39b4
+    pristine_git_object: 009ef813b848314da66098ff0b0cf05175c30a01
   internal/utils/pathparams.go:
     id: 1f3e0c30fd90
     last_write_checksum: sha1:7e97932397d861442026cf338b12e0e0779aee09
@@ -1789,8 +1789,8 @@ trackedFiles:
     pristine_git_object: 5b3dc7c122d8ab08905485342d7474f8f163888d
   swo.go:
     id: ae46c351d88b
-    last_write_checksum: sha1:23f5c4a4ee84e16fe8c5b576c67b5f035f0faaee
-    pristine_git_object: 5852190893014512132f9d7fe7c052c83119c0e6
+    last_write_checksum: sha1:8f343a4127b7f49d6f1878ffab2d4c920f945443
+    pristine_git_object: 883a5126d897630cbdfcb23d69f9544fb88cef25
   tests/files.go:
     id: 359d10a9a396
     last_write_checksum: sha1:3a57aaa312f7138b23a5506dd3214bffe80bc1cb
@@ -1813,8 +1813,8 @@ trackedFiles:
     pristine_git_object: c8424fd3262b8c686a698dd14b9c4accd4024f43
   tests/mockserver/go.mod:
     id: 3c047699246d
-    last_write_checksum: sha1:c2b6f5a81e03003990983f5befd1da3f1a0396b6
-    pristine_git_object: c37e594c23c91d588454619de5ee5ce234edb70f
+    last_write_checksum: sha1:e60cd88b747c397c0032d108a4e099e8b365721e
+    pristine_git_object: 8b92440779e9983727f1affaa2135e2da12aba28
   tests/mockserver/go.sum:
     id: ae54f5148e56
     last_write_checksum: sha1:cdeb52f5f4c63d07ba612730867a95b0ddb14b2d
@@ -2577,8 +2577,8 @@ trackedFiles:
     pristine_git_object: b546877c6c1d875a604cf60aa378da72a68ac8ca
   tokens.go:
     id: f3cf3a3b3a1d
-    last_write_checksum: sha1:f7b9945942e4a33f7234d9ba9e77a5a3b9dce55b
-    pristine_git_object: 16b22cb914f513346252f76bfe9d0edc1a909626
+    last_write_checksum: sha1:4b979d4c68a4054341ce2c67b1b531334d0bd2a8
+    pristine_git_object: 3af8507751dafee8c62d34b3360080cb9498aa3a
   types/bigint.go:
     id: 6f911e1a03c3
     last_write_checksum: sha1:49b004005d0461fb04b846eca062b070b0360b31
@@ -3242,6 +3242,8 @@ examples:
           application/json: {"message": "Error has occurred", "code": "InternalError"}
         "503":
           application/json: {"message": "Error has occurred", "code": "ServiceUnavailable"}
+        "400":
+          application/json: {"message": "Error has occurred", "code": "InvalidRequest"}
   createTransaction:
     speakeasy-default-create-transaction:
       requestBody:
@@ -3489,19 +3491,7 @@ generatedTests:
   unpauseUriMonitoring: "2025-05-13T00:19:34Z"
 releaseNotes: |
   ## Go SDK Changes:
-  * `Swo.Entities.UpdateEntityById()`:  `response` **Changed** (Breaking ⚠️)
-  * `Swo.Metrics.ListMetricMeasurements()`:  `response.Groupings[].Measurements[].Value` **Changed** (Breaking ⚠️)
-  * `Swo.Metrics.ListMultiMetricMeasurements()`:  `response.Metrics[].Groupings[].Measurements[].Value` **Changed** (Breaking ⚠️)
-  * `Swo.Dbo.GetPublicKey()`:  `error` **Changed** (Breaking ⚠️)
-  * `Swo.Dbo.GetPluginConfig()`:  `error.status[403]` **Added**
-  * `Swo.Dbo.UpdateDatabase()`:  `error.status[403]` **Added**
-  * `Swo.Dbo.ObserveDatabase()`:  `error.status[403]` **Added**
-  * `Swo.Dbo.GetPlugins()`:  `error.status[403]` **Added**
-  * `Swo.Dbo.PluginOperation()`:  `error.status[403]` **Added**
-  * `Swo.Dbo.UnobserveDatabase()`:  `error.status[403]` **Added**
-  * `Swo.Dbo.DeleteDatabase()`:  `error.status[403]` **Added**
-  * `Swo.Dbo.SetConfig()`:  `error.status[403]` **Added**
-  * `Swo.Dbo.GetConfig()`:  `error.status[403]` **Added**
+  * `Swo.Tokens.CreateToken()`:  `error.status[400]` **Added**
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json

@@ -64,6 +64,7 @@ func main() {
 
 | Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
 | apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
 | apierrors.CommonForbiddenErrorResponse    | 403                                       | application/json                          |
 | apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |

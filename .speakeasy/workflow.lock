@@ -1,9 +1,9 @@
-speakeasyVersion: 1.763.1
+speakeasyVersion: 1.770.0
 sources:
     swov1:
         sourceNamespace: solar-winds-observability
-        sourceRevisionDigest: sha256:52c71f803e645a3757cb2996af4b9261fe6988d091f168809431217254e9f939
-        sourceBlobDigest: sha256:6547cce4388a7adf394cf6ded08ba13603f7e1c605d5142d66d1fe35ab4c487d
+        sourceRevisionDigest: sha256:0b9e2652f5fd47254991280314688ae944ec104e13e1b05d44495024098b8b68
+        sourceBlobDigest: sha256:cf0ab477fd10d8f68eabb495acd48ccd05c1c04ac29452c54f8b910cedbf1c36
         tags:
             - latest
             - 1.0.16
@@ -11,10 +11,10 @@ targets:
     swov1:
         source: swov1
         sourceNamespace: solar-winds-observability
-        sourceRevisionDigest: sha256:52c71f803e645a3757cb2996af4b9261fe6988d091f168809431217254e9f939
-        sourceBlobDigest: sha256:6547cce4388a7adf394cf6ded08ba13603f7e1c605d5142d66d1fe35ab4c487d
+        sourceRevisionDigest: sha256:0b9e2652f5fd47254991280314688ae944ec104e13e1b05d44495024098b8b68
+        sourceBlobDigest: sha256:cf0ab477fd10d8f68eabb495acd48ccd05c1c04ac29452c54f8b910cedbf1c36
         codeSamplesNamespace: solar-winds-observability-go-code-samples
-        codeSamplesRevisionDigest: sha256:1a7d695c40c5745573c041c0ab1081418671d85fd3fa5c69af0c97afe746a0c5
+        codeSamplesRevisionDigest: sha256:8a82e0f72d3b27c902d8767f3b23cb1fabfe8c7d118f92470872f7fad326255f
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
