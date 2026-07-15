@@ -12,7 +12,7 @@ jobs:
   e2e-tests:
     runs-on: ubuntu-latest
     container:
-      image: golang:1.23-alpine
+      image: golang:1.25-alpine
     env:
       SWO_STAGE_API_TOKEN: ${{ secrets.SWO_API_TOKEN }}
       PUBLIC_SWO_API_STAGE_URL: ${{ secrets.PUBLIC_SWO_API_STAGE_URL }}
