@@ -11,6 +11,8 @@ type ListEntitiesRequest struct {
 	Type *string `queryParam:"style=form,explode=false,name=type"`
 	// The entity name to search for. Searches are case-insensitive and match any value containing the provided string.
 	Name *string `queryParam:"style=form,explode=false,name=name"`
+	// An optional contextual search query string. If used along with request parameter name, entities must match both filters.
+	Search *string `queryParam:"style=form,explode=false,name=search"`
 	// Number of items in a response page. Default varies by API.
 	PageSize *int `queryParam:"style=form,explode=false,name=pageSize"`
 	// Token for the requested page.
@@ -29,6 +31,13 @@ func (l *ListEntitiesRequest) GetName() *string {
 		return nil
 	}
 	return l.Name
+}
+
+func (l *ListEntitiesRequest) GetSearch() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Search
 }
 
 func (l *ListEntitiesRequest) GetPageSize() *int {

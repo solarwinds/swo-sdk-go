@@ -29,6 +29,9 @@ type DboDatabaseConnectionOptions struct {
 	CloudRegion *string `default:"" json:"cloudRegion"`
 	// binding for packet sniffing for sniffer captureMethod (on-host), example: 0.0.0.0:6379,[::]:6379
 	Bindings *string `default:"" json:"bindings"`
+	// Additional database-type-specific connection options as key-value pairs.
+	// For Oracle: service_name (Oracle service name), sid (Oracle SID).
+	AdditionalOptions []CommonKeyValuePair `json:"additionalOptions,omitempty"`
 }
 
 func (d DboDatabaseConnectionOptions) MarshalJSON() ([]byte, error) {
@@ -103,4 +106,11 @@ func (o *DboDatabaseConnectionOptions) GetBindings() *string {
 		return nil
 	}
 	return o.Bindings
+}
+
+func (o *DboDatabaseConnectionOptions) GetAdditionalOptions() []CommonKeyValuePair {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalOptions
 }

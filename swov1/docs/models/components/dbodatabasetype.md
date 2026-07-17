@@ -13,10 +13,11 @@ value := components.DboDatabaseTypeMysql
 
 ## Values
 
-| Name                   | Value                  |
-| ---------------------- | ---------------------- |
-| `DboDatabaseTypeMysql` | mysql                  |
-| `DboDatabaseTypeMongo` | mongo                  |
-| `DboDatabaseTypeMssql` | mssql                  |
-| `DboDatabaseTypeRedis` | redis                  |
-| `DboDatabaseTypePgsql` | pgsql                  |
+| Name                    | Value                   |
+| ----------------------- | ----------------------- |
+| `DboDatabaseTypeMysql`  | mysql                   |
+| `DboDatabaseTypeMongo`  | mongo                   |
+| `DboDatabaseTypeMssql`  | mssql                   |
+| `DboDatabaseTypeRedis`  | redis                   |
+| `DboDatabaseTypePgsql`  | pgsql                   |
+| `DboDatabaseTypeOracle` | oracle                  |

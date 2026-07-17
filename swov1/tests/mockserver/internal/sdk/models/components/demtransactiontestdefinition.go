@@ -91,9 +91,10 @@ func (o *DemTransactionTestDefinitionOutageConfiguration) GetConsecutiveForDown(
 }
 
 type DemTransactionTestDefinition struct {
-	//   Configure locations of the synthetic availability test probes.
-	//   Acceptable values depend on the selected type and actual values of existing probes.
-	TestFrom DemTestFrom `json:"testFrom"`
+	//   Configure locations of the public probes to be used for transaction tests.
+	//   At least one of `testFrom` or `privateProbeIds` must be provided.
+	//   Both fields may be provided simultaneously.
+	TestFrom *DemTestFrom `json:"testFrom,omitempty"`
 	// Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, any available cloud platform may be chosen.
 	PlatformOptions optionalnullable.OptionalNullable[DemTransactionTestDefinitionPlatformOptions] `json:"platformOptions,omitempty"`
 	//   Default conditions when the entity is considered down.
@@ -109,9 +110,9 @@ type DemTransactionTestDefinition struct {
 	Commands []DemTransactionCommand `json:"commands"`
 }
 
-func (o *DemTransactionTestDefinition) GetTestFrom() DemTestFrom {
+func (o *DemTransactionTestDefinition) GetTestFrom() *DemTestFrom {
 	if o == nil {
-		return DemTestFrom{}
+		return nil
 	}
 	return o.TestFrom
 }

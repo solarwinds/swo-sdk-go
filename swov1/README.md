@@ -222,6 +222,13 @@ func main() {
 * [GetEntityByID](docs/sdks/entities/README.md#getentitybyid) - Get an entity by ID
 * [UpdateEntityByID](docs/sdks/entities/README.md#updateentitybyid) - Update an entity by ID
 
+### [Integrations](docs/sdks/integrations/README.md)
+
+* [ListIntegrations](docs/sdks/integrations/README.md#listintegrations) - List all integration instances for the organization
+* [ListIntegrationsByType](docs/sdks/integrations/README.md#listintegrationsbytype) - List integration instances by type
+* [GetIntegration](docs/sdks/integrations/README.md#getintegration) - Get an integration instance by ID
+* [DeleteIntegration](docs/sdks/integrations/README.md#deleteintegration) - Delete an integration instance
+
 ### [Logs](docs/sdks/logs/README.md)
 
 * [SearchLogs](docs/sdks/logs/README.md#searchlogs) - Search logs
