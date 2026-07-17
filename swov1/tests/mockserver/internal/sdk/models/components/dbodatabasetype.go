@@ -10,11 +10,12 @@ import (
 type DboDatabaseType string
 
 const (
-	DboDatabaseTypeMysql DboDatabaseType = "mysql"
-	DboDatabaseTypeMongo DboDatabaseType = "mongo"
-	DboDatabaseTypeMssql DboDatabaseType = "mssql"
-	DboDatabaseTypeRedis DboDatabaseType = "redis"
-	DboDatabaseTypePgsql DboDatabaseType = "pgsql"
+	DboDatabaseTypeMysql  DboDatabaseType = "mysql"
+	DboDatabaseTypeMongo  DboDatabaseType = "mongo"
+	DboDatabaseTypeMssql  DboDatabaseType = "mssql"
+	DboDatabaseTypeRedis  DboDatabaseType = "redis"
+	DboDatabaseTypePgsql  DboDatabaseType = "pgsql"
+	DboDatabaseTypeOracle DboDatabaseType = "oracle"
 )
 
 func (e DboDatabaseType) ToPointer() *DboDatabaseType {
@@ -35,6 +36,8 @@ func (e *DboDatabaseType) UnmarshalJSON(data []byte) error {
 	case "redis":
 		fallthrough
 	case "pgsql":
+		fallthrough
+	case "oracle":
 		*e = DboDatabaseType(v)
 		return nil
 	default:

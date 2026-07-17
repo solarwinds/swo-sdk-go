@@ -98,29 +98,40 @@
 <body><h2 id="go-sdk-changes">Go SDK Changes:</h2>
 
 <ul>
-<li><code>Swo.Entities.UpdateEntityById()</code>: <code>response</code> <strong>Changed</strong> (Breaking ⚠️)
+<li><code>Swo.Integrations.ListIntegrations()</code>: <strong>Added</strong></li>
+<li><code>Swo.Integrations.ListIntegrationsByType()</code>: <strong>Added</strong></li>
+<li><code>Swo.Integrations.GetIntegration()</code>: <strong>Added</strong></li>
+<li><code>Swo.Integrations.DeleteIntegration()</code>: <strong>Added</strong></li>
+<li><code>Swo.Dbo.ObserveDatabase()</code>: <code>request.Request</code> <strong>Changed</strong>
 
 <ul>
-<li><code>Status[200]</code> <strong>Added</strong> (Breaking ⚠️)</li>
-<li><code>Status[202]</code> <strong>Removed</strong> (Breaking ⚠️)</li>
+<li><code>DbConnOptions.AdditionalOptions</code> <strong>Added</strong></li>
+<li><code>DbType.Enum(oracle)</code> <strong>Added</strong></li>
 </ul></li>
-<li><code>Swo.Metrics.ListMetricMeasurements()</code>:  <code>response.Groupings[].Measurements[].Value</code> <strong>Changed</strong> (Breaking ⚠️)</li>
-<li><code>Swo.Metrics.ListMultiMetricMeasurements()</code>:  <code>response.Metrics[].Groupings[].Measurements[].Value</code> <strong>Changed</strong> (Breaking ⚠️)</li>
-<li><code>Swo.Dbo.GetPublicKey()</code>: <code>error</code> <strong>Changed</strong> (Breaking ⚠️)
+<li><code>Swo.Dbo.UpdateDatabase()</code>:
 
 <ul>
-<li><code>Status[400]</code> <strong>Removed</strong> (Breaking ⚠️)</li>
-<li><code>Status[404]</code> <strong>Removed</strong> (Breaking ⚠️)</li>
+<li><code>request.Request.Dbo.updateDatabaseRequest.DbConnOptions.AdditionalOptions</code> <strong>Added</strong></li>
 </ul></li>
-<li><code>Swo.Dbo.GetPluginConfig()</code>:  <code>error.status[403]</code> <strong>Added</strong></li>
-<li><code>Swo.Dbo.UpdateDatabase()</code>:  <code>error.status[403]</code> <strong>Added</strong></li>
-<li><code>Swo.Dbo.ObserveDatabase()</code>:  <code>error.status[403]</code> <strong>Added</strong></li>
-<li><code>Swo.Dbo.GetPlugins()</code>:  <code>error.status[403]</code> <strong>Added</strong></li>
-<li><code>Swo.Dbo.PluginOperation()</code>:  <code>error.status[403]</code> <strong>Added</strong></li>
-<li><code>Swo.Dbo.UnobserveDatabase()</code>:  <code>error.status[403]</code> <strong>Added</strong></li>
-<li><code>Swo.Dbo.DeleteDatabase()</code>:  <code>error.status[403]</code> <strong>Added</strong></li>
-<li><code>Swo.Dbo.SetConfig()</code>:  <code>error.status[403]</code> <strong>Added</strong></li>
-<li><code>Swo.Dbo.GetConfig()</code>:  <code>error.status[403]</code> <strong>Added</strong></li>
+<li><code>Swo.Dem.CreateTransaction()</code>:
+
+<ul>
+<li><code>request.Request.TestDefinition.TestFrom</code> <strong>Changed</strong></li>
+</ul></li>
+<li><code>Swo.Dem.GetTransaction()</code>:  <code>response.TestDefinition.TestFrom</code> <strong>Changed</strong></li>
+<li><code>Swo.Dem.UpdateTransaction()</code>:
+
+<ul>
+<li><code>request.Request.Dem.transaction.TestDefinition.TestFrom</code> <strong>Changed</strong></li>
+</ul></li>
+<li><code>Swo.Dem.PauseTransactionMonitoring()</code>:  <code>error.status[400]</code> <strong>Added</strong></li>
+<li><code>Swo.Dem.UnpauseTransactionMonitoring()</code>:  <code>error.status[400]</code> <strong>Added</strong></li>
+<li><code>Swo.Entities.ListEntities()</code>:
+
+<ul>
+<li><code>request.Request.Search</code> <strong>Added</strong></li>
+</ul></li>
+<li><code>Swo.Tokens.CreateToken()</code>:  <code>error.status[400]</code> <strong>Added</strong></li>
 </ul>
 </body>
 </html>

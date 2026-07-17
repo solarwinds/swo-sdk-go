@@ -2,7 +2,7 @@
 
 package swov1
 
-// Generated from OpenAPI doc version 1.0.16 and generator version 2.884.4
+// Generated from OpenAPI doc version 1.0.18 and generator version 2.918.3
 
 import (
 	"context"
@@ -57,6 +57,7 @@ type Swo struct {
 	Dbo           *Dbo
 	Dem           *Dem
 	Entities      *Entities
+	Integrations  *Integrations
 	Logs          *Logs
 	Metadata      *Metadata
 	Metrics       *Metrics
@@ -150,9 +151,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Swo {
 	sdk := &Swo{
-		SDKVersion: "0.15.2",
+		SDKVersion: "0.15.3",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.15.2 2.884.4 1.0.16 github.com/solarwinds/swo-sdk-go/swov1",
+			UserAgent:  "speakeasy-sdk/go 0.15.3 2.918.3 1.0.18 github.com/solarwinds/swo-sdk-go/swov1",
 			ServerList: ServerList,
 			ServerVariables: []map[string]string{
 				{
@@ -185,6 +186,7 @@ func New(opts ...SDKOption) *Swo {
 	sdk.Dbo = newDbo(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Dem = newDem(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Entities = newEntities(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Integrations = newIntegrations(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Logs = newLogs(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Metadata = newMetadata(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Metrics = newMetrics(sdk, sdk.sdkConfiguration, sdk.hooks)

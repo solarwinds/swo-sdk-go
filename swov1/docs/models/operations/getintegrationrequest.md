@@ -1,0 +1,10 @@
+# GetIntegrationRequest
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `Type`                                                                                | `string`                                                                              | :heavy_check_mark:                                                                    | Integration type, e.g. nginx or mysql.                                                |
+| `ClientID`                                                                            | `string`                                                                              | :heavy_check_mark:                                                                    | SWO Agent client ID.                                                                  |
+| `ID`                                                                                  | `string`                                                                              | :heavy_check_mark:                                                                    | Integration ID (stable public identifier sourced from the relevant pluginInstanceId). |

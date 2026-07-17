@@ -7,14 +7,14 @@ type DboObserveDatabaseRequest struct {
 	Name string `json:"name"`
 	// Swo Agent ID where the plugin(s) for observing database server should run
 	AgentID string `json:"agentId"`
-	// Database server type: mysql/mongo/mssql/pgsql/redis
+	// Database server type
 	DbType DboDatabaseType `json:"dbType"`
 	// Auth method to be used by the agent to connect to database server
 	AuthMethod DboDatabaseAuthMethod `json:"authMethod"`
-	// Method for capturing metrics from database server: sniffer/poll/profiler/slow-log, ignored for SqlServer and Redis
-	// Sniffer is supported for mysql, mongo, redis and pgsql.
-	// Poll is supported for mysql, mssql, pgsql.
-	// profiler and slow-log are supported for mongo.
+	// Method for capturing metrics from database server.
+	// Sniffer is supported for mysql, mongo, redis, and pgsql.
+	// Poll is supported for mysql, mssql, pgsql, and oracle.
+	// Profiler and slow-log are supported for mongo.
 	CaptureMethod *DboDatabaseMetricsCaptureMethod `json:"captureMethod,omitempty"`
 	// Optional advanced configuration options for plugins, e.g. disable-sampling set to true
 	ConfigOptions []CommonKeyValuePair `json:"configOptions,omitempty"`

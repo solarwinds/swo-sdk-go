@@ -1,6 +1,6 @@
 # AggregateBy
 
-Aggregation method used to group measurements.
+Aggregation method used to group measurements. Required field for all non-composite metrics. Ignored for composites defined in the schema, whose definitions are assumed to contain an aggregation function already. It is applicable, though, to custom metrics that are either pre-defined or user-defined.
 
 ## Example Usage
 

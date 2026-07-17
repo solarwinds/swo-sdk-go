@@ -8,7 +8,7 @@ import (
 	"github.com/solarwinds/swo-sdk-go/swov1/internal/utils"
 )
 
-// AggregateBy - Aggregation method used to group measurements.
+// AggregateBy - Aggregation method used to group measurements. Required field for all non-composite metrics. Ignored for composites defined in the schema, whose definitions are assumed to contain an aggregation function already. It is applicable, though, to custom metrics that are either pre-defined or user-defined.
 type AggregateBy string
 
 const (
@@ -155,7 +155,7 @@ type MetricsMeasurementsRequest struct {
 	Filter *string `json:"filter,omitempty"`
 	// List of attribute names to group measurements by.
 	GroupBy []string `json:"groupBy,omitempty"`
-	// Aggregation method used to group measurements.
+	// Aggregation method used to group measurements. Required field for all non-composite metrics. Ignored for composites defined in the schema, whose definitions are assumed to contain an aggregation function already. It is applicable, though, to custom metrics that are either pre-defined or user-defined.
 	AggregateBy *AggregateBy `json:"aggregateBy,omitempty"`
 	// Secondary grouping, allowing aggregation inside individual buckets. Has to be set together with `preGroupByMethod`.
 	PreGroupBy []string `json:"preGroupBy,omitempty"`

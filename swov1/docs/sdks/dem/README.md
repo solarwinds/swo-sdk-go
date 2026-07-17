@@ -230,7 +230,7 @@ func main() {
         Name: "Solarwinds",
         Description: swov1.Pointer("Opens Solarwinds homepage"),
         TestDefinition: components.DemTransactionTestDefinition{
-            TestFrom: components.DemTestFrom{
+            TestFrom: &components.DemTestFrom{
                 Type: components.TypeRegion,
                 Values: []string{
                     "NA",
@@ -385,7 +385,7 @@ func main() {
             Name: "Solarwinds",
             Description: swov1.Pointer("Opens Solarwinds homepage"),
             TestDefinition: components.DemTransactionTestDefinition{
-                TestFrom: components.DemTestFrom{
+                TestFrom: &components.DemTestFrom{
                     Type: components.TypeRegion,
                     Values: []string{
                         "NA",
@@ -560,6 +560,7 @@ func main() {
 
 | Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
 | apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
 | apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
 | apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
@@ -618,6 +619,7 @@ func main() {
 
 | Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
 | apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
 | apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
 | apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
