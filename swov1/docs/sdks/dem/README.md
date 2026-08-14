@@ -10,25 +10,25 @@
 * [CreateTransaction](#createtransaction) - Create transaction monitoring configuration
 * [GetTransaction](#gettransaction) - Get transaction monitoring configuration
 * [UpdateTransaction](#updatetransaction) - Update transaction monitoring configuration
-* [DeleteTransaction](#deletetransaction) - Delete transaction
-* [PauseTransactionMonitoring](#pausetransactionmonitoring) - Pause monitoring of the transaction
-* [UnpauseTransactionMonitoring](#unpausetransactionmonitoring) - Unpause monitoring of the transaction
+* [DeleteTransaction](#deletetransaction) - Delete transaction monitoring configuration
+* [PauseTransactionMonitoring](#pausetransactionmonitoring) - Pause transaction monitoring
+* [UnpauseTransactionMonitoring](#unpausetransactionmonitoring) - Unpause transaction monitoring
 * [CreateURI](#createuri) - Create URI monitoring configuration
 * [GetURI](#geturi) - Get URI monitoring configuration
 * [UpdateURI](#updateuri) - Update URI monitoring configuration
-* [DeleteURI](#deleteuri) - Delete URI
-* [GetURIOutageStatuses](#geturioutagestatuses) - Get outage statuses
-* [PauseURIMonitoring](#pauseurimonitoring) - Pause monitoring of the URI
-* [GetURITestResults](#geturitestresults) - Get test results
-* [UnpauseURIMonitoring](#unpauseurimonitoring) - Unpause monitoring of the URI
+* [DeleteURI](#deleteuri) - Delete URI monitoring configuration
+* [GetURIOutageStatuses](#geturioutagestatuses) - Get URI outage statuses
+* [PauseURIMonitoring](#pauseurimonitoring) - Pause URI monitoring
+* [GetURITestResults](#geturitestresults) - Get URI test results
+* [UnpauseURIMonitoring](#unpauseurimonitoring) - Unpause URI monitoring
 * [CreateWebsite](#createwebsite) - Create website monitoring configuration
 * [GetWebsite](#getwebsite) - Get website monitoring configuration
 * [UpdateWebsite](#updatewebsite) - Update website monitoring configuration
-* [DeleteWebsite](#deletewebsite) - Delete website
-* [GetWebsiteOutageStatuses](#getwebsiteoutagestatuses) - Get outage statuses
-* [PauseWebsiteMonitoring](#pausewebsitemonitoring) - Pause monitoring of a website
-* [GetWebsiteTestResults](#getwebsitetestresults) - Get test results
-* [UnpauseWebsiteMonitoring](#unpausewebsitemonitoring) - Unpause monitoring of a website
+* [DeleteWebsite](#deletewebsite) - Delete website monitoring configuration
+* [GetWebsiteOutageStatuses](#getwebsiteoutagestatuses) - Get website outage statuses
+* [PauseWebsiteMonitoring](#pausewebsitemonitoring) - Pause website monitoring
+* [GetWebsiteTestResults](#getwebsitetestresults) - Get website test results
+* [UnpauseWebsiteMonitoring](#unpausewebsitemonitoring) - Unpause website monitoring
 
 ## ListProbes
 
@@ -451,7 +451,7 @@ func main() {
 
 ## DeleteTransaction
 
-Delete transaction
+Delete transaction monitoring configuration
 
 ### Example Usage
 
@@ -509,7 +509,7 @@ func main() {
 
 ## PauseTransactionMonitoring
 
-Pause monitoring of the transaction
+Pause transaction monitoring
 
 ### Example Usage
 
@@ -560,7 +560,6 @@ func main() {
 
 | Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
 | apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
 | apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
 | apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
@@ -568,7 +567,7 @@ func main() {
 
 ## UnpauseTransactionMonitoring
 
-Unpause monitoring of the transaction
+Unpause transaction monitoring
 
 ### Example Usage
 
@@ -619,7 +618,6 @@ func main() {
 
 | Error Type                                | Status Code                               | Content Type                              |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| apierrors.CommonBadRequestErrorResponse   | 400                                       | application/json                          |
 | apierrors.CommonUnauthorizedErrorResponse | 401                                       | application/json                          |
 | apierrors.CommonNotFoundErrorResponse     | 404                                       | application/json                          |
 | apierrors.CommonInternalErrorResponse     | 500                                       | application/json                          |
@@ -892,7 +890,7 @@ func main() {
 
 ## DeleteURI
 
-Delete URI
+Delete URI monitoring configuration
 
 ### Example Usage
 
@@ -950,7 +948,7 @@ func main() {
 
 ## GetURIOutageStatuses
 
-Get outage statuses
+Get URI outage statuses
 
 ### Example Usage
 
@@ -1023,7 +1021,7 @@ func main() {
 
 ## PauseURIMonitoring
 
-Pause monitoring of the URI
+Pause URI monitoring
 
 ### Example Usage
 
@@ -1081,7 +1079,7 @@ func main() {
 
 ## GetURITestResults
 
-Get test results
+Get URI test results
 
 ### Example Usage
 
@@ -1154,7 +1152,7 @@ func main() {
 
 ## UnpauseURIMonitoring
 
-Unpause monitoring of the URI
+Unpause URI monitoring
 
 ### Example Usage
 
@@ -1493,7 +1491,7 @@ func main() {
 
 ## DeleteWebsite
 
-Delete website
+Delete website monitoring configuration
 
 ### Example Usage
 
@@ -1551,7 +1549,7 @@ func main() {
 
 ## GetWebsiteOutageStatuses
 
-Get outage statuses
+Get website outage statuses
 
 ### Example Usage
 
@@ -1624,7 +1622,7 @@ func main() {
 
 ## PauseWebsiteMonitoring
 
-Pause monitoring of a website
+Pause website monitoring
 
 ### Example Usage
 
@@ -1682,7 +1680,7 @@ func main() {
 
 ## GetWebsiteTestResults
 
-Get test results
+Get website test results
 
 ### Example Usage
 
@@ -1755,7 +1753,7 @@ func main() {
 
 ## UnpauseWebsiteMonitoring
 
-Unpause monitoring of a website
+Unpause website monitoring
 
 ### Example Usage
 

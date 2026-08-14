@@ -196,25 +196,25 @@ func main() {
 * [CreateTransaction](docs/sdks/dem/README.md#createtransaction) - Create transaction monitoring configuration
 * [GetTransaction](docs/sdks/dem/README.md#gettransaction) - Get transaction monitoring configuration
 * [UpdateTransaction](docs/sdks/dem/README.md#updatetransaction) - Update transaction monitoring configuration
-* [DeleteTransaction](docs/sdks/dem/README.md#deletetransaction) - Delete transaction
-* [PauseTransactionMonitoring](docs/sdks/dem/README.md#pausetransactionmonitoring) - Pause monitoring of the transaction
-* [UnpauseTransactionMonitoring](docs/sdks/dem/README.md#unpausetransactionmonitoring) - Unpause monitoring of the transaction
+* [DeleteTransaction](docs/sdks/dem/README.md#deletetransaction) - Delete transaction monitoring configuration
+* [PauseTransactionMonitoring](docs/sdks/dem/README.md#pausetransactionmonitoring) - Pause transaction monitoring
+* [UnpauseTransactionMonitoring](docs/sdks/dem/README.md#unpausetransactionmonitoring) - Unpause transaction monitoring
 * [CreateURI](docs/sdks/dem/README.md#createuri) - Create URI monitoring configuration
 * [GetURI](docs/sdks/dem/README.md#geturi) - Get URI monitoring configuration
 * [UpdateURI](docs/sdks/dem/README.md#updateuri) - Update URI monitoring configuration
-* [DeleteURI](docs/sdks/dem/README.md#deleteuri) - Delete URI
-* [GetURIOutageStatuses](docs/sdks/dem/README.md#geturioutagestatuses) - Get outage statuses
-* [PauseURIMonitoring](docs/sdks/dem/README.md#pauseurimonitoring) - Pause monitoring of the URI
-* [GetURITestResults](docs/sdks/dem/README.md#geturitestresults) - Get test results
-* [UnpauseURIMonitoring](docs/sdks/dem/README.md#unpauseurimonitoring) - Unpause monitoring of the URI
+* [DeleteURI](docs/sdks/dem/README.md#deleteuri) - Delete URI monitoring configuration
+* [GetURIOutageStatuses](docs/sdks/dem/README.md#geturioutagestatuses) - Get URI outage statuses
+* [PauseURIMonitoring](docs/sdks/dem/README.md#pauseurimonitoring) - Pause URI monitoring
+* [GetURITestResults](docs/sdks/dem/README.md#geturitestresults) - Get URI test results
+* [UnpauseURIMonitoring](docs/sdks/dem/README.md#unpauseurimonitoring) - Unpause URI monitoring
 * [CreateWebsite](docs/sdks/dem/README.md#createwebsite) - Create website monitoring configuration
 * [GetWebsite](docs/sdks/dem/README.md#getwebsite) - Get website monitoring configuration
 * [UpdateWebsite](docs/sdks/dem/README.md#updatewebsite) - Update website monitoring configuration
-* [DeleteWebsite](docs/sdks/dem/README.md#deletewebsite) - Delete website
-* [GetWebsiteOutageStatuses](docs/sdks/dem/README.md#getwebsiteoutagestatuses) - Get outage statuses
-* [PauseWebsiteMonitoring](docs/sdks/dem/README.md#pausewebsitemonitoring) - Pause monitoring of a website
-* [GetWebsiteTestResults](docs/sdks/dem/README.md#getwebsitetestresults) - Get test results
-* [UnpauseWebsiteMonitoring](docs/sdks/dem/README.md#unpausewebsitemonitoring) - Unpause monitoring of a website
+* [DeleteWebsite](docs/sdks/dem/README.md#deletewebsite) - Delete website monitoring configuration
+* [GetWebsiteOutageStatuses](docs/sdks/dem/README.md#getwebsiteoutagestatuses) - Get website outage statuses
+* [PauseWebsiteMonitoring](docs/sdks/dem/README.md#pausewebsitemonitoring) - Pause website monitoring
+* [GetWebsiteTestResults](docs/sdks/dem/README.md#getwebsitetestresults) - Get website test results
+* [UnpauseWebsiteMonitoring](docs/sdks/dem/README.md#unpausewebsitemonitoring) - Unpause website monitoring
 
 ### [Entities](docs/sdks/entities/README.md)
 

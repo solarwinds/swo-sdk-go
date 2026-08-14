@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 211f109d-fefa-4e6d-8a41-db1221672b8a
 management:
-  docChecksum: cb17a5e55fe7c47fb826c7a49c438110
-  docVersion: 1.0.18
-  speakeasyVersion: 1.790.2
-  generationVersion: 2.918.3
-  releaseVersion: 0.15.3
-  configChecksum: c2e364fa77fb6f4bc631b96bc93119db
+  docChecksum: edad11b219721a75f6e5a44b4f71bdd7
+  docVersion: 1.0.19
+  speakeasyVersion: 1.793.1
+  generationVersion: 2.928.0
+  releaseVersion: 0.15.4
+  configChecksum: d535d8f37afd57f05b33cb2041db6cb2
   repoURL: https://github.com/solarwinds/swo-sdk-go.git
   repoSubDirectory: swov1
   installationURL: https://github.com/solarwinds/swo-sdk-go
 persistentEdits:
-  generation_id: f3baaa71-4959-4652-a2f7-36c870d2ebc5
-  pristine_commit_hash: ca88e8000d9239328eb79de871816ae5da3695a6
-  pristine_tree_hash: 8f28e661811b090a9d1896cf0d4bb1adc4b2201f
+  generation_id: ad5e0fba-0b21-4663-981d-3ff918d37fed
+  pristine_commit_hash: e1fc01b16b639a6083ec2a8ced61129a5c5c7aec
+  pristine_tree_hash: 77eb1479b82339cc1d0a98e7689ea776388dbc7c
 features:
   go:
     additionalDependencies: 0.1.0
@@ -73,8 +73,8 @@ trackedFiles:
     pristine_git_object: 26da6e4d779c8d3be3be4fa5783318fad43facde
   dem.go:
     id: 5f8fde1f1646
-    last_write_checksum: sha1:14cb6e5057390299c9294e08be99dc538262a5a6
-    pristine_git_object: 4bb51c53004a9bba825392b3113ea0cc6822822e
+    last_write_checksum: sha1:e1bedaf0ce7dcd29a75b7f733ac6334e1dd09f00
+    pristine_git_object: a4f0a32338ddebbc1a22a75d12a0819bde7a0bde
   docs/models/apierrors/code.md:
     id: 76fed0fd267f
     last_write_checksum: sha1:fbfc1437504bb3757adb51d29429622e2cf7abff
@@ -401,16 +401,16 @@ trackedFiles:
     pristine_git_object: d63f436e1e0fd68c7136ede3385c24bcf8af48c0
   docs/models/components/demtransactioncommand.md:
     id: 4a2f06aa7174
-    last_write_checksum: sha1:aedd969f3773c80a16588de95260b39a5460a9e4
-    pristine_git_object: 68b09cd692672250074de25a23fc39e139800dae
+    last_write_checksum: sha1:6dcdffd46f77272eba101316869829042198d06e
+    pristine_git_object: 151d3dad41796b7613082d58bd05f40fbacb9870
   docs/models/components/demtransactioncommandname.md:
     id: f14bf298dc16
     last_write_checksum: sha1:8fee37cb21303532de49720cf560c9d6195085b6
     pristine_git_object: 12ff5a4d703a3c38cbb2e9f5f64ae3fdf5b3d6cc
   docs/models/components/demtransactiontestdefinition.md:
     id: e7a183aa5ebf
-    last_write_checksum: sha1:65c2a89f58041b4fc0923ec264c17bd4eac8dfc2
-    pristine_git_object: ce4952f48adcd488c33f14dcb0bd444eacfb0bf6
+    last_write_checksum: sha1:b530094d55a2744e6a1015e3120ee1bfab469156
+    pristine_git_object: 4bd79ba78f8b027cdb2edf615c9112c0b7e2d2ae
   docs/models/components/demtransactiontestdefinitionfailingtestlocations.md:
     id: 2feb0bd29aa5
     last_write_checksum: sha1:4ecec59a66b567a4f5a460038f2c545e6aab3f95
@@ -845,12 +845,12 @@ trackedFiles:
     pristine_git_object: 75278c717dd1b85bc45b39ab35cd442db022fa65
   docs/models/operations/getwebsiteoutagestatusesresponse.md:
     id: 924863cb56d4
-    last_write_checksum: sha1:f61e53d911c0946eb9550431a20d462a77e10a83
-    pristine_git_object: fb537acac52a45e499b6a15003c41360f437cd87
+    last_write_checksum: sha1:b0be056f130187efa876c385b593ff93f4c1dd2d
+    pristine_git_object: a0db3e39c6c567482686209bdb41b8feffced568
   docs/models/operations/getwebsiteoutagestatusesresponsebody.md:
     id: 3e65957ef29f
-    last_write_checksum: sha1:18b055d27386eaf1f7cb14fd9a7bdce8f89f934e
-    pristine_git_object: abdf26627be67d040aa86b939227e4fa56404006
+    last_write_checksum: sha1:a3508ba1f8adae5b77f944833334cca028d00fc3
+    pristine_git_object: 3f89693052c8049d89571e27a6963981bb8a137b
   docs/models/operations/getwebsiterequest.md:
     id: 9d2b440404c0
     last_write_checksum: sha1:ba01d20ce47ab88449f98b8a6cf11e1361107cc0
@@ -1177,8 +1177,8 @@ trackedFiles:
     pristine_git_object: a6935b826af5fadc0198873bdd15c76c8d507d0f
   docs/sdks/dem/README.md:
     id: 73655a1bee6e
-    last_write_checksum: sha1:d632077a40b94830626ab4568d576dcb050154dd
-    pristine_git_object: 0c6117294977cf3292f35472fe924eee2b0effaf
+    last_write_checksum: sha1:9c2e6497ba6ab8411ec4f9bbe141f9e16d1cb75e
+    pristine_git_object: affd7ef80f1916bd901f7e61951ca8cf62e1b1d2
   docs/sdks/entities/README.md:
     id: a140ac5181b9
     last_write_checksum: sha1:eb8c9e81e8152560e4c35a5148ee134c291828e7
@@ -1505,16 +1505,16 @@ trackedFiles:
     pristine_git_object: 6a9201ec00b15ff487a3dc9b5a104d173ec32867
   models/components/demtransactioncommand.go:
     id: 25ef51aaae09
-    last_write_checksum: sha1:8fa0c5fa254ad2f33c0796d00f4700e8d16448f5
-    pristine_git_object: 043fa0722266575966aeb0e523bcc39ece12a654
+    last_write_checksum: sha1:1c98b300937c2faa7dc4407c2edeccb66bfef2f2
+    pristine_git_object: 95e4221038805c716265adc8ee6ec1b79ede5ca6
   models/components/demtransactioncommandname.go:
     id: 576d797c3334
     last_write_checksum: sha1:d6c651a80f960dc413f67724275b1c86fd63c3ff
     pristine_git_object: 1feef53efdc63410f3146c2d45d6b91915e81139
   models/components/demtransactiontestdefinition.go:
     id: 0a4229f94fc9
-    last_write_checksum: sha1:c7486508d553615ce6236f5a639088a111c0fcbb
-    pristine_git_object: e83e2b49a2d3560296ae666aa1dd159ba4dcf292
+    last_write_checksum: sha1:85c1b1f61ec16949229da836ac1fac741a07dbcc
+    pristine_git_object: fcc2dbf9f19c0a13bf3b4b43a59d1621bdb2de89
   models/components/demuri.go:
     id: 9b38297e3616
     last_write_checksum: sha1:c97b2ecf409f62440da9f3cf2be56c093edf1ab8
@@ -1717,8 +1717,8 @@ trackedFiles:
     pristine_git_object: ff71d3f50e9bd9453b2e0c9dd5cdd12c86c30c22
   models/operations/getwebsiteoutagestatuses.go:
     id: 1244526fcbb8
-    last_write_checksum: sha1:01edc1e707383915ec256735bee1b9740358a1ed
-    pristine_git_object: 966bd2ada1d70e9b8a98e6713e2e40b43d467bc8
+    last_write_checksum: sha1:c99a0616236e79dec3b5646f8d65e63e50fb1d8f
+    pristine_git_object: dd4ac87309b6442ac5c8d3c4ef32a33124df9897
   models/operations/getwebsitetestresults.go:
     id: 840e8ec2094d
     last_write_checksum: sha1:1849df63f973df5689c869b6687425cc11ee3f34
@@ -1869,8 +1869,8 @@ trackedFiles:
     pristine_git_object: 767002c7898128324d8741ce9c534bd466492169
   swo.go:
     id: ae46c351d88b
-    last_write_checksum: sha1:0921b692254a69062263a41f6a9d1cc985b0c773
-    pristine_git_object: 875275b26f2bcb70ee7fccd24d3559e9d209a72b
+    last_write_checksum: sha1:2ae997061c6eb7a404d6b11069b72d81c5ad14c8
+    pristine_git_object: 4c5e99ecd83339f5e3cd2529e77878aa1ede8ef7
   tests/files.go:
     id: 359d10a9a396
     last_write_checksum: sha1:3a57aaa312f7138b23a5506dd3214bffe80bc1cb
@@ -2205,16 +2205,16 @@ trackedFiles:
     pristine_git_object: 83631867323eaf836b0c1452c14808fc633cd7e3
   tests/mockserver/internal/sdk/models/components/demtransactioncommand.go:
     id: acbac5d6057c
-    last_write_checksum: sha1:cf52c09466c14859f12da23ce71446c1e20c4d19
-    pristine_git_object: 239dc88fedbe480607113a69fdd10b5aeea669dc
+    last_write_checksum: sha1:54137e3d9fd3db7f7df210d6156765425d428b6c
+    pristine_git_object: f351e57636aef2cb07c34d45f104a1900819582d
   tests/mockserver/internal/sdk/models/components/demtransactioncommandname.go:
     id: c46e8d6c3233
     last_write_checksum: sha1:d6c651a80f960dc413f67724275b1c86fd63c3ff
     pristine_git_object: 1feef53efdc63410f3146c2d45d6b91915e81139
   tests/mockserver/internal/sdk/models/components/demtransactiontestdefinition.go:
     id: 4d8c042a9045
-    last_write_checksum: sha1:f3d79cb1e2496c111b5c810f4492af68b34e0a27
-    pristine_git_object: 3afb4c4d4a5499e468737e3489e81ad36f09d1cd
+    last_write_checksum: sha1:7eb3043b82ae69564afe3bdff6090a6e834f4e36
+    pristine_git_object: 0e8dd0ba843e41fb774370a0b3a0cd37bf7cd905
   tests/mockserver/internal/sdk/models/components/demuri.go:
     id: 2c9c661b9da2
     last_write_checksum: sha1:7cfc902f8404adf845ad7e5cd97af1fc0cd815b3
@@ -2421,8 +2421,8 @@ trackedFiles:
     pristine_git_object: 8484ac7dc6cd4f34404829ac445eb4fea7ea94da
   tests/mockserver/internal/sdk/models/operations/getwebsiteoutagestatuses.go:
     id: ec6df2b4e814
-    last_write_checksum: sha1:cb7c6b291a3bd5dbd105291a2de9f63efaf7e14f
-    pristine_git_object: 243ac7de36aff2d0d0943bbfb3eecd303cbc2163
+    last_write_checksum: sha1:81169d8eb8ab15e3c259a4411aca80762d1f7611
+    pristine_git_object: 47efce49c32f2ccf47f1108e1220ef396bb1c910
   tests/mockserver/internal/sdk/models/operations/getwebsitetestresults.go:
     id: 43de53362c68
     last_write_checksum: sha1:54be28d7143226b331925b21dcf1cc8fa0c577e8
@@ -3658,7 +3658,7 @@ generatedTests:
   deleteUri: "2025-05-13T00:19:34Z"
   pauseUriMonitoring: "2025-05-13T00:19:34Z"
   unpauseUriMonitoring: "2025-05-13T00:19:34Z"
-releaseNotes: "## Go SDK Changes:\n* `Swo.Integrations.ListIntegrations()`: **Added**\n* `Swo.Integrations.ListIntegrationsByType()`: **Added**\n* `Swo.Integrations.GetIntegration()`: **Added**\n* `Swo.Integrations.DeleteIntegration()`: **Added**\n* `Swo.Dbo.ObserveDatabase()`:  `request.Request` **Changed**\n* `Swo.Dbo.UpdateDatabase()`: \n  *  `request.Request.Dbo.updateDatabaseRequest.DbConnOptions.AdditionalOptions` **Added**\n* `Swo.Dem.CreateTransaction()`: \n  *  `request.Request.TestDefinition.TestFrom` **Changed**\n* `Swo.Dem.GetTransaction()`:  `response.TestDefinition.TestFrom` **Changed**\n* `Swo.Dem.UpdateTransaction()`: \n  *  `request.Request.Dem.transaction.TestDefinition.TestFrom` **Changed**\n* `Swo.Dem.PauseTransactionMonitoring()`:  `error.status[400]` **Added**\n* `Swo.Dem.UnpauseTransactionMonitoring()`:  `error.status[400]` **Added**\n* `Swo.Entities.ListEntities()`: \n  *  `request.Request.Search` **Added**\n* `Swo.Tokens.CreateToken()`:  `error.status[400]` **Added**\n"
+releaseNotes: "## Go SDK Changes:\n* `Swo.Dem.PauseTransactionMonitoring()`:  `error.status[400]` **Removed** (Breaking ⚠️)\n* `Swo.Dem.UnpauseTransactionMonitoring()`:  `error.status[400]` **Removed** (Breaking ⚠️)\n* `Swo.Dem.CreateTransaction()`: \n  *  `request.Request.TestDefinition` **Changed**\n* `Swo.Dem.GetTransaction()`:  `response.TestDefinition` **Changed**\n* `Swo.Dem.UpdateTransaction()`: \n  *  `request.Request.Dem.transaction.TestDefinition` **Changed**\n"
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
