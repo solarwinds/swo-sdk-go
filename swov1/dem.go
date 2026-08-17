@@ -1657,7 +1657,7 @@ func (s *Dem) UpdateTransaction(ctx context.Context, request operations.UpdateTr
 
 }
 
-// DeleteTransaction - Delete transaction
+// DeleteTransaction - Delete transaction monitoring configuration
 func (s *Dem) DeleteTransaction(ctx context.Context, request operations.DeleteTransactionRequest, opts ...operations.Option) (*operations.DeleteTransactionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -1912,7 +1912,7 @@ func (s *Dem) DeleteTransaction(ctx context.Context, request operations.DeleteTr
 
 }
 
-// PauseTransactionMonitoring - Pause monitoring of the transaction
+// PauseTransactionMonitoring - Pause transaction monitoring
 func (s *Dem) PauseTransactionMonitoring(ctx context.Context, request operations.PauseTransactionMonitoringRequest, opts ...operations.Option) (*operations.PauseTransactionMonitoringResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -2099,27 +2099,6 @@ func (s *Dem) PauseTransactionMonitoring(ctx context.Context, request operations
 			}
 			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 400:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.CommonBadRequestErrorResponse
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
@@ -2207,7 +2186,7 @@ func (s *Dem) PauseTransactionMonitoring(ctx context.Context, request operations
 
 }
 
-// UnpauseTransactionMonitoring - Unpause monitoring of the transaction
+// UnpauseTransactionMonitoring - Unpause transaction monitoring
 func (s *Dem) UnpauseTransactionMonitoring(ctx context.Context, request operations.UnpauseTransactionMonitoringRequest, opts ...operations.Option) (*operations.UnpauseTransactionMonitoringResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -2387,27 +2366,6 @@ func (s *Dem) UnpauseTransactionMonitoring(ctx context.Context, request operatio
 			}
 
 			res.CommonEntityID = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode == 400:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.CommonBadRequestErrorResponse
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			return nil, &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -3359,7 +3317,7 @@ func (s *Dem) UpdateURI(ctx context.Context, request operations.UpdateURIRequest
 
 }
 
-// DeleteURI - Delete URI
+// DeleteURI - Delete URI monitoring configuration
 func (s *Dem) DeleteURI(ctx context.Context, request operations.DeleteURIRequest, opts ...operations.Option) (*operations.DeleteURIResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -3614,7 +3572,7 @@ func (s *Dem) DeleteURI(ctx context.Context, request operations.DeleteURIRequest
 
 }
 
-// GetURIOutageStatuses - Get outage statuses
+// GetURIOutageStatuses - Get URI outage statuses
 func (s *Dem) GetURIOutageStatuses(ctx context.Context, request operations.GetURIOutageStatusesRequest, opts ...operations.Option) (*operations.GetURIOutageStatusesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -3933,7 +3891,7 @@ func (s *Dem) GetURIOutageStatuses(ctx context.Context, request operations.GetUR
 
 }
 
-// PauseURIMonitoring - Pause monitoring of the URI
+// PauseURIMonitoring - Pause URI monitoring
 func (s *Dem) PauseURIMonitoring(ctx context.Context, request operations.PauseURIMonitoringRequest, opts ...operations.Option) (*operations.PauseURIMonitoringResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -4207,7 +4165,7 @@ func (s *Dem) PauseURIMonitoring(ctx context.Context, request operations.PauseUR
 
 }
 
-// GetURITestResults - Get test results
+// GetURITestResults - Get URI test results
 func (s *Dem) GetURITestResults(ctx context.Context, request operations.GetURITestResultsRequest, opts ...operations.Option) (*operations.GetURITestResultsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -4526,7 +4484,7 @@ func (s *Dem) GetURITestResults(ctx context.Context, request operations.GetURITe
 
 }
 
-// UnpauseURIMonitoring - Unpause monitoring of the URI
+// UnpauseURIMonitoring - Unpause URI monitoring
 func (s *Dem) UnpauseURIMonitoring(ctx context.Context, request operations.UnpauseURIMonitoringRequest, opts ...operations.Option) (*operations.UnpauseURIMonitoringResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -5657,7 +5615,7 @@ func (s *Dem) UpdateWebsite(ctx context.Context, request operations.UpdateWebsit
 
 }
 
-// DeleteWebsite - Delete website
+// DeleteWebsite - Delete website monitoring configuration
 func (s *Dem) DeleteWebsite(ctx context.Context, request operations.DeleteWebsiteRequest, opts ...operations.Option) (*operations.DeleteWebsiteResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -5912,7 +5870,7 @@ func (s *Dem) DeleteWebsite(ctx context.Context, request operations.DeleteWebsit
 
 }
 
-// GetWebsiteOutageStatuses - Get outage statuses
+// GetWebsiteOutageStatuses - Get website outage statuses
 func (s *Dem) GetWebsiteOutageStatuses(ctx context.Context, request operations.GetWebsiteOutageStatusesRequest, opts ...operations.Option) (*operations.GetWebsiteOutageStatusesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -6231,7 +6189,7 @@ func (s *Dem) GetWebsiteOutageStatuses(ctx context.Context, request operations.G
 
 }
 
-// PauseWebsiteMonitoring - Pause monitoring of a website
+// PauseWebsiteMonitoring - Pause website monitoring
 func (s *Dem) PauseWebsiteMonitoring(ctx context.Context, request operations.PauseWebsiteMonitoringRequest, opts ...operations.Option) (*operations.PauseWebsiteMonitoringResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -6505,7 +6463,7 @@ func (s *Dem) PauseWebsiteMonitoring(ctx context.Context, request operations.Pau
 
 }
 
-// GetWebsiteTestResults - Get test results
+// GetWebsiteTestResults - Get website test results
 func (s *Dem) GetWebsiteTestResults(ctx context.Context, request operations.GetWebsiteTestResultsRequest, opts ...operations.Option) (*operations.GetWebsiteTestResultsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -6824,7 +6782,7 @@ func (s *Dem) GetWebsiteTestResults(ctx context.Context, request operations.GetW
 
 }
 
-// UnpauseWebsiteMonitoring - Unpause monitoring of a website
+// UnpauseWebsiteMonitoring - Unpause website monitoring
 func (s *Dem) UnpauseWebsiteMonitoring(ctx context.Context, request operations.UnpauseWebsiteMonitoringRequest, opts ...operations.Option) (*operations.UnpauseWebsiteMonitoringResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

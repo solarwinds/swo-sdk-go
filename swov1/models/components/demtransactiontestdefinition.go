@@ -107,6 +107,10 @@ type DemTransactionTestDefinition struct {
 	UserAgent *string `json:"userAgent,omitempty"`
 	// List of commands to perform in the transaction.
 	Commands []DemTransactionCommand `json:"commands"`
+	// Controls collection of screenshots, HTML dumps, and console logs for the transaction. If omitted or set to null, advanced data will be collected.
+	AdvancedDataDisabled *bool `json:"advancedDataDisabled,omitempty"`
+	// Transaction timeout in seconds. If omitted or set to null, the default timeout will be used.
+	TimeoutInSeconds *int `json:"timeoutInSeconds,omitempty"`
 }
 
 func (d *DemTransactionTestDefinition) GetTestFrom() *DemTestFrom {
@@ -156,4 +160,18 @@ func (d *DemTransactionTestDefinition) GetCommands() []DemTransactionCommand {
 		return []DemTransactionCommand{}
 	}
 	return d.Commands
+}
+
+func (d *DemTransactionTestDefinition) GetAdvancedDataDisabled() *bool {
+	if d == nil {
+		return nil
+	}
+	return d.AdvancedDataDisabled
+}
+
+func (d *DemTransactionTestDefinition) GetTimeoutInSeconds() *int {
+	if d == nil {
+		return nil
+	}
+	return d.TimeoutInSeconds
 }

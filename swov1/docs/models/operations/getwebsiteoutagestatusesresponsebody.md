@@ -1,6 +1,6 @@
 # GetWebsiteOutageStatusesResponseBody
 
-An array of outage statues with pagination info
+An array of outage statuses with pagination info
 
 
 ## Fields

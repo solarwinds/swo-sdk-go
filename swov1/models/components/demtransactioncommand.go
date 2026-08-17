@@ -11,6 +11,8 @@ type DemTransactionCommand struct {
 	DisplayText *string `json:"displayText,omitempty"`
 	// Value of the command, e.g. a text to type into a text field. Most commands do not require value.
 	Value *string `json:"value,omitempty"`
+	// Controls whether the transaction continues when this step fails. If omitted or set to null, the step will be treated as required.
+	SkipOnFailure *bool `json:"skipOnFailure,omitempty"`
 }
 
 func (d *DemTransactionCommand) GetCommand() DemTransactionCommandName {
@@ -39,4 +41,11 @@ func (d *DemTransactionCommand) GetValue() *string {
 		return nil
 	}
 	return d.Value
+}
+
+func (d *DemTransactionCommand) GetSkipOnFailure() *bool {
+	if d == nil {
+		return nil
+	}
+	return d.SkipOnFailure
 }

@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type DemTransactionCommand struct {
 	// Name of the transaction command.
 	Command DemTransactionCommandName `json:"command"`
@@ -11,6 +15,8 @@ type DemTransactionCommand struct {
 	DisplayText *string `json:"displayText,omitempty"`
 	// Value of the command, e.g. a text to type into a text field. Most commands do not require value.
 	Value *string `json:"value,omitempty"`
+	// Controls whether the transaction continues when this step fails. If omitted or set to null, the step will be treated as required.
+	SkipOnFailure optionalnullable.OptionalNullable[bool] `json:"skipOnFailure,omitempty"`
 }
 
 func (o *DemTransactionCommand) GetCommand() DemTransactionCommandName {
@@ -39,4 +45,11 @@ func (o *DemTransactionCommand) GetValue() *string {
 		return nil
 	}
 	return o.Value
+}
+
+func (o *DemTransactionCommand) GetSkipOnFailure() optionalnullable.OptionalNullable[bool] {
+	if o == nil {
+		return nil
+	}
+	return o.SkipOnFailure
 }

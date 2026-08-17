@@ -76,7 +76,7 @@ func (g *GetWebsiteOutageStatusesRequest) GetSkipToken() *string {
 	return g.SkipToken
 }
 
-// GetWebsiteOutageStatusesResponseBody - An array of outage statues with pagination info
+// GetWebsiteOutageStatusesResponseBody - An array of outage statuses with pagination info
 type GetWebsiteOutageStatusesResponseBody struct {
 	// Website outage statuses
 	Statuses []components.DemOutageStatus `json:"statuses"`
@@ -100,7 +100,7 @@ func (g *GetWebsiteOutageStatusesResponseBody) GetPageInfo() components.CommonPa
 
 type GetWebsiteOutageStatusesResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// An array of outage statues with pagination info
+	// An array of outage statuses with pagination info
 	Object *GetWebsiteOutageStatusesResponseBody
 
 	Next func() (*GetWebsiteOutageStatusesResponse, error)
