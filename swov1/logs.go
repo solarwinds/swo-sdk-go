@@ -77,6 +77,7 @@ func (s *Logs) SearchLogs(ctx context.Context, request operations.SearchLogsRequ
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -237,7 +238,7 @@ func (s *Logs) SearchLogs(ctx context.Context, request operations.SearchLogsRequ
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.SearchLogs(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -275,7 +276,7 @@ func (s *Logs) SearchLogs(ctx context.Context, request operations.SearchLogsRequ
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -296,7 +297,7 @@ func (s *Logs) SearchLogs(ctx context.Context, request operations.SearchLogsRequ
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -317,7 +318,7 @@ func (s *Logs) SearchLogs(ctx context.Context, request operations.SearchLogsRequ
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -397,6 +398,7 @@ func (s *Logs) ListLogArchives(ctx context.Context, request operations.ListLogAr
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -557,7 +559,7 @@ func (s *Logs) ListLogArchives(ctx context.Context, request operations.ListLogAr
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.ListLogArchives(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -595,7 +597,7 @@ func (s *Logs) ListLogArchives(ctx context.Context, request operations.ListLogAr
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -616,7 +618,7 @@ func (s *Logs) ListLogArchives(ctx context.Context, request operations.ListLogAr
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -637,7 +639,7 @@ func (s *Logs) ListLogArchives(ctx context.Context, request operations.ListLogAr
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out

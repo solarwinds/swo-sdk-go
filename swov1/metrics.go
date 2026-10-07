@@ -77,6 +77,7 @@ func (s *Metrics) ListMetrics(ctx context.Context, request operations.ListMetric
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -237,7 +238,7 @@ func (s *Metrics) ListMetrics(ctx context.Context, request operations.ListMetric
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.ListMetrics(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -275,7 +276,7 @@ func (s *Metrics) ListMetrics(ctx context.Context, request operations.ListMetric
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -296,7 +297,7 @@ func (s *Metrics) ListMetrics(ctx context.Context, request operations.ListMetric
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -317,7 +318,7 @@ func (s *Metrics) ListMetrics(ctx context.Context, request operations.ListMetric
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -557,7 +558,7 @@ func (s *Metrics) CreateCompositeMetric(ctx context.Context, request components.
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -578,7 +579,7 @@ func (s *Metrics) CreateCompositeMetric(ctx context.Context, request components.
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -599,7 +600,7 @@ func (s *Metrics) CreateCompositeMetric(ctx context.Context, request components.
 
 			var out apierrors.CommonConflictErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -620,7 +621,7 @@ func (s *Metrics) CreateCompositeMetric(ctx context.Context, request components.
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -726,6 +727,7 @@ func (s *Metrics) ListMultiMetricMeasurements(ctx context.Context, request opera
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -889,7 +891,7 @@ func (s *Metrics) ListMultiMetricMeasurements(ctx context.Context, request opera
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.ListMultiMetricMeasurements(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -927,7 +929,7 @@ func (s *Metrics) ListMultiMetricMeasurements(ctx context.Context, request opera
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -948,7 +950,7 @@ func (s *Metrics) ListMultiMetricMeasurements(ctx context.Context, request opera
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -969,7 +971,7 @@ func (s *Metrics) ListMultiMetricMeasurements(ctx context.Context, request opera
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1049,6 +1051,7 @@ func (s *Metrics) GetMetricByName(ctx context.Context, request operations.GetMet
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -1205,7 +1208,7 @@ func (s *Metrics) GetMetricByName(ctx context.Context, request operations.GetMet
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.GetMetricByName(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -1243,7 +1246,7 @@ func (s *Metrics) GetMetricByName(ctx context.Context, request operations.GetMet
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1264,7 +1267,7 @@ func (s *Metrics) GetMetricByName(ctx context.Context, request operations.GetMet
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1285,7 +1288,7 @@ func (s *Metrics) GetMetricByName(ctx context.Context, request operations.GetMet
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1525,7 +1528,7 @@ func (s *Metrics) UpdateCompositeMetric(ctx context.Context, request operations.
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1546,7 +1549,7 @@ func (s *Metrics) UpdateCompositeMetric(ctx context.Context, request operations.
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1567,7 +1570,7 @@ func (s *Metrics) UpdateCompositeMetric(ctx context.Context, request operations.
 
 			var out apierrors.MetricsMetricForbiddenErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1588,7 +1591,7 @@ func (s *Metrics) UpdateCompositeMetric(ctx context.Context, request operations.
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1609,7 +1612,7 @@ func (s *Metrics) UpdateCompositeMetric(ctx context.Context, request operations.
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1823,7 +1826,7 @@ func (s *Metrics) DeleteCompositeMetric(ctx context.Context, request operations.
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1844,7 +1847,7 @@ func (s *Metrics) DeleteCompositeMetric(ctx context.Context, request operations.
 
 			var out apierrors.MetricsMetricForbiddenErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1865,7 +1868,7 @@ func (s *Metrics) DeleteCompositeMetric(ctx context.Context, request operations.
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1886,7 +1889,7 @@ func (s *Metrics) DeleteCompositeMetric(ctx context.Context, request operations.
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1966,6 +1969,7 @@ func (s *Metrics) ListMetricAttributes(ctx context.Context, request operations.L
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -2126,7 +2130,7 @@ func (s *Metrics) ListMetricAttributes(ctx context.Context, request operations.L
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.ListMetricAttributes(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -2164,7 +2168,7 @@ func (s *Metrics) ListMetricAttributes(ctx context.Context, request operations.L
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2185,7 +2189,7 @@ func (s *Metrics) ListMetricAttributes(ctx context.Context, request operations.L
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2206,7 +2210,7 @@ func (s *Metrics) ListMetricAttributes(ctx context.Context, request operations.L
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2227,7 +2231,7 @@ func (s *Metrics) ListMetricAttributes(ctx context.Context, request operations.L
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2307,6 +2311,7 @@ func (s *Metrics) ListMetricAttributeValues(ctx context.Context, request operati
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -2467,7 +2472,7 @@ func (s *Metrics) ListMetricAttributeValues(ctx context.Context, request operati
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.ListMetricAttributeValues(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -2505,7 +2510,7 @@ func (s *Metrics) ListMetricAttributeValues(ctx context.Context, request operati
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2526,7 +2531,7 @@ func (s *Metrics) ListMetricAttributeValues(ctx context.Context, request operati
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2547,7 +2552,7 @@ func (s *Metrics) ListMetricAttributeValues(ctx context.Context, request operati
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2568,7 +2573,7 @@ func (s *Metrics) ListMetricAttributeValues(ctx context.Context, request operati
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2647,6 +2652,7 @@ func (s *Metrics) ListMetricMeasurements(ctx context.Context, request operations
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -2807,7 +2813,7 @@ func (s *Metrics) ListMetricMeasurements(ctx context.Context, request operations
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.ListMetricMeasurements(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -2845,7 +2851,7 @@ func (s *Metrics) ListMetricMeasurements(ctx context.Context, request operations
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2866,7 +2872,7 @@ func (s *Metrics) ListMetricMeasurements(ctx context.Context, request operations
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2887,7 +2893,7 @@ func (s *Metrics) ListMetricMeasurements(ctx context.Context, request operations
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2908,7 +2914,7 @@ func (s *Metrics) ListMetricMeasurements(ctx context.Context, request operations
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
