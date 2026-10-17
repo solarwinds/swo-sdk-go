@@ -92,7 +92,7 @@ func (o *DemTransactionTestDefinitionOutageConfiguration) GetConsecutiveForDown(
 
 type DemTransactionTestDefinition struct {
 	//   Configure locations of the public probes to be used for transaction tests.
-	//   At least one of `testFrom` or `privateProbeIds` must be provided.
+	//   At least one of `testFrom` or `testFromPrivateProbeIds` must be provided.
 	//   Both fields may be provided simultaneously.
 	TestFrom *DemTestFrom `json:"testFrom,omitempty"`
 	// Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, any available cloud platform may be chosen.
