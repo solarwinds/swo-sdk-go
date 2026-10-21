@@ -229,7 +229,7 @@ func (s *Dem) ListProbes(ctx context.Context, opts ...operations.Option) (*opera
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -250,7 +250,7 @@ func (s *Dem) ListProbes(ctx context.Context, opts ...operations.Option) (*opera
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -482,7 +482,7 @@ func (s *Dem) GetDemSettings(ctx context.Context, opts ...operations.Option) (*o
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -503,7 +503,7 @@ func (s *Dem) GetDemSettings(ctx context.Context, opts ...operations.Option) (*o
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -723,7 +723,7 @@ func (s *Dem) SetDemSettings(ctx context.Context, request components.DemOrganiza
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -744,7 +744,7 @@ func (s *Dem) SetDemSettings(ctx context.Context, request components.DemOrganiza
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -765,7 +765,7 @@ func (s *Dem) SetDemSettings(ctx context.Context, request components.DemOrganiza
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1004,7 +1004,7 @@ func (s *Dem) CreateTransaction(ctx context.Context, request components.DemTrans
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1025,7 +1025,7 @@ func (s *Dem) CreateTransaction(ctx context.Context, request components.DemTrans
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1046,7 +1046,7 @@ func (s *Dem) CreateTransaction(ctx context.Context, request components.DemTrans
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1278,7 +1278,7 @@ func (s *Dem) GetTransaction(ctx context.Context, request operations.GetTransact
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1299,7 +1299,7 @@ func (s *Dem) GetTransaction(ctx context.Context, request operations.GetTransact
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1320,7 +1320,7 @@ func (s *Dem) GetTransaction(ctx context.Context, request operations.GetTransact
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1559,7 +1559,7 @@ func (s *Dem) UpdateTransaction(ctx context.Context, request operations.UpdateTr
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1580,7 +1580,7 @@ func (s *Dem) UpdateTransaction(ctx context.Context, request operations.UpdateTr
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1601,7 +1601,7 @@ func (s *Dem) UpdateTransaction(ctx context.Context, request operations.UpdateTr
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1622,7 +1622,7 @@ func (s *Dem) UpdateTransaction(ctx context.Context, request operations.UpdateTr
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1835,7 +1835,7 @@ func (s *Dem) DeleteTransaction(ctx context.Context, request operations.DeleteTr
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1856,7 +1856,7 @@ func (s *Dem) DeleteTransaction(ctx context.Context, request operations.DeleteTr
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1877,7 +1877,7 @@ func (s *Dem) DeleteTransaction(ctx context.Context, request operations.DeleteTr
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2109,7 +2109,7 @@ func (s *Dem) PauseTransactionMonitoring(ctx context.Context, request operations
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2130,7 +2130,7 @@ func (s *Dem) PauseTransactionMonitoring(ctx context.Context, request operations
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2151,7 +2151,7 @@ func (s *Dem) PauseTransactionMonitoring(ctx context.Context, request operations
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2383,7 +2383,7 @@ func (s *Dem) UnpauseTransactionMonitoring(ctx context.Context, request operatio
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2404,7 +2404,7 @@ func (s *Dem) UnpauseTransactionMonitoring(ctx context.Context, request operatio
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2425,7 +2425,7 @@ func (s *Dem) UnpauseTransactionMonitoring(ctx context.Context, request operatio
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2664,7 +2664,7 @@ func (s *Dem) CreateURI(ctx context.Context, request components.DemURI, opts ...
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2685,7 +2685,7 @@ func (s *Dem) CreateURI(ctx context.Context, request components.DemURI, opts ...
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2706,7 +2706,7 @@ func (s *Dem) CreateURI(ctx context.Context, request components.DemURI, opts ...
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2938,7 +2938,7 @@ func (s *Dem) GetURI(ctx context.Context, request operations.GetURIRequest, opts
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2959,7 +2959,7 @@ func (s *Dem) GetURI(ctx context.Context, request operations.GetURIRequest, opts
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -2980,7 +2980,7 @@ func (s *Dem) GetURI(ctx context.Context, request operations.GetURIRequest, opts
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -3219,7 +3219,7 @@ func (s *Dem) UpdateURI(ctx context.Context, request operations.UpdateURIRequest
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -3240,7 +3240,7 @@ func (s *Dem) UpdateURI(ctx context.Context, request operations.UpdateURIRequest
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -3261,7 +3261,7 @@ func (s *Dem) UpdateURI(ctx context.Context, request operations.UpdateURIRequest
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -3282,7 +3282,7 @@ func (s *Dem) UpdateURI(ctx context.Context, request operations.UpdateURIRequest
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -3495,7 +3495,7 @@ func (s *Dem) DeleteURI(ctx context.Context, request operations.DeleteURIRequest
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -3516,7 +3516,7 @@ func (s *Dem) DeleteURI(ctx context.Context, request operations.DeleteURIRequest
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -3537,7 +3537,7 @@ func (s *Dem) DeleteURI(ctx context.Context, request operations.DeleteURIRequest
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -3616,6 +3616,7 @@ func (s *Dem) GetURIOutageStatuses(ctx context.Context, request operations.GetUR
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -3776,7 +3777,7 @@ func (s *Dem) GetURIOutageStatuses(ctx context.Context, request operations.GetUR
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.GetURIOutageStatuses(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -3814,7 +3815,7 @@ func (s *Dem) GetURIOutageStatuses(ctx context.Context, request operations.GetUR
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -3835,7 +3836,7 @@ func (s *Dem) GetURIOutageStatuses(ctx context.Context, request operations.GetUR
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -3856,7 +3857,7 @@ func (s *Dem) GetURIOutageStatuses(ctx context.Context, request operations.GetUR
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -4088,7 +4089,7 @@ func (s *Dem) PauseURIMonitoring(ctx context.Context, request operations.PauseUR
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -4109,7 +4110,7 @@ func (s *Dem) PauseURIMonitoring(ctx context.Context, request operations.PauseUR
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -4130,7 +4131,7 @@ func (s *Dem) PauseURIMonitoring(ctx context.Context, request operations.PauseUR
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -4209,6 +4210,7 @@ func (s *Dem) GetURITestResults(ctx context.Context, request operations.GetURITe
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -4369,7 +4371,7 @@ func (s *Dem) GetURITestResults(ctx context.Context, request operations.GetURITe
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.GetURITestResults(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -4407,7 +4409,7 @@ func (s *Dem) GetURITestResults(ctx context.Context, request operations.GetURITe
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -4428,7 +4430,7 @@ func (s *Dem) GetURITestResults(ctx context.Context, request operations.GetURITe
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -4449,7 +4451,7 @@ func (s *Dem) GetURITestResults(ctx context.Context, request operations.GetURITe
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -4681,7 +4683,7 @@ func (s *Dem) UnpauseURIMonitoring(ctx context.Context, request operations.Unpau
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -4702,7 +4704,7 @@ func (s *Dem) UnpauseURIMonitoring(ctx context.Context, request operations.Unpau
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -4723,7 +4725,7 @@ func (s *Dem) UnpauseURIMonitoring(ctx context.Context, request operations.Unpau
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -4962,7 +4964,7 @@ func (s *Dem) CreateWebsite(ctx context.Context, request components.DemWebsite, 
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -4983,7 +4985,7 @@ func (s *Dem) CreateWebsite(ctx context.Context, request components.DemWebsite, 
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -5004,7 +5006,7 @@ func (s *Dem) CreateWebsite(ctx context.Context, request components.DemWebsite, 
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -5236,7 +5238,7 @@ func (s *Dem) GetWebsite(ctx context.Context, request operations.GetWebsiteReque
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -5257,7 +5259,7 @@ func (s *Dem) GetWebsite(ctx context.Context, request operations.GetWebsiteReque
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -5278,7 +5280,7 @@ func (s *Dem) GetWebsite(ctx context.Context, request operations.GetWebsiteReque
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -5517,7 +5519,7 @@ func (s *Dem) UpdateWebsite(ctx context.Context, request operations.UpdateWebsit
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -5538,7 +5540,7 @@ func (s *Dem) UpdateWebsite(ctx context.Context, request operations.UpdateWebsit
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -5559,7 +5561,7 @@ func (s *Dem) UpdateWebsite(ctx context.Context, request operations.UpdateWebsit
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -5580,7 +5582,7 @@ func (s *Dem) UpdateWebsite(ctx context.Context, request operations.UpdateWebsit
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -5793,7 +5795,7 @@ func (s *Dem) DeleteWebsite(ctx context.Context, request operations.DeleteWebsit
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -5814,7 +5816,7 @@ func (s *Dem) DeleteWebsite(ctx context.Context, request operations.DeleteWebsit
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -5835,7 +5837,7 @@ func (s *Dem) DeleteWebsite(ctx context.Context, request operations.DeleteWebsit
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -5914,6 +5916,7 @@ func (s *Dem) GetWebsiteOutageStatuses(ctx context.Context, request operations.G
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -6074,7 +6077,7 @@ func (s *Dem) GetWebsiteOutageStatuses(ctx context.Context, request operations.G
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.GetWebsiteOutageStatuses(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -6112,7 +6115,7 @@ func (s *Dem) GetWebsiteOutageStatuses(ctx context.Context, request operations.G
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -6133,7 +6136,7 @@ func (s *Dem) GetWebsiteOutageStatuses(ctx context.Context, request operations.G
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -6154,7 +6157,7 @@ func (s *Dem) GetWebsiteOutageStatuses(ctx context.Context, request operations.G
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -6386,7 +6389,7 @@ func (s *Dem) PauseWebsiteMonitoring(ctx context.Context, request operations.Pau
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -6407,7 +6410,7 @@ func (s *Dem) PauseWebsiteMonitoring(ctx context.Context, request operations.Pau
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -6428,7 +6431,7 @@ func (s *Dem) PauseWebsiteMonitoring(ctx context.Context, request operations.Pau
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -6507,6 +6510,7 @@ func (s *Dem) GetWebsiteTestResults(ctx context.Context, request operations.GetW
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -6667,7 +6671,7 @@ func (s *Dem) GetWebsiteTestResults(ctx context.Context, request operations.GetW
 		opts = append(opts, operations.WithURLOverride(nextURL))
 
 		return s.GetWebsiteTestResults(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)
@@ -6705,7 +6709,7 @@ func (s *Dem) GetWebsiteTestResults(ctx context.Context, request operations.GetW
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -6726,7 +6730,7 @@ func (s *Dem) GetWebsiteTestResults(ctx context.Context, request operations.GetW
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -6747,7 +6751,7 @@ func (s *Dem) GetWebsiteTestResults(ctx context.Context, request operations.GetW
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -6979,7 +6983,7 @@ func (s *Dem) UnpauseWebsiteMonitoring(ctx context.Context, request operations.U
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -7000,7 +7004,7 @@ func (s *Dem) UnpauseWebsiteMonitoring(ctx context.Context, request operations.U
 
 			var out apierrors.CommonNotFoundErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -7021,7 +7025,7 @@ func (s *Dem) UnpauseWebsiteMonitoring(ctx context.Context, request operations.U
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out

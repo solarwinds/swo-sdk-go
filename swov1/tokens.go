@@ -235,7 +235,7 @@ func (s *Tokens) CreateToken(ctx context.Context, request components.TokensCreat
 
 			var out apierrors.CommonBadRequestErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -256,7 +256,7 @@ func (s *Tokens) CreateToken(ctx context.Context, request components.TokensCreat
 
 			var out apierrors.CommonUnauthorizedErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -277,7 +277,7 @@ func (s *Tokens) CreateToken(ctx context.Context, request components.TokensCreat
 
 			var out apierrors.CommonForbiddenErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -298,7 +298,7 @@ func (s *Tokens) CreateToken(ctx context.Context, request components.TokensCreat
 
 			var out apierrors.CommonInternalErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -319,7 +319,7 @@ func (s *Tokens) CreateToken(ctx context.Context, request components.TokensCreat
 
 			var out apierrors.CommonUnavailableErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, apierrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
