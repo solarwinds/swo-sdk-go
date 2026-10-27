@@ -233,6 +233,9 @@ type DemURIAvailabilityCheckSettingsInput struct {
 	//   Configure locations of the synthetic availability test probes.
 	//   Acceptable values depend on the selected type and actual values of existing probes.
 	TestFrom *DemTestFrom `json:"testFrom,omitempty"`
+	//   List of private probes to be used for availability tests.
+	//   If this field is not provided, then `testFrom` must be provided.
+	TestFromPrivateProbeIds []string `json:"testFromPrivateProbeIds,omitempty"`
 	// Configure how often availability tests should be performed. Provide a number of seconds that is one of 60, 300, 600, 900, 1800, 3600, 7200, 14400.
 	TestIntervalInSeconds float64 `json:"testIntervalInSeconds"`
 	//   Default conditions when the entity is considered down.
@@ -260,6 +263,13 @@ func (o *DemURIAvailabilityCheckSettingsInput) GetTestFrom() *DemTestFrom {
 		return nil
 	}
 	return o.TestFrom
+}
+
+func (o *DemURIAvailabilityCheckSettingsInput) GetTestFromPrivateProbeIds() []string {
+	if o == nil {
+		return nil
+	}
+	return o.TestFromPrivateProbeIds
 }
 
 func (o *DemURIAvailabilityCheckSettingsInput) GetTestIntervalInSeconds() float64 {

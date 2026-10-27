@@ -175,6 +175,15 @@ func main() {
 * [UpdateAwsIntegration](docs/sdks/cloudaccounts/README.md#updateawsintegration) - Update AWS Integration
 * [ValidateMgmtAccountOnboarding](docs/sdks/cloudaccounts/README.md#validatemgmtaccountonboarding) - Validate Management Account Onboarding
 
+### [Dashboards](docs/sdks/dashboards/README.md)
+
+* [ListDashboards](docs/sdks/dashboards/README.md#listdashboards) - List dashboards
+* [CreateDashboard](docs/sdks/dashboards/README.md#createdashboard) - Create a dashboard
+* [GetDashboard](docs/sdks/dashboards/README.md#getdashboard) - Get a dashboard by ID
+* [DeleteDashboard](docs/sdks/dashboards/README.md#deletedashboard) - Delete a dashboard
+* [UpdateDashboard](docs/sdks/dashboards/README.md#updatedashboard) - Update a dashboard
+* [DuplicateDashboard](docs/sdks/dashboards/README.md#duplicatedashboard) - Duplicate a dashboard
+
 ### [Dbo](docs/sdks/dbo/README.md)
 
 * [ObserveDatabase](docs/sdks/dbo/README.md#observedatabase) - Add database observability to a database
@@ -190,6 +199,7 @@ func main() {
 
 ### [Dem](docs/sdks/dem/README.md)
 
+* [ListPrivateProbes](docs/sdks/dem/README.md#listprivateprobes) - Get a list of existing private probes
 * [ListProbes](docs/sdks/dem/README.md#listprobes) - Get a list of existing synthetic probes
 * [GetDemSettings](docs/sdks/dem/README.md#getdemsettings) - Get DEM settings
 * [SetDemSettings](docs/sdks/dem/README.md#setdemsettings) - Set DEM settings
@@ -273,7 +283,6 @@ import (
 	"context"
 	"github.com/solarwinds/swo-sdk-go/swov1"
 	"github.com/solarwinds/swo-sdk-go/swov1/models/operations"
-	"github.com/solarwinds/swo-sdk-go/swov1/types"
 	"log"
 	"os"
 )
@@ -285,11 +294,7 @@ func main() {
 		swov1.WithSecurity(os.Getenv("SWO_API_TOKEN")),
 	)
 
-	res, err := s.Dem.GetURIOutageStatuses(ctx, operations.GetURIOutageStatusesRequest{
-		EntityID:  "<id>",
-		StartTime: types.MustTimeFromString("2025-01-07T04:04:57.949Z"),
-		EndTime:   types.MustTimeFromString("2026-12-19T15:16:56.899Z"),
-	})
+	res, err := s.Dashboards.ListDashboards(ctx, operations.ListDashboardsRequest{})
 	if err != nil {
 		log.Fatal(err)
 	}

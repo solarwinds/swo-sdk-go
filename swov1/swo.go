@@ -2,7 +2,7 @@
 
 package swov1
 
-// Generated from OpenAPI doc version 1.0.19 and generator version 2.950.2
+// Generated from OpenAPI doc version 1.0.20 and generator version 2.950.13
 
 import (
 	"context"
@@ -54,6 +54,7 @@ type Swo struct {
 	SDKVersion    string
 	ChangeEvents  *ChangeEvents
 	CloudAccounts *CloudAccounts
+	Dashboards    *Dashboards
 	Dbo           *Dbo
 	Dem           *Dem
 	Entities      *Entities
@@ -151,12 +152,12 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Swo {
 	sdk := &Swo{
-		SDKVersion: "0.16.0",
+		SDKVersion: "0.16.1",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 0.16.0 2.950.2 1.0.19 github.com/solarwinds/swo-sdk-go/swov1",
-			SDKVersion:        "0.16.0",
-			GenVersion:        "2.950.2",
-			OpenAPIDocVersion: "1.0.19",
+			UserAgent:         "speakeasy-sdk/go 0.16.1 2.950.13 1.0.20 github.com/solarwinds/swo-sdk-go/swov1",
+			SDKVersion:        "0.16.1",
+			GenVersion:        "2.950.13",
+			OpenAPIDocVersion: "1.0.20",
 			ServerList:        ServerList,
 			ServerVariables: []map[string]string{
 				{
@@ -186,6 +187,7 @@ func New(opts ...SDKOption) *Swo {
 
 	sdk.ChangeEvents = newChangeEvents(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CloudAccounts = newCloudAccounts(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Dashboards = newDashboards(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Dbo = newDbo(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Dem = newDem(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Entities = newEntities(sdk, sdk.sdkConfiguration, sdk.hooks)
