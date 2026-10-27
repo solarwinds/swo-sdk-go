@@ -1,0 +1,9 @@
+# UpdateDashboardRequest
+
+
+## Fields
+
+| Field                                                                                                      | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `DashboardID`                                                                                              | `string`                                                                                                   | :heavy_check_mark:                                                                                         | Dashboard identifier.                                                                                      |
+| `DashboardsDashboardUpdateRequest`                                                                         | [components.DashboardsDashboardUpdateRequest](../../models/components/dashboardsdashboardupdaterequest.md) | :heavy_check_mark:                                                                                         | Dashboard update payload.                                                                                  |

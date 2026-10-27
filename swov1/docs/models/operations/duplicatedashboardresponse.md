@@ -1,0 +1,9 @@
+# DuplicateDashboardResponse
+
+
+## Fields
+
+| Field                                                                                                   | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                              | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                      | :heavy_check_mark:                                                                                      | N/A                                                                                                     |
+| `Object`                                                                                                | [*operations.DuplicateDashboardResponseBody](../../models/operations/duplicatedashboardresponsebody.md) | :heavy_minus_sign:                                                                                      | The ID and name of the newly duplicated dashboard.                                                      |

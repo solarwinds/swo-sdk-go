@@ -10,19 +10,19 @@ import (
 	"time"
 )
 
-// Category - Health Score category label.
-type Category string
+// CategoryEnum - Health Score category label.
+type CategoryEnum string
 
 const (
-	CategoryGood     Category = "good"
-	CategoryBad      Category = "bad"
-	CategoryModerate Category = "moderate"
+	CategoryEnumGood     CategoryEnum = "good"
+	CategoryEnumBad      CategoryEnum = "bad"
+	CategoryEnumModerate CategoryEnum = "moderate"
 )
 
-func (e Category) ToPointer() *Category {
+func (e CategoryEnum) ToPointer() *CategoryEnum {
 	return &e
 }
-func (e *Category) UnmarshalJSON(data []byte) error {
+func (e *CategoryEnum) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -33,10 +33,10 @@ func (e *Category) UnmarshalJSON(data []byte) error {
 	case "bad":
 		fallthrough
 	case "moderate":
-		*e = Category(v)
+		*e = CategoryEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Category: %v", v)
+		return fmt.Errorf("invalid value for CategoryEnum: %v", v)
 	}
 }
 
@@ -47,7 +47,7 @@ type Healthscore struct {
 	// Health score value from 0 to 100.
 	Score *int `json:"score,omitempty"`
 	// Health Score category label.
-	Category *Category `json:"category,omitempty"`
+	Category *CategoryEnum `json:"category,omitempty"`
 }
 
 func (o *Healthscore) GetScore() *int {
@@ -57,7 +57,7 @@ func (o *Healthscore) GetScore() *int {
 	return o.Score
 }
 
-func (o *Healthscore) GetCategory() *Category {
+func (o *Healthscore) GetCategory() *CategoryEnum {
 	if o == nil {
 		return nil
 	}

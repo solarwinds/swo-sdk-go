@@ -98,36 +98,45 @@
 <body><h2 id="go-sdk-changes">Go SDK Changes:</h2>
 
 <ul>
-<li><code>Swo.Dem.PauseTransactionMonitoring()</code>:  <code>error.status[400]</code> <strong>Removed</strong> (Breaking ⚠️)</li>
-<li><code>Swo.Dem.UnpauseTransactionMonitoring()</code>:  <code>error.status[400]</code> <strong>Removed</strong> (Breaking ⚠️)</li>
+<li><code>Swo.Dashboards.ListDashboards()</code>: <strong>Added</strong></li>
+<li><code>Swo.Dashboards.CreateDashboard()</code>: <strong>Added</strong></li>
+<li><code>Swo.Dashboards.GetDashboard()</code>: <strong>Added</strong></li>
+<li><code>Swo.Dashboards.DeleteDashboard()</code>: <strong>Added</strong></li>
+<li><code>Swo.Dashboards.UpdateDashboard()</code>: <strong>Added</strong></li>
+<li><code>Swo.Dashboards.DuplicateDashboard()</code>: <strong>Added</strong></li>
+<li><code>Swo.Dem.ListPrivateProbes()</code>: <strong>Added</strong></li>
 <li><code>Swo.Dem.CreateTransaction()</code>:
 
 <ul>
-<li><code>request.Request.TestDefinition</code> <strong>Changed</strong>
-
-<ul>
-<li><code>AdvancedDataDisabled</code> <strong>Added</strong></li>
-<li><code>Commands[].SkipOnFailure</code> <strong>Added</strong></li>
-<li><code>TimeoutInSeconds</code> <strong>Added</strong></li>
+<li><code>request.Request.TestDefinition.TestFromPrivateProbeIds</code> <strong>Added</strong></li>
 </ul></li>
-</ul></li>
-<li><code>Swo.Dem.GetTransaction()</code>: <code>response.TestDefinition</code> <strong>Changed</strong>
-
-<ul>
-<li><code>AdvancedDataDisabled</code> <strong>Added</strong></li>
-<li><code>Commands[].SkipOnFailure</code> <strong>Added</strong></li>
-<li><code>TimeoutInSeconds</code> <strong>Added</strong></li>
-</ul></li>
+<li><code>Swo.Dem.GetTransaction()</code>:  <code>response.TestDefinition.TestFromPrivateProbeIds</code> <strong>Added</strong></li>
 <li><code>Swo.Dem.UpdateTransaction()</code>:
 
 <ul>
-<li><code>request.Request.Dem.transaction.TestDefinition</code> <strong>Changed</strong>
+<li><code>request.Request.Dem.transaction.TestDefinition.TestFromPrivateProbeIds</code> <strong>Added</strong></li>
+</ul></li>
+<li><code>Swo.Dem.CreateUri()</code>:
 
 <ul>
-<li><code>AdvancedDataDisabled</code> <strong>Added</strong></li>
-<li><code>Commands[].SkipOnFailure</code> <strong>Added</strong></li>
-<li><code>TimeoutInSeconds</code> <strong>Added</strong></li>
+<li><code>request.Request.AvailabilityCheckSettings.TestFromPrivateProbeIds</code> <strong>Added</strong></li>
 </ul></li>
+<li><code>Swo.Dem.GetUri()</code>:  <code>response.AvailabilityCheckSettings.TestFromPrivateProbeIds</code> <strong>Added</strong></li>
+<li><code>Swo.Dem.UpdateUri()</code>:
+
+<ul>
+<li><code>request.Request.Dem.uri.AvailabilityCheckSettings.TestFromPrivateProbeIds</code> <strong>Added</strong></li>
+</ul></li>
+<li><code>Swo.Dem.CreateWebsite()</code>:
+
+<ul>
+<li><code>request.Request.AvailabilityCheckSettings.TestFromPrivateProbeIds</code> <strong>Added</strong></li>
+</ul></li>
+<li><code>Swo.Dem.GetWebsite()</code>:  <code>response.AvailabilityCheckSettings.TestFromPrivateProbeIds</code> <strong>Added</strong></li>
+<li><code>Swo.Dem.UpdateWebsite()</code>:
+
+<ul>
+<li><code>request.Request.Dem.website.AvailabilityCheckSettings.TestFromPrivateProbeIds</code> <strong>Added</strong></li>
 </ul></li>
 </ul>
 </body>

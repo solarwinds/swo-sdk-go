@@ -94,6 +94,10 @@ type DemTransactionTestDefinition struct {
 	//   At least one of `testFrom` or `testFromPrivateProbeIds` must be provided.
 	//   Both fields may be provided simultaneously.
 	TestFrom *DemTestFrom `json:"testFrom,omitempty"`
+	//   List of private probes to be used for transaction tests.
+	//   At least one of `testFromPrivateProbeIds` or `testFrom` must be provided.
+	//   Both fields may be provided simultaneously.
+	TestFromPrivateProbeIds []string `json:"testFromPrivateProbeIds,omitempty"`
 	// Configure cloud platforms of the synthetic availability test probes. If omitted or set to null, any available cloud platform may be chosen.
 	PlatformOptions *PlatformOptions `json:"platformOptions,omitempty"`
 	//   Default conditions when the entity is considered down.
@@ -118,6 +122,13 @@ func (d *DemTransactionTestDefinition) GetTestFrom() *DemTestFrom {
 		return nil
 	}
 	return d.TestFrom
+}
+
+func (d *DemTransactionTestDefinition) GetTestFromPrivateProbeIds() []string {
+	if d == nil {
+		return nil
+	}
+	return d.TestFromPrivateProbeIds
 }
 
 func (d *DemTransactionTestDefinition) GetPlatformOptions() *PlatformOptions {

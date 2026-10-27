@@ -1,0 +1,12 @@
+# DashboardsDashboardReport
+
+Report associated with this dashboard, if any.
+
+
+## Fields
+
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              | Example                                                                                  |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ID`                                                                                     | `string`                                                                                 | :heavy_check_mark:                                                                       | Report identifier.                                                                       | 105                                                                                      |
+| `Title`                                                                                  | `string`                                                                                 | :heavy_check_mark:                                                                       | Report title.                                                                            | test                                                                                     |
+| `Type`                                                                                   | [components.DashboardsDashboardType](../../models/components/dashboardsdashboardtype.md) | :heavy_check_mark:                                                                       | Report type.                                                                             | Custom                                                                                   |
